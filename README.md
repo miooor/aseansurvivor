@@ -45,6 +45,7 @@ Deploy the generated `dist/` directory to a static host. GitHub Pages now requir
 - **Combos and evolutions:** skills used together get bonuses, and a rank-5 skill plus a matching item evolves.
 - **Power-ups:** Ketupat (heal), Besi Berani (magnet), Mercun (hits every ghost on screen), Kopi Kaw (fast recharge), Payung (shield).
 - **Portal raid:** a portal appears once per stage. Inside is Hantu Raya, a raid boss that drops a Fusion Orb (free evolution) or a big XP buff.
+- **Johor hunt and relics:** follow two sequential tracks in the palm groves, then defeat Briarback, a Thornbound Palm Stalker whose charges leave warned thorn patches. Choose a third-cast pulse, once-per-run lethal rescue, elite sustain or temporary ultimate damage relic. See [hunt rules and verification](docs/johor-hunt.md).
 - **Johor rescue and weapons:** discover Trapped Traveller at the abandoned market, deliberately defeat six captors and rescue the traveller to choose one of three weapon rewards. Equipment inspection pauses combat; events can be abandoned and block raid entry until resolved. See [rescue rules and verification](docs/johor-rescue.md).
 - **Coins and hero shop:** saved in the browser's localStorage.
 
@@ -54,7 +55,7 @@ All heroes and stages are unlocked for testing. To bring back the shop and stage
 
 The campaign lobby, HUD, hero portraits, controls, upgrades, pause, and results screens share a jade-and-gold visual style. The battlefield uses native Phaser images, graphics, text, camera effects, and reusable sprite objects. There is no full-screen Canvas-texture rendering bridge.
 
-All six stages have distinct connected 6,000 × 6,000 regions, each with five landmarks, local terrain and a signature enemy. All five heroes use four-frame movement and attack cycles in eight directions, with a separate directional idle atlas. Q/E/F/R each have distinct eight-direction windup and release poses, followed by a shared recovery pose. Johor now has a run-local rescue and weapon equipment slice; charms, relics and music remain future work.
+All six stages have distinct connected 6,000 × 6,000 regions, each with five landmarks, local terrain and a signature enemy. All five heroes use four-frame movement and attack cycles in eight directions, with a separate directional idle atlas. Q/E/F/R each have distinct eight-direction windup and release poses, followed by a shared recovery pose. Johor now has run-local rescue/weapon and hunt/relic encounters; ward/charms and music remain future work.
 
 ## Hero signatures
 
