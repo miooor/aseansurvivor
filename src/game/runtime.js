@@ -1,3 +1,4 @@
+import {installWard} from './ward.js';
 import {installEquipment} from './equipment.js';
 import {installEncounters} from './encounters.js';
 import {createWorld} from '../content/world.js';
@@ -633,6 +634,7 @@ installHeroes(api);
 installIdentities(api);
 const equipment=installEquipment(api);
 const encounters=installEncounters(api,equipment);
+installWard(api,encounters);
 api.eventActive=encounters.active;
 const raid=installRaid(api);
 buildHeroCards();
