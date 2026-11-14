@@ -29,7 +29,7 @@ export function installIdentities(api){
     g.identity={charge:0,lastSkill:0,window:0,releaseT:0,castT:0,castMax:.24,castSlot:0,castAngle:0,empowered:false,x:g.p.x,y:g.p.y};
   });
   HOOKS.hit.push((e,o)=>{
-    if(api.G.hero.id==='lan'&&e.slowT>0&&!o.dot)gain(8);
+    if(o.origin!=='item'&&api.G.hero.id==='lan'&&e.slowT>0&&!o.dot)gain(8);
   });
   HOOKS.parry.push(()=>{
     if(api.G.hero.id!=='sari')return;
@@ -92,6 +92,7 @@ export function installIdentities(api){
         }
         if(id==='sari'){g.cds[2]=0;s.window=0}
       }
+      for(const f of HOOKS.cast)f(i,r);
       return result;
     });
   }

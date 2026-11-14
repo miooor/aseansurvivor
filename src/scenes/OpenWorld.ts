@@ -60,6 +60,11 @@ export class OpenWorld {
     const nearby=LANDMARKS.reduce((a,b)=>Math.hypot(g.p.x-a.x,g.p.y-a.y)<Math.hypot(g.p.x-b.x,g.p.y-b.y)?a:b);
     document.getElementById('regionName')!.textContent=nearby.name;
     for(const s of LANDMARKS)this.map.querySelector(`[data-site="${s.id}"]`)!.setAttribute('fill',g.exploration.claimed.includes(s.id)?'#d9b96f':g.exploration.visited.includes(s.id)?'#89dfc5':'#78887a');
+    const svg=this.map.querySelector('svg')!;
+    for(const marker of this.map.querySelectorAll('[data-event]'))marker.remove();
+    for(const event of Object.values(g.encounters||{}))if(event.status==='active'||event.status==='available'&&event.discovered){
+      const marker=document.createElementNS('http://www.w3.org/2000/svg','g');marker.setAttribute('data-event',event.id);marker.innerHTML=`<circle cx="${event.x+HALF}" cy="${event.y+HALF}" r="130" fill="#ffbd77" stroke="#211c17" stroke-width="30"/><text x="${event.x+HALF}" y="${event.y+HALF-180}" fill="#fff4cf" font-size="175" text-anchor="middle">${event.name}</text><title>${event.name} · ${event.status}</title>`;svg.append(marker);
+    }
     const next=LANDMARKS.filter(s=>s.reward&&!g.exploration.claimed.includes(s.id)).sort((a,b)=>Math.hypot(g.p.x-a.x,g.p.y-a.y)-Math.hypot(g.p.x-b.x,g.p.y-b.y))[0];
     const distance=next?Math.hypot(g.p.x-next.x,g.p.y-next.y):0;
     const guards=next?(g.exploration.guards[next.id]||[]).filter(e=>!e.dead).length:0;

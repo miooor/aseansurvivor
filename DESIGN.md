@@ -20,6 +20,8 @@ Core loop:
 
 ## Current decisions
 
+- **Johor rescue and weapon slice (2026-11-14).** Trapped Traveller is an optional, deliberate market encounter with six captors and one Armoured Palm Stalker. Final rescue grants one fixed three-choice weapon offer. Three run-local slots, safe paused inspection and replacement now exist; charm/relic content remains subsequent work. Exact contracts and evidence are in `docs/johor-rescue.md` and canonical issue #1. Existing caches, survival clock and progression remain; active events block raid entry until resolved.
+
 - **Hero signatures (2026-11-14).** Each existing kit gains a distinct loop: Hakim charges a healing Sanctuary through basic attacks; Jet converts movement into a Redline dash; Nok chains alternating techniques into an area finisher; Lan builds High Tide through hits on slowed enemies for an empowered troupe; Sari converts successful counters into a timed Riposte and dash reset. The lobby explains each loop; the HUD shows charge, timing windows, and ready skills. Exact current rules are in README's Hero signatures table. These are run-local powers and do not change saved ownership.
 
 - **Browser-first Phaser remake (2026-11-14).** Phaser 4 + TypeScript + Vite is the foundation. The current renderer uses illustrated sprites, native Phaser effects, and a cinematic HTML lobby. Existing combat kits and progression rules remain; all stage rules currently share one kampung environment. The earlier dependency-free prototype and prospective Phaser 3 direction are superseded.

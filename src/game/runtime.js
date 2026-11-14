@@ -1,3 +1,5 @@
+import {installEquipment} from './equipment.js';
+import {installEncounters} from './encounters.js';
 import {createWorld} from '../content/world.js';
 import {STAGES,INTRO,HEROES as BASE_HEROES,PASSIVES,EVOS as BASE_EVOS} from '../content/core.js';
 import {installHeroes} from './heroes-sea.js';
@@ -32,7 +34,7 @@ function nextStage(S){if(S.bonus)S=STAGES.find(x=>x.id===S.after);const m=MAIN.i
 const bossAt=()=>G.stage.bossAt||BOSS_AT;
 let stagePick=0;{for(let i=0;i<STAGES.length;i++)if(stageOpen(i)&&!STAGES[i].bonus)stagePick=i}if(UNLOCK_ALL)stagePick=0;
 /* ---------- Module hooks (heroes-sea.js, raid.js plug in here) ---------- */
-const HOOKS={newGame:[],update:[],drawWorld:[],drawScreen:[],kill:[],hurt:[],hit:[],parry:[],dmgMul:[]};
+const HOOKS={newGame:[],update:[],drawWorld:[],drawScreen:[],kill:[],hurt:[],hit:[],parry:[],dmgMul:[],cleanup:[],cast:[]};
 
 /* ---------- Heroes ---------- */
 
@@ -58,12 +60,13 @@ listen(window,'keydown',e=>{
     return;
   }
   if(!G)return;
+  if(G.lootModal){if(e.code==='Escape'&&G.lootModal==='inspect')equipment.close();return;}
   if(e.target instanceof Element&&e.target.closest('button')&&['Space','Enter'].includes(e.code))return;
   if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code))e.preventDefault();
   keys.add(e.code);
   if(G.choosing){const n=+e.key;if(n>=1&&n<=3)pickUp(n-1);return}
   if(e.code==='Escape'||e.code==='KeyP'){togglePause();return}
-  if(G.paused||G.over)return;
+  if(G.paused||G.lootModal||G.over)return;
   if(e.code==='KeyT'){toggleAuto();return}
   const map={KeyQ:1,KeyE:2,KeyF:3,KeyR:4,Space:4};
   if(map[e.code])tryCast(map[e.code]);
@@ -82,6 +85,8 @@ listen(cvs,'pointerup',endJoy);listen(cvs,'pointercancel',endJoy);
 /* ---------- Game state ---------- */
 let G=null;let heroPick='ustaz';
 function newGame(id,si){
+  if(G)for(const f of HOOKS.cleanup)f();
+  for(const id of ['pause','levelup','end'])$(id).hidden=true;
   audio.stop();audio.setPaused(false);
   const h=HEROES[id];if(si===undefined)si=stagePick;const S=STAGES[si];
   world=createWorld(S.id);
@@ -144,11 +149,12 @@ function hit(e,amt,o={}){
   if(!o.dot)G.fx.push({kind:'impact',x:e.x,y:e.y-e.r*.5,r:crit?38:22,a:Math.atan2(e.y-G.p.y,e.x-G.p.x),c:crit?'#ffe66b':G.hero.identity.color,life:.24,max:.24});
   if(crit&&e.type==='pontianak'&&e.pinCd<=0){e.stun=3;e.pinCd=10;banner('Pinned! Like the nail in the old story, she is stunned for 3 s.',3);ring(e.x,e.y,60,'#ffd34d',.5)}
   if(o.kb&&!e.boss&&e.type!=='body'){e.kvx+=o.kb[0];e.kvy+=o.kb[1]}
-  if(e.hp<=0)kill(e);
+  if(e.hp<=0)kill(e,{...o,damage:true});
 }
-function kill(e){
+function kill(e,o={}){
+  if(e.dead)return;
   e.dead=true;
-  for(const f of HOOKS.kill)if(f(e)===true)return;
+  for(const f of HOOKS.kill)if(f(e,o)===true)return;
   if(e.type==='body'){
     puff(e.x,e.y,'#7c5a6e',10);
     if(e.head&&!e.head.dead){e.head.hp=Math.min(e.head.hp,e.head.maxHp/2);e.head.weak=true;text(e.head.x,e.head.y-26,'body destroyed!','#ffb3c1',13)}
@@ -161,7 +167,7 @@ function kill(e){
   puff(e.x,e.y,e.type==='toyol'?'#5fd16a':e.type==='minyak'?'#3a4650':'#d9e4ea',8);
   if(e.type==='penanggal'&&e.body&&!e.body.dead){e.body.dead=true;puff(e.body.x,e.body.y,'#7c5a6e',8)}
   if(e.type==='toyol'&&e.carry>0){for(let i=0;i<Math.min(6,e.carry);i++)dropGem(e.x+rand(-14,14),e.y+rand(-14,14),Math.ceil(e.carry/Math.min(6,e.carry)),'ember');text(e.x,e.y-18,'embers back!','#ff9b3d',13)}
-  if(e.boss){G.won=true;G.wonT=2.5;banner(e.name+' is defeated! '+G.stage.name+' is safe.',4);for(let i=0;i<30;i++)dropGem(e.x+rand(-60,60),e.y+rand(-60,60),5,'soul');for(let i=0;i<20;i++)dropCoin(e.x+rand(-70,70),e.y+rand(-70,70),2);hideBossBar()}
+  if(e.boss){G.won=true;for(const f of HOOKS.cleanup)f();G.wonT=2.5;banner(e.name+' is defeated! '+G.stage.name+' is safe.',4);for(let i=0;i<30;i++)dropGem(e.x+rand(-60,60),e.y+rand(-60,60),5,'soul');for(let i=0;i<20;i++)dropCoin(e.x+rand(-70,70),e.y+rand(-70,70),2);hideBossBar()}
   else if(e.type==='pocong'&&Math.random()<.3)dropGem(e.x,e.y,4,'soul');
   else dropGem(e.x,e.y,e.xp,'ember');
 }
@@ -205,7 +211,7 @@ const CAST={
   ],
 };
 function tryCast(i,auto){
-  if(!G||G.paused||G.choosing||G.over||i<1||i>4)return;
+  if(!G||G.paused||G.choosing||G.lootModal||G.over||i<1||i>4)return;
   if(auto){const ms=AUTO_MODES[G.autoMode].set;if(ms&&!ms.includes(i))return}
   const h=G.hero,s=h.skills[i];
   if(s.ult?G.ult<h.ultNeed:G.cds[i]>0)return;
@@ -374,13 +380,13 @@ function update(dt){
   const viewR=Math.hypot(W,H)/(2*SC);
   for(const e of G.enemies){
     if(e.dead)continue;
-    e.flash=Math.max(0,e.flash-dt);if(e.sq)e.sq=Math.max(0,e.sq-dt*7);
+    e.vulnerable=Math.max(0,(e.vulnerable||0)-dt);e.flash=Math.max(0,e.flash-dt);if(e.sq)e.sq=Math.max(0,e.sq-dt*7);
     if(e.burnT>0){e.burnT-=dt;e.burnAcc+=dt;if(e.burnAcc>=.5){e.burnAcc-=.5;hit(e,e.burnDps*.5,{dot:true});if(e.dead)continue}}
     if(e.pinCd!==undefined)e.pinCd=Math.max(0,e.pinCd-dt);
     e.x+=e.kvx*dt;e.y+=e.kvy*dt;const damp=Math.pow(.01,dt);e.kvx*=damp;e.kvy*=damp;
     if(e.type==='body'){e.near=Math.hypot(e.x-p.x,e.y-p.y)<520;if(Math.hypot(e.x-p.x,e.y-p.y)>1600){e.dead=true;if(e.head)e.head.body=null}continue}
     let dx=p.x-e.x,dy=p.y-e.y,dl=Math.hypot(dx,dy)||1;
-    if(dl>viewR*1.7&&!e.boss&&!G.raid){const[x,y]=spawnPos();e.x=x;e.y=y;continue}
+    if(!e.encounter&&dl>viewR*1.7&&!e.boss&&!G.raid){const[x,y]=spawnPos();e.x=x;e.y=y;continue}
     if(e.stun>0){e.stun-=dt;continue}
     let tx=dx/dl,ty=dy/dl,sp=e.spd;
     if(e.ai){const r=e.ai(e,dt,{dx,dy,dl,tx,ty,sp});if(r){tx=r.tx;ty=r.ty;sp=r.sp}}
@@ -415,16 +421,16 @@ function update(dt){
       if(e.skillT<=0&&dl<650&&!e.windup){e.windup=.65;e.skillT=3.5;}
       if(e.windup>0){e.windup=Math.max(0,e.windup-dt);sp=0;
         if(!e.windup){e.actions++;const angle=Math.atan2(dy,dx);
-          const bolt=(offset,speed,color)=>G.eprojs.push({x:e.x,y:e.y,vx:Math.cos(angle+offset)*speed,vy:Math.sin(angle+offset)*speed,r:7,dmg:10,life:3,c:color});
+          const bolt=(offset,speed,color)=>G.eprojs.push({encounter:e.encounter,x:e.x,y:e.y,vx:Math.cos(angle+offset)*speed,vy:Math.sin(angle+offset)*speed,r:7,dmg:10,life:3,c:color});
           if(e.type==='stalker'){e.rush=.5;e.rx=tx;e.ry=ty;}
           if(e.type==='lantern')for(const a of [-.2,0,.2])bolt(a,190,'#ffc66b');
           if(e.type==='sentinel'){ring(e.x,e.y,155,'#a9e3df',.5);if(dl<155+p.r)hurtPlayer(18);}
           if(e.type==='neon'){e.rush=.32;e.rx=tx;e.ry=ty;for(const a of [-.6,.6])bolt(a,250,'#ce9dff');}
-          if(e.type==='drifter'){G.zones.push({kind:'oil',x:e.x,y:e.y,r:95,life:4,max:4,c:'#529eb1'});bolt(0,170,'#9be6e5');}
+          if(e.type==='drifter'){G.zones.push({encounter:e.encounter,kind:'oil',x:e.x,y:e.y,r:95,life:4,max:4,c:'#529eb1'});bolt(0,170,'#9be6e5');}
           if(e.type==='watcher')for(const a of [-.48,-.24,0,.24,.48])bolt(a,155,'#e8d58e');
         }
       }
-      if(e.rush>0){e.rush-=dt;tx=e.rx;ty=e.ry;sp*=3;}
+      if(e.rush>0){e.rush-=dt;tx=e.rx;ty=e.ry;sp*=3;if(e.rush<=0&&e.elite==='Armoured')e.vulnerable=1.5;}
       if(e.type==='watcher'&&dl<370)sp=0;
     }
     if(e.slowT>0){e.slowT-=dt;sp*=.5}
@@ -451,7 +457,7 @@ function update(dt){
     if(pr.update)pr.update(pr,dt);
     pr.x+=pr.vx*dt;pr.y+=pr.vy*dt;pr.life-=dt;if(pr.spin!==undefined)pr.spin+=dt*18;
     for(const e of G.enemies){if(e.dead||pr.hit.has(e)||pr.life<=0)continue;const dx=e.x-pr.x,dy=e.y-pr.y,rr=e.r+pr.r;
-      if(dx*dx+dy*dy<rr*rr){pr.hit.add(e);hit(e,pr.dmg*(pr.dmgFor?pr.dmgFor(e):1));if(pr.onHit)pr.onHit(pr,e);if(pr.fire){e.burnT=2;e.burnDps=10*rm(G.ranks[0])}
+      if(dx*dx+dy*dy<rr*rr){pr.hit.add(e);hit(e,pr.dmg*(pr.dmgFor?pr.dmgFor(e):1),{origin:pr.origin,dot:pr.dot});if(pr.onHit)pr.onHit(pr,e);if(pr.fire){e.burnT=2;e.burnDps=10*rm(G.ranks[0])}
         if(pr.bounces>0){pr.bounces--;const n=nearest(pr.x,pr.y,230,pr.hit);if(n){const ax=n.x-pr.x,ay=n.y-pr.y,l=Math.hypot(ax,ay)||1;pr.vx=ax/l*540;pr.vy=ay/l*540;pr.life=.8}else pr.life=0}
         else if(--pr.pierce<=0)pr.life=0;break}}
   }
@@ -485,6 +491,7 @@ function update(dt){
 /* ---------- Level up ---------- */
 let choices=[];
 function openLevelUp(){
+  if(!G||G.lootModal||G.choosing||G.over)return;
   audio.setPaused(true);
   G.choosing=true;G.pending--;
   const pool=[];
@@ -504,7 +511,7 @@ function pickUp(i){
   const c=choices[i];if(!c||!G.choosing)return;
   if(c.type==='evo'){G.evo[c.ev.i]=true;banner('Evolved: '+c.ev.name+'!',3);juice(10,.1)}
   else if(c.type==='skill')G.ranks[c.i]++;
-  else if(c.type==='pass'){G.pass[c.id]=(G.pass[c.id]||0)+1;PASSIVES.find(p=>p.id===c.id).apply(G.st,G)}
+  else if(c.type==='pass'){G.pass[c.id]=(G.pass[c.id]||0)+1;PASSIVES.find(p=>p.id===c.id).apply(G.st,G);equipment.recalculate()}
   else G.p.hp=Math.min(G.p.maxHp,G.p.hp+40);
   $('levelup').hidden=true;G.choosing=false;updateSkillBar(true);cvs.focus&&cvs.focus();
 }
@@ -554,10 +561,10 @@ function buildSkillBar(){
   G.hero.skills.forEach((s,i)=>{if(i===0)return;
     const b=document.createElement('button');b.className='sk'+(s.ult?' ult':'');b.id='sk'+i;b.title=s.name+': '+s.desc;
     b.innerHTML=`<span class="key">${s.key}</span><span class="sigil" aria-hidden="true">${['','✧','◌','≋','◇'][i]}</span><span class="nm">${s.name}</span><span class="rk"></span><span class="cd"></span><span class="cdn"></span>`;
-    b.addEventListener('click',()=>{if(G&&!G.paused&&!G.choosing&&!G.over)tryCast(i)});
+    b.addEventListener('click',()=>{if(G&&!G.paused&&!G.choosing&&!G.lootModal&&!G.over)tryCast(i)});
     box.appendChild(b);skEls[i]={b,cd:b.querySelector('.cd'),cdn:b.querySelector('.cdn'),rk:b.querySelector('.rk')}});
   const ab=document.createElement('button');ab.className='sk auto';ab.id='autobtn';ab.title='Toggle auto-cast (T)';
-  ab.addEventListener('click',()=>{if(G&&!G.paused&&!G.choosing&&!G.over)toggleAuto()});box.appendChild(ab);updateAutoBtn();
+  ab.addEventListener('click',()=>{if(G&&!G.paused&&!G.choosing&&!G.lootModal&&!G.over)toggleAuto()});box.appendChild(ab);updateAutoBtn();
   updateSkillBar(true);
 }
 let lastHud={};
@@ -588,7 +595,7 @@ function updateHud(){
   $('signatureMeter').setAttribute('aria-valuenow',String(Math.floor(state.charge)));
   $('signatureMeter').setAttribute('aria-valuemax',String(identity.max));
   $('signature').classList.toggle('charged',ready);
-  $('skills').inert=G.paused||G.choosing||G.over;$('pauseButton').disabled=G.choosing||G.over||G.paused;
+  $('skills').inert=G.paused||G.choosing||G.lootModal||G.over;$('pauseButton').disabled=G.choosing||G.over||G.paused||!!G.lootModal;
   const bb=G.raidBoss&&!G.raidBoss.dead?G.raidBoss:G.boss;if(bb&&!bb.dead)$('bossfill').style.width=(Math.max(0,bb.hp)/bb.maxHp*100).toFixed(1)+'%';
   updateSkillBar(false);
 }
@@ -596,10 +603,10 @@ function statsHtml(extra=[]){
   const m=Math.floor(G.clock/60),s=Math.floor(G.clock%60);
   return[[m+':'+String(s).padStart(2,'0'),'Time'],[G.level,'Level'],[G.kills,'Ghosts'],[G.coins,'Coins'],...extra].map(([b,l])=>`<div><b>${b}</b><span>${l}</span></div>`).join('');
 }
-function togglePause(){if(!G||G.over||G.choosing)return;G.paused=!G.paused;audio.setPaused(G.paused);keys.clear();$('pause').hidden=!G.paused;if(G.paused){$('pstats').innerHTML=statsHtml();$('resume').focus()}else cvs.focus({preventScroll:true});updateHud()}
+function togglePause(){if(!G||G.over||G.choosing||G.lootModal)return;G.paused=!G.paused;audio.setPaused(G.paused);keys.clear();$('pause').hidden=!G.paused;if(G.paused){$('pstats').innerHTML=statsHtml();$('resume').focus()}else cvs.focus({preventScroll:true});updateHud()}
 function endGame(won){
   audio.setPaused(true);
-  if(G.over)return;G.over=true;$('end').hidden=false;
+  if(G.over)return;G.over=true;for(const f of HOOKS.cleanup)f();G.choosing=false;$('levelup').hidden=true;$('pause').hidden=true;$('end').hidden=false;
   const S=G.stage,next=nextStage(S),bonus=won?(S.bonus?60:20+10*MAIN.indexOf(S)):0;
   if(won&&!SAVE.cleared.includes(S.id))SAVE.cleared.push(S.id);
   SAVE.coins+=G.coins+bonus;saveGame();
@@ -609,7 +616,7 @@ function endGame(won){
   $('next').hidden=!(won&&next);
   ($('next').hidden?$('again'):$('next')).focus();
 }
-function toMenu(){audio.setPaused(true);G=null;['hud','skills','end','pause','levelup'].forEach(id=>$(id).hidden=true);$('menu').hidden=false;buildHeroCards();$('start').focus({preventScroll:true})}
+function toMenu(){audio.setPaused(true);for(const f of HOOKS.cleanup)f();G=null;['hud','skills','end','pause','levelup'].forEach(id=>$(id).hidden=true);$('menu').hidden=false;buildHeroCards();$('start').focus({preventScroll:true})}
 $('start').onclick=()=>{$('menu').hidden=true;newGame(heroPick)};
 $('resume').onclick=togglePause;
 $('pauseButton').onclick=togglePause;
@@ -621,25 +628,30 @@ $('tomenu').onclick=toMenu;
 listen(document,'visibilitychange',()=>{if(document.hidden&&G&&!G.paused&&!G.over&&!G.choosing)togglePause()});
 
 
-const api={audio,safePoint,get G(){return G},get W(){return W},get H(){return H},get SC(){return SC},HEROES,EVOS,HOOKS,CAST,nearest,each,hit,rm,text,juice,aimDir,combo,ring,TAU,puff,banner,rand,AUTO,GHOSTS,$,makeGhost,showBossBar,hideBossBar,hurtPlayer,tryCast,updateSkillBar,addXP,dropCoin};
+const api={audio,canvas:cvs,clearInput(){keys.clear();joy=null;},safePoint,get G(){return G},get W(){return W},get H(){return H},get SC(){return SC},HEROES,EVOS,HOOKS,CAST,nearest,each,hit,rm,text,juice,aimDir,combo,ring,TAU,puff,banner,rand,AUTO,GHOSTS,$,makeGhost,showBossBar,hideBossBar,hurtPlayer,tryCast,updateSkillBar,addXP,dropCoin};
 installHeroes(api);
 installIdentities(api);
+const equipment=installEquipment(api);
+const encounters=installEncounters(api,equipment);
+api.eventActive=encounters.active;
 const raid=installRaid(api);
 buildHeroCards();
 return {
   audio,get G(){return G},get scale(){return SC},get joystick(){return joy},raid,resize,
   tryCast,newGame,dropPup,openLevelUp,addXP,kill,makeGhost,endGame,toMenu,togglePause,
   step(delta){
-    audio.setPaused(!G||G.paused||G.choosing||G.over||document.hidden);
+    audio.setPaused(!G||G.paused||G.choosing||G.lootModal||G.over||document.hidden);
     if(!G)return;
+    if(G.pending>0&&!G.paused&&!G.choosing&&!G.lootModal&&!G.over&&!G.won)openLevelUp();
+    equipment.sync();
     const dt=Math.min(.05,delta/1000);
-    if(!G.paused&&!G.choosing&&!G.over){if(G.stop>0)G.stop-=dt;else update(dt)}
+    if(!G.paused&&!G.choosing&&!G.lootModal&&!G.over){if(G.stop>0)G.stop-=dt;else update(dt)}
     if(!G.raid){
       Object.assign(G.p,safePoint(G.p.x,G.p.y,G.p.r));
       for(const e of G.enemies)if(!e.dead&&!walkable(e.x,e.y,e.r))Object.assign(e,safePoint(e.x,e.y,e.r));
-      if(!G.paused&&!G.choosing&&!G.over)explore();
+      if(!G.paused&&!G.choosing&&!G.lootModal&&!G.over)explore();
     }
-    G.shake=Math.max(0,G.shake-dt*40);updateHud();
+    G.shake=Math.max(0,G.shake-dt*40);equipment.sync();encounters.sync();updateHud();
   },
   destroy(){audio.destroy();controller.abort();G=null}
 };
