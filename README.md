@@ -46,6 +46,7 @@ Deploy the generated `dist/` directory to a static host. GitHub Pages now requir
 - **Power-ups:** Ketupat (heal), Besi Berani (magnet), Mercun (hits every ghost on screen), Kopi Kaw (fast recharge), Payung (shield).
 - **Portal raid:** a portal appears once per stage. Inside is Hantu Raya, a raid boss that drops a Fusion Orb (free evolution) or a big XP buff.
 - **Johor rescue and weapons:** discover Trapped Traveller at the abandoned market, deliberately defeat six captors and rescue the traveller to choose one of three weapon rewards. Equipment inspection pauses combat; events can be abandoned and block raid entry until resolved. See [rescue rules and verification](docs/johor-rescue.md).
+- **Lantern Ward and charms:** protect the rice-fields lantern through 4/6/8 waves with 300 ward HP, then choose a run-local charm for speed, healing, oil protection or positional damage. See [ward rules and verification](docs/johor-ward.md).
 - **Coins and hero shop:** saved in the browser's localStorage.
 
 All heroes and stages are unlocked for testing. To bring back the shop and stage locks, set `UNLOCK_ALL` to `false` in `src/game/runtime.js`. Existing saves still use the `aseanSurvivor.v1` localStorage key. Saves are specific to the browser origin: changing hostname or port uses a different save slot.
@@ -54,7 +55,7 @@ All heroes and stages are unlocked for testing. To bring back the shop and stage
 
 The campaign lobby, HUD, hero portraits, controls, upgrades, pause, and results screens share a jade-and-gold visual style. The battlefield uses native Phaser images, graphics, text, camera effects, and reusable sprite objects. There is no full-screen Canvas-texture rendering bridge.
 
-All six stages have distinct connected 6,000 × 6,000 regions, each with five landmarks, local terrain and a signature enemy. All five heroes use four-frame movement and attack cycles in eight directions, with a separate directional idle atlas. Q/E/F/R each have distinct eight-direction windup and release poses, followed by a shared recovery pose. Johor now has a run-local rescue and weapon equipment slice; charms, relics and music remain future work.
+All six stages have distinct connected 6,000 × 6,000 regions, each with five landmarks, local terrain and a signature enemy. All five heroes use four-frame movement and attack cycles in eight directions, with a separate directional idle atlas. Q/E/F/R each have distinct eight-direction windup and release poses, followed by a shared recovery pose. Johor now has run-local rescue/weapon and ward/charm equipment slices; relics and music remain future work.
 
 ## Hero signatures
 
