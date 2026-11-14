@@ -20,4 +20,6 @@ rt.raid.spawnPortal();check(stage.name+' rift lands on local walkable ground',w.
 check('All six stages have different collision layouts',layouts.size===6);check('All six stages have a distinct signature enemy',signatures.size===6);
 rt.newGame('ustaz',0);rt.scene.update(0,50);check('Stage switching restores Johor geometry',rt.G.world.id==='johor'&&rt.G.world.walkable(0,0,30));
 }catch(e){result='FAIL';error=e.message}finally{rt.toMenu();$('report').textContent=JSON.stringify({date:new Date().toISOString(),result,error,checks},null,2)}};
+const download=document.createElement('button');download.textContent='Download report';$('run').after(download);
+download.onclick=()=>{const a=document.createElement('a'),url=URL.createObjectURL(new Blob([$('report').textContent],{type:'application/json'}));a.href=url;a.download='stage-worlds-report.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
 </script></html>

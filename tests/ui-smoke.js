@@ -154,6 +154,7 @@ run.onclick=async()=>{
     for(const width of [1440,768,390,320]){
       frame.width=width;await tick();
       const bounds=$('start').getBoundingClientRect();
+      if($('menu').scrollWidth>width)evidence.overflow=[...$('menu').querySelectorAll('*')].map(e=>({tag:e.tagName,id:e.id,class:e.className,left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right})).filter(e=>e.left<0||e.right>width);
       check(width+'px lobby has no horizontal overflow',$('menu').scrollWidth<=width&&bounds.left>=0&&bounds.right<=width);
     }
     $('start').click();await tick();
