@@ -137,3 +137,5 @@ dialog{color:var(--moon);font-family:var(--ui);max-height:85dvh;overflow:auto;wi
 /* Keep the navigation and signature panels away from the central combat space. */
 #signature{width:190px;padding:8px 10px}#signatureHint{font-size:9px}#worldMap{width:126px}#skills{padding:6px;gap:6px}
 @media(max-width:520px){#signature{width:146px;padding:6px 8px}#worldMap{width:88px}#worldMap #mapObjective{font-size:9px}}
+
+@media(max-width:360px){h1{font-size:48px}}
