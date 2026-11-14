@@ -1,0 +1,14 @@
+services:
+  game:
+    image: node:24-alpine
+    working_dir: /app
+    ports:
+      - "127.0.0.1:5173:5173"
+      - "127.0.0.1:4173:4173"
+    volumes:
+      - .:/app
+      - dependencies:/app/node_modules
+    command: sh -c "npm ci && npm run dev"
+
+volumes:
+  dependencies:
