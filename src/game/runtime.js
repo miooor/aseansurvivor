@@ -1,4 +1,6 @@
 import {installHunt} from './hunt.js';
+import {installCharms} from './charms.js';
+import {installWard} from './ward.js';
 import {installEquipment} from './equipment.js';
 import {installEncounters} from './encounters.js';
 import {createWorld} from '../content/world.js';
@@ -388,7 +390,8 @@ function update(dt){
     if(e.pinCd!==undefined)e.pinCd=Math.max(0,e.pinCd-dt);
     e.x+=e.kvx*dt;e.y+=e.kvy*dt;const damp=Math.pow(.01,dt);e.kvx*=damp;e.kvy*=damp;
     if(e.type==='body'){e.near=Math.hypot(e.x-p.x,e.y-p.y)<520;if(Math.hypot(e.x-p.x,e.y-p.y)>1600){e.dead=true;if(e.head)e.head.body=null}continue}
-    let dx=p.x-e.x,dy=p.y-e.y,dl=Math.hypot(dx,dy)||1;
+    const target=e.objective||p;
+    let dx=target.x-e.x,dy=target.y-e.y,dl=Math.hypot(dx,dy)||1;
     if(!e.encounter&&dl>viewR*1.7&&!e.boss&&!G.raid){const[x,y]=spawnPos();e.x=x;e.y=y;continue}
     if(e.stun>0){e.stun-=dt;continue}
     let tx=dx/dl,ty=dy/dl,sp=e.spd;
@@ -440,11 +443,11 @@ function update(dt){
     if(e.fear>0){e.fear-=dt;tx=-dx/dl;ty=-dy/dl}
     const tl=Math.hypot(tx,ty)||1;
     if(!G.raid){
-      if(!e.fear&&!e.flee&&!e.target&&!e.distract&&!clearLine(e,p,e.r+12))[tx,ty]=routeDirection(e,p);
+      if(!e.fear&&!e.flee&&!e.target&&!e.distract&&!clearLine(e,target,e.r+12))[tx,ty]=routeDirection(e,target);
       const length=Math.hypot(tx,ty)||1;
       Object.assign(e,moveOnMap(e.x,e.y,e.x+tx/length*sp*dt,e.y+ty/length*sp*dt,e.r));
     }else{e.x+=tx/tl*sp*dt;e.y+=ty/tl*sp*dt;}
-    if(dl<e.r+p.r&&e.dmg){if(p.onContact)p.onContact(e);else hurtPlayer(e.dmg)}
+    if(dl<e.r+target.r&&e.dmg){if(e.objective)e.onObjectiveContact();else if(p.onContact)p.onContact(e);else hurtPlayer(e.dmg)}
   }
   for(const f of HOOKS.update)f(dt);
   // separation (grid)
@@ -637,6 +640,8 @@ installIdentities(api);
 const equipment=installEquipment(api);
 const encounters=installEncounters(api,equipment);
 installHunt(api,encounters);
+installWard(api,encounters);
+installCharms(api);
 api.eventActive=encounters.active;
 const raid=installRaid(api);
 buildHeroCards();

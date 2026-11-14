@@ -1,6 +1,6 @@
 export interface Point { x: number; y: number }
 export interface Enemy extends Point {
-  type: string; name?:string; r: number; hp: number; maxHp: number; phase: number;
+  objective?: Point; type: string; name?:string; r: number; hp: number; maxHp: number; phase: number;
   windup?:number; flash: number; stun: number; burnT: number; boss?: boolean; dead?: boolean;
   scale?: number; p2?: boolean; elite?: string; vulnerable?: number; rush?:number; rx?:number; ry?:number;
 }
@@ -17,7 +17,7 @@ export interface RaidState {
   orb: Point | null;
 }
 export interface RunState {
-  encounters:Record<string,{id:string;name:string;x:number;y:number;status:string;discovered:boolean;track?:number}>;
+  encounters:Record<string,{id:string;name:string;x:number;y:number;status:string;discovered:boolean;track?:number;hp?:number}>;
   lootModal:string|null;
   world: ReturnType<typeof import('../content/world.js').createWorld>;
   exploration: {visited:string[];claimed:string[];guards:Record<string,Enemy[]>};
