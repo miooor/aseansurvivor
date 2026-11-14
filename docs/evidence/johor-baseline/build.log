@@ -28,7 +28,7 @@ dist/assets/region-props-MN3XCP0A.png       2,995.50 kB
 dist/assets/index-v0whLnOS.css                 22.35 kB │ gzip:   5.83 kB
 dist/assets/index-5iJ4qByZ.js               1,478.22 kB │ gzip: 400.32 kB
 
-[plugin builtin:vite-reporter] 
+[plugin builtin:vite-reporter]
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
