@@ -34,7 +34,7 @@ function nextStage(S){if(S.bonus)S=STAGES.find(x=>x.id===S.after);const m=MAIN.i
 const bossAt=()=>G.stage.bossAt||BOSS_AT;
 let stagePick=0;{for(let i=0;i<STAGES.length;i++)if(stageOpen(i)&&!STAGES[i].bonus)stagePick=i}if(UNLOCK_ALL)stagePick=0;
 /* ---------- Module hooks (heroes-sea.js, raid.js plug in here) ---------- */
-const HOOKS={newGame:[],update:[],drawWorld:[],drawScreen:[],kill:[],hurt:[],hit:[],parry:[],dmgMul:[],cleanup:[],cast:[]};
+const HOOKS={newGame:[],update:[],drawWorld:[],drawScreen:[],kill:[],hurt:[],lethal:[],damage:[],hit:[],parry:[],dmgMul:[],cleanup:[],cast:[]};
 
 /* ---------- Heroes ---------- */
 
@@ -178,7 +178,9 @@ function dropGem(x,y,v,kind){if(G.gems.length>450){const g=G.gems.shift();G.gems
 function hurtPlayer(a){
   const p=G.p;if(p.invuln>0||p.super>0||p.shield>0||G.over||G.won)return;
   for(const f of HOOKS.hurt){const r=f(a);if(r===false)return;if(typeof r==='number')a=r}
-  p.hp-=a;p.invuln=.35;p.hurt=.2;p.sq=1;juice(7,.05);combatNumber(p.x,p.y-26,a,'incoming');
+  if(a>=p.hp)for(const f of HOOKS.lethal){const r=f(a);if(typeof r==='number')a=r;}
+  const applied=Math.min(p.hp,Math.max(0,a));
+  p.hp-=a;if(applied>0)for(const f of HOOKS.damage)f(applied);p.invuln=Math.max(p.invuln,.35);p.hurt=.2;p.sq=1;juice(7,.05);combatNumber(p.x,p.y-26,a,'incoming');
   if(p.hp<=0){p.hp=0;endGame(false)}
 }
 // XP curve: gentle early, quadratic mid-game, then +8% per level past 20 so late runs don't drown in level-ups
