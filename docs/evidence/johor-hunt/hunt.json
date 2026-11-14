@@ -1,0 +1,854 @@
+{
+  "date": "2026-11-14T14:22:27.627Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "Lethal damage leaves hero at one HP",
+      "pass": true
+    },
+    {
+      "name": "Lethal rescue grants two seconds invulnerability",
+      "pass": true
+    },
+    {
+      "name": "Nearby hunt explains two sequential tracks",
+      "pass": true
+    },
+    {
+      "name": "Walking past never starts hunt",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "First track is explicitly indicated",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Second track replaces first indication",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Two tracks reveal one named elite",
+      "pass": true
+    },
+    {
+      "name": "Track controls disappear during hunt combat",
+      "pass": true
+    },
+    {
+      "name": "Elite defeat offers three relic choices",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Thornbound charge warns before rushing",
+      "pass": true
+    },
+    {
+      "name": "Thornbound charge leaves radius-35 warning patch",
+      "pass": true
+    },
+    {
+      "name": "Thorn warning causes no damage before 0.6 seconds",
+      "pass": true
+    },
+    {
+      "name": "Active thorn patch deals exactly eight damage",
+      "pass": true
+    },
+    {
+      "name": "Thorns share a one-second player cooldown",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes thorn lifetime",
+      "pass": true
+    },
+    {
+      "name": "Thorn patches expire after four seconds",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "Can choose quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "First two successful E casts do not pulse",
+      "pass": true
+    },
+    {
+      "name": "Blocked cast does not pulse",
+      "pass": true
+    },
+    {
+      "name": "Third cast pulse receives additive weapon damage",
+      "pass": true
+    },
+    {
+      "name": "Pulse does not hit beyond radius120",
+      "pass": true
+    },
+    {
+      "name": "Pulse has visible named feedback",
+      "pass": true
+    },
+    {
+      "name": "Pulse creates no additional audio cue beyond throttled repeated E",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "Can choose quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "Bell inactive before ultimate",
+      "pass": true
+    },
+    {
+      "name": "Bell adds25 percent to weapon20 percent",
+      "pass": true
+    },
+    {
+      "name": "Second ultimate refreshes without stacking",
+      "pass": true
+    },
+    {
+      "name": "Pause cannot expire Bell",
+      "pass": true
+    },
+    {
+      "name": "Bell expires after five simulation seconds",
+      "pass": true
+    },
+    {
+      "name": "Can choose bountySeal",
+      "pass": true
+    },
+    {
+      "name": "Nonlethal elite hit gives no Bounty",
+      "pass": true
+    },
+    {
+      "name": "Confirmed elite death heals exactly15",
+      "pass": true
+    },
+    {
+      "name": "Confirmed elite death grants10 percentage points plus ordinary kill charge",
+      "pass": true
+    },
+    {
+      "name": "Duplicate death cannot duplicate Bounty or ordinary reward",
+      "pass": true
+    },
+    {
+      "name": "Direct despawn cannot trigger Bounty",
+      "pass": true
+    },
+    {
+      "name": "Item-origin death cannot recursively trigger Bounty",
+      "pass": true
+    },
+    {
+      "name": "Periodic hero death grants Bounty with resource caps",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "Item pulse does not generate Lan signature charge",
+      "pass": true
+    },
+    {
+      "name": "Item projectile cannot advance pulse counter",
+      "pass": true
+    },
+    {
+      "name": "Basic casts never advance pulse counter",
+      "pass": true
+    },
+    {
+      "name": "Ultimate never advances pulse counter",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "Removing pulse item resets its count",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "Replacement cannot restore consumed lethal rescue",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "New run restores one lethal rescue",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "Hero mitigation happens before lethal decision",
+      "pass": true
+    },
+    {
+      "name": "Mitigated lethal damage still triggers Lantern",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "Parry does not consume Last Lantern",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "Replacing Bell removes its temporary bonus",
+      "pass": true
+    },
+    {
+      "name": "Uncharged ultimate cannot activate Bell",
+      "pass": true
+    },
+    {
+      "name": "Relic remains equipped in raid",
+      "pass": true
+    },
+    {
+      "name": "Bell damage works inside raid",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "ustaz can trigger Thorn Echo",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "ustaz survives lethal damage at one HP",
+      "pass": true
+    },
+    {
+      "name": "ustaz second lethal damage defeats normally",
+      "pass": true
+    },
+    {
+      "name": "Can choose bountySeal",
+      "pass": true
+    },
+    {
+      "name": "ustaz gets capped-compatible elite sustain",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "ustaz gains ultimate damage bonus",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "rempit can trigger Thorn Echo",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "rempit survives lethal damage at one HP",
+      "pass": true
+    },
+    {
+      "name": "rempit second lethal damage defeats normally",
+      "pass": true
+    },
+    {
+      "name": "Can choose bountySeal",
+      "pass": true
+    },
+    {
+      "name": "rempit gets capped-compatible elite sustain",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "rempit gains ultimate damage bonus",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "nok can trigger Thorn Echo",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "nok survives lethal damage at one HP",
+      "pass": true
+    },
+    {
+      "name": "nok second lethal damage defeats normally",
+      "pass": true
+    },
+    {
+      "name": "Can choose bountySeal",
+      "pass": true
+    },
+    {
+      "name": "nok gets capped-compatible elite sustain",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "nok gains ultimate damage bonus",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "lan can trigger Thorn Echo",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "lan survives lethal damage at one HP",
+      "pass": true
+    },
+    {
+      "name": "lan second lethal damage defeats normally",
+      "pass": true
+    },
+    {
+      "name": "Can choose bountySeal",
+      "pass": true
+    },
+    {
+      "name": "lan gets capped-compatible elite sustain",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "lan gains ultimate damage bonus",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "sari can trigger Thorn Echo",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "sari survives lethal damage at one HP",
+      "pass": true
+    },
+    {
+      "name": "sari second lethal damage defeats normally",
+      "pass": true
+    },
+    {
+      "name": "Can choose bountySeal",
+      "pass": true
+    },
+    {
+      "name": "sari gets capped-compatible elite sustain",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "sari gains ultimate damage bonus",
+      "pass": true
+    },
+    {
+      "name": "Hunt marker is collision-valid",
+      "pass": true
+    },
+    {
+      "name": "Hunt marker is reachable from village",
+      "pass": true
+    },
+    {
+      "name": "Hunt appears as named minimap marker",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "First track is collision-valid",
+      "pass": true
+    },
+    {
+      "name": "First track is reachable from village",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Second track is collision-valid",
+      "pass": true
+    },
+    {
+      "name": "Second track is reachable from village",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Briarback clearing is collision-valid",
+      "pass": true
+    },
+    {
+      "name": "Briarback clearing is reachable from village",
+      "pass": true
+    },
+    {
+      "name": "Thornbound health triples stage-scaled ordinary health once",
+      "pass": true
+    },
+    {
+      "name": "Thornbound contact damage scales once",
+      "pass": true
+    },
+    {
+      "name": "Ambient death cannot complete hunt",
+      "pass": true
+    },
+    {
+      "name": "Leaving grove does not abandon hunt",
+      "pass": true
+    },
+    {
+      "name": "Hunt blocks raid without consuming rift lifetime",
+      "pass": true
+    },
+    {
+      "name": "eventAbandon is available",
+      "pass": true
+    },
+    {
+      "name": "Abandon is final and gives no reward",
+      "pass": true
+    },
+    {
+      "name": "Abandon removes all owned entities",
+      "pass": true
+    },
+    {
+      "name": "Rift works after hunt abandonment",
+      "pass": true
+    },
+    {
+      "name": "Hunt operations preserve progression save",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "One charge leaves at most five thorn patches",
+      "pass": true
+    },
+    {
+      "name": "Patch cap never truncates an existing four-second lifetime",
+      "pass": true
+    },
+    {
+      "name": "Five overlapping patches deal only one eight-damage hit",
+      "pass": true
+    },
+    {
+      "name": "Overlap cannot bypass global one-second cooldown",
+      "pass": true
+    },
+    {
+      "name": "eventAbandon is available",
+      "pass": true
+    },
+    {
+      "name": "Abandon removes active thorn hazards",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Elite despawn cannot falsely grant completion",
+      "pass": true
+    },
+    {
+      "name": "Defeat abandons unresolved hunt and clears choices",
+      "pass": true
+    },
+    {
+      "name": "again is available",
+      "pass": true
+    },
+    {
+      "name": "Retry returns hunt and equipment to fresh state",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Boss victory abandons unresolved hunt without reward",
+      "pass": true
+    },
+    {
+      "name": "Stage 1 has no events or relic leakage",
+      "pass": true
+    },
+    {
+      "name": "Stage 2 has no events or relic leakage",
+      "pass": true
+    },
+    {
+      "name": "Stage 3 has no events or relic leakage",
+      "pass": true
+    },
+    {
+      "name": "Stage 4 has no events or relic leakage",
+      "pass": true
+    },
+    {
+      "name": "Stage 5 has no events or relic leakage",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Hunt level-up and reward never stack",
+      "pass": true
+    },
+    {
+      "name": "Level-up freezes hunt completion clock",
+      "pass": true
+    },
+    {
+      "name": "up0 is available",
+      "pass": true
+    },
+    {
+      "name": "Hunt relic choice survives queued level-up",
+      "pass": true
+    },
+    {
+      "name": "lootSkip is available",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion retains thorn warning hazards",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion retains named modifier label",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion disables enemy swaying",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "320px hunt prompt does not overflow",
+      "pass": true
+    },
+    {
+      "name": "320px event touch targets are44px",
+      "pass": true
+    },
+    {
+      "name": "320px offers three distinct relics",
+      "pass": true
+    },
+    {
+      "name": "320px comparison does not overflow",
+      "pass": true
+    },
+    {
+      "name": "320px reward targets are44px",
+      "pass": true
+    },
+    {
+      "name": "320px keyboard focus wraps",
+      "pass": true
+    },
+    {
+      "name": "Relic choice freezes survival clock",
+      "pass": true
+    },
+    {
+      "name": "Duplicate click cannot replace chosen relic",
+      "pass": true
+    },
+    {
+      "name": "equipmentButton is available",
+      "pass": true
+    },
+    {
+      "name": "Inspection names equipped relic and all slots",
+      "pass": true
+    },
+    {
+      "name": "Escape closes inspection and restores focus",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "390px hunt prompt does not overflow",
+      "pass": true
+    },
+    {
+      "name": "390px event touch targets are44px",
+      "pass": true
+    },
+    {
+      "name": "390px offers three distinct relics",
+      "pass": true
+    },
+    {
+      "name": "390px comparison does not overflow",
+      "pass": true
+    },
+    {
+      "name": "390px reward targets are44px",
+      "pass": true
+    },
+    {
+      "name": "390px keyboard focus wraps",
+      "pass": true
+    },
+    {
+      "name": "Relic choice freezes survival clock",
+      "pass": true
+    },
+    {
+      "name": "Duplicate click cannot replace chosen relic",
+      "pass": true
+    },
+    {
+      "name": "equipmentButton is available",
+      "pass": true
+    },
+    {
+      "name": "Inspection names equipped relic and all slots",
+      "pass": true
+    },
+    {
+      "name": "Escape closes inspection and restores focus",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "lootSkip is available",
+      "pass": true
+    },
+    {
+      "name": "Skipping consumes relic reward without equipping",
+      "pass": true
+    },
+    {
+      "name": "Skipped reward cannot reopen",
+      "pass": true
+    }
+  ]
+}

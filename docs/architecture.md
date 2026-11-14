@@ -25,7 +25,7 @@ The `aseanSurvivor.v1` save format is retained. No account, server, analytics, i
 ## Development sequence
 
 1. Finish the first biome: additional animation in-betweens and atlas alignment polish, audio mix listening tests/music, enemy anticipation, and tuned encounter pacing. Profile dense fights on desktop and real phones.
-2. Extend the implemented Johor rescue/weapon slice with ward/charms and hunt/relics, then prove several different builds before expanding the item pool.
+2. Extend the implemented Johor rescue/weapon and hunt/relic slices with ward/charms, then prove several different builds before expanding the item pool.
 3. Introduce versioned saves and migration fixtures before persistent equipment or passive trees ship. Keep simulation rules testable independently of rendering.
 4. Expand stage art, encounters, and progression after the first chapter is replayable. Consider a backend only when a concrete feature requires it.
 
@@ -56,3 +56,5 @@ Regional enemies use a 3×2 atlas and runtime windup/attack timers: charge, embe
 ## Johor encounter and equipment boundary
 
 `encounters.js` owns run-local encounter lifecycle, activation, ownership, cleanup, and reward completion. `equipment.js` owns fixed offers, atomic equip/skip, paused inspection and shared modifier calculation. Their static registries live under `src/content/`; Phaser renders markers, elite accents and labels, while semantic HTML buttons own interaction. Successful casts and damage-origin metadata integrate through existing combat hooks. [Johor rescue documentation](johor-rescue.md) records extension contracts, evidence and remaining work. No frame loop, dependency, persistent inventory or save migration was added.
+
+`hunt.js` registers sequential hunt objectives and owns Thornbound patch creation, a shared simulation-time thorn cooldown, and four relic hooks. `hurtPlayer` exposes lethal interception after mitigation and positive applied damage notification after HP subtraction. Last Lantern consumption is stored separately from replaceable item counters. Relic percentage damage remains part of the shared additive equipment calculation; item-origin kills keep ordinary enemy rewards but cannot activate Bounty Seal. See [hunt verification](johor-hunt.md).
