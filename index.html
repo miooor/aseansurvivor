@@ -115,5 +115,8 @@
 </div>
 
 <script type="module" src="/src/main.ts"></script>
+<section id="encounterPrompt" hidden aria-label="Optional encounter"><strong id="eventName"></strong><p id="eventDescription"></p><p id="eventProgress" aria-live="polite"></p><p id="raidRestriction" hidden>Raid entry is unavailable during an event.</p><button id="eventStart">Start encounter</button><button id="eventInteract" hidden>Rescue traveller</button><button id="eventAbandon" hidden>Abandon event</button></section>
+<button id="equipmentButton" hidden>Equipment</button>
+<section id="lootPanel" class="ov" hidden role="dialog" aria-modal="true" aria-labelledby="lootTitle"><div class="panel"><h2 id="lootTitle"></h2><p id="lootCurrent"></p><div id="lootChoices"></div><button id="lootSkip">Skip reward</button><button id="lootClose">Close equipment</button></div></section>
 </body>
 </html>

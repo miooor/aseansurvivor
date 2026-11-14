@@ -25,6 +25,7 @@ function updatePortal(dt){
     else spawnPortal();
   }
   const q=R.portal;if(!q)return;
+  if(api.eventActive())return;
   q.life-=dt;
   if(Math.random()<.3){const a=rand(0,TAU);api.G.fx.push({x:q.x+Math.cos(a)*44,y:q.y+Math.sin(a)*44,vx:-Math.cos(a)*50,vy:-Math.sin(a)*50,life:.7,max:.7,c:'rgba(199,125,255,.7)',size:3})}
   if(q.life<=0){R.portal=null;puff(q.x,q.y,PURPLE,20,160,4);banner('The shadow portal fades away.',2.5);return}
@@ -33,7 +34,7 @@ function updatePortal(dt){
 
 /* ---------- Enter / leave ---------- */
 function enterRaid(){
-  if(!api.G||api.G.raid||api.G.over)return;
+  if(!api.G||api.G.raid||api.G.over||api.G.won||api.G.paused||api.G.choosing||api.G.lootModal||api.eventActive())return;
   const p=api.G.p,stash={};
   for(const k of STASH){stash[k]=api.G[k];api.G[k]=[]}
   api.G.raid={t:0,entry:{x:p.x,y:p.y},stash,goal:$('goal').textContent,outro:0,won:false};
