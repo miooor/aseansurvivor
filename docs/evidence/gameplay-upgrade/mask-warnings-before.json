@@ -1,0 +1,122 @@
+[
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:11:19.178Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:11:19.189Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:11:19.189Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.303Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.306Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.306Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.480Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.480Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.480Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.543Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.543Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.631Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.631Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.631Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.669Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.669Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.669Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.707Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.709Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  },
+  {
+    "level": "warn",
+    "message": "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "timestamp": "2026-11-15T16:15:43.709Z",
+    "url": "http://localhost:5182/node_modules/.vite/deps/phaser.js?v=3251e996"
+  }
+]

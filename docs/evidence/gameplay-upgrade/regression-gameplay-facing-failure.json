@@ -1,0 +1,438 @@
+{
+  "date": "2026-11-15T16:11:09.964Z",
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "checks": [
+    {
+      "name": "Phaser scene boots",
+      "pass": true
+    },
+    {
+      "name": "Native Phaser renderer is active",
+      "pass": true
+    },
+    {
+      "name": "All five playable heroes load",
+      "pass": true
+    },
+    {
+      "name": "Six stage selections load",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim selection and skill details",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim starts a run",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim facing 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim facing 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim facing 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim facing 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim facing 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim facing 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim facing 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim facing 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim walks through four frames in direction 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim plays unique Q windup/release in direction 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim walks through four frames in direction 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim plays unique Q windup/release in direction 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim walks through four frames in direction 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim plays unique Q windup/release in direction 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim walks through four frames in direction 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim plays unique Q windup/release in direction 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim walks through four frames in direction 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim plays unique Q windup/release in direction 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim walks through four frames in direction 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim plays unique Q windup/release in direction 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim walks through four frames in direction 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim plays unique Q windup/release in direction 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim walks through four frames in direction 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim plays unique Q windup/release in direction 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim ultimate survives effect pressure",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim returns to directional idle",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim manual skill activates",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim emits its themed skill effect",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim pauses",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim animation clock freezes on pause",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim resumes",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim returns to lobby",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" selection and skill details",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" starts a run",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" facing 0",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" facing 1",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" facing 2",
+      "pass": false
+    }
+  ],
+  "errors": [
+    "Mat Rempit \"Jet\" facing 2"
+  ],
+  "result": "FAIL"
+}
