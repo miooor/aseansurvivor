@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-15T16:52:16.589Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Reward offers quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "Reward offers stillwaterBeads",
+      "pass": true
+    },
+    {
+      "name": "Reward offers aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "Three equipment slots add their damage bonuses",
+      "pass": true
+    },
+    {
+      "name": "All three choices remain equipped",
+      "pass": true
+    },
+    {
+      "name": "Equipment inspection freezes survival clock",
+      "pass": true
+    },
+    {
+      "name": "Switching stage clears all equipment",
+      "pass": true
+    },
+    {
+      "name": "Other stage has no Johor events",
+      "pass": true
+    }
+  ]
+}
