@@ -1,0 +1,74 @@
+{
+  "heroes-directions": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748987351_01M7FP0DYQKRK35K88HRQZE24D.webp",
+    "type": "image"
+  },
+  "kampung-buildings": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748991826_01M7FP0JAJRBYR7JR4GTNA4ZPW.webp",
+    "type": "image"
+  },
+  "kampung-night": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748988074_01M7FP0ENAV6GQTG2Y2MYSZZ0Z.webp",
+    "type": "image"
+  },
+  "lan-motion": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748989157_01M7FP0FQ53HZNR497W2415GW0.webp",
+    "type": "image"
+  },
+  "lan-skills": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748996724_01M7FP0Q3MBA3CD2H4SHNXW7Z6.webp",
+    "type": "image"
+  },
+  "nok-motion": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748990748_01M7FP0H8WE1VE226SF1FP3KD8.webp",
+    "type": "image"
+  },
+  "nok-skills": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748993306_01M7FP0KRTCWJ1G2WN6BRR6KTC.webp",
+    "type": "image"
+  },
+  "region-enemies": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748994744_01M7FP0N5RWM2RR0J3J73434QC.webp",
+    "type": "image"
+  },
+  "region-props": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748999024_01M7FP0SBGRQ5KGKAWWE55N03Z.webp",
+    "type": "image"
+  },
+  "rempit-motion": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748995463_01M7FP0NW71GPEH2DWXH25NYN6.webp",
+    "type": "image"
+  },
+  "rempit-skills": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794749003604_01M7FP0XTM1CP97V6N7VN2STF6.webp",
+    "type": "image"
+  },
+  "sari-motion": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748998303_01M7FP0RMZECFABXN89QXBGG7K.webp",
+    "type": "image"
+  },
+  "sari-skills": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794749001485_01M7FP0VRDGK8D3CJT3EX3P168.webp",
+    "type": "image"
+  },
+  "survivors-atlas": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748994095_01M7FP0MHFB808FC4Z2F0ADWDA.webp",
+    "type": "image"
+  },
+  "ustaz-motion": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748999802_01M7FP0T3TJSYCZ3YTRD9KPFG5.webp",
+    "type": "image"
+  },
+  "ustaz-skills": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748997604_01M7FP0QZ4XZ3C8797XB3M2736.webp",
+    "type": "image"
+  },
+  "world-terrain": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794752145423_01M7FS0T0F3RHZTAGMVW58MAQD.webp",
+    "type": "image"
+  },
+  "world-ground": {
+    "url": "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794752143638_01M7FS0R8PNTJ3HPY1FQQAPXTG.webp",
+    "type": "image"
+  }
+}

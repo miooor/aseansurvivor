@@ -29,6 +29,8 @@ docker compose down
 
 Dependencies are locked in `package-lock.json` and installed in a container volume. Do not install host packages. Directly opening `index.html` is unsupported.
 
+For Astrocade export, artwork encoding, or mobile verification, read `docs/astrocade.md`. Its optional Pillow encoder runs in `astrocade/assets.Dockerfile`; retain the source PNGs and update the CDN asset map before rebuilding the draft.
+
 ## Coding Style & Naming Conventions
 
 Use two-space indentation, single quotes, camelCase functions/variables, and uppercase constants. New engine code uses strict TypeScript; retained simulation modules use ES-module JavaScript. Keep lowercase hero IDs such as `nok` consistent across registries. Preserve nearby formatting. ESLint checks JavaScript; TypeScript checks the new engine layer. No formatter is configured.

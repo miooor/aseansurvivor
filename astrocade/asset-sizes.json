@@ -1,0 +1,172 @@
+{
+  "format": "WebP",
+  "quality": 85,
+  "method": 6,
+  "resized": false,
+  "sourceBytes": 44931797,
+  "webpBytes": 11420462,
+  "assets": [
+    {
+      "id": "heroes-directions",
+      "width": 1586,
+      "height": 992,
+      "sourceBytes": 2131980,
+      "webpBytes": 605104,
+      "alphaExact": true,
+      "visibleRms": 4.169
+    },
+    {
+      "id": "kampung-buildings",
+      "width": 1254,
+      "height": 1254,
+      "sourceBytes": 2320855,
+      "webpBytes": 464072,
+      "alphaExact": true,
+      "visibleRms": 3.482
+    },
+    {
+      "id": "kampung-night",
+      "width": 1536,
+      "height": 1024,
+      "sourceBytes": 2675659,
+      "webpBytes": 276054,
+      "alphaExact": true,
+      "visibleRms": 4.432
+    },
+    {
+      "id": "lan-motion",
+      "width": 1254,
+      "height": 1254,
+      "sourceBytes": 2502494,
+      "webpBytes": 709984,
+      "alphaExact": true,
+      "visibleRms": 3.992
+    },
+    {
+      "id": "lan-skills",
+      "width": 1254,
+      "height": 1254,
+      "sourceBytes": 2007402,
+      "webpBytes": 584590,
+      "alphaExact": true,
+      "visibleRms": 3.461
+    },
+    {
+      "id": "nok-motion",
+      "width": 1254,
+      "height": 1254,
+      "sourceBytes": 2522021,
+      "webpBytes": 1028814,
+      "alphaExact": true,
+      "visibleRms": 3.836
+    },
+    {
+      "id": "nok-skills",
+      "width": 1254,
+      "height": 1254,
+      "sourceBytes": 1894665,
+      "webpBytes": 657614,
+      "alphaExact": true,
+      "visibleRms": 3.465
+    },
+    {
+      "id": "region-enemies",
+      "width": 1536,
+      "height": 1024,
+      "sourceBytes": 2585416,
+      "webpBytes": 395396,
+      "alphaExact": true,
+      "visibleRms": 3.75
+    },
+    {
+      "id": "region-props",
+      "width": 1536,
+      "height": 1024,
+      "sourceBytes": 2995500,
+      "webpBytes": 431490,
+      "alphaExact": true,
+      "visibleRms": 4.69
+    },
+    {
+      "id": "rempit-motion",
+      "width": 1254,
+      "height": 1254,
+      "sourceBytes": 2683440,
+      "webpBytes": 701482,
+      "alphaExact": true,
+      "visibleRms": 4.188
+    },
+    {
+      "id": "rempit-skills",
+      "width": 1254,
+      "height": 1254,
+      "sourceBytes": 2515166,
+      "webpBytes": 664772,
+      "alphaExact": true,
+      "visibleRms": 3.844
+    },
+    {
+      "id": "sari-motion",
+      "width": 1254,
+      "height": 1254,
+      "sourceBytes": 2419344,
+      "webpBytes": 715756,
+      "alphaExact": true,
+      "visibleRms": 4.337
+    },
+    {
+      "id": "sari-skills",
+      "width": 1254,
+      "height": 1254,
+      "sourceBytes": 2692378,
+      "webpBytes": 1019592,
+      "alphaExact": true,
+      "visibleRms": 4.281
+    },
+    {
+      "id": "survivors-atlas",
+      "width": 1254,
+      "height": 1254,
+      "sourceBytes": 2086402,
+      "webpBytes": 603072,
+      "alphaExact": true,
+      "visibleRms": 3.874
+    },
+    {
+      "id": "ustaz-motion",
+      "width": 1254,
+      "height": 1254,
+      "sourceBytes": 1968869,
+      "webpBytes": 860940,
+      "alphaExact": true,
+      "visibleRms": 2.753
+    },
+    {
+      "id": "ustaz-skills",
+      "width": 1254,
+      "height": 1254,
+      "sourceBytes": 2928505,
+      "webpBytes": 995092,
+      "alphaExact": true,
+      "visibleRms": 3.319
+    },
+    {
+      "id": "world-terrain",
+      "width": 1536,
+      "height": 1024,
+      "sourceBytes": 2823070,
+      "webpBytes": 298900,
+      "alphaExact": true,
+      "visibleRms": 3.418
+    },
+    {
+      "id": "world-ground",
+      "width": 1254,
+      "height": 1254,
+      "sourceBytes": 3178631,
+      "webpBytes": 407738,
+      "alphaExact": true,
+      "visibleRms": 4.887
+    }
+  ]
+}

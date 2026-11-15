@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "tsc --noEmit && vite build",
+    "build:astrocade": "tsc --noEmit && node scripts/build-astrocade.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src tests/ui-smoke.js"
+    "lint": "eslint src tests/ui-smoke.js tests/astrocade.js tests/environment.js scripts/build-astrocade.mjs"
   },
   "dependencies": {
     "phaser": "4.2.1"
