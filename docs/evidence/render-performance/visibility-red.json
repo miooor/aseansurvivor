@@ -1,0 +1,31 @@
+{
+  "runs": [],
+  "checks": [
+    {
+      "name": "Home view skips at least one fully offscreen water filter",
+      "pass": false,
+      "details": [
+        {
+          "x": 1350,
+          "y": -2170,
+          "visible": true,
+          "inView": false
+        },
+        {
+          "x": 1350,
+          "y": -100,
+          "visible": true,
+          "inView": false
+        },
+        {
+          "x": 1350,
+          "y": 2070,
+          "visible": true,
+          "inView": false
+        }
+      ]
+    }
+  ],
+  "result": "FAIL",
+  "error": "Error: Home view skips at least one fully offscreen water filter"
+}

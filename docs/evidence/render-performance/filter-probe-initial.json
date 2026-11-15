@@ -1,0 +1,287 @@
+{
+  "runs": [
+    {
+      "date": "2026-11-15T17:14:11.796Z",
+      "mode": "unchanged",
+      "durationMs": 5060.999999999993,
+      "frames": 32,
+      "fps": 6.3228610946453365,
+      "medianMs": 73,
+      "p95Ms": 349,
+      "over50Ms": 26,
+      "submissions": {
+        "all": 0,
+        "offscreen": 0
+      },
+      "water": [
+        {
+          "x": 1350,
+          "y": -2170,
+          "width": 350,
+          "height": 1750,
+          "inView": false,
+          "visible": true
+        },
+        {
+          "x": 1350,
+          "y": -100,
+          "width": 350,
+          "height": 1610,
+          "inView": false,
+          "visible": true
+        },
+        {
+          "x": 1350,
+          "y": 2070,
+          "width": 350,
+          "height": 1950,
+          "inView": false,
+          "visible": true
+        }
+      ],
+      "viewport": [
+        1280,
+        720
+      ],
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3.1 Safari/605.1.15",
+      "hardwareConcurrency": 8,
+      "equipment": {
+        "weapon": "forkedConduit",
+        "charm": "undertowThread",
+        "relic": "monsoonLens"
+      },
+      "event": "active",
+      "countRanges": {
+        "enemies": {
+          "min": 97,
+          "max": 97
+        },
+        "fx": {
+          "min": 11,
+          "max": 31
+        },
+        "projectiles": {
+          "min": 3,
+          "max": 3
+        },
+        "hostile": {
+          "min": 0,
+          "max": 0
+        },
+        "zones": {
+          "min": 1,
+          "max": 1
+        }
+      },
+      "samples": [
+        23.999999999992724,
+        349,
+        186,
+        59,
+        208,
+        45,
+        141,
+        163,
+        337,
+        63,
+        80,
+        56,
+        51,
+        42,
+        84,
+        48,
+        60,
+        53,
+        89,
+        153,
+        114,
+        148,
+        102,
+        1902,
+        84,
+        73,
+        71,
+        60,
+        50,
+        45,
+        59,
+        62
+      ]
+    },
+    {
+      "date": "2026-11-15T17:14:17.128Z",
+      "mode": "hide-offscreen-probe",
+      "durationMs": 5086,
+      "frames": 71,
+      "fps": 13.95988989382619,
+      "medianMs": 54,
+      "p95Ms": 185,
+      "over50Ms": 45,
+      "submissions": {
+        "all": 0,
+        "offscreen": 0
+      },
+      "water": [
+        {
+          "x": 1350,
+          "y": -2170,
+          "width": 350,
+          "height": 1750,
+          "inView": false,
+          "visible": false
+        },
+        {
+          "x": 1350,
+          "y": -100,
+          "width": 350,
+          "height": 1610,
+          "inView": false,
+          "visible": false
+        },
+        {
+          "x": 1350,
+          "y": 2070,
+          "width": 350,
+          "height": 1950,
+          "inView": false,
+          "visible": false
+        }
+      ],
+      "viewport": [
+        1280,
+        720
+      ],
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3.1 Safari/605.1.15",
+      "hardwareConcurrency": 8,
+      "equipment": {
+        "weapon": "forkedConduit",
+        "charm": "undertowThread",
+        "relic": "monsoonLens"
+      },
+      "event": "active",
+      "countRanges": {
+        "enemies": {
+          "min": 97,
+          "max": 97
+        },
+        "fx": {
+          "min": 5,
+          "max": 29
+        },
+        "projectiles": {
+          "min": 0,
+          "max": 3
+        },
+        "hostile": {
+          "min": 0,
+          "max": 0
+        },
+        "zones": {
+          "min": 1,
+          "max": 1
+        }
+      },
+      "samples": [
+        64,
+        84,
+        37,
+        41,
+        64,
+        47,
+        47,
+        49,
+        48,
+        42,
+        68,
+        64,
+        48,
+        42,
+        55,
+        47,
+        51,
+        44,
+        96,
+        51,
+        187,
+        76,
+        164,
+        346,
+        61,
+        72,
+        63,
+        93,
+        98,
+        64,
+        82,
+        66,
+        96,
+        71,
+        53,
+        45,
+        49,
+        53,
+        48,
+        48,
+        139,
+        57,
+        38,
+        53,
+        56,
+        182,
+        54,
+        58,
+        56,
+        47,
+        44,
+        48,
+        65,
+        43,
+        50,
+        185,
+        55,
+        51,
+        50,
+        52,
+        57,
+        57,
+        59,
+        49,
+        50,
+        41,
+        51,
+        50,
+        83,
+        51,
+        231
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "Home view skips at least one fully offscreen water filter",
+      "pass": false,
+      "details": [
+        {
+          "x": 1350,
+          "y": -2170,
+          "visible": true,
+          "inView": false
+        },
+        {
+          "x": 1350,
+          "y": -100,
+          "visible": true,
+          "inView": false
+        },
+        {
+          "x": 1350,
+          "y": 2070,
+          "visible": true,
+          "inView": false
+        }
+      ]
+    }
+  ],
+  "result": "FAIL",
+  "error": "Error: Home view skips at least one fully offscreen water filter"
+}

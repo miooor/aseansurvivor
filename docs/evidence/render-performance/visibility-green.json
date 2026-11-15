@@ -1,0 +1,368 @@
+{
+  "runs": [],
+  "checks": [
+    {
+      "name": "Home view skips at least one fully offscreen water filter",
+      "pass": true,
+      "details": [
+        {
+          "x": 1350,
+          "y": -2170,
+          "visible": false,
+          "inView": false
+        },
+        {
+          "x": 1350,
+          "y": -100,
+          "visible": true,
+          "inView": false
+        },
+        {
+          "x": 1350,
+          "y": 2070,
+          "visible": false,
+          "inView": false
+        }
+      ]
+    },
+    {
+      "name": "johor first-update arrival restores water at zoom 0.7799999338785807",
+      "pass": true,
+      "details": {
+        "x": 1350,
+        "y": -2170
+      }
+    },
+    {
+      "name": "johor rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "johor first-update arrival restores water at zoom 0.5459999537150064",
+      "pass": true,
+      "details": {
+        "x": 1350,
+        "y": -2170
+      }
+    },
+    {
+      "name": "johor rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "johor first-update arrival restores water at zoom 0.7799999338785807",
+      "pass": true,
+      "details": {
+        "x": 1350,
+        "y": -100
+      }
+    },
+    {
+      "name": "johor rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "johor first-update arrival restores water at zoom 0.5459999537150064",
+      "pass": true,
+      "details": {
+        "x": 1350,
+        "y": -100
+      }
+    },
+    {
+      "name": "johor rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "johor first-update arrival restores water at zoom 0.7799999338785807",
+      "pass": true,
+      "details": {
+        "x": 1350,
+        "y": 2070
+      }
+    },
+    {
+      "name": "johor rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "johor first-update arrival restores water at zoom 0.5459999537150064",
+      "pass": true,
+      "details": {
+        "x": 1350,
+        "y": 2070
+      }
+    },
+    {
+      "name": "johor rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "melaka first-update arrival restores water at zoom 0.7799999338785807",
+      "pass": true,
+      "details": {
+        "x": -570,
+        "y": -2225
+      }
+    },
+    {
+      "name": "melaka rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "melaka first-update arrival restores water at zoom 0.5459999537150064",
+      "pass": true,
+      "details": {
+        "x": -570,
+        "y": -2225
+      }
+    },
+    {
+      "name": "melaka rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "melaka first-update arrival restores water at zoom 0.7799999338785807",
+      "pass": true,
+      "details": {
+        "x": -570,
+        "y": 0
+      }
+    },
+    {
+      "name": "melaka rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "melaka first-update arrival restores water at zoom 0.5459999537150064",
+      "pass": true,
+      "details": {
+        "x": -570,
+        "y": 0
+      }
+    },
+    {
+      "name": "melaka rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "melaka first-update arrival restores water at zoom 0.7799999338785807",
+      "pass": true,
+      "details": {
+        "x": -570,
+        "y": 2225
+      }
+    },
+    {
+      "name": "melaka rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "melaka first-update arrival restores water at zoom 0.5459999537150064",
+      "pass": true,
+      "details": {
+        "x": -570,
+        "y": 2225
+      }
+    },
+    {
+      "name": "melaka rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "perak first-update arrival restores water at zoom 0.7799999338785807",
+      "pass": true,
+      "details": {
+        "x": 925,
+        "y": -925
+      }
+    },
+    {
+      "name": "perak rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "perak first-update arrival restores water at zoom 0.5459999537150064",
+      "pass": true,
+      "details": {
+        "x": 925,
+        "y": -925
+      }
+    },
+    {
+      "name": "perak rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "perak first-update arrival restores water at zoom 0.7799999338785807",
+      "pass": true,
+      "details": {
+        "x": -1275,
+        "y": 775
+      }
+    },
+    {
+      "name": "perak rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "perak first-update arrival restores water at zoom 0.5459999537150064",
+      "pass": true,
+      "details": {
+        "x": -1275,
+        "y": 775
+      }
+    },
+    {
+      "name": "perak rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "penang first-update arrival restores water at zoom 0.7799999338785807",
+      "pass": true,
+      "details": {
+        "x": 1950,
+        "y": -2325
+      }
+    },
+    {
+      "name": "penang rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "penang first-update arrival restores water at zoom 0.5459999537150064",
+      "pass": true,
+      "details": {
+        "x": 1950,
+        "y": -2325
+      }
+    },
+    {
+      "name": "penang rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "penang first-update arrival restores water at zoom 0.7799999338785807",
+      "pass": true,
+      "details": {
+        "x": 1950,
+        "y": 0
+      }
+    },
+    {
+      "name": "penang rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "penang first-update arrival restores water at zoom 0.5459999537150064",
+      "pass": true,
+      "details": {
+        "x": 1950,
+        "y": 0
+      }
+    },
+    {
+      "name": "penang rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "penang first-update arrival restores water at zoom 0.7799999338785807",
+      "pass": true,
+      "details": {
+        "x": 1950,
+        "y": 2325
+      }
+    },
+    {
+      "name": "penang rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "penang first-update arrival restores water at zoom 0.5459999537150064",
+      "pass": true,
+      "details": {
+        "x": 1950,
+        "y": 2325
+      }
+    },
+    {
+      "name": "penang rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "kedah first-update arrival restores water at zoom 0.7799999338785807",
+      "pass": true,
+      "details": {
+        "x": -2500,
+        "y": 730
+      }
+    },
+    {
+      "name": "kedah rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "kedah first-update arrival restores water at zoom 0.5459999537150064",
+      "pass": true,
+      "details": {
+        "x": -2500,
+        "y": 730
+      }
+    },
+    {
+      "name": "kedah rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "kedah first-update arrival restores water at zoom 0.7799999338785807",
+      "pass": true,
+      "details": {
+        "x": -150,
+        "y": 730
+      }
+    },
+    {
+      "name": "kedah rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "kedah first-update arrival restores water at zoom 0.5459999537150064",
+      "pass": true,
+      "details": {
+        "x": -150,
+        "y": 730
+      }
+    },
+    {
+      "name": "kedah rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "kedah first-update arrival restores water at zoom 0.7799999338785807",
+      "pass": true,
+      "details": {
+        "x": 2350,
+        "y": 730
+      }
+    },
+    {
+      "name": "kedah rendered arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "kedah first-update arrival restores water at zoom 0.5459999537150064",
+      "pass": true,
+      "details": {
+        "x": 2350,
+        "y": 730
+      }
+    },
+    {
+      "name": "kedah rendered arrival keeps water visible",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "result": "PASS"
+}
