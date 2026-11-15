@@ -126,5 +126,23 @@
   "warnings": [
     "Existing Phaser bundle-size warning",
     "Existing Vite callback-timing diagnostic"
-  ]
+  ],
+  "delivery": {
+    "pullRequest": "https://github.com/miooor/aseansurvivor/pull/13",
+    "readyForReview": true,
+    "parentAndFinalTicket": "Implementation complete; #8/#12 remain open for PR closing refs",
+    "closedPrerequisites": [
+      9,
+      10,
+      11,
+      14,
+      15
+    ],
+    "publicPublication": false,
+    "mainMerge": false,
+    "archivedWorktrees": 6,
+    "protectedMergedWorktreeRetained": 1,
+    "rootPreviewRebuilt": true,
+    "regeneratedExportMatchesReadback": true
+  }
 }
