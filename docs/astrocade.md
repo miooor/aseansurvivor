@@ -4,6 +4,10 @@ ASEAN Survivor is saved on Astrocade as a **private unpublished draft**, game `0
 
 The port packages the existing simulation and Phaser renderer from checkout `22c8d7faa2c546dffc7c8b4fc77923b597dbeaff`: five heroes, six regional worlds, signatures, upgrades, boss fights, portal raids and the current Johor encounter/equipment integration. Combat modules are unchanged. Earlier paused feature/review work is separate from this port.
 
+## Combat and build follow-up
+
+The source now includes the tougher Johor elite patterns and eighteen-item skill-support catalogue, alongside the seven documentation-only ASEAN hero concepts. [Combined verification](gameplay-upgrade.md) records the local browser fixture, staged build observations and active-event desktop profile. [Combat rules](event-combat.md), [equipment rules](skill-equipment.md), [hero drafts](asean-hero-concepts.md). The terrain revision and historical measurements below describe their stated revisions; they are not evidence that a newer source build is hosted. The parent verification task records the final fresh export, private-draft revision, read-back and hosted checks after integration.
+
 ## Packaging
 
 ```sh
@@ -18,7 +22,7 @@ Run the Astrocade export after the normal build, which clears `dist/`. The expor
 
 `scripts/build-astrocade.mjs` uses the locked Vite dependency to bundle the current game. Its build-only transforms replace scene image URLs with Astrocade CDN URLs and route runtime/audio storage through `src/astrocade/storage.ts`. Assertions reject missing assets and exports above the 6 MB code limit. `src/main.ts`, simulation modules and the normal browser build keep their existing behavior. `src/astrocade/main.ts` supplies `window.run(mode)`, cleans up the previous Phaser game on host reload, and shows a roster preview with gameplay disabled in edit mode. No configurable parameters are exposed in this draft.
 
-`astrocade/ui.css` adapts the menus and HUD to Astrocade's fixed 720×1280 portrait frame, including 112-pixel button targets and lower-right skill controls. These exceed the platform's 96-pixel minimum to keep targets useful when Astrocade scales the game onto a short phone screen. External Google Fonts links are removed; system fonts are used. The mobile update gives the HUD explicit stacking above the battlefield, keeps modal overlays above controls, and enlarges hero, health, signature, minimap and skill labels for the scaled phone display. The saved JavaScript is 1,501,107 bytes and the HTML is 34,635 bytes.
+`astrocade/ui.css` adapts the menus and HUD to Astrocade's fixed 720×1280 portrait frame, including 112-pixel button targets and lower-right skill controls. These exceed the platform's 96-pixel minimum to keep targets useful when Astrocade scales the game onto a short phone screen. External Google Fonts links are removed; system fonts are used. The mobile update gives the HUD explicit stacking above the battlefield, keeps modal overlays above controls, and enlarges hero, health, signature, minimap and skill labels for the scaled phone display. Elite warning labels additionally use a port-only multiplier of two, cached by the scene on creation/resize; at a 0.44 host scale the 28 game-pixel labels remain about 12.32 screen CSS pixels. [Scaled-frame regression](gameplay-upgrade.md). The historical saved JavaScript is 1,501,107 bytes and the HTML is 34,635 bytes.
 
 ## Smaller artwork
 

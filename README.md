@@ -60,6 +60,16 @@ The campaign lobby, HUD, hero portraits, controls, upgrades, pause, and results 
 
 All six stages have distinct connected 6,000 × 6,000 regions, each with five landmarks, local terrain and a signature enemy. All five heroes use four-frame movement and attack cycles in eight directions, with a separate directional idle atlas. Q/E/F/R each have distinct eight-direction windup and release poses, followed by a shared recovery pose. Johor now has run-local rescue/weapon, ward/charm and hunt/relic encounters; music remains future work.
 
+## Combat and skill builds
+
+Johor’s optional rescue, ward and hunt now pair deliberate event activation with tougher elite patterns: Armoured stalkers alternate locked-aim charges and five-bolt fans, while half-health Briarback alternates charges and eight-ray bursts. Warnings precede damage and stay visible with reduced motion. [Exact combat rules](docs/event-combat.md).
+
+Eighteen run-local items are available, six per weapon/charm/relic slot. Each event samples three distinct rewards once. Six new choices add Q echoes, E forked bolts, F slow fields, cooldown relays, alternating-cast damage and ultimate pulses, while preserving each hero’s original skills. Equipment inspection pauses the game. [Equipment rules](docs/skill-equipment.md), [combined build fixture, play observations and desktop profile](docs/gameplay-upgrade.md).
+
+Dense active-event combat remains a measured desktop performance limitation; the [combined profile](docs/gameplay-upgrade.md) records the slow crowded sample and its staging conditions. Physical-phone performance and natural full-run balance remain unverified.
+
+Seven researched fictional hero concepts complement the current roster across Singapore, the Philippines, Brunei, Cambodia, Laos, Myanmar and Timor-Leste. These are design drafts; the playable roster still has five heroes. [Concepts, institutional sources and local-review requirements](docs/asean-hero-concepts.md).
+
 ## Hero signatures
 
 Every hero now has a combat loop shown in the lobby and a color-coded meter during play. Ready skills glow; linked auto-cast skills can also spend their signature power.

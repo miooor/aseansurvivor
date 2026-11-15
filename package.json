@@ -9,7 +9,7 @@
     "build:astrocade": "tsc --noEmit && node scripts/build-astrocade.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src tests/ui-smoke.js tests/astrocade.js tests/environment.js scripts/build-astrocade.mjs"
+    "lint": "eslint src tests/ui-smoke.js tests/astrocade.js tests/environment.js tests/event-combat.js tests/skill-equipment.js tests/gameplay-upgrade.js scripts/build-astrocade.mjs"
   },
   "dependencies": {
     "phaser": "4.2.1"

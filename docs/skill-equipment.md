@@ -38,3 +38,5 @@ Visual inspection preserved the initial Lens warning/pulse and actual equipment 
 Final Node 24 Alpine container checks passed: repository `npm run lint`, explicit ESLint for the new fixture, `npm run typecheck` and `npm run build`. Output is preserved in [`lint.txt`](evidence/skill-equipment/lint.txt), [`typecheck.txt`](evidence/skill-equipment/typecheck.txt) and [`build.txt`](evidence/skill-equipment/build.txt). The existing large Phaser chunk warning remains. No dependency or host package was installed.
 
 Combined event regressions, sustained combat profiling, real-device performance, three-build play observations and the private Astrocade export belong to the dependent combined-verification ticket. This slice makes no hardware performance or final balance claim.
+
+The integrated follow-up fixture, three staged real-control Hakim observations, mobile warning review and active-event desktop profile are documented in [combined verification](gameplay-upgrade.md). Its final hosted/export evidence is recorded after integration by the parent verification task.

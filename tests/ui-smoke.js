@@ -28,7 +28,10 @@ run.onclick=async()=>{
     for(const [id,name] of [['ustaz','Ustaz Hakim'],['rempit','Mat Rempit "Jet"'],['nok','Nok'],['lan','Cô Lan'],['sari','Sari']]){
       $('hero-'+id).click();
       check(name+' selection and skill details',$('hero-'+id).getAttribute('aria-pressed')==='true'&&$('selectedHeroName').textContent===name&&$('heroSkills').children.length===5);
-      $('start').click();await tick();
+      $('start').click();
+      const animRun=w.__asean.G,scene=w.__asean.scene;
+      animRun.auto=false;animRun.spawnT=animRun.durianT=999;animRun.cds[0]=999;
+      await tick();
       check(name+' starts a run',w.__asean.G.hero.id===id&&$('menu').hidden&&!$('hud').hidden);
       for(let direction=0;direction<8;direction++){
         const angle=direction*Math.PI/4;
@@ -37,8 +40,6 @@ run.onclick=async()=>{
       }
       // Animation failures: missing directional frames, frozen cycles, wrong attack facing,
       // basic attacks interrupting skill poses, and paused/dead runs continuing animation.
-      const animRun=w.__asean.G,scene=w.__asean.scene;
-      animRun.auto=false;animRun.spawnT=animRun.durianT=999;animRun.cds[0]=999;
       const actor=()=>scene.children.list.find(o=>o.type==='Image'&&o.visible&&o.texture.key==='hero-motion-'+id);
       const directions=[['KeyD'],['KeyD','KeyS'],['KeyS'],['KeyS','KeyA'],['KeyA'],['KeyA','KeyW'],['KeyW'],['KeyW','KeyD']];
       for(let direction=0;direction<8;direction++){

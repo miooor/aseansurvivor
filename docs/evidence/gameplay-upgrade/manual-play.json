@@ -1,0 +1,73 @@
+{
+  "observations": [
+    {
+      "date": "2026-11-15T16:23:47.893Z",
+      "preset": "chain",
+      "elapsedWallSeconds": 36.418,
+      "simulation": 25.016133333333524,
+      "hp": 150,
+      "maxHp": 150,
+      "dead": false,
+      "equipment": {
+        "weapon": "echoLattice",
+        "charm": "relayKnot",
+        "relic": "crosswindDrum"
+      },
+      "event": "completed",
+      "kills": 38,
+      "enemies": 0,
+      "combos": 1,
+      "position": {
+        "x": -360.0000000001045,
+        "y": -212.68265964249358
+      },
+      "errors": []
+    },
+    {
+      "date": "2026-11-15T16:25:55.550Z",
+      "preset": "zoning",
+      "elapsedWallSeconds": 58.315,
+      "simulation": 22.64550000000008,
+      "hp": 23,
+      "maxHp": 150,
+      "dead": false,
+      "equipment": {
+        "weapon": "forkedConduit",
+        "charm": "undertowThread",
+        "relic": "monsoonLens"
+      },
+      "event": "completed",
+      "kills": 38,
+      "enemies": 0,
+      "combos": 1,
+      "position": {
+        "x": 55.00000274775181,
+        "y": 361.07270159223526
+      },
+      "errors": []
+    },
+    {
+      "date": "2026-11-15T16:27:21.765Z",
+      "preset": "sustain",
+      "elapsedWallSeconds": 73.86199999999998,
+      "simulation": 33.43753333333354,
+      "hp": 140.21479999999772,
+      "maxHp": 190,
+      "dead": false,
+      "equipment": {
+        "weapon": "huntersEdge",
+        "charm": "lanternHeart",
+        "relic": "bountySeal"
+      },
+      "event": "completed",
+      "kills": 29,
+      "enemies": 0,
+      "combos": 1,
+      "position": {
+        "x": 208.26643603117193,
+        "y": -125.4066505857884
+      },
+      "errors": []
+    }
+  ]
+}
