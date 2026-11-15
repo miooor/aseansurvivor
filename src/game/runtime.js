@@ -3,6 +3,7 @@ import {installCharms} from './charms.js';
 import {installWard} from './ward.js';
 import {installEquipment} from './equipment.js';
 import {installEncounters} from './encounters.js';
+import {ELITE_ATTACK_ANGLES} from '../content/encounters.js';
 import {createWorld} from '../content/world.js';
 import {STAGES,INTRO,HEROES as BASE_HEROES,PASSIVES,EVOS as BASE_EVOS} from '../content/core.js';
 import {installHeroes} from './heroes-sea.js';
@@ -442,7 +443,7 @@ function update(dt){
           const bolt=(offset,speed,color)=>G.eprojs.push({encounter:e.encounter,x:e.x,y:e.y,vx:Math.cos(angle+offset)*speed,vy:Math.sin(angle+offset)*speed,r:7,dmg:10,life:3,c:color});
           if(e.type==='stalker'){
             if(e.attack==='fan'||e.attack==='burst'){
-              const burst=e.attack==='burst',offsets=burst?[0,45,90,135,180,225,270,315]:[-30,-15,0,15,30],speed=burst?150:190;
+              const burst=e.attack==='burst',offsets=ELITE_ATTACK_ANGLES[e.attack],speed=burst?150:190;
               for(const offset of offsets)G.eprojs.push({encounter:e.encounter,x:e.x,y:e.y,vx:Math.cos(angle+offset*Math.PI/180)*speed,vy:Math.sin(angle+offset*Math.PI/180)*speed,r:7,dmg:burst?8:10,life:2.5,c:burst?'#d58ad9':'#ffbd77'});
               if(!burst)e.vulnerable=1.5;
             }
@@ -459,7 +460,7 @@ function update(dt){
       if(e.type==='watcher'&&dl<370)sp=0;
     }
     if(e.slowT>0){e.slowT-=dt;sp*=.5}
-    if(e.fear>0){e.fear-=dt;tx=-dx/dl;ty=-dy/dl}
+    if(e.fear>0){e.fear-=dt;if(!lockedCharge){tx=-dx/dl;ty=-dy/dl}}
     const tl=Math.hypot(tx,ty)||1;
     if(!G.raid){
       if(!lockedCharge&&!e.fear&&!e.flee&&!e.target&&!e.distract&&!clearLine(e,target,e.r+12))[tx,ty]=routeDirection(e,target);

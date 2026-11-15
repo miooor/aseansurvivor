@@ -3,6 +3,7 @@ import {Weather} from './Weather';
 import Phaser from 'phaser';
 import {drawSkillEffect} from './skill-effects.js';
 import {animationRows} from '../content/animation-layouts.js';
+import {ELITE_ATTACK_ANGLES} from '../content/encounters.js';
 import { createRuntime, type GameRuntime, type RunState, type Point, type Effect } from '../game/runtime.js';
 
 const HERO_FRAMES: Record<string, number> = {ustaz:0,rempit:1,nok:2,lan:3,sari:4};
@@ -307,7 +308,7 @@ export class SurvivalScene extends Phaser.Scene {
       const sprite=this.image(e,GHOST_FRAMES[e.type]??5,size);
       const regional=['stalker','lantern','sentinel','neon','drifter','watcher'].indexOf(e.type);
       if(regional>=0)sprite.setTexture('region-enemies',String(regional)).setDisplaySize(e.type==='sentinel'?90:78,78);
-      if(e.elite){this.circle(this.floor,e.x,e.y,e.r+9,e.vulnerable?0x8ef4d0:e.elite==='Thornbound'?0xd58ad9:0xffbd77,.16,3);if(e.windup){const offsets=e.attack==='burst'?[0,45,90,135,180,225,270,315]:e.attack==='fan'?[-30,-15,0,15,30]:[0];for(const offset of offsets){const angle=(e.attackAngle??0)+offset*Math.PI/180;this.floor.lineStyle(2,0xffbd77,.9).lineBetween(e.x,e.y,e.x+Math.cos(angle)*190,e.y+Math.sin(angle)*190);}}}
+      if(e.elite){this.circle(this.floor,e.x,e.y,e.r+9,e.vulnerable?0x8ef4d0:e.elite==='Thornbound'?0xd58ad9:0xffbd77,.16,3);if(e.windup){const offsets=e.attack==='fan'||e.attack==='burst'?ELITE_ATTACK_ANGLES[e.attack]:ELITE_ATTACK_ANGLES.charge;for(const offset of offsets){const angle=(e.attackAngle??0)+offset*Math.PI/180;this.floor.lineStyle(2,0xffbd77,.9).lineBetween(e.x,e.y,e.x+Math.cos(angle)*190,e.y+Math.sin(angle)*190);}}}
       if(e.windup)this.circle(this.floor,e.x,e.y,e.type==='sentinel'?155:55,0xffb56d,.12,3);
       const moving=!g.paused&&!g.choosing&&!g.over;
       sprite.setRotation(reducedMotion()?0:Math.sin(g.t*7+e.phase)*.035);
