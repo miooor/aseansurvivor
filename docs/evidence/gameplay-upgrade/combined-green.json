@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-15T16:39:55.912Z",
+  "date": "2026-11-15T16:44:59.557Z",
   "result": "PASS",
   "checks": [
     {
@@ -18,7 +18,7 @@
       "pass": true
     },
     {
-      "name": "Successful chain keeps original E orbit choreography",
+      "name": "Chain announces the successful Crosswind trigger",
       "pass": true
     },
     {

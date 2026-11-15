@@ -20,7 +20,7 @@ Hero movement and attack frame selection reads simulation time and successful-ca
 
 Art is loaded locally; Google Fonts remains an optional external request with system fallbacks. The active PNG set is approximately 44.9 MB before transport compression. The Astrocade export uses an 11.4 MB WebP set with unchanged dimensions and alpha; [port details](astrocade.md) describe its separate cloud-save adapter and portrait layout. Vite reports a bundle-size warning for the Phaser-containing JavaScript chunk; the warning is retained. Future optimization should measure loading and frame time on actual mobile hardware before changing the renderer or adding dependencies.
 
-The `aseanSurvivor.v1` save format is retained. No account, server, analytics, inventory, trading, multiplayer, or payment service is present. Test helpers are exposed only in development.
+The `aseanSurvivor.v1` save format is retained. No account, server, analytics, persistent inventory, trading, multiplayer, or payment service is present. Test helpers are exposed only in development.
 
 ## Development sequence
 
