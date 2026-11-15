@@ -4,6 +4,10 @@ ASEAN Survivor is saved on Astrocade as a **private unpublished draft**, game `0
 
 The port packages the existing simulation and Phaser renderer from checkout `22c8d7faa2c546dffc7c8b4fc77923b597dbeaff`: five heroes, six regional worlds, signatures, upgrades, boss fights, portal raids and the current Johor encounter/equipment integration. Combat modules are unchanged. Earlier paused feature/review work is separate from this port.
 
+## Combat and build follow-up
+
+The source now includes the tougher Johor elite patterns and eighteen-item skill-support catalogue, alongside the seven documentation-only ASEAN hero concepts. [Combined verification](gameplay-upgrade.md) records the local browser fixture, staged build observations and active-event desktop profile. [Combat rules](event-combat.md), [equipment rules](skill-equipment.md), [hero drafts](asean-hero-concepts.md). The terrain revision and historical measurements below describe their stated revisions; they are not evidence that a newer source build is hosted. The parent verification task records the final fresh export, private-draft revision, read-back and hosted checks after integration.
+
 ## Packaging
 
 ```sh

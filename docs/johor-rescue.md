@@ -1,5 +1,8 @@
 # Trapped Traveller and weapon equipment
 
+Historical slice evidence. The follow-up [combat contract](event-combat.md) supersedes elite patterns and rescue/ward compositions; [skill equipment](skill-equipment.md) expands the catalogue from twelve to eighteen items. [Combined verification and play/profile evidence](gameplay-upgrade.md) records the integrated follow-up. Earlier spec #1/PR #7 remains a separate workflow.
+
+
 Ticket #3, part of [Johor encounter and loot spec #1](https://github.com/miooor/aseansurvivor/issues/1). Built from integration baseline `26ba1d0`.
 
 Johor's abandoned market now contains a deliberate rescue event at (2400, 1300), separate from its cache. Defeat six owned captors, including an Armoured Palm Stalker, then interact within 120 units. The marker is discovered with its landmark. Leaving does not fail it; abandoning ends it permanently for that run without a reward. Event actors are collision-projected, remain owned when offscreen, and are removed on resolution or run transitions. Active events block raid entry and preserve the rift's remaining lifetime.

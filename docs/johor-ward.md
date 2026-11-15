@@ -1,5 +1,8 @@
 # Lantern Ward and charms
 
+Historical slice evidence. The follow-up [combat contract](event-combat.md) supersedes elite patterns and rescue/ward compositions; [skill equipment](skill-equipment.md) expands the catalogue from twelve to eighteen items. [Combined verification and play/profile evidence](gameplay-upgrade.md) records the integrated follow-up. Earlier spec #1/PR #7 remains a separate workflow.
+
+
 Ticket #4 implements the ward/charm contracts in [spec #1](https://github.com/miooor/aseansurvivor/issues/1).
 
 Acceptance uses `/tests/johor-ward.html` in a real browser against the development-only runtime seam already agreed in the parent spec. The fixture stages positions/resources but activates encounters and equips choices through actual HTML controls. Incremental failures precede each implementation slice.

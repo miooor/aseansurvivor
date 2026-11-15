@@ -25,7 +25,7 @@ The `aseanSurvivor.v1` save format is retained. No account, server, analytics, i
 ## Development sequence
 
 1. Finish the first biome: additional animation in-betweens and atlas alignment polish, audio mix listening tests/music, enemy anticipation, and tuned encounter pacing. Profile dense fights on desktop and real phones.
-2. Verify the implemented Johor rescue/weapon, ward/charm and hunt/relic slices together and prove several different builds before expanding the item pool.
+2. Use the combined Johor browser fixture and three staged build presets to evaluate the implemented eighteen-item pool and elite patterns. Continue longer natural-loot and real-device playtests before balance decisions.
 3. Introduce versioned saves and migration fixtures before persistent equipment or passive trees ship. Keep simulation rules testable independently of rendering.
 4. Expand stage art, encounters, and progression after the first chapter is replayable. Consider a backend only when a concrete feature requires it.
 
@@ -58,3 +58,12 @@ Regional enemies use a 3×2 atlas and runtime windup/attack timers: charge, embe
 `encounters.js` owns run-local encounter lifecycle, activation, ownership, cleanup, and reward completion. `equipment.js` owns fixed offers, atomic equip/skip, paused inspection and shared modifier calculation. Their static registries live under `src/content/`; Phaser renders markers, elite accents and labels, while semantic HTML buttons own interaction. Successful casts and damage-origin metadata integrate through existing combat hooks. [Johor rescue documentation](johor-rescue.md) records extension contracts. `ward.js` registers the sequential defence encounter; owned enemies navigate toward its objective and use a bounded contact cadence. `charms.js` adds simulation-clock healing and positional effects; actual post-mitigation damage resets healing. [Ward documentation](johor-ward.md) records its oil-hindrance interpretation and evidence. No frame loop, dependency, persistent inventory or save migration was added.
 
 `hunt.js` registers sequential hunt objectives and owns Thornbound patch creation, a shared simulation-time thorn cooldown, and four relic hooks. `hurtPlayer` exposes lethal interception after mitigation and positive applied damage notification after HP subtraction. Last Lantern consumption is stored separately from replaceable item counters. Relic percentage damage remains part of the shared additive equipment calculation; item-origin kills keep ordinary enemy rewards but cannot activate Bounty Seal. See [hunt verification](johor-hunt.md).
+
+
+## Elite patterns and skill equipment
+
+`event-combat.js` advances the shared elite attack state, captures warning aim and emits encounter-owned fan/burst projectiles. `SurvivalScene.ts` reads those states for static warning rays and two-line action labels. Existing collision, stun, slow and hostile-projectile paths apply. [Combat contract](event-combat.md).
+
+`skill-equipment.js`, installed by `equipment.js`, wraps successful casts after hero identity hooks and captures cast position, aim and rank before movement. It schedules at most twelve pending strikes and three slow fields on the simulation clock. Item-origin damage uses the ordinary hit/kill path, completing owned objectives while excluding signature charge and recursive Bounty effects. Replacement is item-selective; actual raid object transitions clear strikes, fields and item projectiles. Crosswind state continues on run time across raids, matching Aftershock. [Exact equipment and lifecycle rules](skill-equipment.md).
+
+`tests/gameplay-upgrade.html` combines real runtime staging with actual event, reward, skill and modal controls, repeatable three-build play presets and a bounded active-event desktop profile. Evidence and staging limitations are in [combined verification](gameplay-upgrade.md). [Seven hero concepts](asean-hero-concepts.md) remain design documentation and add no runtime registrations or assets.

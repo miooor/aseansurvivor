@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-15T16:31:57.392Z",
+  "scenario": "A legitimate automatic basic uses the attack sheet, so an idle-only texture assertion must disable ambient combat before waiting",
+  "before": {
+    "castT": 0.27,
+    "castSlot": 0,
+    "texture": "hero-motion-rempit",
+    "frame": "32",
+    "originalIdleAssertion": false
+  },
+  "directions": [
+    {
+      "direction": 0,
+      "pass": true
+    },
+    {
+      "direction": 1,
+      "pass": true
+    },
+    {
+      "direction": 2,
+      "pass": true
+    },
+    {
+      "direction": 3,
+      "pass": true
+    },
+    {
+      "direction": 4,
+      "pass": true
+    },
+    {
+      "direction": 5,
+      "pass": true
+    },
+    {
+      "direction": 6,
+      "pass": true
+    },
+    {
+      "direction": 7,
+      "pass": true
+    }
+  ],
+  "result": "PASS"
+}
