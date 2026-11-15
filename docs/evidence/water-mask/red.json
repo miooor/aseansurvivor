@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-15T16:26:54.436Z",
+  "result": "FAIL",
+  "checks": [
+    {
+      "name": "Actual game uses WebGL",
+      "pass": true
+    },
+    {
+      "name": "Johor creates terrain without unsupported mask warnings",
+      "pass": false
+    }
+  ],
+  "warnings": [
+    "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead.",
+    "Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead."
+  ],
+  "errors": [
+    "Error: Johor creates terrain without unsupported mask warnings"
+  ]
+}
