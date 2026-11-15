@@ -1,0 +1,113 @@
+{
+  "date": "2026-11-15T16:35:24.559Z",
+  "result": "FAIL",
+  "checks": [
+    {
+      "name": "Actual game uses WebGL",
+      "pass": true
+    },
+    {
+      "name": "Johor creates terrain without unsupported mask warnings",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north water body clips at zoom 0.780",
+      "pass": false
+    }
+  ],
+  "warnings": [],
+  "errors": [
+    "Error: johor river-north water body clips at zoom 0.780"
+  ],
+  "pixels": [
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "rounded corner",
+      "zoom": 0.78,
+      "point": {
+        "x": 1223,
+        "y": -2997
+      },
+      "waterPixel": [
+        69,
+        85,
+        50,
+        255
+      ],
+      "groundPixel": [
+        69,
+        85,
+        50,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "outside bank",
+      "zoom": 0.78,
+      "point": {
+        "x": 1180,
+        "y": -2900
+      },
+      "waterPixel": [
+        79,
+        100,
+        53,
+        255
+      ],
+      "groundPixel": [
+        79,
+        100,
+        53,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "water body",
+      "zoom": 0.78,
+      "point": {
+        "x": 1320,
+        "y": -2900
+      },
+      "waterPixel": [
+        69,
+        88,
+        50,
+        255
+      ],
+      "groundPixel": [
+        69,
+        88,
+        50,
+        255
+      ],
+      "difference": 0
+    }
+  ]
+}

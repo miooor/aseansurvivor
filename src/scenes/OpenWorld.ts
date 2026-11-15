@@ -50,10 +50,16 @@ export class OpenWorld {
     for(const water of w.waters){
       ground.fillStyle(0x59734d,.55).fillPoints(this.bank(water,38),true);
       ground.fillStyle(0x444c31,.6).fillPoints(this.bank(water,18),true);
-      const mask=scene.add.graphics().fillStyle(0xffffff).fillPoints(this.bank(water),true).setVisible(false);
+      const mask=scene.make.graphics({},false).fillStyle(0xffffff).fillPoints(this.bank(water),true);
       this.masks.push(mask);
-      this.objects.push(scene.add.tileSprite(water.x+water.w/2,water.y+water.h/2,water.w+90,water.h+90,'terrain','water')
-        .setTileScale(.65).setTint(w.id==='perak'?0xa9e1db:0xa2c4c1).setMask(mask.createGeometryMask()).setDepth(-8800).setName('terrain-water'));
+      const surface=scene.add.tileSprite(water.x+water.w/2,water.y+water.h/2,water.w+90,water.h+90,'terrain','water')
+        .setTileScale(.65).setTint(w.id==='perak'?0xa9e1db:0xa2c4c1).setDepth(-8800).setName('terrain-water');
+      if(scene.game.renderer.type===Phaser.WEBGL){
+        surface.enableFilters();
+        // The internal camera and bank stay fixed in world space as the main camera moves.
+        surface.filters!.internal.addMask(mask,false,surface.filterCamera!).autoUpdate=false;
+      }else surface.setMask(mask.createGeometryMask());
+      this.objects.push(surface);
     }
     for(const bridge of w.bridges){
       ground.fillStyle(0x584d35).fillRoundedRect(bridge.x-3,bridge.y-3,bridge.w+6,bridge.h+6,6);
