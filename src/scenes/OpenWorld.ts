@@ -81,8 +81,18 @@ export class OpenWorld {
   update(g:RunState|null){
     if(g&&g.world.id!==this.layout?.id)this.build(g.world);
     const LANDMARKS=g?.world.landmarks||[];
-    const visible=!!g&&!g.raid;for(const object of this.objects)object.setVisible(visible);this.map.hidden=!visible||!!g?.over;if(!visible||!g)return;
-    for(const object of this.objects)if(object instanceof Phaser.GameObjects.TileSprite&&object.name==='terrain-water')object.tilePositionY=matchMedia('(prefers-reduced-motion: reduce)').matches?0:-g.t*3;
+    const visible=!!g&&!g.raid,camera=this.scene.cameras.main;
+    const halfWidth=camera.width/camera.zoom/2,halfHeight=camera.height/camera.zoom/2,view=camera.worldView;
+    // worldView precedes this frame's centerOn; include the arriving player and shake overscan.
+    const left=Math.min(view.left,(g?.p.x||0)-halfWidth)-150,right=Math.max(view.right,(g?.p.x||0)+halfWidth)+150;
+    const top=Math.min(view.top,(g?.p.y||0)-halfHeight)-150,bottom=Math.max(view.bottom,(g?.p.y||0)+halfHeight)+150;
+    for(const object of this.objects){
+      const water=object instanceof Phaser.GameObjects.TileSprite&&object.name==='terrain-water';
+      const inView=!water||object.x+object.width/2>=left&&object.x-object.width/2<=right&&object.y+object.height/2>=top&&object.y-object.height/2<=bottom;
+      object.setVisible(visible&&inView);
+      if(water&&object.visible)object.tilePositionY=matchMedia('(prefers-reduced-motion: reduce)').matches?0:-g!.t*3;
+    }
+    this.map.hidden=!visible||!!g?.over;if(!visible||!g)return;
     document.getElementById('mapPlayer')!.setAttribute('cx',String(g.p.x+HALF));document.getElementById('mapPlayer')!.setAttribute('cy',String(g.p.y+HALF));
     const nearby=LANDMARKS.reduce((a,b)=>Math.hypot(g.p.x-a.x,g.p.y-a.y)<Math.hypot(g.p.x-b.x,g.p.y-b.y)?a:b);
     document.getElementById('regionName')!.textContent=nearby.name;

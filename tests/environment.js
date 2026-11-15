@@ -19,9 +19,13 @@ $('run').onclick=()=>{
       check(s.name+' uses textured ground',children('terrain-ground').length===1);
       check(s.name+' has textured road surfaces',children('terrain-road').length>0);
       check(s.name+' keeps road instances bounded',children('terrain-road').length<700);
-      if(g.world.waters.length)check(s.name+' has organic textured water',children('terrain-water').length===g.world.waters.length);
+      const water=rt.scene.children.list.filter(o=>o.name==='terrain-water');
+      if(g.world.waters.length){
+        check(s.name+' retains every organic textured water surface',water.length===g.world.waters.length);
+        for(const tile of water){Object.assign(g.p,{x:tile.x,y:tile.y});rt.scene.update(0,0);check(s.name+' water becomes visible on arrival',tile.visible)}
+      }
       if(g.world.paddies.length)check(s.name+' has illustrated rice terraces',children('terrain-paddy').length>=g.world.paddies.length*6);
-      if(g.world.bridges.length)check(s.name+' keeps bridge decking above water',children('terrain-bridge').every(b=>b.depth>children('terrain-water')[0].depth));
+      if(g.world.bridges.length)check(s.name+' keeps bridge decking above water',children('terrain-bridge').every(b=>water.every(w=>b.depth>w.depth)));
       check(s.name+' minimap matches world',frame.contentDocument.querySelector('#worldMap strong').textContent===g.world.name);
     }
     for(const hero of ['ustaz','rempit','nok','lan','sari']){
