@@ -56,3 +56,16 @@ $('idle').onclick=async()=>{
   for(let direction=0;direction<8;direction++){const angle=direction*Math.PI/4;isolated.p.face=[Math.cos(angle),Math.sin(angle)];await new Promise(resolve=>setTimeout(resolve,100));directions.push({direction,pass:rt.scene.children.list.some(o=>o.type==='Image'&&o.visible&&o.texture.key==='hero-directions'&&o.frame.name===String(8+direction))});}
   isolated.paused=true;output({date:new Date().toISOString(),scenario:'A legitimate automatic basic uses the attack sheet, so an idle-only texture assertion must disable ambient combat before waiting',before,directions,result:before.castT>0&&before.castSlot===0&&!before.originalIdleAssertion&&directions.every(d=>d.pass)?'PASS':'FAIL'});$('status').textContent='Idle baseline diagnostic complete · download report';
 };
+
+// shortcut: the scaled check leaves port CSS installed, reload before normal play/profile.
+$('scaled').onclick=async()=>{
+  checks=[];let result='PASS',error;
+  try{
+    const sheet=doc.createElement('link');sheet.rel='stylesheet';sheet.href='../astrocade/ui.css';
+    await new Promise((resolve,reject)=>{sheet.onload=resolve;sheet.onerror=()=>reject(Error('Astrocade CSS failed to load'));doc.head.append(sheet)});
+    frame.style.width='720px';frame.style.height='1280px';frame.style.transformOrigin='top left';frame.style.transform='scale(.44)';await new Promise(resolve=>setTimeout(resolve,120));
+    const g=start();begin('hunt');const elite=g.enemies.find(e=>e.elite);g.enemies=[elite];Object.assign(g.p,{x:0,y:0});Object.assign(elite,{x:50,y:200,hp:elite.maxHp*.5,skillT:99,stun:999});advance(3.1);elite.stun=0;elite.skillT=0;step();advance(.7);g.paused=true;rt.scene.update(0,0);
+    const label=rt.scene.children.list.find(o=>o.type==='Text'&&o.visible&&o.text.includes('Briarback · Thornbound')),hostScale=frame.getBoundingClientRect().width/frame.offsetWidth,screenFont=parseFloat(label.style.fontSize)*label.scaleY*rt.scene.cameras.main.zoom*hostScale;
+    check('720x1280 Astrocade frame at .44 host scale keeps elite text12CSSpx',screenFont>=12,{screenFont,hostScale,viewport:[frame.contentWindow.innerWidth,frame.contentWindow.innerHeight],labelScale:label.scaleY,zoom:rt.scene.cameras.main.zoom,text:label.text});
+  }catch(e){result='FAIL';error=e.stack}finally{if(rt.G)rt.G.paused=true;output({date:new Date().toISOString(),result,error,checks,errors});$('status').textContent=result+' · scaled Astrocade label · reload whole page to restore normal CSS/layout'}
+};

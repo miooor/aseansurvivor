@@ -1,4 +1,5 @@
 /* Astrocade scales this fixed 720×1280 frame to the phone. */
+:root{--elite-label-scale:2}
 #gameHost{z-index:0}#hud{z-index:6}#skills{z-index:8}.ov{z-index:20}
 button,summary{min-height:112px!important;min-width:112px!important}
 .sound-controls input[type="range"]{min-height:112px;width:180px}

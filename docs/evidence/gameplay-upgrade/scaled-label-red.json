@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-15T16:49:29.012Z",
+  "result": "FAIL",
+  "error": "check@http://localhost:5183/tests/gameplay-upgrade.js:10:111\n@http://localhost:5183/tests/gameplay-upgrade.js:68:10",
+  "checks": [
+    {
+      "name": "720x1280 Astrocade frame at .44 host scale keeps elite text12CSSpx",
+      "pass": false,
+      "details": {
+        "screenFont": 6.159999762641059,
+        "hostScale": 0.4399999830457899,
+        "viewport": [
+          720,
+          1280
+        ],
+        "labelScale": 1.2820513907321252,
+        "zoom": 0.7799999338785807,
+        "text": "Briarback · Thornbound Palm Stalker\nENRAGED · BURST WARNING"
+      }
+    }
+  ],
+  "errors": []
+}

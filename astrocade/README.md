@@ -16,3 +16,5 @@ The environment update replaces the old striped ground and flat terrain boxes wi
 
 
 Johor elites now alternate locked-aim charges with warned five-bolt fans; half-health Briarback alternates charges with eight-ray bursts. Eighteen run-local items offer six per slot, three sampled once per reward. New items add Q echoes, E forked bolts, F slowing fields, cooldown relays, alternating-cast damage and R pulses without replacing the five heroes’ skills. The seven additional ASEAN hero concepts in the source documentation are design drafts and are not playable roster additions. Source rules and repeatable combined build/profile evidence: `docs/event-combat.md`, `docs/skill-equipment.md`, `docs/gameplay-upgrade.md`, `docs/asean-hero-concepts.md`.
+
+Elite FAN/BURST/ENRAGED warning text compensates for camera zoom and uses the port stylesheet’s internal factor of two so the surrounding host can scale the fixed portrait frame down while retaining readable labels. The local combined fixture checks 12 CSS pixels at a 0.44 outer scale.
