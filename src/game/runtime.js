@@ -385,6 +385,10 @@ function update(dt){
   const viewR=Math.hypot(W,H)/(2*SC);
   for(const e of G.enemies){
     if(e.dead)continue;
+    if(e.elite==='Thornbound'&&!e.enraged&&e.hp<=e.maxHp*.5){
+      e.enraged=true;e.enrageActions=0;e.skillT=Math.min(e.skillT,2.6);
+      text(e.x,e.y-e.r-30,'ENRAGED','#f394ce',20);ring(e.x,e.y,80,'#d58ad9',.6);
+    }
     e.vulnerable=Math.max(0,(e.vulnerable||0)-dt);e.flash=Math.max(0,e.flash-dt);if(e.sq)e.sq=Math.max(0,e.sq-dt*7);
     if(e.burnT>0){e.burnT-=dt;e.burnAcc+=dt;if(e.burnAcc>=.5){e.burnAcc-=.5;hit(e,e.burnDps*.5,{dot:true});if(e.dead)continue}}
     if(e.pinCd!==undefined)e.pinCd=Math.max(0,e.pinCd-dt);
@@ -394,7 +398,7 @@ function update(dt){
     let dx=target.x-e.x,dy=target.y-e.y,dl=Math.hypot(dx,dy)||1;
     if(!e.encounter&&dl>viewR*1.7&&!e.boss&&!G.raid){const[x,y]=spawnPos();e.x=x;e.y=y;continue}
     if(e.stun>0){e.stun-=dt;continue}
-    let tx=dx/dl,ty=dy/dl,sp=e.spd;
+    let tx=dx/dl,ty=dy/dl,sp=e.spd,lockedCharge=false;
     if(e.ai){const r=e.ai(e,dt,{dx,dy,dl,tx,ty,sp});if(r){tx=r.tx;ty=r.ty;sp=r.sp}}
     else if(e.boss&&e.type!=='pontianak'){e.bt-=dt;e.phase+=dt;
       if(e.type==='toyol'){if(e.bt<=0){e.bt=5;for(let k=0;k<4;k++)makeGhost('toyol',e.x+rand(-50,50),e.y+rand(-50,50));text(e.x,e.y-60,'Toyol, serang!','#5fd16a',18);juice(4)}}
@@ -424,11 +428,26 @@ function update(dt){
     }
     if(['stalker','lantern','sentinel','neon','drifter','watcher'].includes(e.type)&&!e.boss){
       e.skillT-=dt;
-      if(e.skillT<=0&&dl<650&&!e.windup){e.windup=.65;e.skillT=3.5;}
+      if(e.skillT<=0&&dl<650&&!e.windup&&!(e.rush>0)){
+        e.windup=.65;e.skillT=e.enraged?2.6:3.5;
+        if(e.elite){
+          e.attack=e.elite==='Armoured'&&e.actions%2?'fan':e.enraged&&e.enrageActions%2===0?'burst':'charge';
+          if(e.enraged)e.enrageActions++;
+          e.attackAngle=Math.atan2(dy,dx);if(e.attack==='fan')e.windup=.8;if(e.attack==='burst')e.windup=.9;
+        }
+      }
       if(e.windup>0){e.windup=Math.max(0,e.windup-dt);sp=0;
-        if(!e.windup){e.actions++;const angle=Math.atan2(dy,dx);
+        if(e.elite&&e.windup<1e-8)e.windup=0;
+        if(!e.windup){e.actions++;const angle=e.elite?e.attackAngle:Math.atan2(dy,dx);
           const bolt=(offset,speed,color)=>G.eprojs.push({encounter:e.encounter,x:e.x,y:e.y,vx:Math.cos(angle+offset)*speed,vy:Math.sin(angle+offset)*speed,r:7,dmg:10,life:3,c:color});
-          if(e.type==='stalker'){e.rush=.5;e.rx=tx;e.ry=ty;}
+          if(e.type==='stalker'){
+            if(e.attack==='fan'||e.attack==='burst'){
+              const burst=e.attack==='burst',offsets=burst?[0,45,90,135,180,225,270,315]:[-30,-15,0,15,30],speed=burst?150:190;
+              for(const offset of offsets)G.eprojs.push({encounter:e.encounter,x:e.x,y:e.y,vx:Math.cos(angle+offset*Math.PI/180)*speed,vy:Math.sin(angle+offset*Math.PI/180)*speed,r:7,dmg:burst?8:10,life:2.5,c:burst?'#d58ad9':'#ffbd77'});
+              if(!burst)e.vulnerable=1.5;
+            }
+            else{e.rush=.5;e.rx=e.elite?Math.cos(angle):tx;e.ry=e.elite?Math.sin(angle):ty;}
+          }
           if(e.type==='lantern')for(const a of [-.2,0,.2])bolt(a,190,'#ffc66b');
           if(e.type==='sentinel'){ring(e.x,e.y,155,'#a9e3df',.5);if(dl<155+p.r)hurtPlayer(18);}
           if(e.type==='neon'){e.rush=.32;e.rx=tx;e.ry=ty;for(const a of [-.6,.6])bolt(a,250,'#ce9dff');}
@@ -436,14 +455,14 @@ function update(dt){
           if(e.type==='watcher')for(const a of [-.48,-.24,0,.24,.48])bolt(a,155,'#e8d58e');
         }
       }
-      if(e.rush>0){e.rush-=dt;tx=e.rx;ty=e.ry;sp*=3;if(e.rush<=0&&e.elite==='Armoured')e.vulnerable=1.5;}
+      if(e.rush>0){lockedCharge=!!e.elite;e.rush-=dt;tx=e.rx;ty=e.ry;sp*=3;if(e.rush<=0&&e.elite==='Armoured')e.vulnerable=1.5;}
       if(e.type==='watcher'&&dl<370)sp=0;
     }
     if(e.slowT>0){e.slowT-=dt;sp*=.5}
     if(e.fear>0){e.fear-=dt;tx=-dx/dl;ty=-dy/dl}
     const tl=Math.hypot(tx,ty)||1;
     if(!G.raid){
-      if(!e.fear&&!e.flee&&!e.target&&!e.distract&&!clearLine(e,target,e.r+12))[tx,ty]=routeDirection(e,target);
+      if(!lockedCharge&&!e.fear&&!e.flee&&!e.target&&!e.distract&&!clearLine(e,target,e.r+12))[tx,ty]=routeDirection(e,target);
       const length=Math.hypot(tx,ty)||1;
       Object.assign(e,moveOnMap(e.x,e.y,e.x+tx/length*sp*dt,e.y+ty/length*sp*dt,e.r));
     }else{e.x+=tx/tl*sp*dt;e.y+=ty/tl*sp*dt;}

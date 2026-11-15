@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-15T15:24:45.278Z",
+  "result": "FAIL",
+  "error": "Rescue has one Armoured, two ordinary stalkers and three pocong",
+  "checks": [
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "Rescue has one Armoured, two ordinary stalkers and three pocong",
+      "pass": false
+    }
+  ]
+}

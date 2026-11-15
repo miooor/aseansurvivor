@@ -22,7 +22,7 @@ export function installEncounters(api,equipment){
     api.banner(event.name+' completed · choose your '+event.slot,3);sync();
   }
   const behaviors={rescue:{
-    start(event){for(let i=0;i<6;i++){const a=i*Math.PI/3;spawn(event,i?'pocong':'stalker',event.x+Math.cos(a)*180,event.y+Math.sin(a)*180,i?null:'Armoured');}},
+    start(event){for(let i=0;i<6;i++){const a=i*Math.PI/3;spawn(event,i<3?'stalker':'pocong',event.x+Math.cos(a)*180,event.y+Math.sin(a)*180,i?null:'Armoured');}},
     progress:event=>remaining(event)?`${remaining(event)} captors remaining`:'Captors defeated · return to the traveller',
     canInteract:event=>!remaining(event),
     interact:event=>complete(event),
