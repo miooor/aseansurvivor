@@ -1,7 +1,8 @@
 // Agreed browser seam: actual runtime and HTML event controls; no isolated mocks.
 // Failure cases: wrong composition/ownership, retargeted charges, early damage,
 // mixed attacks, wrong enrage threshold/cadence, stale warnings and hazards,
-// pause/overlay drift, altered ordinary enemies and duplicate completion.
+// pause/overlay drift, fear redirecting warning/active/final elite rush ticks,
+// altered ordinary enemies, fear expiry and duplicate completion.
 const $=id=>document.getElementById(id),frame=$('game');let rt,doc,checks=[];
 const ready=setInterval(()=>{rt=frame.contentWindow.__asean;if(rt){clearInterval(ready);doc=frame.contentDocument;$('run').disabled=false;$('status').textContent='Ready'}},100);
 function check(name,pass){checks.push({name,pass:!!pass});if(!pass)throw Error(name)}
@@ -31,7 +32,26 @@ function unchanged(){
 }
 function readableWarning(){const [g,e]=actor('hunt');e.hp=e.maxHp*.5;step();const label=rt.scene.children.list.find(o=>o.type==='Text'&&o.visible&&o.text.includes('Briarback · Thornbound'));check('Enraged warning label fits a 300-unit mobile reading width',label&&label.width<=300);}
 function lockedRecovery(){const [g,e]=actor();step(13);const before=e.x;Object.assign(g.p,{x:-540,y:-460});e.rush=.05;e.spd=100;step();check('Final charge movement keeps locked direction around obstructed moved target',e.x>before&&Math.abs(e.y)<.001);}
-$('run').onclick=()=>{checks=[];let result='PASS',error;try{composition();charge();fan();enrage();lifecycle();unchanged();lockedRecovery();readableWarning()}catch(e){result='FAIL';error=e.message}finally{$('status').textContent=result+' · '+checks.filter(c=>c.pass).length+'/'+checks.length+' checks'+(error?' · '+error:'');$('report').textContent=JSON.stringify({date:new Date().toISOString(),result,error,checks},null,2);if(rt.G)rt.G.paused=true}};
+function fearedCharge(){
+  const results=[];
+  for(const id of ['rescue','hunt'])for(const phase of ['warning','active','final']){
+    const [g,e]=actor(id);step();const angle=e.attackAngle;Object.assign(g.p,{x:0,y:300});
+    if(phase==='warning')e.fear=2;
+    step(11);const still=e.x===0&&e.y===0;step();
+    if(phase!=='warning')e.fear=2;
+    if(phase==='final')e.rush=.05;
+    const x=e.x,y=e.y,fear=e.fear;let ticks=0;
+    while(e.rush>0&&ticks<12){step();ticks++}
+    results.push({name:e.elite+' fear during '+phase+' keeps all rush movement on the warning ray',pass:still&&angle===0&&e.attackAngle===angle&&e.x>x&&Math.abs(e.y-y)<.001&&Math.abs(e.y)<.001&&e.rush<=0});
+    results.push({name:e.elite+' '+phase+' fear timer still expires on simulation time',pass:Math.abs(e.fear-(fear-ticks*.05))<.001});
+    e.skillT=99;step(41);results.push({name:e.elite+' '+phase+' fear clears after its duration',pass:e.fear<=0});
+  }
+  const g=start(),e=rt.makeGhost('stalker',0,0);g.enemies=[e];Object.assign(e,{skillT:99,fear:.1});Object.assign(g.p,{x:300,y:0});step();
+  results.push({name:'Ordinary enemy still flees the player while feared',pass:e.x<0&&Math.abs(e.y)<.001});
+  step(2);const x=e.x;step();results.push({name:'Ordinary fear expires and resumes approaching the player',pass:e.fear<=0&&e.x>x});
+  checks.push(...results);if(results.some(result=>!result.pass))throw Error('Fear redirected a locked elite charge');
+}
+$('run').onclick=()=>{checks=[];let result='PASS',error;try{composition();charge();fan();enrage();lifecycle();unchanged();lockedRecovery();readableWarning();fearedCharge()}catch(e){result='FAIL';error=e.message}finally{$('status').textContent=result+' · '+checks.filter(c=>c.pass).length+'/'+checks.length+' checks'+(error?' · '+error:'');$('report').textContent=JSON.stringify({date:new Date().toISOString(),result,error,checks},null,2);if(rt.G)rt.G.paused=true}};
 $('download').onclick=()=>{const a=document.createElement('a'),url=URL.createObjectURL(new Blob([$('report').textContent],{type:'application/json'}));a.href=url;a.download='event-combat-report.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
 const previews=document.createElement('div');previews.style.margin='12px 0';frame.before(previews);
 for(const mode of ['charge','fan','burst','mobile burst','reduced-motion fan']){const b=document.createElement('button');b.textContent='Preview '+mode;b.onclick=()=>{const [g,e]=actor(mode.includes('burst')?'hunt':'rescue');frame.style.width=mode.includes('mobile')?'390px':'100%';Object.assign(e,mode.includes('mobile')?{x:g.p.x+50,y:g.p.y-130}:{x:100,y:0});if(mode.includes('fan'))e.actions=1;if(mode.includes('burst'))e.hp=e.maxHp*.5;if(mode.includes('reduced-motion')){const original=frame.contentWindow.matchMedia;frame.contentWindow.matchMedia=query=>query==='(prefers-reduced-motion: reduce)'?{matches:true}:original.call(frame.contentWindow,query);}step();g.paused=true;step();$('status').textContent=mode+' · event target height '+doc.getElementById('eventAbandon').getBoundingClientRect().height;};previews.append(b)}
