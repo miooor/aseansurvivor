@@ -1,0 +1,40 @@
+# Skill equipment
+
+Ticket [#10](https://github.com/miooor/aseansurvivor/issues/10) implements the six additional items in [spec #8](https://github.com/miooor/aseansurvivor/issues/8), from the preserved `3de2f5f` baseline. The original twelve items remain available. Weapons, charms and relics each have six definitions; completing an encounter samples three distinct choices once. Choosing or skipping still consumes that reward atomically.
+
+| Item | Slot | Successful cast support |
+| --- | --- | --- |
+| Echo Lattice | Weapon | Q marks the nearest enemy within 450 units, or a point 220 units along cast aim. A fixed radius 90 echo hits after 0.45 simulation seconds for 22 × Q rank multiplier. |
+| Forked Conduit | Weapon | E launches two ordinary item projectiles at ±18° from cast aim. Each has speed 420, radius 6, damage 18 × E rank multiplier, lifetime 1.2 seconds and pierce 2. |
+| Undertow Thread | Charm | F leaves a non-damaging radius 140 field at cast position for three seconds. Enemies inside receive at least 0.6 seconds of the existing 50% slow. Three fields maximum; a fourth discards the oldest. |
+| Relay Knot | Charm | Q/E/F reduces the other two Q/E/F cooldowns by one second, clamped at zero. The triggering skill retains its normal cooldown cost; basic and ultimate cooldowns are unaffected. |
+| Crosswind Drum | Relic | A different successful Q/E/F within three seconds of the previous successful Q/E/F grants +20% outgoing damage for three seconds. It refreshes without stacking. Basics, ultimates and rejected casts preserve the previous qualifying cast. |
+| Monsoon Lens | Relic | R adds three fixed radius 180 pulses at cast position after 0.6, 1.2 and 1.8 seconds. Each deals 18 × R rank multiplier with normal outgoing modifiers and refreshes at least 0.6 seconds of slow. |
+
+The rank multiplier is the existing `1 + 0.25 × (rank − 1)`. Equipment damage bonuses add before existing hero/passive multipliers. All supplemental damage uses `origin: 'item'`, so it does not generate Lan's High Tide or recursively trigger kill-based item effects. The original skill executes once, including its choreography, signature logic, sound and resource cost; support effects never invoke `CAST` or `tryCast` again.
+
+Pending Echo/Lens strikes share a limit of twelve; inserting a thirteenth removes the oldest pending strike and its warning. Replacing an item removes that item's pending strikes, field, projectiles and replaceable counters/buffs while preserving other slots and ordinary hero projectiles. Raid entry and exit compare the actual raid object identity and clear pending strikes, fields and item-origin projectiles. Equipment stays equipped and can trigger new support effects inside the raid. Run cleanup clears support effects; a new run starts with empty slots and counters. Original Split Ember projectiles now carry their item ID so this same selective replacement rule applies to them.
+
+Here, raid cleanup of scheduled effects means queued strikes, fields and projectiles. Crosswind Drum's previous qualifying cast and active damage buff carry through a raid transition, consistent with the existing Aftershock Bell. Its three-second window and buff continue to expire on simulation time; normal pauses freeze them. Removing Crosswind Drum or starting a new run clears its state.
+
+`src/game/skill-equipment.js` wraps the existing successful hero cast boundary to capture position, aim, target point and rank before the original cast. This matters for movement skills and ultimates whose ordinary behavior later changes position. The existing simulation clock schedules strikes and fields, so pause, level-up, reward and inspection overlays freeze them. Supplemental effects use the existing fixed-radius wave/ring primitives and named text. No renderer, animation loop, dependency, art, backend or persistent inventory is introduced.
+
+## Browser verification
+
+Use the repository Docker development workflow, open `/tests/skill-equipment.html`, select **Run equipment checks**, keep the tab active and select **Download report**. The fixture uses the existing development runtime for staging and actual skill, event, reward and inspection HTML controls. It does not add a public test API. Use a separate localhost origin for fixture runs.
+
+Failure scope was written before implementation: rejected or repeated casts; moved aim, target, position and rank; delay/radius/damage/slow boundaries; original skill and cooldown cost; recursive signature, audio or item behavior; pending strike and field caps; replacement, raid and run cleanup; reward stability; accessible descriptions and unchanged progression storage.
+
+Each item began with a failing real-browser choice/cast check, followed by its minimal implementation and a passing rerun. Timestamped reports live in `docs/evidence/skill-equipment/`. Early projectile checks exposed fixture assumptions: equipment stat recalculation restores crit chance, and recent mouse aim persists across new games. The fixture now sets deterministic crit chance after choosing equipment and stages a known aim with the existing canvas mouse input. The exact 22-damage and ±18° expectations were retained.
+
+Reward sampling is controlled only during the real grant interaction/runtime tick, then randomness is restored before Phaser renders. Forcing constant randomness across rendering caused Phaser text texture UUID collisions; the preserved `rewards-renderer-failure.json` records that fixture failure. Batched timing uses the existing public runtime step, followed by a real scene render; actual HTML controls and rendered reward labels remain the observation boundary. Stable offers are verified through those controls, without requiring a particular JavaScript freezing implementation.
+
+The exact 450-unit mark test exposed the shared nearest-enemy helper's strict range comparison. Echo now finds the nearest valid candidate with that helper and independently accepts distances up to and including 450; other nearest-enemy callers retain their previous semantics.
+
+Final focused acceptance on 2026-11-15 at 15:58:37Z: **275/275 PASS**, with no captured browser runtime errors. [`evidence/skill-equipment/boundaries-green.json`](evidence/skill-equipment/boundaries-green.json) is the complete report. It covers every new item on all five heroes, exact 0.45/0.6/1.2/1.8/3-second outcomes, inclusive 450-unit targeting, captured aim/position/rank, Nok's actual leap, ordinary two-target projectile collision, additive damage, direct/periodic item attribution, no recursive signature/audio/Bounty effects, selective replacement, real raid entry/exit, run cleanup, pause/inspection/upgrade freeze, accessible descriptions, six reachable choices per slot, stable three-choice offers, atomic skip/stale choice handling and unchanged progression storage. No pre-existing regression assertion was changed for this ticket.
+
+Visual inspection preserved the initial Lens warning/pulse and actual equipment panel in `evidence/skill-equipment/lens-pulse-before.jpg` and `inspection.jpg`. The initial pulse image exposed overlapping cast/pulse labels; Monsoon Lens now names the successful cast once and retains a ring for every pulse. Its damage, timing, slow and original ultimate remain unchanged. The dependent combined-verification ticket will capture the corrected full build after integration.
+
+Final Node 24 Alpine container checks passed: repository `npm run lint`, explicit ESLint for the new fixture, `npm run typecheck` and `npm run build`. Output is preserved in [`lint.txt`](evidence/skill-equipment/lint.txt), [`typecheck.txt`](evidence/skill-equipment/typecheck.txt) and [`build.txt`](evidence/skill-equipment/build.txt). The existing large Phaser chunk warning remains. No dependency or host package was installed.
+
+Combined event regressions, sustained combat profiling, real-device performance, three-build play observations and the private Astrocade export belong to the dependent combined-verification ticket. This slice makes no hardware performance or final balance claim.

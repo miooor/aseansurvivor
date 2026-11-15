@@ -1,0 +1,3 @@
+
+> asean-survivor@0.1.0 lint
+> eslint src tests/ui-smoke.js tests/astrocade.js tests/environment.js scripts/build-astrocade.mjs

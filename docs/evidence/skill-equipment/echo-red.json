@@ -1,0 +1,6 @@
+{
+  "date": "2026-11-15T15:06:27.612Z",
+  "result": "FAIL",
+  "error": "Cannot read properties of undefined (reading 'name')",
+  "checks": []
+}
