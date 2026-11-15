@@ -46,4 +46,21 @@ Inputs and upgrade choices differed between runs. Initial full R, staged gear, h
 
 After closing other active acceptance runs and waiting for a quiet build window, select **Profile active event (15 seconds)** at 1280×720 and keep Safari visible. The preset earns the zoning gear through real rewards, starts an active half-health enraged hunt elite plus 96 owned mixed enemies, gives enemies 100,000 maximum HP, makes the hero invulnerable and enables the existing automatic skill mode. It starts E/F/R effects and measures browser animation-frame intervals for fifteen wall-clock seconds. It records user agent, hardware concurrency, viewport, enemy/effect/projectile ranges, median/p95, intervals above 50 ms and raw samples. Invulnerability and elevated enemy HP deliberately keep the crowded encounter active; manual play above uses normal damage and health.
 
+The single final quiet-window sample was captured at **2026-11-15T16:59:33Z** on an Apple M1 MacBook Air, eight CPU cores, 8 GB RAM, macOS 26.3.1 and native Safari 26.3.1, with a measured 1280×720 game viewport and no explicit CPU/network throttle configured. Parent verification test tabs were closed and agent build/test jobs stopped before the sample. The game had the merged water-filter correction and final label/modal source; ordinary Johor rain remained visible. Actual hardware comes from the local system inventory; Safari’s compatibility user agent reports “Intel Mac OS X 10_15_7” and does not identify the actual chip/OS.
+
+| Observation | Single 15-second active-event sample |
+| --- | --- |
+| Duration / frames | 15,024 ms / 184 |
+| Mean frame rate | **12.25 FPS** |
+| Median / p95 interval | 60 ms / **234 ms** |
+| Intervals above 50 ms | 125 |
+| Living enemies | 97 throughout |
+| Effects | 7–149 |
+| Hero/item projectiles | 0–3 |
+| Hostile projectiles | 0–8 |
+| Zones | 2–7 |
+| Event / captured runtime errors | Active throughout / none |
+
+[Raw frame samples and conditions](evidence/gameplay-upgrade/desktop-profile.json), [paused crowded scene](evidence/gameplay-upgrade/desktop-profile.png). The result is a **material dense-combat performance limitation**, not a performance PASS. The screenshot shows a heavily overlapping crowd and combat numbers; this observation does not isolate which simulation/rendering component causes the slowdown. The sample measures fifteen wall-clock seconds, not fifteen seconds of full simulation progression; the paused game clock is about four seconds. No repeat was run to replace the slow result. Comparison with the older Chromium sample is not causal evidence because browser, combat effects, active event and source differ.
+
 This is a bounded desktop stress observation. It does not measure loading, phone GPU/memory/thermal behavior, long-session pacing or natural loot balance. The earlier [Johor crowd sample](johor-performance.md) had no active event or skill casts and remains historical evidence of that different scenario. Parent verification records full regressions, normal/Astrocade builds, private-draft revision, hosted play and remote file read-back after integration.

@@ -66,6 +66,8 @@ Johor’s optional rescue, ward and hunt now pair deliberate event activation wi
 
 Eighteen run-local items are available, six per weapon/charm/relic slot. Each event samples three distinct rewards once. Six new choices add Q echoes, E forked bolts, F slow fields, cooldown relays, alternating-cast damage and ultimate pulses, while preserving each hero’s original skills. Equipment inspection pauses the game. [Equipment rules](docs/skill-equipment.md), [combined build fixture, play observations and desktop profile](docs/gameplay-upgrade.md).
 
+Dense active-event combat remains a measured desktop performance limitation; the [combined profile](docs/gameplay-upgrade.md) records the slow crowded sample and its staging conditions. Physical-phone performance and natural full-run balance remain unverified.
+
 Seven researched fictional hero concepts complement the current roster across Singapore, the Philippines, Brunei, Cambodia, Laos, Myanmar and Timor-Leste. These are design drafts; the playable roster still has five heroes. [Concepts, institutional sources and local-review requirements](docs/asean-hero-concepts.md).
 
 ## Hero signatures
