@@ -3,6 +3,7 @@ export interface Enemy extends Point {
   objective?: Point; type: string; name?:string; r: number; hp: number; maxHp: number; phase: number;
   windup?:number; flash: number; stun: number; burnT: number; boss?: boolean; dead?: boolean;
   scale?: number; p2?: boolean; elite?: string; vulnerable?: number; rush?:number; rx?:number; ry?:number;
+  attack?: string; attackAngle?:number; enraged?:boolean;
 }
 export interface Effect extends Point {
   kind?: string; c?: string; life: number; max: number; r?: number; size?: number;

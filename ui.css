@@ -141,6 +141,6 @@ dialog{color:var(--moon);font-family:var(--ui);max-height:85dvh;overflow:auto;wi
 @media(max-width:360px){h1{font-size:48px}}
 
 #encounterPrompt{position:fixed;left:18px;top:190px;max-height:calc(100dvh - 330px);overflow:auto;z-index:12;width:min(290px,calc(100vw - 36px));padding:14px;background:#102c29ed;border:1px solid #bda478;border-radius:10px;font-size:13px}
-#encounterPrompt p{margin:7px 0}#encounterPrompt button,#equipmentButton,#lootPanel button{min-height:44px;touch-action:manipulation}
+#encounterPrompt p{margin:7px 0}#encounterPrompt button,#equipmentButton,#lootPanel button{min-height:45px;touch-action:manipulation}
 #equipmentButton{position:fixed;right:18px;bottom:120px;z-index:13}#lootPanel .panel{width:min(720px,calc(100vw - 32px));max-height:85vh;overflow:auto;padding:24px;background:#102c29;border:1px solid #bda478;border-radius:16px}#lootChoices{display:grid;gap:12px;margin:18px 0}#lootChoices button{width:100%;white-space:normal;text-align:left;padding:15px}#lootCurrent{white-space:pre-line}#lootPanel button:focus-visible,#encounterPrompt button:focus-visible,#equipmentButton:focus-visible{outline:3px solid #ffe4a0;outline-offset:3px}
 @media(max-width:600px){#encounterPrompt{top:210px;max-height:calc(100dvh - 290px);left:10px;width:min(260px,calc(100vw - 164px));padding:10px;font-size:12px}#equipmentButton{left:10px;right:auto;bottom:12px}#lootPanel .panel{padding:16px}}
