@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-15T15:23:35.069913+00:00",
+  "browser": "Safari",
+  "fixture": "tests/event-combat.html Preview fan",
+  "expectedMinimumCssPx": 44,
+  "observedHeightCssPx": 43.98896789550781,
+  "sourceMinimumCssPx": 44,
+  "status": "FAIL",
+  "note": "Safari fractional pixel measurement under current browser zoom; source CSS unchanged at observation. Added1px minimum-height headroom after this red; \u226544px acceptance assertions retained.",
+  "green": {
+    "date": "2026-11-15T15:24:39.040422+00:00",
+    "sourceMinimumCssPx": 45,
+    "observedHeightCssPx": 44.999996185302734,
+    "result": "PASS"
+  }
+}

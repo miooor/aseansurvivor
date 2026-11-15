@@ -1,0 +1,44 @@
+{
+  "recordedAt": "2026-11-15T15:11:03.864946+00:00",
+  "observationTime": "UNCONFIRMED; earlier in this session",
+  "seam": "Safari actual runtime + HTML event controls",
+  "redSlices": [
+    {
+      "check": "Rescue has one Armoured, two ordinary stalkers and three pocong",
+      "passed": 1,
+      "total": 2
+    },
+    {
+      "check": "First Armoured action warns CHARGE with locked horizontal aim",
+      "passed": 12,
+      "total": 13
+    },
+    {
+      "check": "Second Armoured action is stationary FAN warning",
+      "passed": 17,
+      "total": 18
+    },
+    {
+      "check": "At exactly half HP Briarback enters indicated ENRAGED burst",
+      "passed": 28,
+      "total": 29
+    },
+    {
+      "check": "Final charge movement keeps locked direction around obstructed moved target",
+      "passed": 87,
+      "total": 88,
+      "recordedAt": "2026-11-15T15:14:43.908756+00:00"
+    },
+    {
+      "check": "Enraged warning label fits a 300-unit mobile reading width",
+      "passed": 91,
+      "total": 92,
+      "recordedAt": "2026-11-15T15:22:21.623339+00:00"
+    }
+  ],
+  "greenSlices": [
+    16,
+    24,
+    36
+  ]
+}

@@ -305,7 +305,7 @@ export class SurvivalScene extends Phaser.Scene {
       const sprite=this.image(e,GHOST_FRAMES[e.type]??5,size);
       const regional=['stalker','lantern','sentinel','neon','drifter','watcher'].indexOf(e.type);
       if(regional>=0)sprite.setTexture('region-enemies',String(regional)).setDisplaySize(e.type==='sentinel'?90:78,78);
-      if(e.elite){this.circle(this.floor,e.x,e.y,e.r+9,e.vulnerable?0x8ef4d0:e.elite==='Thornbound'?0xd58ad9:0xffbd77,.16,3);if(e.windup){const target=e.objective||g.p,angle=Math.atan2(target.y-e.y,target.x-e.x);this.floor.lineStyle(2,0xffbd77,.9).lineBetween(e.x,e.y,e.x+Math.cos(angle)*160,e.y+Math.sin(angle)*160);}}
+      if(e.elite){this.circle(this.floor,e.x,e.y,e.r+9,e.vulnerable?0x8ef4d0:e.elite==='Thornbound'?0xd58ad9:0xffbd77,.16,3);if(e.windup){const offsets=e.attack==='burst'?[0,45,90,135,180,225,270,315]:e.attack==='fan'?[-30,-15,0,15,30]:[0];for(const offset of offsets){const angle=(e.attackAngle??0)+offset*Math.PI/180;this.floor.lineStyle(2,0xffbd77,.9).lineBetween(e.x,e.y,e.x+Math.cos(angle)*190,e.y+Math.sin(angle)*190);}}}
       if(e.windup)this.circle(this.floor,e.x,e.y,e.type==='sentinel'?155:55,0xffb56d,.12,3);
       const moving=!g.paused&&!g.choosing&&!g.over;
       sprite.setRotation(reducedMotion()?0:Math.sin(g.t*7+e.phase)*.035);
@@ -359,7 +359,7 @@ export class SurvivalScene extends Phaser.Scene {
       for(const fx of g.sea.fx)this.drawEffect({...fx,max:fx.max||.4});
     }
     const activeLabels=new Set<object>();
-    for(const e of g.enemies)if(e.elite&&!e.dead){activeLabels.add(e);let label=this.labels.get(e);if(!label){label=this.add.text(e.x,e.y,'',{fontFamily:'Arial, sans-serif',fontSize:14,color:'#ffe0af',stroke:'#18101c',strokeThickness:4}).setOrigin(.5).setDepth(25000);this.labels.set(e,label);}label.setVisible(true).setPosition(e.x,e.y-(e.objective?115:75)).setText((e.name?e.name+' · ':'')+e.elite+' Palm Stalker'+(e.vulnerable?' · VULNERABLE':e.windup?' · CHARGE WARNING':''));}
+    for(const e of g.enemies)if(e.elite&&!e.dead){activeLabels.add(e);let label=this.labels.get(e);if(!label){label=this.add.text(e.x,e.y,'',{fontFamily:'Arial, sans-serif',fontSize:14,align:'center',color:'#ffe0af',stroke:'#18101c',strokeThickness:4}).setOrigin(.5).setDepth(25000);this.labels.set(e,label);}label.setVisible(true).setPosition(e.x,e.y-(e.objective?115:75)).setText((e.name?e.name+' · ':'')+e.elite+' Palm Stalker'+(e.enraged||e.vulnerable||e.windup?'\n':'')+(e.enraged?'ENRAGED'+(e.vulnerable||e.windup?' · ':''):'')+(e.vulnerable?'VULNERABLE':e.windup?(e.attack||'charge').toUpperCase()+' WARNING':''));}
     for(const event of Object.values(g.encounters||{}))if(!g.raid&&(event.track===undefined||event.track<2)&&(event.status==='active'||event.status==='available'&&event.discovered)){activeLabels.add(event);let label=this.labels.get(event);if(!label){label=this.add.text(event.x,event.y,event.name,{fontFamily:'Arial, sans-serif',fontSize:16,color:'#ffe0af',stroke:'#18101c',strokeThickness:4}).setOrigin(.5).setDepth(25000);this.labels.set(event,label);}label.setVisible(true).setPosition(event.x,event.y-80).setText(event.name+(event.track!==undefined&&event.track<2?' · Track '+(event.track+1)+'/2':'')+(event.hp===undefined?'':` · ${event.hp} / 300 HP`));}
     for(const message of g.texts){
       activeLabels.add(message);let label=this.labels.get(message);

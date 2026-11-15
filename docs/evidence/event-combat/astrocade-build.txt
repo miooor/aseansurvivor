@@ -1,0 +1,13 @@
+
+> asean-survivor@0.1.0 build:astrocade
+> tsc --noEmit && node scripts/build-astrocade.mjs
+
+vite v8.3.8 building client environment for astrocade...
+transforming...
+✓ 25 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/astrocade/game.js  1,502.38 kB │ gzip: 409.04 kB
+
+✓ built in 2.33s
+{"status":"dry-run-ready","directory":"dist/astrocade","files":5,"assets":18,"codeBytes":1502386,"htmlBytes":34635}
