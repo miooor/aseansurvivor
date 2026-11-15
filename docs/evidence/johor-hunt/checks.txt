@@ -1,0 +1,44 @@
+
+> asean-survivor@0.1.0 lint
+> eslint src tests/ui-smoke.js
+
+
+> asean-survivor@0.1.0 typecheck
+> tsc --noEmit
+
+
+> asean-survivor@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 24 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                 8.65 kB │ gzip:   2.98 kB
+dist/assets/nok-skills-R3xnMbok.png         1,894.66 kB
+dist/assets/ustaz-motion-BHy0_GUC.png       1,968.86 kB
+dist/assets/lan-skills-C03e_MBu.png         2,007.40 kB
+dist/assets/survivors-atlas-UfxVPYsY.png    2,086.40 kB
+dist/assets/heroes-directions-zO2x4d0z.png  2,131.98 kB
+dist/assets/kampung-buildings-VOzabNr6.png  2,320.85 kB
+dist/assets/sari-motion-R5HP2OaO.png        2,419.34 kB
+dist/assets/lan-motion-BlrlmJX8.png         2,502.49 kB
+dist/assets/rempit-skills-jlbBzBTI.png      2,515.16 kB
+dist/assets/nok-motion-ClMiC9_-.png         2,522.02 kB
+dist/assets/region-grass-mFJ1ebTf.png       2,575.66 kB
+dist/assets/region-enemies-OxdCWRYI.png     2,585.41 kB
+dist/assets/kampung-night-DnBJOhok.png      2,675.65 kB
+dist/assets/rempit-motion-CBn8eEAd.png      2,683.44 kB
+dist/assets/sari-skills-C1KeVLB6.png        2,692.37 kB
+dist/assets/ustaz-skills-mQdtWtJV.png       2,928.50 kB
+dist/assets/region-props-MN3XCP0A.png       2,995.50 kB
+dist/assets/index-CpWH0XWl.css                 23.39 kB │ gzip:   6.11 kB
+dist/assets/index-Bcyq_fCU.js               1,492.06 kB │ gzip: 405.20 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.31s

@@ -20,6 +20,15 @@ Core loop:
 
 ## Current decisions
 
+- **Lantern Ward and charms (2026-11-14).** Johor’s rice fields contain a fictional protective lantern installation, not a place of worship. Defend its 300 HP through 4/6/8 owned-enemy waves for one charm choice. Traveller’s Knot, Lantern Heart, Reed Guard and Stillwater Beads provide speed, recovery, enemy-oil protection and positional damage; all are run-local. Exact rules and evidence: `docs/johor-ward.md`.
+
+- **Johor rescue and weapon slice (2026-11-14).** Trapped Traveller is an optional, deliberate market encounter with six captors and one Armoured Palm Stalker. Final rescue grants one fixed three-choice weapon offer. Three run-local slots, safe paused inspection and replacement now exist; ward/charms and hunt/relics are implemented alongside this slice. Exact contracts and evidence are in `docs/johor-rescue.md` and canonical issue #1. Existing caches, survival clock and progression remain; active events block raid entry until resolved.
+
+- **Hero signatures (2026-11-14).** Each existing kit gains a distinct loop: Hakim charges a healing Sanctuary through basic attacks; Jet converts movement into a Redline dash; Nok chains alternating techniques into an area finisher; Lan builds High Tide through hits on slowed enemies for an empowered troupe; Sari converts successful counters into a timed Riposte and dash reset. The lobby explains each loop; the HUD shows charge, timing windows, and ready skills. Exact current rules are in README's Hero signatures table. These are run-local powers and do not change saved ownership.
+
+- **Browser-first Phaser remake (2026-11-14).** Phaser 4 + TypeScript + Vite is the foundation. The current renderer uses illustrated sprites, native Phaser effects, and a cinematic HTML lobby. Existing combat kits and progression rules remain; all stage rules currently share one kampung environment. The earlier dependency-free prototype and prospective Phaser 3 direction are superseded.
+- **Long-term direction.** Build depth through interacting skills, items, and progression in a browser-first 2D game. First establish a compelling, replayable Malaysian chapter. Equipment affixes, persistent build trees, and a broader endgame are future design work, not implemented features.
+
 - **Auto-cast combos.** The player links two skills (Q+E, Q+F, E+F), all four, or none. Linked skills fire together automatically so their combo triggers; the rest are cast by hand with Q, E, F, R.
 - **Combos.** Skills used together get a bonus, e.g. Seruan then Cahaya Fajar (Smite: double damage to stunned ghosts), Wheelie through your own exhaust (Api Wheelie).
 - **Evolutions.** A skill at rank 5 plus a matching item evolves it, e.g. Nur + Pelita becomes Nur Purnama.
@@ -131,4 +140,8 @@ Jiangshi (hops toward you; loses track if you stand still), E Gui / Hungry Ghost
 
 ## Art direction
 
-Chunky 2D characters with thick outlines and big expressive eyes, squash-and-stretch animation, screen shake and hit-stop for punchy feel. Likely engine for the sprite version: Phaser 3.
+Illustrated 2D characters with readable silhouettes, warm edge lighting, jade night environments, and amber UI accents. Native Phaser camera effects, hit flashes, floating damage, and telegraphs provide combat feedback. Heroes now use four-frame walking/riding and attack cycles in all eight directions. Active skills have distinct directional windup/release poses and original synthesized sound cues. Each stage has a distinct open region with five landmarks, guarded supply caches and a minimap. Regional layouts include kampung fields, canal streets, mining ponds, neon roads, coastal jetties and irrigated paddies. Each has a signature enemy and local ghost mix; see the README region table. Respect reduced-motion preferences for camera feedback and UI transitions.
+
+## Combat feedback direction (2026-11-14)
+
+Original Ragnarok-inspired presentation uses ground spell seals, bright narrow highlights, impact starbursts, and outlined upward-popping damage numbers. Hakim gets light pillars; Jet gets exhaust/speed streaks; Nok gets force arcs; Lan gets water ripples; Sari gets sweeping slashes. Ultimate accents are larger. These are cosmetic and preserve combat rules. Criticals, normal hits, incoming damage, recovery and periodic damage have distinct visual treatments; exact behavior and the review fixture are documented in README.

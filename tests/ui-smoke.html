@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASEAN Survivor — UI verification</title>
+<style>
+body{background:#101b20;color:#eceddf;font:15px system-ui;margin:24px}button{padding:12px;cursor:pointer}pre{white-space:pre-wrap;line-height:1.6}iframe{display:block;border:1px solid #64756b;margin-top:20px;background:#101b20}
+</style>
+<h1>UI browser verification</h1>
+<p>Runs against the real game in an iframe. No packages required. Keep this tab active until complete.</p>
+<button id="run">Run checks</button> <button id="download" disabled>Download report</button>
+<pre id="report" aria-live="polite">Ready.</pre>
+<iframe id="game" title="Game under test" width="1440" height="900"></iframe>
+<script type="module" src="./ui-smoke.js"></script>
+</html>

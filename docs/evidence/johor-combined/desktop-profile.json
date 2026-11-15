@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-15T02:46:48.847Z",
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "viewport": [
+    1280,
+    720
+  ],
+  "scenario": "100 mixed enemies near the player, 15 seconds",
+  "frames": 900,
+  "elapsedMs": 15016.699999999999,
+  "meanFps": 59.93327428795941,
+  "medianFrameMs": 16.69999999999891,
+  "p95FrameMs": 16.800000000000182,
+  "over50ms": 0
+}

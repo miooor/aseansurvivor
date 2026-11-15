@@ -1,0 +1,99 @@
+// Layers: timbre, start Hz, end Hz, seconds, delay, gain. Original synthesis; no samples.
+const bell=(f,d=.3,at=0,g=.2)=>['bell',f,f,d,at,g];
+const sweep=(f,to,d,at=0,g=.2)=>['air',f,to,d,at,g];
+const hit=(f,d=.2,at=0,g=.3)=>['drum',f,35,d,at,g];
+const motor=(f,to,d,at=0,g=.18)=>['motor',f,to,d,at,g];
+export const SKILL_SOUNDS={
+  'ustaz-0':[bell(880,.16,0,.09)],
+  'ustaz-1':[sweep(400,1600,.22),bell(1046,.4,.07),bell(1568,.3,.12,.12)],
+  'ustaz-2':[bell(659,.4),bell(784,.4,.07),bell(988,.5,.14),bell(1318,.5,.21)],
+  'ustaz-3':[sweep(180,700,.45,0,.3),bell(392,.55,.08),hit(110,.25,.04,.16)],
+  'ustaz-4':[sweep(240,1800,.45,0,.15),hit(95,.7,.18,.4),bell(262,1.6,.18,.28),bell(392,1.5,.24,.24),bell(523,1.3,.3,.2),bell(1046,1,.4,.12)],
+  'rempit-0':[motor(180,80,.12,0,.08),bell(1400,.09,.02,.07)],
+  'rempit-1':[motor(90,360,.35,0,.3),sweep(1400,250,.2,.06,.15),hit(100,.18,.06)],
+  'rempit-2':[motor(65,120,.5,0,.2),sweep(1200,120,.4,0,.25),hit(200,.08,.1,.2),hit(160,.1,.27,.2)],
+  'rempit-3':[motor(330,330,.25,0,.2),motor(440,440,.25,0,.18),motor(330,330,.18,.32,.15)],
+  'rempit-4':[motor(65,500,.9,0,.28),motor(130,1000,.85,.08,.13),sweep(300,2600,.6,.1,.18),hit(85,.65,.24,.4),sweep(1800,120,.9,.55,.15)],
+  'nok-0':[sweep(900,200,.1,0,.1),hit(180,.12,.035,.14)],
+  'nok-1':[sweep(1100,180,.18),hit(180,.27,.07,.45)],
+  'nok-2':[sweep(500,1800,.16),sweep(1700,250,.22,.12),hit(260,.2,.18,.35)],
+  'nok-3':[hit(320,.18,0,.22),bell(587,.45,.07,.16),hit(440,.17,.2,.18),bell(880,.7,.3,.13)],
+  'nok-4':[sweep(180,1500,.42,0,.22),hit(65,.75,.55,.6),hit(150,.35,.55,.28),sweep(1500,75,.65,.55,.35),hit(90,.22,.72,.15)],
+  'lan-0':[bell(740,.18,0,.09),sweep(1200,500,.12,0,.05)],
+  'lan-1':[sweep(240,1300,.3,0,.24),bell(1175,.25,.08),bell(784,.3,.19,.12)],
+  'lan-2':[bell(523,.3),bell(659,.3,.1),bell(784,.4,.2),sweep(600,220,.35,.1,.1)],
+  'lan-3':[sweep(1800,120,.48,0,.3),bell(1568,.18,.05,.12),bell(1046,.22,.14,.12),bell(659,.3,.24,.1)],
+  'lan-4':[sweep(120,1800,.45,0,.2),hit(75,.6,.25,.3),sweep(2200,140,.95,.3,.22),...[523,659,784,1046,1318,1568].map((f,i)=>bell(f,.8,.2+i*.12,.17))],
+  'sari-0':[sweep(1800,500,.13,0,.08),bell(1800,.13,.04,.06)],
+  'sari-1':[sweep(350,2400,.2),bell(1568,.3,.07,.16),hit(220,.2,.1,.25)],
+  'sari-2':[sweep(1900,120,.27,0,.25),hit(130,.18,.02,.22),sweep(900,80,.2,.1,.14)],
+  'sari-3':[bell(1760,.4,0,.2),bell(2349,.4,.035,.12),sweep(200,1000,.3,.06,.12)],
+  'sari-4':[sweep(250,2100,.4,0,.24),hit(80,.65,.2,.35),bell(440,1.4,.2,.22),bell(659,1.2,.25,.18),...[0,.13,.26,.39,.52].map((at,i)=>sweep(2600-i*260,250,.32,.35+at,.15))]
+};
+
+export function renderSkill(key,rate=22050){
+  const layers=SKILL_SOUNDS[key];if(!layers)return new Float32Array(0);
+  const duration=Math.max(...layers.map(l=>l[3]+l[4]))+.22;
+  const pcm=new Float32Array(Math.ceil(duration*rate));let seed=123456789;
+  for(const [kind,from,to,duration,delay,gain]of layers){
+    let phase=0,filtered=0;const start=Math.round(delay*rate),length=Math.ceil(duration*rate);
+    for(let i=0;i<length;i++){
+      const t=i/rate,p=i/length,f=from*Math.pow(to/from,p);phase+=Math.PI*2*f/rate;
+      const envelope=Math.min(1,t/.008)*Math.pow(1-p,kind==='bell'?2:1.5);
+      seed=(Math.imul(seed,1664525)+1013904223)|0;const noise=seed/2147483648;
+      filtered+=(noise-filtered)*Math.min(.85,Math.PI*2*f/rate);
+      const tone=kind==='bell'?Math.sin(phase)+.35*Math.sin(phase*2.76)*Math.exp(-t*8):kind==='motor'?(Math.sin(phase)+.35*Math.sin(phase*2)+.15*Math.sin(phase*4))*(.8+.2*Math.sin(t*85)):kind==='drum'?Math.sin(phase)+noise*.12:filtered*2;
+      pcm[start+i]+=tone*envelope*gain;
+    }
+  }
+  // Two quiet reflections give the fantasy cues space without long overlapping reverb tails.
+  const dry=pcm.slice();for(let i=0;i<pcm.length;i++){let v=dry[i];for(const [delay,gain]of [[.09,.16],[.18,.07]])if(i>=delay*rate)v+=dry[i-Math.round(delay*rate)]*gain;pcm[i]=Math.tanh(v)*.8}
+  return pcm;
+}
+
+export class SkillAudio {
+  context=null;voices=new Map();buffers=new Map();lastCue=null;playCount=0;volume=.6;muted=false;paused=true;
+  constructor(){
+    this.controller=new AbortController();this.recent=new Map();
+    try{const s=JSON.parse(localStorage.getItem('aseanSurvivor.audio'));if(s){if(Number.isFinite(s.volume))this.volume=Math.max(0,Math.min(1,s.volume));this.muted=s.muted===true}}catch{}
+    const signal=this.controller.signal;
+    const unlock=e=>{if(e.isTrusted)void this.unlock()};
+    document.addEventListener('pointerdown',unlock,{signal});document.addEventListener('keydown',unlock,{signal});
+    document.addEventListener('visibilitychange',()=>{if(document.hidden)this.stop()},{signal});
+    for(const input of document.querySelectorAll('[data-sound-volume]'))input.addEventListener('input',()=>this.setVolume(Number(input.value)/100),{signal});
+    for(const button of document.querySelectorAll('[data-sound-mute]'))button.addEventListener('click',()=>this.setMuted(!this.muted),{signal});
+    this.updateControls();
+  }
+  async unlock(){
+    try{
+      if(!this.context){
+        this.context=new AudioContext();this.master=this.context.createGain();this.master.gain.value=this.muted?0:this.volume*.65;
+        const compressor=this.context.createDynamicsCompressor();compressor.threshold.value=-12;compressor.knee.value=12;compressor.ratio.value=6;compressor.attack.value=.003;compressor.release.value=.15;
+        this.master.connect(compressor);compressor.connect(this.context.destination);
+      }
+      if(this.context.state==='suspended')await this.context.resume();
+    }catch{ /* Audio support or autoplay denial must never prevent play. */ }
+  }
+  updateControls(){
+    for(const input of document.querySelectorAll('[data-sound-volume]'))input.value=String(Math.round(this.volume*100));
+    for(const button of document.querySelectorAll('[data-sound-mute]')){button.textContent=this.muted?'Sound off':'Sound on';button.setAttribute('aria-pressed',String(this.muted))}
+  }
+  persist(){try{localStorage.setItem('aseanSurvivor.audio',JSON.stringify({volume:this.volume,muted:this.muted}))}catch{}this.updateControls();if(this.master)this.master.gain.setTargetAtTime(this.muted?0:this.volume*.65,this.context.currentTime,.015)}
+  setVolume(value){if(!Number.isFinite(value))return;this.volume=Math.max(0,Math.min(1,value));if(!this.volume)this.stop();this.persist()}
+  setMuted(value){this.muted=!!value;if(this.muted)this.stop();this.persist()}
+  setPaused(value){this.paused=value;if(value)this.stop()}
+  stop(){for(const [source,gain]of this.voices){source.onended=null;source.stop();source.disconnect();gain.disconnect()}this.voices.clear();this.recent.clear()}
+  play(hero,slot){
+    const key=hero+'-'+slot,ctx=this.context;
+    if(!ctx||ctx.state!=='running'||this.paused||this.muted||this.volume===0||document.hidden||!SKILL_SOUNDS[key])return;
+    const now=ctx.currentTime;if(now-(this.recent.get(key)??-1)<.09)return;
+    if(this.voices.size>=8){if(slot===0)return;const victim=[...this.voices].find(([source])=>!source.ultimate);if(!victim)return;victim[0].stop();victim[0].disconnect();victim[1].disconnect();this.voices.delete(victim[0])}
+    if(!this.buffers.has(key)){const samples=renderSkill(key),buffer=ctx.createBuffer(1,samples.length,22050);buffer.copyToChannel(samples,0);this.buffers.set(key,buffer)}
+    const source=ctx.createBufferSource(),gain=ctx.createGain();source.buffer=this.buffers.get(key);source.ultimate=slot===4;
+    gain.gain.value=slot===0?.42:slot===4?1:.75;source.connect(gain);gain.connect(this.master);
+    source.onended=()=>{source.disconnect();gain.disconnect();this.voices.delete(source)};
+    if(slot===4)for(const [voice,level]of this.voices)if(!voice.ultimate)level.gain.setTargetAtTime(.2,now,.02);
+    this.voices.set(source,gain);this.recent.set(key,now);this.lastCue=key;this.playCount++;source.start();
+  }
+  destroy(){this.controller.abort();this.stop();void this.context?.close();this.buffers.clear()}
+}
