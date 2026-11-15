@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-15T16:21:08.003Z",
+  "date": "2026-11-15T16:39:55.912Z",
   "result": "PASS",
   "checks": [
     {
@@ -85,12 +85,33 @@
       "pass": true
     },
     {
+      "name": "lootPanel dialog paints above the active encounter prompt",
+      "pass": true,
+      "details": {
+        "topElement": "DIV"
+      }
+    },
+    {
       "name": "Inspection freezes both elite warning and item pulses",
       "pass": true
     },
     {
+      "name": "pause dialog paints above the active encounter prompt",
+      "pass": true,
+      "details": {
+        "topElement": "pause"
+      }
+    },
+    {
       "name": "Pause freezes combined event and build",
       "pass": true
+    },
+    {
+      "name": "levelup dialog paints above the active encounter prompt",
+      "pass": true,
+      "details": {
+        "topElement": "DIV"
+      }
     },
     {
       "name": "Upgrade overlay freezes combined event and build",

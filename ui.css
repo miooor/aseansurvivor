@@ -17,7 +17,7 @@ h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--display);font-weight:500}
 .eyebrow,.lbl{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
 .eyebrow{color:var(--ember)}.eyebrow::before{content:'◆';font-size:8px;margin-right:12px}
 .sub{font-size:15px;line-height:1.7;color:var(--muted);margin:12px 0 22px;max-width:52ch}
-.ov{position:fixed;inset:0;display:grid;place-items:center;padding:24px;overflow:auto;background:rgba(3,10,13,.8);backdrop-filter:blur(12px)}
+.ov{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:24px;overflow:auto;background:rgba(3,10,13,.8);backdrop-filter:blur(12px)}
 .card{width:100%;max-width:920px;padding:36px;background:var(--panel);border:1px solid var(--line);border-top:2px solid var(--ember);box-shadow:0 24px 100px #0008}
 .card h2{font-size:clamp(26px,4vw,40px);margin-top:12px;line-height:1.2}
 .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:26px}
