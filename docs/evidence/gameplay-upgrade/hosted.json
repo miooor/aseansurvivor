@@ -1,0 +1,115 @@
+{
+  "date": "2026-11-15T17:58:38.284Z",
+  "source": "5f7656212d03049e4d1ced372ceb1465a4f1192c",
+  "revision": "01M7G5D79K4SHTDRBB6P3A856K",
+  "draftPlayUrl": "https://www.astrocade.com/games/asean-survivor/01M7FMJGJ3PMC9H145JJCCNEKR/v/01M7G5D79K4SHTDRBB6P3A856K",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "dpr": 1
+  },
+  "frame": {
+    "controls": [
+      {
+        "bottom": 137,
+        "height": 112,
+        "id": "pauseButton",
+        "right": 708,
+        "width": 112,
+        "x": 596,
+        "y": 25
+      },
+      {
+        "bottom": 1015,
+        "height": 112,
+        "id": "sk1",
+        "right": 573,
+        "width": 112,
+        "x": 461,
+        "y": 903
+      },
+      {
+        "bottom": 1015,
+        "height": 112,
+        "id": "sk2",
+        "right": 693,
+        "width": 112,
+        "x": 581,
+        "y": 903
+      },
+      {
+        "bottom": 1135,
+        "height": 112,
+        "id": "sk3",
+        "right": 573,
+        "width": 112,
+        "x": 461,
+        "y": 1023
+      },
+      {
+        "bottom": 1135,
+        "height": 112,
+        "id": "sk4",
+        "right": 693,
+        "width": 112,
+        "x": 581,
+        "y": 1023
+      },
+      {
+        "bottom": 1264,
+        "height": 112,
+        "id": "equipmentButton",
+        "right": 128,
+        "width": 112,
+        "x": 16,
+        "y": 1152
+      },
+      {
+        "bottom": 414,
+        "height": 269,
+        "id": "worldMap",
+        "right": 696,
+        "width": 160,
+        "x": 536,
+        "y": 145
+      }
+    ],
+    "frameHeight": 1280,
+    "frameWidth": 720,
+    "time": "0:27"
+  },
+  "displayedFrame": {
+    "height": 693.3333740234375,
+    "width": 390,
+    "x": 0,
+    "y": 23.3359375
+  },
+  "minimumDisplayedControlPx": 60.666666666666664,
+  "observations": {
+    "signedInOwner": true,
+    "enteredJohor": true,
+    "clockAdvancedFrom": "0:03",
+    "clockAdvancedTo": "0:37",
+    "earnedUpgradeChoices": [
+      "Benteng Doa rank2",
+      "Kopi O level1",
+      "Tasbih Ring rank2"
+    ],
+    "pauseFreezeAt": "0:34",
+    "pauseFreezeVerified": true,
+    "resumeVerified": true,
+    "final": {
+      "paused": true,
+      "stats": null,
+      "time": "0:37",
+      "level": 4,
+      "kills": 50
+    },
+    "capturedWarningsAndErrors": []
+  },
+  "limitations": [
+    "Desktop browser emulation; no physical phone or trusted touch injection.",
+    "Hosted run used existing AUTO ALL preference, no equipment staged or testing API.",
+    "Frame-rate risks remain documented in render-performance.md."
+  ]
+}

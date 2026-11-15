@@ -66,3 +66,28 @@ The single final quiet-window sample was captured at **2026-11-15T16:59:33Z** on
 This is a bounded desktop stress observation. It does not measure loading, phone GPU/memory/thermal behavior, long-session pacing or natural loot balance. The earlier [Johor crowd sample](johor-performance.md) had no active event or skill casts and remains historical evidence of that different scenario. Parent verification records full regressions, normal/Astrocade builds, private-draft revision, hosted play and remote file read-back after integration.
 
 The subsequent [bounded rendering investigation](render-performance.md) removes fully offscreen water-filter work and preserves visible banks through 112 pixel pairs. It does not resolve the frame-rate limitation: the full crowded comparison is 12.13 FPS before and 11.60 FPS after; the ordinary short scene is 21.90 FPS. Both raw comparisons and their conditions remain available.
+
+## Final integration and private draft
+
+Source integration `5f7656212d03049e4d1ced372ceb1465a4f1192c` includes the fresh review correction: fear no longer redirects a locked elite charge, including the final tick. Warning rays and projectile emission share the existing encounter content map. Separate final Standards and Spec rechecks have no unresolved findings. [Initial findings, fixes and rechecks](evidence/gameplay-upgrade/review.md), [test-first red 118/124 and green 124/124](evidence/review-fixes/README.md).
+
+The integration was verified incrementally through the real browser/runtime boundary. Broad gameplay/event/equipment checks preceded the final rendering-only cull and bounded fear correction; those subsequent changes received focused water/environment and 124-check combat reruns. The exact final production export then passed sandbox/mobile checks. These are not claims that every historical suite was rerun at one final SHA.
+
+| Browser suite | Passing checks | Artifact |
+| --- | ---: | --- |
+| Gameplay/UI | 574 | [JSON](evidence/gameplay-upgrade/regression-gameplay.json) |
+| Six-region navigation | 117 | [JSON](evidence/gameplay-upgrade/regression-regions.json) |
+| Rescue / Ward / Hunt | 141 / 208 / 212 | [Rescue](evidence/gameplay-upgrade/regression-rescue.json), [Ward](evidence/gameplay-upgrade/regression-ward.json), [Hunt](evidence/gameplay-upgrade/regression-hunt.json) |
+| Existing combined event seam | 8 | [JSON](evidence/gameplay-upgrade/regression-existing-combined.json) |
+| All six support items / all five heroes | 275 | [JSON](evidence/gameplay-upgrade/regression-equipment.json) |
+| New combined builds/events/touch | 49 | [JSON](evidence/gameplay-upgrade/combined-green.json) |
+| Final combat, including fear | 124 | [JSON](evidence/review-fixes/fear-green.json) |
+| Final environment / water visibility | 76 / 57 | [Environment](evidence/render-performance/environment-green.json), [Visibility](evidence/render-performance/visibility-green.json) |
+| Actual water pixels / lifecycle | 292 | [112 pixel pairs](evidence/render-performance/water-green.json) |
+| Exact Astrocade sandbox / mobile export | 62 / 18 | [Sandbox](evidence/gameplay-upgrade/astrocade-sandbox.json), [Mobile](evidence/gameplay-upgrade/astrocade-mobile.json) |
+
+Container lint, strict typecheck, normal build and final Astrocade build pass; existing large-Phaser-chunk and Vite callback-timing diagnostics remain. The final dry-run export contains five files, eighteen assets, 1,507,669 JavaScript bytes and 34,675 HTML bytes. Source artwork/asset download totals are unchanged by this gameplay iteration.
+
+The existing private Astrocade game was saved as revision `01M7G5D79K4SHTDRBB6P3A856K` after a fresh unchanged pull with no pending wishes. [Play the owner-only draft](https://www.astrocade.com/games/asean-survivor/01M7FMJGJ3PMC9H145JJCCNEKR/v/01M7G5D79K4SHTDRBB6P3A856K). [Read-back](evidence/gameplay-upgrade/readback.json) matches all five files and records private/unpublished state. Hosted Johor reaches level four/50 kills at 0:37, with earned upgrade selection, pause/freeze/resume, controls inside the 720×1280 frame and no captured warnings/errors. The measured 390×844 view displays the 112-frame-pixel controls at about 60.67 CSS pixels. [Measurements](evidence/gameplay-upgrade/hosted.json), [combat](evidence/gameplay-upgrade/hosted-mobile-combat.jpg), [paused deliverable](evidence/gameplay-upgrade/hosted-mobile-paused.jpg). Temporary overrides are restored.
+
+The exact exported mobile sample under 10 Mbps/80 ms/4× CPU passes all functional checks but averages **24.34 FPS**, p95 **67.3 ms** over 15 seconds, with **15,944 ms** artwork readiness. Dense Safari remains **11.60 FPS** in the synthetic 97-enemy sample, and its ordinary scene was **21.90 FPS**. These are material performance limitations, not phone guarantees or a performance acceptance. Physical phones, sustained thermals, natural full-run loot/balance and local cultural review of the seven hero drafts remain future work. Six temporary implementation checkouts were archived; the app refused to archive the last review checkout because it is the chat's protected primary checkout. Its committed work is merged, its container stopped/removed, and it remains recoverable rather than being forcibly removed. The older Johor/PR #7 checkout was untouched.

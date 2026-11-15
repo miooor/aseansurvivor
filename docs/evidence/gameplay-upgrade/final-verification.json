@@ -1,0 +1,130 @@
+{
+  "date": "2026-11-15T18:02:17.056Z",
+  "source": "5f7656212d03049e4d1ced372ceb1465a4f1192c",
+  "method": "Incremental integration: broad regressions before final render/fear deltas; focused reruns cover those deltas; sandbox/mobile use exact final export. See gameplay-upgrade.md for provenance.",
+  "functionalResult": "PASS",
+  "suites": [
+    {
+      "file": "regression-gameplay.json",
+      "date": "2026-11-15T16:54:27.661Z",
+      "result": "PASS",
+      "checks": 574,
+      "failures": 0
+    },
+    {
+      "file": "regression-regions.json",
+      "date": "2026-11-15T17:31:28.681Z",
+      "result": "PASS",
+      "checks": 117,
+      "failures": 0
+    },
+    {
+      "file": "regression-rescue.json",
+      "date": "2026-11-15T16:24:53.277Z",
+      "result": "PASS",
+      "checks": 141,
+      "failures": 0
+    },
+    {
+      "file": "regression-ward.json",
+      "date": "2026-11-15T16:37:44.923Z",
+      "result": "PASS",
+      "checks": 208,
+      "failures": 0
+    },
+    {
+      "file": "regression-hunt.json",
+      "date": "2026-11-15T16:49:33.462Z",
+      "result": "PASS",
+      "checks": 212,
+      "failures": 0
+    },
+    {
+      "file": "regression-existing-combined.json",
+      "date": "2026-11-15T16:52:16.589Z",
+      "result": "PASS",
+      "checks": 8,
+      "failures": 0
+    },
+    {
+      "file": "regression-equipment.json",
+      "date": "2026-11-15T17:29:23.238Z",
+      "result": "PASS",
+      "checks": 275,
+      "failures": 0
+    },
+    {
+      "file": "combined-green.json",
+      "date": "2026-11-15T16:53:34.256Z",
+      "result": "PASS",
+      "checks": 49,
+      "failures": 0
+    },
+    {
+      "file": "astrocade-sandbox.json",
+      "date": "2026-11-15T17:48:49.219Z",
+      "result": "PASS",
+      "checks": 62,
+      "failures": 0
+    },
+    {
+      "file": "astrocade-mobile.json",
+      "date": "2026-11-15T17:50:21.042Z",
+      "result": "PASS",
+      "checks": 18,
+      "failures": 0
+    },
+    {
+      "file": "docs/evidence/review-fixes/fear-green.json",
+      "name": "combat-final",
+      "date": "2026-11-15T17:43:43.152Z",
+      "result": "PASS",
+      "checks": 124,
+      "failures": 0
+    },
+    {
+      "file": "docs/evidence/render-performance/environment-green.json",
+      "name": "environment-final",
+      "date": "2026-11-15T17:32:45.191Z",
+      "result": "PASS",
+      "checks": 76,
+      "failures": 0
+    },
+    {
+      "file": "docs/evidence/render-performance/water-green.json",
+      "name": "water-final",
+      "date": "2026-11-15T17:30:53.141Z",
+      "result": "PASS",
+      "checks": 292,
+      "failures": 0
+    },
+    {
+      "file": "docs/evidence/render-performance/visibility-green.json",
+      "name": "water-visibility-final",
+      "result": "PASS",
+      "checks": 57,
+      "failures": 0
+    }
+  ],
+  "checks": {
+    "lint": "PASS; review-fixes/lint.txt",
+    "typecheck": "PASS; review-fixes/typecheck.txt and final Astrocade build",
+    "normalBuild": "PASS; review-fixes/build.txt; source matches integration",
+    "astrocadeBuild": "PASS; final-astrocade-build.txt",
+    "standardsReviewUnresolved": 0,
+    "specReviewUnresolved": 0,
+    "remoteFiles": "PASS 5/5; readback.json",
+    "hosted": "PASS observed clock/upgrade/pause/resume; hosted.json"
+  },
+  "performance": {
+    "status": "UNRESOLVED",
+    "denseSafariFps": 11.6,
+    "ordinarySafariFps": 21.9,
+    "throttledExportFps": 24.34,
+    "physicalPhones": "UNTESTED"
+  },
+  "warnings": [
+    "Existing Phaser bundle-size warning",
+    "Existing Vite callback-timing diagnostic"
+  ]
+}

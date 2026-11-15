@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-15T17:53:08.715Z",
+  "source": "5f7656212d03049e4d1ced372ceb1465a4f1192c",
+  "gameId": "01M7FMJGJ3PMC9H145JJCCNEKR",
+  "revision": "01M7G5D79K4SHTDRBB6P3A856K",
+  "draftPlayUrl": "https://www.astrocade.com/games/asean-survivor/01M7FMJGJ3PMC9H145JJCCNEKR/v/01M7G5D79K4SHTDRBB6P3A856K",
+  "checks": [
+    {
+      "path": "README.md",
+      "comparison": "exact bytes",
+      "matches": true,
+      "localBytes": 4514,
+      "remoteBytes": 4514,
+      "localSha256": "5527ca7cc3d1f22baf9e848b96d3ab30981c5251ee86f9a51f021171006affc6",
+      "remoteSha256": "5527ca7cc3d1f22baf9e848b96d3ab30981c5251ee86f9a51f021171006affc6"
+    },
+    {
+      "path": "game_config.json",
+      "comparison": "JSON values",
+      "matches": true,
+      "localBytes": 3,
+      "remoteBytes": 3,
+      "localSha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "remoteSha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+    },
+    {
+      "path": "asset_map.json",
+      "comparison": "JSON values",
+      "matches": true,
+      "localBytes": 3378,
+      "remoteBytes": 3377,
+      "localSha256": "a1bc2ffd3e34a8ec336ef91545f781df6d52079f4591c7bc3f2fbd602fbd81d8",
+      "remoteSha256": "76f4bb0ce6713bb357d6e907be2740a3f384e3e1b95b31b90357fc1c5b85dc98"
+    },
+    {
+      "path": "index.html",
+      "comparison": "exact bytes",
+      "matches": true,
+      "localBytes": 34675,
+      "remoteBytes": 34675,
+      "localSha256": "cc6f7399283e411aca487f871a30e0e68b2523442c4e1ec226fb7530e58f8b3e",
+      "remoteSha256": "cc6f7399283e411aca487f871a30e0e68b2523442c4e1ec226fb7530e58f8b3e"
+    },
+    {
+      "path": "game.js",
+      "comparison": "exact bytes",
+      "matches": true,
+      "localBytes": 1507669,
+      "remoteBytes": 1507669,
+      "localSha256": "ffc884f62f0d5dd3ff204547aa24e2a06552ba1dcbdc8304705eb6fb0a700162",
+      "remoteSha256": "ffc884f62f0d5dd3ff204547aa24e2a06552ba1dcbdc8304705eb6fb0a700162"
+    }
+  ],
+  "result": "PASS",
+  "listing": {
+    "visibility": "private",
+    "unpublishedEdits": true,
+    "reviewStatus": "not_ready"
+  }
+}
