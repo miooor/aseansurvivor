@@ -1,8 +1,15 @@
+import {drawAsha} from './heroes/asha';
+import {drawMira} from './heroes/mira';
+import {drawDani} from './heroes/dani';
+import {drawVanna} from './heroes/vanna';
+import {drawKeo} from './heroes/keo';
+import {drawNadi} from './heroes/nadi';
+import {drawLia} from './heroes/lia';
 import {OpenWorld} from './OpenWorld';
 import {Weather} from './Weather';
 import Phaser from 'phaser';
 import {drawSkillEffect} from './skill-effects.js';
-import {animationRows} from '../content/animation-layouts.js';
+import {heroArt,rosterPortraitUrl} from '../content/hero-art.js';
 import {ELITE_ATTACK_ANGLES} from '../content/encounters.js';
 import { createRuntime, type GameRuntime, type RunState, type Point, type Effect } from '../game/runtime.js';
 
@@ -13,9 +20,10 @@ const reducedMotion=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 export class SurvivalScene extends Phaser.Scene {
   runtime!: GameRuntime;
+  gameplayEnabled=true;
   private world!: OpenWorld;
-  private floor!: Phaser.GameObjects.Graphics;
-  private effects!: Phaser.GameObjects.Graphics;
+  floor!: Phaser.GameObjects.Graphics;
+  effects!: Phaser.GameObjects.Graphics;
   private screen!: Phaser.GameObjects.Graphics;
   private shadow!: Phaser.GameObjects.Image;
   weather!: Weather;
@@ -29,23 +37,78 @@ export class SurvivalScene extends Phaser.Scene {
   private eliteLabelScale=1;
   private guide=document.getElementById('raidGuide')!;
 
+  private preparedHero:string|null=null;
+  private pendingHero:string|null=null;
+  private pendingPreparation:Promise<void>|null=null;
+  private prepareQueue:Promise<void>=Promise.resolve();
+  private prepareVersion=0;
+  private disposed=false;
+  private cancelPreparation:(()=>void)|null=null;
+
   constructor(){super('Survival')}
 
+  isHeroPrepared(id:string){
+    return ['motion','skills'].every(kind=>this.textures.exists('hero-'+kind+'-'+id)&&this.textures.get('hero-'+kind+'-'+id).has('0'));
+  }
+
+  private releaseHeroArt(keep:Set<string>){
+    for(const id of Object.keys(heroArt))if(!keep.has(id))for(const kind of ['motion','skills']){
+      const key='hero-'+kind+'-'+id;
+      if(this.textures.exists(key))this.textures.remove(key);
+    }
+  }
+
+  private registerHeroFrames(id:string){
+    const art=heroArt[id as keyof typeof heroArt];
+    for(const kind of ['motion','skills'] as const){
+      const texture=this.textures.get('hero-'+kind+'-'+id),image=texture.getSourceImage() as HTMLImageElement;
+      for(let row=0;row<8;row++)for(let col=0;col<8;col++){
+        const crop=art.frames?.[kind]?.[row*8+col];
+        if(crop){texture.add(String(row*8+col),0,crop.x,crop.y,crop.w,crop.h);continue}
+        const rows=kind==='motion'?art.rows:undefined;
+        const x=Math.round(col*image.width/8),y=Math.round((rows?.[row]??row/8)*image.height);
+        texture.add(String(row*8+col),0,x,y,Math.round((col+1)*image.width/8)-x,Math.round((rows?.[row+1]??(row+1)/8)*image.height)-y);
+      }
+    }
+  }
+
+  prepareHero(id:string):Promise<void>{
+    if(!Object.hasOwn(heroArt,id))return Promise.reject(Error('Unknown hero artwork: '+id));
+    if(this.disposed)return Promise.reject(Error('Scene is shut down'));
+    if(this.pendingHero===id&&this.pendingPreparation)return this.pendingPreparation;
+    const version=++this.prepareVersion;
+    const request=this.prepareQueue.then(async()=>{
+      if(this.disposed||version!==this.prepareVersion)throw Error('Hero selection superseded');
+      const active=this.runtime?.G?.hero.id||this.preparedHero;
+      this.releaseHeroArt(new Set(active?[active]:[]));
+      if(!this.isHeroPrepared(id)){
+        const art=heroArt[id as keyof typeof heroArt];
+        await new Promise<void>((resolve,reject)=>{
+          let failed=false;
+          const finish=(error?:Error)=>{this.load.off('loaderror',onError);this.load.off('complete',onComplete);this.cancelPreparation=null;error?reject(error):resolve()};
+          const onError=(file:Phaser.Loader.File)=>{if(file.key==='hero-motion-'+id||file.key==='hero-skills-'+id)failed=true};
+          const onComplete=()=>finish(failed||['motion','skills'].some(kind=>!this.textures.exists('hero-'+kind+'-'+id))?Error('Hero artwork failed: '+id):undefined);
+          this.cancelPreparation=()=>finish(Error('Scene is shut down'));
+          this.load.on('loaderror',onError);this.load.once('complete',onComplete);
+          for(const kind of ['motion','skills'] as const)if(!this.textures.exists('hero-'+kind+'-'+id))this.load.image('hero-'+kind+'-'+id,art[kind]);
+          this.load.start();
+        }).catch(error=>{
+          this.releaseHeroArt(new Set(active?[active]:[]));throw error;
+        });
+        if(this.disposed||version!==this.prepareVersion){this.releaseHeroArt(new Set(active?[active]:[]));throw Error('Hero selection superseded')}
+        this.registerHeroFrames(id);
+      }
+      this.preparedHero=id;
+      this.releaseHeroArt(new Set([id,...(this.runtime?.G?[this.runtime.G.hero.id]:[])]));
+    });
+    this.pendingHero=id;this.pendingPreparation=request;
+    this.prepareQueue=request.catch(()=>{});
+    void request.finally(()=>{if(version===this.prepareVersion){this.pendingHero=null;this.pendingPreparation=null}}).catch(()=>{});
+    return request;
+  }
+
   preload(){
-    for(const [id,url] of Object.entries({
-      ustaz:new URL('../../assets/ustaz-motion.png',import.meta.url).href,
-      rempit:new URL('../../assets/rempit-motion.png',import.meta.url).href,
-      nok:new URL('../../assets/nok-motion.png',import.meta.url).href,
-      lan:new URL('../../assets/lan-motion.png',import.meta.url).href,
-      sari:new URL('../../assets/sari-motion.png',import.meta.url).href
-    }))this.load.image('hero-motion-'+id,url);
-    for(const [id,url] of Object.entries({
-      ustaz:new URL('../../assets/ustaz-skills.png',import.meta.url).href,
-      rempit:new URL('../../assets/rempit-skills.png',import.meta.url).href,
-      nok:new URL('../../assets/nok-skills.png',import.meta.url).href,
-      lan:new URL('../../assets/lan-skills.png',import.meta.url).href,
-      sari:new URL('../../assets/sari-skills.png',import.meta.url).href
-    }))this.load.image('hero-skills-'+id,url);
+    this.load.image('roster-portraits',rosterPortraitUrl);
     this.load.image('hero-directions',new URL('../../assets/heroes-directions.png',import.meta.url).href);
     this.load.image('terrain',new URL('../../assets/world-terrain.png',import.meta.url).href);
     this.load.image('region-grass',new URL('../../assets/world-ground.png',import.meta.url).href);
@@ -61,7 +124,6 @@ export class SurvivalScene extends Phaser.Scene {
 
   create(){
     if(!this.textures.exists('region-enemies')||!this.textures.exists('region-props')||!this.textures.exists('terrain')||!this.textures.exists('region-grass')||!this.textures.exists('buildings')||!this.textures.exists('actors')||!this.textures.exists('hero-directions'))return;
-    if(Object.keys(HERO_FRAMES).some(id=>!this.textures.exists('hero-motion-'+id)||!this.textures.exists('hero-skills-'+id)))return;
     this.game.canvas.id='game';this.game.canvas.tabIndex=0;
     this.game.canvas.setAttribute('aria-label','Game field. Move with WASD or arrow keys; Q, E, F, R cast skills; Escape pauses.');
     const sheet=this.textures.get('actors'),source=sheet.getSourceImage() as HTMLImageElement;
@@ -74,21 +136,6 @@ export class SurvivalScene extends Phaser.Scene {
     for(let row=0;row<5;row++)for(let col=0;col<8;col++){
       const x=Math.round(col*art.width/8),y=Math.round(row*art.height/5);
       directions.add(String(row*8+col),0,x,y,Math.round((col+1)*art.width/8)-x,Math.round((row+1)*art.height/5)-y);
-    }
-    for(const id of Object.keys(HERO_FRAMES)){
-      const texture=this.textures.get('hero-motion-'+id),image=texture.getSourceImage() as HTMLImageElement;
-      for(let row=0;row<8;row++)for(let col=0;col<8;col++){
-        const rows=(animationRows as Record<string,number[]>)[id];
-        const x=Math.round(col*image.width/8),y=Math.round((rows?.[row]??row/8)*image.height);
-        texture.add(String(row*8+col),0,x,y,Math.round((col+1)*image.width/8)-x,Math.round((rows?.[row+1]??(row+1)/8)*image.height)-y);
-      }
-    }
-    for(const id of Object.keys(HERO_FRAMES)){
-      const texture=this.textures.get('hero-skills-'+id),source=texture.getSourceImage() as HTMLImageElement;
-      for(let row=0;row<8;row++)for(let col=0;col<8;col++){
-        const x=Math.round(col*source.width/8),y=Math.round(row*source.height/8);
-        texture.add(String(row*8+col),0,x,y,Math.round((col+1)*source.width/8)-x,Math.round((row+1)*source.height/8)-y);
-      }
     }
     for(const key of ['region-enemies','region-props']){
       const atlas=this.textures.get(key),source=atlas.getSourceImage() as HTMLImageElement;
@@ -113,15 +160,16 @@ export class SurvivalScene extends Phaser.Scene {
     this.screen=this.add.graphics().setScrollFactor(0).setDepth(30000);
     this.shadow=this.add.image(0,0,'contact-shadow').setDisplaySize(38,12).setAlpha(.22).setDepth(-4500).setName('hero-contact-shadow').setVisible(false);
     this.weather=new Weather(this);
-    this.runtime=createRuntime(this.game.canvas);
+    this.runtime=createRuntime(this.game.canvas,{canPlay:()=>this.gameplayEnabled,prepareHero:id=>this.prepareHero(id),isHeroPrepared:id=>this.isHeroPrepared(id)});
     this.resize();
     this.scale.on('resize',this.resize,this);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN,()=>{
-      this.runtime.destroy();this.scale.off('resize',this.resize,this);
+      this.disposed=true;this.prepareVersion++;this.cancelPreparation?.();this.load.reset();
+      this.runtime.destroy();
+      this.releaseHeroArt(new Set());this.scale.off('resize',this.resize,this);
       this.sprites.clear();this.labels.clear();this.spareSprites=[];
       this.world.destroy();
     });
-    (document.getElementById('start') as HTMLButtonElement).disabled=false;
     if(import.meta.env.DEV)window.__asean=Object.assign(this.runtime,{scene:this,engine:'Phaser '+Phaser.VERSION});
   }
 
@@ -144,12 +192,12 @@ export class SurvivalScene extends Phaser.Scene {
     return image;
   }
 
-  private circle(g: Phaser.GameObjects.Graphics,x: number,y: number,r: number,color: number,alpha=.2,line=0){
+  circle(g: Phaser.GameObjects.Graphics,x: number,y: number,r: number,color: number,alpha=.2,line=0){
     g.fillStyle(color,alpha).fillCircle(x,y,Math.max(0,r));
     if(line)g.lineStyle(line,color,Math.min(1,alpha*3)).strokeCircle(x,y,Math.max(0,r));
   }
 
-  private color(css?: string){return css?Phaser.Display.Color.ValueToColor(css).color:GOLD}
+  color(css?: string){return css?Phaser.Display.Color.ValueToColor(css).color:GOLD}
 
   private drawEffect(f: Effect){
     const alpha=Phaser.Math.Clamp(f.life/(f.max||.4),0,1),color=this.color(f.c||this.runtime.G?.hero.identity.color),g=this.effects;
@@ -256,6 +304,7 @@ export class SurvivalScene extends Phaser.Scene {
       this.wasRaid=!!g.raid;
       if(g.raid)this.cameras.main.removeBounds();else this.cameras.main.setBounds(-4000,-4000,8000,8000);
     }
+    if(!this.pendingHero)this.releaseHeroArt(new Set([g.hero.id,...(this.preparedHero?[this.preparedHero]:[])]));
     this.world.update(g);
     this.seen.clear();this.floor.clear();this.effects.clear();this.screen.clear();
     this.drawRaid(g);
@@ -327,7 +376,9 @@ export class SurvivalScene extends Phaser.Scene {
       this.circle(this.floor,g.p.x,g.p.y,48+(1.2-identity.releaseT)*65,accent,identity.releaseT*.07,2);
       for(let k=0;k<6;k++){const a=k*Math.PI/3;this.effects.lineStyle(2,accent,identity.releaseT*.5).lineBetween(g.p.x+Math.cos(a)*40,g.p.y+Math.sin(a)*40,g.p.x+Math.cos(a)*65,g.p.y+Math.sin(a)*65)}
     }
-    const hero=this.image(g.p,HERO_FRAMES[g.hero.id]??0,g.hero.id==='rempit'?94:92);
+    const art=heroArt[g.hero.id as keyof typeof heroArt];
+    if(!art||!this.isHeroPrepared(g.hero.id))throw Error('Hero artwork not prepared: '+g.hero.id);
+    const hero=this.image(g.p,HERO_FRAMES[g.hero.id]??15,g.hero.id==='rempit'?94:92);
     const attacking=identity.castT>0;
     const angle=attacking?identity.castAngle:Math.atan2(g.p.face[1],g.p.face[0]);
     const facing=(Math.round(angle/(Math.PI/4))+8)%8;
@@ -339,9 +390,14 @@ export class SurvivalScene extends Phaser.Scene {
     }else if(attacking||walking){
       const row=attacking?4+Math.min(3,Math.floor((1-identity.castT/identity.castMax)*4)):Math.floor(g.t*10)%4;
       hero.setTexture('hero-motion-'+g.hero.id,String(row*8+facing));
-    }else hero.setTexture('hero-directions',String((HERO_FRAMES[g.hero.id]??0)*8+facing));
-    const size=g.hero.id==='rempit'?110:104;
-    hero.setDisplaySize(size,size*hero.frame.realHeight/hero.frame.realWidth).setOrigin(.5,attacking||walking?.95:.85);
+    }else if(art.idleIndex!==undefined)hero.setTexture('hero-directions',String(art.idleIndex*8+facing));
+    else hero.setTexture('hero-motion-'+g.hero.id,String((art.idleRow??7)*8+facing));
+    const size=art.size;
+    const crop=art.frames?.[hero.texture.key.startsWith('hero-skills-')?'skills':'motion']?.[Number(hero.frame.name)];
+    if(crop){
+      const source=hero.texture.getSourceImage() as HTMLImageElement;
+      hero.setScale(size/(source.width/8)).setOrigin(crop.pivotX,crop.pivotY);
+    }else hero.setDisplaySize(size,size*hero.frame.realHeight/hero.frame.realWidth).setOrigin(.5,attacking||walking?(art.originY??.95):(art.idleOriginY??.85));
     if(!reducedMotion()&&g.sea?.leap){const leap=g.sea.leap;hero.setY(hero.y-Math.sin(Math.PI*leap.t/leap.dur)*110)}
     if(g.sea?.leap)this.circle(this.floor,g.sea.leap.tx,g.sea.leap.ty,130,accent,.1,2);
     if(g.p.hurt>0)hero.setTint(0xffb9aa);
@@ -355,6 +411,8 @@ export class SurvivalScene extends Phaser.Scene {
     for(const q of g.eprojs){this.circle(this.effects,q.x,q.y,q.r+5,RED,.14);this.circle(this.effects,q.x,q.y,q.r,this.color(q.c||'#ffb7b9'),.95)}
     if(g.orbit){const o=g.orbit;for(let k=0;k<o.n;k++){const a=o.ang+k*Math.PI*2/o.n,r=o.rad*(o.holy?1.4:1);this.circle(this.effects,g.p.x+Math.cos(a)*r,g.p.y+Math.sin(a)*r,o.holy?10:7,GOLD,.9)}}
     for(const fx of g.fx)this.drawEffect(fx);
+    const drawHero={asha:drawAsha,mira:drawMira,dani:drawDani,vanna:drawVanna,keo:drawKeo,nadi:drawNadi,lia:drawLia}[g.hero.id];
+    drawHero?.(this,g);
     if(g.sea){
       for(const ally of g.sea.allies)this.image(ally,3,42,ally.y+10000).setTint(0x99e7ff).setAlpha(.8);
       for(const copy of g.sea.images)this.image(copy,4,90).setAlpha(copy.t*.7).setTint(GOLD);

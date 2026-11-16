@@ -3,21 +3,21 @@ const {HEROES,EVOS,HOOKS,CAST,nearest,each,hit,rm,text,juice,aimDir,combo,ring,T
 
 
 /* ---------- Hero data ---------- */
-HEROES.nok={id:'nok',name:'Nok',country:'Thailand',role:'Muay Thai bruiser · close range, tough',hp:130,speed:175,ultNeed:55,price:150,
+HEROES.nok={id:'nok',basicDamage:15,name:'Nok',country:'Thailand',role:'Muay Thai bruiser · close range, tough',hp:130,speed:175,ultNeed:55,price:150,
   skills:[
     {key:'',name:'Jab-Cross',desc:'Auto punches in a short arc at the nearest ghost.',up:'More damage, longer reach.',cd:.55},
     {key:'Q',name:'Teep',desc:'Push kick down a line. Big knockback.',up:'+25% damage, longer kick.',cd:5},
     {key:'E',name:'Sok Klap',desc:'Spinning elbow that hits everything around her.',up:'+25% damage, wider spin.',cd:7},
     {key:'F',name:'Wai Khru',desc:'Ritual dance honouring her teachers: +30% damage, 30% less damage taken for 8 s.',up:'Blessing lasts longer.',cd:16},
     {key:'R',name:'Hanuman Leap',desc:'Ultimate: leap high, untouchable, then crush and stun a big area.',up:'+25% damage, bigger landing.',cd:0,ult:true}]};
-HEROES.lan={id:'lan',name:'Cô Lan',country:'Vietnam',role:'Water puppeteer · summoner, slows',hp:100,speed:165,ultNeed:60,price:200,
+HEROES.lan={id:'lan',basicDamage:9,name:'Cô Lan',country:'Vietnam',role:'Water puppeteer · summoner, slows',hp:100,speed:165,ultNeed:60,price:200,
   skills:[
     {key:'',name:'Puppet Strike',desc:'Auto-thrown puppet that flies out and returns, hitting both ways.',up:'More damage, flies farther. Second puppet at rank 4.',cd:.9},
     {key:'Q',name:'Dragon Lunge',desc:'A dragon puppet charges in a line, piercing and soaking ghosts.',up:'+25% damage, longer charge.',cd:7},
     {key:'E',name:'Little Guards',desc:'3 puppet guards chase and hit ghosts for 10 s.',up:'+25% damage. +1 guard at ranks 3 and 5.',cd:14},
     {key:'F',name:'Lake Splash',desc:'Wave of lake water: ghosts are 50% slower for 3 s.',up:'Bigger wave, more damage.',cd:9},
     {key:'R',name:'Grand Lake Show',desc:'Ultimate: for 8 s the whole troupe rains hits on ghosts across the screen.',up:'+25% damage, faster hits.',cd:0,ult:true}]};
-HEROES.sari={id:'sari',name:'Sari',country:'Indonesia',role:'Pencak silat duelist · agile, counters',hp:115,speed:190,ultNeed:50,price:250,
+HEROES.sari={id:'sari',basicDamage:10,name:'Sari',country:'Indonesia',role:'Pencak silat duelist · agile, counters',hp:115,speed:190,ultNeed:50,price:250,
   skills:[
     {key:'',name:'Kris Melayang',desc:'Auto-thrown kris that flies out and returns to her hand.',up:'More damage, flies farther.',cd:.75},
     {key:'Q',name:'Tendangan Sabit',desc:'Crescent kick in a wide arc.',up:'+25% damage, wider reach.',cd:4.5},
@@ -90,6 +90,7 @@ CAST.nok=[
   r=>{const p=api.G.p,bl=S.wai>0;let tx,ty;
     const c=api.G.autoAim?cluster(330):null;
     if(c){tx=c.x;ty=c.y}else{const[ax,ay]=aimDir();tx=p.x+ax*230;ty=p.y+ay*230}
+    if(api.G.raid){const point=api.safePoint(tx,ty,p.r);if(!api.clearLine(p,point,p.r))return false;tx=point.x;ty=point.y;}
     if(bl)combo("Hanuman's Blessing");
     S.leap={t:0,dur:.45,sx:p.x,sy:p.y,tx,ty,r,bl};p.dash=null;p.vx=p.vy=0;
     puff(p.x,p.y,'#d8c9a8',12,140,4);ring(p.x,p.y,50,'#ffd34d',.3);juice(6);banner('Hanuman Leap!',1.5)},

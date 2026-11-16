@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-15T23:41:12.606Z",
+  "result": "FAIL",
+  "checks": [
+    {
+      "name": "Original Jet dash remains collision-bounded at raid wall",
+      "pass": false
+    },
+    {
+      "name": "Original Jet dash cancels immediately at raid wall",
+      "pass": false
+    },
+    {
+      "name": "Dash cannot damage the enemy at its unclipped endpoint",
+      "pass": true
+    },
+    {
+      "name": "Final dash tick cannot qualify as ordinary ground movement",
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+> asean-survivor@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.8 building client environment for production...
+transforming...
+
+new URL('../../assets/asha-motion.webp',import.meta.url) doesn't exist at build time, it will remain unchanged to be resolved at runtime. If this is intended, you can use the /* @vite-ignore */ comment to suppress this warning.
+
+new URL('../../assets/asha-skills.webp',import.meta.url) doesn't exist at build time, it will remain unchanged to be resolved at runtime. If this is intended, you can use the /* @vite-ignore */ comment to suppress this warning.
+
+new URL('../../assets/mira-motion.webp',import.meta.url) doesn't exist at build time, it will remain unchanged to be resolved at runtime. If this is intended, you can use the /* @vite-ignore */ comment to suppress this warning.
+
+new URL('../../assets/mira-skills.webp',import.meta.url) doesn't exist at build time, it will remain unchanged to be resolved at runtime. If this is intended, you can use the /* @vite-ignore */ comment to suppress this warning.
+
+new URL('../../assets/dani-motion.webp',import.meta.url) doesn't exist at build time, it will remain unchanged to be resolved at runtime. If this is intended, you can use the /* @vite-ignore */ comment to suppress this warning.
+
+new URL('../../assets/dani-skills.webp',import.meta.url) doesn't exist at build time, it will remain unchanged to be resolved at runtime. If this is intended, you can use the /* @vite-ignore */ comment to suppress this warning.
+
+new URL('../../assets/vanna-motion.webp',import.meta.url) doesn't exist at build time, it will remain unchanged to be resolved at runtime. If this is intended, you can use the /* @vite-ignore */ comment to suppress this warning.
+
+new URL('../../assets/vanna-skills.webp',import.meta.url) doesn't exist at build time, it will remain unchanged to be resolved at runtime. If this is intended, you can use the /* @vite-ignore */ comment to suppress this warning.
+
+new URL('../../assets/keo-motion.webp',import.meta.url) doesn't exist at build time, it will remain unchanged to be resolved at runtime. If this is intended, you can use the /* @vite-ignore */ comment to suppress this warning.
+
+new URL('../../assets/keo-skills.webp',import.meta.url) doesn't exist at build time, it will remain unchanged to be resolved at runtime. If this is intended, you can use the /* @vite-ignore */ comment to suppress this warning.
+
+new URL('../../assets/nadi-motion.webp',import.meta.url) doesn't exist at build time, it will remain unchanged to be resolved at runtime. If this is intended, you can use the /* @vite-ignore */ comment to suppress this warning.
+
+new URL('../../assets/nadi-skills.webp',import.meta.url) doesn't exist at build time, it will remain unchanged to be resolved at runtime. If this is intended, you can use the /* @vite-ignore */ comment to suppress this warning.
+
+new URL('../../assets/lia-motion.webp',import.meta.url) doesn't exist at build time, it will remain unchanged to be resolved at runtime. If this is intended, you can use the /* @vite-ignore */ comment to suppress this warning.
+
+new URL('../../assets/lia-skills.webp',import.meta.url) doesn't exist at build time, it will remain unchanged to be resolved at runtime. If this is intended, you can use the /* @vite-ignore */ comment to suppress this warning.
+✓ 56 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                13.43 kB │ gzip:   3.64 kB
+dist/assets/roster-portraits-BrbE__Yg.webp  1,093.34 kB
+dist/assets/nok-skills-R3xnMbok.png         1,894.66 kB
+dist/assets/ustaz-motion-BHy0_GUC.png       1,968.86 kB
+dist/assets/lan-skills-C03e_MBu.png         2,007.40 kB
+dist/assets/survivors-atlas-UfxVPYsY.png    2,086.40 kB
+dist/assets/heroes-directions-zO2x4d0z.png  2,131.98 kB
+dist/assets/kampung-buildings-VOzabNr6.png  2,320.85 kB
+dist/assets/sari-motion-R5HP2OaO.png        2,419.34 kB
+dist/assets/lan-motion-BlrlmJX8.png         2,502.49 kB
+dist/assets/rempit-skills-jlbBzBTI.png      2,515.16 kB
+dist/assets/nok-motion-ClMiC9_-.png         2,522.02 kB
+dist/assets/region-enemies-OxdCWRYI.png     2,585.41 kB
+dist/assets/kampung-night-DnBJOhok.png      2,675.65 kB
+dist/assets/rempit-motion-CBn8eEAd.png      2,683.44 kB
+dist/assets/sari-skills-C1KeVLB6.png        2,692.37 kB
+dist/assets/world-terrain-CmyMT0U0.png      2,823.07 kB
+dist/assets/ustaz-skills-mQdtWtJV.png       2,928.50 kB
+dist/assets/region-props-MN3XCP0A.png       2,995.50 kB
+dist/assets/world-ground-B0lUPITo.png       3,178.63 kB
+dist/assets/index-CK6jB_4Y.css                 23.90 kB │ gzip:   6.26 kB
+dist/assets/index-C0GNLdtk.js               1,594.61 kB │ gzip: 435.27 kB
+
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 2m 20s
