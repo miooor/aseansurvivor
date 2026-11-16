@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-16T02:11:36.487263+00:00",
+  "result": "PASS",
+  "browser": "native Safari",
+  "runtime": "actual Phaser scene and existing dev runtime; real control handlers",
+  "checks": {
+    "asha": {
+      "date": "2026-11-16T01:47:12.960Z",
+      "passed": 106,
+      "report": "asha-green.json",
+      "screenshot": "asha-green.png"
+    },
+    "mira": {
+      "date": "2026-11-16T02:00:11.792Z",
+      "passed": 99,
+      "report": "mira-green.json",
+      "screenshot": "mira-green.png"
+    },
+    "dani": {
+      "date": "2026-11-16T02:04:58.707Z",
+      "passed": 112,
+      "report": "dani-green.json",
+      "screenshot": "dani-green.png"
+    }
+  },
+  "totalPassed": 317,
+  "container": "node:24-alpine / asean-roster-pack-a",
+  "checksPassed": [
+    "npm run lint",
+    "npx eslint tests/hero-asha.js tests/hero-mira.js tests/hero-dani.js",
+    "npm run typecheck",
+    "npm run build"
+  ],
+  "buildWarning": "Existing chunk size >500 kB",
+  "integrationParent": "a08ff8e226a205abf1cd11b772559b278d0b9838",
+  "sourceSha256": {
+    "src/game/heroes/asha.js": "6a86a06b0dbb379d7c23fe795fdd61aacbd765133c5af6839c26cdb69cb2a283",
+    "src/game/heroes/mira.js": "698b9c3299d53d0c5e24cc1ba2509d8a7754871a65f59e034a159154d8a8cee0",
+    "src/game/heroes/dani.js": "cf6a2fba0ba52c64750cd9071ada70de786f9b137de16ea842a37732d0c526c3",
+    "src/game/hunt.js": "3c25ddbe4b26da062a1ebca7713fbc6adef9ee6e5f7437fb352463a1451ac241",
+    "src/scenes/heroes/asha.ts": "dcaba64d24f3eafbcdd486ab176f27aff7523762b27eb87acd9050953c488fa5",
+    "src/scenes/heroes/mira.ts": "bc7a8cd8d50187ee485e2e0aaee45be790637acb3f6ec65d0ea8ddd8475464cd",
+    "src/scenes/heroes/dani.ts": "964ba53ee8bbf8b8594261fe8c27f008e3b7a0e072dfe94736e7cadd6ad2da89"
+  },
+  "limits": [
+    "No physical-phone, natural full-run balance/performance or cultural review claim",
+    "All-twelve/export/mobile/audio/original-five broad integration acceptance remains #21"
+  ]
+}
