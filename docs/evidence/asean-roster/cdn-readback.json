@@ -1,0 +1,111 @@
+{
+  "date": "2026-11-16T00:41:24.695Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "id": "asha-motion",
+      "bytes": 546920,
+      "sha256": "b7a05d584e15f0c310242afb573f1bf8759b3da7a86b0add8b215bbf6dc7c88f",
+      "match": true,
+      "contentType": "image/webp"
+    },
+    {
+      "id": "asha-skills",
+      "bytes": 646020,
+      "sha256": "c9d0627f27353f236c9f8dc03c5e28f43bf52e2048627a671fade1c759183e7f",
+      "match": true,
+      "contentType": "image/webp"
+    },
+    {
+      "id": "mira-motion",
+      "bytes": 687954,
+      "sha256": "2c90d4796c20343210f6508268971a336b987e8df53b76a33c14981ea1d3cd06",
+      "match": true,
+      "contentType": "image/webp"
+    },
+    {
+      "id": "mira-skills",
+      "bytes": 687700,
+      "sha256": "d3879f0cf1541859c9e1250a344a6a22507ee930825b3e76bb4253949a94c78f",
+      "match": true,
+      "contentType": "image/webp"
+    },
+    {
+      "id": "dani-motion",
+      "bytes": 718560,
+      "sha256": "a85363e7416fd14f64cc5954291704a388eeec19b34ac16c0cb6077d16087e94",
+      "match": true,
+      "contentType": "image/webp"
+    },
+    {
+      "id": "dani-skills",
+      "bytes": 677856,
+      "sha256": "3bc0168eadeadb7ef79b867b83e125f233aec7968417c32c733bc41c3cbf41e1",
+      "match": true,
+      "contentType": "image/webp"
+    },
+    {
+      "id": "vanna-motion",
+      "bytes": 562434,
+      "sha256": "02ab9e020fa8427ffd0b4bacfa19ccaf908218721b9ff7f7105735abbea17386",
+      "match": true,
+      "contentType": "image/webp"
+    },
+    {
+      "id": "vanna-skills",
+      "bytes": 594702,
+      "sha256": "cb90711e352f521a511616b42c4ba9c269ede9a5efed3221afd63c4867fca8f6",
+      "match": true,
+      "contentType": "image/webp"
+    },
+    {
+      "id": "keo-motion",
+      "bytes": 603576,
+      "sha256": "26ede4957b4641e7d856c57e2106907997eb9b9e55c321c05232fbc45281d65a",
+      "match": true,
+      "contentType": "image/webp"
+    },
+    {
+      "id": "keo-skills",
+      "bytes": 674760,
+      "sha256": "c996d8a53f5cc8a7f5bcac2a8ffc001b30981bc6cce1e7d431158a6455b4b337",
+      "match": true,
+      "contentType": "image/webp"
+    },
+    {
+      "id": "nadi-motion",
+      "bytes": 570534,
+      "sha256": "a1febae959cff7f4fdc3ac498e67f44a2313fddd0119d5d477e6120e16d13f28",
+      "match": true,
+      "contentType": "image/webp"
+    },
+    {
+      "id": "nadi-skills",
+      "bytes": 592252,
+      "sha256": "2ff4c7230ac843fc5cf7c96ad915f3168b85699cf5042fe876d2b8f967180118",
+      "match": true,
+      "contentType": "image/webp"
+    },
+    {
+      "id": "lia-motion",
+      "bytes": 621602,
+      "sha256": "47df4dfde928c27ae3ac6ae5ba060f21625d0730288d6a7e78544763456ccc8e",
+      "match": true,
+      "contentType": "image/webp"
+    },
+    {
+      "id": "lia-skills",
+      "bytes": 677652,
+      "sha256": "91988210318d214f23dbfedbe218158557a6bb695b96d0c1a1a2eba37a072f4d",
+      "match": true,
+      "contentType": "image/webp"
+    },
+    {
+      "id": "roster-portraits",
+      "bytes": 352288,
+      "sha256": "7c3822d65b031c4a81ccf865c17fff79a5a9794f06ca830a96d0d95adc793a0f",
+      "match": true,
+      "contentType": "image/webp"
+    }
+  ]
+}
