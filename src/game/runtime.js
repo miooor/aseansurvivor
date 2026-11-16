@@ -25,7 +25,17 @@ const HEROES=structuredClone(BASE_HEROES),EVOS=structuredClone(BASE_EVOS);
 const controller=new AbortController();
 const audio=new SkillAudio();
 let world=createWorld();
-const safePoint=(...args)=>world.safePoint(...args),moveOnMap=(...args)=>world.moveOnMap(...args),routeDirection=(...args)=>world.routeDirection(...args),walkable=(...args)=>world.walkable(...args),clearLine=(...args)=>world.clearLine(...args);
+const safePoint=(x,y,r=24)=>{
+  if(!G?.raid)return world.safePoint(x,y,r);
+  if(walkable(x,y,r))return{x,y};
+  const a=raid.ARENA,dx=x-a.x,dy=y-a.y,d=Math.hypot(dx,dy)||1,max=Math.max(0,a.r-r);
+  return{x:a.x+dx/d*max,y:a.y+dy/d*max};
+};
+const moveOnMap=(x,y,toX,toY,r=20)=>G?.raid?safePoint(toX,toY,r):world.moveOnMap(x,y,toX,toY,r);
+const routeDirection=(...args)=>world.routeDirection(...args);
+// Allow subpixel roundoff at the circular raid wall.
+const walkable=(x,y,r=20)=>G?.raid?Math.hypot(x-raid.ARENA.x,y-raid.ARENA.y)<=raid.ARENA.r-r+1e-7:world.walkable(x,y,r);
+const clearLine=(a,b,r)=>G?.raid?walkable(a.x,a.y,r??0)&&walkable(b.x,b.y,r??0):world.clearLine(a,b,r);
 const listen=(target,event,fn)=>target.addEventListener(event,fn,{signal:controller.signal});
 
 
@@ -357,8 +367,9 @@ function update(dt){
   const dash=p.dash;
   if(dash){p.x+=dash.vx*dt;p.y+=dash.vy*dt}
   else{p.x+=p.vx*dt;p.y+=p.vy*dt}
-  if(!G.raid)Object.assign(p,moveOnMap(previousPlayer.x,previousPlayer.y,p.x,p.y,p.r));
-  else{const a=raid.ARENA,dx=p.x-a.x,dy=p.y-a.y,d=Math.hypot(dx,dy),r=a.r-p.r;if(d>r){p.x=a.x+dx/d*r;p.y=a.y+dy/d*r;if(dash)dash.t=0}}
+  const moved=moveOnMap(previousPlayer.x,previousPlayer.y,p.x,p.y,p.r);
+  if(G.raid&&dash&&(moved.x!==p.x||moved.y!==p.y))dash.t=0;
+  Object.assign(p,moved);
   p.normalMove=!dash&&ml>.1?{x:p.x,y:p.y,dx:p.x-previousPlayer.x,dy:p.y-previousPlayer.y,dt}:null;
   if(dash){
     each(p.x,p.y,p.r+8,e=>{if(!dash.hit.has(e)){dash.hit.add(e);hit(e,dash.dmg,{kb:[dash.vx*.3,dash.vy*.3],...dash.hitOptions})}});

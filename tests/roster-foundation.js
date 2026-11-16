@@ -3,7 +3,7 @@
 // retry leaks, unknown fallback, original basic metadata drift, failed-cast feedback/spend.
 const $=id=>document.getElementById(id),frame=$('game');let rt,doc,checks=[];
 const ids=['ustaz','rempit','nok','lan','sari'],damage=[12,11,15,9,10];
-const ready=setInterval(()=>{rt=frame.contentWindow.__asean;if(rt){clearInterval(ready);doc=frame.contentDocument;$('run').disabled=false;$('dash').disabled=false;$('host').disabled=false;$('status').textContent='Ready'}},100);
+const ready=setInterval(()=>{rt=frame.contentWindow.__asean;if(rt){clearInterval(ready);doc=frame.contentDocument;$('run').disabled=false;$('dash').disabled=false;$('host').disabled=false;$('raid').disabled=false;$('status').textContent='Ready'}},100);
 const check=(name,pass)=>checks.push({name,pass:!!pass});
 const tick=()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
 function pairs(){return rt.scene.textures.getTextureKeys().filter(k=>/^hero-(motion|skills)-/.test(k))}
@@ -97,5 +97,29 @@ $('host').onclick=async()=>{
     doc.getElementById('start').click();check('Edit preview cannot enter through the real Start control',rt.G===null&&!doc.getElementById('menu').hidden);
     rt.toMenu();try{rt.newGame('rempit');check('Edit preview rejects synchronous starts',false)}catch{check('Edit preview rejects synchronous starts before creating a run',rt.G===null)}
   }catch(e){error=e.message;check('Host harness completes',false)}finally{rt.scene.gameplayEnabled=true;rt.toMenu()}
+  const report={date:new Date().toISOString(),result:checks.every(c=>c.pass)?'PASS':'FAIL',error,checks};$('status').textContent=report.result+' · '+checks.filter(c=>c.pass).length+'/'+checks.length+' checks';$('report').textContent=JSON.stringify(report,null,2);
+};
+
+// Failure cases: 60000-unit raid placement becomes overworld coordinates, an
+// unclipped leap damages outside the circle, valid lines reject, or normal input teleports.
+$('raid').onclick=async()=>{
+  checks=[];let error;
+  try{
+    rt.toMenu();await rt.scene.prepareHero('nok');
+    const start=()=>{rt.newGame('nok');doc.getElementById('menu').hidden=true;const g=rt.G;g.auto=false;g.cds.fill(999);g.spawnT=g.durianT=g.pupT=999;g.p.invuln=999;rt.raid.enter();g.enemies=[];g.stop=0;return g};
+    const aim=()=>doc.getElementById('game').dispatchEvent(new frame.contentWindow.MouseEvent('mousemove',{clientX:frame.contentWindow.innerWidth/2+300,clientY:frame.contentWindow.innerHeight/2}));
+    let g=start(),arena=rt.raid.ARENA;Object.assign(g.p,{x:arena.x,y:arena.y});aim();g.ult=g.hero.ultNeed;rt.tryCast(4);
+    check('Nok can cast along a valid raid line without consuming a rejected cast',!!g.sea.leap&&g.ult===0);
+    check('Nok interior raid placement preserves the 230-unit aimed endpoint',g.sea.leap&&Math.abs(Math.hypot(g.sea.leap.tx-arena.x,g.sea.leap.ty-arena.y)-230)<.00001);
+    g=start();Object.assign(g.p,{x:arena.x+arena.r-g.p.r-20,y:arena.y});aim();g.ult=g.hero.ultNeed;rt.tryCast(4);
+    check('Nok outer raid endpoint is collision-valid before landing damage',g.sea.leap&&Math.hypot(g.sea.leap.tx-arena.x,g.sea.leap.ty-arena.y)<=arena.r-g.p.r+.00001);
+    g.stop=0;for(let i=0;i<20;i++)rt.scene.update(0,50);
+    check('Nok lands in raid coordinates and retains the bounded leap lifecycle',!g.sea.leap&&g.p.x>59000&&g.p.y>59000&&Math.hypot(g.p.x-arena.x,g.p.y-arena.y)<=arena.r-g.p.r+.00001);
+    g=start();Object.assign(g.p,{x:arena.x,y:arena.y});frame.contentWindow.dispatchEvent(new frame.contentWindow.KeyboardEvent('keydown',{code:'KeyD',key:'d'}));rt.scene.update(0,50);frame.contentWindow.dispatchEvent(new frame.contentWindow.KeyboardEvent('keyup',{code:'KeyD',key:'d'}));
+    check('Real ordinary input moves inside the raid without overworld clamping',g.p.x>arena.x+1&&g.p.x<arena.x+20&&g.p.y>59000&&!!g.p.normalMove);
+    g=start();Object.assign(g.p,{x:arena.x+arena.r+40,y:arena.y});aim();g.ult=g.hero.ultNeed;rt.tryCast(4);
+    check('An invalid outside-arena leap line rejects before spending ultimate',!g.sea.leap&&g.ult===g.hero.ultNeed);
+    g.paused=true;
+  }catch(e){error=e.message;check('Raid placement harness completes',false)}
   const report={date:new Date().toISOString(),result:checks.every(c=>c.pass)?'PASS':'FAIL',error,checks};$('status').textContent=report.result+' · '+checks.filter(c=>c.pass).length+'/'+checks.length+' checks';$('report').textContent=JSON.stringify(report,null,2);
 };

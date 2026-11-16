@@ -90,6 +90,7 @@ CAST.nok=[
   r=>{const p=api.G.p,bl=S.wai>0;let tx,ty;
     const c=api.G.autoAim?cluster(330):null;
     if(c){tx=c.x;ty=c.y}else{const[ax,ay]=aimDir();tx=p.x+ax*230;ty=p.y+ay*230}
+    if(api.G.raid){const point=api.safePoint(tx,ty,p.r);if(!api.clearLine(p,point,p.r))return false;tx=point.x;ty=point.y;}
     if(bl)combo("Hanuman's Blessing");
     S.leap={t:0,dur:.45,sx:p.x,sy:p.y,tx,ty,r,bl};p.dash=null;p.vx=p.vy=0;
     puff(p.x,p.y,'#d8c9a8',12,140,4);ring(p.x,p.y,50,'#ffd34d',.3);juice(6);banner('Hanuman Leap!',1.5)},
