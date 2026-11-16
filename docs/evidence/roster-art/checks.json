@@ -1,0 +1,39 @@
+{
+  "observedAt": "2026-11-16 00:06:32 UTC",
+  "scope": "Issue17 original art and generated framing metadata; integration owns browser/runtime acceptance",
+  "artConformance": {
+    "result": "PASS",
+    "files": 15,
+    "frames": 896,
+    "report": "docs/evidence/roster-art/conformance.json"
+  },
+  "measuredContainment": {
+    "result": "PASS",
+    "alphaThreshold": 32,
+    "report": "docs/evidence/roster-art/measured-frames.json"
+  },
+  "pythonCompile": {
+    "result": "PASS",
+    "sessionId": 82771
+  },
+  "lint": {
+    "result": "PASS",
+    "sessionId": 51151
+  },
+  "typecheck": {
+    "result": "RUNNING",
+    "sessionId": 51151,
+    "containerId": "a3d803c76192"
+  },
+  "build": {
+    "result": "QUEUED_AFTER_TYPECHECK",
+    "sessionId": 51151,
+    "command": "npm run lint && npm run typecheck && npm run build"
+  },
+  "runtimeFrameSha256": "6d1341cfd9fedf22f87733a0464aa0d89d7905e878170daaf2b4feb2d397b2b3",
+  "limitations": [
+    "No browser automation by art worker; foundation/integration verifies actual moving/attacking/freeze/loading.",
+    "Unused portrait cell has alpha<=1 segmentation residue; accepted black/white composite error<=1/255, original exact-zero diagnostic retained.",
+    "No cultural/name approval, physical-phone performance or FPS improvement claim."
+  ]
+}
