@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-16T01:52:27.877Z",
+  "result": "FAIL",
+  "error": "Lia cancels dash immediately when blocked",
+  "checks": [
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real region provides a blocker with walkable approach",
+      "pass": true
+    },
+    {
+      "name": "Lia dash stays on the near side of the blocker",
+      "pass": true
+    },
+    {
+      "name": "Lia cancels dash immediately when blocked",
+      "pass": false
+    }
+  ]
+}

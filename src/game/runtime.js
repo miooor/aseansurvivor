@@ -368,7 +368,7 @@ function update(dt){
   if(dash){p.x+=dash.vx*dt;p.y+=dash.vy*dt}
   else{p.x+=p.vx*dt;p.y+=p.vy*dt}
   const moved=moveOnMap(previousPlayer.x,previousPlayer.y,p.x,p.y,p.r);
-  if(G.raid&&dash&&(moved.x!==p.x||moved.y!==p.y))dash.t=0;
+  if(dash&&(G.raid||dash.stopAtBlocker)&&(moved.x!==p.x||moved.y!==p.y))dash.t=0;
   Object.assign(p,moved);
   p.normalMove=!dash&&ml>.1?{x:p.x,y:p.y,dx:p.x-previousPlayer.x,dy:p.y-previousPlayer.y,dt}:null;
   if(dash){
