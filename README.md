@@ -26,7 +26,7 @@ docker compose down
 
 Deploy the generated `dist/` directory to a static host. GitHub Pages now requires a build workflow; publishing the source branch directly is insufficient. Vite uses relative asset paths so the build supports a repository subpath.
 
-The game also has a private [combat-and-build Astrocade draft](https://www.astrocade.com/games/asean-survivor/01M7FMJGJ3PMC9H145JJCCNEKR/v/01M7G5D79K4SHTDRBB6P3A856K), accessible while signed in as its owner. That saved revision predates the twelve-hero source update; current export and hosted evidence are tracked in the port documentation. The current source catalogue contains 33 WebPs and gameplay loads only the selected large hero pair. Rebuild its five-file package with `docker compose exec -T game npm run build:astrocade`. See [Astrocade port and verification](docs/astrocade.md) for portrait controls, cloud saves, asset encoding and repeatable mobile/sandbox checks.
+The game also has a private [twelve-hero Astrocade draft](https://www.astrocade.com/games/asean-survivor/01M7FMJGJ3PMC9H145JJCCNEKR/v/01M7HJZ0SKK46GFEXKB89QQFD3), accessible while signed in as its owner. The final five-file export was saved, read back and played on the hosted page; sandbox 111 and mobile 91 checks at each of 320/390px pass. The 33-file WebP catalogue uses selected-only large hero pairs; default startup requests 11 artwork files totaling 5,690,146 bytes. Rebuild with `docker compose exec -T game npm run build:astrocade`. See [Astrocade port and verification](docs/astrocade.md) and [roster acceptance](docs/asean-roster.md) for methods, artifacts and the unresolved mobile performance limit.
 
 ## Controls
 

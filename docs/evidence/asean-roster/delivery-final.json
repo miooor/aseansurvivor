@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-16T07:42:19+00:00",
+  "sourceIntegration": "f9f0f5dc6014fb24b7b62f7ae625b946204d2efa",
+  "fixedPoint": "c47b009178dcaa9a83044c3fea8ff1ad0d86adc5",
+  "version": "01M7HJZ0SKK46GFEXKB89QQFD3",
+  "draftPlayUrl": "https://www.astrocade.com/games/asean-survivor/01M7FMJGJ3PMC9H145JJCCNEKR/v/01M7HJZ0SKK46GFEXKB89QQFD3",
+  "privateUnpublished": true,
+  "exports": {
+    "README.md": {
+      "bytes": 4985,
+      "sha256": "99a5669b3e430a544564e2486017060a71fb520d5266fb85df8396b34520cc99"
+    },
+    "asset_map.json": {
+      "bytes": 6171,
+      "sha256": "800d3edda71a041463e002d538d48328b5dffff53a5f0c7dae6e7712009e72ff"
+    },
+    "game.js": {
+      "bytes": 1634932,
+      "sha256": "9a512bfb27823d7ba684f66833831c2c5b12de4463c97e96e5b19b78b91960ef"
+    },
+    "game_config.json": {
+      "bytes": 3,
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+    },
+    "index.html": {
+      "bytes": 40726,
+      "sha256": "f49441bfb59d00d4ef999d6fa191f1aac7797f8a76e17a47eac37d301bf59ec2"
+    }
+  },
+  "assets": 33,
+  "finalChecks": {
+    "postReviewBrowser": 2209,
+    "sandbox": 111,
+    "mobile320": 91,
+    "mobile390": 91,
+    "container": {
+      "containerExitCode": 0,
+      "standardLint": "PASS",
+      "fixtureLint": "PASS",
+      "typecheck": "PASS",
+      "normalBuild": "PASS",
+      "astrocadeBuild": "PASS",
+      "logSha256": "3ce5109ceaf5f1c10e6a55440dbc386bfe7606cdf70030d65105e0aac2382082"
+    }
+  },
+  "readbackAllFiveMatch": true,
+  "hosted": {
+    "heroes": 12,
+    "countryFlags": 11,
+    "hero": "asha",
+    "earnedLevel": 2,
+    "naturalRunKills": 41,
+    "earnedUpgrade": "Make Room rank2",
+    "pauseResume": true,
+    "autoRestored": "OFF",
+    "capturedGameErrors": 0,
+    "surroundingSiteTooltipWarnings": 16,
+    "temporaryOverridesRestored": true
+  },
+  "controlledProfile": {
+    "file": "mobile-390-controlled-downloaded.json",
+    "codeSha256": "e7413318c4ea10f4244aa3965c98a5dff7c004036a31b3ac82d5a4458ebd909b",
+    "qualification": "Predates narrow final Drum/geometry correction; same assets/layout; final mobile reruns functional, no performance comparison",
+    "fps": 12.17,
+    "p95Ms": 116.7,
+    "startupMs": 12964,
+    "physicalPhone": false
+  },
+  "artifactSha256": {
+    "export-final-sandbox-downloaded.json": "4ff76e53d41b042f76110e0cbd37154980481bb0b548e12133af97173980c267",
+    "export-final-mobile-320-downloaded.json": "919df56c25edca9425a19b2bd46d1353cc317f4ddd7f9ede8dd4c1b7e0c9d4b6",
+    "export-final-mobile-390-downloaded.json": "f448a6b7bcd67c4dc65b5333518e6365e3045959a2bed57cfd45648b1d19b84d",
+    "readback-final.json": "bab4ddd900f911827367f4b104eee311a37ca77841f8509c0e5f35fdefd725c7",
+    "hosted-final.json": "dcb1aace11eca087546473b0282b3269a1282c81ea42574fe85ea50c6b784c07",
+    "hosted-mobile-combat.jpg": "a766f480bfb1322fc1a414d49b47f45a9e43af594681c436c946399378192244",
+    "mobile-390-controlled-downloaded.json": "ec32a07b2380e2e09a858ffdce4949a82c0b8404650f29dd8a0d358476ed742f",
+    "startup-asset-footprint.json": "9b2e450f52dceb7e4d03340459b300504dc3fd1a803400d007b3e7aff08217ac",
+    "review.md": "1706b80b817a232a62af6fa62ff289b4823df4833ebfe8ab76a82ffe37ef278b",
+    "review-fix-verification.json": "5d702bd20788137d1e48d882dba12000c567548265338780bd9202d12c51e42a"
+  }
+}
