@@ -616,5 +616,7 @@
     "vanna-loop-ready.png": "7c8fc52865c22b2d6c3b9769f4b7ce6eb7e89fc42d3699139c44347eb9652f1b",
     "water-mask-downloaded.json": "6674be89746dee0d388def2963198afbf40d9abf3bda9f3261f2409ac483a89a",
     "water-mask-report.json": "f59715e93a0f228818067a3f16c26feef7f8c76fee56be9b0e1906e5a4a8ff36"
-  }
+  },
+  "latestIntegrationMergedBeforeHandoff": "7064c84",
+  "rawLogPreservation": "Original captured build logs retain terminal whitespace and EOF newlines; source/docs patch whitespace check excludes raw evidence logs."
 }
