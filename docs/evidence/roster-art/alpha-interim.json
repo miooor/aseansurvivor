@@ -1,0 +1,101 @@
+{
+  "vanna-motion": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha0": 908488,
+    "partial": 661774,
+    "opaque": 2254,
+    "outer2pxNonzero": 895,
+    "outer2pxMax": 5
+  },
+  "mira-motion": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha0": 811217,
+    "partial": 757381,
+    "opaque": 3918,
+    "outer2pxNonzero": 1693,
+    "outer2pxMax": 6
+  },
+  "asha-skills": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha0": 760791,
+    "partial": 809047,
+    "opaque": 2678,
+    "outer2pxNonzero": 1898,
+    "outer2pxMax": 15
+  },
+  "mira-skills": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha0": 801897,
+    "partial": 768190,
+    "opaque": 2429,
+    "outer2pxNonzero": 1890,
+    "outer2pxMax": 34
+  },
+  "vanna-skills": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha0": 16618,
+    "partial": 1555047,
+    "opaque": 851,
+    "outer2pxNonzero": 9278,
+    "outer2pxMax": 8
+  },
+  "keo-motion": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha0": 838369,
+    "partial": 732192,
+    "opaque": 1955,
+    "outer2pxNonzero": 1243,
+    "outer2pxMax": 5
+  },
+  "asha-motion": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha0": 959,
+    "partial": 1570814,
+    "opaque": 743,
+    "outer2pxNonzero": 10032,
+    "outer2pxMax": 19
+  },
+  "dani-motion": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha0": 667136,
+    "partial": 901560,
+    "opaque": 3820,
+    "outer2pxNonzero": 2424,
+    "outer2pxMax": 4
+  },
+  "dani-skills": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha0": 841094,
+    "partial": 727461,
+    "opaque": 3961,
+    "outer2pxNonzero": 1183,
+    "outer2pxMax": 5
+  }
+}
