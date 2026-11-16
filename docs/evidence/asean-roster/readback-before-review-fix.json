@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-16T05:42:49.992Z",
+  "version": "01M7HDZ4JVMRYPGSH5DP018RWP",
+  "draftPlayUrl": "https://www.astrocade.com/games/asean-survivor/01M7FMJGJ3PMC9H145JJCCNEKR/v/01M7HDZ4JVMRYPGSH5DP018RWP",
+  "listing": {
+    "game_id": "01M7FMJGJ3PMC9H145JJCCNEKR",
+    "title": "ASEAN Survivor",
+    "visibility": "private",
+    "unpublished_edits": true,
+    "review_status": "not_ready",
+    "plays": 9
+  },
+  "files": [
+    {
+      "path": "index.html",
+      "localBytes": 40726,
+      "remoteBytes": 40726,
+      "localSha256": "f49441bfb59d00d4ef999d6fa191f1aac7797f8a76e17a47eac37d301bf59ec2",
+      "remoteSha256": "f49441bfb59d00d4ef999d6fa191f1aac7797f8a76e17a47eac37d301bf59ec2",
+      "matches": true,
+      "comparison": "exact bytes"
+    },
+    {
+      "path": "game.js",
+      "localBytes": 1634997,
+      "remoteBytes": 1634997,
+      "localSha256": "e7413318c4ea10f4244aa3965c98a5dff7c004036a31b3ac82d5a4458ebd909b",
+      "remoteSha256": "e7413318c4ea10f4244aa3965c98a5dff7c004036a31b3ac82d5a4458ebd909b",
+      "matches": true,
+      "comparison": "exact bytes"
+    },
+    {
+      "path": "README.md",
+      "localBytes": 4985,
+      "remoteBytes": 4985,
+      "localSha256": "99a5669b3e430a544564e2486017060a71fb520d5266fb85df8396b34520cc99",
+      "remoteSha256": "99a5669b3e430a544564e2486017060a71fb520d5266fb85df8396b34520cc99",
+      "matches": true,
+      "comparison": "exact bytes"
+    },
+    {
+      "path": "game_config.json",
+      "localBytes": 3,
+      "remoteBytes": 3,
+      "localSha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "remoteSha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "matches": true,
+      "comparison": "JSON values"
+    },
+    {
+      "path": "asset_map.json",
+      "localBytes": 6171,
+      "remoteBytes": 6170,
+      "localSha256": "800d3edda71a041463e002d538d48328b5dffff53a5f0c7dae6e7712009e72ff",
+      "remoteSha256": "261caf3a55c19157583de43ddbb5e055418ac85bf52f334cf64550ce3a79283e",
+      "matches": true,
+      "comparison": "JSON values"
+    }
+  ],
+  "supersededPendingReviewFix": true
+}

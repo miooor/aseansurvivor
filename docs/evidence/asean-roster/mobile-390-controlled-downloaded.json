@@ -1,0 +1,688 @@
+{
+  "date": "2026-11-16T05:08:23.972Z",
+  "checks": [
+    {
+      "name": "Export boots with all required artwork",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim lobby name has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim lobby name stays in its surface",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" lobby name has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" lobby name stays in its surface",
+      "pass": true
+    },
+    {
+      "name": "Nok lobby name has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Nok lobby name stays in its surface",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan lobby name has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan lobby name stays in its surface",
+      "pass": true
+    },
+    {
+      "name": "Sari lobby name has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Sari lobby name stays in its surface",
+      "pass": true
+    },
+    {
+      "name": "Asha Lim lobby name has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Asha Lim lobby name stays in its surface",
+      "pass": true
+    },
+    {
+      "name": "Mira Reyes lobby name has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Mira Reyes lobby name stays in its surface",
+      "pass": true
+    },
+    {
+      "name": "Dani Rahman lobby name has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Dani Rahman lobby name stays in its surface",
+      "pass": true
+    },
+    {
+      "name": "Vanna lobby name has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Vanna lobby name stays in its surface",
+      "pass": true
+    },
+    {
+      "name": "Keo lobby name has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Keo lobby name stays in its surface",
+      "pass": true
+    },
+    {
+      "name": "Nadi lobby name has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Nadi lobby name stays in its surface",
+      "pass": true
+    },
+    {
+      "name": "Lia Soares lobby name has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Lia Soares lobby name stays in its surface",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim lobby name has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim lobby name stays in its surface",
+      "pass": true
+    },
+    {
+      "name": "Malaysia flag lobby flag decodes at16px displayed width",
+      "pass": true
+    },
+    {
+      "name": "Malaysia flag lobby flag decodes at16px displayed width",
+      "pass": true
+    },
+    {
+      "name": "Thailand flag lobby flag decodes at16px displayed width",
+      "pass": true
+    },
+    {
+      "name": "Vietnam flag lobby flag decodes at16px displayed width",
+      "pass": true
+    },
+    {
+      "name": "Indonesia flag lobby flag decodes at16px displayed width",
+      "pass": true
+    },
+    {
+      "name": "Singapore flag lobby flag decodes at16px displayed width",
+      "pass": true
+    },
+    {
+      "name": "Philippines flag lobby flag decodes at16px displayed width",
+      "pass": true
+    },
+    {
+      "name": "Brunei flag lobby flag decodes at16px displayed width",
+      "pass": true
+    },
+    {
+      "name": "Cambodia flag lobby flag decodes at16px displayed width",
+      "pass": true
+    },
+    {
+      "name": "Laos flag lobby flag decodes at16px displayed width",
+      "pass": true
+    },
+    {
+      "name": "Myanmar flag lobby flag decodes at16px displayed width",
+      "pass": true
+    },
+    {
+      "name": "Timor-Leste flag lobby flag decodes at16px displayed width",
+      "pass": true
+    },
+    {
+      "name": "Malaysia flag lobby flag decodes at16px displayed width",
+      "pass": true
+    },
+    {
+      "name": "Nur lobby caption has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Nur lobby caption wraps without horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Auto bolt of light at the nearest ghost. lobby caption has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Auto bolt of light at the nearest ghost. lobby caption wraps without horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Cahaya Fajar lobby caption has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Cahaya Fajar lobby caption wraps without horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Cone of dawn light; heavy damage and burn. lobby caption has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Cone of dawn light; heavy damage and burn. lobby caption wraps without horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Tasbih Ring lobby caption has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Tasbih Ring lobby caption wraps without horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Prayer beads orbit you for 6 s. lobby caption has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Prayer beads orbit you for 6 s. lobby caption wraps without horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Seruan lobby caption has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Seruan lobby caption wraps without horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Wave that pushes ghosts back and stuns them. lobby caption has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Wave that pushes ghosts back and stuns them. lobby caption wraps without horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Benteng Doa lobby caption has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Benteng Doa lobby caption wraps without horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Ultimate: ring of light that burns ghosts and heals you. lobby caption has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Ultimate: ring of light that burns ghosts and heals you. lobby caption wraps without horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Scrollable lobby keeps Start accessible",
+      "pass": true
+    },
+    {
+      "name": "HUD above the battlefield",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Sanctuary has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "0 / 4 has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Basic attacks gather light has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Cahaya Fajar has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Cahaya Fajar fits inside its skill button",
+      "pass": true
+    },
+    {
+      "name": "Tasbih Ring has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Tasbih Ring fits inside its skill button",
+      "pass": true
+    },
+    {
+      "name": "Seruan has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Seruan fits inside its skill button",
+      "pass": true
+    },
+    {
+      "name": "Benteng Doa has12px displayed text",
+      "pass": true
+    },
+    {
+      "name": "Benteng Doa fits inside its skill button",
+      "pass": true
+    },
+    {
+      "name": "HUD flag displays at least16px wide",
+      "pass": true
+    },
+    {
+      "name": "Controls keep a larger compact-phone target",
+      "pass": true
+    },
+    {
+      "name": "pauseButton stays inside portrait frame",
+      "pass": true
+    },
+    {
+      "name": "skills stays inside portrait frame",
+      "pass": true
+    },
+    {
+      "name": "equipmentButton stays inside portrait frame",
+      "pass": true
+    },
+    {
+      "name": "worldMap stays inside portrait frame",
+      "pass": true
+    },
+    {
+      "name": "Equipment does not overlap skills",
+      "pass": true
+    },
+    {
+      "name": "Touch movement continues while casting",
+      "pass": true
+    },
+    {
+      "name": "Touch movement does not scroll",
+      "pass": true
+    },
+    {
+      "name": "Touch pause opens",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes gameplay",
+      "pass": true
+    },
+    {
+      "name": "Resume returns to play",
+      "pass": true
+    },
+    {
+      "name": "Equipment opens without leaving play",
+      "pass": true
+    },
+    {
+      "name": "Equipment closes",
+      "pass": true
+    },
+    {
+      "name": "Game clock advances during mobile profile",
+      "pass": true
+    },
+    {
+      "name": "Selected-only startup artwork uses WebP assets",
+      "pass": true
+    },
+    {
+      "name": "No runtime errors",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "result": "PASS",
+  "environment": {
+    "width": 720,
+    "height": 1280,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+    "cores": 8
+  },
+  "startupMs": 12964,
+  "lobbyReadability": {
+    "displayScale": 0.5416666666666666,
+    "names": [
+      {
+        "name": "Ustaz Hakim",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "name": "Mat Rempit \"Jet\"",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "name": "Nok",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "name": "Cô Lan",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "name": "Sari",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "name": "Asha Lim",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "name": "Mira Reyes",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "name": "Dani Rahman",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "name": "Vanna",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "name": "Keo",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "name": "Nadi",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "name": "Lia Soares",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "name": "Ustaz Hakim",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      }
+    ],
+    "flags": [
+      {
+        "country": "Malaysia flag",
+        "screenWidth": 19.5
+      },
+      {
+        "country": "Malaysia flag",
+        "screenWidth": 19.5
+      },
+      {
+        "country": "Thailand flag",
+        "screenWidth": 19.5
+      },
+      {
+        "country": "Vietnam flag",
+        "screenWidth": 19.5
+      },
+      {
+        "country": "Indonesia flag",
+        "screenWidth": 19.5
+      },
+      {
+        "country": "Singapore flag",
+        "screenWidth": 19.5
+      },
+      {
+        "country": "Philippines flag",
+        "screenWidth": 19.5
+      },
+      {
+        "country": "Brunei flag",
+        "screenWidth": 19.5
+      },
+      {
+        "country": "Cambodia flag",
+        "screenWidth": 19.5
+      },
+      {
+        "country": "Laos flag",
+        "screenWidth": 19.5
+      },
+      {
+        "country": "Myanmar flag",
+        "screenWidth": 19.5
+      },
+      {
+        "country": "Timor-Leste flag",
+        "screenWidth": 19.5
+      },
+      {
+        "country": "Malaysia flag",
+        "screenWidth": 19.5
+      }
+    ],
+    "captions": [
+      {
+        "text": "Nur",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "text": "Auto bolt of light at the nearest ghost.",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "text": "Cahaya Fajar",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "text": "Cone of dawn light; heavy damage and burn.",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "text": "Tasbih Ring",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "text": "Prayer beads orbit you for 6 s.",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "text": "Seruan",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "text": "Wave that pushes ghosts back and stuns them.",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "text": "Benteng Doa",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      },
+      {
+        "text": "Ultimate: ring of light that burns ghosts and heals you.",
+        "font": 27,
+        "screenFont": 14.624999999999998
+      }
+    ]
+  },
+  "readability": {
+    "displayScale": 0.5416666666666666,
+    "labels": [
+      {
+        "text": "Ustaz Hakim",
+        "font": 27,
+        "screenFont": 14.624999999999998,
+        "rect": {
+          "x": 106.4375,
+          "y": 25,
+          "width": 147.03125,
+          "height": 32
+        },
+        "scrollHeight": 32,
+        "clientHeight": 32
+      },
+      {
+        "text": "Sanctuary",
+        "font": 27,
+        "screenFont": 14.624999999999998,
+        "rect": {
+          "x": 24,
+          "y": 156,
+          "width": 166.453125,
+          "height": 32
+        },
+        "scrollHeight": 32,
+        "clientHeight": 32
+      },
+      {
+        "text": "0 / 4",
+        "font": 27,
+        "screenFont": 14.624999999999998,
+        "rect": {
+          "x": 265.28125,
+          "y": 156,
+          "width": 55.71875,
+          "height": 32
+        },
+        "scrollHeight": 32,
+        "clientHeight": 32
+      },
+      {
+        "text": "Basic attacks gather light",
+        "font": 27,
+        "screenFont": 14.624999999999998,
+        "rect": {
+          "x": 24,
+          "y": 206,
+          "width": 297,
+          "height": 37.796875
+        },
+        "scrollHeight": 38,
+        "clientHeight": 38
+      },
+      {
+        "text": "Cahaya Fajar",
+        "font": 27,
+        "screenFont": 14.624999999999998,
+        "rect": {
+          "x": 392,
+          "y": 886.3125,
+          "width": 136,
+          "height": 59.375
+        },
+        "scrollHeight": 60,
+        "clientHeight": 59
+      },
+      {
+        "text": "Tasbih Ring",
+        "font": 27,
+        "screenFont": 14.624999999999998,
+        "rect": {
+          "x": 550,
+          "y": 886.3125,
+          "width": 136,
+          "height": 59.375
+        },
+        "scrollHeight": 60,
+        "clientHeight": 59
+      },
+      {
+        "text": "Seruan",
+        "font": 27,
+        "screenFont": 14.624999999999998,
+        "rect": {
+          "x": 417.546875,
+          "y": 1059.15625,
+          "width": 84.890625,
+          "height": 29.6875
+        },
+        "scrollHeight": 30,
+        "clientHeight": 30
+      },
+      {
+        "text": "Benteng Doa",
+        "font": 27,
+        "screenFont": 14.624999999999998,
+        "rect": {
+          "x": 550,
+          "y": 1044.3125,
+          "width": 136,
+          "height": 59.375
+        },
+        "scrollHeight": 60,
+        "clientHeight": 59
+      }
+    ],
+    "flagScreenWidth": 19.5
+  },
+  "profile": {
+    "durationMs": 15033,
+    "frames": 183,
+    "meanFps": 12.17,
+    "medianMs": 83.29999999998836,
+    "p95Ms": 116.70000000001164,
+    "over50ms": 171,
+    "gameTime": "0:09",
+    "kills": "0"
+  },
+  "assets": [
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748988074_01M7FP0ENAV6GQTG2Y2MYSZZ0Z.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794789467335_01M7GWKS67F2QTG3XMJD7B1ZVH.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748987351_01M7FP0DYQKRK35K88HRQZE24D.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794752145423_01M7FS0T0F3RHZTAGMVW58MAQD.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794752143638_01M7FS0R8PNTJ3HPY1FQQAPXTG.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748994744_01M7FP0N5RWM2RR0J3J73434QC.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748999024_01M7FP0SBGRQ5KGKAWWE55N03Z.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748991826_01M7FP0JAJRBYR7JR4GTNA4ZPW.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748994095_01M7FP0MHFB808FC4Z2F0ADWDA.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748999802_01M7FP0T3TJSYCZ3YTRD9KPFG5.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748997604_01M7FP0QZ4XZ3C8797XB3M2736.webp"
+  ],
+  "runtimeErrors": []
+}

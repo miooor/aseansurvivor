@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-16T05:17:04.701Z",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "dpr": 1
+  },
+  "sandbox": {
+    "width": 720,
+    "height": 1280
+  },
+  "cacheDisabled": true,
+  "downloadBytesPerSecond": 1250000,
+  "uploadBytesPerSecond": 125000,
+  "latencyMs": 80,
+  "cpuRate": 4,
+  "scope": "run(play) to artwork readiness; excludes host page and script transfer; 15-second ordinary-play desktop emulation, all task-owned native tabs/builds closed, pre-existing user tabs retained",
+  "physicalPhone": false,
+  "performanceLimitation": "12.17 FPS mean, 116.7ms p95; no faster-result substitution"
+}
