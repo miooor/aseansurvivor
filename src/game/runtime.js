@@ -1,3 +1,12 @@
+import {installAsha} from './heroes/asha.js';
+import {installMira} from './heroes/mira.js';
+import {installDani} from './heroes/dani.js';
+import {installVanna} from './heroes/vanna.js';
+import {installKeo} from './heroes/keo.js';
+import {installNadi} from './heroes/nadi.js';
+import {installLia} from './heroes/lia.js';
+import {heroArt,rosterPortraitUrl} from '../content/hero-art.js';
+import {heroNameHtml} from '../content/hero-flags.js';
 import {installHunt} from './hunt.js';
 import {installCharms} from './charms.js';
 import {installWard} from './ward.js';
@@ -11,12 +20,22 @@ import {installRaid} from './raid.js';
 import {SkillAudio} from './skill-audio.js';
 import {installIdentities} from './hero-identities.js';
 
-export function createRuntime(cvs){
+export function createRuntime(cvs,art){
 const HEROES=structuredClone(BASE_HEROES),EVOS=structuredClone(BASE_EVOS);
 const controller=new AbortController();
 const audio=new SkillAudio();
 let world=createWorld();
-const safePoint=(...args)=>world.safePoint(...args),moveOnMap=(...args)=>world.moveOnMap(...args),routeDirection=(...args)=>world.routeDirection(...args),walkable=(...args)=>world.walkable(...args),clearLine=(...args)=>world.clearLine(...args);
+const safePoint=(x,y,r=24)=>{
+  if(!G?.raid)return world.safePoint(x,y,r);
+  if(walkable(x,y,r))return{x,y};
+  const a=raid.ARENA,dx=x-a.x,dy=y-a.y,d=Math.hypot(dx,dy)||1,max=Math.max(0,a.r-r);
+  return{x:a.x+dx/d*max,y:a.y+dy/d*max};
+};
+const moveOnMap=(x,y,toX,toY,r=20)=>G?.raid?safePoint(toX,toY,r):world.moveOnMap(x,y,toX,toY,r);
+const routeDirection=(...args)=>world.routeDirection(...args);
+// Allow subpixel roundoff at the circular raid wall.
+const walkable=(x,y,r=20)=>G?.raid?Math.hypot(x-raid.ARENA.x,y-raid.ARENA.y)<=raid.ARENA.r-r+1e-7:world.walkable(x,y,r);
+const clearLine=(a,b,r)=>G?.raid?walkable(a.x,a.y,r??0)&&walkable(b.x,b.y,r??0):world.clearLine(a,b,r);
 const listen=(target,event,fn)=>target.addEventListener(event,fn,{signal:controller.signal});
 
 
@@ -38,7 +57,7 @@ function nextStage(S){if(S.bonus)S=STAGES.find(x=>x.id===S.after);const m=MAIN.i
 const bossAt=()=>G.stage.bossAt||BOSS_AT;
 let stagePick=0;{for(let i=0;i<STAGES.length;i++)if(stageOpen(i)&&!STAGES[i].bonus)stagePick=i}if(UNLOCK_ALL)stagePick=0;
 /* ---------- Module hooks (heroes-sea.js, raid.js plug in here) ---------- */
-const HOOKS={newGame:[],update:[],drawWorld:[],drawScreen:[],kill:[],hurt:[],lethal:[],damage:[],hit:[],parry:[],dmgMul:[],cleanup:[],cast:[]};
+const HOOKS={newGame:[],update:[],drawWorld:[],drawScreen:[],kill:[],hurt:[],absorb:[],lethal:[],damage:[],hit:[],parry:[],dmgMul:[],cleanup:[],cast:[]};
 
 /* ---------- Heroes ---------- */
 
@@ -89,12 +108,15 @@ listen(cvs,'pointerup',endJoy);listen(cvs,'pointercancel',endJoy);
 /* ---------- Game state ---------- */
 let G=null;let heroPick='ustaz';
 function newGame(id,si){
+  if(!art.canPlay())throw Error('Gameplay is unavailable in edit preview');
+  if(!Object.hasOwn(HEROES,id))throw Error('Unknown hero: '+id);
+  if(!art.isHeroPrepared(id))throw Error('Hero artwork is not prepared: '+id);
   if(G)for(const f of HOOKS.cleanup)f();
   for(const id of ['pause','levelup','end'])$(id).hidden=true;
   audio.stop();audio.setPaused(false);
   const h=HEROES[id];if(si===undefined)si=stagePick;const S=STAGES[si];
   world=createWorld(S.id);
-  G={world,hero:h,stage:S,si:si,diff:1+.2*(S.tier!==undefined?S.tier:MAIN.indexOf(S)),pupCd:20,t:0,clock:0,raid:null,coins:0,kills:0,level:1,xp:0,need:12,pending:0,ult:0,
+  G={roster:{},world,hero:h,stage:S,si:si,diff:1+.2*(S.tier!==undefined?S.tier:MAIN.indexOf(S)),pupCd:20,t:0,clock:0,raid:null,coins:0,kills:0,level:1,xp:0,need:12,pending:0,ult:0,
     p:{x:0,y:0,vx:0,vy:0,r:16,hp:h.hp,maxHp:h.hp,face:[1,0],invuln:0,hurt:0,dash:null,exhaust:0,exAcc:0,super:0,slip:false,shield:0},
     st:{dmg:1,cd:1,spd:1,pickup:90,crit:.08,guli:0},
     ranks:[1,1,1,1,1],cds:[0,0,0,0,0],pass:{},
@@ -105,7 +127,7 @@ function newGame(id,si){
   lastHud={};keys.clear();joy=null;
   document.documentElement.style.setProperty('--hero-accent',h.identity.color);
   buildSkillBar();cvs.focus({preventScroll:true});
-  $('hudHero').textContent=h.name;
+  $('hudHero').innerHTML=heroNameHtml(h);
   $('hud').hidden=false;$('skills').hidden=false;$('bossbar').hidden=true;const ba=S.bossAt||BOSS_AT,bt=Math.floor(ba/60)+':'+String(ba%60).padStart(2,'0');$('goal').textContent='Survive until '+bt;
   banner((S.bonus?'Bonus stage: ':'Stage '+(MAIN.indexOf(S)+1)+': ')+S.name+'. '+S.set+'. Survive until '+bt+(S.bonus?'. Coins x3!':'.'),4);
 }
@@ -182,6 +204,7 @@ function dropGem(x,y,v,kind){if(G.gems.length>450){const g=G.gems.shift();G.gems
 function hurtPlayer(a){
   const p=G.p;if(p.invuln>0||p.super>0||p.shield>0||G.over||G.won)return;
   for(const f of HOOKS.hurt){const r=f(a);if(r===false)return;if(typeof r==='number')a=r}
+  for(const f of HOOKS.absorb){const r=f(a);if(typeof r==='number')a=Math.max(0,r)}
   if(a>=p.hp)for(const f of HOOKS.lethal){const r=f(a);if(typeof r==='number')a=r;}
   const applied=Math.min(p.hp,Math.max(0,a));
   p.hp-=a;if(applied>0)for(const f of HOOKS.damage)f(applied);p.invuln=Math.max(p.invuln,.35);p.hurt=.2;p.sq=1;juice(7,.05);combatNumber(p.x,p.y-26,a,'incoming');
@@ -341,13 +364,19 @@ function update(dt){
   p.slip=false;for(const z of G.zones)if(z.kind==='oil'&&Math.hypot(p.x-z.x,p.y-z.y)<z.r)p.slip=true;
   const acc=p.slip?2.2:14;
   p.vx+=(mx*spd-p.vx)*Math.min(1,dt*acc);p.vy+=(my*spd-p.vy)*Math.min(1,dt*acc);
-  if(p.dash){p.x+=p.dash.vx*dt;p.y+=p.dash.vy*dt;
-    each(p.x,p.y,p.r+8,e=>{if(!p.dash.hit.has(e)){p.dash.hit.add(e);hit(e,p.dash.dmg,{kb:[p.dash.vx*.3,p.dash.vy*.3]})}});
-    G.fx.push({x:p.x,y:p.y,vx:0,vy:0,life:.25,max:.25,c:'rgba(255,211,77,.6)',size:9});
-    if(p.dash.fire)G.zones.push({kind:'fire',x:p.x,y:p.y,r:30,life:2.5,max:2.5,dps:30*rm(G.ranks[1]),acc:0});
-    if((p.dash.t-=dt)<=0)p.dash=null}
+  const dash=p.dash;
+  if(dash){p.x+=dash.vx*dt;p.y+=dash.vy*dt}
   else{p.x+=p.vx*dt;p.y+=p.vy*dt}
-  if(!G.raid)Object.assign(p,moveOnMap(previousPlayer.x,previousPlayer.y,p.x,p.y,p.r));
+  const moved=moveOnMap(previousPlayer.x,previousPlayer.y,p.x,p.y,p.r);
+  if(G.raid&&dash&&(moved.x!==p.x||moved.y!==p.y))dash.t=0;
+  Object.assign(p,moved);
+  p.normalMove=!dash&&ml>.1?{x:p.x,y:p.y,dx:p.x-previousPlayer.x,dy:p.y-previousPlayer.y,dt}:null;
+  if(dash){
+    each(p.x,p.y,p.r+8,e=>{if(!dash.hit.has(e)){dash.hit.add(e);hit(e,dash.dmg,{kb:[dash.vx*.3,dash.vy*.3],...dash.hitOptions})}});
+    G.fx.push({x:p.x,y:p.y,vx:0,vy:0,life:.25,max:.25,c:'rgba(255,211,77,.6)',size:9});
+    if(dash.fire)G.zones.push({kind:'fire',x:p.x,y:p.y,r:30,life:2.5,max:2.5,dps:30*rm(G.ranks[1]),acc:0});
+    if((dash.t-=dt)<=0)p.dash=null;
+  }
   if(p.sq)p.sq=Math.max(0,p.sq-dt*6);p.moving=ml>.1;
   p.invuln=Math.max(0,p.invuln-dt);p.hurt=Math.max(0,p.hurt-dt);
   if(p.super>0){p.super-=dt;each(p.x,p.y,p.r+10,(e,dx,dy)=>{if(G.t>=(e.hits.ram||0)){e.hits.ram=G.t+.4;const l=Math.hypot(dx,dy)||1;hit(e,p.superDmg,{kb:[dx/l*520,dy/l*520]})}});
@@ -483,7 +512,7 @@ function update(dt){
     if(pr.update)pr.update(pr,dt);
     pr.x+=pr.vx*dt;pr.y+=pr.vy*dt;pr.life-=dt;if(pr.spin!==undefined)pr.spin+=dt*18;
     for(const e of G.enemies){if(e.dead||pr.hit.has(e)||pr.life<=0)continue;const dx=e.x-pr.x,dy=e.y-pr.y,rr=e.r+pr.r;
-      if(dx*dx+dy*dy<rr*rr){pr.hit.add(e);hit(e,pr.dmg*(pr.dmgFor?pr.dmgFor(e):1),{origin:pr.origin,dot:pr.dot});if(pr.onHit)pr.onHit(pr,e);if(pr.fire){e.burnT=2;e.burnDps=10*rm(G.ranks[0])}
+      if(dx*dx+dy*dy<rr*rr){pr.hit.add(e);hit(e,pr.dmg*(pr.dmgFor?pr.dmgFor(e):1),{...pr.hitOptions,origin:pr.origin,dot:pr.dot});if(pr.onHit)pr.onHit(pr,e);if(pr.fire){e.burnT=2;e.burnDps=10*rm(G.ranks[0])}
         if(pr.bounces>0){pr.bounces--;const n=nearest(pr.x,pr.y,230,pr.hit);if(n){const ax=n.x-pr.x,ay=n.y-pr.y,l=Math.hypot(ax,ay)||1;pr.vx=ax/l*540;pr.vy=ay/l*540;pr.life=.8}else pr.life=0}
         else if(--pr.pierce<=0)pr.life=0;break}}
   }
@@ -567,8 +596,9 @@ function buildHeroCards(){
     const owned=UNLOCK_ALL||SAVE.owned.includes(h.id),b=document.createElement(owned?'button':'div');
     const [emblem,color]=HERO_EMBLEMS[h.id]||['◇','#edc689'];
     b.className='hero';b.id='hero-'+h.id;b.style.setProperty('--accent',color);
-    b.innerHTML=`<span class="hero-portrait" aria-hidden="true"></span><span class="hc">${h.country}</span><span class="hn">${h.name}</span><span class="st">${h.role.split(' · ')[0]}</span>`;
-    if(owned){b.setAttribute('aria-pressed',h.id===heroPick);b.onclick=()=>{heroPick=h.id;buildHeroCards()}}
+    b.innerHTML=`<span class="hero-portrait" aria-hidden="true"></span><span class="hc">${h.country}</span><span class="hn">${heroNameHtml(h)}</span><span class="st">${h.role.split(' · ')[0]}</span>`;
+    const portrait=heroArt[h.id]?.portraitIndex;if(portrait!==undefined){const image=b.querySelector('.hero-portrait');image.style.backgroundImage=`url("${rosterPortraitUrl}")`;image.style.backgroundSize='400% 200%';image.style.backgroundPosition=`${(portrait%4)*100/3}% ${Math.floor(portrait/4)*100}%`;}
+    if(owned){b.setAttribute('aria-pressed',h.id===heroPick);b.onclick=()=>{heroPick=h.id;buildHeroCards();void prepareSelection()}}
     else{const by=document.createElement('button'),price=h.price||200;by.className='buy';by.id='buy-'+h.id;by.textContent='Unlock · '+price+' coins';by.disabled=SAVE.coins<price;
       by.onclick=()=>{if(SAVE.coins<price)return;SAVE.coins-=price;SAVE.owned.push(h.id);saveGame();heroPick=h.id;buildHeroCards()};b.appendChild(by)}
     box.appendChild(b)});
@@ -576,7 +606,7 @@ function buildHeroCards(){
   document.documentElement.style.setProperty('--hero-accent',h.identity.color);
   $('heroTitle').textContent=h.identity.title;
   $('heroTrait').textContent=h.identity.name+' — '+h.identity.loop;
-  $('selectedHeroName').textContent=h.name;$('selectedHeroRole').textContent=h.role;$('selectedHeroHp').textContent=h.hp+' HP / '+h.speed+' SPEED';
+  $('selectedHeroName').innerHTML=heroNameHtml(h);$('selectedHeroRole').textContent=h.role;$('selectedHeroHp').textContent=h.hp+' HP / '+h.speed+' SPEED';
   $('heroSkills').innerHTML=h.skills.map(s=>`<details class="ability"><summary><kbd>${s.key||'AUTO'}</kbd><strong>${s.name}</strong></summary><p>${s.desc}</p></details>`).join('');
   if(focusId.startsWith('hero-')||focusId.startsWith('stg-'))$(focusId)?.focus({preventScroll:true});
   else if(focusId.startsWith('buy-'))$('hero-'+heroPick).focus({preventScroll:true});
@@ -597,7 +627,7 @@ let lastHud={};
 function updateSkillBar(force){
   for(let i=1;i<5;i++){const el=skEls[i];if(!el)continue;const s=G.hero.skills[i];
     const identity=G.hero.identity,state=G.identity;
-    const empowered=state.charge>=identity.max&&s.key===identity.key;
+    const empowered=(state.ready??state.charge>=identity.max)&&s.key===identity.key;
     el.b.classList.toggle('empowered',empowered);
     el.b.classList.toggle('chain-next',G.hero.id==='nok'&&state.charge>0&&i<4&&i!==state.lastSkill);
     el.b.setAttribute('aria-label',s.key+' '+s.name+(empowered?' · '+identity.name+' ready':''));
@@ -614,8 +644,8 @@ function updateHud(){
   $('xpfill').style.width=(G.xp/G.need*100).toFixed(1)+'%';
   $('hpFill').style.width=(Math.max(0,G.p.hp)/G.p.maxHp*100).toFixed(1)+'%';
   set('hpValue',Math.ceil(Math.max(0,G.p.hp))+' / '+G.p.maxHp+' HP');
-  const identity=G.hero.identity,state=G.identity,ready=state.charge>=identity.max;
-  set('signatureName',identity.name);set('signatureValue',Math.floor(state.charge)+' / '+identity.max+(state.window>0?' · '+state.window.toFixed(1)+'s':''));
+  const identity=G.hero.identity,state=G.identity,ready=state.ready??state.charge>=identity.max;
+  set('signatureName',identity.name);set('signatureValue',state.detail??(Math.floor(state.charge)+' / '+identity.max+(state.window>0?' · '+state.window.toFixed(1)+'s':'')));
   set('signatureHint',state.releaseT>0?'RELEASED · '+identity.name:ready?identity.ready:identity.hint);
   $('signatureFill').style.width=(state.charge/identity.max*100)+'%';
   $('signatureMeter').setAttribute('aria-valuenow',String(Math.floor(state.charge)));
@@ -643,7 +673,19 @@ function endGame(won){
   ($('next').hidden?$('again'):$('next')).focus();
 }
 function toMenu(){audio.setPaused(true);for(const f of HOOKS.cleanup)f();G=null;['hud','skills','end','pause','levelup'].forEach(id=>$(id).hidden=true);$('menu').hidden=false;buildHeroCards();$('start').focus({preventScroll:true})}
-$('start').onclick=()=>{$('menu').hidden=true;newGame(heroPick)};
+let selectionVersion=0;
+async function prepareSelection(){
+  const version=++selectionVersion,id=heroPick,button=$('start');button.disabled=true;button.textContent='Preparing '+HEROES[id].name+'…';
+  try{await art.prepareHero(id);if(version!==selectionVersion)return;button.disabled=!art.canPlay();button.textContent=art.canPlay()?'Enter '+STAGES[stagePick].name:'Edit preview — switch to Play'}
+  catch{if(version!==selectionVersion)return;button.disabled=!art.canPlay();button.textContent=art.canPlay()?'Artwork failed · Retry':'Edit preview — switch to Play';}
+}
+$('start').onclick=async()=>{
+  if(!art.canPlay())return;
+  const id=heroPick,version=selectionVersion;
+  if(!art.isHeroPrepared(id)){await prepareSelection();if(version!==selectionVersion-1||id!==heroPick||!art.isHeroPrepared(id))return;}
+  if(!art.canPlay())return;
+  $('menu').hidden=true;newGame(id);
+};
 $('resume').onclick=togglePause;
 $('pauseButton').onclick=togglePause;
 $('helpButton').onclick=()=>$('controls').showModal();
@@ -654,8 +696,15 @@ $('tomenu').onclick=toMenu;
 listen(document,'visibilitychange',()=>{if(document.hidden&&G&&!G.paused&&!G.over&&!G.choosing)togglePause()});
 
 
-const api={audio,canvas:cvs,clearInput(){keys.clear();joy=null;},safePoint,get G(){return G},get W(){return W},get H(){return H},get SC(){return SC},HEROES,EVOS,HOOKS,CAST,nearest,each,hit,rm,text,juice,aimDir,combo,ring,TAU,puff,banner,rand,AUTO,GHOSTS,$,makeGhost,showBossBar,hideBossBar,hurtPlayer,tryCast,updateSkillBar,addXP,dropCoin};
+const api={audio,canvas:cvs,clearInput(){keys.clear();joy=null;},safePoint,moveOnMap,walkable,clearLine,get G(){return G},get W(){return W},get H(){return H},get SC(){return SC},HEROES,EVOS,HOOKS,CAST,nearest,each,hit,rm,text,juice,aimDir,combo,ring,TAU,puff,banner,rand,AUTO,GHOSTS,$,makeGhost,showBossBar,hideBossBar,hurtPlayer,tryCast,updateSkillBar,addXP,dropCoin};
 installHeroes(api);
+installAsha(api);
+installMira(api);
+installDani(api);
+installVanna(api);
+installKeo(api);
+installNadi(api);
+installLia(api);
 installIdentities(api);
 const equipment=installEquipment(api);
 const encounters=installEncounters(api,equipment);
@@ -665,6 +714,7 @@ installCharms(api);
 api.eventActive=encounters.active;
 const raid=installRaid(api);
 buildHeroCards();
+void prepareSelection();
 return {
   audio,get G(){return G},get scale(){return SC},get joystick(){return joy},raid,resize,
   tryCast,newGame,dropPup,openLevelUp,addXP,kill,makeGhost,endGame,toMenu,togglePause,
