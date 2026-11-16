@@ -1,0 +1,190 @@
+{
+  "date": "2026-11-16T04:50:51.476Z",
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "mira actual lobby Start enters prepared run",
+      "pass": true
+    },
+    {
+      "name": "Observed selected artwork readiness and decoded-size estimate",
+      "pass": true,
+      "details": {
+        "readinessMs": 881.8999999761581,
+        "textures": [
+          {
+            "key": "hero-motion-mira",
+            "width": 1254,
+            "height": 1254
+          },
+          {
+            "key": "hero-skills-mira",
+            "width": 1254,
+            "height": 1254
+          }
+        ],
+        "estimatedDecodedRGBABytes": 12580128,
+        "limit": "warm same-origin selection, RGBA geometry estimate excludes browser/GPU overhead"
+      }
+    },
+    {
+      "name": "Actual ground route readies the tow triangle",
+      "pass": true
+    },
+    {
+      "name": "mira static prepared loop is inspectable",
+      "pass": true,
+      "details": {
+        "value": "90° READY · 2.7s"
+      }
+    },
+    {
+      "name": "Real empowered Mira E still deals55 once and consumes endpoint",
+      "pass": true,
+      "details": {
+        "damage": 55
+      }
+    },
+    {
+      "name": "Empowered E retains its actual three vertices and35-unit release margin",
+      "pass": true,
+      "details": {
+        "expected": {
+          "a": {
+            "x": 220,
+            "y": 0
+          },
+          "b": {
+            "x": 0,
+            "y": 0
+          },
+          "c": {
+            "x": 231.91071428731914,
+            "y": 184.9999999983949
+          }
+        },
+        "release": {
+          "a": {
+            "x": 220,
+            "y": 0
+          },
+          "b": {
+            "x": 0,
+            "y": 0
+          },
+          "c": {
+            "x": 231.91071428731914,
+            "y": 184.9999999983949
+          },
+          "margin": 35,
+          "until": 2.6499999999999955
+        }
+      }
+    },
+    {
+      "name": "Actual pause freezes captured triangle release",
+      "pass": true
+    },
+    {
+      "name": "Triangle release expires on simulation time",
+      "pass": true
+    },
+    {
+      "name": "Unprepared E preserves its radius110 circle and no triangle",
+      "pass": true
+    },
+    {
+      "name": "mira actual lobby Start enters prepared run",
+      "pass": true
+    },
+    {
+      "name": "Observed selected artwork readiness and decoded-size estimate",
+      "pass": true,
+      "details": {
+        "readinessMs": 37.30000001192093,
+        "textures": [
+          {
+            "key": "hero-motion-mira",
+            "width": 1254,
+            "height": 1254
+          },
+          {
+            "key": "hero-skills-mira",
+            "width": 1254,
+            "height": 1254
+          }
+        ],
+        "estimatedDecodedRGBABytes": 12580128,
+        "limit": "warm same-origin selection, RGBA geometry estimate excludes browser/GPU overhead"
+      }
+    },
+    {
+      "name": "Actual ground route readies the tow triangle",
+      "pass": true
+    },
+    {
+      "name": "mira static prepared loop is inspectable",
+      "pass": true,
+      "details": {
+        "value": "90° READY · 2.7s"
+      }
+    },
+    {
+      "name": "Real raid transition enters before release cleanup",
+      "pass": true
+    },
+    {
+      "name": "Raid entry clears the prior triangle release",
+      "pass": true
+    },
+    {
+      "name": "mira actual lobby Start enters prepared run",
+      "pass": true
+    },
+    {
+      "name": "Observed selected artwork readiness and decoded-size estimate",
+      "pass": true,
+      "details": {
+        "readinessMs": 47.5,
+        "textures": [
+          {
+            "key": "hero-motion-mira",
+            "width": 1254,
+            "height": 1254
+          },
+          {
+            "key": "hero-skills-mira",
+            "width": 1254,
+            "height": 1254
+          }
+        ],
+        "estimatedDecodedRGBABytes": 12580128,
+        "limit": "warm same-origin selection, RGBA geometry estimate excludes browser/GPU overhead"
+      }
+    },
+    {
+      "name": "Actual ground route readies the tow triangle",
+      "pass": true
+    },
+    {
+      "name": "mira static prepared loop is inspectable",
+      "pass": true,
+      "details": {
+        "value": "90° READY · 2.7s"
+      }
+    },
+    {
+      "name": "Menu clears the prior triangle release",
+      "pass": true
+    },
+    {
+      "name": "No browser runtime errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ],
+  "errors": []
+}

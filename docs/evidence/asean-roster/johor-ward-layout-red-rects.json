@@ -1,0 +1,34 @@
+{
+  "encounterPrompt": {
+    "x": 10,
+    "y": 210,
+    "width": 156,
+    "height": 303,
+    "right": 166,
+    "bottom": 513
+  },
+  "skills": {
+    "x": 126,
+    "y": 430,
+    "width": 184,
+    "height": 258,
+    "right": 310,
+    "bottom": 688
+  },
+  "signature": {
+    "x": 12,
+    "y": 97,
+    "width": 146,
+    "height": 56.59375,
+    "right": 158,
+    "bottom": 153.59375
+  },
+  "worldMap": {
+    "x": 224,
+    "y": 118,
+    "width": 88,
+    "height": 163.5,
+    "right": 312,
+    "bottom": 281.5
+  }
+}

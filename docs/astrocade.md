@@ -2,9 +2,9 @@
 
 ASEAN Survivor is saved on Astrocade as a **private unpublished draft**, game `01M7FMJGJ3PMC9H145JJCCNEKR`. [Play the combat-and-build draft revision](https://www.astrocade.com/games/asean-survivor/01M7FMJGJ3PMC9H145JJCCNEKR/v/01M7G5D79K4SHTDRBB6P3A856K) or [open its editor](https://www.astrocade.com/edit/01M7FMJGJ3PMC9H145JJCCNEKR) while signed into the owner account. The link is owner-only. No public publication, thumbnail generation or leaderboard was added. Source changes are tracked in [PR #13](https://github.com/miooor/aseansurvivor/pull/13); no main-branch merge was performed.
 
-The latest export packages the simulation and Phaser renderer at source integration `5f7656212d03049e4d1ced372ceb1465a4f1192c`: five heroes, six regional worlds, signatures, upgrades, boss fights, portal raids and the harder Johor encounter/equipment integration. Earlier paused spec #1 / PR #7 remains separate from this follow-up.
+The previous saved export packages the simulation and Phaser renderer at source integration `5f7656212d03049e4d1ced372ceb1465a4f1192c`: five heroes, six regional worlds, signatures, upgrades, boss fights, portal raids and the harder Johor encounter/equipment integration. Earlier paused spec #1 / PR #7 remains separate from this follow-up.
 
-## Combat and build follow-up
+## Previous combat and build follow-up
 
 The saved draft includes the tougher Johor elite patterns and eighteen-item skill-support catalogue, alongside source documentation for seven additional ASEAN hero concepts. [Combined verification](gameplay-upgrade.md) records the local browser fixture, staged build observations and active-event desktop profile. [Combat rules](event-combat.md), [equipment rules](skill-equipment.md), [hero drafts](asean-hero-concepts.md). The five-hero playable roster and progression format remain.
 
@@ -13,6 +13,10 @@ The final export passes **62/62 sandbox** and **18/18 mobile** checks. A fresh p
 At exact 390×844 desktop emulation with a 720×1280 sandbox, cache disabled, 10 Mbps/1 Mbps, 80 ms latency and 4× CPU, artwork readiness was **15,944 ms**. The 15,036 ms ordinary-play sample averaged **24.34 FPS**, median **34.6 ms**, p95 **67.3 ms**, with 85 intervals above 50 ms and no captured runtime errors. [Raw mobile evidence](evidence/gameplay-upgrade/astrocade-mobile.json). This remains a material performance limit, not a phone-performance PASS or a matched loading comparison with an older revision. [Dense Safari limits and bounded water-work reduction](render-performance.md) remain unresolved as well.
 
 Signed-in hosted play entered Johor, advanced from 0:03 to 0:37, reached level four with fifty enemies defeated, selected earned R/Kopi O/E upgrades, and verified pause/freeze/resume. All controls fit the 720×1280 frame at 390×844; the 112-frame-pixel controls display at about **60.67 CSS pixels**. No captured warnings/errors were returned. [Hosted measurements](evidence/gameplay-upgrade/hosted.json), [mobile combat screenshot](evidence/gameplay-upgrade/hosted-mobile-combat.jpg). Temporary metrics/throttles were restored and the deliverable tab is paused. Physical phones, trusted touch on the hosted page, thermal behavior and long-run balance remain unverified; synthetic movement/casting is covered by the exported sandbox.
+
+## Twelve-hero source update
+
+The current source implements all twelve heroes with selected-only large artwork, shared portraits, 60 procedural cues and eleven embedded national SVG flags. The asset map has 33 WebPs: the previous 11,420,462-byte set plus fifteen validated roster files totaling 9,214,810 bytes. [Roster verification](asean-roster.md) records current source checks; the older exported/hosted measurements above remain historical until the final five-file save and read-back are recorded. The controlled 390×844 exact-export run passes 91/91 functional/readability checks, with eleven selected/shared WebPs and 12,964 ms startup. Its 15,033 ms throttled ordinary-play sample remains slow at 12.17 FPS (median83.3/p95116.7 ms); [the raw report](evidence/asean-roster/mobile-390-controlled.json) is retained without a faster substitute. Remaining 320px/sandbox and private save/read-back/hosted results are parent-owned follow-through. No save-format migration, public publication or main merge is authorized.
 
 ## Packaging
 
@@ -32,14 +36,14 @@ Run the Astrocade export after the normal build, which clears `dist/`. The expor
 
 ## Smaller artwork
 
-The CDN asset map now references 18 WebP files totaling **11,420,462 bytes**, down from the corresponding **44,931,797 bytes** of active PNG artwork: **74.6% less artwork data** (42.9 MiB → 10.9 MiB). Original source PNGs remain unchanged. Every sprite sheet keeps its dimensions and frame layout; every alpha channel is pixel-identical. RGB colour compression uses quality 85, with a measured maximum visible RGB RMS error of 4.887/255 across the set. The terrain update replaces the active grass texture and adds 494,564 bytes over the preceding optimized draft. [Per-asset sizes and validation](../astrocade/asset-sizes.json).
+The previous eighteen-file CDN set totaled **11,420,462 bytes**, down from the corresponding **44,931,797 bytes** of active PNG artwork: **74.6% less artwork data** (42.9 MiB → 10.9 MiB). Original source PNGs remain unchanged. Every sprite sheet keeps its dimensions and frame layout; every alpha channel is pixel-identical. RGB colour compression uses quality 85, with a measured maximum visible RGB RMS error of 4.887/255 across the set. The terrain update replaces the active grass texture and adds 494,564 bytes over the preceding optimized draft. [Per-asset sizes and validation](../astrocade/asset-sizes.json).
 
 ```sh
 docker build -f astrocade/assets.Dockerfile -t asean-astrocade-assets .
 docker run --rm -v "$PWD:/app" asean-astrocade-assets
 ```
 
-The pinned Pillow tool runs entirely in Docker. `scripts/encode-astrocade-assets.py` writes ignored generated WebPs to `astrocade/assets/` and validates decoding, dimensions, exact alpha, bounded visible colour error and reduction for every file. Upload regenerated files through Astrocade's asset upload flow, replace the corresponding URLs in `astrocade/asset_map.json`, then run the export. A map update alone does not alter a hosted draft until its five files are saved. No lazy-loading or texture resizing was added. The normal browser build still uses the original PNGs.
+The pinned Pillow tool runs entirely in Docker. `scripts/encode-astrocade-assets.py` writes ignored generated WebPs to `astrocade/assets/` and validates decoding, dimensions, exact alpha, bounded visible colour error and reduction for every file. Upload regenerated files through Astrocade's asset upload flow, replace the corresponding URLs in `astrocade/asset_map.json`, then run the export. A map update alone does not alter a hosted draft until its five files are saved. The roster expansion adds selected-only hero loading without resizing textures. The normal build retains original-five/world PNGs and uses new roster WebPs.
 
 ## Saves
 

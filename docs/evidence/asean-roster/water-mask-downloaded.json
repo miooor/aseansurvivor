@@ -1,0 +1,140 @@
+{
+  "date": "2026-11-16T04:17:24.311Z",
+  "result": "FAIL",
+  "checks": [
+    {
+      "name": "Actual game uses WebGL",
+      "pass": true
+    },
+    {
+      "name": "Johor creates terrain without unsupported mask warnings",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north water body clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "johor river-north first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 35.10002326965332,
+          "y": 360.0000829696655
+        },
+        "arrival": {
+          "x": 2075,
+          "y": -2900
+        },
+        "player": {
+          "x": 2075,
+          "y": -2900
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.78,
+          "scrollX": 1451,
+          "scrollY": -3260
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "errors": [],
+  "pixels": [
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "rounded corner",
+      "zoom": 0.78,
+      "point": {
+        "x": 1223,
+        "y": -2997
+      },
+      "waterPixel": [
+        69,
+        85,
+        50,
+        255
+      ],
+      "groundPixel": [
+        69,
+        85,
+        50,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "outside bank",
+      "zoom": 0.78,
+      "point": {
+        "x": 1180,
+        "y": -2900
+      },
+      "waterPixel": [
+        79,
+        100,
+        53,
+        255
+      ],
+      "groundPixel": [
+        79,
+        100,
+        53,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "water body",
+      "zoom": 0.78,
+      "point": {
+        "x": 1320,
+        "y": -2900
+      },
+      "waterPixel": [
+        25,
+        70,
+        60,
+        255
+      ],
+      "groundPixel": [
+        69,
+        88,
+        50,
+        255
+      ],
+      "difference": 72
+    }
+  ]
+}

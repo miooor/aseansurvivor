@@ -42,3 +42,5 @@ The first strict check reported six TS2345 errors because Phaser declares `fillP
 ## Remaining acceptance boundaries
 
 Final game JPEGs show the actual sprites, flags and signature HUD; early JPEGs show reports. They do not prove animation progression in every direction, every attack frame or the new instantaneous VFX in motion. Manual moving/attacking checks for all four, instantaneous geometry visual inspection, final narrow/mobile layouts, complete twelve-hero regression and exact Astrocade export/hosted verification belong to ticket #21. Local cultural/name review, natural full-run balance and physical-phone performance remain unverified. Existing dense Safari/mobile performance limitations are not claimed fixed.
+
+Integration follow-through is recorded in [twelve-hero acceptance](asean-roster.md), including the final directional/manual inspections, original regressions and retained rendering/layout reds. Physical-device, cultural and natural-run balance boundaries remain unverified.

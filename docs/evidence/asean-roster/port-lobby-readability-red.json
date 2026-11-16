@@ -1,0 +1,240 @@
+{
+  "date": "2026-11-16T04:30:01.968Z",
+  "result": "FAIL",
+  "outer": {
+    "width": 320,
+    "height": 800,
+    "scrollWidth": 320,
+    "scale": 0.4444444444444444
+  },
+  "labels": [
+    {
+      "text": "Ustaz Hakim",
+      "font": 22,
+      "width": 126.53125,
+      "visible": true,
+      "screenFont": 9.777777777777777
+    },
+    {
+      "text": "Mat Rempit \"Jet\"",
+      "font": 22,
+      "width": 169.484375,
+      "visible": true,
+      "screenFont": 9.777777777777777
+    },
+    {
+      "text": "Nok",
+      "font": 22,
+      "width": 40.53125,
+      "visible": true,
+      "screenFont": 9.777777777777777
+    },
+    {
+      "text": "Cô Lan",
+      "font": 22,
+      "width": 68.65625,
+      "visible": true,
+      "screenFont": 9.777777777777777
+    },
+    {
+      "text": "Sari",
+      "font": 22,
+      "width": 38.890625,
+      "visible": true,
+      "screenFont": 9.777777777777777
+    },
+    {
+      "text": "Asha Lim",
+      "font": 22,
+      "width": 92.578125,
+      "visible": true,
+      "screenFont": 9.777777777777777
+    },
+    {
+      "text": "Mira Reyes",
+      "font": 22,
+      "width": 109.296875,
+      "visible": true,
+      "screenFont": 9.777777777777777
+    },
+    {
+      "text": "Dani Rahman",
+      "font": 22,
+      "width": 135.109375,
+      "visible": true,
+      "screenFont": 9.777777777777777
+    },
+    {
+      "text": "Vanna",
+      "font": 22,
+      "width": 62.84375,
+      "visible": true,
+      "screenFont": 9.777777777777777
+    },
+    {
+      "text": "Keo",
+      "font": 22,
+      "width": 37.78125,
+      "visible": true,
+      "screenFont": 9.777777777777777
+    },
+    {
+      "text": "Nadi",
+      "font": 22,
+      "width": 47.046875,
+      "visible": true,
+      "screenFont": 9.777777777777777
+    },
+    {
+      "text": "Lia Soares",
+      "font": 22,
+      "width": 100.5625,
+      "visible": true,
+      "screenFont": 9.777777777777777
+    },
+    {
+      "text": "Ustaz Hakim",
+      "font": 22,
+      "width": 126.53125,
+      "visible": true,
+      "screenFont": 9.777777777777777
+    },
+    {
+      "text": "Nur",
+      "font": 11,
+      "width": 221.328125,
+      "visible": true,
+      "screenFont": 4.888888888888888
+    },
+    {
+      "text": "Auto bolt of light at the nearest ghost.",
+      "font": 11,
+      "width": 221.328125,
+      "visible": true,
+      "screenFont": 4.888888888888888
+    },
+    {
+      "text": "Cahaya Fajar",
+      "font": 11,
+      "width": 221.328125,
+      "visible": true,
+      "screenFont": 4.888888888888888
+    },
+    {
+      "text": "Cone of dawn light; heavy damage and burn.",
+      "font": 11,
+      "width": 221.328125,
+      "visible": true,
+      "screenFont": 4.888888888888888
+    },
+    {
+      "text": "Tasbih Ring",
+      "font": 11,
+      "width": 221.328125,
+      "visible": true,
+      "screenFont": 4.888888888888888
+    },
+    {
+      "text": "Prayer beads orbit you for 6 s.",
+      "font": 11,
+      "width": 221.328125,
+      "visible": true,
+      "screenFont": 4.888888888888888
+    },
+    {
+      "text": "Seruan",
+      "font": 11,
+      "width": 221.328125,
+      "visible": true,
+      "screenFont": 4.888888888888888
+    },
+    {
+      "text": "Wave that pushes ghosts back and stuns them.",
+      "font": 11,
+      "width": 221.328125,
+      "visible": true,
+      "screenFont": 4.888888888888888
+    },
+    {
+      "text": "Benteng Doa",
+      "font": 11,
+      "width": 221.328125,
+      "visible": true,
+      "screenFont": 4.888888888888888
+    },
+    {
+      "text": "Ultimate: ring of light that burns ghosts and heals you.",
+      "font": 11,
+      "width": 221.328125,
+      "visible": true,
+      "screenFont": 4.888888888888888
+    }
+  ],
+  "flags": [
+    {
+      "alt": "Malaysia flag",
+      "width": 20,
+      "screenWidth": 8.88888888888889
+    },
+    {
+      "alt": "Malaysia flag",
+      "width": 20,
+      "screenWidth": 8.88888888888889
+    },
+    {
+      "alt": "Thailand flag",
+      "width": 20,
+      "screenWidth": 8.88888888888889
+    },
+    {
+      "alt": "Vietnam flag",
+      "width": 20,
+      "screenWidth": 8.88888888888889
+    },
+    {
+      "alt": "Indonesia flag",
+      "width": 20,
+      "screenWidth": 8.88888888888889
+    },
+    {
+      "alt": "Singapore flag",
+      "width": 20,
+      "screenWidth": 8.88888888888889
+    },
+    {
+      "alt": "Philippines flag",
+      "width": 20,
+      "screenWidth": 8.88888888888889
+    },
+    {
+      "alt": "Brunei flag",
+      "width": 20,
+      "screenWidth": 8.88888888888889
+    },
+    {
+      "alt": "Cambodia flag",
+      "width": 20,
+      "screenWidth": 8.88888888888889
+    },
+    {
+      "alt": "Laos flag",
+      "width": 20,
+      "screenWidth": 8.88888888888889
+    },
+    {
+      "alt": "Myanmar flag",
+      "width": 20,
+      "screenWidth": 8.88888888888889
+    },
+    {
+      "alt": "Timor-Leste flag",
+      "width": 20,
+      "screenWidth": 8.88888888888889
+    },
+    {
+      "alt": "Malaysia flag",
+      "width": 20,
+      "screenWidth": 8.88888888888889
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-16T04:04:38.390116+00:00",
+  "baseline": "docs/evidence/gameplay-upgrade/regression-gameplay.json",
+  "current": "docs/evidence/asean-roster/ui-smoke-final-downloaded.json",
+  "baselineChecks": 574,
+  "currentChecks": 596,
+  "intentionalExpectationChange": "All five playable heroes load \u2192 All twelve playable heroes load",
+  "missingOriginalAssertions": {},
+  "additionalAssertions": {
+    "ustaz Start completes with selected artwork": 3,
+    "rempit Start completes with selected artwork": 3,
+    "nok Start completes with selected artwork": 3,
+    "lan Start completes with selected artwork": 3,
+    "sari Start completes with selected artwork": 10
+  },
+  "result": "PASS"
+}

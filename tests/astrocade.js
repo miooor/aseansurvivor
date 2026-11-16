@@ -6,7 +6,7 @@ if(mobile){
   const resize=()=>{const scale=Math.min(innerWidth/720,(innerHeight-90)/1280);frame.style.transform=`scale(${scale})`;document.querySelector('#stage').style.height=(1280*scale)+'px'};
   window.addEventListener('resize',resize);resize();
   frame.onload=()=>{document.querySelector('#begin').disabled=false};
-  document.querySelector('#begin').onclick=()=>frame.contentWindow.postMessage({type:'run-mobile-checks'},'*');
+  document.querySelector('#begin').onclick=()=>frame.contentWindow.postMessage({type:'run-mobile-checks',displayScale:frame.getBoundingClientRect().width/720},'*');
 }
 let evidence;
 document.querySelector('#run').onclick=async()=>{
@@ -14,7 +14,7 @@ document.querySelector('#run').onclick=async()=>{
   // Raw imports exercise the exact export; unique URLs bypass Vite's ignored-dist cache.
   const [html,code]=await Promise.all(['index.html','game.js'].map(async name=>
     (await import(/* @vite-ignore */ '../dist/astrocade/'+name+'?raw&v='+Date.now())).default));
-  const driver=mobile?'window.addEventListener("message",e=>{if(e.data?.type==="run-mobile-checks")('+mobileChecks.toString()+')()})':'('+checks.toString()+')()';
+  const driver=mobile?'window.addEventListener("message",e=>{if(e.data?.type==="run-mobile-checks")('+mobileChecks.toString()+')(e.data.displayScale)})':'('+checks.toString()+')()';
   frame.srcdoc=html.replace('<script src="./game.js"></script>',
     '<script>('+sandbox.toString()+')();</script><script>'+code.replaceAll('</script','<\\/script')+'</script><script>'+driver+';</script>');
 };
@@ -47,7 +47,7 @@ function sandbox(){
 // Failure cases: HUD under canvas, offscreen/overlapping controls, lost touch
 // movement while casting, scrolling instead of moving, missing textures, pause
 // continuing play, and a new format causing slow startup or rendering stalls.
-async function mobileChecks(){
+async function mobileChecks(displayScale=1){
   const report={date:new Date().toISOString(),checks:[],errors:[],result:'FAIL',environment:{width:innerWidth,height:innerHeight,userAgent:navigator.userAgent,cores:navigator.hardwareConcurrency}};
   const check=(name,pass)=>{report.checks.push({name,pass:!!pass})};
   const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
@@ -58,8 +58,39 @@ async function mobileChecks(){
     const started=performance.now();await window.run('play');await until(()=>!$('start').disabled);
     report.startupMs=Math.round(performance.now()-started);
     check('Export boots with all required artwork',!$('start').disabled);
+    report.lobbyReadability={displayScale,names:[],flags:[],captions:[]};
+    for(const el of document.querySelectorAll('#heroes .hero-name,#selectedHeroName .hero-name')){
+      const r=el.getBoundingClientRect(),font=parseFloat(getComputedStyle(el).fontSize),surface=el.closest('button.hero')||$('selectedHeroName'),b=surface.getBoundingClientRect();
+      report.lobbyReadability.names.push({name:el.textContent,font,screenFont:font*displayScale});
+      check(el.textContent+' lobby name has12px displayed text',font*displayScale>=12-.01);
+      check(el.textContent+' lobby name stays in its surface',r.left>=b.left-.1&&r.right<=b.right+.1&&r.left>=0&&r.right<=innerWidth+.1);
+    }
+    for(const flag of document.querySelectorAll('#heroes .hero-flag,#selectedHeroName .hero-flag')){
+      await flag.decode();const width=flag.getBoundingClientRect().width*displayScale;
+      report.lobbyReadability.flags.push({country:flag.alt,screenWidth:width});
+      check(flag.alt+' lobby flag decodes at16px displayed width',flag.naturalWidth>0&&width>=16-.01);
+    }
+    for(const detail of document.querySelectorAll('#heroSkills details'))if(!detail.open)detail.querySelector('summary').click();
+    for(const el of document.querySelectorAll('#heroSkills strong,#heroSkills p')){
+      const r=el.getBoundingClientRect(),font=parseFloat(getComputedStyle(el).fontSize);
+      report.lobbyReadability.captions.push({text:el.textContent,font,screenFont:font*displayScale});
+      check(el.textContent+' lobby caption has12px displayed text',font*displayScale>=12-.01);
+      check(el.textContent+' lobby caption wraps without horizontal overflow',r.left>=0&&r.right<=innerWidth+.1&&el.scrollWidth<=Math.ceil(r.width)+1);
+    }
+    const startBounds=rect('start');check('Scrollable lobby keeps Start accessible',startBounds.left>=0&&startBounds.right<=innerWidth&&startBounds.top>=0&&startBounds.bottom<=innerHeight);
     $('start').click();await wait(150);
     check('HUD above the battlefield',Number(getComputedStyle($('hud')).zIndex)>Number(getComputedStyle($('gameHost')).zIndex||0));
+    report.readability={displayScale,labels:[]};
+    for(const el of document.querySelectorAll('#hudHero .hero-name,#skills .nm,#signatureName,#signatureValue,#signatureHint')){
+      const r=el.getBoundingClientRect(),font=parseFloat(getComputedStyle(el).fontSize),button=el.closest('button'),b=button?.getBoundingClientRect();
+      report.readability.labels.push({text:el.textContent,font,screenFont:font*displayScale,rect:{x:r.x,y:r.y,width:r.width,height:r.height},scrollHeight:el.scrollHeight,clientHeight:el.clientHeight});
+      check(el.textContent+' has12px displayed text',font*displayScale>=12-.01);
+      if(b)check(el.textContent+' fits inside its skill button',r.left>=b.left&&r.right<=b.right+.1&&r.top>=b.top&&r.bottom<=b.bottom+.1&&el.scrollHeight<=Math.ceil(r.height)+1);
+    }
+    const flag=$('hudHero').querySelector('.hero-flag').getBoundingClientRect();
+    report.readability.flagScreenWidth=flag.width*displayScale;
+    check('HUD flag displays at least16px wide',flag.width*displayScale>=16-.01);
+
     check('Controls keep a larger compact-phone target',rect('pauseButton').width>=112&&rect('sk1').width>=112&&rect('sk1').height>=112);
     for(const id of ['pauseButton','skills','equipmentButton','worldMap']){
       const r=rect(id);check(id+' stays inside portrait frame',r.x>=0&&r.y>=0&&r.right<=innerWidth&&r.bottom<=innerHeight);
@@ -90,7 +121,7 @@ async function mobileChecks(){
     report.profile={durationMs:Math.round(elapsed),frames:intervals.length,meanFps:Number((intervals.length*1000/elapsed).toFixed(2)),medianMs:sorted[Math.floor(sorted.length*.5)],p95Ms:sorted[Math.floor(sorted.length*.95)],over50ms:intervals.filter(x=>x>50).length,gameTime:$('time').textContent,kills:$('kills').textContent};
     check('Game clock advances during mobile profile',$('time').textContent!==time);
     report.assets=[...new Set(performance.getEntriesByType('resource').map(x=>x.name).filter(x=>x.includes('cloudfront.net/images/')))];
-    check('All artwork uses the smaller WebP assets',report.assets.length===18&&report.assets.every(url=>url.endsWith('.webp')));
+    check('Selected-only startup artwork uses WebP assets',report.assets.length===11&&report.assets.every(url=>url.endsWith('.webp')));
     check('No runtime errors',window.testBridge.errors.length===0);
     if($('pause').hidden&&$('end').hidden&&$('levelup').hidden)$('pauseButton').click();
     report.result=report.checks.every(x=>x.pass)?'PASS':'FAIL';
@@ -110,14 +141,14 @@ async function checks(){
     check('Browser storage is blocked by the real sandbox',blocked);
     await window.run('play');await ready();
     check('Exactly one Phaser canvas',document.querySelectorAll('canvas#game').length===1);
-    check('All five heroes',document.querySelectorAll('.hero').length===5);
+    check('All twelve heroes',document.querySelectorAll('.hero').length===12);
     check('All six regions',document.querySelectorAll('.stg').length===6);
     check('Portrait viewport',innerWidth===720&&innerHeight===1280);
     check('Lobby button targets meet the portrait minimum',[...document.querySelectorAll('#menu button')].every(button=>{
       const rect=button.getBoundingClientRect();return rect.width>=96&&rect.height>=96;
     }));
-    for(const id of ['ustaz','rempit','nok','lan','sari']){
-      $('hero-'+id).click();$('start').click();await wait(120);
+    for(const id of ['ustaz','rempit','nok','lan','sari','asha','mira','dani','vanna','keo','nadi','lia']){
+      $('hero-'+id).click();await until(()=>!$('start').disabled);$('start').click();await wait(120);
       check(id+' starts',!$('hud').hidden&&$('menu').hidden);
       $('sk1').click();await until(()=>$('sk1').querySelector('.cdn').textContent!=='');check(id+' skill button casts',$('sk1').querySelector('.cdn').textContent!=='');
       check(id+' touch skill target',document.querySelector('#sk1').getBoundingClientRect().width>=96&&document.querySelector('#sk1').getBoundingClientRect().height>=96);
@@ -131,7 +162,7 @@ async function checks(){
       check(stage+' plays',!$('hud').hidden&&!$('worldMap').hidden);
       $('pauseButton').click();$('quit').click();
     }
-    $('hero-ustaz').click();$('start').click();await wait(100);
+    $('hero-ustaz').click();await until(()=>!$('start').disabled);$('start').click();await wait(100);
     let x=Number($('mapPlayer').getAttribute('cx'));
     window.dispatchEvent(new KeyboardEvent('keydown',{code:'KeyD'}));await wait(350);
     window.dispatchEvent(new KeyboardEvent('keyup',{code:'KeyD'}));

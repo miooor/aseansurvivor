@@ -1,0 +1,373 @@
+{
+  "date": "2026-11-16T03:22:50.070Z",
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3.1 Safari/605.1.15",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "lia actual lobby Start enters prepared run",
+      "pass": true
+    },
+    {
+      "name": "lia 320 selectedHeroName stays within viewport",
+      "pass": true,
+      "details": {
+        "rect": {
+          "x": 19.999998092651367,
+          "width": 279.9999694824219
+        },
+        "client": 280,
+        "scroll": 280
+      }
+    },
+    {
+      "name": "lia 320 heroSkills stays within viewport",
+      "pass": true,
+      "details": {
+        "rect": {
+          "x": 19.999998092651367,
+          "width": 279.9999694824219
+        },
+        "client": 280,
+        "scroll": 280
+      }
+    },
+    {
+      "name": "lia 320 hudHero readable in frame",
+      "pass": true,
+      "details": {
+        "font": "12.000001px",
+        "rect": {
+          "x": 58.124996185302734,
+          "y": 24.981616973876953,
+          "width": 74.99999237060547,
+          "height": 30.588233947753906
+        },
+        "scroll": 75,
+        "client": 75
+      }
+    },
+    {
+      "name": "lia 320 signatureName readable in frame",
+      "pass": true,
+      "details": {
+        "font": "10.588235px",
+        "rect": {
+          "x": 21.1580867767334,
+          "y": 113.91543579101562,
+          "width": 52.51837921142578,
+          "height": 42.35293960571289
+        },
+        "scroll": 52,
+        "client": 53
+      }
+    },
+    {
+      "name": "lia 320 signatureValue readable in frame",
+      "pass": true,
+      "details": {
+        "font": "10.588235px",
+        "rect": {
+          "x": 85.66175842285156,
+          "y": 113.91543579101562,
+          "width": 63.14337921142578,
+          "height": 42.35293960571289
+        },
+        "scroll": 63,
+        "client": 64
+      }
+    },
+    {
+      "name": "lia 320 sk1 readable in frame",
+      "pass": true,
+      "details": {
+        "font": "16px",
+        "rect": {
+          "x": 136.83822631835938,
+          "y": 580.4227294921875,
+          "width": 79.99999237060547,
+          "height": 93.98896789550781
+        },
+        "scroll": 77,
+        "client": 78
+      }
+    },
+    {
+      "name": "lia 320 sk2 readable in frame",
+      "pass": true,
+      "details": {
+        "font": "16px",
+        "rect": {
+          "x": 222.83087158203125,
+          "y": 580.4227294921875,
+          "width": 79.99999237060547,
+          "height": 93.98896789550781
+        },
+        "scroll": 77,
+        "client": 78
+      }
+    },
+    {
+      "name": "lia 320 sk3 readable in frame",
+      "pass": true,
+      "details": {
+        "font": "16px",
+        "rect": {
+          "x": 136.83822631835938,
+          "y": 680.4043579101562,
+          "width": 79.99999237060547,
+          "height": 93.98896789550781
+        },
+        "scroll": 77,
+        "client": 78
+      }
+    },
+    {
+      "name": "lia 320 sk4 readable in frame",
+      "pass": true,
+      "details": {
+        "font": "16px",
+        "rect": {
+          "x": 222.83087158203125,
+          "y": 680.4043579101562,
+          "width": 79.99999237060547,
+          "height": 93.98896789550781
+        },
+        "scroll": 77,
+        "client": 78
+      }
+    },
+    {
+      "name": "lia 320 hero-name minimum12px text",
+      "pass": true,
+      "details": {
+        "text": "Lia Soares",
+        "font": "12.000001px"
+      }
+    },
+    {
+      "name": "lia 320 nm minimum12px text",
+      "pass": true,
+      "details": {
+        "text": "Open a Path",
+        "font": "12.000001px"
+      }
+    },
+    {
+      "name": "lia 320 nm minimum12px text",
+      "pass": true,
+      "details": {
+        "text": "Carry Through",
+        "font": "12.000001px"
+      }
+    },
+    {
+      "name": "lia 320 nm minimum12px text",
+      "pass": true,
+      "details": {
+        "text": "Gather Supplies",
+        "font": "12.000001px"
+      }
+    },
+    {
+      "name": "lia 320 nm minimum12px text",
+      "pass": true,
+      "details": {
+        "text": "Delivery Circuit",
+        "font": "12.000001px"
+      }
+    },
+    {
+      "name": "lia 320 keyboard movement",
+      "pass": true
+    },
+    {
+      "name": "lia 320 simultaneous touch moves and casts F",
+      "pass": true
+    },
+    {
+      "name": "lia 390 selectedHeroName stays within viewport",
+      "pass": true,
+      "details": {
+        "rect": {
+          "x": 19.999998092651367,
+          "width": 350.5882263183594
+        },
+        "client": 351,
+        "scroll": 350
+      }
+    },
+    {
+      "name": "lia 390 heroSkills stays within viewport",
+      "pass": true,
+      "details": {
+        "rect": {
+          "x": 19.999998092651367,
+          "width": 350.5882263183594
+        },
+        "client": 351,
+        "scroll": 350
+      }
+    },
+    {
+      "name": "lia 390 hudHero readable in frame",
+      "pass": true,
+      "details": {
+        "font": "12.000001px",
+        "rect": {
+          "x": 58.124996185302734,
+          "y": 24.981616973876953,
+          "width": 74.99999237060547,
+          "height": 30.588233947753906
+        },
+        "scroll": 75,
+        "client": 75
+      }
+    },
+    {
+      "name": "lia 390 signatureName readable in frame",
+      "pass": true,
+      "details": {
+        "font": "10.588235px",
+        "rect": {
+          "x": 21.1580867767334,
+          "y": 103.84190368652344,
+          "width": 52.51837921142578,
+          "height": 42.35293960571289
+        },
+        "scroll": 52,
+        "client": 53
+      }
+    },
+    {
+      "name": "lia 390 signatureValue readable in frame",
+      "pass": true,
+      "details": {
+        "font": "10.588235px",
+        "rect": {
+          "x": 85.66175842285156,
+          "y": 103.84190368652344,
+          "width": 63.14337921142578,
+          "height": 42.35293960571289
+        },
+        "scroll": 63,
+        "client": 64
+      }
+    },
+    {
+      "name": "lia 390 sk1 readable in frame",
+      "pass": true,
+      "details": {
+        "font": "16px",
+        "rect": {
+          "x": 207.42645263671875,
+          "y": 580.4227294921875,
+          "width": 79.99999237060547,
+          "height": 93.98896789550781
+        },
+        "scroll": 77,
+        "client": 78
+      }
+    },
+    {
+      "name": "lia 390 sk2 readable in frame",
+      "pass": true,
+      "details": {
+        "font": "16px",
+        "rect": {
+          "x": 293.4190979003906,
+          "y": 580.4227294921875,
+          "width": 79.99999237060547,
+          "height": 93.98896789550781
+        },
+        "scroll": 77,
+        "client": 78
+      }
+    },
+    {
+      "name": "lia 390 sk3 readable in frame",
+      "pass": true,
+      "details": {
+        "font": "16px",
+        "rect": {
+          "x": 207.42645263671875,
+          "y": 680.4043579101562,
+          "width": 79.99999237060547,
+          "height": 93.98896789550781
+        },
+        "scroll": 77,
+        "client": 78
+      }
+    },
+    {
+      "name": "lia 390 sk4 readable in frame",
+      "pass": true,
+      "details": {
+        "font": "16px",
+        "rect": {
+          "x": 293.4190979003906,
+          "y": 680.4043579101562,
+          "width": 79.99999237060547,
+          "height": 93.98896789550781
+        },
+        "scroll": 77,
+        "client": 78
+      }
+    },
+    {
+      "name": "lia 390 hero-name minimum12px text",
+      "pass": true,
+      "details": {
+        "text": "Lia Soares",
+        "font": "12.000001px"
+      }
+    },
+    {
+      "name": "lia 390 nm minimum12px text",
+      "pass": true,
+      "details": {
+        "text": "Open a Path",
+        "font": "12.000001px"
+      }
+    },
+    {
+      "name": "lia 390 nm minimum12px text",
+      "pass": true,
+      "details": {
+        "text": "Carry Through",
+        "font": "12.000001px"
+      }
+    },
+    {
+      "name": "lia 390 nm minimum12px text",
+      "pass": true,
+      "details": {
+        "text": "Gather Supplies",
+        "font": "12.000001px"
+      }
+    },
+    {
+      "name": "lia 390 nm minimum12px text",
+      "pass": true,
+      "details": {
+        "text": "Delivery Circuit",
+        "font": "12.000001px"
+      }
+    },
+    {
+      "name": "lia 390 keyboard movement",
+      "pass": true
+    },
+    {
+      "name": "lia 390 simultaneous touch moves and casts F",
+      "pass": true
+    },
+    {
+      "name": "No browser runtime errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ],
+  "errors": []
+}
