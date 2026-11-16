@@ -1,0 +1,400 @@
+{
+  "date": "2026-11-16T06:31:45.279Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Relay reduces Q cooldown after Q/E chain",
+      "pass": true
+    },
+    {
+      "name": "Delayed Echo receives active Crosswind bonus once",
+      "pass": true,
+      "details": {
+        "hp": 9973.6
+      }
+    },
+    {
+      "name": "Chain retains three distinct equipped items",
+      "pass": true
+    },
+    {
+      "name": "Chain announces the successful Crosswind trigger",
+      "pass": true
+    },
+    {
+      "name": "No browser errors after combinedDamage",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Actual item support 1 kills owned elite and completes hunt",
+      "pass": true,
+      "details": {
+        "dead": true,
+        "status": "completed"
+      }
+    },
+    {
+      "name": "Repeated event updates keep exactly one consumed hunt reward",
+      "pass": true
+    },
+    {
+      "name": "Actual item support 2 kills owned elite and completes hunt",
+      "pass": true,
+      "details": {
+        "dead": true,
+        "status": "completed"
+      }
+    },
+    {
+      "name": "Repeated event updates keep exactly one consumed hunt reward",
+      "pass": true
+    },
+    {
+      "name": "Actual item support 4 kills owned elite and completes hunt",
+      "pass": true,
+      "details": {
+        "dead": true,
+        "status": "completed"
+      }
+    },
+    {
+      "name": "Repeated event updates keep exactly one consumed hunt reward",
+      "pass": true
+    },
+    {
+      "name": "Owned item-origin elite death completes event without Bounty heal/bonus charge",
+      "pass": true,
+      "details": {
+        "hp": 50,
+        "ult": 1,
+        "status": "completed"
+      }
+    },
+    {
+      "name": "No browser errors after supportCompletion",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Equipped rescue elite starts with charge warning",
+      "pass": true
+    },
+    {
+      "name": "lootPanel dialog paints above the active encounter prompt",
+      "pass": true,
+      "details": {
+        "topElement": "lootCurrent"
+      }
+    },
+    {
+      "name": "Inspection freezes both elite warning and item pulses",
+      "pass": true
+    },
+    {
+      "name": "pause dialog paints above the active encounter prompt",
+      "pass": true,
+      "details": {
+        "topElement": "pause"
+      }
+    },
+    {
+      "name": "Pause freezes combined event and build",
+      "pass": true
+    },
+    {
+      "name": "levelup dialog paints above the active encounter prompt",
+      "pass": true,
+      "details": {
+        "topElement": "DIV"
+      }
+    },
+    {
+      "name": "Upgrade overlay freezes combined event and build",
+      "pass": true
+    },
+    {
+      "name": "Active event blocks raid with equipped support",
+      "pass": true
+    },
+    {
+      "name": "Raid keeps equipment and removes abandoned event hazards and support queue",
+      "pass": true
+    },
+    {
+      "name": "Same build casts all support types inside raid",
+      "pass": true
+    },
+    {
+      "name": "Raid exit clears newly created support",
+      "pass": true
+    },
+    {
+      "name": "Menu clears old support/event actors",
+      "pass": true
+    },
+    {
+      "name": "Fresh run restores empty slots and available events",
+      "pass": true
+    },
+    {
+      "name": "No browser errors after orderAndCleanup",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Original three-slot bonuses remain additive at165 damage",
+      "pass": true
+    },
+    {
+      "name": "No browser errors after stacking",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "390px elite BURST/ENRAGED label keeps12CSSpx minimum text",
+      "pass": true,
+      "details": {
+        "screenFont": 14,
+        "zoom": 0.46799999999999997,
+        "labelScale": 2.1367521367521367,
+        "text": "Briarback · Thornbound Palm Stalker\nENRAGED · BURST WARNING"
+      }
+    },
+    {
+      "name": "No browser errors after readableMobile",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "320 pauseButton remains inside viewport with44px target",
+      "pass": true,
+      "details": {
+        "bounds": {
+          "x": 248.40625,
+          "y": 30,
+          "width": 45,
+          "height": 45
+        },
+        "viewport": [
+          320,
+          844
+        ]
+      }
+    },
+    {
+      "name": "320 equipmentButton remains inside viewport with44px target",
+      "pass": true,
+      "details": {
+        "bounds": {
+          "x": 10,
+          "y": 787,
+          "width": 94.28125,
+          "height": 45
+        },
+        "viewport": [
+          320,
+          844
+        ]
+      }
+    },
+    {
+      "name": "320 sk1 remains inside viewport with44px target",
+      "pass": true,
+      "details": {
+        "bounds": {
+          "x": 137,
+          "y": 581,
+          "width": 80,
+          "height": 94
+        },
+        "viewport": [
+          320,
+          844
+        ]
+      }
+    },
+    {
+      "name": "320 sk2 remains inside viewport with44px target",
+      "pass": true,
+      "details": {
+        "bounds": {
+          "x": 223,
+          "y": 581,
+          "width": 80,
+          "height": 94
+        },
+        "viewport": [
+          320,
+          844
+        ]
+      }
+    },
+    {
+      "name": "320 sk3 remains inside viewport with44px target",
+      "pass": true,
+      "details": {
+        "bounds": {
+          "x": 137,
+          "y": 681,
+          "width": 80,
+          "height": 94
+        },
+        "viewport": [
+          320,
+          844
+        ]
+      }
+    },
+    {
+      "name": "320 sk4 remains inside viewport with44px target",
+      "pass": true,
+      "details": {
+        "bounds": {
+          "x": 223,
+          "y": 681,
+          "width": 80,
+          "height": 94
+        },
+        "viewport": [
+          320,
+          844
+        ]
+      }
+    },
+    {
+      "name": "320 keyboard movement works with equipped build",
+      "pass": true
+    },
+    {
+      "name": "320 simultaneous touch movement and F creates Undertow",
+      "pass": true
+    },
+    {
+      "name": "390 pauseButton remains inside viewport with44px target",
+      "pass": true,
+      "details": {
+        "bounds": {
+          "x": 333,
+          "y": 30,
+          "width": 45,
+          "height": 45
+        },
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    },
+    {
+      "name": "390 equipmentButton remains inside viewport with44px target",
+      "pass": true,
+      "details": {
+        "bounds": {
+          "x": 10,
+          "y": 787,
+          "width": 94.28125,
+          "height": 45
+        },
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    },
+    {
+      "name": "390 sk1 remains inside viewport with44px target",
+      "pass": true,
+      "details": {
+        "bounds": {
+          "x": 207,
+          "y": 581,
+          "width": 80,
+          "height": 94
+        },
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    },
+    {
+      "name": "390 sk2 remains inside viewport with44px target",
+      "pass": true,
+      "details": {
+        "bounds": {
+          "x": 293,
+          "y": 581,
+          "width": 80,
+          "height": 94
+        },
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    },
+    {
+      "name": "390 sk3 remains inside viewport with44px target",
+      "pass": true,
+      "details": {
+        "bounds": {
+          "x": 207,
+          "y": 681,
+          "width": 80,
+          "height": 94
+        },
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    },
+    {
+      "name": "390 sk4 remains inside viewport with44px target",
+      "pass": true,
+      "details": {
+        "bounds": {
+          "x": 293,
+          "y": 681,
+          "width": 80,
+          "height": 94
+        },
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    },
+    {
+      "name": "390 keyboard movement works with equipped build",
+      "pass": true
+    },
+    {
+      "name": "390 simultaneous touch movement and F creates Undertow",
+      "pass": true
+    },
+    {
+      "name": "No browser errors after layouts",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Combined choices/controls preserve progression storage",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

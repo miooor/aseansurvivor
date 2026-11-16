@@ -14,7 +14,8 @@ export function installKeo(api){
   function sync(){if(lastRaid!==api.G.raid){clear();lastRaid=api.G.raid}}
   function status(){const g=api.G;if(!g.identity)return;const age=S.last===null?null:g.t-S.last,ready=age!==null&&age>=1.5-1e-8&&age<=2+1e-8;Object.assign(g.identity,{charge:age===null?0:Math.min(2,age),ready,detail:age===null?'Q/E/F · Start measure':age>2+1e-8?'Measure expired · Q/E/F':ready?'READY · '+Math.max(0,2-age).toFixed(2)+'s':'Release in '+Math.max(0,1.5-age).toFixed(2)+'s'})}
   function measure(){sync();const g=api.G,age=S.last===null?-1:g.t-S.last,mul=age>=1.5-1e-8&&age<=2+1e-8?1.4:1;S.last=g.t;status();return mul}
-  function bolt(a,r,slot,damage,x=api.G.p.x,y=api.G.p.y,speed=460,life=.8){api.G.projs.push({x,y,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed,r:6,dmg:damage*rm(r),life,pierce:1,hit:new Set(),hitOptions:{hero:'keo',slot},kind:'nur'})}
+  // E lands after successful-cast hooks; retain Drum eligibility from before its own trigger.
+  function bolt(a,r,slot,damage,x=api.G.p.x,y=api.G.p.y,speed=460,life=.8){api.G.projs.push({x,y,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed,r:6,dmg:damage*rm(r),life,pierce:1,hit:new Set(),hitOptions:{hero:'keo',slot,...(slot===2?{crosswindDrumActive:api.G.itemState.crosswindDrum?.until>api.G.t}: {})},kind:'nur'})}
   HOOKS.newGame.push(()=>{lastRaid=null;clear()});HOOKS.cleanup.push(clear);
   HOOKS.update.push(()=>{const g=api.G;if(g.hero.id!=='keo')return;sync();const due=S.pulses.filter(q=>g.t>=q.at-1e-8);S.pulses=S.pulses.filter(q=>!due.includes(q));for(const q of due){each(q.x,q.y,180,e=>hit(e,q.damage,{hero:'keo',slot:4}));ring(q.x,q.y,180,'#9edba6',.25);api.G.fx.at(-1).hero='keo'}status()});
   CAST.keo=[

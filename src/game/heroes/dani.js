@@ -1,3 +1,5 @@
+import {inDirectedLine} from '../geometry.js';
+
 export function installDani(api){
   const {HEROES,EVOS,CAST,AUTO,HOOKS,hit,each,nearest,aimDir,rm,ring:drawRing}=api,color='#89d5a1';
   const ring=(...args)=>{drawRing(...args);api.G.fx.at(-1).hero='dani'};
@@ -16,7 +18,7 @@ export function installDani(api){
   HOOKS.newGame.push(g=>{if(g.hero.id==='dani')g.roster.dani=fresh()});HOOKS.cleanup.push(()=>{if(api.G?.hero.id==='dani')clear()});
   CAST.dani=[
     r=>{sync();const g=api.G,p=g.p,target=nearest(p.x,p.y,320);if(!target)return false;const a=Math.atan2(target.y-p.y,target.x-p.x);g.projs.push({hero:'dani',kind:'nur',x:p.x,y:p.y,vx:Math.cos(a)*360,vy:Math.sin(a)*360,r:6,dmg:16*rm(r),life:320/360,pierce:1,hit:new Set(),hitOptions:{hero:'dani',slot:0}});},
-    r=>{sync();const p=api.G.p,[ax,ay]=aimDir();for(const e of api.G.enemies){if(e.dead)continue;const dx=e.x-p.x,dy=e.y-p.y,t=dx*ax+dy*ay;if(t>=-e.r&&t<=230+e.r&&Math.abs(dx*ay-dy*ax)<=22.5+e.r)hit(e,30*rm(r),{hero:'dani',slot:1,kb:[ax*220,ay*220]})}ring(p.x+ax*115,p.y+ay*115,24,color,.3);},
+    r=>{sync();const p=api.G.p,[ax,ay]=aimDir();for(const e of api.G.enemies){if(e.dead)continue;if(inDirectedLine(e,p.x,p.y,ax,ay,230,45))hit(e,30*rm(r),{hero:'dani',slot:1,kb:[ax*220,ay*220]})}ring(p.x+ax*115,p.y+ay*115,24,color,.3);},
     r=>{const s=sync(),g=api.G,p=g.p;s.anchor={x:p.x,y:p.y,until:g.t+6,ready:false,eligible:true};s.lastX=p.x;s.lastY=p.y;each(p.x,p.y,100,e=>hit(e,18*rm(r),{hero:'dani',slot:2}));ring(p.x,p.y,100,color,.4);status(s);},
     r=>{const s=sync(),g=api.G,p=g.p,a=s.anchor;if(a&&(p.dash||Math.hypot(p.x-s.lastX,p.y-s.lastY)>1e-5)){a.ready=false;a.eligible=false}
       each(p.x,p.y,130,e=>{hit(e,16*rm(r),{hero:'dani',slot:3});e.slowT=Math.max(e.slowT||0,1)});ring(p.x,p.y,130,color,.4);

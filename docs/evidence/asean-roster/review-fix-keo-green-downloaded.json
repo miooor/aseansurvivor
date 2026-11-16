@@ -1,0 +1,629 @@
+{
+  "date": "2026-11-16T06:17:02.069Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "F at inclusive1.5 measure deals25.2 with0.8 stun",
+      "pass": true,
+      "details": {
+        "hp": 9974.8,
+        "stun": 0.8
+      }
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "E at inclusive2.0 captures3 parallel19.6 bolts",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "R waits for0.3 seconds",
+      "pass": true
+    },
+    {
+      "name": "R has exactly4 fixed30 pulses through2.1 seconds",
+      "pass": true,
+      "details": {
+        "hp": 9880
+      }
+    },
+    {
+      "name": "R never starts measure",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Basic uses authored damage, speed, range and pierce",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Q has authored base28 damage",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Hero Q kill receives one kill and one ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "F damage does not stun bosses",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Measure F damage at1.499 seconds is18",
+      "pass": true,
+      "details": {
+        "hp": 9982
+      }
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Measure F damage at1.5 seconds is25.2",
+      "pass": true,
+      "details": {
+        "hp": 9974.8
+      }
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Measure F damage at2 seconds is25.2",
+      "pass": true,
+      "details": {
+        "hp": 9974.8
+      }
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Measure F damage at2.001 seconds is18",
+      "pass": true,
+      "details": {
+        "hp": 9982
+      }
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Rejected E preserves successful measure timestamp",
+      "pass": true
+    },
+    {
+      "name": "Rejected E does not consume ready timing bonus",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "Timed E leaves both item bolts at18 while hero bolts capture19.6",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "Timed E that first triggers Drum lands19.6, not23.52",
+      "pass": true,
+      "details": {
+        "hp": 9980.4
+      }
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "Timed E refreshing active Drum lands23.52",
+      "pass": true,
+      "details": {
+        "hp": 9976.48
+      }
+    },
+    {
+      "name": "Rejected Drum E preserves measure chain and audio",
+      "pass": true
+    },
+    {
+      "name": "Subsequent basic receives live Drum20percent without timing40percent",
+      "pass": true,
+      "details": {
+        "hp": 9983.2
+      }
+    },
+    {
+      "name": "Subsequent R pulse receives live Drum20percent without timing40percent",
+      "pass": true,
+      "details": {
+        "hp": 9964
+      }
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "Landed first-trigger E preserves quarryHammer and rank scaling",
+      "pass": true,
+      "details": {
+        "hp": 9976.48
+      }
+    },
+    {
+      "name": "Landed effects do not restart measure or cast audio quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "Landed first-trigger E preserves rank3 and rank scaling",
+      "pass": true,
+      "details": {
+        "hp": 9970.6
+      }
+    },
+    {
+      "name": "Landed effects do not restart measure or cast audio rank3",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "Landed first-trigger E preserves forkedConduit and rank scaling",
+      "pass": true,
+      "details": {
+        "hp": 9980.4
+      }
+    },
+    {
+      "name": "Landed effects do not restart measure or cast audio forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "Forked Conduit landed item gets ordinary live Drum only21.6",
+      "pass": true,
+      "details": {
+        "hp": 9978.4
+      }
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Rank3 F damage uses authored1.5 multiplier",
+      "pass": true,
+      "details": {
+        "hp": 9973
+      }
+    },
+    {
+      "name": "Rank3 cooldown uses ordinary0.86 factor",
+      "pass": true
+    },
+    {
+      "name": "Rejected cooldown cast spends nothing and emits no extra audio",
+      "pass": true
+    },
+    {
+      "name": "Actual pause freezes simulation and owned state",
+      "pass": true
+    },
+    {
+      "name": "Actual equipment inspection freezes simulation",
+      "pass": true
+    },
+    {
+      "name": "First upgrade opens real choices and freezes simulation",
+      "pass": true
+    },
+    {
+      "name": "Real first upgrade closes cleanly with EVOS metadata",
+      "pass": true
+    },
+    {
+      "name": "Integration controls preserve progression save",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Q adds exactly one22-damage item Echo",
+      "pass": true,
+      "details": {
+        "hp": 9978
+      }
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "E adds exactly2 ordinary18-damage item bolts",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers undertowThread",
+      "pass": true
+    },
+    {
+      "name": "F item field applies slow without extra damage",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers relayKnot",
+      "pass": true
+    },
+    {
+      "name": "Successful Q relays E/F cooldowns by1",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "Q/E Drum adds20percent to later item damage",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "R spends charge once with item equipped",
+      "pass": true
+    },
+    {
+      "name": "Lens adds its18 damage pulse at original position",
+      "pass": true,
+      "details": {
+        "hp": 9952
+      }
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers splitEmber",
+      "pass": true
+    },
+    {
+      "name": "Split Ember uses finite new-hero basic metadata",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Fixture creates a real owned ring and R spell",
+      "pass": true
+    },
+    {
+      "name": "First raid cast clears prior hero spell and ring records",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Hero has owned effects before raid",
+      "pass": true
+    },
+    {
+      "name": "First raid E clears old R effects and retains new cast",
+      "pass": true
+    },
+    {
+      "name": "Update preserves the first new-raid cast",
+      "pass": true
+    },
+    {
+      "name": "Real raid exit completes",
+      "pass": true
+    },
+    {
+      "name": "First overworld E survives exit sync",
+      "pass": true
+    },
+    {
+      "name": "Menu clears only owned state from the old run",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "New run resets signature and schedules",
+      "pass": true
+    },
+    {
+      "name": "Defeat clears owned state",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual AUTO control selects mode0",
+      "pass": true
+    },
+    {
+      "name": "AUTO mode0 casts exactly its allowed Q/E/F slots",
+      "pass": true,
+      "details": {
+        "cds": [
+          998.99,
+          5,
+          6,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Only ALL mode spends ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "Linked instant Keo casts get no timing multiplier",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual AUTO control selects mode1",
+      "pass": true
+    },
+    {
+      "name": "AUTO mode1 casts exactly its allowed Q/E/F slots",
+      "pass": true,
+      "details": {
+        "cds": [
+          998.99,
+          5,
+          0,
+          9,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Only ALL mode spends ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "Linked instant Keo casts get no timing multiplier",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual AUTO control selects mode2",
+      "pass": true
+    },
+    {
+      "name": "AUTO mode2 casts exactly its allowed Q/E/F slots",
+      "pass": true,
+      "details": {
+        "cds": [
+          998.99,
+          0,
+          6,
+          9,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Only ALL mode spends ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "Linked instant Keo casts get no timing multiplier",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual AUTO control selects mode3",
+      "pass": true
+    },
+    {
+      "name": "AUTO mode3 casts exactly its allowed Q/E/F slots",
+      "pass": true,
+      "details": {
+        "cds": [
+          998.99,
+          5,
+          6,
+          9,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Only ALL mode spends ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual AUTO control selects mode4",
+      "pass": true
+    },
+    {
+      "name": "AUTO mode4 casts exactly its allowed Q/E/F slots",
+      "pass": true,
+      "details": {
+        "cds": [
+          998.99,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Only ALL mode spends ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ]
+}

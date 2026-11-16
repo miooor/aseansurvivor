@@ -1,3 +1,5 @@
+import {inDirectedLine} from '../geometry.js';
+
 export function installMira(api){
   const {HEROES,EVOS,CAST,AUTO,HOOKS,hit,each,nearest,aimDir,rm,ring:drawRing,safePoint}=api,color='#67d8df';
   const ring=(...args)=>{drawRing(...args);api.G.fx.at(-1).hero='mira'};
@@ -14,7 +16,7 @@ export function installMira(api){
   function rebase(s){const p=api.G.p,q=s.endpoint;if(q){q.startX=p.x;q.startY=p.y;q.angle=Math.atan2(p.y-q.y,p.x-q.x);q.progress=0;q.ready=false}}
   function sync(){const g=api.G;if(!g||g.hero.id!=='mira')return null;let s=g.roster.mira;if(!s||s.raid!==g.raid){clear();s=g.roster.mira}if(s.endpoint&&s.endpoint.until<=g.t+1e-8)s.endpoint=null;if(s.release&&s.release.until<=g.t+1e-8)s.release=null;return s}
   function status(s){const g=api.G,q=s.endpoint;if(!g.identity)return;g.identity.charge=q?.progress||0;g.identity.ready=!!q?.ready;g.identity.detail=q?(q.ready?'90° READY':Math.floor(q.progress)+'° / 90°')+' · '+Math.max(0,q.until-g.t).toFixed(1)+'s':'Q · Set a tow endpoint'}
-  function line(x,y,ax,ay,len,width,damage,kb,slot){for(const e of api.G.enemies){if(e.dead)continue;const dx=e.x-x,dy=e.y-y,t=dx*ax+dy*ay;if(t>=-e.r&&t<=len+e.r&&Math.abs(dx*ay-dy*ax)<=width/2+e.r)hit(e,damage,{hero:'mira',slot,kb:[ax*kb,ay*kb]})}ring(x+ax*len/2,y+ay*len/2,24,color,.3)}
+  function line(x,y,ax,ay,len,width,damage,kb,slot){for(const e of api.G.enemies){if(e.dead)continue;if(inDirectedLine(e,x,y,ax,ay,len,width))hit(e,damage,{hero:'mira',slot,kb:[ax*kb,ay*kb]})}ring(x+ax*len/2,y+ay*len/2,24,color,.3)}
   function segment(e,a,b){const dx=b.x-a.x,dy=b.y-a.y,l=dx*dx+dy*dy,t=l?Math.max(0,Math.min(1,((e.x-a.x)*dx+(e.y-a.y)*dy)/l)):0;return Math.hypot(e.x-a.x-t*dx,e.y-a.y-t*dy)}
   function triangle(e,a,b,c){const cross=(p,q,r)=>(q.x-p.x)*(r.y-p.y)-(q.y-p.y)*(r.x-p.x),area=cross(a,b,c),u=cross(a,b,e),v=cross(b,c,e),w=cross(c,a,e);return Math.abs(area)>1e-8&&((u>=0&&v>=0&&w>=0)||(u<=0&&v<=0&&w<=0))||Math.min(segment(e,a,b),segment(e,b,c),segment(e,c,a))<=35+e.r}
   HOOKS.newGame.push(g=>{if(g.hero.id==='mira')g.roster.mira=fresh()});HOOKS.cleanup.push(()=>{if(api.G?.hero.id==='mira')clear()});

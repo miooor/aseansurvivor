@@ -1,3 +1,5 @@
+import {inDirectedLine} from '../geometry.js';
+
 export function installNadi(api){
   const {HEROES,EVOS,CAST,AUTO,HOOKS,aimDir,nearest,each,hit,rm,ring}=api;
   HEROES.nadi={id:'nadi',name:'Nadi',country:'Myanmar',role:'Lacquer workshop keeper · prepare and release',hp:115,speed:170,ultNeed:60,basicDamage:14,
@@ -19,7 +21,7 @@ export function installNadi(api){
   CAST.nadi=[
     r=>{sync();const g=api.G,p=g.p,e=nearest(p.x,p.y,340);if(!e)return false;const a=Math.atan2(e.y-p.y,e.x-p.x);g.projs.push({x:p.x,y:p.y,vx:Math.cos(a)*410,vy:Math.sin(a)*410,r:6,dmg:14*rm(r),life:340/410,pierce:1,hit:new Set(),hitOptions:{hero:'nadi',slot:0},kind:'nur'});},
     r=>{sync();const g=api.G,p=g.p,[ax,ay]=aimDir(),release=S.layers.filter(q=>g.t-q.at>=2-1e-8&&Math.hypot(q.x-p.x,q.y-p.y)<=400);S.layers=S.layers.filter(q=>!release.includes(q));
-      for(const e of g.enemies){if(e.dead)continue;const dx=e.x-p.x,dy=e.y-p.y,t=dx*ax+dy*ay;if(t>=-e.r&&t<=260+e.r&&Math.abs(dx*ay-dy*ax)<=16+e.r)hit(e,26*rm(r),{hero:'nadi',slot:1})}
+      for(const e of g.enemies){if(e.dead)continue;if(inDirectedLine(e,p.x,p.y,ax,ay,260,32))hit(e,26*rm(r),{hero:'nadi',slot:1})}
       for(const q of release){each(q.x,q.y,90,e=>hit(e,42*rm(r),{hero:'nadi',slot:1}));ring(q.x,q.y,90,'#e8a977',.4);api.G.fx.at(-1).hero='nadi'}status();},
     r=>{sync();const g=api.G,p=g.p,[ax,ay]=aimDir(),e=g.autoAim?nearest(p.x,p.y,240):null,q=api.safePoint(e?.x??p.x+ax*240,e?.y??p.y+ay*240,0);S.layers.push({...q,at:g.t});if(S.layers.length>3)S.layers.shift();each(q.x,q.y,90,e=>hit(e,10*rm(r),{hero:'nadi',slot:2}));status();},
     r=>{sync();each(api.G.p.x,api.G.p.y,150,e=>{hit(e,15*rm(r),{hero:'nadi',slot:3});e.slowT=Math.max(e.slowT||0,1.5)})},
