@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-16T02:06:44.059Z",
+  "result": "FAIL",
+  "error": "First raid cast clears prior hero spell and ring records",
+  "checks": [
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Fixture creates a real owned ring and R spell",
+      "pass": true
+    },
+    {
+      "name": "First raid cast clears prior hero spell and ring records",
+      "pass": false
+    }
+  ]
+}

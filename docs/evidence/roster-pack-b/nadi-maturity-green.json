@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-16T01:08:54.936Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "E arrival deals10 in radius90",
+      "pass": true,
+      "details": {
+        "hp": 9990
+      }
+    },
+    {
+      "name": "Waiting layer causes no periodic damage",
+      "pass": true
+    },
+    {
+      "name": "Q before2 seconds retains immature layer without burst",
+      "pass": true
+    },
+    {
+      "name": "Q at2 seconds releases mature layer for42",
+      "pass": true,
+      "details": {
+        "hp": 9948,
+        "time": 1.9999999999999998
+      }
+    },
+    {
+      "name": "Released layer cannot hit again",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ]
+}

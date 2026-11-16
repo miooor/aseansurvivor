@@ -1,0 +1,478 @@
+{
+  "date": "2026-11-16T02:02:10.225Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Moving through a mature returning basic grants one Spool",
+      "pass": true,
+      "details": {
+        "spools": 1
+      }
+    },
+    {
+      "name": "E spends Spool once for32 damage over150/.2 without extra immunity",
+      "pass": true,
+      "details": {
+        "dash": {
+          "vx": 750,
+          "vy": 0,
+          "t": 0.2,
+          "stopAtBlocker": true,
+          "dmg": 32,
+          "hit": {},
+          "hitOptions": {
+            "hero": "lia",
+            "slot": 2,
+            "kb": [
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Standing return grants no Spools",
+      "pass": true
+    },
+    {
+      "name": "R launches3 uncapturable22-damage larger shuttles",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Basic launches one authored9-damage shuttle",
+      "pass": true
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Q has authored base28 damage",
+      "pass": true
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Hero Q kill receives one kill and one ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Basic fire defers at2 live shuttles",
+      "pass": true
+    },
+    {
+      "name": "All uncaught shuttles expire by2 seconds with no Spools",
+      "pass": true
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "One basic hits the same enemy once per pass for18 total",
+      "pass": true,
+      "details": {
+        "hp": 9982
+      }
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Coordinate jump followed by input grants no synthetic catch",
+      "pass": true
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Moving into ultimate returns grants no Spools",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Rank3 F damage uses authored1.5 multiplier",
+      "pass": true,
+      "details": {
+        "hp": 9976
+      }
+    },
+    {
+      "name": "Rank3 cooldown uses ordinary0.86 factor",
+      "pass": true
+    },
+    {
+      "name": "Rejected cooldown cast spends nothing and emits no extra audio",
+      "pass": true
+    },
+    {
+      "name": "Actual pause freezes simulation and owned state",
+      "pass": true
+    },
+    {
+      "name": "Actual equipment inspection freezes simulation",
+      "pass": true
+    },
+    {
+      "name": "First upgrade opens real choices and freezes simulation",
+      "pass": true
+    },
+    {
+      "name": "Real first upgrade closes cleanly with EVOS metadata",
+      "pass": true
+    },
+    {
+      "name": "Integration controls preserve progression save",
+      "pass": true
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Q adds exactly one22-damage item Echo",
+      "pass": true,
+      "details": {
+        "hp": 9978
+      }
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "E adds exactly2 ordinary18-damage item bolts",
+      "pass": true
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers undertowThread",
+      "pass": true
+    },
+    {
+      "name": "F item field applies slow without extra damage",
+      "pass": true
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers relayKnot",
+      "pass": true
+    },
+    {
+      "name": "Successful Q relays E/F cooldowns by1",
+      "pass": true
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "Q/E Drum adds20percent to later item damage",
+      "pass": true
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "R spends charge once with item equipped",
+      "pass": true
+    },
+    {
+      "name": "Lens adds its18 damage pulse at original position",
+      "pass": true,
+      "details": {
+        "hp": 9982
+      }
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers splitEmber",
+      "pass": true
+    },
+    {
+      "name": "Split Ember uses finite new-hero basic metadata",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Hero has owned effects before raid",
+      "pass": true
+    },
+    {
+      "name": "First raid E clears old R effects and retains new cast",
+      "pass": true
+    },
+    {
+      "name": "Update preserves the first new-raid cast",
+      "pass": true
+    },
+    {
+      "name": "Real raid exit completes",
+      "pass": true
+    },
+    {
+      "name": "First overworld E survives exit sync",
+      "pass": true
+    },
+    {
+      "name": "Menu clears only owned state from the old run",
+      "pass": true
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "New run resets signature and schedules",
+      "pass": true
+    },
+    {
+      "name": "Defeat clears owned state",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real region provides a blocker with walkable approach",
+      "pass": true
+    },
+    {
+      "name": "Lia dash stays on the near side of the blocker",
+      "pass": true
+    },
+    {
+      "name": "Lia cancels dash immediately when blocked",
+      "pass": true
+    },
+    {
+      "name": "Clipped dash cannot damage beyond blocker",
+      "pass": true
+    },
+    {
+      "name": "Blocked dash is ineligible for normal movement",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual AUTO control selects mode0",
+      "pass": true
+    },
+    {
+      "name": "AUTO mode0 casts exactly its allowed Q/E/F slots",
+      "pass": true,
+      "details": {
+        "cds": [
+          998.99,
+          6,
+          7,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Only ALL mode spends ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual AUTO control selects mode1",
+      "pass": true
+    },
+    {
+      "name": "AUTO mode1 casts exactly its allowed Q/E/F slots",
+      "pass": true,
+      "details": {
+        "cds": [
+          998.99,
+          6,
+          0,
+          10,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Only ALL mode spends ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual AUTO control selects mode2",
+      "pass": true
+    },
+    {
+      "name": "AUTO mode2 casts exactly its allowed Q/E/F slots",
+      "pass": true,
+      "details": {
+        "cds": [
+          998.99,
+          0,
+          7,
+          10,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Only ALL mode spends ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual AUTO control selects mode3",
+      "pass": true
+    },
+    {
+      "name": "AUTO mode3 casts exactly its allowed Q/E/F slots",
+      "pass": true,
+      "details": {
+        "cds": [
+          998.99,
+          6,
+          7,
+          10,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Only ALL mode spends ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual AUTO control selects mode4",
+      "pass": true
+    },
+    {
+      "name": "AUTO mode4 casts exactly its allowed Q/E/F slots",
+      "pass": true,
+      "details": {
+        "cds": [
+          998.99,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Only ALL mode spends ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ]
+}

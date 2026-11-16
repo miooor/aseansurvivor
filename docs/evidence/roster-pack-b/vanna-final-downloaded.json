@@ -1,0 +1,442 @@
+{
+  "date": "2026-11-16T02:31:18.101Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "E arrival is22 inside the perpendicular strip",
+      "pass": true,
+      "details": {
+        "hp": 9978
+      }
+    },
+    {
+      "name": "Valid crossing detonates60 remotely and consumes strips",
+      "pass": true,
+      "details": {
+        "hp": 9918
+      }
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Q has exactly5 ticks14 and then expires",
+      "pass": true,
+      "details": {
+        "hp": 9930
+      }
+    },
+    {
+      "name": "Expired Q cannot tick a sixth time",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Basic uses authored damage, speed, range and pierce",
+      "pass": true
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Hero Q kill receives one kill and one ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Colocated parallel strips give no crossing",
+      "pass": true
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Edge overlap centroid is270 rather than either strip center",
+      "pass": true,
+      "details": {
+        "cross": {
+          "x": 270,
+          "y": 0
+        }
+      }
+    },
+    {
+      "name": "Crossing401 away preserves both strips",
+      "pass": true
+    },
+    {
+      "name": "Crossing exactly400 away consumes both strips",
+      "pass": true
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "R has exactly5 ticks20 at cast origin",
+      "pass": true
+    },
+    {
+      "name": "R cannot tick a sixth time",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Rank3 F damage uses authored1.5 multiplier",
+      "pass": true,
+      "details": {
+        "hp": 9970
+      }
+    },
+    {
+      "name": "Rank3 cooldown uses ordinary0.86 factor",
+      "pass": true
+    },
+    {
+      "name": "Rejected cooldown cast spends nothing and emits no extra audio",
+      "pass": true
+    },
+    {
+      "name": "Actual pause freezes simulation and owned state",
+      "pass": true
+    },
+    {
+      "name": "Actual equipment inspection freezes simulation",
+      "pass": true
+    },
+    {
+      "name": "First upgrade opens real choices and freezes simulation",
+      "pass": true
+    },
+    {
+      "name": "Real first upgrade closes cleanly with EVOS metadata",
+      "pass": true
+    },
+    {
+      "name": "Integration controls preserve progression save",
+      "pass": true
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Q adds exactly one22-damage item Echo",
+      "pass": true,
+      "details": {
+        "hp": 9978
+      }
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "E adds exactly2 ordinary18-damage item bolts",
+      "pass": true
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers undertowThread",
+      "pass": true
+    },
+    {
+      "name": "F item field applies slow without extra damage",
+      "pass": true
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers relayKnot",
+      "pass": true
+    },
+    {
+      "name": "Successful Q relays E/F cooldowns by1",
+      "pass": true
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "Q/E Drum adds20percent to later item damage",
+      "pass": true
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "R spends charge once with item equipped",
+      "pass": true
+    },
+    {
+      "name": "Lens adds its18 damage pulse at original position",
+      "pass": true,
+      "details": {
+        "hp": 9982
+      }
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers splitEmber",
+      "pass": true
+    },
+    {
+      "name": "Split Ember uses finite new-hero basic metadata",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Fixture creates a real owned ring and R spell",
+      "pass": true
+    },
+    {
+      "name": "First raid cast clears prior hero spell and ring records",
+      "pass": true
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Hero has owned effects before raid",
+      "pass": true
+    },
+    {
+      "name": "First raid E clears old R effects and retains new cast",
+      "pass": true
+    },
+    {
+      "name": "Update preserves the first new-raid cast",
+      "pass": true
+    },
+    {
+      "name": "Real raid exit completes",
+      "pass": true
+    },
+    {
+      "name": "First overworld E survives exit sync",
+      "pass": true
+    },
+    {
+      "name": "Menu clears only owned state from the old run",
+      "pass": true
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "New run resets signature and schedules",
+      "pass": true
+    },
+    {
+      "name": "Defeat clears owned state",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual AUTO control selects mode0",
+      "pass": true
+    },
+    {
+      "name": "AUTO mode0 casts exactly its allowed Q/E/F slots",
+      "pass": true,
+      "details": {
+        "cds": [
+          998.99,
+          6,
+          7,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Only ALL mode spends ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual AUTO control selects mode1",
+      "pass": true
+    },
+    {
+      "name": "AUTO mode1 casts exactly its allowed Q/E/F slots",
+      "pass": true,
+      "details": {
+        "cds": [
+          998.99,
+          6,
+          0,
+          10,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Only ALL mode spends ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual AUTO control selects mode2",
+      "pass": true
+    },
+    {
+      "name": "AUTO mode2 casts exactly its allowed Q/E/F slots",
+      "pass": true,
+      "details": {
+        "cds": [
+          998.99,
+          0,
+          7,
+          10,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Only ALL mode spends ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual AUTO control selects mode3",
+      "pass": true
+    },
+    {
+      "name": "AUTO mode3 casts exactly its allowed Q/E/F slots",
+      "pass": true,
+      "details": {
+        "cds": [
+          998.99,
+          6,
+          7,
+          10,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Only ALL mode spends ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "Vanna has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual AUTO control selects mode4",
+      "pass": true
+    },
+    {
+      "name": "AUTO mode4 casts exactly its allowed Q/E/F slots",
+      "pass": true,
+      "details": {
+        "cds": [
+          998.99,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Only ALL mode spends ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ]
+}

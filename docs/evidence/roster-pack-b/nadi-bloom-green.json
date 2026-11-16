@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-16T01:20:58.419Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "F deals15 with1.5 seconds slow in radius150",
+      "pass": true,
+      "details": {
+        "hp": 9985,
+        "slow": 1.5
+      }
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "R spends full60 charge exactly once",
+      "pass": true
+    },
+    {
+      "name": "R discs remain harmless before1 second",
+      "pass": true
+    },
+    {
+      "name": "R hits all3 captured discs for50 at1 second",
+      "pass": true,
+      "details": {
+        "hp": [
+          9950,
+          9950,
+          9950
+        ]
+      }
+    },
+    {
+      "name": "R discs strike once and never enter E pool",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ]
+}

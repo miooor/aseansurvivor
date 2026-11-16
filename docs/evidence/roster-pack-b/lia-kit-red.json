@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-16T01:25:42.619Z",
+  "result": "FAIL",
+  "error": "Lia has a real selectable roster card",
+  "checks": [
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": false
+    }
+  ]
+}

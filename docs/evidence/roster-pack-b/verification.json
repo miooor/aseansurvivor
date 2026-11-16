@@ -1,0 +1,114 @@
+{
+  "date": "2026-11-16T02:48:38.563855+00:00",
+  "sourceCommit": "af411cfcf9626cbcc3a358dac26c9ec8a4d13b2d",
+  "integratedParent": "e3f8a0b",
+  "result": "PASS",
+  "standardChecks": {
+    "lint": {
+      "exitCode": 0,
+      "command": "docker exec asean-roster-pack-b npm run lint -- tests/hero-vanna.js tests/hero-keo.js tests/hero-nadi.js tests/hero-lia.js",
+      "log": "lint-final.txt"
+    },
+    "typecheck": {
+      "exitCode": 0,
+      "command": "docker exec asean-roster-pack-b npm run typecheck",
+      "log": "typecheck-final.txt"
+    },
+    "build": {
+      "exitCode": 0,
+      "command": "docker exec asean-roster-pack-b npm run build",
+      "log": "build-final.txt",
+      "warnings": [
+        "Existing chunk larger than500kB diagnostic",
+        "Vite/Rolldown plugin callback timing diagnostic"
+      ]
+    }
+  },
+  "browserReports": {
+    "nadi": {
+      "date": "2026-11-16T02:36:40.358Z",
+      "result": "PASS",
+      "passed": 103,
+      "total": 103,
+      "displayed": "docs/evidence/roster-pack-b/nadi-final-green.json",
+      "downloaded": "docs/evidence/roster-pack-b/nadi-final-downloaded.json",
+      "jsonObjectsIdentical": true,
+      "rawBytesIdentical": false,
+      "rawDifference": "Trailing newline only",
+      "displayedSha256": "0d214e0b1a9ed1884e59b2808386c59e757c118eb97feb74eb90c0151b28dcf6",
+      "downloadedSha256": "c6c18036455fe2cdf901fdbf97cc23cc71eef5b115156a446e3b85a20eb003df",
+      "gameScreenshot": "docs/evidence/roster-pack-b/nadi-final-game.jpg",
+      "gameScreenshotSha256": "77d92572303df3e9cb761d95e8af20285d0dc0067f6057e5bfffbb3bfdeafac4"
+    },
+    "vanna": {
+      "date": "2026-11-16T02:31:18.101Z",
+      "result": "PASS",
+      "passed": 88,
+      "total": 88,
+      "displayed": "docs/evidence/roster-pack-b/vanna-final-green.json",
+      "downloaded": "docs/evidence/roster-pack-b/vanna-final-downloaded.json",
+      "jsonObjectsIdentical": true,
+      "rawBytesIdentical": false,
+      "rawDifference": "Trailing newline only",
+      "displayedSha256": "cafc4fbdb14dd28725ed6c2a650e68b5be19dab93b46bb1e38b703ea2725035f",
+      "downloadedSha256": "94e98bd68651bc0b5c38cdfa08a02ad0deaf639d47525b2f283cbec76b2bb8fe",
+      "gameScreenshot": "docs/evidence/roster-pack-b/vanna-final-game.jpg",
+      "gameScreenshotSha256": "997a12311b0ef9e0bfd3fda7b1b6206972569cf0dd3b41f4f20e0d9c9dfc6694"
+    },
+    "keo": {
+      "date": "2026-11-16T02:32:22.404Z",
+      "result": "PASS",
+      "passed": 102,
+      "total": 102,
+      "displayed": "docs/evidence/roster-pack-b/keo-final-green.json",
+      "downloaded": "docs/evidence/roster-pack-b/keo-final-downloaded.json",
+      "jsonObjectsIdentical": true,
+      "rawBytesIdentical": false,
+      "rawDifference": "Trailing newline only",
+      "displayedSha256": "e991ff577d3c95540d0825ae734d2f629c240d11b366aee47804264f26d8c0ce",
+      "downloadedSha256": "9ea555c8df6405e8245751e2579fa623d3eb145360eab146c43920e97b7ab659",
+      "gameScreenshot": "docs/evidence/roster-pack-b/keo-final-game.jpg",
+      "gameScreenshotSha256": "e256244dea62daaf743993e36e978ec1ec982c5a7f1a913b0aa43dea836d84f9"
+    },
+    "lia": {
+      "date": "2026-11-16T02:33:15.583Z",
+      "result": "PASS",
+      "passed": 109,
+      "total": 109,
+      "displayed": "docs/evidence/roster-pack-b/lia-final-green.json",
+      "downloaded": "docs/evidence/roster-pack-b/lia-final-downloaded.json",
+      "jsonObjectsIdentical": true,
+      "rawBytesIdentical": false,
+      "rawDifference": "Trailing newline only",
+      "displayedSha256": "93e0fb11cdeec6692b632b9483b9f6a9739354c7652187394badbce5df4df1d6",
+      "downloadedSha256": "c00aebd470706650ca955be2c7250b93ca6a737df5a028f7b243c18e318ba42d",
+      "gameScreenshot": "docs/evidence/roster-pack-b/lia-final-game.jpg",
+      "gameScreenshotSha256": "11b507577ee8b8f98c85a973e8b1f408ecba4712c26495daab68a1cd94a5a456"
+    }
+  },
+  "sourceSha256": {
+    "src/game/heroes/nadi.js": "2fcc9906f0821ccb0c05eb9fe4285f767acf480c985a05e687f8145ea1d12ed6",
+    "src/game/heroes/vanna.js": "08decd7348749fe834d7f9c52f4df5094bd624e1a9744c7b35359f8c17236f6f",
+    "src/game/heroes/keo.js": "1784b34bdc6ddf5d3d9132d1565c3c236f4674af0e6bc97fb9eb1c3f6edabfd4",
+    "src/game/heroes/lia.js": "9112d36da0ac3e490981daa2e99670d8e57bfa7dc7335f362527539f29a4e264",
+    "src/scenes/heroes/nadi.ts": "93cf5f6aa9706fca545bfbe6f7630616319c1820c2817db274d550e313ebe649",
+    "src/scenes/heroes/vanna.ts": "1abf9cd43767df0df75c896ade8b3040955a05fd21aee8f087fa04c3aa61d30f",
+    "src/scenes/heroes/keo.ts": "a8960f25d1234dd39cb783594d341fefd776b8a2310f7fcc252b1623a5ff8e96",
+    "src/scenes/heroes/lia.ts": "327be7104c93f2a2086c76cae23adcb4596113bd6dc73b615d120f3be2372c13",
+    "src/game/runtime.js": "95eb2c931561f111cecd4ee947254ab5978c99b95b35776e5edfed886ffd9df4",
+    "tests/hero-nadi.js": "42e0c25b1b8fa2a3676ea2cee9068c5ae8c9838883cb9bd6e45cf7623266d9ae",
+    "tests/hero-nadi.html": "59416c1c58b4ee63a2a09876249815bf21f4c2cf5038396631751d0dc8117c7b",
+    "tests/hero-vanna.js": "4f708846288191787102cfbb5e6918877b36ee92c4117b37b3112ab7fabe8f43",
+    "tests/hero-vanna.html": "d85258d1da31e5eb96296977f668a221a9997e38dc4e0510ff61af751f0aff54",
+    "tests/hero-keo.js": "a3de8dfb827fa3a7202d5da37d4ef5a49cb0d95a31b9c2f625d73c43b92642a1",
+    "tests/hero-keo.html": "2e814ff6282427e4cd5b09482f1bd9e0cd1ba71f6f4c4496899a6dcf1d077bc5",
+    "tests/hero-lia.js": "fa82516dc8870392fbba78cea4a27efb3373e30614470bc015145ac8c73ed9c5",
+    "tests/hero-lia.html": "63babcfe5e274d50a9f9b86869d01197ec26e9b0d0affd990b2d552062b8e806"
+  },
+  "qualification": [
+    "Nadi final browser rerun occurred after merge bdd489b; other final browser runs preceded the other-pack merge, which left these kits unchanged.",
+    "Subsequent af411cf changes only three renderer polygon API calls to explicit paths at identical coordinates after six TS2345 errors; the numeric simulation is unchanged. The failed typecheck log is retained.",
+    "Actual final game screenshots show sprites/flags/HUD. All-direction movement/attack animation, instantaneous VFX visual inspection, mobile and exact-export/hosted acceptance remain ticket21 scope.",
+    "No local cultural approval, natural full-run balance, physical-phone performance or FPS improvement is claimed."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-16T01:09:22.117Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real raid entry moves into arena coordinates",
+      "pass": true
+    },
+    {
+      "name": "First raid E remains in arena and deals arrival10 at its aim point",
+      "pass": true,
+      "details": {
+        "hp": 9990,
+        "player": {
+          "x": 60000,
+          "y": 60250
+        }
+      }
+    },
+    {
+      "name": "Raid layer center remains inside the circular arena",
+      "pass": true,
+      "details": {
+        "layers": [
+          {
+            "x": 60240,
+            "y": 60250,
+            "at": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ]
+}
