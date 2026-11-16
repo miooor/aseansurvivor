@@ -1,0 +1,183 @@
+{
+  "date": "2026-11-16T01:40:43.303Z",
+  "result": "FAIL",
+  "error": "Last Lantern runs after exhausted shield",
+  "checks": [
+    {
+      "name": "Dani has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Dani with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Safe Landing starts without anchor/shield",
+      "pass": true
+    },
+    {
+      "name": "Q deals30 with220 knockback",
+      "pass": true
+    },
+    {
+      "name": "E arrival deals18 and creates six-second anchor",
+      "pass": true
+    },
+    {
+      "name": "Base F works without readiness and preserves anchor",
+      "pass": true
+    },
+    {
+      "name": "Dani has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Dani with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "160 normal ground distance arms anchor",
+      "pass": true
+    },
+    {
+      "name": "Return F consumes anchor for35 pulse plus16 base",
+      "pass": true
+    },
+    {
+      "name": "Safe Landing grants30HP for4s without timed immunity",
+      "pass": true
+    },
+    {
+      "name": "Shield absorbs before HP",
+      "pass": true
+    },
+    {
+      "name": "Partial absorption applies remaining10HP",
+      "pass": true
+    },
+    {
+      "name": "Dani has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Dani with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Teleport cannot arm anchor",
+      "pass": true
+    },
+    {
+      "name": "F outside70 retains ready anchor and grants no shield",
+      "pass": true
+    },
+    {
+      "name": "Normal return grants shield",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 4 seconds",
+      "pass": true
+    },
+    {
+      "name": "Unused shield expires after4 seconds",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 6 seconds",
+      "pass": true
+    },
+    {
+      "name": "Anchor expires after6 seconds",
+      "pass": true
+    },
+    {
+      "name": "Dani has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Dani with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 0.95 seconds",
+      "pass": true
+    },
+    {
+      "name": "R has no early damage",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 0.05 seconds",
+      "pass": true
+    },
+    {
+      "name": "First R tick deals14",
+      "pass": true
+    },
+    {
+      "name": "R reduces incoming damage30 percent inside",
+      "pass": true
+    },
+    {
+      "name": "R offers no defence outside fixed field",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 5 seconds",
+      "pass": true
+    },
+    {
+      "name": "R has six ticks exactly",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 1 seconds",
+      "pass": true
+    },
+    {
+      "name": "R never ticks after expiry",
+      "pass": true
+    },
+    {
+      "name": "Dani has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Dani with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "160 normal ground distance arms anchor",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers reedGuard",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers lastLantern",
+      "pass": true
+    },
+    {
+      "name": "Mitigation precedes absorption (50 x0.7 x0.8 =28)",
+      "pass": true
+    },
+    {
+      "name": "Shield prevents premature Last Lantern on nonlethal remainder",
+      "pass": true
+    },
+    {
+      "name": "Last Lantern runs after exhausted shield",
+      "pass": false,
+      "details": {
+        "hp": 0.7999999999999989,
+        "used": true,
+        "shield": {
+          "hp": 0,
+          "until": 5.665833333333334
+        }
+      }
+    }
+  ]
+}

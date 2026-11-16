@@ -1,0 +1,52 @@
+
+> asean-survivor@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 56 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                13.43 kB │ gzip:   3.64 kB
+dist/assets/roster-portraits-BtRGIj34.webp    352.28 kB
+dist/assets/asha-motion-BkMx0Ynr.webp         546.92 kB
+dist/assets/vanna-motion-DyfrOphJ.webp        562.43 kB
+dist/assets/nadi-motion-C2iCkQ_G.webp         570.53 kB
+dist/assets/nadi-skills-SMu-sL8I.webp         592.25 kB
+dist/assets/vanna-skills-DzO2eVez.webp        594.70 kB
+dist/assets/keo-motion-DIGOldIp.webp          603.57 kB
+dist/assets/lia-motion-7iw15_gP.webp          621.60 kB
+dist/assets/asha-skills-BgT8Q13J.webp         646.02 kB
+dist/assets/keo-skills-DlSyfYux.webp          674.76 kB
+dist/assets/lia-skills-CzVMDL9x.webp          677.65 kB
+dist/assets/dani-skills-DLH2aa3A.webp         677.85 kB
+dist/assets/mira-skills-DR7a8Ytn.webp         687.70 kB
+dist/assets/mira-motion-r1JhadEY.webp         687.95 kB
+dist/assets/dani-motion-BYJa6qml.webp         718.56 kB
+dist/assets/nok-skills-R3xnMbok.png         1,894.66 kB
+dist/assets/ustaz-motion-BHy0_GUC.png       1,968.86 kB
+dist/assets/lan-skills-C03e_MBu.png         2,007.40 kB
+dist/assets/survivors-atlas-UfxVPYsY.png    2,086.40 kB
+dist/assets/heroes-directions-zO2x4d0z.png  2,131.98 kB
+dist/assets/kampung-buildings-VOzabNr6.png  2,320.85 kB
+dist/assets/sari-motion-R5HP2OaO.png        2,419.34 kB
+dist/assets/lan-motion-BlrlmJX8.png         2,502.49 kB
+dist/assets/rempit-skills-jlbBzBTI.png      2,515.16 kB
+dist/assets/nok-motion-ClMiC9_-.png         2,522.02 kB
+dist/assets/region-enemies-OxdCWRYI.png     2,585.41 kB
+dist/assets/kampung-night-DnBJOhok.png      2,675.65 kB
+dist/assets/rempit-motion-CBn8eEAd.png      2,683.44 kB
+dist/assets/sari-skills-C1KeVLB6.png        2,692.37 kB
+dist/assets/world-terrain-CmyMT0U0.png      2,823.07 kB
+dist/assets/ustaz-skills-mQdtWtJV.png       2,928.50 kB
+dist/assets/region-props-MN3XCP0A.png       2,995.50 kB
+dist/assets/world-ground-B0lUPITo.png       3,178.63 kB
+dist/assets/index-CK6jB_4Y.css                 23.90 kB │ gzip:   6.26 kB
+dist/assets/index-Btm0ysEh.js               1,612.58 kB │ gzip: 441.65 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 19.51s
