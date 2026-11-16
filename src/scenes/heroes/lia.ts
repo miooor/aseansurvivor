@@ -2,7 +2,7 @@ import type {SurvivalScene} from '../SurvivalScene';
 import type {RunState} from '../../game/runtime.js';
 export function drawLia(scene:SurvivalScene,g:RunState){
   for(const f of g.fx){if(f.kind!=='spell'||f.hero!=='lia')continue;const alpha=Math.min(1,f.life/.15);
-    if(f.slot===1){const a=f.a||0,dx=Math.cos(a),dy=Math.sin(a),points=[[0,-17.5],[240,-17.5],[240,17.5],[0,17.5]].map(([x,y])=>({x:f.x+x*dx-y*dy,y:f.y+x*dy+y*dx}));scene.floor.fillStyle(0xe8c979,.12*alpha).fillPoints(points,true);scene.effects.lineStyle(2,0xe8c979,alpha).strokePoints(points,true)}
+    if(f.slot===1){const a=f.a||0,dx=Math.cos(a),dy=Math.sin(a),points=[[0,-17.5],[240,-17.5],[240,17.5],[0,17.5]].map(([x,y])=>({x:f.x+x*dx-y*dy,y:f.y+x*dy+y*dx}));scene.floor.fillStyle(0xe8c979,.12*alpha).lineStyle(2,0xe8c979,alpha).beginPath().moveTo(points[0].x,points[0].y);for(const point of points.slice(1))scene.floor.lineTo(point.x,point.y);scene.floor.closePath().fillPath().strokePath()}
     if(f.slot===3)scene.circle(scene.floor,f.x,f.y,120,0xe8c979,.12*alpha,2);
   }
   const s=g.roster.lia as {shuttles:{x:number;y:number;age:number;ultimate:boolean;r:number}[];spools:number;wideUntil:number}|undefined;if(!s)return;
