@@ -1,3 +1,5 @@
+import {inDirectedLine} from '../geometry.js';
+
 export function installLia(api){
   const {HEROES,EVOS,CAST,AUTO,HOOKS,nearest,each,hit,rm,aimDir,ring}=api;
   HEROES.lia={id:'lia',name:'Lia Soares',country:'Timor-Leste',role:'Shuttle courier · moving return catches',hp:105,speed:195,ultNeed:50,basicDamage:9,
@@ -41,7 +43,7 @@ export function installLia(api){
   });
   CAST.lia=[
     r=>{sync();const p=api.G.p;if(S.shuttles.filter(q=>!q.ultimate).length>=2)return false;const e=nearest(p.x,p.y,350);if(!e)return false;launch(Math.atan2(e.y-p.y,e.x-p.x),r)},
-    r=>{sync();const g=api.G,p=g.p,[ax,ay]=aimDir();for(const e of g.enemies){if(e.dead)continue;const dx=e.x-p.x,dy=e.y-p.y,t=dx*ax+dy*ay;if(t>=-e.r&&t<=240+e.r&&Math.abs(dx*ay-dy*ax)<=17.5+e.r)hit(e,28*rm(r),{hero:'lia',slot:1,kb:[ax*160,ay*160]})}},
+    r=>{sync();const g=api.G,p=g.p,[ax,ay]=aimDir();for(const e of g.enemies){if(e.dead)continue;if(inDirectedLine(e,p.x,p.y,ax,ay,240,35))hit(e,28*rm(r),{hero:'lia',slot:1,kb:[ax*160,ay*160]})}},
     r=>{sync();const p=api.G.p,[ax,ay]=aimDir(),damage=(20+12*S.spools)*rm(r);S.spools=0;p.dash={vx:ax*750,vy:ay*750,t:.2,stopAtBlocker:true,dmg:damage,hit:new Set(),hitOptions:{hero:'lia',slot:2,kb:[0,0]}};status()},
     r=>{sync();const g=api.G;S.wideUntil=g.t+2;each(g.p.x,g.p.y,120,e=>{hit(e,16*rm(r),{hero:'lia',slot:3});e.slowT=Math.max(e.slowT||0,1)});status()},
     r=>{sync();S.shuttles=S.shuttles.filter(q=>!q.ultimate);const [ax,ay]=aimDir(),a=Math.atan2(ay,ax);for(const offset of [-25,0,25])launch(a+offset*Math.PI/180,r,true)}

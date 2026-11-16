@@ -1,0 +1,162 @@
+{
+  "date": "2026-11-16T06:55:34.104140+00:00",
+  "integrationBase": "b41284422d02d39d4d272c8675ca65cf2b8fbec2",
+  "sourceHashes": {
+    "src/content/equipment.js": "ee64ddc70348c4d2dcc69e8d7062357a808d5d8a2baba801ad1e4175b6907d22",
+    "src/game/geometry.js": "7d6289ce51f3934042fd1ebda87789600d6014bc9bc2d061321d440a75a5266f",
+    "src/game/heroes/keo.js": "fbc2e446c92a06e21baa2ddce3e513d5ef6b05ecd567ed4017b54e1995d786c1",
+    "src/game/heroes/mira.js": "66e37db95cc80a7a1d77fc7f4d4ba92566b0cbfd0e0f7dced4fc3cd481b5fa40",
+    "src/game/heroes/dani.js": "d51c152ce03a2fea5da844c95ac04e09c1cea4b0319be906e81ca7ec6ef727e2",
+    "src/game/heroes/nadi.js": "e5d8979b222e18f921e3ef404068a4c748f04d9ed19dc157a74808a9f744debf",
+    "src/game/heroes/lia.js": "3bd70f583834fee938217f585fe4f985bff514d9b7e7d5e4348c46e8b4b8beeb"
+  },
+  "sourceSetSha256": "d00c11ec19b782e5bcc409325d9d4512cbcdc71e6267823228de4a3da523c42d",
+  "checks": {
+    "containerExitCode": 0,
+    "standardLint": "PASS",
+    "fixtureLint": "PASS",
+    "typecheck": "PASS",
+    "normalBuild": "PASS",
+    "astrocadeBuild": "PASS",
+    "logSha256": "3ce5109ceaf5f1c10e6a55440dbc386bfe7606cdf70030d65105e0aac2382082"
+  },
+  "exports": {
+    "README.md": {
+      "bytes": 4985,
+      "sha256": "99a5669b3e430a544564e2486017060a71fb520d5266fb85df8396b34520cc99"
+    },
+    "asset_map.json": {
+      "bytes": 6171,
+      "sha256": "800d3edda71a041463e002d538d48328b5dffff53a5f0c7dae6e7712009e72ff"
+    },
+    "game.js": {
+      "bytes": 1634932,
+      "sha256": "9a512bfb27823d7ba684f66833831c2c5b12de4463c97e96e5b19b78b91960ef"
+    },
+    "game_config.json": {
+      "bytes": 3,
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+    },
+    "index.html": {
+      "bytes": 40726,
+      "sha256": "f49441bfb59d00d4ef999d6fa191f1aac7797f8a76e17a47eac37d301bf59ec2"
+    }
+  },
+  "assets": 33,
+  "postFixBrowserChecks": 2209,
+  "reports": {
+    "review-fix-dani-after-downloaded.json": {
+      "date": "2026-11-16T06:19:31.500Z",
+      "result": "PASS",
+      "checks": 121,
+      "downloadSha256": "7a185b0764830e1afcde8a4a61be72dc94e91432e06fd8d1ea721d7869b0ab94",
+      "displaySha256": "47ee56f674d5c2b74e0e2666daa4a052bcd84e07ee1ea68565a1c10e9d1c5fd0",
+      "equalParsed": true
+    },
+    "review-fix-dani-before-downloaded.json": {
+      "date": "2026-11-16T06:09:50.403Z",
+      "result": "PASS",
+      "checks": 121,
+      "downloadSha256": "306d1cf97b1fcd638ca26d74c8ac71931b08687eb44318ee8f181634e3b24c94",
+      "displaySha256": "5222055ad9cf09c135d9370ebc339bf98018eccdb350a2603bf742f17ea45277",
+      "equalParsed": true
+    },
+    "review-fix-equipment-downloaded.json": {
+      "date": "2026-11-16T06:37:23.660Z",
+      "result": "PASS",
+      "checks": 275,
+      "downloadSha256": "83eb4d5c72c64f0eb645daad5abdc8122d5aec6432b61ae3e3397bc571c0b9ea",
+      "displaySha256": "177ec5855be156d5dbbeba177c4e45f385bba51bade2d4a1686f220a7a71dccb",
+      "equalParsed": true
+    },
+    "review-fix-gameplay-upgrade-downloaded.json": {
+      "date": "2026-11-16T06:31:45.279Z",
+      "result": "PASS",
+      "checks": 49,
+      "downloadSha256": "ec21c06edbf05e2c4e3093895f7ffd0859e077bbe14a5f53e1e3757ba4c6bd62",
+      "displaySha256": "127050d6cf846dc038a1ee9989f16c84e2aa9bfba5733b41a19e21bdab68c671",
+      "equalParsed": true
+    },
+    "review-fix-keo-green-downloaded.json": {
+      "date": "2026-11-16T06:17:02.069Z",
+      "result": "PASS",
+      "checks": 127,
+      "downloadSha256": "b1390c9ec6787109235870a65ec807fabcaed21a246f197f949a4b866d7b8713",
+      "displaySha256": "fef0f9a8c4a1315dfeb38ef366d065815ce5d691116f2f783e571dd57ebaa29f",
+      "equalParsed": true
+    },
+    "review-fix-keo-red-downloaded.json": {
+      "date": "2026-11-16T06:02:19.920Z",
+      "result": "FAIL",
+      "checks": 26,
+      "downloadSha256": "9f66126fee87bf7630de328498355d9871c3143c91e2f5bb99d566d02d941700",
+      "displaySha256": "a95e73b8fae6169f7b3320b7b297cf3e52cd4f4910a5520509f807de8223cc79",
+      "equalParsed": true
+    },
+    "review-fix-lia-after-downloaded.json": {
+      "date": "2026-11-16T06:24:04.058Z",
+      "result": "PASS",
+      "checks": 118,
+      "downloadSha256": "a738d6c3b5a450a798ea7bfafcc53226ba6697247419e836e4c3585b1e2d8eca",
+      "displaySha256": "cf26f3ac34cd96f75baa6fe6929a1b392e316d7bacbc0e15178894cb32ce86fd",
+      "equalParsed": true
+    },
+    "review-fix-lia-before-downloaded.json": {
+      "date": "2026-11-16T06:14:40.901Z",
+      "result": "PASS",
+      "checks": 118,
+      "downloadSha256": "19e955dc0c5fd7cf964702cda8383696420f0e1f7029a043003b9b3d2167f9b4",
+      "displaySha256": "848b509b81e2fd2cab5332a759ce1973ca3bf17d33354bb3b764e501ec885d62",
+      "equalParsed": true
+    },
+    "review-fix-mira-after-downloaded.json": {
+      "date": "2026-11-16T06:18:27.897Z",
+      "result": "PASS",
+      "checks": 108,
+      "downloadSha256": "4ee301b1f3fb991da7a146f7070c5eccfaccb03d8bd111e0510a56605556d6e5",
+      "displaySha256": "e5749457b2857f8b5631dee1c4b1657987dab6e0ec5913c027d82fd7d6b560a0",
+      "equalParsed": true
+    },
+    "review-fix-mira-before-downloaded.json": {
+      "date": "2026-11-16T06:08:04.082Z",
+      "result": "PASS",
+      "checks": 108,
+      "downloadSha256": "ca2054bc5058339729c430cc8be529bef1fe931a635d08579e43d9aa018d5e2f",
+      "displaySha256": "50d5cccee9fac84f274564f03051bd54ab3a9c1201f5dee977864d165ec3ac28",
+      "equalParsed": true
+    },
+    "review-fix-nadi-after-downloaded.json": {
+      "date": "2026-11-16T06:21:31.757Z",
+      "result": "PASS",
+      "checks": 112,
+      "downloadSha256": "8a9fe28f6456350a540703d444adf3a0c1f52ee8d7a5690c816056ff6ebbf6c5",
+      "displaySha256": "8cf9f22f39c409462805b17e2891d4f98a28a4deca78bf764a8ee0d4955a815a",
+      "equalParsed": true
+    },
+    "review-fix-nadi-before-downloaded.json": {
+      "date": "2026-11-16T06:12:29.543Z",
+      "result": "PASS",
+      "checks": 112,
+      "downloadSha256": "cd5d33188fe6b358c5d868dda9e34d33eb08d213ca7fadaf5852293f3a0315c6",
+      "displaySha256": "d3a4c8f6f2eb0967dd10a1acd47c2fb0c389f0def6cd815811a9ccf99ce01ec0",
+      "equalParsed": true
+    },
+    "review-fix-roster-integration-downloaded.json": {
+      "date": "2026-11-16T06:26:55.467Z",
+      "result": "PASS",
+      "checks": 1299,
+      "downloadSha256": "321c9555b1bbcc8153decd1736f3e0eae1fa4b3f18e0dd1551026fe65363f886",
+      "displaySha256": "d390e1670438987345046c5c245628b27c6e16f9af408c7a357d33c6070bd3d1",
+      "equalParsed": true
+    }
+  },
+  "parentRemaining": [
+    "exact export sandbox111",
+    "exact export mobile91 at320 and390",
+    "private save/readback and hosted acceptance"
+  ],
+  "limitations": [
+    "No physical-phone, performance-fix, cultural or long-run balance claim",
+    "Copper Coil absent current18-item registry; no item added"
+  ]
+}

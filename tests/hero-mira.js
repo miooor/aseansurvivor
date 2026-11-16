@@ -33,5 +33,12 @@ async function controls(){
  const e=enemy(80,0);g.cds[0]=0;step();g.cds[0]=999;check('Basic cast uses actual hero motion attack row',g.identity.castSlot===0&&g.identity.castT>0&&Number(actor().frame.name)>=32);const basicFrame=actor().frame.name;step(2);check('Basic animation advances through real frames',actor().frame.name!==basicFrame);check('Basic deals authored hero damage or travels toward real enemy',e.hp<10000||g.projs.some(q=>q.hero==='mira'));
  g.paused=true;
 }
-async function run(){checks=[];let error;try{await loop();await clippedLine();await controls();const g=await start();arena();aim();cast(1);move('KeyW',20);move('KeyD',26);g.paused=true}catch(e){error=e.message}if(browserErrors.length){error=browserErrors.join('; ');checks.push({name:'No browser errors',pass:false})}const report={date:new Date().toISOString(),result:!error&&checks.length&&checks.every(c=>c.pass)?'PASS':'FAIL',error,checks};$('status').textContent=report.result+' · '+checks.filter(c=>c.pass).length+'/'+checks.length;$('report').textContent=JSON.stringify(report,null,2)}
+async function lineEdges(){
+  const g=await start();arena();aim();
+  const probes=[[-10,0,true],[230,0,true],[100,22.0,true],[-10.01,0,false],[230.01,0,false],[100,22.009999999999998,false]];
+  const enemies=probes.map(([x,y])=>{const e=enemy(x,y);e.r=10;return e});cast(1);
+  probes.forEach(([x,y,inside],i)=>check('mira Q inclusive radius10 edge '+x+','+y,enemies[i].hp===(inside?9976:10000),{hp:enemies[i].hp}));
+  check('mira Q preserves authored knockback',enemies[1].kvx===150&&enemies[1].kvy===0,{vx:enemies[1].kvx,vy:enemies[1].kvy});
+}
+async function run(){checks=[];let error;try{await lineEdges();await loop();await clippedLine();await controls();const g=await start();arena();aim();cast(1);move('KeyW',20);move('KeyD',26);g.paused=true}catch(e){error=e.message}if(browserErrors.length){error=browserErrors.join('; ');checks.push({name:'No browser errors',pass:false})}const report={date:new Date().toISOString(),result:!error&&checks.length&&checks.every(c=>c.pass)?'PASS':'FAIL',error,checks};$('status').textContent=report.result+' · '+checks.filter(c=>c.pass).length+'/'+checks.length;$('report').textContent=JSON.stringify(report,null,2)}
 $('run').onclick=run;$('download').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([$('report').textContent],{type:'application/json'}));a.download='hero-mira-report.json';a.click()};

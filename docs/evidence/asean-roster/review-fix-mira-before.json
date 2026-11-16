@@ -1,0 +1,495 @@
+{
+  "date": "2026-11-16T06:08:04.082Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Mira has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Mira with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "mira Q inclusive radius10 edge -10,0",
+      "pass": true,
+      "details": {
+        "hp": 9976
+      }
+    },
+    {
+      "name": "mira Q inclusive radius10 edge 230,0",
+      "pass": true,
+      "details": {
+        "hp": 9976
+      }
+    },
+    {
+      "name": "mira Q inclusive radius10 edge 100,22",
+      "pass": true,
+      "details": {
+        "hp": 9976
+      }
+    },
+    {
+      "name": "mira Q inclusive radius10 edge -10.01,0",
+      "pass": true,
+      "details": {
+        "hp": 10000
+      }
+    },
+    {
+      "name": "mira Q inclusive radius10 edge 230.01,0",
+      "pass": true,
+      "details": {
+        "hp": 10000
+      }
+    },
+    {
+      "name": "mira Q inclusive radius10 edge 100,22.009999999999998",
+      "pass": true,
+      "details": {
+        "hp": 10000
+      }
+    },
+    {
+      "name": "mira Q preserves authored knockback",
+      "pass": true,
+      "details": {
+        "vx": 150,
+        "vy": 0
+      }
+    },
+    {
+      "name": "Mira has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Mira with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Tow starts absent",
+      "pass": true
+    },
+    {
+      "name": "Base E deals28 without tension",
+      "pass": true
+    },
+    {
+      "name": "F opening push deals12",
+      "pass": true
+    },
+    {
+      "name": "Bracing reduces incoming damage25 percent",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 3 seconds",
+      "pass": true
+    },
+    {
+      "name": "Bracing ends after3s",
+      "pass": true
+    },
+    {
+      "name": "Mira has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Mira with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Q places one endpoint220 away for5s",
+      "pass": true,
+      "details": {
+        "endpoint": {
+          "x": 60220,
+          "y": 60250,
+          "startX": 60000,
+          "startY": 60250,
+          "angle": 3.141592653589793,
+          "progress": 21.921593847463413,
+          "ready": false,
+          "until": 5.07685
+        },
+        "player": {
+          "x": 60000,
+          "y": 60250
+        },
+        "time": 0.07685,
+        "angle": 0
+      }
+    },
+    {
+      "name": "Back-and-forth angular wiggles do not accumulate",
+      "pass": true
+    },
+    {
+      "name": "New Q resets angular progress",
+      "pass": true
+    },
+    {
+      "name": "Real normal movement earns absolute90-degree readiness",
+      "pass": true
+    },
+    {
+      "name": "Ready E damages real triangle once and excludes outside",
+      "pass": true
+    },
+    {
+      "name": "Ready E consumes endpoint",
+      "pass": true
+    },
+    {
+      "name": "Mira has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Mira with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Teleport clears and rebases tension",
+      "pass": true
+    },
+    {
+      "name": "Outside300 resets readiness",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 5 seconds",
+      "pass": true
+    },
+    {
+      "name": "Endpoint expires at5s",
+      "pass": true
+    },
+    {
+      "name": "Mira has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Mira with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 0.25 seconds",
+      "pass": true
+    },
+    {
+      "name": "R has no early line strike",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 0.05 seconds",
+      "pass": true
+    },
+    {
+      "name": "First fixed line at0.3 deals38",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 0.4 seconds",
+      "pass": true
+    },
+    {
+      "name": "Second line remains at captured origin",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 0.4 seconds",
+      "pass": true
+    },
+    {
+      "name": "Third line lands at1.1 only",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 1 seconds",
+      "pass": true
+    },
+    {
+      "name": "Three strikes leave no later damage",
+      "pass": true
+    },
+    {
+      "name": "Mira has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Mira with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Rank3 Q deals36 and normal cooldown5.16",
+      "pass": true
+    },
+    {
+      "name": "Rejected Q preserves endpoint and audio",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes endpoint timer",
+      "pass": true
+    },
+    {
+      "name": "First level-up is usable",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers splitEmber",
+      "pass": true
+    },
+    {
+      "name": "splitEmber equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "quarryHammer equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers riverNeedle",
+      "pass": true
+    },
+    {
+      "name": "riverNeedle equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers huntersEdge",
+      "pass": true
+    },
+    {
+      "name": "huntersEdge equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers echoLattice",
+      "pass": true
+    },
+    {
+      "name": "echoLattice equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "forkedConduit equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers stillwaterBeads",
+      "pass": true
+    },
+    {
+      "name": "stillwaterBeads equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers reedGuard",
+      "pass": true
+    },
+    {
+      "name": "reedGuard equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers lanternHeart",
+      "pass": true
+    },
+    {
+      "name": "lanternHeart equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers travellersKnot",
+      "pass": true
+    },
+    {
+      "name": "travellersKnot equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers undertowThread",
+      "pass": true
+    },
+    {
+      "name": "undertowThread equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers relayKnot",
+      "pass": true
+    },
+    {
+      "name": "relayKnot equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers thornEcho",
+      "pass": true
+    },
+    {
+      "name": "thornEcho equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers bountySeal",
+      "pass": true
+    },
+    {
+      "name": "bountySeal equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "aftershockBell equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers lastLantern",
+      "pass": true
+    },
+    {
+      "name": "lastLantern equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "crosswindDrum equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "monsoonLens equips for Mira",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers undertowThread",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "Supports remain item-owned and preserve existing tow without generation",
+      "pass": true
+    },
+    {
+      "name": "Raid transition clears old hero rings",
+      "pass": true
+    },
+    {
+      "name": "First raid Q keeps only new endpoint",
+      "pass": true
+    },
+    {
+      "name": "First exit Q keeps new outdoor endpoint",
+      "pass": true
+    },
+    {
+      "name": "Defeat clears all tow state",
+      "pass": true
+    },
+    {
+      "name": "Retry starts without endpoint",
+      "pass": true
+    },
+    {
+      "name": "Mira has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Mira with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Clipped Q damages its actual endpoint segment",
+      "pass": true,
+      "details": {
+        "endpoint": {
+          "x": 60482.26956545685,
+          "y": 60194.46353445841,
+          "startX": 60400,
+          "startY": 60250,
+          "angle": 2.5478053367185094,
+          "progress": 0,
+          "ready": false,
+          "until": 5.14032
+        },
+        "player": {
+          "x": 60400,
+          "y": 60250
+        },
+        "hp": 9976
+      }
+    },
+    {
+      "name": "Mira has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Mira with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Touch movement and keyboard casting work simultaneously",
+      "pass": true
+    },
+    {
+      "name": "Real selected skill artwork is rendered",
+      "pass": true
+    },
+    {
+      "name": "Paused skill frame and simulation remain frozen",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 0.8 seconds",
+      "pass": true
+    },
+    {
+      "name": "Basic cast uses actual hero motion attack row",
+      "pass": true
+    },
+    {
+      "name": "Basic animation advances through real frames",
+      "pass": true
+    },
+    {
+      "name": "Basic deals authored hero damage or travels toward real enemy",
+      "pass": true
+    },
+    {
+      "name": "Mira has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Mira with actual artwork",
+      "pass": true
+    }
+  ]
+}
