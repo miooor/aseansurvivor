@@ -32,8 +32,8 @@ async function run(mode: string){
   if(current!==generation)return;
   class DraftScene extends SurvivalScene {
     create(){
+      this.gameplayEnabled=mode!=='edit';
       super.create();
-      if(mode==='edit'){start.disabled=true;start.textContent='Edit preview — switch to Play';}
     }
   }
   game=new Phaser.Game({
