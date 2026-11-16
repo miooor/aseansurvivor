@@ -1,0 +1,862 @@
+{
+  "date": "2026-11-16T03:48:15.001Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "User gesture unlocks Web Audio",
+      "pass": true
+    },
+    {
+      "name": "ustaz-0 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "ustaz-1 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "ustaz-2 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "ustaz-3 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "ustaz-4 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "rempit-0 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "rempit-1 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "rempit-2 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "rempit-3 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "rempit-4 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "nok-0 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "nok-1 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "nok-2 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "nok-3 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "nok-4 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "lan-0 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "lan-1 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "lan-2 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "lan-3 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "lan-4 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "sari-0 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "sari-1 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "sari-2 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "sari-3 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "sari-4 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "asha-0 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "asha-1 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "asha-2 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "asha-3 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "asha-4 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "mira-0 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "mira-1 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "mira-2 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "mira-3 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "mira-4 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "dani-0 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "dani-1 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "dani-2 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "dani-3 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "dani-4 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "vanna-0 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "vanna-1 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "vanna-2 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "vanna-3 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "vanna-4 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "keo-0 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "keo-1 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "keo-2 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "keo-3 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "keo-4 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "nadi-0 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "nadi-1 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "nadi-2 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "nadi-3 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "nadi-4 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "lia-0 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "lia-1 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "lia-2 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "lia-3 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "lia-4 produces finite audible unclipped audio",
+      "pass": true
+    },
+    {
+      "name": "All 60 cues have distinct waveforms",
+      "pass": true
+    },
+    {
+      "name": "ustaz 1 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "ustaz 1 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "ustaz 1 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "ustaz 2 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "ustaz 2 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "ustaz 2 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "ustaz 3 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "ustaz 3 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "ustaz 3 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "ustaz 4 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "ustaz 4 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "ustaz 4 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "rempit 1 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "rempit 1 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "rempit 1 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "rempit 2 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "rempit 2 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "rempit 2 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "rempit 3 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "rempit 3 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "rempit 3 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "rempit 4 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "rempit 4 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "rempit 4 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "nok 1 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "nok 1 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "nok 1 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "nok 2 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "nok 2 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "nok 2 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "nok 3 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "nok 3 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "nok 3 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "nok 4 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "nok 4 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "nok 4 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "lan 1 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "lan 1 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "lan 1 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "lan 2 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "lan 2 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "lan 2 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "lan 3 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "lan 3 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "lan 3 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "lan 4 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "lan 4 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "lan 4 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "sari 1 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "sari 1 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "sari 1 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "sari 2 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "sari 2 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "sari 2 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "sari 3 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "sari 3 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "sari 3 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "sari 4 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "sari 4 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "sari 4 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "asha 1 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "asha 1 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "asha 1 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "asha 2 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "asha 2 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "asha 2 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "asha 3 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "asha 3 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "asha 3 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "asha 4 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "asha 4 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "asha 4 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "mira 1 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "mira 1 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "mira 1 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "mira 2 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "mira 2 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "mira 2 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "mira 3 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "mira 3 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "mira 3 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "mira 4 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "mira 4 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "mira 4 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "dani 1 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "dani 1 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "dani 1 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "dani 2 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "dani 2 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "dani 2 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "dani 3 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "dani 3 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "dani 3 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "dani 4 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "dani 4 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "dani 4 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "vanna 1 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "vanna 1 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "vanna 1 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "vanna 2 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "vanna 2 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "vanna 2 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "vanna 3 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "vanna 3 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "vanna 3 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "vanna 4 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "vanna 4 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "vanna 4 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "keo 1 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "keo 1 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "keo 1 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "keo 2 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "keo 2 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "keo 2 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "keo 3 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "keo 3 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "keo 3 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "keo 4 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "keo 4 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "keo 4 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "nadi 1 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "nadi 1 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "nadi 1 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "nadi 2 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "nadi 2 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "nadi 2 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "nadi 3 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "nadi 3 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "nadi 3 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "nadi 4 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "nadi 4 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "nadi 4 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "lia 1 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "lia 1 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "lia 1 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "lia 2 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "lia 2 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "lia 2 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "lia 3 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "lia 3 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "lia 3 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "lia 4 successful cast plays matching sound",
+      "pass": true
+    },
+    {
+      "name": "lia 4 rejected cast stays silent",
+      "pass": true
+    },
+    {
+      "name": "lia 4 pause clears sound tails",
+      "pass": true
+    },
+    {
+      "name": "Mute prevents new sound",
+      "pass": true
+    },
+    {
+      "name": "Concurrent sounds are bounded",
+      "pass": true
+    },
+    {
+      "name": "Ultimate survives ordinary voice stealing",
+      "pass": true
+    },
+    {
+      "name": "Returning to menu clears voices",
+      "pass": true
+    },
+    {
+      "name": "Upgrade selection stops audio",
+      "pass": true
+    },
+    {
+      "name": "Defeat stops audio",
+      "pass": true
+    },
+    {
+      "name": "Volume preference persists",
+      "pass": true
+    },
+    {
+      "name": "Zero volume stays silent",
+      "pass": true
+    }
+  ]
+}

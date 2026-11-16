@@ -1,0 +1,91 @@
+
+> asean-survivor@0.1.0 lint
+> eslint src tests/ui-smoke.js tests/astrocade.js tests/environment.js tests/event-combat.js tests/skill-equipment.js tests/gameplay-upgrade.js scripts/build-astrocade.mjs
+
+
+> asean-survivor@0.1.0 typecheck
+> tsc --noEmit
+
+
+> asean-survivor@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 56 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                13.43 kB │ gzip:   3.64 kB
+dist/assets/roster-portraits-BtRGIj34.webp    352.28 kB
+dist/assets/asha-motion-BkMx0Ynr.webp         546.92 kB
+dist/assets/vanna-motion-DyfrOphJ.webp        562.43 kB
+dist/assets/nadi-motion-C2iCkQ_G.webp         570.53 kB
+dist/assets/nadi-skills-SMu-sL8I.webp         592.25 kB
+dist/assets/vanna-skills-DzO2eVez.webp        594.70 kB
+dist/assets/keo-motion-DIGOldIp.webp          603.57 kB
+dist/assets/lia-motion-7iw15_gP.webp          621.60 kB
+dist/assets/asha-skills-BgT8Q13J.webp         646.02 kB
+dist/assets/keo-skills-DlSyfYux.webp          674.76 kB
+dist/assets/lia-skills-CzVMDL9x.webp          677.65 kB
+dist/assets/dani-skills-DLH2aa3A.webp         677.85 kB
+dist/assets/mira-skills-DR7a8Ytn.webp         687.70 kB
+dist/assets/mira-motion-r1JhadEY.webp         687.95 kB
+dist/assets/dani-motion-BYJa6qml.webp         718.56 kB
+dist/assets/nok-skills-R3xnMbok.png         1,894.66 kB
+dist/assets/ustaz-motion-BHy0_GUC.png       1,968.86 kB
+dist/assets/lan-skills-C03e_MBu.png         2,007.40 kB
+dist/assets/survivors-atlas-UfxVPYsY.png    2,086.40 kB
+dist/assets/heroes-directions-zO2x4d0z.png  2,131.98 kB
+dist/assets/kampung-buildings-VOzabNr6.png  2,320.85 kB
+dist/assets/sari-motion-R5HP2OaO.png        2,419.34 kB
+dist/assets/lan-motion-BlrlmJX8.png         2,502.49 kB
+dist/assets/rempit-skills-jlbBzBTI.png      2,515.16 kB
+dist/assets/nok-motion-ClMiC9_-.png         2,522.02 kB
+dist/assets/region-enemies-OxdCWRYI.png     2,585.41 kB
+dist/assets/kampung-night-DnBJOhok.png      2,675.65 kB
+dist/assets/rempit-motion-CBn8eEAd.png      2,683.44 kB
+dist/assets/sari-skills-C1KeVLB6.png        2,692.37 kB
+dist/assets/world-terrain-CmyMT0U0.png      2,823.07 kB
+dist/assets/ustaz-skills-mQdtWtJV.png       2,928.50 kB
+dist/assets/region-props-MN3XCP0A.png       2,995.50 kB
+dist/assets/world-ground-B0lUPITo.png       3,178.63 kB
+dist/assets/index-CN9E6kcn.css                 24.16 kB │ gzip:   6.33 kB
+dist/assets/index-Dyg0rBk_.js               1,632.22 kB │ gzip: 447.88 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1m 32s
+[33m[PLUGIN_TIMINGS] [0mJavaScript callbacks ran for 20.4s of this 92.7s build (22%).
+The slowest callbacks, timed inside each callback (the wait before a callback starts is excluded, the time it awaits is included):
+  - plugin vite:asset-import-meta-url transform (11%, 10.4s, 2 calls)
+  - plugin vite:build-html generateBundle (3%, 2.8s, 1 call)
+  - plugin vite:css transform (3%, 2.5s, 1 call)
+  - plugin vite:build-import-analysis generateBundle (2%, 1.4s, 1 call)
+  - plugin vite:prepare-out-dir renderStart (1%, 1.2s, 1 call)
+  - plugin vite:worker generateBundle (1%, 1.0s, 1 call)
+Additional callback time came from the callbacks below and from callbacks under 1s.
+1 callback is listed without a time. Its calls overlapped, so the time inside one call includes work from other calls. To find its cost, profile the build with `node --cpu-prof`:
+  - plugin vite:asset load (11 calls)
+See https://rolldown.rs/reference/InputOptions.checks#bundlertimings for more details.
+
+
+> asean-survivor@0.1.0 build:astrocade
+> tsc --noEmit && node scripts/build-astrocade.mjs
+
+vite v8.3.8 building client environment for astrocade...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/astrocade/game.js  1,634.99 kB │ gzip: 449.14 kB
+
+✓ built in 8.20s
+[33m[PLUGIN_TIMINGS] [0mJavaScript callbacks ran for 595ms of this 8.0s build (7%).
+1 callback is listed without a time. Its calls overlapped, so the time inside one call includes work from other calls. To find its cost, profile the build with `node --cpu-prof`:
+  - plugin vite:asset load (11 calls)
+See https://rolldown.rs/reference/InputOptions.checks#bundlertimings for more details.
+
+{"status":"dry-run-ready","directory":"dist/astrocade","files":5,"assets":33,"codeBytes":1634997,"htmlBytes":40726}

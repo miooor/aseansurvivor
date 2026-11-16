@@ -1,0 +1,4347 @@
+{
+  "date": "2026-11-16T04:15:48.244Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Actual game uses WebGL",
+      "pass": true
+    },
+    {
+      "name": "Johor creates terrain without unsupported mask warnings",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north water body clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "johor river-north first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 35.10002326965332,
+          "y": 360.0000829696655
+        },
+        "arrival": {
+          "x": 2075,
+          "y": -2900
+        },
+        "player": {
+          "x": 2075,
+          "y": -2900
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.78,
+          "scrollX": 1451,
+          "scrollY": -3260
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north rounded corner clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north outside bank clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north water body clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "johor river-north first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 24.56998062133789,
+          "y": 360.00001335144043
+        },
+        "arrival": {
+          "x": 2417.857142857143,
+          "y": -2900
+        },
+        "player": {
+          "x": 2417.857142857143,
+          "y": -2900
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.5459999999999999,
+          "scrollX": 1793.8571428571431,
+          "scrollY": -3260
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-middle rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-middle outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-middle water body clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "johor river-middle first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 35.10002326965332,
+          "y": 360.00000953674316
+        },
+        "arrival": {
+          "x": 2075,
+          "y": -760
+        },
+        "player": {
+          "x": 2075,
+          "y": -760
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.78,
+          "scrollX": 1451,
+          "scrollY": -1120
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-middle water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-middle rounded corner clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-middle outside bank clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-middle water body clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "johor river-middle first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 24.56998062133789,
+          "y": 360.0000190734863
+        },
+        "arrival": {
+          "x": 2417.857142857143,
+          "y": -760
+        },
+        "player": {
+          "x": 2417.857142857143,
+          "y": -760
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.5459999999999999,
+          "scrollX": 1793.8571428571431,
+          "scrollY": -1120
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-middle water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-south rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-south outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-south water body clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "johor river-south first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 35.10002326965332,
+          "y": 360.00001335144043
+        },
+        "arrival": {
+          "x": 2075,
+          "y": 1240
+        },
+        "player": {
+          "x": 2075,
+          "y": 1240
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.78,
+          "scrollX": 1451,
+          "scrollY": 880
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-south water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-south rounded corner clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-south outside bank clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-south water body clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "johor river-south first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 24.56998062133789,
+          "y": 359.99999618530273
+        },
+        "arrival": {
+          "x": 2417.857142857143,
+          "y": 1240
+        },
+        "player": {
+          "x": 2417.857142857143,
+          "y": 1240
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.5459999999999999,
+          "scrollX": 1793.8571428571431,
+          "scrollY": 880
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-south water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Melaka creates terrain without unsupported mask warnings",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-n rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-n outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-n water body clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-n first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 35.100029945373535,
+          "y": 360.0000829696655
+        },
+        "arrival": {
+          "x": 135,
+          "y": -2900
+        },
+        "player": {
+          "x": 135,
+          "y": -2900
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.78,
+          "scrollX": -489,
+          "scrollY": -3260
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-n water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-n rounded corner clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-n outside bank clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-n water body clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-n first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 24.56999397277832,
+          "y": 360.00001335144043
+        },
+        "arrival": {
+          "x": 477.8571428571431,
+          "y": -2900
+        },
+        "player": {
+          "x": 477.8571428571431,
+          "y": -2900
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.5459999999999999,
+          "scrollX": -146.14285714285688,
+          "scrollY": -3260
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-n water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-m rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-m outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-m water body clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-m first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 35.100029945373535,
+          "y": 360.00002431869507
+        },
+        "arrival": {
+          "x": 135,
+          "y": -850
+        },
+        "player": {
+          "x": 135,
+          "y": -850
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.78,
+          "scrollX": -489,
+          "scrollY": -1210
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-m water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-m rounded corner clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-m outside bank clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-m water body clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-m first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 24.56999397277832,
+          "y": 359.9999723434448
+        },
+        "arrival": {
+          "x": 477.8571428571431,
+          "y": -850
+        },
+        "player": {
+          "x": 477.8571428571431,
+          "y": -850
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.5459999999999999,
+          "scrollX": -146.14285714285688,
+          "scrollY": -1210
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-m water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-s rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-s outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-s water body clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-s first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 35.100029945373535,
+          "y": 360.00001668930054
+        },
+        "arrival": {
+          "x": 135,
+          "y": 1550
+        },
+        "player": {
+          "x": 135,
+          "y": 1550
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.78,
+          "scrollX": -489,
+          "scrollY": 1190
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-s water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-s rounded corner clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-s outside bank clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-s water body clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-s first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 24.56999397277832,
+          "y": 359.9999876022339
+        },
+        "arrival": {
+          "x": 477.8571428571431,
+          "y": 1550
+        },
+        "player": {
+          "x": 477.8571428571431,
+          "y": 1550
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.5459999999999999,
+          "scrollX": -146.14285714285688,
+          "scrollY": 1190
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "melaka canal-s water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Perak creates terrain without unsupported mask warnings",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "perak pit-a rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "perak pit-a outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "perak pit-a water body clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "perak pit-a first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 1212.9000072479248,
+          "y": 360.00003147125244
+        },
+        "arrival": {
+          "x": -155,
+          "y": -1100
+        },
+        "player": {
+          "x": -155,
+          "y": -1100
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.78,
+          "scrollX": -779,
+          "scrollY": -1460
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "perak pit-a water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "perak pit-a rounded corner clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "perak pit-a outside bank clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "perak pit-a water body clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "perak pit-a first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 24.570003509521484,
+          "y": 359.9999713897705
+        },
+        "arrival": {
+          "x": 1697.8571428571431,
+          "y": -1100
+        },
+        "player": {
+          "x": 1697.8571428571431,
+          "y": -1100
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.5459999999999999,
+          "scrollX": 1073.8571428571431,
+          "scrollY": -1460
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "perak pit-a water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "perak pit-b rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "perak pit-b outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "perak pit-b water body clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "perak pit-b first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 35.10001850128174,
+          "y": 359.99999809265137
+        },
+        "arrival": {
+          "x": -745,
+          "y": 600
+        },
+        "player": {
+          "x": -745,
+          "y": 600
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.78,
+          "scrollX": -1369,
+          "scrollY": 240
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "perak pit-b water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "perak pit-b rounded corner clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "perak pit-b outside bank clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "perak pit-b water body clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "perak pit-b first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 24.57000160217285,
+          "y": 360
+        },
+        "arrival": {
+          "x": -402.1428571428569,
+          "y": 600
+        },
+        "player": {
+          "x": -402.1428571428569,
+          "y": 600
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.5459999999999999,
+          "scrollX": -1026.1428571428569,
+          "scrollY": 240
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "perak pit-b water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur creates terrain without unsupported mask warnings",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang creates terrain without unsupported mask warnings",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-n rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-n outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-n water body clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "penang sea-n first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 1212.8999652862549,
+          "y": 360.0000829696655
+        },
+        "arrival": {
+          "x": 245,
+          "y": -2900
+        },
+        "player": {
+          "x": 245,
+          "y": -2900
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.78,
+          "scrollX": -379,
+          "scrollY": -3260
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-n water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-n rounded corner clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-n outside bank clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-n water body clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "penang sea-n first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 1223.4299964904785,
+          "y": 360.00001335144043
+        },
+        "arrival": {
+          "x": -97.85714285714312,
+          "y": -2900
+        },
+        "player": {
+          "x": -97.85714285714312,
+          "y": -2900
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.5459999999999999,
+          "scrollX": -721.8571428571431,
+          "scrollY": -3260
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-n water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-m rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-m outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-m water body clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "penang sea-m first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 1212.8999652862549,
+          "y": 360.00003004074097
+        },
+        "arrival": {
+          "x": 245,
+          "y": -1050
+        },
+        "player": {
+          "x": 245,
+          "y": -1050
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.78,
+          "scrollX": -379,
+          "scrollY": -1410
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-m water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-m rounded corner clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-m outside bank clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-m water body clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "penang sea-m first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 1223.4299964904785,
+          "y": 359.9999837875366
+        },
+        "arrival": {
+          "x": -97.85714285714312,
+          "y": -1050
+        },
+        "player": {
+          "x": -97.85714285714312,
+          "y": -1050
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.5459999999999999,
+          "scrollX": -721.8571428571431,
+          "scrollY": -1410
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-m water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-s rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-s outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-s water body clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "penang sea-s first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 1212.8999652862549,
+          "y": 360.00001096725464
+        },
+        "arrival": {
+          "x": 245,
+          "y": 1750
+        },
+        "player": {
+          "x": 245,
+          "y": 1750
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.78,
+          "scrollX": -379,
+          "scrollY": 1390
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-s water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-s rounded corner clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-s outside bank clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-s water body clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "penang sea-s first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 1223.4299964904785,
+          "y": 360.0000066757202
+        },
+        "arrival": {
+          "x": -97.85714285714312,
+          "y": 1750
+        },
+        "player": {
+          "x": -97.85714285714312,
+          "y": 1750
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.5459999999999999,
+          "scrollX": -721.8571428571431,
+          "scrollY": 1390
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "penang sea-s water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Kedah creates terrain without unsupported mask warnings",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-w rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-w outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-w water body clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-w first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 624.0000829696655,
+          "y": 35.100040435791016
+        },
+        "arrival": {
+          "x": -2900,
+          "y": 1136.5384615384614
+        },
+        "player": {
+          "x": -2900,
+          "y": 1136.5384615384614
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.78,
+          "scrollX": -3524,
+          "scrollY": 776.5384615384614
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-w water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-w rounded corner clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-w outside bank clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-w water body clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-w first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 24.56995964050293,
+          "y": 360
+        },
+        "arrival": {
+          "x": -1802.1428571428569,
+          "y": 720
+        },
+        "player": {
+          "x": -1802.1428571428569,
+          "y": 720
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.5459999999999999,
+          "scrollX": -2426.142857142857,
+          "scrollY": 360
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-w water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-mid rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-mid outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-mid water body clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-mid first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 624.0000400543213,
+          "y": 35.100040435791016
+        },
+        "arrival": {
+          "x": -1400,
+          "y": 1136.5384615384614
+        },
+        "player": {
+          "x": -1400,
+          "y": 1136.5384615384614
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.78,
+          "scrollX": -2024,
+          "scrollY": 776.5384615384614
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-mid water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-mid rounded corner clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-mid outside bank clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-mid water body clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-mid first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 624.0000190734863,
+          "y": 24.569984436035156
+        },
+        "arrival": {
+          "x": -1400,
+          "y": 1334.3406593406594
+        },
+        "player": {
+          "x": -1400,
+          "y": 1334.3406593406594
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.5459999999999999,
+          "scrollX": -2024,
+          "scrollY": 974.3406593406594
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-mid water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-e rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-e outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-e water body clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-e first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 624.0000095367432,
+          "y": 35.100040435791016
+        },
+        "arrival": {
+          "x": 1800,
+          "y": 1136.5384615384614
+        },
+        "player": {
+          "x": 1800,
+          "y": 1136.5384615384614
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.78,
+          "scrollX": 1176,
+          "scrollY": 776.5384615384614
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-e water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-e rounded corner clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-e outside bank clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-e water body clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-e first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 623.9999885559082,
+          "y": 24.569984436035156
+        },
+        "arrival": {
+          "x": 1800,
+          "y": 1334.3406593406594
+        },
+        "player": {
+          "x": 1800,
+          "y": 1334.3406593406594
+        },
+        "camera": {
+          "width": 1248,
+          "height": 720,
+          "zoom": 0.5459999999999999,
+          "scrollX": 1176,
+          "scrollY": 974.3406593406594
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "kedah canal-e water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Raid suppresses all outdoor water and minimap",
+      "pass": true
+    },
+    {
+      "name": "Real Play again retains every clipped surface and restores visible water on arrival",
+      "pass": true
+    },
+    {
+      "name": "Real Choose hero hides water and minimap",
+      "pass": true
+    },
+    {
+      "name": "Repeated six-world cycles do not accumulate TextureManager resources",
+      "pass": true
+    },
+    {
+      "name": "World, raid, retry and menu transitions emit no WebGL warnings",
+      "pass": true
+    }
+  ],
+  "warnings": [],
+  "errors": [],
+  "pixels": [
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "rounded corner",
+      "zoom": 0.78,
+      "point": {
+        "x": 1223,
+        "y": -2997
+      },
+      "waterPixel": [
+        69,
+        85,
+        50,
+        255
+      ],
+      "groundPixel": [
+        69,
+        85,
+        50,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "outside bank",
+      "zoom": 0.78,
+      "point": {
+        "x": 1180,
+        "y": -2900
+      },
+      "waterPixel": [
+        79,
+        100,
+        53,
+        255
+      ],
+      "groundPixel": [
+        79,
+        100,
+        53,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "water body",
+      "zoom": 0.78,
+      "point": {
+        "x": 1320,
+        "y": -2900
+      },
+      "waterPixel": [
+        25,
+        70,
+        60,
+        255
+      ],
+      "groundPixel": [
+        69,
+        88,
+        50,
+        255
+      ],
+      "difference": 72
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "viewport edge body",
+      "zoom": 0.78,
+      "point": {
+        "x": 1320,
+        "y": -2900
+      },
+      "waterPixel": [
+        29,
+        72,
+        63,
+        255
+      ],
+      "groundPixel": [
+        73,
+        91,
+        53,
+        255
+      ],
+      "difference": 73
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "rounded corner",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1223,
+        "y": -2997
+      },
+      "waterPixel": [
+        69,
+        86,
+        50,
+        255
+      ],
+      "groundPixel": [
+        69,
+        86,
+        50,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "outside bank",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1180,
+        "y": -2900
+      },
+      "waterPixel": [
+        75,
+        96,
+        50,
+        255
+      ],
+      "groundPixel": [
+        75,
+        96,
+        50,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "water body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1320,
+        "y": -2900
+      },
+      "waterPixel": [
+        25,
+        70,
+        60,
+        255
+      ],
+      "groundPixel": [
+        69,
+        88,
+        50,
+        255
+      ],
+      "difference": 72
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "viewport edge body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1320,
+        "y": -2900
+      },
+      "waterPixel": [
+        27,
+        72,
+        62,
+        255
+      ],
+      "groundPixel": [
+        72,
+        91,
+        53,
+        255
+      ],
+      "difference": 73
+    },
+    {
+      "world": "johor",
+      "water": "river-middle",
+      "name": "rounded corner",
+      "zoom": 0.78,
+      "point": {
+        "x": 1223,
+        "y": -857
+      },
+      "waterPixel": [
+        67,
+        82,
+        50,
+        255
+      ],
+      "groundPixel": [
+        67,
+        82,
+        50,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-middle",
+      "name": "outside bank",
+      "zoom": 0.78,
+      "point": {
+        "x": 1180,
+        "y": -760
+      },
+      "waterPixel": [
+        81,
+        121,
+        14,
+        255
+      ],
+      "groundPixel": [
+        81,
+        121,
+        14,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-middle",
+      "name": "water body",
+      "zoom": 0.78,
+      "point": {
+        "x": 1320,
+        "y": -760
+      },
+      "waterPixel": [
+        25,
+        70,
+        60,
+        255
+      ],
+      "groundPixel": [
+        68,
+        86,
+        50,
+        255
+      ],
+      "difference": 69
+    },
+    {
+      "world": "johor",
+      "water": "river-middle",
+      "name": "viewport edge body",
+      "zoom": 0.78,
+      "point": {
+        "x": 1320,
+        "y": -760
+      },
+      "waterPixel": [
+        29,
+        72,
+        63,
+        255
+      ],
+      "groundPixel": [
+        71,
+        89,
+        53,
+        255
+      ],
+      "difference": 69
+    },
+    {
+      "world": "johor",
+      "water": "river-middle",
+      "name": "rounded corner",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1223,
+        "y": -857
+      },
+      "waterPixel": [
+        67,
+        82,
+        50,
+        255
+      ],
+      "groundPixel": [
+        67,
+        82,
+        50,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-middle",
+      "name": "outside bank",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1180,
+        "y": -760
+      },
+      "waterPixel": [
+        78,
+        119,
+        10,
+        255
+      ],
+      "groundPixel": [
+        78,
+        119,
+        10,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-middle",
+      "name": "water body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1320,
+        "y": -760
+      },
+      "waterPixel": [
+        25,
+        70,
+        60,
+        255
+      ],
+      "groundPixel": [
+        67,
+        84,
+        50,
+        255
+      ],
+      "difference": 66
+    },
+    {
+      "world": "johor",
+      "water": "river-middle",
+      "name": "viewport edge body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1320,
+        "y": -760
+      },
+      "waterPixel": [
+        27,
+        72,
+        62,
+        255
+      ],
+      "groundPixel": [
+        70,
+        87,
+        53,
+        255
+      ],
+      "difference": 67
+    },
+    {
+      "world": "johor",
+      "water": "river-south",
+      "name": "rounded corner",
+      "zoom": 0.78,
+      "point": {
+        "x": 1223,
+        "y": 1143
+      },
+      "waterPixel": [
+        67,
+        84,
+        50,
+        255
+      ],
+      "groundPixel": [
+        67,
+        84,
+        50,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-south",
+      "name": "outside bank",
+      "zoom": 0.78,
+      "point": {
+        "x": 1180,
+        "y": 1240
+      },
+      "waterPixel": [
+        76,
+        117,
+        23,
+        255
+      ],
+      "groundPixel": [
+        76,
+        117,
+        23,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-south",
+      "name": "water body",
+      "zoom": 0.78,
+      "point": {
+        "x": 1320,
+        "y": 1240
+      },
+      "waterPixel": [
+        25,
+        70,
+        60,
+        255
+      ],
+      "groundPixel": [
+        69,
+        88,
+        48,
+        255
+      ],
+      "difference": 74
+    },
+    {
+      "world": "johor",
+      "water": "river-south",
+      "name": "viewport edge body",
+      "zoom": 0.78,
+      "point": {
+        "x": 1320,
+        "y": 1240
+      },
+      "waterPixel": [
+        29,
+        72,
+        63,
+        255
+      ],
+      "groundPixel": [
+        72,
+        91,
+        51,
+        255
+      ],
+      "difference": 74
+    },
+    {
+      "world": "johor",
+      "water": "river-south",
+      "name": "rounded corner",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1223,
+        "y": 1143
+      },
+      "waterPixel": [
+        67,
+        84,
+        50,
+        255
+      ],
+      "groundPixel": [
+        67,
+        84,
+        50,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-south",
+      "name": "outside bank",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1180,
+        "y": 1240
+      },
+      "waterPixel": [
+        74,
+        115,
+        19,
+        255
+      ],
+      "groundPixel": [
+        74,
+        115,
+        19,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-south",
+      "name": "water body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1320,
+        "y": 1240
+      },
+      "waterPixel": [
+        25,
+        70,
+        60,
+        255
+      ],
+      "groundPixel": [
+        69,
+        88,
+        48,
+        255
+      ],
+      "difference": 74
+    },
+    {
+      "world": "johor",
+      "water": "river-south",
+      "name": "viewport edge body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1320,
+        "y": 1240
+      },
+      "waterPixel": [
+        27,
+        72,
+        62,
+        255
+      ],
+      "groundPixel": [
+        72,
+        91,
+        51,
+        255
+      ],
+      "difference": 75
+    },
+    {
+      "world": "melaka",
+      "water": "canal-n",
+      "name": "rounded corner",
+      "zoom": 0.78,
+      "point": {
+        "x": -717,
+        "y": -2997
+      },
+      "waterPixel": [
+        83,
+        90,
+        55,
+        255
+      ],
+      "groundPixel": [
+        83,
+        90,
+        55,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "melaka",
+      "water": "canal-n",
+      "name": "outside bank",
+      "zoom": 0.78,
+      "point": {
+        "x": -760,
+        "y": -2900
+      },
+      "waterPixel": [
+        125,
+        99,
+        72,
+        255
+      ],
+      "groundPixel": [
+        125,
+        99,
+        72,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "melaka",
+      "water": "canal-n",
+      "name": "water body",
+      "zoom": 0.78,
+      "point": {
+        "x": -620,
+        "y": -2900
+      },
+      "waterPixel": [
+        25,
+        71,
+        60,
+        255
+      ],
+      "groundPixel": [
+        79,
+        86,
+        56,
+        255
+      ],
+      "difference": 73
+    },
+    {
+      "world": "melaka",
+      "water": "canal-n",
+      "name": "viewport edge body",
+      "zoom": 0.78,
+      "point": {
+        "x": -620,
+        "y": -2900
+      },
+      "waterPixel": [
+        25,
+        70,
+        60,
+        255
+      ],
+      "groundPixel": [
+        76,
+        83,
+        54,
+        255
+      ],
+      "difference": 70
+    },
+    {
+      "world": "melaka",
+      "water": "canal-n",
+      "name": "rounded corner",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -717,
+        "y": -2997
+      },
+      "waterPixel": [
+        80,
+        88,
+        55,
+        255
+      ],
+      "groundPixel": [
+        80,
+        88,
+        55,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "melaka",
+      "water": "canal-n",
+      "name": "outside bank",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -760,
+        "y": -2900
+      },
+      "waterPixel": [
+        123,
+        96,
+        70,
+        255
+      ],
+      "groundPixel": [
+        123,
+        96,
+        70,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "melaka",
+      "water": "canal-n",
+      "name": "water body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -620,
+        "y": -2900
+      },
+      "waterPixel": [
+        25,
+        71,
+        60,
+        255
+      ],
+      "groundPixel": [
+        80,
+        86,
+        57,
+        255
+      ],
+      "difference": 73
+    },
+    {
+      "world": "melaka",
+      "water": "canal-n",
+      "name": "viewport edge body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -620,
+        "y": -2900
+      },
+      "waterPixel": [
+        23,
+        70,
+        59,
+        255
+      ],
+      "groundPixel": [
+        75,
+        82,
+        53,
+        255
+      ],
+      "difference": 70
+    },
+    {
+      "world": "melaka",
+      "water": "canal-m",
+      "name": "rounded corner",
+      "zoom": 0.78,
+      "point": {
+        "x": -717,
+        "y": -947
+      },
+      "waterPixel": [
+        82,
+        87,
+        58,
+        255
+      ],
+      "groundPixel": [
+        82,
+        87,
+        58,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "melaka",
+      "water": "canal-m",
+      "name": "outside bank",
+      "zoom": 0.78,
+      "point": {
+        "x": -760,
+        "y": -850
+      },
+      "waterPixel": [
+        85,
+        85,
+        53,
+        255
+      ],
+      "groundPixel": [
+        85,
+        85,
+        53,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "melaka",
+      "water": "canal-m",
+      "name": "water body",
+      "zoom": 0.78,
+      "point": {
+        "x": -620,
+        "y": -850
+      },
+      "waterPixel": [
+        25,
+        71,
+        60,
+        255
+      ],
+      "groundPixel": [
+        83,
+        88,
+        59,
+        255
+      ],
+      "difference": 76
+    },
+    {
+      "world": "melaka",
+      "water": "canal-m",
+      "name": "viewport edge body",
+      "zoom": 0.78,
+      "point": {
+        "x": -620,
+        "y": -850
+      },
+      "waterPixel": [
+        25,
+        70,
+        60,
+        255
+      ],
+      "groundPixel": [
+        86,
+        91,
+        61,
+        255
+      ],
+      "difference": 83
+    },
+    {
+      "world": "melaka",
+      "water": "canal-m",
+      "name": "rounded corner",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -717,
+        "y": -947
+      },
+      "waterPixel": [
+        82,
+        88,
+        58,
+        255
+      ],
+      "groundPixel": [
+        82,
+        88,
+        58,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "melaka",
+      "water": "canal-m",
+      "name": "outside bank",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -760,
+        "y": -850
+      },
+      "waterPixel": [
+        87,
+        80,
+        49,
+        255
+      ],
+      "groundPixel": [
+        87,
+        80,
+        49,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "melaka",
+      "water": "canal-m",
+      "name": "water body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -620,
+        "y": -850
+      },
+      "waterPixel": [
+        25,
+        71,
+        60,
+        255
+      ],
+      "groundPixel": [
+        85,
+        91,
+        60,
+        255
+      ],
+      "difference": 80
+    },
+    {
+      "world": "melaka",
+      "water": "canal-m",
+      "name": "viewport edge body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -620,
+        "y": -850
+      },
+      "waterPixel": [
+        23,
+        70,
+        59,
+        255
+      ],
+      "groundPixel": [
+        87,
+        92,
+        62,
+        255
+      ],
+      "difference": 89
+    },
+    {
+      "world": "melaka",
+      "water": "canal-s",
+      "name": "rounded corner",
+      "zoom": 0.78,
+      "point": {
+        "x": -717,
+        "y": 1453
+      },
+      "waterPixel": [
+        84,
+        90,
+        60,
+        255
+      ],
+      "groundPixel": [
+        84,
+        90,
+        60,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "melaka",
+      "water": "canal-s",
+      "name": "outside bank",
+      "zoom": 0.78,
+      "point": {
+        "x": -760,
+        "y": 1550
+      },
+      "waterPixel": [
+        116,
+        91,
+        66,
+        255
+      ],
+      "groundPixel": [
+        116,
+        91,
+        66,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "melaka",
+      "water": "canal-s",
+      "name": "water body",
+      "zoom": 0.78,
+      "point": {
+        "x": -620,
+        "y": 1550
+      },
+      "waterPixel": [
+        25,
+        71,
+        60,
+        255
+      ],
+      "groundPixel": [
+        80,
+        86,
+        57,
+        255
+      ],
+      "difference": 73
+    },
+    {
+      "world": "melaka",
+      "water": "canal-s",
+      "name": "viewport edge body",
+      "zoom": 0.78,
+      "point": {
+        "x": -620,
+        "y": 1550
+      },
+      "waterPixel": [
+        25,
+        70,
+        60,
+        255
+      ],
+      "groundPixel": [
+        81,
+        87,
+        58,
+        255
+      ],
+      "difference": 75
+    },
+    {
+      "world": "melaka",
+      "water": "canal-s",
+      "name": "rounded corner",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -717,
+        "y": 1453
+      },
+      "waterPixel": [
+        82,
+        88,
+        59,
+        255
+      ],
+      "groundPixel": [
+        82,
+        88,
+        59,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "melaka",
+      "water": "canal-s",
+      "name": "outside bank",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -760,
+        "y": 1550
+      },
+      "waterPixel": [
+        114,
+        90,
+        65,
+        255
+      ],
+      "groundPixel": [
+        114,
+        90,
+        65,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "melaka",
+      "water": "canal-s",
+      "name": "water body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -620,
+        "y": 1550
+      },
+      "waterPixel": [
+        25,
+        71,
+        60,
+        255
+      ],
+      "groundPixel": [
+        80,
+        86,
+        56,
+        255
+      ],
+      "difference": 74
+    },
+    {
+      "world": "melaka",
+      "water": "canal-s",
+      "name": "viewport edge body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -620,
+        "y": 1550
+      },
+      "waterPixel": [
+        23,
+        70,
+        59,
+        255
+      ],
+      "groundPixel": [
+        82,
+        88,
+        59,
+        255
+      ],
+      "difference": 77
+    },
+    {
+      "world": "perak",
+      "water": "pit-a",
+      "name": "rounded corner",
+      "zoom": 0.78,
+      "point": {
+        "x": 503,
+        "y": -1197
+      },
+      "waterPixel": [
+        71,
+        86,
+        53,
+        255
+      ],
+      "groundPixel": [
+        71,
+        86,
+        53,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "perak",
+      "water": "pit-a",
+      "name": "outside bank",
+      "zoom": 0.78,
+      "point": {
+        "x": 460,
+        "y": -1100
+      },
+      "waterPixel": [
+        71,
+        95,
+        53,
+        255
+      ],
+      "groundPixel": [
+        71,
+        95,
+        53,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "perak",
+      "water": "pit-a",
+      "name": "water body",
+      "zoom": 0.78,
+      "point": {
+        "x": 600,
+        "y": -1100
+      },
+      "waterPixel": [
+        29,
+        84,
+        72,
+        255
+      ],
+      "groundPixel": [
+        76,
+        92,
+        54,
+        255
+      ],
+      "difference": 73
+    },
+    {
+      "world": "perak",
+      "water": "pit-a",
+      "name": "viewport edge body",
+      "zoom": 0.78,
+      "point": {
+        "x": 600,
+        "y": -1100
+      },
+      "waterPixel": [
+        27,
+        82,
+        69,
+        255
+      ],
+      "groundPixel": [
+        74,
+        90,
+        51,
+        255
+      ],
+      "difference": 73
+    },
+    {
+      "world": "perak",
+      "water": "pit-a",
+      "name": "rounded corner",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 503,
+        "y": -1197
+      },
+      "waterPixel": [
+        72,
+        88,
+        53,
+        255
+      ],
+      "groundPixel": [
+        72,
+        88,
+        53,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "perak",
+      "water": "pit-a",
+      "name": "outside bank",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 460,
+        "y": -1100
+      },
+      "waterPixel": [
+        71,
+        97,
+        52,
+        255
+      ],
+      "groundPixel": [
+        71,
+        97,
+        52,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "perak",
+      "water": "pit-a",
+      "name": "water body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 600,
+        "y": -1100
+      },
+      "waterPixel": [
+        28,
+        83,
+        70,
+        255
+      ],
+      "groundPixel": [
+        75,
+        91,
+        53,
+        255
+      ],
+      "difference": 72
+    },
+    {
+      "world": "perak",
+      "water": "pit-a",
+      "name": "viewport edge body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 600,
+        "y": -1100
+      },
+      "waterPixel": [
+        28,
+        84,
+        70,
+        255
+      ],
+      "groundPixel": [
+        77,
+        93,
+        53,
+        255
+      ],
+      "difference": 75
+    },
+    {
+      "world": "perak",
+      "water": "pit-b",
+      "name": "rounded corner",
+      "zoom": 0.78,
+      "point": {
+        "x": -1597,
+        "y": 503
+      },
+      "waterPixel": [
+        72,
+        87,
+        53,
+        255
+      ],
+      "groundPixel": [
+        72,
+        87,
+        53,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "perak",
+      "water": "pit-b",
+      "name": "outside bank",
+      "zoom": 0.78,
+      "point": {
+        "x": -1640,
+        "y": 600
+      },
+      "waterPixel": [
+        74,
+        104,
+        52,
+        255
+      ],
+      "groundPixel": [
+        74,
+        104,
+        52,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "perak",
+      "water": "pit-b",
+      "name": "water body",
+      "zoom": 0.78,
+      "point": {
+        "x": -1500,
+        "y": 600
+      },
+      "waterPixel": [
+        29,
+        84,
+        72,
+        255
+      ],
+      "groundPixel": [
+        72,
+        88,
+        52,
+        255
+      ],
+      "difference": 67
+    },
+    {
+      "world": "perak",
+      "water": "pit-b",
+      "name": "viewport edge body",
+      "zoom": 0.78,
+      "point": {
+        "x": -1500,
+        "y": 600
+      },
+      "waterPixel": [
+        30,
+        84,
+        72,
+        255
+      ],
+      "groundPixel": [
+        73,
+        89,
+        52,
+        255
+      ],
+      "difference": 68
+    },
+    {
+      "world": "perak",
+      "water": "pit-b",
+      "name": "rounded corner",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -1597,
+        "y": 503
+      },
+      "waterPixel": [
+        71,
+        87,
+        53,
+        255
+      ],
+      "groundPixel": [
+        71,
+        87,
+        53,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "perak",
+      "water": "pit-b",
+      "name": "outside bank",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -1640,
+        "y": 600
+      },
+      "waterPixel": [
+        74,
+        103,
+        52,
+        255
+      ],
+      "groundPixel": [
+        74,
+        103,
+        52,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "perak",
+      "water": "pit-b",
+      "name": "water body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -1500,
+        "y": 600
+      },
+      "waterPixel": [
+        28,
+        83,
+        70,
+        255
+      ],
+      "groundPixel": [
+        72,
+        87,
+        53,
+        255
+      ],
+      "difference": 65
+    },
+    {
+      "world": "perak",
+      "water": "pit-b",
+      "name": "viewport edge body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -1500,
+        "y": 600
+      },
+      "waterPixel": [
+        28,
+        84,
+        70,
+        255
+      ],
+      "groundPixel": [
+        73,
+        89,
+        53,
+        255
+      ],
+      "difference": 67
+    },
+    {
+      "world": "penang",
+      "water": "sea-n",
+      "name": "rounded corner",
+      "zoom": 0.78,
+      "point": {
+        "x": 903,
+        "y": -2997
+      },
+      "waterPixel": [
+        69,
+        87,
+        51,
+        255
+      ],
+      "groundPixel": [
+        69,
+        87,
+        51,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "penang",
+      "water": "sea-n",
+      "name": "outside bank",
+      "zoom": 0.78,
+      "point": {
+        "x": 860,
+        "y": -2900
+      },
+      "waterPixel": [
+        76,
+        108,
+        51,
+        255
+      ],
+      "groundPixel": [
+        76,
+        108,
+        51,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "penang",
+      "water": "sea-n",
+      "name": "water body",
+      "zoom": 0.78,
+      "point": {
+        "x": 1000,
+        "y": -2900
+      },
+      "waterPixel": [
+        27,
+        73,
+        62,
+        255
+      ],
+      "groundPixel": [
+        71,
+        89,
+        51,
+        255
+      ],
+      "difference": 71
+    },
+    {
+      "world": "penang",
+      "water": "sea-n",
+      "name": "viewport edge body",
+      "zoom": 0.78,
+      "point": {
+        "x": 1000,
+        "y": -2900
+      },
+      "waterPixel": [
+        26,
+        72,
+        61,
+        255
+      ],
+      "groundPixel": [
+        70,
+        88,
+        51,
+        255
+      ],
+      "difference": 70
+    },
+    {
+      "world": "penang",
+      "water": "sea-n",
+      "name": "rounded corner",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 903,
+        "y": -2997
+      },
+      "waterPixel": [
+        69,
+        85,
+        51,
+        255
+      ],
+      "groundPixel": [
+        69,
+        85,
+        51,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "penang",
+      "water": "sea-n",
+      "name": "outside bank",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 860,
+        "y": -2900
+      },
+      "waterPixel": [
+        76,
+        109,
+        52,
+        255
+      ],
+      "groundPixel": [
+        76,
+        109,
+        52,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "penang",
+      "water": "sea-n",
+      "name": "water body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1000,
+        "y": -2900
+      },
+      "waterPixel": [
+        26,
+        72,
+        61,
+        255
+      ],
+      "groundPixel": [
+        69,
+        85,
+        51,
+        255
+      ],
+      "difference": 66
+    },
+    {
+      "world": "penang",
+      "water": "sea-n",
+      "name": "viewport edge body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1000,
+        "y": -2900
+      },
+      "waterPixel": [
+        27,
+        73,
+        62,
+        255
+      ],
+      "groundPixel": [
+        71,
+        88,
+        51,
+        255
+      ],
+      "difference": 70
+    },
+    {
+      "world": "penang",
+      "water": "sea-m",
+      "name": "rounded corner",
+      "zoom": 0.78,
+      "point": {
+        "x": 903,
+        "y": -1147
+      },
+      "waterPixel": [
+        76,
+        94,
+        54,
+        255
+      ],
+      "groundPixel": [
+        76,
+        94,
+        54,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "penang",
+      "water": "sea-m",
+      "name": "outside bank",
+      "zoom": 0.78,
+      "point": {
+        "x": 860,
+        "y": -1050
+      },
+      "waterPixel": [
+        60,
+        100,
+        15,
+        255
+      ],
+      "groundPixel": [
+        60,
+        100,
+        15,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "penang",
+      "water": "sea-m",
+      "name": "water body",
+      "zoom": 0.78,
+      "point": {
+        "x": 1000,
+        "y": -1050
+      },
+      "waterPixel": [
+        28,
+        74,
+        64,
+        255
+      ],
+      "groundPixel": [
+        71,
+        86,
+        54,
+        255
+      ],
+      "difference": 65
+    },
+    {
+      "world": "penang",
+      "water": "sea-m",
+      "name": "viewport edge body",
+      "zoom": 0.78,
+      "point": {
+        "x": 1000,
+        "y": -1050
+      },
+      "waterPixel": [
+        26,
+        72,
+        61,
+        255
+      ],
+      "groundPixel": [
+        68,
+        84,
+        51,
+        255
+      ],
+      "difference": 64
+    },
+    {
+      "world": "penang",
+      "water": "sea-m",
+      "name": "rounded corner",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 903,
+        "y": -1147
+      },
+      "waterPixel": [
+        77,
+        95,
+        55,
+        255
+      ],
+      "groundPixel": [
+        77,
+        95,
+        55,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "penang",
+      "water": "sea-m",
+      "name": "outside bank",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 860,
+        "y": -1050
+      },
+      "waterPixel": [
+        61,
+        102,
+        16,
+        255
+      ],
+      "groundPixel": [
+        61,
+        102,
+        16,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "penang",
+      "water": "sea-m",
+      "name": "water body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1000,
+        "y": -1050
+      },
+      "waterPixel": [
+        27,
+        73,
+        63,
+        255
+      ],
+      "groundPixel": [
+        71,
+        87,
+        53,
+        255
+      ],
+      "difference": 68
+    },
+    {
+      "world": "penang",
+      "water": "sea-m",
+      "name": "viewport edge body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1000,
+        "y": -1050
+      },
+      "waterPixel": [
+        27,
+        73,
+        62,
+        255
+      ],
+      "groundPixel": [
+        68,
+        84,
+        51,
+        255
+      ],
+      "difference": 63
+    },
+    {
+      "world": "penang",
+      "water": "sea-s",
+      "name": "rounded corner",
+      "zoom": 0.78,
+      "point": {
+        "x": 903,
+        "y": 1653
+      },
+      "waterPixel": [
+        73,
+        91,
+        54,
+        255
+      ],
+      "groundPixel": [
+        73,
+        91,
+        54,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "penang",
+      "water": "sea-s",
+      "name": "outside bank",
+      "zoom": 0.78,
+      "point": {
+        "x": 860,
+        "y": 1750
+      },
+      "waterPixel": [
+        58,
+        99,
+        18,
+        255
+      ],
+      "groundPixel": [
+        58,
+        99,
+        18,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "penang",
+      "water": "sea-s",
+      "name": "water body",
+      "zoom": 0.78,
+      "point": {
+        "x": 1000,
+        "y": 1750
+      },
+      "waterPixel": [
+        28,
+        74,
+        64,
+        255
+      ],
+      "groundPixel": [
+        74,
+        90,
+        55,
+        255
+      ],
+      "difference": 71
+    },
+    {
+      "world": "penang",
+      "water": "sea-s",
+      "name": "viewport edge body",
+      "zoom": 0.78,
+      "point": {
+        "x": 1000,
+        "y": 1750
+      },
+      "waterPixel": [
+        26,
+        72,
+        61,
+        255
+      ],
+      "groundPixel": [
+        73,
+        90,
+        53,
+        255
+      ],
+      "difference": 73
+    },
+    {
+      "world": "penang",
+      "water": "sea-s",
+      "name": "rounded corner",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 903,
+        "y": 1653
+      },
+      "waterPixel": [
+        73,
+        90,
+        53,
+        255
+      ],
+      "groundPixel": [
+        73,
+        90,
+        53,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "penang",
+      "water": "sea-s",
+      "name": "outside bank",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 860,
+        "y": 1750
+      },
+      "waterPixel": [
+        63,
+        103,
+        22,
+        255
+      ],
+      "groundPixel": [
+        63,
+        103,
+        22,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "penang",
+      "water": "sea-s",
+      "name": "water body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1000,
+        "y": 1750
+      },
+      "waterPixel": [
+        27,
+        73,
+        63,
+        255
+      ],
+      "groundPixel": [
+        76,
+        97,
+        56,
+        255
+      ],
+      "difference": 80
+    },
+    {
+      "world": "penang",
+      "water": "sea-s",
+      "name": "viewport edge body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1000,
+        "y": 1750
+      },
+      "waterPixel": [
+        27,
+        73,
+        62,
+        255
+      ],
+      "groundPixel": [
+        72,
+        87,
+        53,
+        255
+      ],
+      "difference": 68
+    },
+    {
+      "world": "kedah",
+      "water": "canal-w",
+      "name": "rounded corner",
+      "zoom": 0.78,
+      "point": {
+        "x": -2997,
+        "y": 623
+      },
+      "waterPixel": [
+        70,
+        84,
+        48,
+        255
+      ],
+      "groundPixel": [
+        70,
+        84,
+        48,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "kedah",
+      "water": "canal-w",
+      "name": "outside bank",
+      "zoom": 0.78,
+      "point": {
+        "x": -3040,
+        "y": 720
+      },
+      "waterPixel": [
+        68,
+        98,
+        16,
+        255
+      ],
+      "groundPixel": [
+        68,
+        98,
+        16,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "kedah",
+      "water": "canal-w",
+      "name": "water body",
+      "zoom": 0.78,
+      "point": {
+        "x": -2900,
+        "y": 720
+      },
+      "waterPixel": [
+        25,
+        71,
+        60,
+        255
+      ],
+      "groundPixel": [
+        80,
+        88,
+        50,
+        255
+      ],
+      "difference": 82
+    },
+    {
+      "world": "kedah",
+      "water": "canal-w",
+      "name": "viewport edge body",
+      "zoom": 0.78,
+      "point": {
+        "x": -2900,
+        "y": 720
+      },
+      "waterPixel": [
+        25,
+        70,
+        59,
+        255
+      ],
+      "groundPixel": [
+        78,
+        87,
+        50,
+        255
+      ],
+      "difference": 79
+    },
+    {
+      "world": "kedah",
+      "water": "canal-w",
+      "name": "rounded corner",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -2997,
+        "y": 623
+      },
+      "waterPixel": [
+        70,
+        84,
+        48,
+        255
+      ],
+      "groundPixel": [
+        70,
+        84,
+        48,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "kedah",
+      "water": "canal-w",
+      "name": "outside bank",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -3040,
+        "y": 720
+      },
+      "waterPixel": [
+        49,
+        68,
+        9,
+        255
+      ],
+      "groundPixel": [
+        49,
+        68,
+        9,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "kedah",
+      "water": "canal-w",
+      "name": "water body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -2900,
+        "y": 720
+      },
+      "waterPixel": [
+        25,
+        70,
+        60,
+        255
+      ],
+      "groundPixel": [
+        78,
+        86,
+        50,
+        255
+      ],
+      "difference": 79
+    },
+    {
+      "world": "kedah",
+      "water": "canal-w",
+      "name": "viewport edge body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -2900,
+        "y": 720
+      },
+      "waterPixel": [
+        23,
+        70,
+        59,
+        255
+      ],
+      "groundPixel": [
+        79,
+        90,
+        51,
+        255
+      ],
+      "difference": 84
+    },
+    {
+      "world": "kedah",
+      "water": "canal-mid",
+      "name": "rounded corner",
+      "zoom": 0.78,
+      "point": {
+        "x": -1497,
+        "y": 623
+      },
+      "waterPixel": [
+        75,
+        82,
+        49,
+        255
+      ],
+      "groundPixel": [
+        75,
+        82,
+        49,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "kedah",
+      "water": "canal-mid",
+      "name": "outside bank",
+      "zoom": 0.78,
+      "point": {
+        "x": -1540,
+        "y": 720
+      },
+      "waterPixel": [
+        135,
+        89,
+        52,
+        255
+      ],
+      "groundPixel": [
+        135,
+        89,
+        52,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "kedah",
+      "water": "canal-mid",
+      "name": "water body",
+      "zoom": 0.78,
+      "point": {
+        "x": -1400,
+        "y": 720
+      },
+      "waterPixel": [
+        25,
+        71,
+        60,
+        255
+      ],
+      "groundPixel": [
+        70,
+        86,
+        48,
+        255
+      ],
+      "difference": 72
+    },
+    {
+      "world": "kedah",
+      "water": "canal-mid",
+      "name": "viewport edge body",
+      "zoom": 0.78,
+      "point": {
+        "x": -1400,
+        "y": 720
+      },
+      "waterPixel": [
+        25,
+        70,
+        59,
+        255
+      ],
+      "groundPixel": [
+        70,
+        86,
+        48,
+        255
+      ],
+      "difference": 72
+    },
+    {
+      "world": "kedah",
+      "water": "canal-mid",
+      "name": "rounded corner",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -1497,
+        "y": 623
+      },
+      "waterPixel": [
+        79,
+        80,
+        51,
+        255
+      ],
+      "groundPixel": [
+        79,
+        80,
+        51,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "kedah",
+      "water": "canal-mid",
+      "name": "outside bank",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -1540,
+        "y": 720
+      },
+      "waterPixel": [
+        138,
+        92,
+        54,
+        255
+      ],
+      "groundPixel": [
+        138,
+        92,
+        54,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "kedah",
+      "water": "canal-mid",
+      "name": "water body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -1400,
+        "y": 720
+      },
+      "waterPixel": [
+        25,
+        70,
+        60,
+        255
+      ],
+      "groundPixel": [
+        70,
+        86,
+        48,
+        255
+      ],
+      "difference": 73
+    },
+    {
+      "world": "kedah",
+      "water": "canal-mid",
+      "name": "viewport edge body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": -1400,
+        "y": 720
+      },
+      "waterPixel": [
+        24,
+        70,
+        59,
+        255
+      ],
+      "groundPixel": [
+        73,
+        88,
+        49,
+        255
+      ],
+      "difference": 77
+    },
+    {
+      "world": "kedah",
+      "water": "canal-e",
+      "name": "rounded corner",
+      "zoom": 0.78,
+      "point": {
+        "x": 1703,
+        "y": 623
+      },
+      "waterPixel": [
+        84,
+        92,
+        50,
+        255
+      ],
+      "groundPixel": [
+        84,
+        92,
+        50,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "kedah",
+      "water": "canal-e",
+      "name": "outside bank",
+      "zoom": 0.78,
+      "point": {
+        "x": 1660,
+        "y": 720
+      },
+      "waterPixel": [
+        135,
+        89,
+        52,
+        255
+      ],
+      "groundPixel": [
+        135,
+        89,
+        52,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "kedah",
+      "water": "canal-e",
+      "name": "water body",
+      "zoom": 0.78,
+      "point": {
+        "x": 1800,
+        "y": 720
+      },
+      "waterPixel": [
+        25,
+        71,
+        60,
+        255
+      ],
+      "groundPixel": [
+        74,
+        90,
+        47,
+        255
+      ],
+      "difference": 81
+    },
+    {
+      "world": "kedah",
+      "water": "canal-e",
+      "name": "viewport edge body",
+      "zoom": 0.78,
+      "point": {
+        "x": 1800,
+        "y": 720
+      },
+      "waterPixel": [
+        25,
+        70,
+        59,
+        255
+      ],
+      "groundPixel": [
+        74,
+        90,
+        47,
+        255
+      ],
+      "difference": 81
+    },
+    {
+      "world": "kedah",
+      "water": "canal-e",
+      "name": "rounded corner",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1703,
+        "y": 623
+      },
+      "waterPixel": [
+        85,
+        87,
+        51,
+        255
+      ],
+      "groundPixel": [
+        85,
+        87,
+        51,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "kedah",
+      "water": "canal-e",
+      "name": "outside bank",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1660,
+        "y": 720
+      },
+      "waterPixel": [
+        138,
+        92,
+        54,
+        255
+      ],
+      "groundPixel": [
+        138,
+        92,
+        54,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "kedah",
+      "water": "canal-e",
+      "name": "water body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1800,
+        "y": 720
+      },
+      "waterPixel": [
+        25,
+        70,
+        60,
+        255
+      ],
+      "groundPixel": [
+        75,
+        91,
+        47,
+        255
+      ],
+      "difference": 84
+    },
+    {
+      "world": "kedah",
+      "water": "canal-e",
+      "name": "viewport edge body",
+      "zoom": 0.5459999999999999,
+      "point": {
+        "x": 1800,
+        "y": 720
+      },
+      "waterPixel": [
+        24,
+        70,
+        59,
+        255
+      ],
+      "groundPixel": [
+        78,
+        93,
+        49,
+        255
+      ],
+      "difference": 87
+    }
+  ],
+  "textureCounts": [
+    14,
+    14,
+    14
+  ]
+}

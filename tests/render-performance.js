@@ -37,7 +37,7 @@ $('run').onclick=async()=>{
     check('Home view skips at least one fully offscreen water filter',waters().some(t=>!inView(t,150)&&!t.visible),waters().map(t=>({x:t.x,y:t.y,visible:t.visible,inView:inView(t,150)})));
     const camera=rt.scene.cameras.main,zoom=camera.zoom;
     for(let index=0;index<STAGES.length;index++){
-      rt.toMenu();rt.newGame('ustaz',index);const run=rt.G;run.paused=true;frame.contentDocument.getElementById('menu').hidden=true;rt.scene.update(0,0);
+      rt.toMenu();await rt.scene.prepareHero('ustaz');rt.newGame('ustaz',index);const run=rt.G;run.paused=true;frame.contentDocument.getElementById('menu').hidden=true;rt.scene.update(0,0);
       for(const tile of waters())for(const scale of [zoom,zoom*.7]){camera.setZoom(scale);Object.assign(run.p,{x:tile.x,y:tile.y});rt.scene.update(0,0);check(run.world.id+' first-update arrival restores water at zoom '+scale,tile.visible,{x:tile.x,y:tile.y});await new Promise(resolve=>rt.scene.game.events.once('postrender',resolve));check(run.world.id+' rendered arrival keeps water visible',tile.visible);}
     }
     camera.setZoom(zoom);evidence.result='PASS';

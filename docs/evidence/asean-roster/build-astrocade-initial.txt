@@ -1,0 +1,21 @@
+
+> asean-survivor@0.1.0 build:astrocade
+> tsc --noEmit && node scripts/build-astrocade.mjs
+
+vite v8.3.8 building client environment for astrocade...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/astrocade/game.js  1,634.53 kB │ gzip: 448.99 kB
+
+✓ built in 25.82s
+[33m[PLUGIN_TIMINGS] [0mJavaScript callbacks ran for 6.3s of this 25.7s build (24%).
+The slowest callbacks, timed inside each callback (the wait before a callback starts is excluded, the time it awaits is included):
+  - plugin astrocade-platform transform (19%, 4.8s, 54 calls)
+Additional callback time came from the callbacks below and from callbacks under 1s.
+1 callback is listed without a time. Its calls overlapped, so the time inside one call includes work from other calls. To find its cost, profile the build with `node --cpu-prof`:
+  - plugin vite:asset load (11 calls)
+See https://rolldown.rs/reference/InputOptions.checks#bundlertimings for more details.
+
+{"status":"dry-run-ready","directory":"dist/astrocade","files":5,"assets":33,"codeBytes":1634538,"htmlBytes":40281}

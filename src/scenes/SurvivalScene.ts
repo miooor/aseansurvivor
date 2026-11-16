@@ -197,7 +197,8 @@ export class SurvivalScene extends Phaser.Scene {
     if(line)g.lineStyle(line,color,Math.min(1,alpha*3)).strokeCircle(x,y,Math.max(0,r));
   }
 
-  color(css?: string){return css?Phaser.Display.Color.ValueToColor(css).color:GOLD}
+  // Phaser's rgba parser requires a leading zero in fractional alpha values.
+  color(css?: string){return css?Phaser.Display.Color.ValueToColor(css.replace(/,\s*\.(\d+)\s*\)/,',0.$1)')).color:GOLD}
 
   private drawEffect(f: Effect){
     const alpha=Phaser.Math.Clamp(f.life/(f.max||.4),0,1),color=this.color(f.c||this.runtime.G?.hero.identity.color),g=this.effects;

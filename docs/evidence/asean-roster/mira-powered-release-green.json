@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-16T05:01:41.503Z",
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "mira real payoff cast succeeds",
+      "pass": true,
+      "details": {
+        "state": "Q · Set a tow endpoint",
+        "skill": "Swing Clear"
+      }
+    },
+    {
+      "name": "No browser runtime errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ],
+  "errors": []
+}

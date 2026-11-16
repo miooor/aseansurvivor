@@ -1,0 +1,474 @@
+{
+  "date": "2026-11-16T04:07:17.144Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Johor binds its own world",
+      "pass": true
+    },
+    {
+      "name": "Johor Village clearing is on land",
+      "pass": true
+    },
+    {
+      "name": "Johor Village clearing is reachable",
+      "pass": true
+    },
+    {
+      "name": "Johor Rice fields is on land",
+      "pass": true
+    },
+    {
+      "name": "Johor Rice fields is reachable",
+      "pass": true
+    },
+    {
+      "name": "Johor Palm groves is on land",
+      "pass": true
+    },
+    {
+      "name": "Johor Palm groves is reachable",
+      "pass": true
+    },
+    {
+      "name": "Johor Riverbank is on land",
+      "pass": true
+    },
+    {
+      "name": "Johor Riverbank is reachable",
+      "pass": true
+    },
+    {
+      "name": "Johor Abandoned market is on land",
+      "pass": true
+    },
+    {
+      "name": "Johor Abandoned market is reachable",
+      "pass": true
+    },
+    {
+      "name": "Johor discovers unique landmark",
+      "pass": true
+    },
+    {
+      "name": "Johor spawns local cache guardians",
+      "pass": true
+    },
+    {
+      "name": "Johor cache rewards once",
+      "pass": true
+    },
+    {
+      "name": "Johor cache does not repeat",
+      "pass": true
+    },
+    {
+      "name": "Johor renders correct map title",
+      "pass": true
+    },
+    {
+      "name": "Johor signature enemy performs its attack",
+      "pass": true
+    },
+    {
+      "name": "Johor signature enemy uses dedicated art",
+      "pass": true
+    },
+    {
+      "name": "Johor rift lands on local walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Melaka binds its own world",
+      "pass": true
+    },
+    {
+      "name": "Melaka Lantern Square is on land",
+      "pass": true
+    },
+    {
+      "name": "Melaka Lantern Square is reachable",
+      "pass": true
+    },
+    {
+      "name": "Melaka Old River Quay is on land",
+      "pass": true
+    },
+    {
+      "name": "Melaka Old River Quay is reachable",
+      "pass": true
+    },
+    {
+      "name": "Melaka Pottery Courtyard is on land",
+      "pass": true
+    },
+    {
+      "name": "Melaka Pottery Courtyard is reachable",
+      "pass": true
+    },
+    {
+      "name": "Melaka Red Gate Market is on land",
+      "pass": true
+    },
+    {
+      "name": "Melaka Red Gate Market is reachable",
+      "pass": true
+    },
+    {
+      "name": "Melaka Clockmaker Lane is on land",
+      "pass": true
+    },
+    {
+      "name": "Melaka Clockmaker Lane is reachable",
+      "pass": true
+    },
+    {
+      "name": "Melaka discovers unique landmark",
+      "pass": true
+    },
+    {
+      "name": "Melaka spawns local cache guardians",
+      "pass": true
+    },
+    {
+      "name": "Melaka cache rewards once",
+      "pass": true
+    },
+    {
+      "name": "Melaka cache does not repeat",
+      "pass": true
+    },
+    {
+      "name": "Melaka renders correct map title",
+      "pass": true
+    },
+    {
+      "name": "Melaka signature enemy performs its attack",
+      "pass": true
+    },
+    {
+      "name": "Melaka signature enemy uses dedicated art",
+      "pass": true
+    },
+    {
+      "name": "Melaka rift lands on local walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Perak binds its own world",
+      "pass": true
+    },
+    {
+      "name": "Perak Prospector Camp is on land",
+      "pass": true
+    },
+    {
+      "name": "Perak Prospector Camp is reachable",
+      "pass": true
+    },
+    {
+      "name": "Perak Limestone Quarry is on land",
+      "pass": true
+    },
+    {
+      "name": "Perak Limestone Quarry is reachable",
+      "pass": true
+    },
+    {
+      "name": "Perak Turquoise Diggings is on land",
+      "pass": true
+    },
+    {
+      "name": "Perak Turquoise Diggings is reachable",
+      "pass": true
+    },
+    {
+      "name": "Perak Forgotten Cartway is on land",
+      "pass": true
+    },
+    {
+      "name": "Perak Forgotten Cartway is reachable",
+      "pass": true
+    },
+    {
+      "name": "Perak Echo Ridge is on land",
+      "pass": true
+    },
+    {
+      "name": "Perak Echo Ridge is reachable",
+      "pass": true
+    },
+    {
+      "name": "Perak discovers unique landmark",
+      "pass": true
+    },
+    {
+      "name": "Perak spawns local cache guardians",
+      "pass": true
+    },
+    {
+      "name": "Perak cache rewards once",
+      "pass": true
+    },
+    {
+      "name": "Perak cache does not repeat",
+      "pass": true
+    },
+    {
+      "name": "Perak renders correct map title",
+      "pass": true
+    },
+    {
+      "name": "Perak signature enemy performs its attack",
+      "pass": true
+    },
+    {
+      "name": "Perak signature enemy uses dedicated art",
+      "pass": true
+    },
+    {
+      "name": "Perak rift lands on local walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur binds its own world",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Midnight Junction is on land",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Midnight Junction is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Shuttered Arcade is on land",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Shuttered Arcade is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Transit Depot is on land",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Transit Depot is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Tower Courtyard is on land",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Tower Courtyard is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Neon Night Market is on land",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Neon Night Market is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur discovers unique landmark",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur spawns local cache guardians",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur cache rewards once",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur cache does not repeat",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur renders correct map title",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur signature enemy performs its attack",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur signature enemy uses dedicated art",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur rift lands on local walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang binds its own world",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Seafront Promenade is on land",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Seafront Promenade is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Boatwright Row is on land",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Boatwright Row is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Lantern Jetty is on land",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Lantern Jetty is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Fishing Platform is on land",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Fishing Platform is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Salt Warehouse is on land",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Salt Warehouse is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang discovers unique landmark",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang spawns local cache guardians",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang cache rewards once",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang cache does not repeat",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang renders correct map title",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang signature enemy performs its attack",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang signature enemy uses dedicated art",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang rift lands on local walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Kedah binds its own world",
+      "pass": true
+    },
+    {
+      "name": "Kedah Harvest Granary is on land",
+      "pass": true
+    },
+    {
+      "name": "Kedah Harvest Granary is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kedah Golden Terraces is on land",
+      "pass": true
+    },
+    {
+      "name": "Kedah Golden Terraces is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kedah Old Sluice Gate is on land",
+      "pass": true
+    },
+    {
+      "name": "Kedah Old Sluice Gate is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kedah Windmill Fields is on land",
+      "pass": true
+    },
+    {
+      "name": "Kedah Windmill Fields is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kedah Scarecrow Crossing is on land",
+      "pass": true
+    },
+    {
+      "name": "Kedah Scarecrow Crossing is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kedah discovers unique landmark",
+      "pass": true
+    },
+    {
+      "name": "Kedah spawns local cache guardians",
+      "pass": true
+    },
+    {
+      "name": "Kedah cache rewards once",
+      "pass": true
+    },
+    {
+      "name": "Kedah cache does not repeat",
+      "pass": true
+    },
+    {
+      "name": "Kedah renders correct map title",
+      "pass": true
+    },
+    {
+      "name": "Kedah signature enemy performs its attack",
+      "pass": true
+    },
+    {
+      "name": "Kedah signature enemy uses dedicated art",
+      "pass": true
+    },
+    {
+      "name": "Kedah rift lands on local walkable ground",
+      "pass": true
+    },
+    {
+      "name": "All six stages have different collision layouts",
+      "pass": true
+    },
+    {
+      "name": "All six stages have a distinct signature enemy",
+      "pass": true
+    },
+    {
+      "name": "Stage switching restores Johor geometry",
+      "pass": true
+    }
+  ]
+}

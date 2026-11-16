@@ -1,0 +1,174 @@
+{
+  "date": "2026-11-16T05:00:32.262Z",
+  "fixtureClearsEntryFade": true,
+  "frames": [
+    {
+      "id": "asha",
+      "slot": 1,
+      "status": "Asha Lim 1 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "asha-skill-1.jpg"
+    },
+    {
+      "id": "asha",
+      "slot": 2,
+      "status": "Asha Lim 2 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "asha-skill-2.jpg"
+    },
+    {
+      "id": "asha",
+      "slot": 3,
+      "status": "Asha Lim 3 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "asha-skill-3.jpg"
+    },
+    {
+      "id": "asha",
+      "slot": 4,
+      "status": "Asha Lim 4 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "asha-skill-4.jpg"
+    },
+    {
+      "id": "mira",
+      "slot": 1,
+      "status": "Mira Reyes 1 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "mira-skill-1.jpg"
+    },
+    {
+      "id": "mira",
+      "slot": 2,
+      "status": "Mira Reyes 2 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "mira-skill-2.jpg"
+    },
+    {
+      "id": "mira",
+      "slot": 3,
+      "status": "Mira Reyes 3 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "mira-skill-3.jpg"
+    },
+    {
+      "id": "mira",
+      "slot": 4,
+      "status": "Mira Reyes 4 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "mira-skill-4.jpg"
+    },
+    {
+      "id": "dani",
+      "slot": 1,
+      "status": "Dani Rahman 1 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "dani-skill-1.jpg"
+    },
+    {
+      "id": "dani",
+      "slot": 2,
+      "status": "Dani Rahman 2 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "dani-skill-2.jpg"
+    },
+    {
+      "id": "dani",
+      "slot": 3,
+      "status": "Dani Rahman 3 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "dani-skill-3.jpg"
+    },
+    {
+      "id": "dani",
+      "slot": 4,
+      "status": "Dani Rahman 4 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "dani-skill-4.jpg"
+    },
+    {
+      "id": "vanna",
+      "slot": 1,
+      "status": "Vanna 1 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "vanna-skill-1.jpg"
+    },
+    {
+      "id": "vanna",
+      "slot": 2,
+      "status": "Vanna 2 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "vanna-skill-2.jpg"
+    },
+    {
+      "id": "vanna",
+      "slot": 3,
+      "status": "Vanna 3 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "vanna-skill-3.jpg"
+    },
+    {
+      "id": "vanna",
+      "slot": 4,
+      "status": "Vanna 4 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "vanna-skill-4.jpg"
+    },
+    {
+      "id": "keo",
+      "slot": 1,
+      "status": "Keo 1 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "keo-skill-1.jpg"
+    },
+    {
+      "id": "keo",
+      "slot": 2,
+      "status": "Keo 2 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "keo-skill-2.jpg"
+    },
+    {
+      "id": "keo",
+      "slot": 3,
+      "status": "Keo 3 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "keo-skill-3.jpg"
+    },
+    {
+      "id": "keo",
+      "slot": 4,
+      "status": "Keo 4 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "keo-skill-4.jpg"
+    },
+    {
+      "id": "nadi",
+      "slot": 1,
+      "status": "Nadi 1 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "nadi-skill-1.jpg"
+    },
+    {
+      "id": "nadi",
+      "slot": 2,
+      "status": "Nadi 2 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "nadi-skill-2.jpg"
+    },
+    {
+      "id": "nadi",
+      "slot": 3,
+      "status": "Nadi 3 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "nadi-skill-3.jpg"
+    },
+    {
+      "id": "nadi",
+      "slot": 4,
+      "status": "Nadi 4 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "nadi-skill-4.jpg"
+    },
+    {
+      "id": "lia",
+      "slot": 1,
+      "status": "Lia Soares 1 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "lia-skill-1.jpg"
+    },
+    {
+      "id": "lia",
+      "slot": 2,
+      "status": "Lia Soares 2 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "lia-skill-2.jpg"
+    },
+    {
+      "id": "lia",
+      "slot": 3,
+      "status": "Lia Soares 3 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "lia-skill-3.jpg"
+    },
+    {
+      "id": "lia",
+      "slot": 4,
+      "status": "Lia Soares 4 real cast · frozen at0.05s; Freeze / resume to inspect motion",
+      "file": "lia-skill-4.jpg"
+    }
+  ]
+}

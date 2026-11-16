@@ -43,3 +43,5 @@ Container lint (including all three new fixtures), strict typecheck and normal p
 Branch `codex/asean-roster-pack-a` began at `b0a788c`; foundation integration `c658cb9a6fe79cabec261edb3fcafd17faf7271e` was merged before production. Latest integration through `97f74a7` was merged before the pack commit. Work ran in the existing Node 24 dependency volume on container `asean-roster-pack-a`, port 5192, with parent-coordinated native Safari access. No remote state was changed.
 
 Final all-twelve roster/export acceptance, original-five broad regressions, 320/390 layouts, all sixty audio cues, physical-device input, natural full-run balance/performance and cultural/name review belong to integration #21 or remain explicitly unverified. Pack results do not claim those checks or resolve the existing dense Safari/mobile performance limitation.
+
+Integration follow-through is recorded in [twelve-hero acceptance](asean-roster.md), including the final directional/manual inspections, original regressions and retained rendering/layout reds. Physical-device, cultural and natural-run balance boundaries remain unverified.

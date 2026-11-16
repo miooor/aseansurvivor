@@ -5,8 +5,8 @@ import {STAGES} from '../src/content/core.js';
 const $=id=>document.getElementById(id),frame=$('game');
 let rt,evidence;
 const ready=setInterval(()=>{rt=frame.contentWindow.__asean;if(rt){clearInterval(ready);$('run').disabled=$('preview').disabled=false;$('status').textContent='Ready'}},100);
-function stage(index=0){rt.toMenu();rt.newGame('ustaz',index);const g=rt.G;g.auto=false;g.spawnT=g.durianT=g.pupT=999;g.cds.fill(999);g.p.invuln=999;frame.contentDocument.getElementById('menu').hidden=true;rt.scene.update(0,0);g.paused=true;return g}
-function preview(){const g=stage(),water=g.world.waters[0];Object.assign(g.p,{x:water.x+90,y:water.y+100});rt.scene.update(0,0);rt.scene.cameras.main.fadeEffect.reset();frame.contentDocument.getElementById('banner').classList.remove('show');return g}
+async function stage(index=0){rt.toMenu();await rt.scene.prepareHero('ustaz');rt.newGame('ustaz',index);const g=rt.G;g.auto=false;g.spawnT=g.durianT=g.pupT=999;g.cds.fill(999);g.p.invuln=999;frame.contentDocument.getElementById('menu').hidden=true;rt.scene.update(0,0);g.paused=true;return g}
+async function preview(){const g=await stage(),water=g.world.waters[0];Object.assign(g.p,{x:water.x+90,y:water.y+100});rt.scene.update(0,0);rt.scene.cameras.main.fadeEffect.reset();frame.contentDocument.getElementById('banner').classList.remove('show');return g}
 function rendered(){return new Promise(resolve=>rt.scene.game.events.once('postrender',resolve))}
 function pixel(point){
   const renderer=rt.scene.game.renderer,p=rt.scene.cameras.main.matrix.transformPoint(point.x,point.y);
@@ -54,7 +54,7 @@ async function clipping(g,check){
   }
 }
 async function lifecycle(check){
-  let g=preview();await rendered();
+  let g=await preview();await rendered();
   const water=()=>rt.scene.children.list.filter(o=>o.name==='terrain-water');
   const textureCount=()=>rt.scene.textures.getTextureKeys().length;
   g.paused=false;rt.raid.spawnPortal();rt.raid.enter();rt.scene.update(0,0);g.paused=true;await rendered();
@@ -67,10 +67,10 @@ async function lifecycle(check){
   const counts=[];
   for(let cycle=0;cycle<3;cycle++){
     for(let index=0;index<STAGES.length;index++){
-      g=stage(index);const bank=g.world.waters[0];if(bank)Object.assign(g.p,{x:bank.x+260,y:bank.y+220});
+      g=await stage(index);const bank=g.world.waters[0];if(bank)Object.assign(g.p,{x:bank.x+260,y:bank.y+220});
       rt.scene.update(0,0);rt.scene.cameras.main.fadeEffect.reset();await rendered();
     }
-    preview();await rendered();counts.push(textureCount());
+    await preview();await rendered();counts.push(textureCount());
   }
   evidence.textureCounts=counts;
   check('Repeated six-world cycles do not accumulate TextureManager resources',counts[1]===counts[0]&&counts[2]===counts[0]);
@@ -83,7 +83,7 @@ $('run').onclick=async()=>{
   try{
     check('Actual game uses WebGL',!!rt.scene.game.renderer.gl);
     for(const [index,s]of STAGES.entries()){
-      const g=stage(index);
+      const g=await stage(index);
       check(s.name+' creates terrain without unsupported mask warnings',!evidence.warnings.some(w=>w.includes('not supported in WebGL')));
       await clipping(g,check);
     }
@@ -91,7 +91,7 @@ $('run').onclick=async()=>{
     check('World, raid, retry and menu transitions emit no WebGL warnings',evidence.warnings.length===0);
     evidence.result='PASS';
   }catch(error){evidence.errors.push(String(error))}
-  finally{console.warn=warn;preview();$('status').textContent=evidence.result+' · '+evidence.checks.filter(c=>c.pass).length+'/'+evidence.checks.length;$('report').textContent=JSON.stringify(evidence,null,2);$('download').disabled=false}
+  finally{console.warn=warn;await preview();$('status').textContent=evidence.result+' · '+evidence.checks.filter(c=>c.pass).length+'/'+evidence.checks.length;$('report').textContent=JSON.stringify(evidence,null,2);$('download').disabled=false}
 };
 $('preview').onclick=preview;
 $('download').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(evidence,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='water-mask-report.json';a.click();URL.revokeObjectURL(url)};

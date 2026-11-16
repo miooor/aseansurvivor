@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-16T03:04:34.153Z",
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "result": "FAIL",
+  "error": "Error: Actual Lia E particle decodes as authored gold\n    at check (http://localhost:5194/tests/asean-roster.js?t=1794798103756:12:106)\n    at color (http://localhost:5194/tests/asean-roster.js?t=1794798103756:20:244)\n    at async run (http://localhost:5194/tests/asean-roster.js?t=1794798103756:35:92)",
+  "checks": [
+    {
+      "name": "lia actual lobby Start enters prepared run",
+      "pass": true
+    },
+    {
+      "name": "Real Lia E creates a visible authored dash particle",
+      "pass": true,
+      "details": {
+        "particle": {
+          "x": 18.75,
+          "y": 0,
+          "vx": 0,
+          "vy": 0,
+          "life": 0.2,
+          "max": 0.25,
+          "c": "rgba(255,211,77,.6)",
+          "size": 9
+        }
+      }
+    },
+    {
+      "name": "Actual Lia E particle decodes as authored gold",
+      "pass": false,
+      "details": {
+        "css": "rgba(255,211,77,.6)",
+        "actual": 0,
+        "expected": 16765773
+      }
+    }
+  ],
+  "errors": []
+}

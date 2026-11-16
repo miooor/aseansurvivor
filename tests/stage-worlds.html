@@ -5,12 +5,12 @@ const $=id=>document.getElementById(id),frame=$('game');let rt;
 for(const [i,s]of STAGES.entries())$('stage').add(new Option(s.name,String(i)));
 function choices(){const w=createWorld(STAGES[Number($('stage').value)].id);$('landmark').replaceChildren();for(const [i,s]of w.landmarks.entries())$('landmark').add(new Option(s.name,String(i)))}choices();$('stage').onchange=choices;
 const ready=setInterval(()=>{rt=frame.contentWindow.__asean;if(rt){clearInterval(ready);$('preview').disabled=$('run').disabled=false}},100);
-$('preview').onclick=()=>{rt.toMenu();rt.newGame('ustaz',Number($('stage').value));const g=rt.G,s=g.world.landmarks[Number($('landmark').value)];Object.assign(g.p,{x:s.x,y:s.y,invuln:999});g.auto=false;g.cds[0]=999;g.spawnT=g.durianT=999;frame.contentDocument.getElementById('menu').hidden=true;rt.makeGhost(g.world.signature,s.x+180,s.y+50);rt.scene.update(0,50);g.paused=true;frame.contentDocument.getElementById('banner').classList.remove('show')};
+$('preview').onclick=async ()=>{rt.toMenu();await rt.scene.prepareHero('ustaz');rt.newGame('ustaz',Number($('stage').value));const g=rt.G,s=g.world.landmarks[Number($('landmark').value)];Object.assign(g.p,{x:s.x,y:s.y,invuln:999});g.auto=false;g.cds[0]=999;g.spawnT=g.durianT=999;frame.contentDocument.getElementById('menu').hidden=true;rt.makeGhost(g.world.signature,s.x+180,s.y+50);rt.scene.update(0,50);g.paused=true;frame.contentDocument.getElementById('banner').classList.remove('show')};
 // Failure scope: shared mutable navigation between stages, disconnected landmarks,
 // stale minimap/art, missing signature enemies, invalid spawns and duplicate rewards.
-$('run').onclick=()=>{let result='PASS',error;const checks=[],check=(name,pass)=>{checks.push({name,pass:!!pass});if(!pass)throw Error(name)};
+$('run').onclick=async ()=>{let result='PASS',error;const checks=[],check=(name,pass)=>{checks.push({name,pass:!!pass});if(!pass)throw Error(name)};
 try{const layouts=new Set(),signatures=new Set();for(const [index,stage]of STAGES.entries()){
-rt.toMenu();rt.newGame('ustaz',index);const g=rt.G,w=g.world;g.auto=false;g.cds[0]=999;g.spawnT=g.durianT=999;g.p.invuln=999;layouts.add(JSON.stringify(w.blockers));signatures.add(w.signature);check(stage.name+' binds its own world',w.id===stage.id);
+rt.toMenu();await rt.scene.prepareHero('ustaz');rt.newGame('ustaz',index);const g=rt.G,w=g.world;g.auto=false;g.cds[0]=999;g.spawnT=g.durianT=999;g.p.invuln=999;layouts.add(JSON.stringify(w.blockers));signatures.add(w.signature);check(stage.name+' binds its own world',w.id===stage.id);
 for(const s of w.landmarks){check(stage.name+' '+s.name+' is on land',w.walkable(s.x,s.y,30));const actor={x:0,y:0,r:24};for(let n=0;n<3000&&Math.hypot(actor.x-s.x,actor.y-s.y)>100;n++){const [dx,dy]=w.routeDirection(actor,s);Object.assign(actor,w.moveOnMap(actor.x,actor.y,actor.x+dx*30,actor.y+dy*30,24))}check(stage.name+' '+s.name+' is reachable',Math.hypot(actor.x-s.x,actor.y-s.y)<=100)}
 const site=w.landmarks[1];Object.assign(g.p,{x:site.x,y:site.y});rt.scene.update(0,50);check(stage.name+' discovers unique landmark',g.exploration.visited.includes(site.id));check(stage.name+' spawns local cache guardians',g.enemies.some(e=>e.type===w.signature));for(const e of g.enemies)e.dead=true;const coins=g.coins;rt.scene.update(0,50);check(stage.name+' cache rewards once',g.coins===coins+site.reward);rt.scene.update(0,50);check(stage.name+' cache does not repeat',g.coins===coins+site.reward);
 check(stage.name+' renders correct map title',frame.contentDocument.querySelector('#worldMap strong').textContent===w.name);
@@ -18,7 +18,7 @@ const e=rt.makeGhost(w.signature,g.p.x+260,g.p.y);e.stun=0;e.skillT=.1;for(let n
 rt.raid.spawnPortal();check(stage.name+' rift lands on local walkable ground',w.walkable(rt.raid.state.portal.x,rt.raid.state.portal.y,35));
 }
 check('All six stages have different collision layouts',layouts.size===6);check('All six stages have a distinct signature enemy',signatures.size===6);
-rt.newGame('ustaz',0);rt.scene.update(0,50);check('Stage switching restores Johor geometry',rt.G.world.id==='johor'&&rt.G.world.walkable(0,0,30));
+await rt.scene.prepareHero('ustaz');rt.newGame('ustaz',0);rt.scene.update(0,50);check('Stage switching restores Johor geometry',rt.G.world.id==='johor'&&rt.G.world.walkable(0,0,30));
 }catch(e){result='FAIL';error=e.message}finally{rt.toMenu();$('report').textContent=JSON.stringify({date:new Date().toISOString(),result,error,checks},null,2)}};
 const download=document.createElement('button');download.textContent='Download report';$('run').after(download);
 download.onclick=()=>{const a=document.createElement('a'),url=URL.createObjectURL(new Blob([$('report').textContent],{type:'application/json'}));a.href=url;a.download='stage-worlds-report.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
