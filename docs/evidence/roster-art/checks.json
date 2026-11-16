@@ -21,12 +21,12 @@
     "sessionId": 51151
   },
   "typecheck": {
-    "result": "RUNNING",
+    "result": "UNCONFIRMED",
     "sessionId": 51151,
     "containerId": "a3d803c76192"
   },
   "build": {
-    "result": "QUEUED_AFTER_TYPECHECK",
+    "result": "UNCONFIRMED",
     "sessionId": 51151,
     "command": "npm run lint && npm run typecheck && npm run build"
   },
@@ -35,5 +35,10 @@
     "No browser automation by art worker; foundation/integration verifies actual moving/attacking/freeze/loading.",
     "Unused portrait cell has alpha<=1 segmentation residue; accepted black/white composite error<=1/255, original exact-zero diagnostic retained.",
     "No cultural/name approval, physical-phone performance or FPS improvement claim."
-  ]
+  ],
+  "finalStatusRecovery": {
+    "observedAt": "2026-11-16T00:43Z",
+    "result": "UNCONFIRMED",
+    "reason": "Original session and container no longer exist; no exit status recovered. Historical running/queued observations superseded. Integrated foundation build passed; final ticket21 owns complete verification."
+  }
 }
