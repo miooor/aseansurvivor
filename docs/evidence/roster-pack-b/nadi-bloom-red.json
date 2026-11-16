@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-16T01:09:33.310Z",
+  "result": "FAIL",
+  "error": "F deals15 with1.5 seconds slow in radius150",
+  "checks": [
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "F deals15 with1.5 seconds slow in radius150",
+      "pass": false,
+      "details": {
+        "hp": 10000
+      }
+    }
+  ]
+}
