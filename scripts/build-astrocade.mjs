@@ -14,8 +14,8 @@ await build({
   plugins:[{
     name:'astrocade-platform',enforce:'pre',
     transform(code,id){
-      if(id.endsWith('/src/scenes/SurvivalScene.ts'))return code.replace(
-        /new URL\('\.\.\/\.\.\/assets\/([^']+)\.png',import.meta.url\)\.href/g,
+      if(id.endsWith('/src/scenes/SurvivalScene.ts')||id.endsWith('/src/content/hero-art.js'))return code.replace(
+        /new URL\('\.\.\/\.\.\/assets\/([^']+)\.(?:png|webp)',import.meta.url\)\.href/g,
         (_,name)=>JSON.stringify(assetUrl(name)));
       if(id.endsWith('/src/game/runtime.js')||id.endsWith('/src/game/skill-audio.js')){
         return "import {platformStorage} from '/src/astrocade/storage.ts';\n"+code.replaceAll('localStorage','platformStorage');

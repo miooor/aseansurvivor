@@ -47,8 +47,9 @@ export function installIdentities(api){
     s.x=g.p.x;s.y=g.p.y;
     if(s.window>0){s.window=Math.max(0,s.window-dt);if(!s.window&&(id==='nok'||id==='sari')){s.charge=0;s.lastSkill=0}}
   });
-  for(const [id,identity]of Object.entries(IDENTITIES)){
-    HEROES[id].identity=identity;
+  for(const [id,hero]of Object.entries(HEROES)){
+    const identity=hero.identity||IDENTITIES[id];
+    hero.identity=identity;
     CAST[id]=CAST[id].map((cast,i)=>r=>{
       const g=api.G,s=g.identity,ready=s.charge>=identity.max;
       const empowered=ready&&((id==='ustaz'&&i===3)||(id==='rempit'&&i===1)||(id==='lan'&&i===2)||(id==='sari'&&i===1));
@@ -61,8 +62,8 @@ export function installIdentities(api){
       if(result===false)return false;
       api.audio.play(id,i);
       if(i>0){
-        const durations={ustaz:[0,.65,g.orbit?.t||6,.75,8],rempit:[0,.5,g.p.exhaust,.7,g.p.super],nok:[0,.6,.6,g.sea.wai,1.5],lan:[0,.8,empowered?14:10,.75,g.sea.show],sari:[0,.6,.7,g.sea.stance,2.8]};
-        const life=durations[id][i],skill=id+'-'+i;
+        const durations={ustaz:[0,.65,g.orbit?.t||6,.75,8],rempit:[0,.5,g.p.exhaust,.7,g.p.super],nok:[0,.6,.6,g.sea?.wai,1.5],lan:[0,.8,empowered?14:10,.75,g.sea?.show],sari:[0,.6,.7,g.sea?.stance,2.8]};
+        const life=durations[id]?.[i]??skillPoses[id][i],skill=id+'-'+i;
         if(life>2)g.fx=g.fx.filter(f=>f.skill!==skill);
         const landing=id==='nok'&&i===4?g.sea.leap:null;
         g.fx.push({kind:'spell',skill,hero:id,slot:i,x:landing?landing.tx:g.p.x,y:landing?landing.ty:g.p.y,a:attackAngle,r:landing?(172+9*landing.r)*(landing.bl?1.3:1):i===4?150:85,c:identity.color,life,max:life});

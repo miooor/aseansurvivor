@@ -10,14 +10,14 @@ export const STAGES=[
 export const INTRO={stalker:'Palm Stalker! Step aside when its charge circle appears.',lantern:'Lantern Wraith! Dodge between its three ember bolts.',sentinel:'Tin Sentinel! Leave its wide circle before the ground slam.',neon:'Neon Shade! Watch for a dash and two flanking bolts.',drifter:'Brine Drifter! Avoid its slippery pools and sea bolts.',watcher:'Harvest Watcher! Weave through its five-shot straw fan.',toyol:'Toyol! Green and one-eyed. They steal your embers. Catch them to get them back.',penanggal:'Penanggal! The flying head left her body nearby. Break the body to weaken her.',minyak:'Orang Minyak! Hits slide off the oil, and the puddles make you skid.'};
 
 export const HEROES={
-  ustaz:{id:'ustaz',name:'Ustaz Hakim',country:'Malaysia',role:'Protector · slow, sturdy, heals',hp:150,speed:150,ultNeed:60,
+  ustaz:{id:'ustaz',basicDamage:12,name:'Ustaz Hakim',country:'Malaysia',role:'Protector · slow, sturdy, heals',hp:150,speed:150,ultNeed:60,
     skills:[
       {key:'',name:'Nur',desc:'Auto bolt of light at the nearest ghost.',up:'More bolts, more damage.',cd:.85},
       {key:'Q',name:'Cahaya Fajar',desc:'Cone of dawn light; heavy damage and burn.',up:'+25% damage, wider reach.',cd:6},
       {key:'E',name:'Tasbih Ring',desc:'Prayer beads orbit you for 6 s.',up:'+1 bead, +25% damage.',cd:12},
       {key:'F',name:'Seruan',desc:'Wave that pushes ghosts back and stuns them.',up:'Longer stun, bigger wave.',cd:10},
       {key:'R',name:'Benteng Doa',desc:'Ultimate: ring of light that burns ghosts and heals you.',up:'+25% damage and healing.',cd:0,ult:true}]},
-  rempit:{id:'rempit',name:'Mat Rempit "Jet"',country:'Malaysia',role:'Speedster · fastest, fragile',hp:95,speed:235,ultNeed:50,
+  rempit:{id:'rempit',basicDamage:11,name:'Mat Rempit "Jet"',country:'Malaysia',role:'Speedster · fastest, fragile',hp:95,speed:235,ultNeed:50,
     skills:[
       {key:'',name:'Spanar',desc:'Auto-thrown spanner that bounces between ghosts.',up:'+1 bounce every 2 ranks, more damage.',cd:.7},
       {key:'Q',name:'Wheelie',desc:'Dash forward, hitting everything in the way. Invulnerable while dashing.',up:'+25% damage, shorter cooldown.',cd:4},

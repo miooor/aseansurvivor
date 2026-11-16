@@ -1,0 +1,1 @@
+Eleven unmodified 4:3 flags from lipis/flag-icons, commit `ac7e0eb3259eb62aa6100c435607e2fe03896a97`. MIT license and copyright retained in LICENSE. Trusted source SVGs are bundled as self-contained image data URLs by src/content/hero-flags.js; no runtime external requests.
