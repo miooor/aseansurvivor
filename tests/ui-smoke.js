@@ -425,15 +425,16 @@ run.onclick=async()=>{
     }
     // Two runs at the same timestamp and camera position can have different spells.
     // Inspect the submitted geometry immediately, before another simulation tick.
-    const counts=[];
     for(const slot of [1,4]){
       const rt=w.__asean;rt.newGame('ustaz',0);
       const g=rt.G;g.ult=g.hero.ultNeed;g.auto=false;g.cds[0]=999;
       rt.tryCast(slot);rt.scene.update(0,50);rt.scene.drawTerrain();
-      counts.push(rt.scene.terrain.ribbons.mesh.geometry.drawRange.count);
+      const batch=rt.scene.terrain.actors.group.getObjectByName('hero-effects-ustaz');
+      const frames=batch?.geometry.getAttribute('frameRect');
+      const rows=batch?.visible?Array.from({length:batch.geometry.instanceCount},(_,i)=>4-Math.round(frames.getY(i)*5)):[];
+      check('Fresh run submits only the selected spell row '+slot,rows.length>0&&rows.every(row=>row===slot));
       rt.toMenu();
     }
-    check('A fresh run immediately submits the new spell geometry',counts[0]>0&&counts[1]>counts[0]);
     // Failure cases: idle/cooldown casts farming power, repeated techniques counting as a combo,
     // stale charge after retry, counter charge never expiring, and empowered casts failing to consume.
     for(const id of ['ustaz','rempit','nok','lan','sari']){

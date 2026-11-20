@@ -350,14 +350,25 @@ export class RegionWorld{
       this.gangwayHinge.rotation.x=(1-lowered)*1.37;
     }
     this.ribbons.begin();
-    drawGroundSkills(this.ribbons,g,this.motion.matches);
-    for(const f of g.fx){
-      if(f.kind==='spell')drawCast(this.ribbons,f,g,this.motion.matches);
-      else drawImpact(this.ribbons,f,g,this.motion.matches);
+    const painted=this.assets.hasEffects(g.hero.id);
+    if(!painted){
+      drawGroundSkills(this.ribbons,g,this.motion.matches);
+      for(const f of g.fx){
+        if(f.kind==='spell')drawCast(this.ribbons,f,g,this.motion.matches);
+        else drawImpact(this.ribbons,f,g,this.motion.matches);
+      }
+      for(const f of g.sea?.fx||[])drawImpact(this.ribbons,f,g,this.motion.matches);
+      drawCombatTrails(this.ribbons,g,this.motion.matches);
+      drawRosterCues(this.ribbons,g,this.motion.matches);
+    }else{
+      // Item shots, enemy bursts and encounter feedback keep their own cues.
+      for(const f of g.fx){
+        if(!f.hero&&!f.flourish&&f.kind!=='spell')drawImpact(this.ribbons,f,g,this.motion.matches);
+      }
+      for(const q of g.projs)if('origin' in q&&q.origin==='item'){
+        this.ribbons.glow([q.x,q.y,10],q.r+3,0xeaaf73,.8);
+      }
     }
-    for(const f of g.sea?.fx||[])drawImpact(this.ribbons,f,g,this.motion.matches);
-    drawCombatTrails(this.ribbons,g,this.motion.matches);
-    drawRosterCues(this.ribbons,g,this.motion.matches);
     this.signatures.draw(this.ribbons,g,this.motion.matches);
     this.ribbons.finish();
     this.renderer.render(this.scene,c);

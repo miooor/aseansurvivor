@@ -154,7 +154,7 @@ CAST.sari=[
     S.dashImg=4;S.dashAcc=0;S.dashDmg=api.G.hero.skills[2].baseDamage*rm(r);S.dashR=(66+5*r)*(evo?1.4:1);S.dashFear=evo;
     puff(p.x,p.y,'#ffb347',10,130,4);text(p.x,p.y-34,'Harimau!','#ffb347',14);juice(5)},
   r=>{const p=api.G.p;S.stanceMax=S.stance=stanceDuration(r,api.G.technique);const dmg=palmCounter(r,api.G.technique);
-    S.ctrFn=e=>{if(api.G.t<(e.hits.ctr||0))return;e.hits.ctr=api.G.t+.45;for(const f of HOOKS.parry)f();const[nx,ny]=norm(e.x-p.x,e.y-p.y);hit(e,dmg,{kb:[nx*400,ny*400]});if(!e.boss)e.stun=Math.max(e.stun,.5);
+    S.ctrFn=e=>{if(api.G.t<(e.hits.ctr||0))return;e.hits.ctr=api.G.t+.45;for(const f of HOOKS.parry)f();const[nx,ny]=norm(e.x-p.x,e.y-p.y);hit(e,dmg,{visualSlot:3,kb:[nx*400,ny*400]});if(!e.boss)e.stun=Math.max(e.stun,.5);
       sfx({kind:'arc',x:p.x,y:p.y,a:Math.atan2(ny,nx),half:.6,r:44,life:.14,c:'#ffe9a8',w:6});puff(e.x,e.y,'#ffd34d',5,120,3);juice(4,.03)};
     p.onContact=S.ctrFn;api.G.cds[1]=Math.min(api.G.cds[1],.25); // the stance readies her kick
     ring(p.x,p.y,56,'#ff8fb0',.5);text(p.x,p.y-40,'Silat Palm Guard','#ffc2d4',16);p.sq=.5},
@@ -185,7 +185,7 @@ HOOKS.update.push(dt=>{
   if(S.leap){const L=S.leap;L.t+=dt;const k=Math.min(1,L.t/L.dur),s=k*k*(3-2*k);
     p.x=L.sx+(L.tx-L.sx)*s;p.y=L.sy+(L.ty-L.sy)*s;p.vx=p.vy=0;p.dash=null;
     if(k>=1){S.leap=null;const R=(172+9*L.r)*(L.bl?1.3:1),dmg=api.G.hero.skills[4].baseDamage*rm(L.r)*(L.bl?1.5:1);
-      each(p.x,p.y,R,(e,dx,dy)=>{const[nx,ny]=norm(dx,dy);hit(e,dmg,{kb:[nx*320,ny*320]});if(!e.boss)e.stun=Math.max(e.stun,1.5+.2*(L.r-1)+(L.bl?.5:0))});
+      each(p.x,p.y,R,(e,dx,dy)=>{const[nx,ny]=norm(dx,dy);hit(e,dmg,{visualSlot:4,kb:[nx*320,ny*320]});if(!e.boss)e.stun=Math.max(e.stun,1.5+.2*(L.r-1)+(L.bl?.5:0))});
       ring(p.x,p.y,R,'#ffd34d',.5);ring(p.x,p.y,R*.6,'#fff3b0',.35);sfx({kind:'crack',x:p.x,y:p.y,r:R,life:.9,seed:Math.random()*9});
       puff(p.x,p.y,'#d8c9a8',22,260,5);p.sq=1;p.invuln=Math.max(p.invuln,.3);juice(18,.14)}}
 
@@ -202,10 +202,10 @@ HOOKS.update.push(dt=>{
       if(a.tg&&d<=stop+6&&a.cd<=0){a.cd=.45;a.bop=1;
         if(a.tg.slowT>0&&!(a.tg.hits.ripple>api.G.t)){
           a.tg.hits.ripple=api.G.t+.65;
-          each(a.tg.x,a.tg.y,80,e=>{if(e!==a.tg)hit(e,a.dmg*.6)});
+          each(a.tg.x,a.tg.y,80,e=>{if(e!==a.tg)hit(e,a.dmg*.6,{visualSlot:2})});
           ring(a.tg.x,a.tg.y,80,'#84f2ef',.45,'ripple');
         }
-        const landed=hit(a.tg,a.dmg,{kb:[dx/d*90,dy/d*90]});
+        const landed=hit(a.tg,a.dmg,{visualSlot:2,kb:[dx/d*90,dy/d*90]});
         if(landed&&api.G.evo[2])a.tg.slowT=Math.max(a.tg.slowT||0,1.5);
         puff(a.tg.x,a.tg.y,'#8fd6ff',3,80,2)}
       if(a.t<=0)puff(a.x,a.y,'#8fd6ff',6,90,3)}
@@ -220,7 +220,7 @@ HOOKS.update.push(dt=>{
   if(S.dashImg>0){
     if(p.dash){S.dashAcc-=dt;if(S.dashAcc<=0){S.dashAcc=.05;S.dashImg--;S.images.push({x:p.x,y:p.y,t:.5,dmg:S.dashDmg,r:S.dashR,fear:S.dashFear})}}
     else{S.images.push({x:p.x,y:p.y,t:.5,dmg:S.dashDmg,r:S.dashR,fear:S.dashFear});S.dashImg=0}}
-  if(S.images.length){for(const m of S.images){m.t-=dt;if(m.t<=0){each(m.x,m.y,m.r,(e,dx,dy)=>{const[nx,ny]=norm(dx,dy);hit(e,m.dmg,{kb:[nx*160,ny*160]});if(m.fear&&!e.boss)e.fear=Math.max(e.fear,1.2)});
+  if(S.images.length){for(const m of S.images){m.t-=dt;if(m.t<=0){each(m.x,m.y,m.r,(e,dx,dy)=>{const[nx,ny]=norm(dx,dy);hit(e,m.dmg,{visualSlot:2,kb:[nx*160,ny*160]});if(m.fear&&!e.boss)e.fear=Math.max(e.fear,1.2)});
       ring(m.x,m.y,m.r,'#ffb347',.3);puff(m.x,m.y,'#ffb347',8,170,4);juice(5,.02)}}
     S.images=S.images.filter(m=>m.t>0)}
   if(S.stance>0){S.stance-=dt;if(!p.onContact)p.onContact=S.ctrFn;
@@ -234,7 +234,7 @@ HOOKS.update.push(dt=>{
 
   // falling strikes
   if(S.strikes.length){for(const s of S.strikes){if(s.e&&!s.e.dead){s.x=s.e.x;s.y=s.e.y}s.t-=dt;
-      if(s.t<=0){each(s.x,s.y,s.r,e=>{hit(e,s.dmg);if(s.slow)e.slowT=Math.max(e.slowT||0,s.slow)});
+      if(s.t<=0){each(s.x,s.y,s.r,e=>{hit(e,s.dmg,{visualSlot:4});if(s.slow)e.slowT=Math.max(e.slowT||0,s.slow)});
         if(s.kind==='feather'){ring(s.x,s.y,s.r,'#ffd34d',.3);puff(s.x,s.y,'#ffd34d',8,190,4);sfx({kind:'burst',x:s.x,y:s.y,r:s.r,life:.25});juice(8,.03)}
         else{ring(s.x,s.y,s.r,'#8fd6ff',.28);puff(s.x,s.y,'#8fd6ff',5,140,3);juice(3)}}}
     S.strikes=S.strikes.filter(s=>s.t>0)}

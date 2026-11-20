@@ -1,3 +1,4 @@
+import {MIRA_BASIC_REACH,MIRA_BASIC_HALF_ANGLE} from '../game/heroes/mira.js';
 import {drawOriginalCast,drawOriginalProjectile,drawOriginalStrike} from './heroes/original-five-vfx';
 import {drawRosterCast,drawRosterProjectile,drawRosterContact,hasRosterCast} from './heroes/roster-casts';
 import {drawHeroRelease} from './hero-release';
@@ -65,9 +66,9 @@ export function drawCast(batch:SpellRibbons,f:Effect,g:RunState,reduced:boolean)
   drawHeroRelease(batch,f,ink,reduced);
   if(f.slot===0){
     if(f.hero==='mira'){
-      const half=35*Math.PI/180;
-      band(24,u=>polar(100,a-half+2*half*u,5),4,ink);
-      band(2,u=>polar(100*u,a-half+2*half*progress,8),4,IVORY);
+      const half=MIRA_BASIC_HALF_ANGLE;
+      band(24,u=>polar(MIRA_BASIC_REACH,a-half+2*half*u,5),4,ink);
+      band(2,u=>polar(MIRA_BASIC_REACH*u,a-half+2*half*progress,8),4,IVORY);
     }
     return;
   }

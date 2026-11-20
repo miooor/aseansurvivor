@@ -37,7 +37,7 @@ export function installDani(api){
       pulse(p);status(s);},
     r=>{const s=sync(),g=api.G,p=g.p,a=s.anchor;if(a&&(p.dash||Math.hypot(p.x-s.lastX,p.y-s.lastY)>1e-5)){a.ready=false;a.eligible=false}
       each(p.x,p.y,130,e=>{hit(e,api.G.hero.skills[3].baseDamage*rm(r),{hero:'dani',slot:3});e.slowT=Math.max(e.slowT||0,1)});ring(p.x,p.y,130,color,.4);
-      if(a?.ready&&Math.hypot(p.x-a.x,p.y-a.y)<=70){api.signatureReleased();s.anchor=null;s.shield={hp:30,until:g.t+4};each(a.x,a.y,150,e=>hit(e,35*rm(r),{hero:'dani',slot:3}));ring(a.x,a.y,150,color,.6)}status(s);},
+      if(a?.ready&&Math.hypot(p.x-a.x,p.y-a.y)<=70){api.signatureReleased();s.anchor=null;s.shield={hp:30,until:g.t+4};each(a.x,a.y,150,e=>hit(e,35*rm(r),{hero:'dani',slot:3}));ring(a.x,a.y,150,color,.6,'anchor')}status(s);},
     r=>{const s=sync(),g=api.G;s.fields.push({x:g.p.x,y:g.p.y,start:g.t,next:1,damage:api.G.hero.skills[4].baseDamage*rm(r)});if(s.fields.length>12)s.fields.shift();status(s);}
   ];
   HOOKS.hurt.push(damage=>{const s=sync(),g=api.G;if(s?.fields.some(f=>g.t<f.start+6&&Math.hypot(g.p.x-f.x,g.p.y-f.y)<=200))return damage*.7});

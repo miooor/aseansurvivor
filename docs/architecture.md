@@ -74,7 +74,7 @@ The itineraries in `src/content/regional-quests.js` resolve against landmarks an
 
 The orthographic camera maps the flattened simulation plane to the Three.js terrain. The 45-degree view and depth scaling keep move directions, hitboxes and aiming aligned. Level switches dispose terrain geometry, materials and textures while the actor layers remain available. Static geometry batches by material and world neighbourhood.
 
-`AtlasActors` batches directional sprites by source atlas. Body and shadow share the same frame rectangle and pivot. The shadow projects onto the ground from the same actor position, including when Nok is airborne. `SpellRibbons` batches soft particles and tapered bands into a reusable buffer. Effects follow simulation time and freeze while paused.
+`AtlasActors` batches directional sprites by source atlas. Body and shadow share the same frame rectangle and pivot. The shadow projects onto the ground from the same actor position, including when Nok is airborne. `painted-effects.ts` derives the visible skill frames from the current run. `SpriteAssets` discovers `assets/hero-effect-sprites/<id>.webp` at build time. Each atlas has five rows (basic, Q, E, F, R) and four equal square cells per row, from anticipation through dissipation. Directional art faces right. The battle submits a single translucent batch per effect sheet after the actors write depth. Ground marks use the terrain plane and raised sprites use their carrier’s foot depth. Leaving battle releases the effect batch and its texture. `SpellRibbons` supplies signature feedback, incidental effects and a muted fallback for missing sheets. Playback follows simulation time and freezes while paused.
 
 ### Main-menu atlas
 

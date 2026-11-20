@@ -18,9 +18,10 @@ import {regionalPose,travellerPose} from './regional-animation';
 import {regionalGhost} from '../content/regional-ghosts.js';
 import {BUNIAN_WAYFARER,FOLKLORE_ATLAS,FOLKLORE_IMPACT,type FolkloreMark} from '../content/folklore-monsters.js';
 import {createRuntime,type GameRuntime,type RunState,type Encounter,type Point} from '../game/runtime.js';
+import {drawPaintedEffects,skyfallLift,type PaintedSprite} from './painted-effects';
 import {drawWauLane} from './WauLookout';
 
-const rosterEffects:Record<string,(scene:SurvivalScene,g:RunState)=>void>={asha:drawAsha,mira:drawMira,dani:drawDani,vanna:drawVanna,keo:drawKeo,nadi:drawNadi,lia:drawLia};
+const rosterEffects:Record<string,(scene:SurvivalScene,g:RunState,painted:boolean)=>void>={asha:drawAsha,mira:drawMira,dani:drawDani,vanna:drawVanna,keo:drawKeo,nadi:drawNadi,lia:drawLia};
 const GHOST_FRAMES: Record<string, number> = {toyol:5,pocong:6,minyak:7,pontianak:8,raya:9,shade:9};
 const powerUpFrames:Record<string,number>={ketupat:0,magnet:1,mercun:2,kopi:3,payung:4};
 const JADE=0x81e6ca,GOLD=0xf1c882,RED=0xf16b82;
@@ -41,6 +42,7 @@ export class SurvivalScene {
   readonly terrain:RegionWorld;
   readonly atlas:CampaignAtlas;
   readonly sprites=new Map<Point,ActiveActor>();
+  private paint:PaintedSprite[]=[];
   private map=new RegionMap();
   private previousRun:RunState|null=null;
   private recoveryStart=Infinity;
@@ -236,6 +238,7 @@ export class SurvivalScene {
       this.atlas.update(delta);
       this.terrain.labels.finish();this.guide.hidden=true;
       this.joystick.hidden=true;this.playerHealth.hidden=true;this.damage.style.opacity='0';
+      if(this.previousRun)this.terrain.actors.release('hero-effects-'+this.previousRun.hero.id);
       this.previousRun=null;return;
     }
     const reduced=reducedMotion();
@@ -276,6 +279,9 @@ export class SurvivalScene {
       }
     }
     for(const z of g.zones){
+      if(z.kind==='barrier'&&this.assets.hasEffects(g.hero.id)){
+        this.floor.lineStyle(2,GOLD,.62*Math.min(1,z.life/.4)).strokeCircle(z.x,z.y,z.r);
+      }
       if(z.kind==='fire'||z.kind==='barrier')continue;
       if(z.kind==='thorn'){
         const warning=z.max-z.life<.6;
@@ -416,8 +422,11 @@ export class SurvivalScene {
     else this.setFrame(hero,'hero-motion-'+g.hero.id,7*8+facing);
     const size=art.size;
     hero.height=size*hero.frame.height/hero.frame.width;hero.originY=180/192;
-    if(!reduced&&g.sea?.leap){const leap=g.sea.leap;hero.y-=Math.sin(Math.PI*leap.t/leap.dur)*110}
-    if(g.sea?.leap)this.circle(this.floor,g.sea.leap.tx,g.sea.leap.ty,130,accent,.1,2);
+    if(g.sea?.leap){
+      hero.y-=skyfallLift(g.sea.leap,reduced);
+      const radius=g.fx.find(f=>f.skill==='nok-4')?.r??130;
+      this.circle(this.floor,g.sea.leap.tx,g.sea.leap.ty,radius,accent,.1,2);
+    }
     if(g.p.hurt>0)hero.tint=0xffb9aa;
     if(g.p.shield>0)this.circle(this.effects,g.p.x,g.p.y-14,40,GOLD,.1,2);
     if(g.sea&&(g.sea.stance>0||g.sea.wai>0))this.circle(this.effects,g.p.x,g.p.y,45,g.sea.stance>0?0xf4aac8:GOLD,.12,2);
@@ -431,10 +440,11 @@ export class SurvivalScene {
       this.circle(this.effects,q.x,q.y,q.r,this.color(q.c||'#ffb7b9'),.95);
     }
     const drawHero=rosterEffects[g.hero.id];
-    if(drawHero)drawHero(this,g);
+    const painted=this.assets.hasEffects(g.hero.id);
+    if(drawHero)drawHero(this,g,painted);
     if(g.sea){
-      for(const ally of g.sea.allies){const actor=this.image(ally,3,42);actor.tint=0x99e7ff;actor.alpha=.8}
-      for(const copy of g.sea.images){const actor=this.image(copy,4,90);actor.tint=GOLD;actor.alpha=copy.t*.7}
+      if(!painted)for(const ally of g.sea.allies){const actor=this.image(ally,3,42);actor.tint=0x99e7ff;actor.alpha=.8}
+      if(!painted)for(const copy of g.sea.images){const actor=this.image(copy,4,90);actor.tint=GOLD;actor.alpha=copy.t*.7}
       for(const s of g.sea.strikes)this.circle(this.floor,s.x,s.y,s.r,s.kind==='feather'?GOLD:JADE,.12,2);
     }
     const labels=this.terrain.labels;
@@ -487,6 +497,23 @@ export class SurvivalScene {
     for(const [source,actor] of this.sprites){
       if(Math.abs(actor.x-x)>halfWidth+actor.width||Math.abs(source.y-y)>halfHeight+actor.height)continue;
       actors.add(actor,source.y,actor.casts);
+    }
+    if(this.assets.hasEffects(g.hero.id)){
+      const key='hero-effects-'+g.hero.id;
+      drawPaintedEffects(g,reducedMotion(),s=>{
+        const extent=Math.max(s.width,s.height);
+        if(Math.abs(s.x-x)>halfWidth+extent||Math.abs(s.y-y)>halfHeight+extent+s.lift)return;
+        this.paint.push(s);
+      });
+      // Transparent instances share a draw call. Lay the floor down first,
+      // then blend airborne marks back to front using the same feet as actors.
+      this.paint.sort((a,b)=>Number(b.ground)-Number(a.ground)||a.y-b.y);
+      for(const s of this.paint){
+        const flipX=Math.cos(s.angle)<0;
+        actors.add({key,frame:this.assets.frame(key,s.frame),x:s.x,y:s.y-s.lift,width:s.width,height:s.height,
+          ground:s.ground,originX:flipX?1-s.originX:s.originX,originY:.5,flipX,rotation:s.angle-(flipX?Math.PI:0),tint:0xffffff,alpha:s.alpha},s.y,false);
+      }
+      this.paint.length=0;
     }
     actors.finish();
     this.terrain.draw(g,this.width,this.height,zoom,x,y);
