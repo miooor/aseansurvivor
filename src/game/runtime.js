@@ -13,6 +13,7 @@ import {installNadi} from './heroes/nadi.js';
 import {installLia} from './heroes/lia.js';
 import {markStageProgress} from '../ui/stage-progress';
 import {installHeroWheel} from '../ui/hero-wheel';
+import {installRunResults, renderRunStats} from '../ui/run-results';
 import {installUpgradeShop} from '../ui/upgrade-shop';
 import {installHunt} from './hunt.js';
 import {installCharms} from './charms.js';
@@ -76,11 +77,19 @@ function readSave(fallback){
   }catch{return fallback}
 }
 let SAVE=readSave(DEFAULT_SAVE);
-function saveGame(next,requireStorage=false){
-  try{localStorage.setItem(SAVE_KEY,JSON.stringify(next))}
+function saveGame(next,requireStorage=false,stored=next){
+  try{localStorage.setItem(SAVE_KEY,JSON.stringify(stored))}
   catch{if(requireStorage)return false}
   SAVE=next;
   return true;
+}
+// Defeats and shop purchases only write wallet fields. Older saves may omit
+// defaults that readSave supplies in memory (notably retainedStages).
+function saveWallet(save,changes){
+  let stored;
+  try{stored=JSON.parse(localStorage.getItem(SAVE_KEY))}catch{/* use normalized save */}
+  const next={...save,...changes};
+  return saveGame(next,true,stored&&typeof stored==='object'&&!Array.isArray(stored)?{...stored,...changes}:next);
 }
 async function updateSave(change){
   const transact=()=>{
@@ -119,7 +128,7 @@ listen(window,'keydown',e=>{
   const overlay=document.querySelector('.ov[role="dialog"]:not([hidden])');
   if(e.code==='Tab'&&overlay){
     const buttons=[...overlay.querySelectorAll('button:not([hidden]):not(:disabled),select:not(:disabled)')],first=buttons[0],last=buttons[buttons.length-1];
-    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+    if(e.shiftKey&&(document.activeElement===first||document.activeElement===$('endt'))){e.preventDefault();last.focus()}
     else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
     return;
   }
@@ -918,19 +927,20 @@ function updateMenuWallet(){
 }
 async function buyUpgrade(id,upgrade,offeredPrice){
   const result=await updateSave(save=>{
-    if(G||!Object.hasOwn(HEROES,id)||!heroOwned(id))return 'Choose an unlocked survivor.';
+    if((G&&(!G.over||!G.payoutSaved||id!==G.hero.id))||!Object.hasOwn(HEROES,id)||!heroOwned(id))return 'Choose an unlocked survivor.';
     const levels=save.heroUpgrades?.[id],rank=upgradeRank(levels,upgrade.id);
     if(rank===MAX_UPGRADE_RANK)return upgrade.name+' is at maximum rank.';
     const price=upgradePrice(upgrade,rank);
     if(price!==offeredPrice)return upgrade.name+' changed in another tab. Check the new price.';
     if(save.coins<price)return 'You need '+(price-save.coins)+' more coins.';
-    const next={...save,coins:save.coins-price,heroUpgrades:{
+    const changes={coins:save.coins-price,heroUpgrades:{
       ...save.heroUpgrades,[id]:{...levels,[upgrade.id]:rank+1}
     }};
-    if(!saveGame(next,true))return 'The purchase could not be saved. Try again.';
+    if(!saveWallet(save,changes))return 'The purchase could not be saved. Try again.';
     return HEROES[id].name+' gained '+upgrade.name+' rank '+(rank+1)+'.';
   });
   updateMenuWallet();
+  results.refresh();
   return result;
 }
 function showHero(id){
@@ -1032,31 +1042,36 @@ function updateHud(){
   }
   updateSkillBar(false);
 }
-function statsHtml(extra=[]){
+function runStats(extra=[]){
   const m=Math.floor(G.clock/60),s=Math.floor(G.clock%60);
-  return[[m+':'+String(s).padStart(2,'0'),'Time'],[G.level,'Level'],[G.kills,'Ghosts'],[G.coins,'Coins'],...extra].map(([b,l])=>`<div><b>${b}</b><span>${l}</span></div>`).join('');
+  return[[m+':'+String(s).padStart(2,'0'),'Time'],[G.level,'Level'],[G.kills,'Ghosts'],[G.coins,'Coins'],...extra];
 }
-function togglePause(){if(!G||G.practice?.complete||G.over||G.choosing||G.lootModal)return;G.paused=!G.paused;audio.setPaused(G.paused);keys.clear();$('pause').hidden=!G.paused;if(G.paused){$('pstats').innerHTML=statsHtml();$('resume').focus()}else cvs.focus({preventScroll:true});updateHud()}
+function togglePause(){if(!G||G.practice?.complete||G.over||G.choosing||G.lootModal)return;G.paused=!G.paused;audio.setPaused(G.paused);keys.clear();$('pause').hidden=!G.paused;if(G.paused){renderRunStats($('pstats'),runStats());$('resume').focus()}else cvs.focus({preventScroll:true});updateHud()}
 async function endGame(won,reason){
   audio.setPaused(true);
   if(G.practice){G.over=true;$('practiceTitle').textContent='Practice ended';$('practiceRetry').focus();return}
-  if(G.over)return;G.over=true;for(const f of HOOKS.cleanup)f();G.choosing=false;$('levelup').hidden=true;$('pause').hidden=true;$('end').hidden=false;
+  if(G.over)return;
   const run=G,S=run.stage,next=STAGES[nextStageIndex(run)],bonus=won?S.clearCoins:0;
+  const boss=run.raidBoss||run.boss;
+  const bossSummary=boss?{name:boss.name,health:Math.ceil(clamp(boss.hp/boss.maxHp,0,1)*100),raid:!!run.raidBoss}:
+    {name:S.boss.name,arrivesIn:bossAt()-run.clock};
+  run.over=true;
+  for(const f of HOOKS.cleanup)f();
+  run.choosing=false;$('levelup').hidden=true;$('pause').hidden=true;
   const fortune=Math.floor(run.coins*run.upgradeStats.coinPercent/100),payout=run.coins+bonus+fortune;
-  $('endt').textContent=won?S.name+' is safe':reason==='night'?'The night swallowed '+S.name:'You were overwhelmed';
-  $('ends').textContent=won?(next?'Next stop: '+next.name+'. '+next.set+'.':(run.campaignRoute==='east'?'East Coast':'West Coast')+' route complete. Thailand is the next planned chapter.'):reason==='night'?S.boss.name+' outlasted the night. Defeat the boss before time runs out.':'The ghosts of '+S.name+' got you this time. Spend the coins you earned in the Upgrades shop.';
   const rewards=[];
   if(won)rewards.push([bonus,'Clear bonus']);
   if(fortune)rewards.push([fortune,'Fortune bonus']);
-  $('estats').innerHTML=statsHtml(rewards);
-  $('next').hidden=!(won&&next);
-  ($('next').hidden?$('again'):$('next')).focus();
-  await updateSave(save=>{
-    const cleared=won&&!save.cleared.includes(S.id)?[...save.cleared,S.id]:save.cleared;
-    saveGame({...save,cleared,coins:save.coins+payout});
-    if(!G){buildRoute();shop.refresh()}
-    if(G===run)$('estats').innerHTML=statsHtml([...rewards,[SAVE.coins,'Total coins']]);
+  results.show({hero:run.hero.id,stage:S.name,boss:bossSummary,night:reason==='night',won,hasNext:won&&!!next,
+    victoryText:next?'Next stop: '+next.name+'. '+next.set+'.':(run.campaignRoute==='east'?'East Coast':'West Coast')+' route complete. Thailand is the next planned chapter.',
+    stats:runStats(rewards)});
+  run.payoutSaved=await updateSave(save=>{
+    if(!won)return saveWallet(save,{coins:save.coins+payout});
+    const cleared=!save.cleared.includes(S.id)?[...save.cleared,S.id]:save.cleared;
+    return saveGame({...save,cleared,coins:save.coins+payout},true);
   });
+  if(!G){buildRoute();shop.refresh()}
+  if(G===run)results.paid(run.payoutSaved);
 }
 function nextStageIndex(run){
   const route=CAMPAIGN_ROUTES[run.campaignRoute];
@@ -1142,10 +1157,11 @@ const shop=installUpgradeShop({
   },signal:controller.signal,buy:buyUpgrade,
   read:id=>({coins:SAVE.coins,levels:SAVE.heroUpgrades?.[id],owned:heroOwned(id)})
 });
+const results=installRunResults({openShop:shop.openFor,wallet:id=>({coins:SAVE.coins,levels:SAVE.heroUpgrades?.[id]}),signal:controller.signal});
 listen(window,'storage',event=>{
   if(event.key!==SAVE_KEY&&event.key!==null)return;
   const previous=SAVE;
-  SAVE=readSave(SAVE);updateMenuWallet();shop.refresh();
+  SAVE=readSave(SAVE);updateMenuWallet();shop.refresh();results.refresh();
   if(!G&&(previous.cleared.join()!==SAVE.cleared.join()||previous.retainedStages.join()!==SAVE.retainedStages.join()))buildRoute();
 });
 return {

@@ -655,11 +655,52 @@ run.onclick=async()=>{
       check(reward+': reward is granted',reward==='orb'?Object.keys(g.evo).length>beforeEvolutions:g.level>=beforeLevel+2);
       if(reward==='xp')check('Experience displays the new level threshold after the raid',$('xpbar').value===g.xp&&$('xpbar').max===g.need);
     }
-    await w.__asean.endGame(false);
-    check('Defeat screen opens',!$('end').hidden);
-    $('again').click();await tick();
-    check('Retry starts a clean run',!w.__asean.G.over&&$('end').hidden);
+    const resultsApi=w.__asean;
+    const beforeResults=localStorage.getItem(saveKey);
+    const seed={cleared:['melaka'],owned:['ustaz','rempit'],heroUpgrades:{ustaz:{strength:2}},coins:5};
+    await setProgress(seed);
+    resultsApi.newGame('rempit',1);
+    const first=resultsApi.G;
+    first.clock=57;first.coins=40;
+    const payout=resultsApi.endGame(false);
+    check('Defeat blocks shop until payout and focuses a safe target',
+      !$('end').hidden&&$('endShop')?.disabled&&!d.activeElement.matches('button'));
+    $('again').click();
+    check('An immediate activation cannot skip defeat',resultsApi.G===first);
+    await payout;
+    check('Early defeat names the boss and time remaining',
+      $('ends').textContent.includes(first.stage.boss.name)&&$('ends').textContent.includes('2:03'));
+    await new Promise(resolve=>setTimeout(resolve,450));
+    $('endShop').focus();$('endShop').click();
+    check('Results open the existing shop fixed to the defeated survivor',
+      $('upgradeShop').open&&$('shopHero').disabled&&$('shopHero').value==='rempit'&&d.activeElement===$('shopBack'));
+    d.querySelector('[data-upgrade="vitality"]').click();
+    const expected={...seed,coins:0,heroUpgrades:{...seed.heroUpgrades,rempit:{vitality:1}}};
+    const purchaseTimeout=Date.now()+3000;
+    while(JSON.parse(localStorage.getItem(saveKey)).coins!==0&&Date.now()<purchaseTimeout)await tick();
+    check('Payout and purchase preserve every other saved byte',localStorage.getItem(saveKey)===JSON.stringify(expected));
+    $('shopBack').click();
+    check('Defeat shows cheapest available shortfall',$('endShopHint').textContent.includes('need 40 more coins for Magnet'));
+    $('again').click();
+    check('Play again keeps survivor and stage and applies the new rank',
+      resultsApi.G.hero.id==='rempit'&&resultsApi.G.si===1&&!resultsApi.G.over&&$('end').hidden&&resultsApi.G.upgradeStats.health===3);
+    for(const reason of ['boss','night','raid']){
+      const battle=resultsApi.G;
+      if(reason==='raid'){
+        resultsApi.raid.spawnPortal();
+        const portal=resultsApi.raid.state.portal;battle.p.x=portal.x;battle.p.y=portal.y;
+        resultsApi.step(50);
+      }else{battle.clock=180;resultsApi.step(50)}
+      const boss=reason==='raid'?battle.raidBoss:battle.boss;
+      boss.hp=boss.maxHp*.37;
+      await resultsApi.endGame(false,reason==='night'?'night':undefined);
+      const line=$('ends').textContent;
+      check(reason+' defeat labels remaining health',line.includes(boss.name)&&line.includes('37% health left')&&
+        (reason!=='raid'||/raid boss/i.test(line))&&(reason!=='night'||/time ran out/i.test(line)));
+      resultsApi.newGame('rempit',1);
+    }
     $('pauseButton').click();$('quit').click();
+    localStorage.setItem(saveKey,beforeResults);
     check('No browser runtime errors',evidence.errors.length===0);
     await load();
     d=w.document;

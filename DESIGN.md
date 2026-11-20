@@ -20,6 +20,8 @@ Core loop:
 
 ## Current decisions
 
+- Campaign defeats show the time until the stage boss arrives or the surviving boss’s remaining health. Raid losses name the raid boss and deadline losses call out the clock. After the payout is saved, the survivor can spend their wallet in the existing Upgrades shop, see the cheapest shortfall, and replay the same stage. Focus starts on the result heading with a short activation delay.
+
 - **Ability specializations.** From the level 3 blessing onward, each hero can trade one property of an existing ability for another. Players may defer the choice, and a chosen path lasts until the run ends. See the [encounter measurements](docs/specializations.md).
 
 - **Run equipment.** Weapon, charm and relic share a loadout with head, chest, gloves, belt and boots. Physical offense follows basic attack origin through delayed hits and skill offense follows active abilities. Contact and falling durians use physical defense. Hostile spells, projectiles and telegraphed areas use skill defense. Matching armor reductions add before Guard and reactive defenses. The Technique Sash upgrades the equipped survivor’s named Q at cast time, including its cooldown and rank-scaled effects. Gear resets at the start of a run.
