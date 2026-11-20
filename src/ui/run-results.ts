@@ -3,7 +3,7 @@ import {HERO_UPGRADES, MAX_UPGRADE_RANK, upgradePrice, upgradeRank} from '../con
 type BossSummary = {name:string; health:number; raid:boolean} | {name:string; arrivesIn:number};
 type RunSummary = {
   hero:string; stage:string; boss:BossSummary; night:boolean;
-  won:boolean; victoryText:string; hasNext:boolean; stats:Stat[];
+  won:boolean; victoryTitle?:string; victoryText?:string; hasNext?:boolean; stats:Stat[];
 };
 type ResultsOptions = {
   openShop:(hero:string)=>void;
@@ -65,9 +65,9 @@ export function installRunResults({openShop,wallet,signal}:ResultsOptions) {
   function show(result:RunSummary){
     summary=result;
     end.hidden=false;
-    title.textContent=result.won?result.stage+' is safe':result.night?'The night swallowed '+result.stage:'You were overwhelmed';
+    title.textContent=result.won?(result.victoryTitle??result.stage+' is safe'):result.night?'The night swallowed '+result.stage:'You were overwhelmed';
     const boss=result.boss;
-    if(result.won)detail.textContent=result.victoryText;
+    if(result.won)detail.textContent=result.victoryText??'';
     else if('arrivesIn' in boss){
       const seconds=Math.max(0,Math.ceil(boss.arrivesIn));
       detail.textContent=boss.name+' would have arrived in '+Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0')+'.';

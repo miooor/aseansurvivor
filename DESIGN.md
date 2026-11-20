@@ -28,7 +28,7 @@ Core loop:
 
 - **Regional quests.** Each of the eight stages beyond Johor has a local civilian, an authored itinerary and a regional equipment reward. The fisher uses Chew Jetty’s existing gangway and the kite maker uses the Padang Layang reel. The traveller and fisher wait for the player to regroup. See the [regional quest table](docs/regional-quests.md).
 
-- **ASEAN expedition.** The Three.js relief atlas doubles as the level selector. Both playable Malaysian routes start in Johor. The West Coast branch ends in Kedah and the East Coast branch runs through Pahang, Terengganu and Kelantan. The route choice determines where **Next** takes the player after a victory. Later stops preview the intended expansion across all eleven ASEAN member states. The survivor wheel shows twelve playable heroes using their in-game idle sprites. Scrolling brings a hero to the front, with their name between the arrows and their basic attack, three skills and ultimate below.
+- **ASEAN expedition.** The Three.js relief atlas doubles as the level selector. Both playable Malaysian routes start in Johor. The West Coast branch ends in Kedah and the East Coast branch runs through Pahang, Terengganu and Kelantan. After a victory, **Next stage** leads to the first missing clear on the selected coast. Clearing the last gap anywhere on that coast shows its ending and continues at the first missing stage on the other coast. Johor counts for both. All nine distinct clears finish Malaysia, with replay available. Later stops preview the intended expansion across all eleven ASEAN member states. The survivor wheel shows twelve playable heroes using their in-game idle sprites. Scrolling brings a hero to the front, with their name between the arrows and their basic attack, three skills and ultimate below.
 
 - **2.5D campaign and hero interactions.** All nine playable Malaysian stages use hand-painted terrain matched to 2.5D props. Each expanded region adds two authored destinations, including one featured landmark inspired by local architecture or industry. Each stage has a distinct original regional monster with its own illustrated 2.5D sprite and attack. The raid uses the same fixed three-quarter view and directional hero sprites. Each hero gains a tactical interaction tied to an existing skill. See the Three.js campaign and skills table in README.
 
@@ -76,7 +76,7 @@ Core loop:
 | 3 | Terengganu | Boatbuilding yards and tidal crossings | Estuary Penanggal |
 | 4 | Kelantan | Wau workshops and floodplain fields | Floodplain Pontianak |
 
-Both atlas tours continue to Thailand and the other planned stops after their Malaysian finale.
+Both atlas tours preview Thailand and the other planned stops beyond Malaysia.
 
 ### Skill audit and redesign
 

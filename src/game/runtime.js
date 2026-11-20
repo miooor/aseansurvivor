@@ -28,7 +28,7 @@ import {EQUIPMENT_SLOTS} from '../content/equipment.js';
 import {REGIONAL_GHOSTS,regionalGhost,regionalWindup} from '../content/regional-ghosts.js';
 import {BUNIAN_WAYFARER,FOLKLORE_IMPACT} from '../content/folklore-monsters.js';
 import {inDirectedLine,overlapsConvexPolygon} from './geometry.js';
-import {CAMPAIGN_ROUTES,nextCampaignStage,stageAvailable} from '../content/campaign-routes.js';
+import {CAMPAIGN_ROUTES,campaignVictory,nextCampaignStage,stageAvailable} from '../content/campaign-routes.js';
 import {installHeroes} from './heroes-sea.js';
 import {installRaid} from './raid.js';
 import {SkillAudio} from './skill-audio.js';
@@ -1051,7 +1051,7 @@ async function endGame(won,reason){
   audio.setPaused(true);
   if(G.practice){G.over=true;$('practiceTitle').textContent='Practice ended';$('practiceRetry').focus();return}
   if(G.over)return;
-  const run=G,S=run.stage,next=STAGES[nextStageIndex(run)],bonus=won?S.clearCoins:0;
+  const run=G,S=run.stage,bonus=won?S.clearCoins:0;
   const boss=run.raidBoss||run.boss;
   const bossSummary=boss?{name:boss.name,health:Math.ceil(clamp(boss.hp/boss.maxHp,0,1)*100),raid:!!run.raidBoss}:
     {name:S.boss.name,arrivesIn:bossAt()-run.clock};
@@ -1062,20 +1062,20 @@ async function endGame(won,reason){
   const rewards=[];
   if(won)rewards.push([bonus,'Clear bonus']);
   if(fortune)rewards.push([fortune,'Fortune bonus']);
-  results.show({hero:run.hero.id,stage:S.name,boss:bossSummary,night:reason==='night',won,hasNext:won&&!!next,
-    victoryText:next?'Next stop: '+next.name+'. '+next.set+'.':(run.campaignRoute==='east'?'East Coast':'West Coast')+' route complete. Thailand is the next planned chapter.',
-    stats:runStats(rewards)});
+  const summary={hero:run.hero.id,stage:S.name,boss:bossSummary,night:reason==='night',won,stats:runStats(rewards)};
+  if(!won)results.show(summary);
   run.payoutSaved=await updateSave(save=>{
     if(!won)return saveWallet(save,{coins:save.coins+payout});
     const cleared=!save.cleared.includes(S.id)?[...save.cleared,S.id]:save.cleared;
+    const victory=campaignVictory(run.campaignRoute,{...save,cleared});
+    const next=STAGES[stageIndex(victory.next)];
+    run.continuation=next?{route:victory.route,stage:next.id}:null;
+    if(G===run)results.show({...summary,victoryTitle:victory.title,hasNext:!!next,
+      victoryText:[victory.text,next&&'Next stop: '+next.name+'. '+next.set+'.'].filter(Boolean).join(' ')});
     return saveGame({...save,cleared,coins:save.coins+payout},true);
   });
   if(!G){buildRoute();shop.refresh()}
   if(G===run)results.paid(run.payoutSaved);
-}
-function nextStageIndex(run){
-  const route=CAMPAIGN_ROUTES[run.campaignRoute];
-  return stageIndex(route[route.indexOf(run.stage.id)+1]);
 }
 function toMenu(){const practiced=!!G?.practice;document.body.classList.remove('practicing');$('practiceGuide').hidden=true;audio.setPaused(true);for(const f of HOOKS.cleanup)f();G=null;['hud','skills','end','pause','levelup'].forEach(id=>$(id).hidden=true);$('menu').hidden=false;buildRoute();showHero(heroPick);$(practiced?'practiceStart':'start').focus({preventScroll:true})}
 $('unlockHero').onclick=async()=>{
@@ -1113,9 +1113,9 @@ $('quit').onclick=toMenu;
 $('again').onclick=()=>{$('end').hidden=true;newGame(G.hero.id,G.si)};
 $('next').onclick=()=>{
   if(!G?.over||$('next').hidden)return;
-  const next=nextStageIndex(G);
-  if(next<0)return;
-  routePick=G.campaignRoute;stagePick=next;newGame(G.hero.id,next);
+  const next=G.continuation;
+  if(!next)return;
+  routePick=next.route;stagePick=stageIndex(next.stage);newGame(G.hero.id,stagePick);
 };
 $('tomenu').onclick=toMenu;
 listen(document,'visibilitychange',()=>{if(document.hidden&&G&&!G.paused&&!G.over&&!G.choosing)togglePause()});
