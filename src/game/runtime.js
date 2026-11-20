@@ -24,6 +24,8 @@ import {installJettyGangway} from './jetty-gangway.js';
 import {installWauLookout} from './wau-lookout.js';
 import {createWorld,stageSignature} from '../content/world.js';
 import {STAGES,INTRO,HEROES as BASE_HEROES,PASSIVES,EVOS} from '../content/core.js';
+import {ENCOUNTERS} from '../content/encounters.js';
+import {REGIONAL_QUESTS} from '../content/regional-quests.js';
 import {EQUIPMENT_SLOTS} from '../content/equipment.js';
 import {REGIONAL_GHOSTS,regionalGhost,regionalWindup} from '../content/regional-ghosts.js';
 import {BUNIAN_WAYFARER,FOLKLORE_IMPACT} from '../content/folklore-monsters.js';
@@ -886,6 +888,12 @@ function buildRoute(){
   $('stageInfo').textContent=S.set+'.';$('stageTitle').textContent=S.name;
   $('stageChapter').textContent='Mission '+String(activeRoute.indexOf(S.id)+1).padStart(2,'0')+' / '+coast;
   $('stageBoss').textContent=S.boss.name;$('stageDuration').textContent=(S.bossAt||BOSS_AT)/60+' minutes'+(S.coinMul?' · '+S.coinMul+'× coins':'');
+  const destinations=S.id==='johor'?Object.values(ENCOUNTERS):[REGIONAL_QUESTS[S.id]];
+  $('stageDestinations').replaceChildren(...destinations.map(({name,slot})=>{
+    const row=document.createElement('li');
+    row.textContent=name+' · '+slot;
+    return row;
+  }));
   $('stageGuardian').textContent=REGIONAL_GHOSTS[stageSignature(S.id)].name;
   $('coinsMenu').textContent=SAVE.coins;$('start').textContent='Enter '+S.name;
   const openStages=STAGES.filter(stage=>stageOpen(routeForStage(stage.id,routePick),stage.id)).map(stage=>stage.id);

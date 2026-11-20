@@ -90,7 +90,7 @@ The rod, locket and drum keep their base effects after either upgrade.
 
 The shop has five ranks each for Vitality, Strength, Stride, Haste, Guard, Recovery, Magnet, Wisdom, and Fortune. First ranks cost 40–75 coins. Each additional rank costs 25 more than the last. Bonuses apply at the start of a run and stack with equipment and level-up passives. Fortune pays out on the results screen based on coins collected during the run.
 
-All heroes and stages are unlocked for testing. Set `UNLOCK_ALL` to `false` in `src/game/runtime.js` to restore hero purchase and stage unlock requirements. Existing saves still use the `aseanSurvivor.v1` localStorage key. Saves are specific to the browser origin: changing hostname or port uses a different save slot.
+All heroes and stages are unlocked for testing. Do not change `UNLOCK_ALL` until the [legacy-access migration](docs/adr/0001-legacy-access.md) ships. Existing saves still use the `aseanSurvivor.v1` localStorage key. Saves are specific to the browser origin: changing hostname or port uses a different save slot.
 
 ## Visual remake
 

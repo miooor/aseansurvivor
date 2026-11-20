@@ -37,7 +37,7 @@ function destination(point,verb){
 try{
   for(const {id} of STAGES){
     const world=createWorld(id),sites=world.landmarks.filter(s=>s.reward),site=sites.at(-1);
-    const event={...sites[0],id:'quest',name:'Regional quest',status:'available',discovered:false};
+    const event={...sites[0],id:'quest',name:'Regional quest',slot:'relic',status:'available',discovered:false};
     g={world,p:{x:0,y:0,r:24,face:[1,0]},t:0,exploration:{visited:[],claimed:[],guards:{}},encounters:{quest:event},enemies:[]};
     tick();
     check($('select').length===1,'undiscovered choices hidden');

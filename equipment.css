@@ -50,7 +50,7 @@
 .gear-detail{padding:10px 14px;background:#101a19;border:1px solid #74664b;border-top:0}
 .gear-case h3{color:var(--pale);font:600 21px/1.2 Georgia,serif}
 .gear-case p,.gear-effect{color:#d1d9ce;font:400 14px/1.45 var(--ui)}
-.gear-detail p,.gear-current p{margin-top:4px}
+.gear-detail p{margin-top:4px}
 .gear-sheet{padding:10px 4px;min-width:0}
 .gear-sheet .gear-name{margin:4px 0 12px;font-size:clamp(22px,2.3vw,31px)}
 .gear-stats{display:grid;gap:3px;margin:0;padding:8px 0;border-block:1px solid #83725480}
@@ -62,14 +62,14 @@
 .gear-skill small{color:var(--muted-gear);margin-left:auto;white-space:nowrap}
 .gear-footer{justify-content:space-between;border-bottom:0;border-top:1px solid #706348;padding-block:7px}
 .gear-footer>span{color:#bdc6ba;font-size:13px}.gear-footer button{border:1px solid #9b8864;background:#2e382f;color:var(--pale);padding:6px 16px}
-.gear-current{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border:1px solid #827456;border-left:3px solid #c4a46b;background:#131e1e}
-.gear-current .gear-art{width:56px}.gear-current h3{margin:2px 0}
-.gear-case .gear-offer-title{font-size:19px;margin:18px 0 10px}
+.gear-current{display:grid;gap:3px;width:100%;margin-top:auto;padding-top:8px;border-top:1px solid #75664d}
+.gear-case .gear-offer-title{font-size:19px;margin:0}
+.gear-case .gear-duration{margin:2px 0 12px}
 #lootChoices{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0}
 #lootChoices:empty{display:none}
 #lootChoices .gear-offer{display:flex;flex-direction:column;align-items:center;gap:9px;padding:14px 12px;text-align:center}
 .gear-offer .gear-art{width:min(108px,80%)}.gear-offer strong{font:600 20px/1.15 Georgia,serif}
-.gear-equip{margin-top:auto;padding-top:8px;border-top:1px solid #75664d;width:100%;color:#e4c58f;font-size:13px;font-weight:700}
+.gear-equip{padding-top:4px;width:100%;color:#e4c58f;font-size:13px;font-weight:700}
 @media(max-width:650px){
   .gear-layout{grid-template-columns:1fr;gap:10px}.gear-board{gap:5px;padding:6px}
   .gear-scroll{padding:10px}.gear-sheet{padding:6px}.gear-header,.gear-footer{padding-inline:12px;gap:10px}
@@ -78,15 +78,8 @@
   #lootChoices{grid-template-columns:1fr;gap:7px}#lootChoices .gear-offer{display:grid;grid-template-columns:58px minmax(0,1fr);gap:3px 10px;text-align:left;padding:8px}
   .gear-offer .gear-art{grid-column:1;grid-row:1 / span 3;width:58px}.gear-offer strong{font-size:17px}
   .gear-effect,.gear-case p{font-size:13px}.gear-equip{border:0;padding:0;font-size:11px}
-  .gear-current{padding:9px}.gear-current .gear-art{width:46px}
+  .gear-current,.gear-equip{grid-column:2}
 }
 .gear-art.expansion{background-image:url('assets/equipment-expansion.webp');background-size:400% 300%}
 .gear-art.survey{background-image:url('assets/equipment-survey.webp');background-size:400% 400%}
-.gear-equip>span{display:block}
 .gear-ancestry,.gear-detail .gear-ancestry{color:#f2cf8f}
-.gear-previous{margin-top:4px;color:var(--muted-gear);font-weight:400}
-@media(max-width:650px){
-  #lootChoices .gear-offer{grid-template-rows:auto auto auto 1fr}
-  .gear-offer .gear-art{grid-row:1 / span 4;align-self:center}
-  .gear-offer .gear-equip{grid-column:2;margin-top:3px}
-}
