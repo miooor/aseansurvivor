@@ -1,5 +1,10 @@
 # Trapped Traveller and weapon equipment
 
+During the fight, gold diamonds identify captors and the minimap follows the closest living captor. After the sixth falls, the marker returns to the traveller so you can free them. Stay with the traveller to the market bridge, defeat the three ambushers on its approach and arrive together for the weapon offer. Expand **Quest details** to reread the briefing or abandon the event.
+
+[Trapped Traveller in combat](screenshots/johor-quest-tracker.png) · [Current escort rules and evidence](regional-quests.md)
+
+
 Ticket #3, part of [Johor encounter and loot spec #1](https://github.com/miooor/aseansurvivor/issues/1). Built from integration baseline `26ba1d0`.
 
 Johor's abandoned market now contains a deliberate rescue event at (2400, 1300), separate from its cache. Defeat six owned captors, including an Armoured Palm Stalker, then interact within 120 units. The marker is discovered with its landmark. Leaving does not fail it; abandoning ends it permanently for that run without a reward. Event actors are collision-projected, remain owned when offscreen, and are removed on resolution or run transitions. Active events block raid entry and preserve the rift's remaining lifetime.
@@ -12,7 +17,7 @@ Rescue offers three distinct weapons from four definitions: Split Ember, Quarry 
 
 Start the repository's Docker Compose server, open `/tests/johor-rescue.html`, select **Run rescue checks**, keep the browser active, then download the JSON report. Preview buttons reproduce active event, elite warning, reward and equipped states. The fixture stages actual runtime casts/projectiles and uses actual HTML controls; it does not expose a second test API. It uses a separate localhost port during development; do not use a live progression origin for destructive end-of-run fixture checks.
 
-Safari 26.3.1 on macOS, 2026-11-14:
+Historical pre-escort results from Safari 26.3.1 on macOS, 2026-11-14:
 
 - Rescue acceptance: **141/141 PASS**, `evidence/johor-rescue/rescue.json` (13:47:27Z).
 - Existing gameplay: **574/574 PASS**, `evidence/johor-rescue/gameplay.json` (13:49:40Z), no captured errors.

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 64">
+  <defs>
+    <linearGradient id="sea" x2=".9" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#244f5c"/><stop offset="1" stop-color="#091f38"/></linearGradient>
+    <linearGradient id="foam" x2=".3" y2="1"><stop stop-color="#eaffea"/><stop offset=".4" stop-color="#81e5db"/><stop offset="1" stop-color="#1688ad"/></linearGradient>
+    <pattern id="tile" width="64" height="64" patternUnits="userSpaceOnUse"><rect width="64" height="64" fill="url(#sea)"/><path d="M1 47 Q20 41 35 46 T64 44M0 54 Q19 49 32 54 T64 52" fill="none" stroke="#36717c" stroke-width="1.5"/><path d="M4 14V4H14M50 60H60V50" fill="none" stroke="#bc9253"/></pattern>
+  </defs>
+  <rect width="320" height="64" fill="url(#tile)"/>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 49L45 17" stroke="#613f28" stroke-width="8"/><path d="M12 47L44 16" stroke="#e1ae68" stroke-width="5"/>
+    <path d="M38 20L46 12Q56 10 52 22L46 27L48 20" fill="none" stroke="#dcfff0" stroke-width="3"/>
+    <path d="M11 32Q13 18 32 11Q17 21 11 32" fill="url(#foam)"/>
+    <g transform="translate(64)"><path d="M9 51Q17 33 25 40T41 29" fill="none" stroke="#dda65f" stroke-width="4"/><path d="M41 30L48 16Q50 11 53 15L54 22M39 28Q23 41 25 24L30 18L29 25" fill="none" stroke="#d8fff3" stroke-width="5"/><circle cx="40" cy="31" r="4" fill="#eeb97a"/></g>
+    <g transform="translate(128)"><path d="M50 23C33 3 6 22 10 40C14 56 49 58 55 34C45 48 21 47 18 37C15 25 34 15 45 24L37 28L56 28L52 13Z" fill="url(#foam)"/><path d="M17 49Q34 59 49 45" fill="none" stroke="#efc785" stroke-width="3"/></g>
+    <g transform="translate(192)"><path d="M32 8L52 17L49 36Q46 47 32 55Q18 47 15 36L12 17Z" fill="#2c6770" stroke="#edc485" stroke-width="3"/><path d="M19 23L43 42M45 23L22 42" fill="none" stroke="#d99c59" stroke-width="6"/><path d="M19 21L43 40M45 21L22 40" fill="none" stroke="#ffdfa1" stroke-width="2"/></g>
+    <g transform="translate(256)"><path d="M6 48Q18 45 23 30C30 9 49 8 56 23C45 18 38 25 40 34Q43 44 58 43Q49 56 30 52Q18 48 6 52Z" fill="url(#foam)"/><path d="M20 38Q32 3 49 14Q55 17 56 23Q48 20 44 24L39 23L36 28" fill="none" stroke="#eafff5" stroke-width="3"/><path d="M16 46Q25 44 32 34" fill="none" stroke="#d1fff2" stroke-width="2"/></g>
+  </g>
+</svg>

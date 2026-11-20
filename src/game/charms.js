@@ -1,8 +1,15 @@
+import {ITEMS} from '../content/equipment.js';
+
 export function installCharms(api){
   const {HOOKS}=api;
   HOOKS.hurt.push(damage=>api.G.equipment.charm==='reedGuard'&&api.G.p.slip?damage*.8:damage);
   HOOKS.newGame.push(g=>{g.lastDamageAt=0;});
-  HOOKS.damage.push(()=>{api.G.lastDamageAt=api.G.t;if(api.G.equipment.charm==='reedGuard'&&api.G.p.slip)api.text(api.G.p.x,api.G.p.y-50,'Reed Guard −20%','#87ffb5',14);});
+  HOOKS.damage.push(()=>{
+    const g=api.G;
+    ITEMS[g.equipment.charm]?.onDamage?.(g);
+    g.lastDamageAt=g.t;
+    if(g.equipment.charm==='reedGuard'&&g.p.slip)api.text(g.p.x,g.p.y-50,'Reed Guard −20%','#87ffb5',14);
+  });
   HOOKS.update.push(dt=>{
     const g=api.G;if(g.over||g.won)return;
     if(g.equipment.charm==='stillwaterBeads'){

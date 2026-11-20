@@ -1,3 +1,4 @@
+import {ITEMS} from '../src/content/equipment.js';
 // Accepted seam: real runtime in browser, actual HTML controls, deterministic staging.
 // Failure scope: accidental activation, ambient kills resolving the event, duplicate
 // rewards, stale run state, blocked actors, modal overlap and compounding modifiers.
@@ -7,12 +8,116 @@ let checks=[];
 function check(name,pass){checks.push({name,pass:!!pass});if(!pass)throw Error(name)}
 function start(hero='ustaz',stage=0){rt.toMenu();rt.newGame(hero,stage);doc.getElementById('menu').hidden=true;const g=rt.G;g.auto=false;g.cds.fill(999);g.spawnT=g.durianT=g.pupT=999;g.p.invuln=999;return g}
 function step(n=1){for(let i=0;i<n;i++)rt.scene.update(0,50)}
-function click(id){const b=doc.getElementById(id);check(id+' is available',!!b&&!b.hidden&&!b.disabled);b.click()}
+function click(id){if(id==='eventAbandon')doc.getElementById('eventDetails').open=true;const b=doc.getElementById(id);check(id+' is available',!!b&&!b.hidden&&!b.disabled);b.click()}
 function equip(id,slot='relic'){const g=rt.G;g.rewards.push({event:'fixture-'+g.rewards.length,slot,offer:[id],consumed:false});step();const b=doc.querySelector('[data-item="'+id+'"]');check('Can choose '+id,!!b);b.click();}
 function incoming(amount){const g=rt.G;g.p.invuln=0;g.eprojs.push({x:g.p.x,y:g.p.y,vx:0,vy:0,r:8,dmg:amount,life:1});step();}
 function lantern(){const g=start();equip('lastLantern');g.p.hp=10;incoming(20);check('Lethal damage leaves hero at one HP',g.p.hp===1&&!g.over);check('Lethal rescue grants two seconds invulnerability',g.p.invuln>=1.95);}
-$('run').onclick=async()=>{checks=[];let result='PASS',error;try{await rt.audio.unlock();lantern();hunt();thorns();echo();bell();bounty();relicBoundaries();everyHero();eventBoundaries();queuedReward();reducedMotion();await rewardBoundaries()}catch(e){result='FAIL';error=e.message}finally{$('status').textContent=result+' · '+checks.filter(c=>c.pass).length+'/'+checks.length+' checks'+(error?' · '+error:'');$('report').textContent=JSON.stringify({date:new Date().toISOString(),result,error,checks},null,2);if(rt.G)rt.G.paused=true}};
+$('run').onclick=async()=>{checks=[];let result='PASS',error;try{await rt.audio.unlock();equipmentArt();mixedReward();equipmentDrop();lantern();hunt();thorns();echo();bell();bounty();relicBoundaries();everyHero();eventBoundaries();queuedReward();reducedMotion();await rewardBoundaries()}catch(e){result='FAIL';error=e.message}finally{$('status').textContent=result+' · '+checks.filter(c=>c.pass).length+'/'+checks.length+' checks'+(error?' · '+error:'');$('report').textContent=JSON.stringify({date:new Date().toISOString(),result,error,checks},null,2);if(rt.G)rt.G.paused=true}};
 $('download').onclick=()=>{const a=document.createElement('a'),url=URL.createObjectURL(new Blob([$('report').textContent],{type:'application/json'}));a.href=url;a.download='johor-hunt-report.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+
+function equipmentArt(){
+  const sheets=[
+    ['items',5,5,'quaySeal supperCarrier tinMallet jettyKnot padiSheaf nipahBraid cengalMallet wauSpool thornEcho bountySeal aftershockBell lastLantern stillwaterBeads reedGuard lanternHeart travellersKnot splitEmber quarryHammer riverNeedle huntersEdge'],
+    ['armor',5,3,'rainHood quiltedVest gripWraps techniqueSash trailBoots trailHelmet stormCape channelGloves toolBelt deckBoots lookoutCap fieldJacket workGloves wovenBelt monsoonBoots'],
+    ['expansion',4,3,'relaySash flourishSash pursuitWraps breakerWraps watchJacket runnerJacket markerBlade tideLens wayfarerPin ferrySandals lookoutVisor rallyGong'],
+    ['survey',4,4,'soundingRod faultRod tuningRod pulseLocket refugeLocket rallyLocket cadenceDrum thunderDrum rainDrum mistHood squallHood reedBoots switchbackBoots']
+  ];
+  const g=start();
+  for(const [sheet,columns,rows,order] of sheets){
+    const ids=order.split(' ');
+    g.rewards.push({event:'art-'+sheet,slot:'weapon',offer:ids,consumed:false});
+    step();
+    for(const [i,id] of ids.entries()){
+      const style=frame.contentWindow.getComputedStyle(doc.querySelector('[data-item="'+id+'"] .gear-art'));
+      const matches=style.backgroundImage.includes('equipment-'+sheet+'.webp')
+        &&style.backgroundSize===columns*100+'% '+rows*100+'%'
+        &&Math.abs(parseFloat(style.backgroundPositionX)-(i%columns)*100/(columns-1))<.001
+        &&Math.abs(parseFloat(style.backgroundPositionY)-Math.floor(i/columns)*100/(rows-1))<.001;
+      check(id+' reward uses its illustrated tile',matches);
+    }
+    doc.getElementById('lootSkip').click();
+    if(sheet==='survey')for(const id of ids){
+      const {slot,upgradeFrom,name,description}=ITEMS[id];
+      g.equipment[slot]=upgradeFrom??null;
+      equip(id,slot);
+      doc.getElementById('equipmentButton').click();
+      const tile=doc.querySelector('.gear-slot[data-slot="'+slot+'"]');
+      tile.click();
+      check(id+' inventory has its illustration and effect',tile.querySelector('.gear-art.survey')
+        &&tile.textContent.includes(name)&&doc.querySelector('.gear-detail').textContent.includes(description));
+      doc.getElementById('lootClose').click();
+    }
+  }
+}
+
+function mixedReward(){
+  const g=start();
+  equip('techniqueSash','belt');
+  equip('trailBoots','boots');
+  g.rewards.push({event:'fixture-mixed',slot:'boots',offer:['deckBoots','relaySash'],consumed:false});
+  step();
+  const boots=doc.querySelector('[data-item="deckBoots"]'),sash=doc.querySelector('[data-item="relaySash"]');
+  check('Each offer compares the item in its own slot',boots.textContent.includes('Trail Boots')
+    &&sash.textContent.includes('Technique Sash')&&!sash.textContent.includes('Trail Boots'));
+  check('Mixed offers show the effects being replaced',boots.textContent.includes('+10% movement speed.')
+    &&sash.textContent.includes('Cast your Q skill one rank higher'));
+  check('Reward opens with keyboard focus on the first choice',doc.activeElement===boots);
+  sash.click();
+  check('Taking the sash keeps equipped boots',g.equipment.belt==='relaySash'&&g.equipment.boots==='trailBoots');
+  click('equipmentButton');
+  doc.querySelector('.gear-slot[data-slot="belt"]').click();
+  check('Inventory retains the upgrade ancestry',doc.querySelector('.gear-detail').textContent.includes('Technique Sash'));
+  click('lootClose');
+}
+
+function equipmentDrop(){
+  const g=start('ustaz',1);
+  g.clock=45;step();
+  const elite=g.enemies.find(e=>e.elite&&!e.encounter);
+  check('Campaign spawns a regional elite',elite?.type==='lantern');
+  const ordinary=rt.makeGhost('lantern',elite.x,elite.y);
+  check('Elite has larger collision radius, health and damage',elite.r>ordinary.r&&elite.maxHp>ordinary.maxHp&&elite.dmg>ordinary.dmg);
+  rt.kill(ordinary);step();
+  check('Ordinary death leaves no equipment',g.equipmentDrops.length===0);
+  Object.assign(elite,g.world.safePoint(g.p.x+160,g.p.y,elite.r));
+  elite.skillT=0;step(15);
+  check('Elite casts the regional three-bolt attack',elite.actions===1&&g.eprojs.length===3);
+  elite.hp=1;damage(elite,100);
+  const drop=g.equipmentDrops[0];
+  check('Damage kill leaves one reachable drop without opening loot',g.equipmentDrops.length===1&&g.world.walkable(drop.x,drop.y,g.p.r)&&!g.lootModal&&!g.rewards.length);
+  check('Ground equipment label is rendered',rt.scene.terrain.labels.group.children.some(o=>o.visible&&o.name.includes('Equipment')));
+  rt.kill(elite);step();
+  check('Repeated death leaves one drop',g.equipmentDrops.length===1);
+  rt.raid.force('orb');rt.raid.enter();step();
+  check('Raid isolates the ground drop',!!g.raid&&!g.equipmentDrops.length&&!g.rewards.length);
+  rt.kill(g.raidBoss);step(65);
+  check('Raid exit restores the same unclaimed drop',!g.raid&&g.equipmentDrops[0]===drop);
+  Object.assign(g.p,{x:drop.x-50,y:drop.y});
+  const win=frame.contentWindow;
+  win.dispatchEvent(new win.KeyboardEvent('keydown',{code:'KeyD',key:'d'}));
+  step(10);
+  win.dispatchEvent(new win.KeyboardEvent('keyup',{code:'KeyD',key:'d'}));
+  check('Walking over equipment consumes it and opens one offer',!g.equipmentDrops.length&&g.rewards.length===1&&g.lootModal==='reward');
+  const upgrades=Object.entries(ITEMS).filter(([,item])=>item.upgradeFrom);
+  const choice=[...doc.querySelectorAll('#lootChoices button')].find(b=>upgrades.some(([,item])=>item.upgradeFrom===b.dataset.item));
+  check('The first elite chest offers a refinable base',!!choice);
+  const id=choice.dataset.item,slot=ITEMS[id].slot;
+  const [child]=upgrades.find(([,item])=>item.upgradeFrom===id);
+  choice.click();step(2);
+  check('Equipment choice is applied once',g.equipment[slot]===id&&g.rewards.length===1&&!g.lootModal);
+  g.clock=100;step(3);
+  check('A later campaign elite can supply a second chest',g.enemies.filter(e=>e.elite&&!e.encounter&&!e.dead).length===1);
+  g.clock=155;step(2);
+  check('A surviving regional elite does not accumulate reinforcements',g.enemies.filter(e=>e.elite&&!e.encounter&&!e.dead).length===1);
+  const nextElite=g.enemies.find(e=>e.elite&&!e.encounter&&!e.dead);
+  rt.kill(nextElite,{damage:true});
+  const secondDrop=g.equipmentDrops[0];
+  Object.assign(g.p,{x:secondDrop.x,y:secondDrop.y});step(16);
+  const refinement=doc.querySelector('[data-item="'+child+'"]');
+  check('The second chest offers a branch for the chosen base',!!refinement);
+  refinement.click();
+  check('The branch replaces its base and restores gameplay focus',g.equipment[slot]===child&&!g.lootModal&&doc.activeElement===doc.getElementById('game'));
+}
 
 function hunt(){const g=start();Object.assign(g.p,{x:-1800,y:1400});step();check('Nearby hunt explains two sequential tracks',doc.getElementById('encounterPrompt').textContent.includes('two tracks'));check('Walking past never starts hunt',!g.enemies.some(e=>e.encounter==='hunt'));click('eventStart');check('First track is explicitly indicated',doc.getElementById('eventProgress').textContent.includes('Track 1 of 2'));let event=g.encounters.hunt;const first={x:event.x,y:event.y};Object.assign(g.p,first);step();click('eventInteract');check('Second track replaces first indication',doc.getElementById('eventProgress').textContent.includes('Track 2 of 2')&&Math.hypot(event.x-first.x,event.y-first.y)>120);Object.assign(g.p,{x:event.x,y:event.y});step();click('eventInteract');check('Two tracks reveal one named elite',g.enemies.filter(e=>e.encounter==='hunt').length===1&&g.enemies.some(e=>e.elite==='Thornbound'&&e.name==='Briarback'));check('Track controls disappear during hunt combat',doc.getElementById('eventInteract').hidden);const elite=g.enemies.find(e=>e.encounter==='hunt');elite.stun=999;elite.hp=1;g.st.crit=0;g.projs.push({x:elite.x,y:elite.y,vx:0,vy:0,r:6,dmg:10,life:1,pierce:1,hit:new Set()});step(2);check('Elite defeat offers three relic choices',doc.querySelectorAll('#lootChoices button').length===3&&doc.getElementById('lootCurrent').textContent.startsWith('relic'));}
 
@@ -52,15 +157,15 @@ function eventBoundaries(){
   g=beginHunt();const e=g.enemies[0];e.dmg=0;Object.assign(g.p,{x:e.x+150,y:e.y});e.skillT=0;step(24);check('One charge leaves at most five thorn patches',g.zones.filter(z=>z.kind==='thorn').length===5);const oldest=g.zones.find(z=>z.kind==='thorn');e.skillT=0;e.rush=0;step(14);check('Patch cap never truncates an existing four-second lifetime',g.zones.includes(oldest)&&oldest.life>0);e.stun=999;g.zones.forEach(z=>{z.x=g.p.x;z.y=g.p.y;z.life=3;});g.p.invuln=0;g.thornHitAt=0;const hp=g.p.hp;step();check('Five overlapping patches deal only one eight-damage hit',g.p.hp===hp-8);g.p.invuln=0;step(10);check('Overlap cannot bypass global one-second cooldown',g.p.hp===hp-8);click('eventAbandon');check('Abandon removes active thorn hazards',!g.zones.some(z=>z.kind==='thorn'));
   g=beginHunt();const victim=g.enemies[0];victim.stun=999;rt.kill(victim);step();check('Elite despawn cannot falsely grant completion',g.encounters.hunt.status==='active'&&g.rewards.length===0);rt.endGame(false);check('Defeat abandons unresolved hunt and clears choices',g.encounters.hunt.status==='abandoned'&&g.rewards.length===0);click('again');check('Retry returns hunt and equipment to fresh state',rt.G.encounters.hunt.status==='available'&&Object.values(rt.G.equipment).every(x=>x===null));
   g=beginHunt();const boss=target(g,400);boss.boss=true;boss.name='Fixture boss';rt.kill(boss);check('Boss victory abandons unresolved hunt without reward',g.encounters.hunt.status==='abandoned'&&g.rewards.length===0);
-  for(let stage=1;stage<6;stage++){g=start('ustaz',stage);check('Stage '+stage+' has no events or relic leakage',Object.keys(g.encounters).length===0&&Object.values(g.equipment).every(x=>x===null));}
+  for(let stage=1;stage<6;stage++){g=start('ustaz',stage);check('Stage '+stage+' has no Johor events or relic leakage',['rescue','ward','hunt'].every(id=>!g.encounters[id])&&Object.values(g.equipment).every(x=>x===null));}
 }
 async function rewardBoundaries(){
   for(const width of [320,390]){
-    frame.style.width=width+'px';await new Promise(resolve=>setTimeout(resolve,150));let g=beginHunt();check(width+'px hunt prompt does not overflow',doc.documentElement.scrollWidth<=width);check(width+'px event touch targets are44px',[...doc.querySelectorAll('#encounterPrompt button')].filter(b=>!b.hidden).every(b=>b.getBoundingClientRect().height>=44));const elite=g.enemies[0];elite.stun=999;elite.hp=1;damage(elite,10);step();const choices=[...doc.querySelectorAll('#lootChoices button')];check(width+'px offers three distinct relics',choices.length===3&&new Set(choices.map(b=>b.dataset.item)).size===3);check(width+'px comparison does not overflow',doc.documentElement.scrollWidth<=width);const buttons=[...doc.querySelectorAll('#lootPanel button')].filter(b=>!b.hidden);check(width+'px reward targets are44px',buttons.every(b=>b.getBoundingClientRect().height>=44));buttons.at(-1).focus();frame.contentWindow.dispatchEvent(new frame.contentWindow.KeyboardEvent('keydown',{key:'Tab',code:'Tab',bubbles:true}));check(width+'px keyboard focus wraps',doc.activeElement===buttons[0]);const time=g.clock;step(10);check('Relic choice freezes survival clock',g.clock===time);const id=choices[0].dataset.item;choices[0].click();choices[1].click();check('Duplicate click cannot replace chosen relic',g.equipment.relic===id&&g.rewards.filter(r=>r.consumed).length===1);step();click('equipmentButton');check('Inspection names equipped relic and all slots',doc.getElementById('lootCurrent').textContent.includes('relic:')&&doc.getElementById('lootCurrent').textContent.includes('weapon:'));frame.contentWindow.dispatchEvent(new frame.contentWindow.KeyboardEvent('keydown',{key:'Escape',code:'Escape',bubbles:true}));check('Escape closes inspection and restores focus',doc.getElementById('lootPanel').hidden&&doc.activeElement===doc.getElementById('equipmentButton'));
+    frame.style.width=width+'px';await new Promise(resolve=>setTimeout(resolve,150));let g=beginHunt();check(width+'px hunt prompt does not overflow',doc.documentElement.scrollWidth<=width);check(width+'px event touch targets are44px',[...doc.querySelectorAll('#encounterPrompt button, #eventDetails summary')].filter(b=>b.getClientRects().length).every(b=>b.getBoundingClientRect().height>=44));const elite=g.enemies[0];elite.stun=999;elite.hp=1;damage(elite,10);step();const choices=[...doc.querySelectorAll('#lootChoices button')];check(width+'px offers three distinct relics',choices.length===3&&new Set(choices.map(b=>b.dataset.item)).size===3);check(width+'px comparison does not overflow',doc.documentElement.scrollWidth<=width);const buttons=[...doc.querySelectorAll('#lootPanel button')].filter(b=>!b.hidden);check(width+'px reward targets are44px',buttons.every(b=>b.getBoundingClientRect().height>=44));buttons.at(-1).focus();frame.contentWindow.dispatchEvent(new frame.contentWindow.KeyboardEvent('keydown',{key:'Tab',code:'Tab',bubbles:true}));check(width+'px keyboard focus wraps',doc.activeElement===buttons[0]);const time=g.clock;step(10);check('Relic choice freezes survival clock',g.clock===time);const id=choices[0].dataset.item;choices[0].click();choices[1].click();check('Duplicate click cannot replace chosen relic',g.equipment.relic===id&&g.rewards.filter(r=>r.consumed).length===1);step();click('equipmentButton');check('Inspection names equipped relic and all slots',doc.getElementById('lootCurrent').textContent.includes('relic:')&&doc.getElementById('lootCurrent').textContent.includes('weapon:'));frame.contentWindow.dispatchEvent(new frame.contentWindow.KeyboardEvent('keydown',{key:'Escape',code:'Escape',bubbles:true}));check('Escape closes inspection and restores focus',doc.getElementById('lootPanel').hidden&&doc.activeElement===doc.getElementById('equipmentButton'));
   }
   frame.style.width='100%';const g=beginHunt(),elite=g.enemies[0];elite.stun=999;elite.hp=1;damage(elite,10);g.gems=[];step();click('lootSkip');check('Skipping consumes relic reward without equipping',g.rewards[0].consumed&&g.equipment.relic===null);step();check('Skipped reward cannot reopen',doc.getElementById('lootPanel').hidden);
 }
 
 function queuedReward(){const g=beginHunt(),elite=g.enemies[0];elite.stun=999;elite.hp=1;g.st.crit=0;g.projs.push({x:elite.x,y:elite.y,vx:0,vy:0,r:6,dmg:10,life:1,pierce:1,hit:new Set()});step();g.gems=[];rt.addXP(g.need);step();check('Hunt level-up and reward never stack',g.choosing&&doc.getElementById('lootPanel').hidden);const time=g.clock;step(10);check('Level-up freezes hunt completion clock',g.clock===time);click('up0');step(2);check('Hunt relic choice survives queued level-up',g.encounters.hunt.status==='completed'&&!doc.getElementById('lootPanel').hidden&&g.rewards.length===1);click('lootSkip');}
 
-function reducedMotion(){const win=frame.contentWindow,original=win.matchMedia;win.matchMedia=query=>query==='(prefers-reduced-motion: reduce)'?{matches:true}:original.call(win,query);try{const g=beginHunt(),e=g.enemies[0];Object.assign(g.p,{x:e.x+150,y:e.y});e.skillT=0;step(20);check('Reduced motion retains thorn warning hazards',g.zones.some(z=>z.kind==='thorn'&&z.max-z.life<.6));check('Reduced motion retains named modifier label',rt.scene.children.list.some(o=>o.type==='Text'&&o.visible&&o.text.includes('Briarback · Thornbound')));check('Reduced motion disables enemy swaying',rt.scene.children.list.filter(o=>o.type==='Image'&&o.visible&&o.texture.key==='region-enemies').every(o=>o.rotation===0));}finally{win.matchMedia=original}}
+function reducedMotion(){const win=frame.contentWindow,original=win.matchMedia;win.matchMedia=query=>query==='(prefers-reduced-motion: reduce)'?{matches:true}:original.call(win,query);try{const g=beginHunt(),e=g.enemies[0];Object.assign(g.p,{x:e.x+150,y:e.y});e.skillT=0;step(20);check('Reduced motion retains thorn warning hazards',g.zones.some(z=>z.kind==='thorn'&&z.max-z.life<.6));check('Reduced motion retains named modifier label',rt.scene.terrain.labels.group.children.some(o=>o.isSprite&&o.name.includes('Briarback · Thornbound')));check('Reduced motion disables enemy swaying',[...rt.scene.sprites.values()].some(o=>o.key==='malaysia-monsters')&&[...rt.scene.sprites.values()].filter(o=>o.key==='malaysia-monsters').every(o=>o.rotation===0));}finally{win.matchMedia=original}}

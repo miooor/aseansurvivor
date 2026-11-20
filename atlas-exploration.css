@@ -1,0 +1,32 @@
+.atlas-panel .terrain-entry,.atlas-panel .terrain-regions,.atlas-panel .terrain-tools {
+  position:absolute;z-index:3;
+}
+.atlas-panel .terrain-entry,.atlas-panel .terrain-regions button,.atlas-panel .terrain-tools button {
+  min-height:44px;padding:6px 12px;border:1px solid var(--rule);border-radius:3px;
+  background:#112926f5;color:#f4ead3;font:600 13px var(--ui);cursor:pointer;
+}
+.atlas-panel .terrain-entry {right:16px;top:87px}
+.atlas-panel .terrain-tools,.atlas-panel .terrain-regions {display:none;gap:6px}
+.atlas-panel .terrain-regions {top:16px;left:16px}
+.atlas-panel .terrain-tools {bottom:max(16px,calc(100% - 100svh + 100px));left:16px;right:16px;justify-content:space-between}
+.atlas-panel .terrain-tools [aria-label="Terrain zoom"] {display:flex;gap:4px}
+.atlas-panel .terrain-tools [aria-label="Terrain zoom"] button {min-width:44px;font-size:21px}
+.atlas-panel .terrain-regions [aria-pressed=true] {color:#ffe3a6;border-color:var(--brass)}
+#atlasView[data-exploring=true] {touch-action:none;cursor:grab}
+#atlasView[data-exploring=true]:active {cursor:grabbing}
+#atlasView[data-exploring=true]:focus-visible {outline:2px solid var(--brass);outline-offset:-4px}
+#atlasView[data-exploring=true] ~ :is(.atlas-map-heading,.compass-rose,.atlas-dock,.terrain-entry),
+#atlasView[data-exploring=true] :is(.atlas-stage,.map-label,.atlas-pin) {display:none}
+#atlasView[data-exploring=true] ~ :is(.terrain-tools,.terrain-regions) {display:flex}
+#atlasView .terrain-state {
+  position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:6px;
+  color:#fff1ce;background:#102824ed;border:1px solid #b7b18c;padding:4px 7px;
+  border-radius:2px;font:600 13px var(--ui);white-space:nowrap;
+}
+#atlasView .terrain-state[hidden] {display:none}
+#atlasView .terrain-state img {width:26px;height:13px;object-fit:contain}
+@media(max-width:700px){
+  .atlas-panel .terrain-entry {top:72px;right:12px;font-size:11px;padding-inline:8px}
+  .atlas-panel .terrain-regions {top:12px;left:12px}
+  .atlas-panel .terrain-tools {bottom:12px;left:12px;right:12px}
+}

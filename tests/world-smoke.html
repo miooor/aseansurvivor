@@ -7,7 +7,7 @@ document.querySelector('#preview').onclick=()=>{rt.toMenu();rt.newGame('ustaz',0
 // repeated rewards, stale exploration after retry, and map rules leaking into raids.
 document.querySelector('#run').onclick=()=>{const checks=[],check=(name,pass)=>{checks.push({name,pass:!!pass});if(!pass)throw Error(name)};let result='PASS',error;
 try{rt.toMenu();rt.newGame('ustaz',0);const g=rt.G;g.auto=false;g.cds[0]=999;g.spawnT=g.durianT=999;
-check('Region is 6000 units across',WORLD_SIZE===6000);check('Camera reveals more world',rt.scale<1);check('Five distinct landmarks',LANDMARKS.length===5);
+check('Region is 8640 units across',WORLD_SIZE===8640);check('Camera reveals more world',rt.scale<1);check('Seven distinct landmarks',LANDMARKS.length===7);
 for(const site of LANDMARKS){check(site.name+' is reachable ground',walkable(site.x,site.y,30));const actor={x:0,y:0,r:24};for(let i=0;i<2500&&Math.hypot(actor.x-site.x,actor.y-site.y)>100;i++){const [dx,dy]=routeDirection(actor,site);Object.assign(actor,moveOnMap(actor.x,actor.y,actor.x+dx*30,actor.y+dy*30,actor.r))}check(site.name+' has a navigable route',Math.hypot(actor.x-site.x,actor.y-site.y)<=100)}
 for(const b of BLOCKERS){const start=safePoint(b.x-100,b.y-100,24),end=moveOnMap(start.x,start.y,b.x+b.w/2,b.y+b.h/2,24);check('Collision '+b.id+' prevents tunneling',walkable(end.x,end.y,24))}
 g.p.x=2100;g.p.y=1300;rt.scene.update(0,50);check('Old arena boundary is gone',g.p.x>1300);check('Exploration discovers market',g.exploration.visited.includes('market'));

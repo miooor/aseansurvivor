@@ -1,0 +1,2330 @@
+{
+  "date": "2026-11-20T15:07:11.008Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Johor has two local folklore variants with a combined recurring weight of 0.5",
+      "pass": true
+    },
+    {
+      "name": "Johor holds both variants back before their arrivals",
+      "pass": true
+    },
+    {
+      "name": "Johor introduces variant 1 once at 24 seconds",
+      "pass": true
+    },
+    {
+      "name": "Johor places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Johor renders variant 1 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Johor keeps variant 1 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Johor includes variant 1 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Johor introduces variant 2 once at 36 seconds",
+      "pass": true
+    },
+    {
+      "name": "Johor places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Johor renders variant 2 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Johor keeps variant 2 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Johor includes variant 2 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Johor retains the first variant in ordinary waves after the second joins",
+      "pass": true
+    },
+    {
+      "name": "Melaka has two local folklore variants with a combined recurring weight of 0.5",
+      "pass": true
+    },
+    {
+      "name": "Melaka holds both variants back before their arrivals",
+      "pass": true
+    },
+    {
+      "name": "Melaka introduces variant 1 once at 24 seconds",
+      "pass": true
+    },
+    {
+      "name": "Melaka places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Melaka renders variant 1 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Melaka keeps variant 1 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Melaka includes variant 1 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Melaka introduces variant 2 once at 36 seconds",
+      "pass": true
+    },
+    {
+      "name": "Melaka places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Melaka renders variant 2 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Melaka keeps variant 2 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Melaka includes variant 2 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Melaka retains the first variant in ordinary waves after the second joins",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur has two local folklore variants with a combined recurring weight of 0.5",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur holds both variants back before their arrivals",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur introduces variant 1 once at 24 seconds",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur renders variant 1 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur keeps variant 1 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur includes variant 1 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur introduces variant 2 once at 36 seconds",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur renders variant 2 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur keeps variant 2 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur includes variant 2 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur retains the first variant in ordinary waves after the second joins",
+      "pass": true
+    },
+    {
+      "name": "Perak has two local folklore variants with a combined recurring weight of 0.5",
+      "pass": true
+    },
+    {
+      "name": "Perak holds both variants back before their arrivals",
+      "pass": true
+    },
+    {
+      "name": "Perak introduces variant 1 once at 24 seconds",
+      "pass": true
+    },
+    {
+      "name": "Perak places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Perak renders variant 1 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Perak keeps variant 1 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Perak includes variant 1 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Perak introduces variant 2 once at 36 seconds",
+      "pass": true
+    },
+    {
+      "name": "Perak places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Perak renders variant 2 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Perak keeps variant 2 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Perak includes variant 2 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Perak retains the first variant in ordinary waves after the second joins",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang has two local folklore variants with a combined recurring weight of 0.5",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang holds both variants back before their arrivals",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang introduces variant 1 once at 24 seconds",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang renders variant 1 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang keeps variant 1 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang includes variant 1 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang introduces variant 2 once at 36 seconds",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang renders variant 2 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang keeps variant 2 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang includes variant 2 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang retains the first variant in ordinary waves after the second joins",
+      "pass": true
+    },
+    {
+      "name": "Kedah has two local folklore variants with a combined recurring weight of 0.5",
+      "pass": true
+    },
+    {
+      "name": "Kedah holds both variants back before their arrivals",
+      "pass": true
+    },
+    {
+      "name": "Kedah introduces variant 1 once at 24 seconds",
+      "pass": true
+    },
+    {
+      "name": "Kedah places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Kedah renders variant 1 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Kedah keeps variant 1 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Kedah includes variant 1 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Kedah introduces variant 2 once at 36 seconds",
+      "pass": true
+    },
+    {
+      "name": "Kedah places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Kedah renders variant 2 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Kedah keeps variant 2 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Kedah includes variant 2 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Kedah retains the first variant in ordinary waves after the second joins",
+      "pass": true
+    },
+    {
+      "name": "Pahang has two local folklore variants with a combined recurring weight of 0.5",
+      "pass": true
+    },
+    {
+      "name": "Pahang holds both variants back before their arrivals",
+      "pass": true
+    },
+    {
+      "name": "Pahang introduces variant 1 once at 24 seconds",
+      "pass": true
+    },
+    {
+      "name": "Pahang places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Pahang renders variant 1 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Pahang keeps variant 1 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Pahang includes variant 1 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Pahang introduces variant 2 once at 36 seconds",
+      "pass": true
+    },
+    {
+      "name": "Pahang places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Pahang renders variant 2 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Pahang keeps variant 2 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Pahang includes variant 2 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Pahang retains the first variant in ordinary waves after the second joins",
+      "pass": true
+    },
+    {
+      "name": "Terengganu has two local folklore variants with a combined recurring weight of 0.5",
+      "pass": true
+    },
+    {
+      "name": "Terengganu holds both variants back before their arrivals",
+      "pass": true
+    },
+    {
+      "name": "Terengganu introduces variant 1 once at 24 seconds",
+      "pass": true
+    },
+    {
+      "name": "Terengganu places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Terengganu renders variant 1 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Terengganu keeps variant 1 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Terengganu includes variant 1 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Terengganu introduces variant 2 once at 36 seconds",
+      "pass": true
+    },
+    {
+      "name": "Terengganu places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Terengganu renders variant 2 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Terengganu keeps variant 2 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Terengganu includes variant 2 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Terengganu retains the first variant in ordinary waves after the second joins",
+      "pass": true
+    },
+    {
+      "name": "Kelantan has two local folklore variants with a combined recurring weight of 0.5",
+      "pass": true
+    },
+    {
+      "name": "Kelantan holds both variants back before their arrivals",
+      "pass": true
+    },
+    {
+      "name": "Kelantan introduces variant 1 once at 24 seconds",
+      "pass": true
+    },
+    {
+      "name": "Kelantan places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Kelantan renders variant 1 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Kelantan keeps variant 1 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Kelantan includes variant 1 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Kelantan introduces variant 2 once at 36 seconds",
+      "pass": true
+    },
+    {
+      "name": "Kelantan places the arrival nearby on walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Kelantan renders variant 2 on its assigned atlas frame",
+      "pass": true
+    },
+    {
+      "name": "Kelantan keeps variant 2 out of waves for six seconds after its debut",
+      "pass": true
+    },
+    {
+      "name": "Kelantan includes variant 2 in ordinary waves after its grace period",
+      "pass": true
+    },
+    {
+      "name": "Kelantan retains the first variant in ordinary waves after the second joins",
+      "pass": true
+    },
+    {
+      "name": "All eighteen folklore enemies use unique atlas frames",
+      "pass": true
+    },
+    {
+      "name": "Retry resets both one-time folklore arrivals",
+      "pass": true
+    },
+    {
+      "name": "Practice excludes folklore arrivals and waves",
+      "pass": true
+    },
+    {
+      "name": "The Hantu Raya raid excludes both campaign folklore variants and their arrivals",
+      "pass": true
+    },
+    {
+      "name": "johor telegraphs before it deals skill damage",
+      "pass": true
+    },
+    {
+      "name": "Pausing freezes folklore windups",
+      "pass": true
+    },
+    {
+      "name": "Ledang bridge lanes keep their original bearing and hit a player who crosses one",
+      "pass": true
+    },
+    {
+      "name": "johor telegraphs before it deals skill damage",
+      "pass": true
+    },
+    {
+      "name": "The gap between the Ledang bridge lanes is safe",
+      "pass": true
+    },
+    {
+      "name": "kl telegraphs before it deals skill damage",
+      "pass": true
+    },
+    {
+      "name": "The Galah sweep has a safe inner pocket",
+      "pass": true
+    },
+    {
+      "name": "kl telegraphs before it deals skill damage",
+      "pass": true
+    },
+    {
+      "name": "Standing in the Galah sweep damages the player",
+      "pass": true
+    },
+    {
+      "name": "penang telegraphs before it deals skill damage",
+      "pass": true
+    },
+    {
+      "name": "Leaving the marked Jetty Tideback splash avoids its first hit",
+      "pass": true
+    },
+    {
+      "name": "The outer surge follows the splash around its original center",
+      "pass": true
+    },
+    {
+      "name": "pahang telegraphs before it deals skill damage",
+      "pass": true
+    },
+    {
+      "name": "Chini Wake strikes the first mark before the second",
+      "pass": true
+    },
+    {
+      "name": "Chini Wake hits the second marked spot after a delay",
+      "pass": true
+    },
+    {
+      "name": "pahang telegraphs before it deals skill damage",
+      "pass": true
+    },
+    {
+      "name": "Defeating Chini Wake during windup cancels the cast",
+      "pass": true
+    },
+    {
+      "name": "kl telegraphs before it deals skill damage",
+      "pass": true
+    },
+    {
+      "name": "A sidestep clears the first Drongo lane",
+      "pass": true
+    },
+    {
+      "name": "The delayed cross lane still hits at the original bearing",
+      "pass": true
+    },
+    {
+      "name": "penang telegraphs before it deals skill damage",
+      "pass": true
+    },
+    {
+      "name": "The Gold Jar ring leaves the original position safe initially",
+      "pass": true
+    },
+    {
+      "name": "Its delayed center strike punishes staying in the pocket",
+      "pass": true
+    },
+    {
+      "name": "penang telegraphs before it deals skill damage",
+      "pass": true
+    },
+    {
+      "name": "Hakim can walk from the center into the spent ring after it breaks",
+      "pass": true
+    },
+    {
+      "name": "penang telegraphs before it deals skill damage",
+      "pass": true
+    },
+    {
+      "name": "Defeating the Gold Jar after the ring cancels its pending center strike",
+      "pass": true
+    },
+    {
+      "name": "penang telegraphs before it deals skill damage",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion keeps the Gold Jar ring legible and holds the sprite still",
+      "pass": true
+    },
+    {
+      "name": "kedah telegraphs before it deals skill damage",
+      "pass": true
+    },
+    {
+      "name": "Seven Wells Shard telegraphs seven fixed pools",
+      "pass": true
+    },
+    {
+      "name": "The gap between the marked pools stays safe through both pulses",
+      "pass": true
+    },
+    {
+      "name": "The orang bunian is separate from the enemy roster",
+      "pass": true
+    },
+    {
+      "name": "Approaching the orang bunian opens a peaceful encounter",
+      "pass": true
+    },
+    {
+      "name": "The wayfarer greets only once per run",
+      "pass": true
+    },
+    {
+      "name": "Retry restores the Johor wayfarer encounter",
+      "pass": true
+    },
+    {
+      "name": "Practice and other stages exclude the authored cameo",
+      "pass": true
+    },
+    {
+      "name": "Johor binds its own world",
+      "pass": true
+    },
+    {
+      "name": "Johor road 1 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Johor road 2 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Johor road 3 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Johor road 4 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Johor road 5 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Johor road 6 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Johor road 7 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Johor road 8 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Johor road 9 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Johor keeps building plots outside the painted road shoulders",
+      "pass": true
+    },
+    {
+      "name": "Johor encounter stations retain their authored positions and open approaches",
+      "pass": true
+    },
+    {
+      "name": "Johor has two destinations outside the old boundary",
+      "pass": true
+    },
+    {
+      "name": "Johor retains a finite outer map boundary",
+      "pass": true
+    },
+    {
+      "name": "Johor Village clearing is on land",
+      "pass": true
+    },
+    {
+      "name": "Johor Village clearing is reachable",
+      "pass": true
+    },
+    {
+      "name": "Johor Rice fields is on land",
+      "pass": true
+    },
+    {
+      "name": "Johor Rice fields is reachable",
+      "pass": true
+    },
+    {
+      "name": "Johor Palm groves is on land",
+      "pass": true
+    },
+    {
+      "name": "Johor Palm groves is reachable",
+      "pass": true
+    },
+    {
+      "name": "Johor Riverbank is on land",
+      "pass": true
+    },
+    {
+      "name": "Johor Riverbank is reachable",
+      "pass": true
+    },
+    {
+      "name": "Johor Abandoned market is on land",
+      "pass": true
+    },
+    {
+      "name": "Johor Abandoned market is reachable",
+      "pass": true
+    },
+    {
+      "name": "Johor Bukit Timbalan Terrace is on land",
+      "pass": true
+    },
+    {
+      "name": "Johor Bukit Timbalan Terrace is reachable",
+      "pass": true
+    },
+    {
+      "name": "Johor Straits Landing is on land",
+      "pass": true
+    },
+    {
+      "name": "Johor Straits Landing is reachable",
+      "pass": true
+    },
+    {
+      "name": "Johor discovers unique landmark",
+      "pass": true
+    },
+    {
+      "name": "Johor spawns local cache guardians",
+      "pass": true
+    },
+    {
+      "name": "Johor cache rewards once",
+      "pass": true
+    },
+    {
+      "name": "Johor cache does not repeat",
+      "pass": true
+    },
+    {
+      "name": "Johor renders its Three.js terrain",
+      "pass": true
+    },
+    {
+      "name": "Johor renders correct map title",
+      "pass": true
+    },
+    {
+      "name": "Johor minimap uses the expanded world bounds",
+      "pass": true
+    },
+    {
+      "name": "Johor minimap names the featured landmark",
+      "pass": true
+    },
+    {
+      "name": "Johor places its own landmark sprite",
+      "pass": true
+    },
+    {
+      "name": "Johor uses a varied local building and prop palette",
+      "pass": true
+    },
+    {
+      "name": "Johor local enemy starts in its idle pose",
+      "pass": true
+    },
+    {
+      "name": "Johor local enemy uses its alternate travel pose",
+      "pass": true
+    },
+    {
+      "name": "Johor local enemy crouches during its warning",
+      "pass": true
+    },
+    {
+      "name": "Johor signature enemy performs its attack",
+      "pass": true
+    },
+    {
+      "name": "Johor signature enemy uses its attack pose on release",
+      "pass": true
+    },
+    {
+      "name": "Johor attack animation freezes on pause",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion keeps the attack frame and removes sprite distortion",
+      "pass": true
+    },
+    {
+      "name": "Johor rift lands on local walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Melaka binds its own world",
+      "pass": true
+    },
+    {
+      "name": "Melaka road 1 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Melaka road 2 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Melaka road 3 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Melaka road 4 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Melaka road 5 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Melaka road 6 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Melaka road 7 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Melaka keeps building plots outside the painted road shoulders",
+      "pass": true
+    },
+    {
+      "name": "Melaka has two destinations outside the old boundary",
+      "pass": true
+    },
+    {
+      "name": "Melaka retains a finite outer map boundary",
+      "pass": true
+    },
+    {
+      "name": "Melaka Dataran Bata Merah is on land",
+      "pass": true
+    },
+    {
+      "name": "Melaka Dataran Bata Merah is reachable",
+      "pass": true
+    },
+    {
+      "name": "Melaka Old River Quay is on land",
+      "pass": true
+    },
+    {
+      "name": "Melaka Old River Quay is reachable",
+      "pass": true
+    },
+    {
+      "name": "Melaka Pottery Courtyard is on land",
+      "pass": true
+    },
+    {
+      "name": "Melaka Pottery Courtyard is reachable",
+      "pass": true
+    },
+    {
+      "name": "Melaka Red Gate Market is on land",
+      "pass": true
+    },
+    {
+      "name": "Melaka Red Gate Market is reachable",
+      "pass": true
+    },
+    {
+      "name": "Melaka Clockmaker Lane is on land",
+      "pass": true
+    },
+    {
+      "name": "Melaka Clockmaker Lane is reachable",
+      "pass": true
+    },
+    {
+      "name": "Melaka Stadthuys Steps is on land",
+      "pass": true
+    },
+    {
+      "name": "Melaka Stadthuys Steps is reachable",
+      "pass": true
+    },
+    {
+      "name": "Melaka Jonker Street Arcade is on land",
+      "pass": true
+    },
+    {
+      "name": "Melaka Jonker Street Arcade is reachable",
+      "pass": true
+    },
+    {
+      "name": "Melaka discovers unique landmark",
+      "pass": true
+    },
+    {
+      "name": "Melaka spawns local cache guardians",
+      "pass": true
+    },
+    {
+      "name": "Melaka cache rewards once",
+      "pass": true
+    },
+    {
+      "name": "Melaka cache does not repeat",
+      "pass": true
+    },
+    {
+      "name": "Melaka renders its Three.js terrain",
+      "pass": true
+    },
+    {
+      "name": "Melaka renders correct map title",
+      "pass": true
+    },
+    {
+      "name": "Melaka minimap uses the expanded world bounds",
+      "pass": true
+    },
+    {
+      "name": "Melaka minimap names the featured landmark",
+      "pass": true
+    },
+    {
+      "name": "Melaka places its own landmark sprite",
+      "pass": true
+    },
+    {
+      "name": "Melaka uses a varied local building and prop palette",
+      "pass": true
+    },
+    {
+      "name": "Melaka local enemy starts in its idle pose",
+      "pass": true
+    },
+    {
+      "name": "Melaka local enemy uses its alternate travel pose",
+      "pass": true
+    },
+    {
+      "name": "Melaka local enemy crouches during its warning",
+      "pass": true
+    },
+    {
+      "name": "Melaka signature enemy performs its attack",
+      "pass": true
+    },
+    {
+      "name": "Melaka signature enemy uses its attack pose on release",
+      "pass": true
+    },
+    {
+      "name": "Melaka attack animation freezes on pause",
+      "pass": true
+    },
+    {
+      "name": "Melaka rift lands on local walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur binds its own world",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur road 1 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur road 2 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur road 3 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur road 4 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur road 5 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur road 6 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur road 7 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur road 8 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur road 9 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur road 10 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur road 11 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur road 12 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur keeps building plots outside the painted road shoulders",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur has two destinations outside the old boundary",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur retains a finite outer map boundary",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Night Market Junction is on land",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Night Market Junction is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Shuttered Arcade is on land",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Shuttered Arcade is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Monorail Depot is on land",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Monorail Depot is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Tower Courtyard is on land",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Tower Courtyard is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Medan Selera is on land",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Medan Selera is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Twin Towers Esplanade is on land",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Twin Towers Esplanade is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Central Market Lane is on land",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur Central Market Lane is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur discovers unique landmark",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur spawns local cache guardians",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur cache rewards once",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur cache does not repeat",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur renders its Three.js terrain",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur renders correct map title",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur minimap uses the expanded world bounds",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur minimap names the featured landmark",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur places its own landmark sprite",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur uses a varied local building and prop palette",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur places every dedicated urban building silhouette",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur local enemy starts in its idle pose",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur local enemy uses its alternate travel pose",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur local enemy crouches during its warning",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur signature enemy performs its attack",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur signature enemy uses its attack pose on release",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur attack animation freezes on pause",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur rift lands on local walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Perak binds its own world",
+      "pass": true
+    },
+    {
+      "name": "Perak road 1 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Perak road 2 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Perak road 3 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Perak road 4 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Perak road 5 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Perak road 6 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Perak road 7 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Perak keeps building plots outside the painted road shoulders",
+      "pass": true
+    },
+    {
+      "name": "Perak has two destinations outside the old boundary",
+      "pass": true
+    },
+    {
+      "name": "Perak retains a finite outer map boundary",
+      "pass": true
+    },
+    {
+      "name": "Perak Dredge Landing is on land",
+      "pass": true
+    },
+    {
+      "name": "Perak Dredge Landing is reachable",
+      "pass": true
+    },
+    {
+      "name": "Perak Limestone Cutting is on land",
+      "pass": true
+    },
+    {
+      "name": "Perak Limestone Cutting is reachable",
+      "pass": true
+    },
+    {
+      "name": "Perak Blue Tailings Pond is on land",
+      "pass": true
+    },
+    {
+      "name": "Perak Blue Tailings Pond is reachable",
+      "pass": true
+    },
+    {
+      "name": "Perak Ore Cart Siding is on land",
+      "pass": true
+    },
+    {
+      "name": "Perak Ore Cart Siding is reachable",
+      "pass": true
+    },
+    {
+      "name": "Perak Kinta Ridge is on land",
+      "pass": true
+    },
+    {
+      "name": "Perak Kinta Ridge is reachable",
+      "pass": true
+    },
+    {
+      "name": "Perak Tanjung Tualang Dredge is on land",
+      "pass": true
+    },
+    {
+      "name": "Perak Tanjung Tualang Dredge is reachable",
+      "pass": true
+    },
+    {
+      "name": "Perak Kinta Karst Gate is on land",
+      "pass": true
+    },
+    {
+      "name": "Perak Kinta Karst Gate is reachable",
+      "pass": true
+    },
+    {
+      "name": "Perak discovers unique landmark",
+      "pass": true
+    },
+    {
+      "name": "Perak spawns local cache guardians",
+      "pass": true
+    },
+    {
+      "name": "Perak cache rewards once",
+      "pass": true
+    },
+    {
+      "name": "Perak cache does not repeat",
+      "pass": true
+    },
+    {
+      "name": "Perak renders its Three.js terrain",
+      "pass": true
+    },
+    {
+      "name": "Perak renders correct map title",
+      "pass": true
+    },
+    {
+      "name": "Perak minimap uses the expanded world bounds",
+      "pass": true
+    },
+    {
+      "name": "Perak minimap names the featured landmark",
+      "pass": true
+    },
+    {
+      "name": "Perak places its own landmark sprite",
+      "pass": true
+    },
+    {
+      "name": "Perak uses a varied local building and prop palette",
+      "pass": true
+    },
+    {
+      "name": "Perak local enemy starts in its idle pose",
+      "pass": true
+    },
+    {
+      "name": "Perak local enemy uses its alternate travel pose",
+      "pass": true
+    },
+    {
+      "name": "Perak local enemy crouches during its warning",
+      "pass": true
+    },
+    {
+      "name": "Perak signature enemy performs its attack",
+      "pass": true
+    },
+    {
+      "name": "Perak signature enemy uses its attack pose on release",
+      "pass": true
+    },
+    {
+      "name": "Perak attack animation freezes on pause",
+      "pass": true
+    },
+    {
+      "name": "Perak rift lands on local walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang binds its own world",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang road 1 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang road 2 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang road 3 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang road 4 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang road 5 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang road 6 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang road 7 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang road 8 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang keeps building plots outside the painted road shoulders",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang has two destinations outside the old boundary",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang retains a finite outer map boundary",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Waterfront Lane is on land",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Waterfront Lane is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Timber Shophouses is on land",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Timber Shophouses is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Long Jetty is on land",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Long Jetty is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Fishing Platform is on land",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Fishing Platform is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Salt Warehouse is on land",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Salt Warehouse is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Chew Jetty Landing is on land",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Chew Jetty Landing is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Armenian Street Corner is on land",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang Armenian Street Corner is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang discovers unique landmark",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang spawns local cache guardians",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang cache rewards once",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang cache does not repeat",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang renders its Three.js terrain",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang renders correct map title",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang minimap uses the expanded world bounds",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang minimap names the featured landmark",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang places its own landmark sprite",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang uses a varied local building and prop palette",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang local enemy starts in its idle pose",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang local enemy uses its alternate travel pose",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang local enemy crouches during its warning",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang signature enemy performs its attack",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang signature enemy uses its attack pose on release",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang attack animation freezes on pause",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang rift lands on local walkable ground",
+      "pass": true
+    },
+    {
+      "name": "The raised gangway blocks crossing",
+      "pass": true
+    },
+    {
+      "name": "The Jetty discovery reveals a manual interaction with no cache",
+      "pass": true
+    },
+    {
+      "name": "Waiting near the winch never lowers the gangway",
+      "pass": true
+    },
+    {
+      "name": "Operating the winch uses the live survival clock",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes the operation",
+      "pass": true
+    },
+    {
+      "name": "Leaving the station resets the attempt",
+      "pass": true
+    },
+    {
+      "name": "Taking damage interrupts the winch",
+      "pass": true
+    },
+    {
+      "name": "A fresh attempt lowers the gangway without a cache payout",
+      "pass": true
+    },
+    {
+      "name": "The minimap marks the new route",
+      "pass": true
+    },
+    {
+      "name": "Cached enemy routing picks up the shorter crossing",
+      "pass": true
+    },
+    {
+      "name": "A new run closes the gangway and clears the old minimap marker",
+      "pass": true
+    },
+    {
+      "name": "Kedah binds its own world",
+      "pass": true
+    },
+    {
+      "name": "Kedah road 1 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kedah road 2 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kedah road 3 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kedah road 4 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kedah road 5 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kedah road 6 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kedah road 7 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kedah keeps building plots outside the painted road shoulders",
+      "pass": true
+    },
+    {
+      "name": "Kedah has two destinations outside the old boundary",
+      "pass": true
+    },
+    {
+      "name": "Kedah retains a finite outer map boundary",
+      "pass": true
+    },
+    {
+      "name": "Kedah Jelapang Granary is on land",
+      "pass": true
+    },
+    {
+      "name": "Kedah Jelapang Granary is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kedah Sunset Paddies is on land",
+      "pass": true
+    },
+    {
+      "name": "Kedah Sunset Paddies is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kedah Pintu Air is on land",
+      "pass": true
+    },
+    {
+      "name": "Kedah Pintu Air is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kedah Irrigation Fields is on land",
+      "pass": true
+    },
+    {
+      "name": "Kedah Irrigation Fields is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kedah Paddy Watch Post is on land",
+      "pass": true
+    },
+    {
+      "name": "Kedah Paddy Watch Post is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kedah Muzium Padi Forecourt is on land",
+      "pass": true
+    },
+    {
+      "name": "Kedah Muzium Padi Forecourt is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kedah Gunung Keriang Footpath is on land",
+      "pass": true
+    },
+    {
+      "name": "Kedah Gunung Keriang Footpath is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kedah discovers unique landmark",
+      "pass": true
+    },
+    {
+      "name": "Kedah spawns local cache guardians",
+      "pass": true
+    },
+    {
+      "name": "Kedah cache rewards once",
+      "pass": true
+    },
+    {
+      "name": "Kedah cache does not repeat",
+      "pass": true
+    },
+    {
+      "name": "Kedah renders its Three.js terrain",
+      "pass": true
+    },
+    {
+      "name": "Kedah renders correct map title",
+      "pass": true
+    },
+    {
+      "name": "Kedah minimap uses the expanded world bounds",
+      "pass": true
+    },
+    {
+      "name": "Kedah minimap names the featured landmark",
+      "pass": true
+    },
+    {
+      "name": "Kedah places its own landmark sprite",
+      "pass": true
+    },
+    {
+      "name": "Kedah uses a varied local building and prop palette",
+      "pass": true
+    },
+    {
+      "name": "Kedah local enemy starts in its idle pose",
+      "pass": true
+    },
+    {
+      "name": "Kedah local enemy uses its alternate travel pose",
+      "pass": true
+    },
+    {
+      "name": "Kedah local enemy crouches during its warning",
+      "pass": true
+    },
+    {
+      "name": "Kedah signature enemy performs its attack",
+      "pass": true
+    },
+    {
+      "name": "Kedah signature enemy uses its attack pose on release",
+      "pass": true
+    },
+    {
+      "name": "Kedah attack animation freezes on pause",
+      "pass": true
+    },
+    {
+      "name": "Kedah rift lands on local walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Pahang binds its own world",
+      "pass": true
+    },
+    {
+      "name": "Pahang road 1 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Pahang road 2 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Pahang road 3 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Pahang road 4 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Pahang road 5 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Pahang road 6 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Pahang road 7 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Pahang keeps building plots outside the painted road shoulders",
+      "pass": true
+    },
+    {
+      "name": "Pahang has two destinations outside the old boundary",
+      "pass": true
+    },
+    {
+      "name": "Pahang retains a finite outer map boundary",
+      "pass": true
+    },
+    {
+      "name": "Pahang Pangkalan Nipah is on land",
+      "pass": true
+    },
+    {
+      "name": "Pahang Pangkalan Nipah is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pahang Mangrove Nursery is on land",
+      "pass": true
+    },
+    {
+      "name": "Pahang Mangrove Nursery is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pahang Estuary Lookout is on land",
+      "pass": true
+    },
+    {
+      "name": "Pahang Estuary Lookout is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pahang Forest Causeway is on land",
+      "pass": true
+    },
+    {
+      "name": "Pahang Forest Causeway is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pahang Reed Wharf is on land",
+      "pass": true
+    },
+    {
+      "name": "Pahang Reed Wharf is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pahang Kuantan 188 Promenade is on land",
+      "pass": true
+    },
+    {
+      "name": "Pahang Kuantan 188 Promenade is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pahang Nipah Canopy Walk is on land",
+      "pass": true
+    },
+    {
+      "name": "Pahang Nipah Canopy Walk is reachable",
+      "pass": true
+    },
+    {
+      "name": "Pahang discovers unique landmark",
+      "pass": true
+    },
+    {
+      "name": "Pahang spawns local cache guardians",
+      "pass": true
+    },
+    {
+      "name": "Pahang cache rewards once",
+      "pass": true
+    },
+    {
+      "name": "Pahang cache does not repeat",
+      "pass": true
+    },
+    {
+      "name": "Pahang renders its Three.js terrain",
+      "pass": true
+    },
+    {
+      "name": "Pahang renders correct map title",
+      "pass": true
+    },
+    {
+      "name": "Pahang minimap uses the expanded world bounds",
+      "pass": true
+    },
+    {
+      "name": "Pahang minimap names the featured landmark",
+      "pass": true
+    },
+    {
+      "name": "Pahang places its own landmark sprite",
+      "pass": true
+    },
+    {
+      "name": "Pahang uses a varied local building and prop palette",
+      "pass": true
+    },
+    {
+      "name": "Pahang local enemy starts in its idle pose",
+      "pass": true
+    },
+    {
+      "name": "Pahang local enemy uses its alternate travel pose",
+      "pass": true
+    },
+    {
+      "name": "Pahang local enemy crouches during its warning",
+      "pass": true
+    },
+    {
+      "name": "Nipah Rootling telegraphs the player’s starting position",
+      "pass": true
+    },
+    {
+      "name": "Walking off the root circle dodges the strike",
+      "pass": true
+    },
+    {
+      "name": "Pahang signature enemy performs its attack",
+      "pass": true
+    },
+    {
+      "name": "Pahang signature enemy uses its attack pose on release",
+      "pass": true
+    },
+    {
+      "name": "Pahang attack animation freezes on pause",
+      "pass": true
+    },
+    {
+      "name": "Pahang rift lands on local walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Terengganu binds its own world",
+      "pass": true
+    },
+    {
+      "name": "Terengganu road 1 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Terengganu road 2 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Terengganu road 3 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Terengganu road 4 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Terengganu road 5 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Terengganu road 6 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Terengganu road 7 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Terengganu keeps building plots outside the painted road shoulders",
+      "pass": true
+    },
+    {
+      "name": "Terengganu has two destinations outside the old boundary",
+      "pass": true
+    },
+    {
+      "name": "Terengganu retains a finite outer map boundary",
+      "pass": true
+    },
+    {
+      "name": "Terengganu Duyong Boat Yard is on land",
+      "pass": true
+    },
+    {
+      "name": "Terengganu Duyong Boat Yard is reachable",
+      "pass": true
+    },
+    {
+      "name": "Terengganu Cengal Working Shed is on land",
+      "pass": true
+    },
+    {
+      "name": "Terengganu Cengal Working Shed is reachable",
+      "pass": true
+    },
+    {
+      "name": "Terengganu Low Tide Slipway is on land",
+      "pass": true
+    },
+    {
+      "name": "Terengganu Low Tide Slipway is reachable",
+      "pass": true
+    },
+    {
+      "name": "Terengganu Net Drying Field is on land",
+      "pass": true
+    },
+    {
+      "name": "Terengganu Net Drying Field is reachable",
+      "pass": true
+    },
+    {
+      "name": "Terengganu Estuary Dock is on land",
+      "pass": true
+    },
+    {
+      "name": "Terengganu Estuary Dock is reachable",
+      "pass": true
+    },
+    {
+      "name": "Terengganu Pasar Payang Courtyard is on land",
+      "pass": true
+    },
+    {
+      "name": "Terengganu Pasar Payang Courtyard is reachable",
+      "pass": true
+    },
+    {
+      "name": "Terengganu Duyong Outer Slipway is on land",
+      "pass": true
+    },
+    {
+      "name": "Terengganu Duyong Outer Slipway is reachable",
+      "pass": true
+    },
+    {
+      "name": "Terengganu discovers unique landmark",
+      "pass": true
+    },
+    {
+      "name": "Terengganu spawns local cache guardians",
+      "pass": true
+    },
+    {
+      "name": "Terengganu cache rewards once",
+      "pass": true
+    },
+    {
+      "name": "Terengganu cache does not repeat",
+      "pass": true
+    },
+    {
+      "name": "Terengganu renders its Three.js terrain",
+      "pass": true
+    },
+    {
+      "name": "Terengganu renders correct map title",
+      "pass": true
+    },
+    {
+      "name": "Terengganu minimap uses the expanded world bounds",
+      "pass": true
+    },
+    {
+      "name": "Terengganu minimap names the featured landmark",
+      "pass": true
+    },
+    {
+      "name": "Terengganu places its own landmark sprite",
+      "pass": true
+    },
+    {
+      "name": "Terengganu uses a varied local building and prop palette",
+      "pass": true
+    },
+    {
+      "name": "Terengganu local enemy starts in its idle pose",
+      "pass": true
+    },
+    {
+      "name": "Terengganu local enemy uses its alternate travel pose",
+      "pass": true
+    },
+    {
+      "name": "Terengganu local enemy crouches during its warning",
+      "pass": true
+    },
+    {
+      "name": "Terengganu signature enemy performs its attack",
+      "pass": true
+    },
+    {
+      "name": "Terengganu signature enemy uses its attack pose on release",
+      "pass": true
+    },
+    {
+      "name": "Terengganu attack animation freezes on pause",
+      "pass": true
+    },
+    {
+      "name": "Slipway Crab fires six parallel foam shots",
+      "pass": true
+    },
+    {
+      "name": "Terengganu rift lands on local walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Kelantan binds its own world",
+      "pass": true
+    },
+    {
+      "name": "Kelantan road 1 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kelantan road 2 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kelantan road 3 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kelantan road 4 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kelantan road 5 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kelantan road 6 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kelantan road 7 has a continuous walkable lane",
+      "pass": true
+    },
+    {
+      "name": "Kelantan keeps building plots outside the painted road shoulders",
+      "pass": true
+    },
+    {
+      "name": "Kelantan has two destinations outside the old boundary",
+      "pass": true
+    },
+    {
+      "name": "Kelantan retains a finite outer map boundary",
+      "pass": true
+    },
+    {
+      "name": "Kelantan Pasar Wau is on land",
+      "pass": true
+    },
+    {
+      "name": "Kelantan Pasar Wau is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kelantan Wau Workshop is on land",
+      "pass": true
+    },
+    {
+      "name": "Kelantan Wau Workshop is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kelantan Bamboo Grove is on land",
+      "pass": true
+    },
+    {
+      "name": "Kelantan Bamboo Grove is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kelantan Padang Layang is on land",
+      "pass": true
+    },
+    {
+      "name": "Kelantan Padang Layang is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kelantan Floodplain Bank is on land",
+      "pass": true
+    },
+    {
+      "name": "Kelantan Floodplain Bank is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kelantan Kampung Kraftangan Court is on land",
+      "pass": true
+    },
+    {
+      "name": "Kelantan Kampung Kraftangan Court is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kelantan Padang Layang Lookout is on land",
+      "pass": true
+    },
+    {
+      "name": "Kelantan Padang Layang Lookout is reachable",
+      "pass": true
+    },
+    {
+      "name": "Kelantan discovers unique landmark",
+      "pass": true
+    },
+    {
+      "name": "Kelantan spawns local cache guardians",
+      "pass": true
+    },
+    {
+      "name": "Kelantan cache rewards once",
+      "pass": true
+    },
+    {
+      "name": "Kelantan cache does not repeat",
+      "pass": true
+    },
+    {
+      "name": "Kelantan renders its Three.js terrain",
+      "pass": true
+    },
+    {
+      "name": "Kelantan renders correct map title",
+      "pass": true
+    },
+    {
+      "name": "Kelantan minimap uses the expanded world bounds",
+      "pass": true
+    },
+    {
+      "name": "Kelantan minimap names the featured landmark",
+      "pass": true
+    },
+    {
+      "name": "Kelantan places its own landmark sprite",
+      "pass": true
+    },
+    {
+      "name": "Kelantan uses a varied local building and prop palette",
+      "pass": true
+    },
+    {
+      "name": "Kelantan local enemy starts in its idle pose",
+      "pass": true
+    },
+    {
+      "name": "Kelantan local enemy uses its alternate travel pose",
+      "pass": true
+    },
+    {
+      "name": "Kelantan local enemy crouches during its warning",
+      "pass": true
+    },
+    {
+      "name": "Kelantan signature enemy performs its attack",
+      "pass": true
+    },
+    {
+      "name": "Kelantan signature enemy uses its attack pose on release",
+      "pass": true
+    },
+    {
+      "name": "Kelantan attack animation freezes on pause",
+      "pass": true
+    },
+    {
+      "name": "Wau Wisp leaves one gap in its radial volley",
+      "pass": true
+    },
+    {
+      "name": "Kelantan rift lands on local walkable ground",
+      "pass": true
+    },
+    {
+      "name": "Kelantan has a walkable launch station, hidden from the spawn HUD",
+      "pass": true
+    },
+    {
+      "name": "The marked wind lane and its runout have clear ground",
+      "pass": true
+    },
+    {
+      "name": "Approaching the lookout reveals the wau and no cache guardians",
+      "pass": true
+    },
+    {
+      "name": "Waiting at the station does not activate the wind",
+      "pass": true
+    },
+    {
+      "name": "The windup advances with survival time and does not push yet",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes the kite windup",
+      "pass": true
+    },
+    {
+      "name": "The launch completes after leaving the station",
+      "pass": true
+    },
+    {
+      "name": "The minimap marks the active wind lane",
+      "pass": true
+    },
+    {
+      "name": "The gust pushes a caught ghost east once, leaving other targets and player health unchanged",
+      "pass": true
+    },
+    {
+      "name": "The manoeuvre awards no coins",
+      "pass": true
+    },
+    {
+      "name": "The kite cannot be raised again during cooldown",
+      "pass": true
+    },
+    {
+      "name": "The same station can prime a second gust when ready",
+      "pass": true
+    },
+    {
+      "name": "The lookout prompt stays outside the raid arena",
+      "pass": true
+    },
+    {
+      "name": "A new Kelantan run resets the lookout",
+      "pass": true
+    },
+    {
+      "name": "Every stage has a different collision layout",
+      "pass": true
+    },
+    {
+      "name": "Each stage has a local signature enemy",
+      "pass": true
+    },
+    {
+      "name": "Stage switching restores Johor geometry",
+      "pass": true
+    },
+    {
+      "name": "Ground movement advances a real enemy stride",
+      "pass": true
+    },
+    {
+      "name": "Raid renders the Three.js arena with active attack guidance",
+      "pass": true
+    }
+  ]
+}

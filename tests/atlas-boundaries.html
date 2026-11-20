@@ -1,0 +1,93 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Campaign atlas boundary checks</title>
+<pre id="result">Running…</pre>
+<button id="run">Check campaign taps</button>
+<iframe id="game" title="Atlas under test" width="390" height="844" hidden></iframe>
+<script type="module">
+import {CampaignBoundaries} from '../src/scenes/CampaignBoundaries.ts';
+import {playableStops} from '../src/content/expedition.ts';
+
+const result = document.querySelector('#result');
+const layer = new CampaignBoundaries();
+try {
+  const cases = [
+    ...playableStops.map(stop => [stop.place, stop.lon, stop.lat, stop.stageId]),
+    ['Penang mainland', 100.43, 5.38, 'penang'],
+    ['Langkawi', 99.8, 6.36, 'kedah'],
+    ['Selangor', 101.52, 3.07, undefined],
+    ['Putrajaya', 101.696, 2.926, undefined],
+    ['Perlis', 100.2, 6.45, undefined],
+    ['Negeri Sembilan', 101.94, 2.73, undefined],
+    ['Sea', 100, 4, undefined],
+    ['Singapore', 103.82, 1.35, undefined],
+  ];
+  for (const [place, lon, lat, expected] of cases) {
+    const actual = layer.stageAt(lon - 110, 9 - lat);
+    if (actual !== expected) throw Error(place + ' returned ' + actual + ', expected ' + expected);
+  }
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = 1024;
+  const ctx = canvas.getContext('2d');
+  function redraw(stage) {
+    layer.select(stage);
+    ctx.clearRect(0, 0, 1024, 1024);
+    layer.drawFlat(ctx, p => ({x: (p.x + 11) * 1024 / 6, y: (p.z - 2) * 1024 / 6}));
+  }
+  function alpha(lon, lat) {
+    return ctx.getImageData((lon - 99) * 1024 / 6, (7 - lat) * 1024 / 6, 1, 1).data[3];
+  }
+  redraw('penang');
+  if (!alpha(100.25, 5.36) || !alpha(100.43, 5.38) || alpha(100.355, 5.38))
+    throw Error('Penang tint must cover island and mainland with a clear channel');
+  redraw('kl');
+  if (alpha(100.25, 5.36) || !alpha(101.69, 3.14) || alpha(101.52, 3.07))
+    throw Error('Selection change must clear Penang and tint Kuala Lumpur inside Selangor');
+  result.textContent = 'PASS · ' + cases.length + ' geographic picks and 6 tint samples';
+} catch (e) {
+  result.textContent = 'FAIL · ' + e;
+  throw e;
+} finally {
+  layer.dispose();
+}
+
+document.querySelector('#run').onclick = async event => {
+  event.target.disabled = true;
+  const frame = document.querySelector('#game');
+  frame.hidden = false;
+  frame.src = '/';
+  try {
+    const deadline = performance.now() + 30000;
+    while (!frame.contentWindow.__asean?.scene.atlas.paths.west.length) {
+      if (performance.now() > deadline) throw Error('Game did not load');
+      await new Promise(resolve => setTimeout(resolve, 50));
+    }
+    const w = frame.contentWindow, d = frame.contentDocument, atlas = w.__asean.scene.atlas;
+    const canvas = d.querySelector('#atlasView canvas'), route = d.querySelector('#route');
+    let selections = 0;
+    d.querySelector('#atlasLabels').addEventListener('select-mission', () => selections++);
+    function click(lon, lat) {
+      const p = atlas.center.clone().set(lon - 110, 0, 9 - lat);
+      p.y = atlas.elevation(p);
+      const {x, y} = atlas.project(p), rect = canvas.getBoundingClientRect();
+      canvas.dispatchEvent(new w.MouseEvent('click', {clientX: rect.x + x, clientY: rect.y + y, bubbles: true}));
+    }
+    d.querySelector('#route-west').click();
+    atlas.update(16);
+    click(102.48, 3.72);
+    if (route.dataset.campaignRoute !== 'east' || d.querySelector('#stageTitle').textContent !== 'Pahang')
+      throw Error('Pahang territory must select its mission and route');
+    route.dataset.openStages = 'pahang';
+    route.dispatchEvent(new w.Event('stage-preview'));
+    click(103.45, 2.13); // Locked Johor
+    click(102.5, 2.8); // Negeri Sembilan
+    d.querySelector('#atlasExplore').click();
+    click(102.48, 3.72);
+    if (selections !== 1) throw Error('Locked, non-playable, or explorer tap emitted a mission selection');
+    result.textContent += '\nPASS · campaign selection, locks, non-playable territory and explorer taps';
+  } catch (error) {
+    result.textContent += '\nFAIL · ' + error;
+    throw error;
+  }
+};
+</script>

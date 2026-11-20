@@ -1,0 +1,42 @@
+// Each entry configures one existing cast. Its two paths replace the same base parameters.
+function path(name,description,values){return {name,description,values}}
+function skill(slot,base,first,second){return {slot,base,paths:[first,second]}}
+
+export const SPECIALIZATIONS={
+  ustaz:skill(3,{radius:1,stun:1},
+    path('Steady Lantern','Stun lasts 50% longer in a 25% smaller wave.',{radius:.75,stun:1.5}),
+    path('Beacon Circle','Reach 30% farther with a 40% shorter stun.',{radius:1.3,stun:.6})),
+  rempit:skill(2,{life:2.2,radius:24},
+    path('Long Fuse','Lay a longer, narrower trail. Each patch lasts 3.2 s with radius 16.',{life:3.2,radius:16}),
+    path('Flared Pipe','Lay a shorter, wider trail. Each patch lasts 1.4 s with radius 36.',{life:1.4,radius:36})),
+  nok:skill(1,{reach:1,width:30},
+    path('Long Teep','Kick 35% farther in a narrow lane. The sweet spot moves farther out.',{reach:1.35,width:18}),
+    path('Square Teep','Cut reach by 25% and double the lane width. The sweet spot moves closer.',{reach:.75,width:60})),
+  lan:skill(3,{radius:1,slow:3},
+    path('Deep Current','Slow ghosts for 5 s in a 25% smaller wave.',{radius:.75,slow:5}),
+    path('Lake Swell','Reach 30% farther. The slow lasts 1.8 s.',{radius:1.3,slow:1.8})),
+  sari:skill(3,{duration:1,counter:1},
+    path('Patient Guard','Hold guard 40% longer. Each contact counter deals 30% less damage.',{duration:1.4,counter:.7}),
+    path('Snap Counter','Deal 50% more contact counter damage in a 35% shorter stance.',{duration:.65,counter:1.5})),
+  asha:skill(1,{radius:100,expiry:6},
+    path('Reserved Tickets','Tickets last 9 s. Stamp a smaller radius of 72.',{radius:72,expiry:9}),
+    path('Open Counter','Stamp a radius of 140. Tickets expire after 4 s.',{radius:140,expiry:4})),
+  mira:skill(3,{duration:3,force:180},
+    path('Held Brace','Brace for 4.5 s with a lighter 100-force shove.',{duration:4.5,force:100}),
+    path('Hard Shove','Push with 300 force. The brace lasts 1.8 s.',{duration:1.8,force:300})),
+  dani:skill(2,{radius:100,damage:18},
+    path('Beacon Core','Plant a radius-70 arrival pulse for 28 base damage.',{radius:70,damage:28}),
+    path('Beacon Halo','Plant a radius-145 arrival pulse for 12 base damage.',{radius:145,damage:12})),
+  vanna:skill(3,{cross:60,pulse:20},
+    path('Tight Knot','Raise crossing damage to 85. The ordinary pulse deals 12 base damage.',{cross:85,pulse:12}),
+    path('Loose Weave','Raise pulse damage to 30. Crossing damage drops to 36.',{cross:36,pulse:30})),
+  keo:skill(3,{stun:.8,damage:18},
+    path('Fermata','Stun for 1.4 s. The pulse deals 12 base damage.',{stun:1.4,damage:12}),
+    path('Sharp Accent','Deal 28 base damage. The stun lasts 0.4 s.',{stun:.4,damage:28})),
+  nadi:skill(4,{offset:120,radius:80},
+    path('Outer Seals','Set three radius-65 discs farther out, 175 units from you.',{offset:175,radius:65}),
+    path('Close Seals','Set three radius-88 discs closer in, 85 units from you.',{offset:85,radius:88})),
+  lia:skill(1,{length:240,force:160},
+    path('Express Lane','Reach 320 units with a lighter 100-force push.',{length:320,force:100}),
+    path('Clearing Lane','Push with 260 force in a shorter 175-unit lane.',{length:175,force:260}))
+};

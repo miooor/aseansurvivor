@@ -1,0 +1,467 @@
+{
+  "date": "2026-11-20T14:38:02.442Z",
+  "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.0.0 Safari/537.36",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Johor offers its own quest",
+      "pass": true
+    },
+    {
+      "name": "Trapped Traveller presents a civilian and the correct quest prompt",
+      "pass": true
+    },
+    {
+      "name": "Six captors guard the stationary traveller",
+      "pass": true
+    },
+    {
+      "name": "Trapped Traveller redirects to the waiting companion",
+      "pass": true
+    },
+    {
+      "name": "Trapped Traveller walks a single companion to safety",
+      "pass": true
+    },
+    {
+      "name": "Trapped Traveller visits its destinations in order: Escort · Market bridge approach → Clear · Market bridge approach → Escort · Market bridge",
+      "pass": true
+    },
+    {
+      "name": "Trapped Traveller resolves its local fights",
+      "pass": true
+    },
+    {
+      "name": "Trapped Traveller offers three choices in the expected slot",
+      "pass": true
+    },
+    {
+      "name": "Trapped Traveller clears the civilian and quest marker after reward",
+      "pass": true
+    },
+    {
+      "name": "Melaka offers its own quest",
+      "pass": true
+    },
+    {
+      "name": "The Quay Manifest presents a civilian and the correct quest prompt",
+      "pass": true
+    },
+    {
+      "name": "File · Stadthuys Steps is labelled in the scene and on the map",
+      "pass": true
+    },
+    {
+      "name": "File · Stadthuys Steps displays the destination prop at the handoff",
+      "pass": true
+    },
+    {
+      "name": "File · Stadthuys Steps waits for the player action",
+      "pass": true
+    },
+    {
+      "name": "The Quay Manifest visits its destinations in order: Recover · Old River Quay → File · Stadthuys Steps",
+      "pass": true
+    },
+    {
+      "name": "The Quay Manifest resolves its local fights",
+      "pass": true
+    },
+    {
+      "name": "The Quay Manifest offers three choices in the expected slot",
+      "pass": true
+    },
+    {
+      "name": "The Quay Manifest offers its regional reward",
+      "pass": true
+    },
+    {
+      "name": "The Quay Manifest equips the chosen reward",
+      "pass": true
+    },
+    {
+      "name": "The Quay Manifest clears the civilian and quest marker after reward",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur offers its own quest",
+      "pass": true
+    },
+    {
+      "name": "Hawker Delivery presents a civilian and the correct quest prompt",
+      "pass": true
+    },
+    {
+      "name": "Deliver · Central Market Lane is labelled in the scene and on the map",
+      "pass": true
+    },
+    {
+      "name": "Deliver · Central Market Lane displays the destination prop at the handoff",
+      "pass": true
+    },
+    {
+      "name": "Deliver · Central Market Lane waits for the player action",
+      "pass": true
+    },
+    {
+      "name": "Deliver · Monorail Depot is labelled in the scene and on the map",
+      "pass": true
+    },
+    {
+      "name": "Deliver · Monorail Depot displays the destination prop at the handoff",
+      "pass": true
+    },
+    {
+      "name": "Deliver · Monorail Depot waits for the player action",
+      "pass": true
+    },
+    {
+      "name": "Hawker Delivery visits its destinations in order: Deliver · Central Market Lane → Deliver · Monorail Depot",
+      "pass": true
+    },
+    {
+      "name": "Hawker Delivery resolves its local fights",
+      "pass": true
+    },
+    {
+      "name": "Hawker Delivery offers three choices in the expected slot",
+      "pass": true
+    },
+    {
+      "name": "Hawker Delivery offers its regional reward",
+      "pass": true
+    },
+    {
+      "name": "Hawker Delivery equips the chosen reward",
+      "pass": true
+    },
+    {
+      "name": "Hawker Delivery clears the civilian and quest marker after reward",
+      "pass": true
+    },
+    {
+      "name": "Perak offers its own quest",
+      "pass": true
+    },
+    {
+      "name": "Kinta Tin Assay presents a civilian and the correct quest prompt",
+      "pass": true
+    },
+    {
+      "name": "Pan · Blue Tailings Pond is labelled in the scene and on the map",
+      "pass": true
+    },
+    {
+      "name": "Pan · Blue Tailings Pond displays the destination prop at the handoff",
+      "pass": true
+    },
+    {
+      "name": "Pan · Blue Tailings Pond waits for the player action",
+      "pass": true
+    },
+    {
+      "name": "Weigh · Tanjung Tualang Dredge is labelled in the scene and on the map",
+      "pass": true
+    },
+    {
+      "name": "Weigh · Tanjung Tualang Dredge displays the destination prop at the handoff",
+      "pass": true
+    },
+    {
+      "name": "Weigh · Tanjung Tualang Dredge waits for the player action",
+      "pass": true
+    },
+    {
+      "name": "Kinta Tin Assay visits its destinations in order: Pan · Blue Tailings Pond → Secure · Tanjung Tualang Dredge → Weigh · Tanjung Tualang Dredge",
+      "pass": true
+    },
+    {
+      "name": "Kinta Tin Assay resolves its local fights",
+      "pass": true
+    },
+    {
+      "name": "Kinta Tin Assay offers three choices in the expected slot",
+      "pass": true
+    },
+    {
+      "name": "Kinta Tin Assay offers its regional reward",
+      "pass": true
+    },
+    {
+      "name": "Kinta Tin Assay equips the chosen reward",
+      "pass": true
+    },
+    {
+      "name": "Kinta Tin Assay clears the civilian and quest marker after reward",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang offers its own quest",
+      "pass": true
+    },
+    {
+      "name": "Chew Jetty Crossing presents a civilian and the correct quest prompt",
+      "pass": true
+    },
+    {
+      "name": "Chew Jetty Crossing redirects to the waiting companion",
+      "pass": true
+    },
+    {
+      "name": "Chew Jetty Crossing keeps the station control clear of the quest panel",
+      "pass": true
+    },
+    {
+      "name": "Chew Jetty Crossing walks a single companion to safety",
+      "pass": true
+    },
+    {
+      "name": "Chew Jetty Crossing visits its destinations in order: Escort · Chew Jetty winch → Lower · Chew Jetty winch → Escort · Fishing Platform",
+      "pass": true
+    },
+    {
+      "name": "Chew Jetty Crossing resolves its local fights",
+      "pass": true
+    },
+    {
+      "name": "Escorting the fisher lowers the playable gangway",
+      "pass": true
+    },
+    {
+      "name": "Chew Jetty Crossing offers three choices in the expected slot",
+      "pass": true
+    },
+    {
+      "name": "Chew Jetty Crossing offers its regional reward",
+      "pass": true
+    },
+    {
+      "name": "Chew Jetty Crossing equips the chosen reward",
+      "pass": true
+    },
+    {
+      "name": "Chew Jetty Crossing clears the civilian and quest marker after reward",
+      "pass": true
+    },
+    {
+      "name": "Kedah offers its own quest",
+      "pass": true
+    },
+    {
+      "name": "Water for the Paddies presents a civilian and the correct quest prompt",
+      "pass": true
+    },
+    {
+      "name": "Read · Pintu Air is labelled in the scene and on the map",
+      "pass": true
+    },
+    {
+      "name": "Read · Pintu Air displays the destination prop at the handoff",
+      "pass": true
+    },
+    {
+      "name": "Read · Pintu Air waits for the player action",
+      "pass": true
+    },
+    {
+      "name": "Set · Irrigation Fields is labelled in the scene and on the map",
+      "pass": true
+    },
+    {
+      "name": "Set · Irrigation Fields displays the destination prop at the handoff",
+      "pass": true
+    },
+    {
+      "name": "Set · Irrigation Fields waits for the player action",
+      "pass": true
+    },
+    {
+      "name": "Water for the Paddies visits its destinations in order: Read · Pintu Air → Set · Irrigation Fields",
+      "pass": true
+    },
+    {
+      "name": "Water for the Paddies resolves its local fights",
+      "pass": true
+    },
+    {
+      "name": "Water for the Paddies offers three choices in the expected slot",
+      "pass": true
+    },
+    {
+      "name": "Water for the Paddies offers its regional reward",
+      "pass": true
+    },
+    {
+      "name": "Water for the Paddies equips the chosen reward",
+      "pass": true
+    },
+    {
+      "name": "Water for the Paddies clears the civilian and quest marker after reward",
+      "pass": true
+    },
+    {
+      "name": "Pahang offers its own quest",
+      "pass": true
+    },
+    {
+      "name": "Mangrove Replanting presents a civilian and the correct quest prompt",
+      "pass": true
+    },
+    {
+      "name": "Collect · Mangrove Nursery is labelled in the scene and on the map",
+      "pass": true
+    },
+    {
+      "name": "Collect · Mangrove Nursery displays the destination prop at the handoff",
+      "pass": true
+    },
+    {
+      "name": "Collect · Mangrove Nursery waits for the player action",
+      "pass": true
+    },
+    {
+      "name": "Plant · Nipah Canopy Walk is labelled in the scene and on the map",
+      "pass": true
+    },
+    {
+      "name": "Plant · Nipah Canopy Walk displays the destination prop at the handoff",
+      "pass": true
+    },
+    {
+      "name": "Plant · Nipah Canopy Walk waits for the player action",
+      "pass": true
+    },
+    {
+      "name": "Mangrove Replanting visits its destinations in order: Collect · Mangrove Nursery → Plant · Nipah Canopy Walk",
+      "pass": true
+    },
+    {
+      "name": "Mangrove Replanting resolves its local fights",
+      "pass": true
+    },
+    {
+      "name": "Mangrove Replanting offers three choices in the expected slot",
+      "pass": true
+    },
+    {
+      "name": "Mangrove Replanting offers its regional reward",
+      "pass": true
+    },
+    {
+      "name": "Mangrove Replanting equips the chosen reward",
+      "pass": true
+    },
+    {
+      "name": "Mangrove Replanting clears the civilian and quest marker after reward",
+      "pass": true
+    },
+    {
+      "name": "Terengganu offers its own quest",
+      "pass": true
+    },
+    {
+      "name": "Duyong Launch Crew presents a civilian and the correct quest prompt",
+      "pass": true
+    },
+    {
+      "name": "Collect · Cengal Working Shed is labelled in the scene and on the map",
+      "pass": true
+    },
+    {
+      "name": "Collect · Cengal Working Shed displays the destination prop at the handoff",
+      "pass": true
+    },
+    {
+      "name": "Collect · Cengal Working Shed waits for the player action",
+      "pass": true
+    },
+    {
+      "name": "Launch · Duyong Outer Slipway is labelled in the scene and on the map",
+      "pass": true
+    },
+    {
+      "name": "Launch · Duyong Outer Slipway displays the destination prop at the handoff",
+      "pass": true
+    },
+    {
+      "name": "Launch · Duyong Outer Slipway waits for the player action",
+      "pass": true
+    },
+    {
+      "name": "Duyong Launch Crew visits its destinations in order: Collect · Cengal Working Shed → Clear · Duyong Outer Slipway → Launch · Duyong Outer Slipway",
+      "pass": true
+    },
+    {
+      "name": "Duyong Launch Crew resolves its local fights",
+      "pass": true
+    },
+    {
+      "name": "Duyong Launch Crew offers three choices in the expected slot",
+      "pass": true
+    },
+    {
+      "name": "Duyong Launch Crew offers its regional reward",
+      "pass": true
+    },
+    {
+      "name": "Duyong Launch Crew equips the chosen reward",
+      "pass": true
+    },
+    {
+      "name": "Duyong Launch Crew clears the civilian and quest marker after reward",
+      "pass": true
+    },
+    {
+      "name": "Kelantan offers its own quest",
+      "pass": true
+    },
+    {
+      "name": "Wau Bulan Flight presents a civilian and the correct quest prompt",
+      "pass": true
+    },
+    {
+      "name": "Rig · Wau Workshop is labelled in the scene and on the map",
+      "pass": true
+    },
+    {
+      "name": "Rig · Wau Workshop displays the destination prop at the handoff",
+      "pass": true
+    },
+    {
+      "name": "Rig · Wau Workshop waits for the player action",
+      "pass": true
+    },
+    {
+      "name": "Wau Bulan Flight keeps the station control clear of the quest panel",
+      "pass": true
+    },
+    {
+      "name": "Wau Bulan Flight visits its destinations in order: Rig · Wau Workshop → Raise · Padang Layang Lookout",
+      "pass": true
+    },
+    {
+      "name": "Wau Bulan Flight resolves its local fights",
+      "pass": true
+    },
+    {
+      "name": "Launching the rigged wau triggers the playable gust",
+      "pass": true
+    },
+    {
+      "name": "Wau Bulan Flight offers three choices in the expected slot",
+      "pass": true
+    },
+    {
+      "name": "Wau Bulan Flight offers its regional reward",
+      "pass": true
+    },
+    {
+      "name": "Wau Bulan Flight equips the chosen reward",
+      "pass": true
+    },
+    {
+      "name": "Wau Bulan Flight clears the civilian and quest marker after reward",
+      "pass": true
+    }
+  ]
+}
