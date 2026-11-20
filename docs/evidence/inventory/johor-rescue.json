@@ -1,0 +1,658 @@
+{
+  "date": "2026-11-20T14:32:46.269Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Real audio context is running",
+      "pass": true
+    },
+    {
+      "name": "Nearby traveller explains objective and danger",
+      "pass": true
+    },
+    {
+      "name": "Walking nearby never starts the event",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "Six event-owned captors appear",
+      "pass": true
+    },
+    {
+      "name": "GPS points to a captor with a combat verb",
+      "pass": true
+    },
+    {
+      "name": "Map follows a live captor",
+      "pass": true
+    },
+    {
+      "name": "Three.js labels distinguish event captors",
+      "pass": true
+    },
+    {
+      "name": "No quest credit for ambient kills",
+      "pass": true
+    },
+    {
+      "name": "Ambient death does not advance rescue",
+      "pass": true
+    },
+    {
+      "name": "GPS switches to the rescue action",
+      "pass": true
+    },
+    {
+      "name": "Map returns to traveller after the fight",
+      "pass": true
+    },
+    {
+      "name": "All six captors credited",
+      "pass": true
+    },
+    {
+      "name": "Final rescue requires deliberate interaction",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Freeing the traveller starts the escort without loot",
+      "pass": true
+    },
+    {
+      "name": "One bridge ambush before arrival",
+      "pass": true
+    },
+    {
+      "name": "Traveller reaches the bridge",
+      "pass": true
+    },
+    {
+      "name": "Rescue offers exactly three weapons",
+      "pass": true
+    },
+    {
+      "name": "Traveller starts in the waiting pose",
+      "pass": true
+    },
+    {
+      "name": "Traveller beckons for help",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "Traveller relaxes after the captors are defeated",
+      "pass": true
+    },
+    {
+      "name": "Can choose quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "Quarry Hammer gives exactly −10% speed",
+      "pass": true
+    },
+    {
+      "name": "Quarry Hammer gives 20% outgoing damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "Re-equipping does not compound speed",
+      "pass": true
+    },
+    {
+      "name": "Can choose riverNeedle",
+      "pass": true
+    },
+    {
+      "name": "Replacement restores base speed",
+      "pass": true
+    },
+    {
+      "name": "River Needle boosts direct slowed hits",
+      "pass": true
+    },
+    {
+      "name": "River Needle excludes periodic damage",
+      "pass": true
+    },
+    {
+      "name": "River Needle excludes unslowed hits",
+      "pass": true
+    },
+    {
+      "name": "Can choose huntersEdge",
+      "pass": true
+    },
+    {
+      "name": "Hunters Edge excludes ordinary enemies",
+      "pass": true
+    },
+    {
+      "name": "Hunters Edge boosts elite damage",
+      "pass": true
+    },
+    {
+      "name": "Hunters Edge boosts boss damage",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "Armoured health is scaled once",
+      "pass": true
+    },
+    {
+      "name": "Armoured contact damage is scaled once",
+      "pass": true
+    },
+    {
+      "name": "Armoured reduces damage by 30%",
+      "pass": true
+    },
+    {
+      "name": "Armoured vulnerability permits full damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose splitEmber",
+      "pass": true
+    },
+    {
+      "name": "ustaz fourth basic makes two extra bolts",
+      "pass": true
+    },
+    {
+      "name": "ustaz extra bolts use unmodified basic damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose splitEmber",
+      "pass": true
+    },
+    {
+      "name": "rempit fourth basic makes two extra bolts",
+      "pass": true
+    },
+    {
+      "name": "rempit extra bolts use unmodified basic damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose splitEmber",
+      "pass": true
+    },
+    {
+      "name": "nok fourth basic makes two extra bolts",
+      "pass": true
+    },
+    {
+      "name": "nok extra bolts use unmodified basic damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose splitEmber",
+      "pass": true
+    },
+    {
+      "name": "lan fourth basic makes two extra bolts",
+      "pass": true
+    },
+    {
+      "name": "lan extra bolts use unmodified basic damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose splitEmber",
+      "pass": true
+    },
+    {
+      "name": "sari fourth basic makes two extra bolts",
+      "pass": true
+    },
+    {
+      "name": "sari extra bolts use unmodified basic damage",
+      "pass": true
+    },
+    {
+      "name": "Discovered event has named minimap marker",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "Captor spawns on valid ground 4",
+      "pass": true
+    },
+    {
+      "name": "Captor is reachable 4",
+      "pass": true
+    },
+    {
+      "name": "Captor spawns on valid ground 5",
+      "pass": true
+    },
+    {
+      "name": "Captor is reachable 5",
+      "pass": true
+    },
+    {
+      "name": "Captor spawns on valid ground 6",
+      "pass": true
+    },
+    {
+      "name": "Captor is reachable 6",
+      "pass": true
+    },
+    {
+      "name": "Captor spawns on valid ground 7",
+      "pass": true
+    },
+    {
+      "name": "Captor is reachable 7",
+      "pass": true
+    },
+    {
+      "name": "Captor spawns on valid ground 8",
+      "pass": true
+    },
+    {
+      "name": "Captor is reachable 8",
+      "pass": true
+    },
+    {
+      "name": "Captor spawns on valid ground 9",
+      "pass": true
+    },
+    {
+      "name": "Captor is reachable 9",
+      "pass": true
+    },
+    {
+      "name": "Elite shows warning before charge",
+      "pass": true
+    },
+    {
+      "name": "Elite exposes a post-charge vulnerability window",
+      "pass": true
+    },
+    {
+      "name": "Elite armour returns after vulnerability",
+      "pass": true
+    },
+    {
+      "name": "Raid entry blocked during event with explanation",
+      "pass": true
+    },
+    {
+      "name": "Active event does not stop survival clock",
+      "pass": true
+    },
+    {
+      "name": "Rift lifetime preserved while entry blocked",
+      "pass": true
+    },
+    {
+      "name": "Leaving does not abandon event",
+      "pass": true
+    },
+    {
+      "name": "eventAbandon is available",
+      "pass": true
+    },
+    {
+      "name": "Abandon removes all owned actors",
+      "pass": true
+    },
+    {
+      "name": "Abandon is final and grants no reward",
+      "pass": true
+    },
+    {
+      "name": "Abandoned marker is removed",
+      "pass": true
+    },
+    {
+      "name": "Existing rift becomes enterable",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Escort reward waits during level up",
+      "pass": true
+    },
+    {
+      "name": "Only upgrade modal appears",
+      "pass": true
+    },
+    {
+      "name": "Upgrade freezes event and world clock",
+      "pass": true
+    },
+    {
+      "name": "up0 is available",
+      "pass": true
+    },
+    {
+      "name": "One bridge ambush before arrival",
+      "pass": true
+    },
+    {
+      "name": "Traveller reaches the bridge",
+      "pass": true
+    },
+    {
+      "name": "Arrival reward appears after upgrade",
+      "pass": true
+    },
+    {
+      "name": "Offer items are distinct",
+      "pass": true
+    },
+    {
+      "name": "Reward freezes clock",
+      "pass": true
+    },
+    {
+      "name": "Stale duplicate input cannot replace reward",
+      "pass": true
+    },
+    {
+      "name": "equipmentButton is available",
+      "pass": true
+    },
+    {
+      "name": "Inspection lists three slots and equipped description",
+      "pass": true
+    },
+    {
+      "name": "Inspection freezes clock",
+      "pass": true
+    },
+    {
+      "name": "Pause cannot stack over inspection",
+      "pass": true
+    },
+    {
+      "name": "Escape closes read-only inspection",
+      "pass": true
+    },
+    {
+      "name": "Inspection restores equipment control focus",
+      "pass": true
+    },
+    {
+      "name": "Equipment does not change persistent save",
+      "pass": true
+    },
+    {
+      "name": "Other stage has no encounter leakage",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "Defeat clears active event and pending rewards",
+      "pass": true
+    },
+    {
+      "name": "again is available",
+      "pass": true
+    },
+    {
+      "name": "Retry resets event and all equipment",
+      "pass": true
+    },
+    {
+      "name": "Repeated death cannot duplicate enemy rewards",
+      "pass": true
+    },
+    {
+      "name": "Can choose splitEmber",
+      "pass": true
+    },
+    {
+      "name": "Item-origin hit cannot generate High Tide",
+      "pass": true
+    },
+    {
+      "name": "Item-origin hit does not advance basic counter",
+      "pass": true
+    },
+    {
+      "name": "Item-origin hit emits no skill audio",
+      "pass": true
+    },
+    {
+      "name": "Can choose splitEmber",
+      "pass": true
+    },
+    {
+      "name": "No target basic casts do not advance Split Ember",
+      "pass": true
+    },
+    {
+      "name": "Rejected basic cast still does not advance",
+      "pass": true
+    },
+    {
+      "name": "equipmentButton is available",
+      "pass": true
+    },
+    {
+      "name": "Inspection cannot advance casts or item counters",
+      "pass": true
+    },
+    {
+      "name": "lootClose is available",
+      "pass": true
+    },
+    {
+      "name": "Can choose quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "Can choose splitEmber",
+      "pass": true
+    },
+    {
+      "name": "Removing and re-equipping clears spread counter",
+      "pass": true
+    },
+    {
+      "name": "Can choose quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "Speed upgrade is offered",
+      "pass": true
+    },
+    {
+      "name": "Passive and equipment speed resolve from base",
+      "pass": true
+    },
+    {
+      "name": "Can choose riverNeedle",
+      "pass": true
+    },
+    {
+      "name": "Replacement retains passive speed without compounding",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "One bridge ambush before arrival",
+      "pass": true
+    },
+    {
+      "name": "Traveller reaches the bridge",
+      "pass": true
+    },
+    {
+      "name": "lootSkip is available",
+      "pass": true
+    },
+    {
+      "name": "Skip consumes reward without equipment",
+      "pass": true
+    },
+    {
+      "name": "Skipped reward never reopens",
+      "pass": true
+    },
+    {
+      "name": "Inspection cannot unpause a paused run",
+      "pass": true
+    },
+    {
+      "name": "Can choose quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "Equipment remains active inside raid",
+      "pass": true
+    },
+    {
+      "name": "Menu clears equipment and encounter UI",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "320px event has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "320px event touch targets are at least 44px",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "One bridge ambush before arrival",
+      "pass": true
+    },
+    {
+      "name": "Traveller reaches the bridge",
+      "pass": true
+    },
+    {
+      "name": "320px comparison has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "320px reward touch targets are at least 44px",
+      "pass": true
+    },
+    {
+      "name": "320px keyboard focus wraps to first choice",
+      "pass": true
+    },
+    {
+      "name": "320px reverse focus stays in modal",
+      "pass": true
+    },
+    {
+      "name": "equipmentButton is available",
+      "pass": true
+    },
+    {
+      "name": "320px equipped inspection fits",
+      "pass": true
+    },
+    {
+      "name": "lootClose is available",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "390px event has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "390px event touch targets are at least 44px",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "One bridge ambush before arrival",
+      "pass": true
+    },
+    {
+      "name": "Traveller reaches the bridge",
+      "pass": true
+    },
+    {
+      "name": "390px comparison has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "390px reward touch targets are at least 44px",
+      "pass": true
+    },
+    {
+      "name": "390px keyboard focus wraps to first choice",
+      "pass": true
+    },
+    {
+      "name": "390px reverse focus stays in modal",
+      "pass": true
+    },
+    {
+      "name": "equipmentButton is available",
+      "pass": true
+    },
+    {
+      "name": "390px equipped inspection fits",
+      "pass": true
+    },
+    {
+      "name": "lootClose is available",
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,3344 @@
+{
+  "date": "2026-11-20T15:05:51.119Z",
+  "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "checks": [
+    {
+      "name": "Both branches unlock after clearing shared Johor",
+      "pass": true
+    },
+    {
+      "name": "Stage locks follow route predecessors and honor retained legacy access",
+      "pass": true
+    },
+    {
+      "name": "Three.js scene boots",
+      "pass": true
+    },
+    {
+      "name": "Fresh save marks shared Johor once .atlas-stage",
+      "pass": true
+    },
+    {
+      "name": "Fresh save marks shared Johor once #route .stg",
+      "pass": true
+    },
+    {
+      "name": "Continue available for johor",
+      "pass": true
+    },
+    {
+      "name": "Continue briefs Johor",
+      "pass": true
+    },
+    {
+      "name": "Preview preserves save for johor",
+      "pass": true
+    },
+    {
+      "name": "Partial branches advance independently .atlas-stage",
+      "pass": true
+    },
+    {
+      "name": "Partial branches advance independently #route .stg",
+      "pass": true
+    },
+    {
+      "name": "Continue available for melaka",
+      "pass": true
+    },
+    {
+      "name": "Continue briefs Melaka",
+      "pass": true
+    },
+    {
+      "name": "Preview preserves save for melaka",
+      "pass": true
+    },
+    {
+      "name": "Continue available for terengganu",
+      "pass": true
+    },
+    {
+      "name": "Continue briefs Terengganu",
+      "pass": true
+    },
+    {
+      "name": "Preview preserves save for terengganu",
+      "pass": true
+    },
+    {
+      "name": "Switching branch preserves clears .atlas-stage",
+      "pass": true
+    },
+    {
+      "name": "Switching branch preserves clears #route .stg",
+      "pass": true
+    },
+    {
+      "name": "Completed east has no next stop .atlas-stage",
+      "pass": true
+    },
+    {
+      "name": "Completed east has no next stop #route .stg",
+      "pass": true
+    },
+    {
+      "name": "Completed coast keeps its briefing and allows replay",
+      "pass": true
+    },
+    {
+      "name": "Legacy Perak access keeps earlier Kuala Lumpur next .atlas-stage",
+      "pass": true
+    },
+    {
+      "name": "Legacy Perak access keeps earlier Kuala Lumpur next #route .stg",
+      "pass": true
+    },
+    {
+      "name": "Continue available for kl",
+      "pass": true
+    },
+    {
+      "name": "Continue briefs Kuala Lumpur",
+      "pass": true
+    },
+    {
+      "name": "Preview preserves save for kl",
+      "pass": true
+    },
+    {
+      "name": "Fully cleared atlas has no next stops .atlas-stage",
+      "pass": true
+    },
+    {
+      "name": "Fully cleared atlas has no next stops #route .stg",
+      "pass": true
+    },
+    {
+      "name": "Completed west disables Continue",
+      "pass": true
+    },
+    {
+      "name": "Continue available for johor",
+      "pass": true
+    },
+    {
+      "name": "Continue briefs Johor",
+      "pass": true
+    },
+    {
+      "name": "Preview preserves save for johor",
+      "pass": true
+    },
+    {
+      "name": "One Three.js canvas owns gameplay",
+      "pass": true
+    },
+    {
+      "name": "All twelve playable heroes load",
+      "pass": true
+    },
+    {
+      "name": "Selected survivor stands in front at the center of the lineup",
+      "pass": true
+    },
+    {
+      "name": "Wheel wraps from Hakim to Lia",
+      "pass": true
+    },
+    {
+      "name": "Keyboard wraps forward and focuses the selected portrait",
+      "pass": true
+    },
+    {
+      "name": "Scrolling synchronizes the selected hero and skill strip",
+      "pass": true
+    },
+    {
+      "name": "The selected skill opens below the entire row",
+      "pass": true
+    },
+    {
+      "name": "Cycling places the new survivor at the front",
+      "pass": true
+    },
+    {
+      "name": "Turning the wheel clears the previous hero skill description",
+      "pass": true
+    },
+    {
+      "name": "Wheel navigation keeps the current mission",
+      "pass": true
+    },
+    {
+      "name": "Six stage selections load",
+      "pass": true
+    },
+    {
+      "name": "Campaign atlas opens in Johor",
+      "pass": true
+    },
+    {
+      "name": "Mission buttons follow the northbound route",
+      "pass": true
+    },
+    {
+      "name": "Each gold leg connects two consecutive playable level coordinates",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 2 matches Melaka",
+      "pass": true
+    },
+    {
+      "name": "Melaka preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 3 matches Kuala Lumpur",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 4 matches Perak",
+      "pass": true
+    },
+    {
+      "name": "Perak preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 5 matches Pulau Pinang",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 6 matches Kedah",
+      "pass": true
+    },
+    {
+      "name": "Kedah preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 7 matches Chiang Mai",
+      "pass": true
+    },
+    {
+      "name": "Chiang Mai preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 8 matches Bagan",
+      "pass": true
+    },
+    {
+      "name": "Bagan preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 9 matches Luang Prabang",
+      "pass": true
+    },
+    {
+      "name": "Luang Prabang preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 10 matches Hanoi",
+      "pass": true
+    },
+    {
+      "name": "Hanoi preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 11 matches Siem Reap",
+      "pass": true
+    },
+    {
+      "name": "Siem Reap preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 12 matches Singapore",
+      "pass": true
+    },
+    {
+      "name": "Singapore preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 13 matches Yogyakarta",
+      "pass": true
+    },
+    {
+      "name": "Yogyakarta preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 14 matches Dili",
+      "pass": true
+    },
+    {
+      "name": "Dili preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 15 matches Bandar Seri Begawan",
+      "pass": true
+    },
+    {
+      "name": "Bandar Seri Begawan preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 16 matches Cebu",
+      "pass": true
+    },
+    {
+      "name": "Cebu preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour reaches all eleven countries",
+      "pass": true
+    },
+    {
+      "name": "Tour replays from Johor",
+      "pass": true
+    },
+    {
+      "name": "Tour can be paused",
+      "pass": true
+    },
+    {
+      "name": "Overview returns to the Johor origin",
+      "pass": true
+    },
+    {
+      "name": "Rank five previews the bolt breakpoint and its completed recipe",
+      "pass": true
+    },
+    {
+      "name": "First matching passive names the newly eligible evolution",
+      "pass": true
+    },
+    {
+      "name": "Picking the ingredient leaves evolution for a separate choice",
+      "pass": true
+    },
+    {
+      "name": "Next picker offers the completed recipe",
+      "pass": true
+    },
+    {
+      "name": "Selecting the evolution applies it",
+      "pass": true
+    },
+    {
+      "name": "asha shows its own flag behind the portrait at 30% opacity",
+      "pass": true
+    },
+    {
+      "name": "asha shows dedicated artwork for all five attacks",
+      "pass": true
+    },
+    {
+      "name": "asha starts from the wheel with the selected kit",
+      "pass": true
+    },
+    {
+      "name": "asha uses the same active-skill icons in the combat HUD",
+      "pass": true
+    },
+    {
+      "name": "asha uses its own idle sprite and feet pivot",
+      "pass": true
+    },
+    {
+      "name": "asha projects a shadow from its gameplay sprite",
+      "pass": true
+    },
+    {
+      "name": "asha uses its own Q cast pose",
+      "pass": true
+    },
+    {
+      "name": "asha uses its own E cast pose",
+      "pass": true
+    },
+    {
+      "name": "asha uses its own F cast pose",
+      "pass": true
+    },
+    {
+      "name": "asha uses its own R cast pose",
+      "pass": true
+    },
+    {
+      "name": "Counter Relay sends a receipt beyond the collected burst",
+      "pass": true
+    },
+    {
+      "name": "asha can rank up",
+      "pass": true
+    },
+    {
+      "name": "mira shows its own flag behind the portrait at 30% opacity",
+      "pass": true
+    },
+    {
+      "name": "mira shows dedicated artwork for all five attacks",
+      "pass": true
+    },
+    {
+      "name": "mira starts from the wheel with the selected kit",
+      "pass": true
+    },
+    {
+      "name": "mira uses the same active-skill icons in the combat HUD",
+      "pass": true
+    },
+    {
+      "name": "mira uses its own idle sprite and feet pivot",
+      "pass": true
+    },
+    {
+      "name": "mira projects a shadow from its gameplay sprite",
+      "pass": true
+    },
+    {
+      "name": "mira uses its own Q cast pose",
+      "pass": true
+    },
+    {
+      "name": "mira uses its own E cast pose",
+      "pass": true
+    },
+    {
+      "name": "mira uses its own F cast pose",
+      "pass": true
+    },
+    {
+      "name": "mira uses its own R cast pose",
+      "pass": true
+    },
+    {
+      "name": "Harbour wakes converge from three separate origins",
+      "pass": true
+    },
+    {
+      "name": "mira can rank up",
+      "pass": true
+    },
+    {
+      "name": "dani shows its own flag behind the portrait at 30% opacity",
+      "pass": true
+    },
+    {
+      "name": "dani shows dedicated artwork for all five attacks",
+      "pass": true
+    },
+    {
+      "name": "dani starts from the wheel with the selected kit",
+      "pass": true
+    },
+    {
+      "name": "dani uses the same active-skill icons in the combat HUD",
+      "pass": true
+    },
+    {
+      "name": "dani uses its own idle sprite and feet pivot",
+      "pass": true
+    },
+    {
+      "name": "dani projects a shadow from its gameplay sprite",
+      "pass": true
+    },
+    {
+      "name": "dani uses its own Q cast pose",
+      "pass": true
+    },
+    {
+      "name": "dani uses its own E cast pose",
+      "pass": true
+    },
+    {
+      "name": "dani uses its own F cast pose",
+      "pass": true
+    },
+    {
+      "name": "dani uses its own R cast pose",
+      "pass": true
+    },
+    {
+      "name": "Breakwater Thrust pulls the struck ghost towards the planted beacon",
+      "pass": true
+    },
+    {
+      "name": "dani can rank up",
+      "pass": true
+    },
+    {
+      "name": "vanna shows its own flag behind the portrait at 30% opacity",
+      "pass": true
+    },
+    {
+      "name": "vanna shows dedicated artwork for all five attacks",
+      "pass": true
+    },
+    {
+      "name": "vanna starts from the wheel with the selected kit",
+      "pass": true
+    },
+    {
+      "name": "vanna uses the same active-skill icons in the combat HUD",
+      "pass": true
+    },
+    {
+      "name": "vanna uses its own idle sprite and feet pivot",
+      "pass": true
+    },
+    {
+      "name": "vanna projects a shadow from its gameplay sprite",
+      "pass": true
+    },
+    {
+      "name": "vanna uses its own Q cast pose",
+      "pass": true
+    },
+    {
+      "name": "vanna uses its own E cast pose",
+      "pass": true
+    },
+    {
+      "name": "vanna uses its own F cast pose",
+      "pass": true
+    },
+    {
+      "name": "vanna uses its own R cast pose",
+      "pass": true
+    },
+    {
+      "name": "Canopy pulse rewards a live crossing inside the field",
+      "pass": true
+    },
+    {
+      "name": "vanna can rank up",
+      "pass": true
+    },
+    {
+      "name": "keo shows its own flag behind the portrait at 30% opacity",
+      "pass": true
+    },
+    {
+      "name": "keo shows dedicated artwork for all five attacks",
+      "pass": true
+    },
+    {
+      "name": "keo starts from the wheel with the selected kit",
+      "pass": true
+    },
+    {
+      "name": "keo uses the same active-skill icons in the combat HUD",
+      "pass": true
+    },
+    {
+      "name": "keo uses its own idle sprite and feet pivot",
+      "pass": true
+    },
+    {
+      "name": "keo projects a shadow from its gameplay sprite",
+      "pass": true
+    },
+    {
+      "name": "keo uses its own Q cast pose",
+      "pass": true
+    },
+    {
+      "name": "keo uses its own E cast pose",
+      "pass": true
+    },
+    {
+      "name": "keo uses its own F cast pose",
+      "pass": true
+    },
+    {
+      "name": "keo uses its own R cast pose",
+      "pass": true
+    },
+    {
+      "name": "A timed register moves the next echo to the aimed beat",
+      "pass": true
+    },
+    {
+      "name": "keo can rank up",
+      "pass": true
+    },
+    {
+      "name": "nadi shows its own flag behind the portrait at 30% opacity",
+      "pass": true
+    },
+    {
+      "name": "nadi shows dedicated artwork for all five attacks",
+      "pass": true
+    },
+    {
+      "name": "nadi starts from the wheel with the selected kit",
+      "pass": true
+    },
+    {
+      "name": "nadi uses the same active-skill icons in the combat HUD",
+      "pass": true
+    },
+    {
+      "name": "nadi uses its own idle sprite and feet pivot",
+      "pass": true
+    },
+    {
+      "name": "nadi projects a shadow from its gameplay sprite",
+      "pass": true
+    },
+    {
+      "name": "nadi uses its own Q cast pose",
+      "pass": true
+    },
+    {
+      "name": "nadi uses its own E cast pose",
+      "pass": true
+    },
+    {
+      "name": "nadi uses its own F cast pose",
+      "pass": true
+    },
+    {
+      "name": "nadi uses its own R cast pose",
+      "pass": true
+    },
+    {
+      "name": "Kiln Breath cures the nearby wet coat for immediate release",
+      "pass": true
+    },
+    {
+      "name": "Peel consumes the newly cured coat",
+      "pass": true
+    },
+    {
+      "name": "nadi can rank up",
+      "pass": true
+    },
+    {
+      "name": "lia shows its own flag behind the portrait at 30% opacity",
+      "pass": true
+    },
+    {
+      "name": "lia shows dedicated artwork for all five attacks",
+      "pass": true
+    },
+    {
+      "name": "lia starts from the wheel with the selected kit",
+      "pass": true
+    },
+    {
+      "name": "lia uses the same active-skill icons in the combat HUD",
+      "pass": true
+    },
+    {
+      "name": "lia uses its own idle sprite and feet pivot",
+      "pass": true
+    },
+    {
+      "name": "lia projects a shadow from its gameplay sprite",
+      "pass": true
+    },
+    {
+      "name": "lia uses its own Q cast pose",
+      "pass": true
+    },
+    {
+      "name": "lia uses its own E cast pose",
+      "pass": true
+    },
+    {
+      "name": "lia uses its own F cast pose",
+      "pass": true
+    },
+    {
+      "name": "lia uses its own R cast pose",
+      "pass": true
+    },
+    {
+      "name": "Recall Bell turns all airborne festival shuttles early",
+      "pass": true
+    },
+    {
+      "name": "Recalled shuttles return without producing free Spools",
+      "pass": true
+    },
+    {
+      "name": "lia can rank up",
+      "pass": true
+    },
+    {
+      "name": "The seven new survivors use 35 distinct icon crops",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim selection and skill details",
+      "pass": true
+    },
+    {
+      "name": "Johor opens its Three.js village",
+      "pass": true
+    },
+    {
+      "name": "Experience has a full-width progress bar at the top",
+      "pass": true
+    },
+    {
+      "name": "Announcements are centered in larger type above the action",
+      "pass": true
+    },
+    {
+      "name": "Experience progress follows the current level threshold",
+      "pass": true
+    },
+    {
+      "name": "The player meter shows half health above the sprite",
+      "pass": true
+    },
+    {
+      "name": "Healing refills the player meter",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim starts a run",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim facing 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim facing 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim facing 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim facing 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim facing 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim facing 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim facing 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim facing 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim uses one Three.js body and matching shadow atlas",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim status and signature share the hero panel",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim walks through four frames in direction 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim plays unique Q windup/release in direction 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim walks through four frames in direction 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim plays unique Q windup/release in direction 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim walks through four frames in direction 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim plays unique Q windup/release in direction 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim walks through four frames in direction 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim plays unique Q windup/release in direction 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim walks through four frames in direction 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim plays unique Q windup/release in direction 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim walks through four frames in direction 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim plays unique Q windup/release in direction 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim walks through four frames in direction 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim plays unique Q windup/release in direction 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim walks through four frames in direction 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim plays unique Q windup/release in direction 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 1 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 2 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 3 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim skill 4 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim ultimate survives effect pressure",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim returns to directional idle",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim manual skill activates",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim emits its themed skill effect",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim pauses",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim animation clock freezes on pause",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim resumes",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim returns to lobby",
+      "pass": true
+    },
+    {
+      "name": "Ustaz Hakim player health meter is hidden in the lobby",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" selection and skill details",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" starts a run",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" facing 0",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" facing 1",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" facing 2",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" facing 3",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" facing 4",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" facing 5",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" facing 6",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" facing 7",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" uses one Three.js body and matching shadow atlas",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" status and signature share the hero panel",
+      "pass": true
+    },
+    {
+      "name": "Jet rides straight without suspension jitter in direction 0",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" plays unique Q windup/release in direction 0",
+      "pass": true
+    },
+    {
+      "name": "Jet rides straight without suspension jitter in direction 1",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" plays unique Q windup/release in direction 1",
+      "pass": true
+    },
+    {
+      "name": "Jet rides straight without suspension jitter in direction 2",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" plays unique Q windup/release in direction 2",
+      "pass": true
+    },
+    {
+      "name": "Jet rides straight without suspension jitter in direction 3",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" plays unique Q windup/release in direction 3",
+      "pass": true
+    },
+    {
+      "name": "Jet rides straight without suspension jitter in direction 4",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" plays unique Q windup/release in direction 4",
+      "pass": true
+    },
+    {
+      "name": "Jet rides straight without suspension jitter in direction 5",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" plays unique Q windup/release in direction 5",
+      "pass": true
+    },
+    {
+      "name": "Jet rides straight without suspension jitter in direction 6",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" plays unique Q windup/release in direction 6",
+      "pass": true
+    },
+    {
+      "name": "Jet rides straight without suspension jitter in direction 7",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" plays unique Q windup/release in direction 7",
+      "pass": true
+    },
+    {
+      "name": "Jet keeps riding east while throwing his spanner west",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 1 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 1 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 1 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 1 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 1 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 1 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 1 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 1 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 1 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 1 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 1 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 1 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 1 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 1 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 1 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 1 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 2 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 2 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 2 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 2 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 2 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 2 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 2 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 2 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 2 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 2 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 2 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 2 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 2 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 2 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 2 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 2 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 3 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 3 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 3 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 3 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 3 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 3 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 3 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 3 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 3 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 3 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 3 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 3 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 3 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 3 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 3 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 3 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 4 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 4 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 4 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 4 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 4 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 4 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 4 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 4 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 4 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 4 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 4 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 4 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 4 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 4 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 4 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" skill 4 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" ultimate survives effect pressure",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" returns to directional idle",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" manual skill activates",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" emits its themed skill effect",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" pauses",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" animation clock freezes on pause",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" resumes",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" returns to lobby",
+      "pass": true
+    },
+    {
+      "name": "Mat Rempit \"Jet\" player health meter is hidden in the lobby",
+      "pass": true
+    },
+    {
+      "name": "Nok selection and skill details",
+      "pass": true
+    },
+    {
+      "name": "Nok starts a run",
+      "pass": true
+    },
+    {
+      "name": "Nok facing 0",
+      "pass": true
+    },
+    {
+      "name": "Nok facing 1",
+      "pass": true
+    },
+    {
+      "name": "Nok facing 2",
+      "pass": true
+    },
+    {
+      "name": "Nok facing 3",
+      "pass": true
+    },
+    {
+      "name": "Nok facing 4",
+      "pass": true
+    },
+    {
+      "name": "Nok facing 5",
+      "pass": true
+    },
+    {
+      "name": "Nok facing 6",
+      "pass": true
+    },
+    {
+      "name": "Nok facing 7",
+      "pass": true
+    },
+    {
+      "name": "Nok uses one Three.js body and matching shadow atlas",
+      "pass": true
+    },
+    {
+      "name": "Nok status and signature share the hero panel",
+      "pass": true
+    },
+    {
+      "name": "Leap shadow uses ground coordinates and a separate lift",
+      "pass": true
+    },
+    {
+      "name": "The player health bar follows Nok into the air",
+      "pass": true
+    },
+    {
+      "name": "Nok walks through four frames in direction 0",
+      "pass": true
+    },
+    {
+      "name": "Nok plays unique Q windup/release in direction 0",
+      "pass": true
+    },
+    {
+      "name": "Nok walks through four frames in direction 1",
+      "pass": true
+    },
+    {
+      "name": "Nok plays unique Q windup/release in direction 1",
+      "pass": true
+    },
+    {
+      "name": "Nok walks through four frames in direction 2",
+      "pass": true
+    },
+    {
+      "name": "Nok plays unique Q windup/release in direction 2",
+      "pass": true
+    },
+    {
+      "name": "Nok walks through four frames in direction 3",
+      "pass": true
+    },
+    {
+      "name": "Nok plays unique Q windup/release in direction 3",
+      "pass": true
+    },
+    {
+      "name": "Nok walks through four frames in direction 4",
+      "pass": true
+    },
+    {
+      "name": "Nok plays unique Q windup/release in direction 4",
+      "pass": true
+    },
+    {
+      "name": "Nok walks through four frames in direction 5",
+      "pass": true
+    },
+    {
+      "name": "Nok plays unique Q windup/release in direction 5",
+      "pass": true
+    },
+    {
+      "name": "Nok walks through four frames in direction 6",
+      "pass": true
+    },
+    {
+      "name": "Nok plays unique Q windup/release in direction 6",
+      "pass": true
+    },
+    {
+      "name": "Nok walks through four frames in direction 7",
+      "pass": true
+    },
+    {
+      "name": "Nok plays unique Q windup/release in direction 7",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 1 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 1 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 1 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 1 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 1 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 1 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 1 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 1 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 1 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 1 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 1 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 1 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 1 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 1 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 1 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 1 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 2 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 2 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 2 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 2 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 2 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 2 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 2 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 2 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 2 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 2 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 2 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 2 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 2 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 2 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 2 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 2 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 3 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 3 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 3 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 3 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 3 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 3 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 3 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 3 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 3 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 3 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 3 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 3 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 3 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 3 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 3 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 3 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 4 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 4 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 4 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 4 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 4 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 4 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 4 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 4 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 4 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 4 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 4 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 4 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 4 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 4 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 4 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Nok skill 4 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Nok ultimate survives effect pressure",
+      "pass": true
+    },
+    {
+      "name": "Nok returns to directional idle",
+      "pass": true
+    },
+    {
+      "name": "Nok manual skill activates",
+      "pass": true
+    },
+    {
+      "name": "Nok emits its themed skill effect",
+      "pass": true
+    },
+    {
+      "name": "Nok pauses",
+      "pass": true
+    },
+    {
+      "name": "Nok animation clock freezes on pause",
+      "pass": true
+    },
+    {
+      "name": "Nok resumes",
+      "pass": true
+    },
+    {
+      "name": "Nok returns to lobby",
+      "pass": true
+    },
+    {
+      "name": "Nok player health meter is hidden in the lobby",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan selection and skill details",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan starts a run",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan facing 0",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan facing 1",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan facing 2",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan facing 3",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan facing 4",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan facing 5",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan facing 6",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan facing 7",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan uses one Three.js body and matching shadow atlas",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan status and signature share the hero panel",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan walks through four frames in direction 0",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan plays unique Q windup/release in direction 0",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan walks through four frames in direction 1",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan plays unique Q windup/release in direction 1",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan walks through four frames in direction 2",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan plays unique Q windup/release in direction 2",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan walks through four frames in direction 3",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan plays unique Q windup/release in direction 3",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan walks through four frames in direction 4",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan plays unique Q windup/release in direction 4",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan walks through four frames in direction 5",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan plays unique Q windup/release in direction 5",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan walks through four frames in direction 6",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan plays unique Q windup/release in direction 6",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan walks through four frames in direction 7",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan plays unique Q windup/release in direction 7",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 1 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 1 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 1 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 1 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 1 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 1 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 1 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 1 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 1 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 1 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 1 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 1 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 1 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 1 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 1 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 1 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 2 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 2 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 2 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 2 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 2 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 2 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 2 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 2 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 2 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 2 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 2 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 2 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 2 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 2 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 2 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 2 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 3 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 3 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 3 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 3 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 3 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 3 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 3 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 3 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 3 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 3 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 3 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 3 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 3 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 3 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 3 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 3 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 4 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 4 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 4 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 4 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 4 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 4 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 4 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 4 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 4 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 4 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 4 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 4 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 4 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 4 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 4 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan skill 4 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan ultimate survives effect pressure",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan returns to directional idle",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan manual skill activates",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan emits its themed skill effect",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan pauses",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan animation clock freezes on pause",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan resumes",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan returns to lobby",
+      "pass": true
+    },
+    {
+      "name": "Cô Lan player health meter is hidden in the lobby",
+      "pass": true
+    },
+    {
+      "name": "Sari selection and skill details",
+      "pass": true
+    },
+    {
+      "name": "Sari starts a run",
+      "pass": true
+    },
+    {
+      "name": "Sari facing 0",
+      "pass": true
+    },
+    {
+      "name": "Sari facing 1",
+      "pass": true
+    },
+    {
+      "name": "Sari facing 2",
+      "pass": true
+    },
+    {
+      "name": "Sari facing 3",
+      "pass": true
+    },
+    {
+      "name": "Sari facing 4",
+      "pass": true
+    },
+    {
+      "name": "Sari facing 5",
+      "pass": true
+    },
+    {
+      "name": "Sari facing 6",
+      "pass": true
+    },
+    {
+      "name": "Sari facing 7",
+      "pass": true
+    },
+    {
+      "name": "Sari uses one Three.js body and matching shadow atlas",
+      "pass": true
+    },
+    {
+      "name": "Sari status and signature share the hero panel",
+      "pass": true
+    },
+    {
+      "name": "Sari walks through four frames in direction 0",
+      "pass": true
+    },
+    {
+      "name": "Sari plays unique Q windup/release in direction 0",
+      "pass": true
+    },
+    {
+      "name": "Sari walks through four frames in direction 1",
+      "pass": true
+    },
+    {
+      "name": "Sari plays unique Q windup/release in direction 1",
+      "pass": true
+    },
+    {
+      "name": "Sari walks through four frames in direction 2",
+      "pass": true
+    },
+    {
+      "name": "Sari plays unique Q windup/release in direction 2",
+      "pass": true
+    },
+    {
+      "name": "Sari walks through four frames in direction 3",
+      "pass": true
+    },
+    {
+      "name": "Sari plays unique Q windup/release in direction 3",
+      "pass": true
+    },
+    {
+      "name": "Sari walks through four frames in direction 4",
+      "pass": true
+    },
+    {
+      "name": "Sari plays unique Q windup/release in direction 4",
+      "pass": true
+    },
+    {
+      "name": "Sari walks through four frames in direction 5",
+      "pass": true
+    },
+    {
+      "name": "Sari plays unique Q windup/release in direction 5",
+      "pass": true
+    },
+    {
+      "name": "Sari walks through four frames in direction 6",
+      "pass": true
+    },
+    {
+      "name": "Sari plays unique Q windup/release in direction 6",
+      "pass": true
+    },
+    {
+      "name": "Sari walks through four frames in direction 7",
+      "pass": true
+    },
+    {
+      "name": "Sari plays unique Q windup/release in direction 7",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 1 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 1 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 1 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 1 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 1 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 1 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 1 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 1 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 1 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 1 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 1 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 1 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 1 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 1 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 1 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 1 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 2 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 2 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 2 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 2 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 2 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 2 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 2 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 2 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 2 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 2 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 2 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 2 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 2 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 2 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 2 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 2 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 3 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 3 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 3 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 3 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 3 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 3 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 3 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 3 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 3 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 3 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 3 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 3 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 3 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 3 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 3 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 3 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 4 has its own effect 0",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 4 distinct poses 0",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 4 has its own effect 1",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 4 distinct poses 1",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 4 has its own effect 2",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 4 distinct poses 2",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 4 has its own effect 3",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 4 distinct poses 3",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 4 has its own effect 4",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 4 distinct poses 4",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 4 has its own effect 5",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 4 distinct poses 5",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 4 has its own effect 6",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 4 distinct poses 6",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 4 has its own effect 7",
+      "pass": true
+    },
+    {
+      "name": "Sari skill 4 distinct poses 7",
+      "pass": true
+    },
+    {
+      "name": "Sari ultimate survives effect pressure",
+      "pass": true
+    },
+    {
+      "name": "Sari returns to directional idle",
+      "pass": true
+    },
+    {
+      "name": "Sari manual skill activates",
+      "pass": true
+    },
+    {
+      "name": "Sari emits its themed skill effect",
+      "pass": true
+    },
+    {
+      "name": "Sari pauses",
+      "pass": true
+    },
+    {
+      "name": "Sari animation clock freezes on pause",
+      "pass": true
+    },
+    {
+      "name": "Sari resumes",
+      "pass": true
+    },
+    {
+      "name": "Sari returns to lobby",
+      "pass": true
+    },
+    {
+      "name": "Sari player health meter is hidden in the lobby",
+      "pass": true
+    },
+    {
+      "name": "Lantern Recall restores health from burning enemies",
+      "pass": true
+    },
+    {
+      "name": "Two ignited patches refund two seconds of Wheelie",
+      "pass": true
+    },
+    {
+      "name": "Horn ignites nearby exhaust once per target",
+      "pass": true
+    },
+    {
+      "name": "Ember Teep rewards full extension",
+      "pass": true
+    },
+    {
+      "name": "Wai Khru changes Turning Elbow into an inward sweep",
+      "pass": true
+    },
+    {
+      "name": "A guard splashes a neighbour of its soaked target",
+      "pass": true
+    },
+    {
+      "name": "Crescent kick detonates only echoes inside its arc",
+      "pass": true
+    },
+    {
+      "name": "A fresh run immediately submits the new spell geometry",
+      "pass": true
+    },
+    {
+      "name": "ustaz starts with an empty signature meter",
+      "pass": true
+    },
+    {
+      "name": "ustaz explains its combat loop",
+      "pass": true
+    },
+    {
+      "name": "Hakim charges Sanctuary through basic attacks",
+      "pass": true
+    },
+    {
+      "name": "Hakim spends Sanctuary on a healing ward",
+      "pass": true
+    },
+    {
+      "name": "Sanctuary heals inside its area",
+      "pass": true
+    },
+    {
+      "name": "Healing emits green recovery numbers",
+      "pass": true
+    },
+    {
+      "name": "ustaz signature cannot advance or cast while paused",
+      "pass": true
+    },
+    {
+      "name": "ustaz signature resets on a new run",
+      "pass": true
+    },
+    {
+      "name": "rempit starts with an empty signature meter",
+      "pass": true
+    },
+    {
+      "name": "rempit explains its combat loop",
+      "pass": true
+    },
+    {
+      "name": "Jet auto-fires a spanner at the enemy to the north",
+      "pass": true
+    },
+    {
+      "name": "Jet dashes south when down and Q arrive in the same frame",
+      "pass": true
+    },
+    {
+      "name": "Wheelie effects and pose face in the dash direction",
+      "pass": true
+    },
+    {
+      "name": "Jet escapes south while his spanner flies north",
+      "pass": true
+    },
+    {
+      "name": "Manual Wheelie uses the last movement direction with neutral input",
+      "pass": true
+    },
+    {
+      "name": "Touch Wheelie follows the joystick before the next movement tick",
+      "pass": true
+    },
+    {
+      "name": "An automatically triggered Wheelie still targets enemies for its linked combo",
+      "pass": true
+    },
+    {
+      "name": "Jet cannot gain Redline while idle",
+      "pass": true
+    },
+    {
+      "name": "Jet builds Redline from movement",
+      "pass": true
+    },
+    {
+      "name": "Full Redline waits for the player to spend it",
+      "pass": true
+    },
+    {
+      "name": "A blocked cooldown cast cannot spend Redline",
+      "pass": true
+    },
+    {
+      "name": "Redline powers a longer burning dash",
+      "pass": true
+    },
+    {
+      "name": "rempit signature cannot advance or cast while paused",
+      "pass": true
+    },
+    {
+      "name": "rempit signature resets on a new run",
+      "pass": true
+    },
+    {
+      "name": "nok starts with an empty signature meter",
+      "pass": true
+    },
+    {
+      "name": "nok explains its combat loop",
+      "pass": true
+    },
+    {
+      "name": "Repeating a technique does not build Nok rhythm",
+      "pass": true
+    },
+    {
+      "name": "Three alternating techniques release Nok finisher",
+      "pass": true
+    },
+    {
+      "name": "Nok rhythm expires when the chain stops",
+      "pass": true
+    },
+    {
+      "name": "nok signature cannot advance or cast while paused",
+      "pass": true
+    },
+    {
+      "name": "nok signature resets on a new run",
+      "pass": true
+    },
+    {
+      "name": "lan starts with an empty signature meter",
+      "pass": true
+    },
+    {
+      "name": "lan explains its combat loop",
+      "pass": true
+    },
+    {
+      "name": "Lan gains Tide by hitting slowed enemies",
+      "pass": true
+    },
+    {
+      "name": "High Tide creates two additional empowered guards",
+      "pass": true
+    },
+    {
+      "name": "lan signature cannot advance or cast while paused",
+      "pass": true
+    },
+    {
+      "name": "lan signature resets on a new run",
+      "pass": true
+    },
+    {
+      "name": "sari starts with an empty signature meter",
+      "pass": true
+    },
+    {
+      "name": "sari explains its combat loop",
+      "pass": true
+    },
+    {
+      "name": "A successful Sari counter readies Riposte",
+      "pass": true
+    },
+    {
+      "name": "Riposte consumes charge and refreshes Tiger Step",
+      "pass": true
+    },
+    {
+      "name": "Unused Riposte expires",
+      "pass": true
+    },
+    {
+      "name": "sari signature cannot advance or cast while paused",
+      "pass": true
+    },
+    {
+      "name": "sari signature resets on a new run",
+      "pass": true
+    },
+    {
+      "name": "ustaz casts an upgraded Fajar Fan",
+      "pass": true
+    },
+    {
+      "name": "rempit casts an upgraded Redline Wheelie",
+      "pass": true
+    },
+    {
+      "name": "nok casts an upgraded Ember Teep",
+      "pass": true
+    },
+    {
+      "name": "lan casts an upgraded Dragonwake",
+      "pass": true
+    },
+    {
+      "name": "sari casts an upgraded Crescent Reap",
+      "pass": true
+    },
+    {
+      "name": "asha casts an upgraded Last Call Tickets",
+      "pass": true
+    },
+    {
+      "name": "mira casts an upgraded Cast the Towline",
+      "pass": true
+    },
+    {
+      "name": "dani casts an upgraded Breakwater Thrust",
+      "pass": true
+    },
+    {
+      "name": "vanna casts an upgraded Warp Ribbon",
+      "pass": true
+    },
+    {
+      "name": "keo casts an upgraded Bass Breaker",
+      "pass": true
+    },
+    {
+      "name": "nadi casts an upgraded Peel the Lacquer",
+      "pass": true
+    },
+    {
+      "name": "lia casts an upgraded Courier Lane",
+      "pass": true
+    },
+    {
+      "name": "Johor map pin follows the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Johor mission briefing",
+      "pass": true
+    },
+    {
+      "name": "Johor launches selected stage",
+      "pass": true
+    },
+    {
+      "name": "Victory in Johor advances to Melaka",
+      "pass": true
+    },
+    {
+      "name": "Melaka map pin follows the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Melaka mission briefing",
+      "pass": true
+    },
+    {
+      "name": "Melaka launches selected stage",
+      "pass": true
+    },
+    {
+      "name": "Victory in Melaka advances to Kuala Lumpur",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur map pin follows the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur mission briefing",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur launches selected stage",
+      "pass": true
+    },
+    {
+      "name": "Victory in Kuala Lumpur advances to Perak",
+      "pass": true
+    },
+    {
+      "name": "Perak map pin follows the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Perak mission briefing",
+      "pass": true
+    },
+    {
+      "name": "Perak launches selected stage",
+      "pass": true
+    },
+    {
+      "name": "Victory in Perak advances to Pulau Pinang",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang map pin follows the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang mission briefing",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang launches selected stage",
+      "pass": true
+    },
+    {
+      "name": "Victory in Pulau Pinang advances to Kedah",
+      "pass": true
+    },
+    {
+      "name": "Kedah map pin follows the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Kedah mission briefing",
+      "pass": true
+    },
+    {
+      "name": "Kedah launches selected stage",
+      "pass": true
+    },
+    {
+      "name": "Kedah finishes the campaign",
+      "pass": true
+    },
+    {
+      "name": "East Coast replaces the mission list with its own branch",
+      "pass": true
+    },
+    {
+      "name": "East Coast starts from shared Johor",
+      "pass": true
+    },
+    {
+      "name": "Pahang is selectable from the 3D map",
+      "pass": true
+    },
+    {
+      "name": "Map pins select the actual mission",
+      "pass": true
+    },
+    {
+      "name": "East Coast route legs connect the playable pins",
+      "pass": true
+    },
+    {
+      "name": "East Coast campaign reaches johor",
+      "pass": true
+    },
+    {
+      "name": "East Coast campaign reaches pahang",
+      "pass": true
+    },
+    {
+      "name": "East Coast campaign reaches terengganu",
+      "pass": true
+    },
+    {
+      "name": "East Coast campaign reaches kelantan",
+      "pass": true
+    },
+    {
+      "name": "Kelantan finishes the East Coast route",
+      "pass": true
+    },
+    {
+      "name": "Returning to the atlas keeps the East Coast route",
+      "pass": true
+    },
+    {
+      "name": "Switching to the West Coast returns to shared Johor",
+      "pass": true
+    },
+    {
+      "name": "Controls dialog opens",
+      "pass": true
+    },
+    {
+      "name": "Controls dialog closes",
+      "pass": true
+    },
+    {
+      "name": "1280×720 launch button stays above the fold",
+      "pass": true
+    },
+    {
+      "name": "1440px lobby has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "768px lobby has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "390px lobby has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "320px lobby has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Three.js renders an instanced player sprite",
+      "pass": true
+    },
+    {
+      "name": "Phone announcements stay readable and fit the viewport",
+      "pass": true
+    },
+    {
+      "name": "Keyboard movement changes player position",
+      "pass": true
+    },
+    {
+      "name": "Touch drag updates the joystick before the frame renders",
+      "pass": true
+    },
+    {
+      "name": "Touch joystick moves and releases",
+      "pass": true
+    },
+    {
+      "name": "Critical popup matches actual damage",
+      "pass": true
+    },
+    {
+      "name": "Critical numbers render as Three.js text billboards",
+      "pass": true
+    },
+    {
+      "name": "Damage popups freeze with pause",
+      "pass": true
+    },
+    {
+      "name": "Incoming damage has a separate red number",
+      "pass": true
+    },
+    {
+      "name": "Manual attack damages an enemy and renders hit feedback",
+      "pass": true
+    },
+    {
+      "name": "Mobile skills have 44px minimum targets",
+      "pass": true
+    },
+    {
+      "name": "Upgrade choices open",
+      "pass": true
+    },
+    {
+      "name": "Upgrade selection resumes gameplay",
+      "pass": true
+    },
+    {
+      "name": "orb: walking into portal enters raid",
+      "pass": true
+    },
+    {
+      "name": "orb: raid has native visual guidance",
+      "pass": true
+    },
+    {
+      "name": "orb: victory begins reward sequence",
+      "pass": true
+    },
+    {
+      "name": "orb: returns after required reward choices",
+      "pass": true
+    },
+    {
+      "name": "orb: reward is granted",
+      "pass": true
+    },
+    {
+      "name": "xp: walking into portal enters raid",
+      "pass": true
+    },
+    {
+      "name": "xp: raid has native visual guidance",
+      "pass": true
+    },
+    {
+      "name": "xp: victory begins reward sequence",
+      "pass": true
+    },
+    {
+      "name": "xp: returns after required reward choices",
+      "pass": true
+    },
+    {
+      "name": "xp: reward is granted",
+      "pass": true
+    },
+    {
+      "name": "Experience displays the new level threshold after the raid",
+      "pass": true
+    },
+    {
+      "name": "Defeat screen opens",
+      "pass": true
+    },
+    {
+      "name": "Retry starts a clean run",
+      "pass": true
+    },
+    {
+      "name": "No browser runtime errors",
+      "pass": true
+    },
+    {
+      "name": "Upgrade shop opens on the lobby hero",
+      "pass": true
+    },
+    {
+      "name": "Shop portrait opens with the selected hero flag",
+      "pass": true
+    },
+    {
+      "name": "Changing the shop hero updates the flag",
+      "pass": true
+    },
+    {
+      "name": "The shop uses nine upgrade cards",
+      "pass": true
+    },
+    {
+      "name": "Purchase spends saved coins and increments the hero rank",
+      "pass": true
+    },
+    {
+      "name": "Next rank costs more",
+      "pass": true
+    },
+    {
+      "name": "Switching shop hero shows independent ranks",
+      "pass": true
+    },
+    {
+      "name": "Switching back preserves the purchased rank",
+      "pass": true
+    },
+    {
+      "name": "Shop closes and restores lobby focus",
+      "pass": true
+    },
+    {
+      "name": "Vitality applies to the next run at full health",
+      "pass": true
+    },
+    {
+      "name": "A different hero starts at base health",
+      "pass": true
+    },
+    {
+      "name": "Purchased rank survives reloading the game",
+      "pass": true
+    },
+    {
+      "name": "An open shop refreshes after a balance change",
+      "pass": true
+    },
+    {
+      "name": "Insufficient funds preserves the save",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "result": "PASS"
+}

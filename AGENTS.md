@@ -2,17 +2,17 @@
 
 ## Project Structure & Module Organization
 
-This is a browser-first Phaser game built with Vite:
+This is a browser-first Three.js game built with Vite:
 
 - `index.html`, `ui.css`: menus, HUD, and responsive styling.
-- `src/main.ts`, `src/scenes/`: Phaser bootstrap and native rendering.
+- `src/main.ts`, `src/scenes/`: Three.js bootstrap and gameplay rendering.
 - `src/game/`: combat runtime, hero kits/signatures, raid mechanics, and runtime types.
 - `src/content/`: stage/region layouts, collision/navigation, heroes, passives, and evolutions.
 - `assets/`: environment artwork and the character atlas.
 - `tests/`: browser acceptance harness.
 - `docs/architecture.md`: boundaries, limitations, and milestones.
 
-Keep simulation changes in the runtime/modules and rendering in the Phaser scene. Extend the existing registries and `HOOKS`; do not introduce another animation-frame loop.
+Keep simulation in the runtime modules and rendering in the Three.js scene. Extend the existing registries and `HOOKS`. Use the scene's single `setAnimationLoop` for gameplay and the atlas.
 
 ## Build, Test, and Development Commands
 

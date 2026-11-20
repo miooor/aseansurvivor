@@ -1,8 +1,10 @@
+import {applyEvolution} from './blessing-picker.js';
+
 export function installRaid(api){
 const {rand,GHOSTS,TAU,banner,juice,puff,$,makeGhost,showBossBar,ring,hideBossBar,each,text,hurtPlayer,tryCast,updateSkillBar,addXP,dropCoin,EVOS,HOOKS}=api;
 
 const ARENA={x:60000,y:60000,r:520};
-const STASH=['enemies','gems','zones','eprojs','durians','pups'];
+const STASH=['enemies','gems','equipmentDrops','zones','eprojs','durians','pups'];
 const PURPLE='#c77dff',RED='#ff2a4a';
 const cl=(v,a,b)=>v<a?a:v>b?b:v;
 let R=null;                       // module state, rebuilt on every new game
@@ -14,8 +16,15 @@ GHOSTS.shade={hp:34,spd:104,r:12,dmg:7,xp:2};
 
 /* ---------- Portal ---------- */
 function spawnPortal(){
-  const p=api.G.p,a=rand(0,TAU),d=rand(650,900);
-  R.spawned=true;R.portal={...api.safePoint(p.x+Math.cos(a)*d,p.y+Math.sin(a)*d,40),life:60,max:60};
+  const {p,world}=api.G,start=rand(0,TAU);
+  let portal;
+  for(let radius=rand(650,790);!portal&&radius>100;radius-=140){
+    for(let i=0;i<16;i++){
+      const angle=start+i*TAU/16,x=p.x+Math.cos(angle)*radius,y=p.y+Math.sin(angle)*radius;
+      if(world.walkable(x,y,40)){portal={x,y};break}
+    }
+  }
+  R.spawned=true;R.portal={...(portal||api.safePoint(p.x,p.y,40)),life:60,max:60};
   banner('A shadow portal has opened nearby! Follow the purple arrow. Something big waits inside.',5);
   juice(6);
 }
@@ -140,7 +149,7 @@ function updateRaid(dt){
   // Shadow Slam circles
   for(const q of R.tele){
     if((q.t-=dt)>0)continue;
-    if(Math.hypot(p.x-q.x,p.y-q.y)<q.r+p.r*.4)hurtPlayer(q.dmg);
+    if(Math.hypot(p.x-q.x,p.y-q.y)<q.r+p.r*.4)hurtPlayer(q.dmg,'skill');
     ring(q.x,q.y,q.r,RED,.35);puff(q.x,q.y,'#3a1030',14,220,5);puff(q.x,q.y,RED,8,160,3);juice(8,.03);
   }
   R.tele=R.tele.filter(q=>q.t>0);
@@ -161,7 +170,7 @@ function updateRaid(dt){
   const ec=R.eclipse;
   if(ec&&(ec.t-=dt)<=0){
     R.eclipse=null;
-    if(Math.hypot(p.x-ec.x,p.y-ec.y)>ec.r){hurtPlayer(ec.dmg);text(p.x,p.y-44,'caught in the dark!','#ff6b7d',15)}
+    if(Math.hypot(p.x-ec.x,p.y-ec.y)>ec.r){hurtPlayer(ec.dmg,'skill');text(p.x,p.y-44,'caught in the dark!','#ff6b7d',15)}
     else text(p.x,p.y-44,'safe in the light','#ffe9a8',15);
     api.G.fx.push({kind:'pop',x:ARENA.x,y:ARENA.y,r:ARENA.r*.62,life:.22,max:.22});ring(ec.x,ec.y,ec.r,'#ffe9a8',.5);juice(12,.08);
   }
@@ -181,7 +190,7 @@ function updateRaid(dt){
 function grantOrb(){
   const o=R.orb;if(!o)return;R.orb=null;
   const ev=o.ev,p=api.G.p,sk=api.G.hero.skills[ev.i];
-  api.G.evo[ev.i]=true;R.reward='Fusion Orb: '+(sk?sk.name+' evolved into ':'')+ev.name+'!';
+  applyEvolution(api.G,ev);R.reward='Fusion Orb: '+(sk?sk.name+' evolved into ':'')+ev.name+'!';
   banner('FUSION ORB! '+(sk?sk.name+' evolves into ':'Evolved: ')+ev.name+'. '+ev.d,6);
   text(p.x,p.y-50,'FUSION: '+ev.name+'!','#ffd34d',22);ring(p.x,p.y,120,'#ffd34d',.6);ring(p.x,p.y,70,'#fff',.4);puff(p.x,p.y,'#ffd34d',24,240,4);juice(12,.12);
   updateSkillBar(true);
@@ -211,7 +220,7 @@ function win(e){
 /* ---------- Hooks ---------- */
 HOOKS.newGame.push(g=>{R=fresh();g.raid=null;g.raidBoss=null;g.xpMul=1});
 HOOKS.update.push(dt=>{
-  if(!R)return;
+  if(!R||api.G.practice)return;
   if(R.xpT>0&&(R.xpT-=dt)<=0){R.xpT=0;api.G.xpMul=1;banner('The double XP blessing fades.',2.5)}
   if(api.G.raid)updateRaid(dt);else updatePortal(dt);
 });

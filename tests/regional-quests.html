@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regional quest acceptance</title>
+<style>
+  body { margin: 1rem; background: #102024; color: #eee9dc; font: 16px system-ui }
+  button { padding: .65rem 1rem }
+  iframe { width: 100%; height: 75vh; border: 0 }
+  pre { white-space: pre-wrap }
+</style>
+<h1>Regional quests</h1>
+<button id="run" disabled>Run quest checks</button>
+<button id="download" disabled>Download report</button>
+<output id="status">Loading game…</output>
+<details><summary>Verification report</summary><pre id="report"></pre></details>
+<iframe id="game" title="Campaign under test" src="../index.html"></iframe>
+<script type="module" src="./regional-quests.js"></script>
+</html>

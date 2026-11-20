@@ -11,6 +11,7 @@ export function installWard(api,encounters){
   }
   encounters.register('ward',{
     start(event){event.hp=300;event.r=30;event.wave=1;wave(event);},
+    meter:event=>[event.hp,300],
     progress:event=>`Ward ${event.hp} / 300 HP · Wave ${event.wave} / 3 · ${remaining(event).length} remaining`,
     update(event){if(!remaining(event).length){if(event.wave===3)encounters.complete(event);else{event.wave++;wave(event);}}}
   });

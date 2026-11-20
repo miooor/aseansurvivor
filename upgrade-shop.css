@@ -1,0 +1,107 @@
+#openUpgradeShop{
+  display:flex;align-items:center;gap:10px;background:#213a2f;border-color:#b89d637d;
+  color:#ffe1a4;font-weight:700;white-space:nowrap
+}
+#openUpgradeShop .menu-coins{
+  display:flex;align-items:center;gap:5px;margin:0;padding-left:10px;border-left:1px solid #c6a76555;
+  color:#ffe1a4;font-variant-numeric:tabular-nums
+}
+.shop-coin{
+  display:inline-block;flex:none;width:15px;height:15px;border-radius:50%;
+  background:#dca854;border:1px solid #916331;box-shadow:inset 0 0 0 2px #f4ce84
+}
+.shop-coin::after{content:'';display:block;width:5px;height:5px;margin:4px auto;background:#9f6b32;transform:rotate(45deg)}
+
+#upgradeShop{
+  --shop-gold:#f0cc88;
+  width:min(1130px,calc(100% - 48px));max-width:none;max-height:calc(100dvh - 48px);margin:auto;
+  padding:clamp(16px,3vw,36px);border:1px solid #8d7a52;border-top:3px solid var(--shop-gold);
+  background:radial-gradient(ellipse at 5% 5%,#28443b,transparent 64%),#102522;
+  color:#fff0d6;box-shadow:inset 0 0 0 4px #112521,0 24px 110px #030e0ad9;
+  font-family:var(--ui);overscroll-behavior:contain
+}
+#upgradeShop::backdrop{background:#061613d9;overflow:hidden;overscroll-behavior:contain}
+.shop-heading{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-bottom:16px;border-bottom:1px solid #bfa36e50}
+#shopTitle{font:600 clamp(25px,4vw,42px)/1.12 Spectral,Georgia,serif;color:#fff2d8}
+.shop-tools,.shop-wallet{display:flex;align-items:center;gap:10px}
+.shop-tools{gap:14px}
+.shop-wallet{
+  border:1px solid #bc96565c;padding:8px 12px;background:#101f1b;color:#e5c382;
+  white-space:nowrap;font-size:13px
+}
+.shop-wallet b{font-size:17px;font-variant-numeric:tabular-nums}
+#shopBack{
+  min-height:44px;padding:8px 20px;border:1px solid #a58e5d;border-radius:3px;
+  background:#24362d;color:#fff2d4;font-weight:700
+}
+#shopBack:hover{border-color:var(--shop-gold);background:#37483c}
+.shop-profile{
+  display:flex;align-items:center;gap:clamp(14px,2.8vw,28px);padding-block:clamp(15px,2.5vw,27px)
+}
+.shop-portrait{
+  width:clamp(74px,11vw,124px);aspect-ratio:1;flex:none;position:relative;
+  border:1px solid var(--shop-hero-color,#e9c884);border-radius:4px;
+  background:radial-gradient(ellipse at 50% 78%,#476851 0%,#263b32 40%,#101f1a 77%);
+  box-shadow:inset 0 0 0 4px #0f231e,inset 0 0 0 5px #bda57842;
+}
+.shop-portrait::before{inset:5%}
+#shopSprite{
+  position:absolute;inset:4%;background:url('assets/survivor-idles.webp') var(--portrait) / 400% 300% no-repeat;
+  filter:drop-shadow(0 5px 4px #0009)
+}
+.shop-profile > div:last-child{min-width:0}
+.shop-profile label{display:block;margin-bottom:5px;color:#ebce9c;font-weight:700;font-size:12px}
+#shopHero{
+  display:block;width:min(100%,410px);min-height:44px;padding:7px 10px;background:#101f1a;
+  border:1px solid #8c8e62;border-radius:3px;color:#fff0d6;font:600 16px var(--ui);cursor:pointer
+}
+#shopHero:focus-visible,#upgradeShop button:focus-visible{outline:2px solid var(--shop-gold);outline-offset:3px}
+.shop-profile p{margin-top:8px;color:#c3d4c4;font-size:14px;line-height:1.35}
+
+#shopGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.shop-card{
+  display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;
+  min-height:116px;padding:13px 12px;border:1px solid #b6ab7842;border-radius:4px;
+  background:linear-gradient(150deg,#2a4137,#192d28 70%);box-shadow:inset 0 0 0 2px #11262075
+}
+.shop-card.shop-max{border-color:#c8a664a8}
+.shop-stat-icon{
+  display:grid;place-items:center;width:48px;height:48px;border:1px solid #77897166;border-radius:3px;
+  background:#102722;box-shadow:inset 0 2px 5px #020b0a88
+}
+.shop-stat-icon i{
+  width:32px;height:32px;background:url('assets/upgrade-icons.png') var(--icon-position) / 300% 300% no-repeat;
+  image-rendering:pixelated
+}
+.shop-card h3{font:600 21px/1.1 Spectral,Georgia,serif;color:#ffefd1}
+.shop-card p{color:#c3d4c4;font-size:12px;line-height:1.35;margin-top:4px}
+.shop-progress{display:flex;align-items:center;gap:7px;margin-top:9px}
+.shop-pips{display:flex;gap:3px;max-width:84px;flex:1}
+.shop-pips i{flex:1;height:6px;border-radius:1px;background:#0e201d;border:1px solid #87927c50}
+.shop-pips .filled{border-color:#ddaf65;background:#f1ca78;box-shadow:0 0 6px #edc68940}
+.shop-rank{font:600 10px var(--ui);color:#e3cd9e;white-space:nowrap;font-variant-numeric:tabular-nums}
+.shop-buy{
+  display:flex;align-items:center;justify-content:center;gap:5px;min-width:67px;min-height:44px;padding:8px;
+  border:1px solid #f9db9a;border-radius:3px;background:linear-gradient(#f0cb83,#d6a859);
+  color:#24291e;font-weight:700;font-variant-numeric:tabular-nums;box-shadow:inset 0 0 0 2px #a8753a5e,0 2px 0 #775b36
+}
+.shop-buy:hover:not(:disabled){background:#ffe0a8}
+.shop-buy:disabled{color:#c2c5a9;border-color:#9a947175;background:#2f3c33;box-shadow:none}
+.shop-buy:disabled .shop-coin{opacity:.58}
+.shop-max .shop-buy .shop-coin{display:none}
+#shopStatus{margin-top:12px;min-height:1.4em;color:#f3d297;font-size:14px}
+
+@media(max-width:1000px){
+  #shopGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:640px){
+  #openUpgradeShop{gap:3px;flex-direction:column;justify-content:center}
+  #openUpgradeShop .menu-coins{padding:0;border:0}
+  #openUpgradeShop .shop-coin{width:12px;height:12px}
+  #openUpgradeShop .shop-coin::after{width:4px;height:4px;margin:3px auto}
+  #upgradeShop{width:calc(100% - 20px);max-height:calc(100dvh - 20px);padding:14px}
+  .shop-heading{gap:8px}
+  .shop-tools{gap:8px}
+  #shopGrid{grid-template-columns:1fr}
+  .shop-card{min-height:88px}
+}

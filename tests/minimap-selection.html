@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minimap selection checks</title>
+<link rel="stylesheet" href="../ui.css">
+<link rel="stylesheet" href="../combat-hud.css">
+<aside id="worldMap" aria-label="Region navigation"></aside>
+<div id="objectiveGps"><span class="gps-pointer">➤</span><strong id="gpsVerb"></strong></div>
+<output id="report" style="position:fixed;bottom:8px;left:8px;color:white"></output>
+<script type="module">
+import {RegionMap} from '../src/scenes/RegionMap.ts';
+import {HALF,createWorld} from '../src/content/world.js';
+import {STAGES} from '../src/content/core.js';
+
+const map=new RegionMap();
+const $=selector=>document.querySelector(selector);
+const check=(ok,message)=>{if(!ok)throw Error(message)};
+let g;
+function tick(){g.t+=.2;map.update(g)}
+function select(value){
+  const picker=$('select');
+  picker.value=value;
+  picker.dispatchEvent(new Event('change',{bubbles:true}));
+  tick();
+}
+function destination(point,verb){
+  const line=$('#mapRoute').points;
+  check(line.length>=2,'draws the route');
+  const end=line.getItem(line.length-1);
+  check(end.x===point.x+HALF&&end.y===point.y+HALF,'route reaches '+verb);
+  check(!$('#objectiveGps').hidden&&$('#gpsVerb').textContent===verb,'GPS verb '+verb);
+  check($('#mapObjective').textContent.startsWith(verb+' · '),'objective verb '+verb);
+  const turn=line.getItem(1),angle=Math.atan2(turn.y-HALF-g.p.y,turn.x-HALF-g.p.x);
+  check(Math.abs(parseFloat($('#objectiveGps').style.getPropertyValue('--turn'))-angle)<.001,'GPS points to first turn');
+}
+try{
+  for(const {id} of STAGES){
+    const world=createWorld(id),sites=world.landmarks.filter(s=>s.reward),site=sites.at(-1);
+    const event={...sites[0],id:'quest',name:'Regional quest',status:'available',discovered:false};
+    g={world,p:{x:0,y:0,r:24,face:[1,0]},t:0,exploration:{visited:[],claimed:[],guards:{}},encounters:{quest:event},enemies:[]};
+    tick();
+    check($('select').length===1,'undiscovered choices hidden');
+    g.exploration.visited.push(site.id);
+    event.discovered=true;
+    tick();
+    check($('select').length===3,'discovered choices listed');
+    select('event:quest');
+    destination(event,'Visit');
+    document.querySelector('[data-site="'+site.id+'"]').dispatchEvent(new MouseEvent('click',{bubbles:true}));
+    tick();
+    destination(site,'Collect');
+    const guard={...sites[1],dead:false};
+    g.exploration.guards[site.id]=[guard];
+    tick();
+    destination(guard,'Defeat');
+    guard.dead=true;
+    event.status='active';
+    event.guidance={...sites[1],verb:'Escort',label:'Traveller'};
+    tick();
+    destination(event.guidance,'Escort');
+    Object.assign(event.guidance,sites[2]);
+    tick();
+    destination(event.guidance,'Escort');
+    event.status='completed';
+    tick();
+    destination(site,'Collect');
+    select('');
+    check($('#gpsVerb').textContent==='Explore','automatic guidance resumes');
+    select('cache:'+site.id);
+    g.exploration.claimed.push(site.id);
+    tick();
+    check($('select').value===''&&$('select').length===1,'claimed cache clears selection');
+  }
+  // Leave a discovered event and cache available for real keyboard/touch input.
+  g.encounters.quest.status='available';
+  g.exploration.claimed=[];
+  tick();
+  document.addEventListener('change',()=>requestAnimationFrame(tick));
+  document.addEventListener('click',()=>requestAnimationFrame(tick));
+  const details=$('#worldMap details'),wasOpen=details.open;
+  details.open=true;
+  const rect=$('select').getBoundingClientRect();
+  check(rect.height>=44&&rect.width>=44,'touch target fits');
+  check(rect.left>=0&&rect.right<=innerWidth&&rect.top>=0&&rect.bottom<=innerHeight,'route picker fits viewport');
+  details.open=wasOpen;
+  $('#report').textContent='PASS · '+STAGES.length+' stages';
+}catch(error){$('#report').textContent='FAIL · '+error.message;throw error}
+</script>
+</html>

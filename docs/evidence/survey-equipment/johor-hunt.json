@@ -1,0 +1,1298 @@
+{
+  "date": "2026-11-20T15:17:18.119Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "quaySeal reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "supperCarrier reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "tinMallet reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "jettyKnot reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "padiSheaf reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "nipahBraid reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "cengalMallet reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "wauSpool reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "thornEcho reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "bountySeal reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "aftershockBell reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "lastLantern reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "stillwaterBeads reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "reedGuard reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "lanternHeart reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "travellersKnot reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "splitEmber reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "quarryHammer reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "riverNeedle reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "huntersEdge reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "rainHood reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "quiltedVest reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "gripWraps reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "techniqueSash reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "trailBoots reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "trailHelmet reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "stormCape reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "channelGloves reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "toolBelt reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "deckBoots reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "lookoutCap reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "fieldJacket reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "workGloves reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "wovenBelt reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "monsoonBoots reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "relaySash reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "flourishSash reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "pursuitWraps reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "breakerWraps reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "watchJacket reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "runnerJacket reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "markerBlade reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "tideLens reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "wayfarerPin reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "ferrySandals reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "lookoutVisor reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "rallyGong reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "soundingRod reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "faultRod reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "tuningRod reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "pulseLocket reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "refugeLocket reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "rallyLocket reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "cadenceDrum reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "thunderDrum reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "rainDrum reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "mistHood reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "squallHood reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "reedBoots reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "switchbackBoots reward uses its illustrated tile",
+      "pass": true
+    },
+    {
+      "name": "Can choose soundingRod",
+      "pass": true
+    },
+    {
+      "name": "soundingRod inventory has its illustration and effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose faultRod",
+      "pass": true
+    },
+    {
+      "name": "faultRod inventory has its illustration and effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose tuningRod",
+      "pass": true
+    },
+    {
+      "name": "tuningRod inventory has its illustration and effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose pulseLocket",
+      "pass": true
+    },
+    {
+      "name": "pulseLocket inventory has its illustration and effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose refugeLocket",
+      "pass": true
+    },
+    {
+      "name": "refugeLocket inventory has its illustration and effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose rallyLocket",
+      "pass": true
+    },
+    {
+      "name": "rallyLocket inventory has its illustration and effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose cadenceDrum",
+      "pass": true
+    },
+    {
+      "name": "cadenceDrum inventory has its illustration and effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose thunderDrum",
+      "pass": true
+    },
+    {
+      "name": "thunderDrum inventory has its illustration and effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose rainDrum",
+      "pass": true
+    },
+    {
+      "name": "rainDrum inventory has its illustration and effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose mistHood",
+      "pass": true
+    },
+    {
+      "name": "mistHood inventory has its illustration and effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose squallHood",
+      "pass": true
+    },
+    {
+      "name": "squallHood inventory has its illustration and effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose reedBoots",
+      "pass": true
+    },
+    {
+      "name": "reedBoots inventory has its illustration and effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose switchbackBoots",
+      "pass": true
+    },
+    {
+      "name": "switchbackBoots inventory has its illustration and effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose techniqueSash",
+      "pass": true
+    },
+    {
+      "name": "Can choose trailBoots",
+      "pass": true
+    },
+    {
+      "name": "Each offer compares the item in its own slot",
+      "pass": true
+    },
+    {
+      "name": "Mixed offers show the effects being replaced",
+      "pass": true
+    },
+    {
+      "name": "Reward opens with keyboard focus on the first choice",
+      "pass": true
+    },
+    {
+      "name": "Taking the sash keeps equipped boots",
+      "pass": true
+    },
+    {
+      "name": "equipmentButton is available",
+      "pass": true
+    },
+    {
+      "name": "Inventory retains the upgrade ancestry",
+      "pass": true
+    },
+    {
+      "name": "lootClose is available",
+      "pass": true
+    },
+    {
+      "name": "Campaign spawns a regional elite",
+      "pass": true
+    },
+    {
+      "name": "Elite has larger collision radius, health and damage",
+      "pass": true
+    },
+    {
+      "name": "Ordinary death leaves no equipment",
+      "pass": true
+    },
+    {
+      "name": "Elite casts the regional three-bolt attack",
+      "pass": true
+    },
+    {
+      "name": "Damage kill leaves one reachable drop without opening loot",
+      "pass": true
+    },
+    {
+      "name": "Ground equipment label is rendered",
+      "pass": true
+    },
+    {
+      "name": "Repeated death leaves one drop",
+      "pass": true
+    },
+    {
+      "name": "Raid isolates the ground drop",
+      "pass": true
+    },
+    {
+      "name": "Raid exit restores the same unclaimed drop",
+      "pass": true
+    },
+    {
+      "name": "Walking over equipment consumes it and opens one offer",
+      "pass": true
+    },
+    {
+      "name": "The first elite chest offers a refinable base",
+      "pass": true
+    },
+    {
+      "name": "Equipment choice is applied once",
+      "pass": true
+    },
+    {
+      "name": "A later campaign elite can supply a second chest",
+      "pass": true
+    },
+    {
+      "name": "A surviving regional elite does not accumulate reinforcements",
+      "pass": true
+    },
+    {
+      "name": "The second chest offers a branch for the chosen base",
+      "pass": true
+    },
+    {
+      "name": "The branch replaces its base and restores gameplay focus",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "Lethal damage leaves hero at one HP",
+      "pass": true
+    },
+    {
+      "name": "Lethal rescue grants two seconds invulnerability",
+      "pass": true
+    },
+    {
+      "name": "Nearby hunt explains two sequential tracks",
+      "pass": true
+    },
+    {
+      "name": "Walking past never starts hunt",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "First track is explicitly indicated",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Second track replaces first indication",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Two tracks reveal one named elite",
+      "pass": true
+    },
+    {
+      "name": "Track controls disappear during hunt combat",
+      "pass": true
+    },
+    {
+      "name": "Elite defeat offers three relic choices",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Thornbound charge warns before rushing",
+      "pass": true
+    },
+    {
+      "name": "Thornbound charge leaves radius-35 warning patch",
+      "pass": true
+    },
+    {
+      "name": "Thorn warning causes no damage before 0.6 seconds",
+      "pass": true
+    },
+    {
+      "name": "Active thorn patch deals exactly eight damage",
+      "pass": true
+    },
+    {
+      "name": "Thorns share a one-second player cooldown",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes thorn lifetime",
+      "pass": true
+    },
+    {
+      "name": "Thorn patches expire after four seconds",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "Can choose quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "First two successful E casts do not pulse",
+      "pass": true
+    },
+    {
+      "name": "Blocked cast does not pulse",
+      "pass": true
+    },
+    {
+      "name": "Third cast pulse receives additive weapon damage",
+      "pass": true
+    },
+    {
+      "name": "Pulse does not hit beyond radius120",
+      "pass": true
+    },
+    {
+      "name": "Pulse has visible named feedback",
+      "pass": true
+    },
+    {
+      "name": "Pulse creates no additional audio cue beyond throttled repeated E",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "Can choose quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "Bell inactive before ultimate",
+      "pass": true
+    },
+    {
+      "name": "Bell adds25 percent to weapon20 percent",
+      "pass": true
+    },
+    {
+      "name": "Second ultimate refreshes without stacking",
+      "pass": true
+    },
+    {
+      "name": "Pause cannot expire Bell",
+      "pass": true
+    },
+    {
+      "name": "Bell expires after five simulation seconds",
+      "pass": true
+    },
+    {
+      "name": "Can choose bountySeal",
+      "pass": true
+    },
+    {
+      "name": "Nonlethal elite hit gives no Bounty",
+      "pass": true
+    },
+    {
+      "name": "Confirmed elite death heals exactly15",
+      "pass": true
+    },
+    {
+      "name": "Confirmed elite death grants10 percentage points plus ordinary kill charge",
+      "pass": true
+    },
+    {
+      "name": "Duplicate death cannot duplicate Bounty or ordinary reward",
+      "pass": true
+    },
+    {
+      "name": "Direct despawn cannot trigger Bounty",
+      "pass": true
+    },
+    {
+      "name": "Item-origin death cannot recursively trigger Bounty",
+      "pass": true
+    },
+    {
+      "name": "Periodic hero death grants Bounty with resource caps",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "Item pulse does not generate Lan signature charge",
+      "pass": true
+    },
+    {
+      "name": "Item projectile cannot advance pulse counter",
+      "pass": true
+    },
+    {
+      "name": "Basic casts never advance pulse counter",
+      "pass": true
+    },
+    {
+      "name": "Ultimate never advances pulse counter",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "Removing pulse item resets its count",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "Replacement cannot restore consumed lethal rescue",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "New run restores one lethal rescue",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "Hero mitigation happens before lethal decision",
+      "pass": true
+    },
+    {
+      "name": "Mitigated lethal damage still triggers Lantern",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "Parry does not consume Last Lantern",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "Replacing Bell removes its temporary bonus",
+      "pass": true
+    },
+    {
+      "name": "Uncharged ultimate cannot activate Bell",
+      "pass": true
+    },
+    {
+      "name": "Relic remains equipped in raid",
+      "pass": true
+    },
+    {
+      "name": "Bell damage works inside raid",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "ustaz can trigger Thorn Echo",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "ustaz survives lethal damage at one HP",
+      "pass": true
+    },
+    {
+      "name": "ustaz second lethal damage defeats normally",
+      "pass": true
+    },
+    {
+      "name": "Can choose bountySeal",
+      "pass": true
+    },
+    {
+      "name": "ustaz gets capped-compatible elite sustain",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "ustaz gains ultimate damage bonus",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "rempit can trigger Thorn Echo",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "rempit survives lethal damage at one HP",
+      "pass": true
+    },
+    {
+      "name": "rempit second lethal damage defeats normally",
+      "pass": true
+    },
+    {
+      "name": "Can choose bountySeal",
+      "pass": true
+    },
+    {
+      "name": "rempit gets capped-compatible elite sustain",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "rempit gains ultimate damage bonus",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "nok can trigger Thorn Echo",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "nok survives lethal damage at one HP",
+      "pass": true
+    },
+    {
+      "name": "nok second lethal damage defeats normally",
+      "pass": true
+    },
+    {
+      "name": "Can choose bountySeal",
+      "pass": true
+    },
+    {
+      "name": "nok gets capped-compatible elite sustain",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "nok gains ultimate damage bonus",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "lan can trigger Thorn Echo",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "lan survives lethal damage at one HP",
+      "pass": true
+    },
+    {
+      "name": "lan second lethal damage defeats normally",
+      "pass": true
+    },
+    {
+      "name": "Can choose bountySeal",
+      "pass": true
+    },
+    {
+      "name": "lan gets capped-compatible elite sustain",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "lan gains ultimate damage bonus",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "sari can trigger Thorn Echo",
+      "pass": true
+    },
+    {
+      "name": "Can choose lastLantern",
+      "pass": true
+    },
+    {
+      "name": "sari survives lethal damage at one HP",
+      "pass": true
+    },
+    {
+      "name": "sari second lethal damage defeats normally",
+      "pass": true
+    },
+    {
+      "name": "Can choose bountySeal",
+      "pass": true
+    },
+    {
+      "name": "sari gets capped-compatible elite sustain",
+      "pass": true
+    },
+    {
+      "name": "Can choose aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "sari gains ultimate damage bonus",
+      "pass": true
+    },
+    {
+      "name": "Hunt marker is collision-valid",
+      "pass": true
+    },
+    {
+      "name": "Hunt marker is reachable from village",
+      "pass": true
+    },
+    {
+      "name": "Hunt appears as named minimap marker",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "First track is collision-valid",
+      "pass": true
+    },
+    {
+      "name": "First track is reachable from village",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Second track is collision-valid",
+      "pass": true
+    },
+    {
+      "name": "Second track is reachable from village",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Briarback clearing is collision-valid",
+      "pass": true
+    },
+    {
+      "name": "Briarback clearing is reachable from village",
+      "pass": true
+    },
+    {
+      "name": "Thornbound health triples stage-scaled ordinary health once",
+      "pass": true
+    },
+    {
+      "name": "Thornbound contact damage scales once",
+      "pass": true
+    },
+    {
+      "name": "Ambient death cannot complete hunt",
+      "pass": true
+    },
+    {
+      "name": "Leaving grove does not abandon hunt",
+      "pass": true
+    },
+    {
+      "name": "Hunt blocks raid without consuming rift lifetime",
+      "pass": true
+    },
+    {
+      "name": "eventAbandon is available",
+      "pass": true
+    },
+    {
+      "name": "Abandon is final and gives no reward",
+      "pass": true
+    },
+    {
+      "name": "Abandon removes all owned entities",
+      "pass": true
+    },
+    {
+      "name": "Rift works after hunt abandonment",
+      "pass": true
+    },
+    {
+      "name": "Hunt operations preserve progression save",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "One charge leaves at most five thorn patches",
+      "pass": true
+    },
+    {
+      "name": "Patch cap never truncates an existing four-second lifetime",
+      "pass": true
+    },
+    {
+      "name": "Five overlapping patches deal only one eight-damage hit",
+      "pass": true
+    },
+    {
+      "name": "Overlap cannot bypass global one-second cooldown",
+      "pass": true
+    },
+    {
+      "name": "eventAbandon is available",
+      "pass": true
+    },
+    {
+      "name": "Abandon removes active thorn hazards",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Elite despawn cannot falsely grant completion",
+      "pass": true
+    },
+    {
+      "name": "Defeat abandons unresolved hunt and clears choices",
+      "pass": true
+    },
+    {
+      "name": "again is available",
+      "pass": true
+    },
+    {
+      "name": "Retry returns hunt and equipment to fresh state",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Boss victory abandons unresolved hunt without reward",
+      "pass": true
+    },
+    {
+      "name": "Stage 1 has no Johor events or relic leakage",
+      "pass": true
+    },
+    {
+      "name": "Stage 2 has no Johor events or relic leakage",
+      "pass": true
+    },
+    {
+      "name": "Stage 3 has no Johor events or relic leakage",
+      "pass": true
+    },
+    {
+      "name": "Stage 4 has no Johor events or relic leakage",
+      "pass": true
+    },
+    {
+      "name": "Stage 5 has no Johor events or relic leakage",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Hunt level-up and reward never stack",
+      "pass": true
+    },
+    {
+      "name": "Level-up freezes hunt completion clock",
+      "pass": true
+    },
+    {
+      "name": "up0 is available",
+      "pass": true
+    },
+    {
+      "name": "Hunt relic choice survives queued level-up",
+      "pass": true
+    },
+    {
+      "name": "lootSkip is available",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion retains thorn warning hazards",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion retains named modifier label",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion disables enemy swaying",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "320px hunt prompt does not overflow",
+      "pass": true
+    },
+    {
+      "name": "320px event touch targets are44px",
+      "pass": true
+    },
+    {
+      "name": "320px offers three distinct relics",
+      "pass": true
+    },
+    {
+      "name": "320px comparison does not overflow",
+      "pass": true
+    },
+    {
+      "name": "320px reward targets are44px",
+      "pass": true
+    },
+    {
+      "name": "320px keyboard focus wraps",
+      "pass": true
+    },
+    {
+      "name": "Relic choice freezes survival clock",
+      "pass": true
+    },
+    {
+      "name": "Duplicate click cannot replace chosen relic",
+      "pass": true
+    },
+    {
+      "name": "equipmentButton is available",
+      "pass": true
+    },
+    {
+      "name": "Inspection names equipped relic and all slots",
+      "pass": true
+    },
+    {
+      "name": "Escape closes inspection and restores focus",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "390px hunt prompt does not overflow",
+      "pass": true
+    },
+    {
+      "name": "390px event touch targets are44px",
+      "pass": true
+    },
+    {
+      "name": "390px offers three distinct relics",
+      "pass": true
+    },
+    {
+      "name": "390px comparison does not overflow",
+      "pass": true
+    },
+    {
+      "name": "390px reward targets are44px",
+      "pass": true
+    },
+    {
+      "name": "390px keyboard focus wraps",
+      "pass": true
+    },
+    {
+      "name": "Relic choice freezes survival clock",
+      "pass": true
+    },
+    {
+      "name": "Duplicate click cannot replace chosen relic",
+      "pass": true
+    },
+    {
+      "name": "equipmentButton is available",
+      "pass": true
+    },
+    {
+      "name": "Inspection names equipped relic and all slots",
+      "pass": true
+    },
+    {
+      "name": "Escape closes inspection and restores focus",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract is available",
+      "pass": true
+    },
+    {
+      "name": "lootSkip is available",
+      "pass": true
+    },
+    {
+      "name": "Skipping consumes relic reward without equipping",
+      "pass": true
+    },
+    {
+      "name": "Skipped reward cannot reopen",
+      "pass": true
+    }
+  ]
+}
