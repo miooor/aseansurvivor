@@ -82,7 +82,12 @@ export class RegionMap {
     this.picker=this.map.querySelector('select')!;
     this.picker.onkeydown=e=>{if(e.key!=='Tab')e.stopPropagation()};
     this.picker.onchange=()=>{this.routeKey=''};
-    this.map.querySelector('svg')!.onclick=e=>{
+    const svg=this.map.querySelector('svg')!;
+    // Some browsers send a compatibility MouseEvent for the click after a tap.
+    let touchStarted=false;
+    svg.onpointerdown=e=>{touchStarted=e.pointerType==='touch'};
+    svg.onclick=e=>{
+      if(touchStarted||('pointerType' in e&&e.pointerType==='touch'))return;
       const marker=(e.target as Element).closest<SVGElement>('[data-event],[data-site]');
       if(!marker)return;
       const key=marker.dataset.event?'event:'+marker.dataset.event:'cache:'+marker.dataset.site;

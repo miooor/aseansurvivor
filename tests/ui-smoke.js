@@ -555,6 +555,21 @@ run.onclick=async()=>{
       'West Coast complete','east','terengganu');
     await checkVictoryRoute('east',[...east.filter(id=>id!=='pahang'),'melaka'],'pahang',
       'East Coast complete','west','kl');
+    $('route-west').click();
+    await setProgress(clearState(complete.filter(id=>id!=='kedah')));
+    $('stg-kedah').click();$('start').click();await tick();
+    const beforeFinal=localStorage.getItem(saveKey),write=w.Storage.prototype.setItem;
+    try{
+      w.Storage.prototype.setItem=()=>{throw new w.DOMException('Storage full','QuotaExceededError')};
+      await w.__asean.endGame(true);
+    }finally{w.Storage.prototype.setItem=write}
+    check('Failed final clear shows ordinary victory and storage failure',
+      $('endt').textContent==='Kedah is safe' && !$('ends').textContent && $('next').hidden &&
+      $('endShopHint').textContent.includes('could not be saved') && d.activeElement===$('again'));
+    check('Failed final clear preserves the previous save',localStorage.getItem(saveKey)===beforeFinal);
+    $('again').click();
+    check('Failed final clear can retry Kedah',w.__asean.G.stage.id==='kedah' && !w.__asean.G.over);
+    $('pauseButton').click();$('quit').click();
     await setProgress(clearState([]));
     for(const [index,[id,name]] of stages.entries()){
       $('stg-'+id).click();

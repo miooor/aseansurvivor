@@ -45,6 +45,15 @@ try{
     event.discovered=true;
     tick();
     check($('select').length===3,'discovered choices listed');
+    const diamond=document.querySelector('[data-event="quest"] path');
+    diamond.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,pointerType:'touch'}));
+    diamond.dispatchEvent(new PointerEvent('click',{bubbles:true,pointerType:'touch'}));
+    check($('select').value==='','touch diamond leaves the route alone');
+    diamond.dispatchEvent(new MouseEvent('click',{bubbles:true}));
+    check($('select').value==='','touch compatibility click leaves the route alone');
+    diamond.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,pointerType:'mouse'}));
+    diamond.dispatchEvent(new PointerEvent('click',{bubbles:true,pointerType:'mouse'}));
+    check($('select').value==='event:quest','mouse diamond selects the quest');
     select('event:quest');
     destination(event,'Visit');
     document.querySelector('[data-site="'+site.id+'"]').dispatchEvent(new MouseEvent('click',{bubbles:true}));

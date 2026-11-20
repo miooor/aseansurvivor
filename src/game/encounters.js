@@ -1,5 +1,5 @@
 import {questPropFrames} from '../content/quest-art.js';
-import {ENCOUNTERS} from '../content/encounters.js';
+import {stageDestinations} from '../content/encounters.js';
 import {REGIONAL_QUESTS} from '../content/regional-quests.js';
 import {questRoutes} from './quest-routes.js';
 
@@ -93,16 +93,16 @@ export function installEncounters(api,equipment){
   HOOKS.newGame.push(g=>{
     g.encounters={};
     if(g.practice)return;
-    if(g.stage.id==='johor'){
-      for(const [id,d] of Object.entries(ENCOUNTERS))g.encounters[id]={...d,...api.safePoint(d.x,d.y,40),id,status:'available',discovered:false};
-      return;
+    for(const d of stageDestinations(g.stage.id)){
+      const site=d.steps?g.world.landmarks.find(place=>place.id===d.landmark):d;
+      const point=api.safePoint(site.x,site.y,40);
+      const event={...d,...point,status:'available',discovered:false};
+      if(d.steps){
+        event.guidance={...point,verb:'Visit',label:d.name};
+        event.description+=' Reward: choose one '+d.slot+'.';
+      }
+      g.encounters[d.id]=event;
     }
-    const d=REGIONAL_QUESTS[g.stage.id];
-    if(!d)return;
-    const site=g.world.landmarks.find(place=>place.id===d.landmark);
-    const point=api.safePoint(site.x,site.y,40);
-    g.encounters[d.id]={...point,guidance:{...point,verb:'Visit',label:d.name},id:d.id,name:d.name,landmark:d.landmark,slot:d.slot,
-      description:d.description+' Reward: choose one '+d.slot+'.',status:'available',discovered:false};
   });
   HOOKS.cleanup.push(()=>{if(api.G)for(const event of Object.values(api.G.encounters)){if(event.status==='active')event.status='abandoned';remove(event)}$('encounterPrompt').hidden=true;});
   HOOKS.update.push(dt=>{const event=active();if(event)behaviors[event.id].update?.(event,dt);});

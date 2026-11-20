@@ -24,8 +24,7 @@ import {installJettyGangway} from './jetty-gangway.js';
 import {installWauLookout} from './wau-lookout.js';
 import {createWorld,stageSignature} from '../content/world.js';
 import {STAGES,INTRO,HEROES as BASE_HEROES,PASSIVES,EVOS} from '../content/core.js';
-import {ENCOUNTERS} from '../content/encounters.js';
-import {REGIONAL_QUESTS} from '../content/regional-quests.js';
+import {stageDestinations} from '../content/encounters.js';
 import {EQUIPMENT_SLOTS} from '../content/equipment.js';
 import {REGIONAL_GHOSTS,regionalGhost,regionalWindup} from '../content/regional-ghosts.js';
 import {BUNIAN_WAYFARER,FOLKLORE_IMPACT} from '../content/folklore-monsters.js';
@@ -888,7 +887,7 @@ function buildRoute(){
   $('stageInfo').textContent=S.set+'.';$('stageTitle').textContent=S.name;
   $('stageChapter').textContent='Mission '+String(activeRoute.indexOf(S.id)+1).padStart(2,'0')+' / '+coast;
   $('stageBoss').textContent=S.boss.name;$('stageDuration').textContent=(S.bossAt||BOSS_AT)/60+' minutes'+(S.coinMul?' · '+S.coinMul+'× coins':'');
-  const destinations=S.id==='johor'?Object.values(ENCOUNTERS):[REGIONAL_QUESTS[S.id]];
+  const destinations=stageDestinations(S.id);
   $('stageDestinations').replaceChildren(...destinations.map(({name,slot})=>{
     const row=document.createElement('li');
     row.textContent=name+' · '+slot;
@@ -1075,12 +1074,16 @@ async function endGame(won,reason){
   run.payoutSaved=await updateSave(save=>{
     if(!won)return saveWallet(save,{coins:save.coins+payout});
     const cleared=!save.cleared.includes(S.id)?[...save.cleared,S.id]:save.cleared;
+    if(!saveGame({...save,cleared,coins:save.coins+payout},true)){
+      if(G===run)results.show(summary);
+      return false;
+    }
     const victory=campaignVictory(run.campaignRoute,{...save,cleared});
     const next=STAGES[stageIndex(victory.next)];
     run.continuation=next?{route:victory.route,stage:next.id}:null;
     if(G===run)results.show({...summary,victoryTitle:victory.title,hasNext:!!next,
       victoryText:[victory.text,next&&'Next stop: '+next.name+'. '+next.set+'.'].filter(Boolean).join(' ')});
-    return saveGame({...save,cleared,coins:save.coins+payout},true);
+    return true;
   });
   if(!G){buildRoute();shop.refresh()}
   if(G===run)results.paid(run.payoutSaved);
