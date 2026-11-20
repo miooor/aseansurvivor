@@ -3,7 +3,7 @@ import * as THREE from 'three';
 export const GROUND_DEPTH=Math.SQRT2;
 export type Knot=[x:number,y:number,height:number];
 
-// Each strip has a luminous core, a coloured body and a soft transparent fringe.
+// Tactical strokes and the missing-sheet fallback use a muted core and a soft edge.
 // All active spells share one geometry upload and one transparent draw call.
 export class SpellRibbons{
   private capacity=8192;
@@ -19,8 +19,8 @@ export class SpellRibbons{
     fragmentShader:`varying vec4 vTint;varying vec2 vProfile;
       void main(){float e=length(vProfile);float body=1.-smoothstep(.24,.98,e);
         vec3 c=mix(vTint.rgb*.65,vTint.rgb,body);
-        c=mix(c,vec3(1.,.98,.90),.92*(1.-smoothstep(.04,.32,e)));
-        gl_FragColor=vec4(c,vTint.a*body);
+        c=mix(c,vec3(.72,.63,.46),.18*(1.-smoothstep(.04,.32,e)));
+        gl_FragColor=vec4(c,vTint.a*body*.68);
         #include <colorspace_fragment>
       }`
   });

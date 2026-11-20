@@ -9,7 +9,7 @@ export interface Enemy extends Point {
 }
 export interface Effect extends Point {
   kind?: string; c?: string; life: number; max: number; r?: number; size?: number;
-  reedCount?:number; castAt?:number; cross?:Point; tx?:number; ty?:number; flourish?:string; skill?: string; hero?: string; slot?: number; range?: number; a?: number; half?: number; len?: number; w?: number;
+  footY?:number; reedCount?:number; castAt?:number; cross?:Point; tx?:number; ty?:number; flourish?:string; skill?: string; hero?: string; slot?: number; range?: number; a?: number; half?: number; len?: number; w?: number;
 }
 export interface RaidState {
   portal: (Point & {life: number}) | null;
@@ -38,12 +38,12 @@ export interface RunState {
   identity: {charge: number; releaseT: number; castT: number; castMax: number; castSlot: number; castAngle: number};
   stage: {id: string; name: string; ground: string};
   campaignRoute: keyof typeof import('../content/campaign-routes.js').CAMPAIGN_ROUTES;
-  p: Point & {r: number; hp: number; maxHp: number; face: number[]; moving?: boolean; normalMove?: {dx:number;dy:number}|null; invuln: number; hurt: number; shield: number; vx: number; vy: number};
+  p: Point & {r: number; hp: number; maxHp: number; face: number[]; moving?: boolean; normalMove?: {dx:number;dy:number}|null; invuln: number; hurt: number; super:number; shield: number; vx: number; vy: number};
   t: number; clock: number; shake: number; paused: boolean; choosing: boolean; over: boolean;
   level: number; pending: number; kills: number; coins: number; ult: number;
   raid: {won?: boolean} | null; boss: Enemy | null; raidBoss?: Enemy | null;
   enemies: Enemy[];
-  zones: (Point & {kind: string; life: number; max: number; r: number; c?:string})[];
+  zones: (Point & {kind: string; slot?:number; life: number; max: number; r: number; c?:string})[];
   equipmentDrops: (Point & {event:string; slot:string; collectAt:number})[];
   gems: (Point & {kind?: string; v: number})[];
   pups: (Point & {type: string; t: number; life: number})[];

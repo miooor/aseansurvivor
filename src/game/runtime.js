@@ -229,14 +229,20 @@ function combatNumber(x,y,value,kind){
   G.texts.push({x,y,s:(kind==='heal'?'+':'')+Math.round(value),c,size,kind,lane,life:kind==='critical'?1.05:.85,max:kind==='critical'?1.05:.85});
 }
 function puff(x,y,c,n=6,sp=90,size=3){for(let i=0;i<n;i++){const a=rand(0,TAU),v=rand(.3,1)*sp;G.fx.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:rand(.3,.6),max:.6,c,size})}}
-function ring(x,y,r,c,life=.35,flourish){G.fx.push({kind:'ring',x,y,r,c,life,max:life,flourish})}
+function ring(x,y,r,c,life=.35,flourish){G.fx.push({kind:'ring',...(releaseSlot===undefined?{}:{hero:G.hero.id,slot:releaseSlot}),x,y,r,c,life,max:life,flourish})}
 function juice(sh,stop=0){G.shake=Math.max(G.shake,sh);if(stop&&(stop>=.08||G.t>(G.stopUntil||0))){G.stop=Math.max(G.stop,stop);G.stopUntil=G.t+.3}}
 function combo(name){const p=G.p;G.combos++;text(p.x,p.y-48,'COMBO: '+name+'!','#7fe0ff',20);ring(p.x,p.y,90,'#7fe0ff',.35);juice(8,.06)}
 let bannerT=0;
 function banner(s,t=3){const b=$('banner');b.textContent=s;b.classList.add('show');bannerT=t}
 
-const rosterImpactHeroes=new Set(['asha','dani','vanna','keo','nadi']);
-function hasRosterImpact(options){return options.origin!=='item'&&rosterImpactHeroes.has(options.hero)}
+// The release scope labels synchronous contacts. Delayed carriers supply their
+// own visual slot so a subsequent cast cannot relabel an earlier hit.
+let releaseSlot;
+function withCastEffects(slot,cast,rank){
+  const previous=releaseSlot;
+  releaseSlot=slot;
+  try{return cast(rank)}finally{releaseSlot=previous}
+}
 function hit(e,amt,o={}){
   if(e.dead)return;
   if(e.type==='minyak'&&!o.dot&&Math.random()<.3){if(Math.random()<.5)text(e.x,e.y-e.r-4,'slip!','#8fa3a8',12);return}
@@ -245,7 +251,8 @@ function hit(e,amt,o={}){
   amt*=G.st.dmg;for(const f of HOOKS.dmgMul)amt*=f(e,o);e.hp-=amt;e.flash=.08;if(!o.dot)e.sq=1;if(crit)juice(3,.025);
   for(const f of HOOKS.hit)f(e,o);
   combatNumber(e.x,e.y-e.r-6,amt,o.dot?'dot':crit?'critical':'damage');
-  if(!o.dot)G.fx.push({kind:'impact',...(hasRosterImpact(o)?{hero:o.hero,slot:o.slot}:{}),x:e.x,y:e.y-e.r*.5,r:crit?38:22,a:Math.atan2(e.y-G.p.y,e.x-G.p.x),c:crit?'#ffe66b':G.hero.identity.color,life:.24,max:.24});
+  const slot=o.visualSlot??o.slot??releaseSlot;
+  if(!o.dot)G.fx.push({kind:'impact',...(o.origin!=='item'&&slot!==undefined?{hero:G.hero.id,slot}:{}),x:e.x,y:e.y-e.r*.5,footY:e.y,r:crit?38:22,a:Math.atan2(e.y-G.p.y,e.x-G.p.x),c:crit?'#ffe66b':G.hero.identity.color,life:.24,max:.24});
   if(crit&&e.type==='pontianak'&&e.pinCd<=0){e.stun=3;e.pinCd=10;banner('Pinned! Like the nail in the old story, she is stunned for 3 s.',3);ring(e.x,e.y,60,'#ffd34d',.5)}
   if(o.kb&&!e.boss&&e.type!=='body'){e.kvx+=o.kb[0];e.kvy+=o.kb[1]}
   if(e.hp<=0)kill(e,{...o,damage:true});
@@ -547,14 +554,14 @@ function update(dt){
   Object.assign(p,moved);
   p.normalMove=!dash&&ml>.1?{x:p.x,y:p.y,dx:p.x-previousPlayer.x,dy:p.y-previousPlayer.y,dt}:null;
   if(dash){
-    each(p.x,p.y,p.r+8,e=>{if(!dash.hit.has(e)){dash.hit.add(e);hit(e,dash.dmg,{kb:[dash.vx*.3,dash.vy*.3],...dash.hitOptions})}});
+    each(p.x,p.y,p.r+8,e=>{if(!dash.hit.has(e)){dash.hit.add(e);hit(e,dash.dmg,{visualSlot:G.hero.id==='rempit'?1:2,kb:[dash.vx*.3,dash.vy*.3],...dash.hitOptions})}});
     G.fx.push({x:p.x,y:p.y,vx:0,vy:0,life:.25,max:.25,c:'rgba(255,211,77,.6)',size:9});
-    if(dash.fire)G.zones.push({kind:'fire',x:p.x,y:p.y,r:30,life:2.5,max:2.5,dps:30*rm(G.ranks[1]),acc:0});
+    if(dash.fire)G.zones.push({kind:'fire',slot:1,x:p.x,y:p.y,r:30,life:2.5,max:2.5,dps:30*rm(G.ranks[1]),acc:0});
     if((dash.t-=dt)<=0)p.dash=null;
   }
   if(p.sq)p.sq=Math.max(0,p.sq-dt*6);p.moving=ml>.1;
   p.invuln=Math.max(0,p.invuln-dt);p.hurt=Math.max(0,p.hurt-dt);
-  if(p.super>0){p.super-=dt;each(p.x,p.y,p.r+10,(e,dx,dy)=>{if(G.t>=(e.hits.ram||0)){e.hits.ram=G.t+.4;const l=Math.hypot(dx,dy)||1;hit(e,p.superDmg,{kb:[dx/l*520,dy/l*520]})}});
+  if(p.super>0){p.super-=dt;each(p.x,p.y,p.r+10,(e,dx,dy)=>{if(G.t>=(e.hits.ram||0)){e.hits.ram=G.t+.4;const l=Math.hypot(dx,dy)||1;hit(e,p.superDmg,{visualSlot:4,kb:[dx/l*520,dy/l*520]})}});
     if(Math.random()<.5)G.fx.push({x:p.x-p.face[0]*20,y:p.y-p.face[1]*20,vx:rand(-20,20),vy:rand(-20,20),life:.4,max:.4,c:'rgba(120,200,255,.7)',size:6})}
   if(p.exhaust>0){p.exhaust-=dt;p.exAcc+=dt;if(p.exAcc>.07){p.exAcc=0;G.zones.push({kind:'fire',x:p.x-p.face[0]*14,y:p.y-p.face[1]*14,r:p.exPatch.radius,life:p.exPatch.life,max:p.exPatch.life,dps:p.exDps,acc:rand(0,.25)})}}
   if(G.hero.id==='rempit'&&ml>.1&&Math.random()<.25)G.fx.push({x:p.x-p.face[0]*22,y:p.y-p.face[1]*22,vx:rand(-15,15),vy:rand(-15,15),life:.5,max:.5,c:'rgba(160,170,175,.35)',size:5});
@@ -575,7 +582,7 @@ function update(dt){
       each(bx,by,holy?14:9,e=>{
         if(G.t<(e.hits.tas||0))return;
         e.hits.tas=G.t+.35;
-        if(hit(e,o.dmg*(holy?2:1))&&G.evo[2])e.slowT=Math.max(e.slowT||0,1);
+        if(hit(e,o.dmg*(holy?2:1),{visualSlot:2})&&G.evo[2])e.slowT=Math.max(e.slowT||0,1);
       })}
     if(o.t<=0)G.orbit=null}
 
@@ -721,7 +728,7 @@ function update(dt){
     if(pr.update)pr.update(pr,dt);
     pr.x+=pr.vx*dt;pr.y+=pr.vy*dt;pr.life-=dt;if(pr.spin!==undefined)pr.spin+=dt*18;
     for(const e of G.enemies){if(e.dead||pr.hit.has(e)||pr.life<=0)continue;const dx=e.x-pr.x,dy=e.y-pr.y,rr=e.r+pr.r;
-      if(dx*dx+dy*dy<rr*rr){pr.hit.add(e);hit(e,pr.dmg*(pr.dmgFor?pr.dmgFor(e):1),{...pr.hitOptions,origin:pr.origin,dot:pr.dot});if(pr.onHit)pr.onHit(pr,e);if(pr.fire){e.burnT=2;e.burnSlot=0;e.burnDps=10*rm(G.ranks[0])}
+      if(dx*dx+dy*dy<rr*rr){pr.hit.add(e);hit(e,pr.dmg*(pr.dmgFor?pr.dmgFor(e):1),{visualSlot:pr.kind==='dragon'||G.hero.id==='nok'?1:pr.hitOptions?.slot,...pr.hitOptions,origin:pr.origin,dot:pr.dot});if(pr.onHit)pr.onHit(pr,e);if(pr.fire){e.burnT=2;e.burnSlot=0;e.burnDps=10*rm(G.ranks[0])}
         if(pr.bounces>0){pr.bounces--;const n=nearest(pr.x,pr.y,230,pr.hit);if(n){const ax=n.x-pr.x,ay=n.y-pr.y,l=Math.hypot(ax,ay)||1;pr.vx=ax/l*540;pr.vy=ay/l*540;pr.life=.8}else pr.life=0}
         else if(--pr.pierce<=0)pr.life=0;break}}
   }
@@ -1110,7 +1117,7 @@ const api={signatureReleased(){
   if(G.practice&&!G.practice.complete){
     G.practice.complete=true;G.practice.finishAt=G.t+1.2;
   }
-},audio,canvas:cvs,clearInput(){keys.clear();joy=null;},safePoint,moveOnMap,walkable,clearLine,get G(){return G},get W(){return W},get H(){return H},get SC(){return SC},HEROES,EVOS,HOOKS,CAST,nearest,each,hit,rm,text,juice,aimDir,combo,ring,TAU,puff,banner,rand,AUTO,GHOSTS,$,makeGhost,showBossBar,hideBossBar,hurtPlayer,tryCast,updateSkillBar,addXP,dropCoin};
+},withCastEffects,audio,canvas:cvs,clearInput(){keys.clear();joy=null;},safePoint,moveOnMap,walkable,clearLine,get G(){return G},get W(){return W},get H(){return H},get SC(){return SC},HEROES,EVOS,HOOKS,CAST,nearest,each,hit,rm,text,juice,aimDir,combo,ring,TAU,puff,banner,rand,AUTO,GHOSTS,$,makeGhost,showBossBar,hideBossBar,hurtPlayer,tryCast,updateSkillBar,addXP,dropCoin};
 installHeroes(api);
 installAsha(api);
 installMira(api);

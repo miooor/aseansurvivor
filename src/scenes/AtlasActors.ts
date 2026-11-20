@@ -7,7 +7,7 @@ import {GROUND_DEPTH} from './SpellRibbons';
 // shadow pass the upright cutout is projected onto the ground along the sun.
 const vertex=`
   attribute vec4 pose, dimensions, frameRect, ink;
-  attribute vec3 style;
+  attribute vec4 style;
   uniform vec3 lightDirection;
   varying vec2 atlasUV;
   varying vec4 crop, tint;
@@ -27,6 +27,11 @@ const vertex=`
       vec4 mv=modelViewMatrix*vec4(foot,1.);
       mv.xy+=vec2(p.x,p.y+pose.z);
       mv.z+=24.;
+      // Ground paint spans multiple foot depths across its own quad.
+      if(style.w>.5){
+        mv=modelViewMatrix*vec4(foot+vec3(p.x,0.,-p.y*${GROUND_DEPTH}),1.);
+        mv.z+=17.;
+      }
     #endif
     gl_Position=projectionMatrix*mv;
     vec2 cropUV=vec2(style.z>0.5?1.-uv.x:uv.x,uv.y);
@@ -63,7 +68,7 @@ class ActorSheet{
   readonly shadow:THREE.Mesh;
   private capacity=16;
   private colour=new THREE.Color();
-  constructor(private atlas:THREE.Texture<HTMLImageElement|HTMLCanvasElement>,light:THREE.Vector3){
+  constructor(private atlas:THREE.Texture<HTMLImageElement|HTMLCanvasElement>,light:THREE.Vector3,private effect:boolean){
     const quad=new THREE.PlaneGeometry(1,1);
     this.geometry.setIndex(quad.index);
     this.geometry.setAttribute('position',quad.getAttribute('position'));
@@ -72,14 +77,14 @@ class ActorSheet{
     const material=(shadow:boolean)=>new THREE.ShaderMaterial({
       defines:shadow?{SILHOUETTE:1}:{},vertexShader:vertex,fragmentShader:fragment,
       uniforms:{atlas:{value:atlas},lightDirection:{value:light},texel:{value:new THREE.Vector2(1/atlas.image.width,1/atlas.image.height)}},
-      transparent:true,depthWrite:!shadow,side:THREE.DoubleSide,forceSinglePass:true
+      transparent:true,depthWrite:!shadow&&!effect,side:THREE.DoubleSide,forceSinglePass:true
     });
     this.body=new THREE.Mesh(this.geometry,material(false));this.shadow=new THREE.Mesh(this.geometry,material(true));
     this.body.frustumCulled=this.shadow.frustumCulled=false;
-    this.shadow.renderOrder=3;this.body.renderOrder=20;
+    this.shadow.renderOrder=3;this.body.renderOrder=effect?21:20;
   }
   private allocate(){
-    for(const [name,size] of Object.entries({pose:4,dimensions:4,frameRect:4,ink:4,style:3})){
+    for(const [name,size] of Object.entries({pose:4,dimensions:4,frameRect:4,ink:4,style:4})){
       const buffer=new Float32Array(this.capacity*size),old=this.geometry.getAttribute(name);
       if(old)buffer.set(old.array);
       this.geometry.setAttribute(name,new THREE.InstancedBufferAttribute(buffer,size).setUsage(THREE.DynamicDrawUsage));
@@ -90,15 +95,15 @@ class ActorSheet{
     if(i===this.capacity){this.capacity*=2;this.geometry.dispose();this.allocate()}
     const f=image.frame,w=this.atlas.image.width,h=this.atlas.image.height;
     this.geometry.getAttribute('pose').setXYZW(i,image.x,footY,footY-image.y,casts?1:0);
-    this.geometry.getAttribute('dimensions').setXYZW(i,image.width,image.height,.5,image.originY);
+    this.geometry.getAttribute('dimensions').setXYZW(i,image.width,image.height,image.originX??.5,image.originY);
     this.geometry.getAttribute('frameRect').setXYZW(i,f.x/w,1-(f.y+f.height)/h,f.width/w,f.height/h);
     this.colour.setHex(image.tint);
     this.geometry.getAttribute('ink').setXYZW(i,this.colour.r,this.colour.g,this.colour.b,image.alpha);
-    this.geometry.getAttribute('style').setXYZ(i,image.rotation,image.flash?1:0,image.flipX?1:0);
+    this.geometry.getAttribute('style').setXYZW(i,image.rotation,image.flash?1:0,image.flipX?1:0,image.ground?1:0);
   }
   finish(){
     const count=this.geometry.instanceCount;
-    this.body.visible=this.shadow.visible=count>0;
+    this.body.visible=count>0;this.shadow.visible=!this.effect&&count>0;
     if(!count)return;
     for(const attr of Object.values(this.geometry.attributes)){
       if(attr instanceof THREE.InstancedBufferAttribute){
@@ -125,7 +130,7 @@ export class AtlasActors{
       const texture=new THREE.Texture(image.frame.image);
       texture.colorSpace=THREE.SRGBColorSpace;texture.minFilter=THREE.LinearFilter;
       texture.generateMipmaps=false;texture.needsUpdate=true;
-      sheet=new ActorSheet(texture,this.light);sheet.geometry.instanceCount=0;
+      sheet=new ActorSheet(texture,this.light,key.startsWith('hero-effects-'));sheet.body.name=key;sheet.geometry.instanceCount=0;
       this.sheets.set(key,sheet);this.group.add(sheet.shadow,sheet.body);
     }
     sheet.add(image,footY,casts);
