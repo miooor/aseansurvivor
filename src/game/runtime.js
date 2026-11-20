@@ -501,7 +501,17 @@ function openLevelUp(){
   audio.setPaused(true);
   G.choosing=true;G.pending--;
   const pool=[];
-  G.hero.skills.forEach((s,i)=>{if(G.ranks[i]<5)for(let w=0;w<2;w++)pool.push({type:'skill',i,k:(s.key?s.key+' · ':'Basic · ')+'Rank '+(G.ranks[i]+1),t:s.name,d:s.up+((()=>{const ev=EVOS[G.hero.id].find(v=>v.i===i);return ev?' Rank 5 + '+PASSIVES.find(q=>q.id===ev.item).name+' evolves it.':''})())})});
+  G.hero.skills.forEach((s,i)=>{
+    if(G.ranks[i]>=5)return;
+    const ev=EVOS[G.hero.id].find(v=>v.i===i);
+    let description=s.up;
+    if(ev){
+      const item=PASSIVES.find(p=>p.id===ev.item);
+      description+=` Unlock ${ev.name} with ${s.name} at rank 5 and ${item.name} at level 1 or higher.`;
+    }
+    const choice={type:'skill',i,k:(s.key?s.key+' · ':'Basic · ')+'Rank '+(G.ranks[i]+1),t:s.name,d:description};
+    pool.push(choice,choice);
+  });
   PASSIVES.forEach(pv=>{const lv=G.pass[pv.id]||0;if(lv<5)pool.push({type:'pass',id:pv.id,k:'Item · Level '+(lv+1),t:pv.name,d:pv.desc})});
   choices=[];
   for(const ev of EVOS[G.hero.id])if(!G.evo[ev.i]&&G.ranks[ev.i]>=5&&(G.pass[ev.item]||0)>=1&&choices.length<1)choices.push({type:'evo',ev,k:'Evolution',t:ev.name,d:ev.d});
