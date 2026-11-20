@@ -91,7 +91,7 @@ export class SpriteAssets {
   hasEffects(id:string){return this.sheets.has('hero-effects-'+id)}
 
   isHeroPrepared(id:string){
-    return this.sheets.has('hero-motion-'+id)&&this.sheets.has('hero-skills-'+id)&&(!effectUrl(id)||this.hasEffects(id));
+    return this.sheets.has('hero-motion-'+id)&&this.sheets.has('hero-skills-'+id);
   }
 
   prepareHero(id:string):Promise<void>{
@@ -103,9 +103,10 @@ export class SpriteAssets {
       this.load('hero-motion-'+id,art.motion,8,8),
       this.load('hero-skills-'+id,art.skills,8,8),
       ...(effectUrl(id)?[this.load('hero-effects-'+id,effectUrl(id),4,5)]:[])
-    ]).then(results=>{
-      const failure=results.find(result=>result.status==='rejected');
-      if(failure)throw failure.reason;
+    ]).then(([motion,skills])=>{
+      // The scene draws procedural effects when the optional sheet is absent.
+      if(motion.status==='rejected')throw motion.reason;
+      if(skills.status==='rejected')throw skills.reason;
     }).finally(()=>this.pending.delete(id));
     this.pending.set(id,request);
     return request;

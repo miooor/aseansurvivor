@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-20T15:55:34.823Z",
+  "date": "2026-11-20T16:11:08.467Z",
   "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.0.0 Safari/537.36",
   "checks": [
     {
@@ -143,7 +143,7 @@
       "pass": true
     },
     {
-      "name": "Wheel wraps from Hakim to Lia",
+      "name": "Wheel wraps from Fadli to Lia",
       "pass": true
     },
     {
@@ -1207,7 +1207,7 @@
       "pass": true
     },
     {
-      "name": "Ustaz Hakim selection and skill details",
+      "name": "Ustaz Fadli selection and skill details",
       "pass": true
     },
     {
@@ -1235,811 +1235,811 @@
       "pass": true
     },
     {
-      "name": "Ustaz Hakim starts a run",
+      "name": "Ustaz Fadli starts a run",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim facing 0",
+      "name": "Ustaz Fadli facing 0",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim facing 1",
+      "name": "Ustaz Fadli facing 1",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim facing 2",
+      "name": "Ustaz Fadli facing 2",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim facing 3",
+      "name": "Ustaz Fadli facing 3",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim facing 4",
+      "name": "Ustaz Fadli facing 4",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim facing 5",
+      "name": "Ustaz Fadli facing 5",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim facing 6",
+      "name": "Ustaz Fadli facing 6",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim facing 7",
+      "name": "Ustaz Fadli facing 7",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim uses one Three.js body and matching shadow atlas",
+      "name": "Ustaz Fadli uses one Three.js body and matching shadow atlas",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim status and signature share the hero panel",
+      "name": "Ustaz Fadli status and signature share the hero panel",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim walks through four frames in direction 0",
+      "name": "Ustaz Fadli walks through four frames in direction 0",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim plays unique Q windup/release in direction 0",
+      "name": "Ustaz Fadli plays unique Q windup/release in direction 0",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim walks through four frames in direction 1",
+      "name": "Ustaz Fadli walks through four frames in direction 1",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim plays unique Q windup/release in direction 1",
+      "name": "Ustaz Fadli plays unique Q windup/release in direction 1",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim walks through four frames in direction 2",
+      "name": "Ustaz Fadli walks through four frames in direction 2",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim plays unique Q windup/release in direction 2",
+      "name": "Ustaz Fadli plays unique Q windup/release in direction 2",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim walks through four frames in direction 3",
+      "name": "Ustaz Fadli walks through four frames in direction 3",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim plays unique Q windup/release in direction 3",
+      "name": "Ustaz Fadli plays unique Q windup/release in direction 3",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim walks through four frames in direction 4",
+      "name": "Ustaz Fadli walks through four frames in direction 4",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim plays unique Q windup/release in direction 4",
+      "name": "Ustaz Fadli plays unique Q windup/release in direction 4",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim walks through four frames in direction 5",
+      "name": "Ustaz Fadli walks through four frames in direction 5",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim plays unique Q windup/release in direction 5",
+      "name": "Ustaz Fadli plays unique Q windup/release in direction 5",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim walks through four frames in direction 6",
+      "name": "Ustaz Fadli walks through four frames in direction 6",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim plays unique Q windup/release in direction 6",
+      "name": "Ustaz Fadli plays unique Q windup/release in direction 6",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim walks through four frames in direction 7",
+      "name": "Ustaz Fadli walks through four frames in direction 7",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim plays unique Q windup/release in direction 7",
+      "name": "Ustaz Fadli plays unique Q windup/release in direction 7",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 1 has its own effect 0",
+      "name": "Ustaz Fadli skill 1 has its own effect 0",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 1 distinct poses 0",
+      "name": "Ustaz Fadli skill 1 distinct poses 0",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 1 has its own effect 1",
+      "name": "Ustaz Fadli skill 1 has its own effect 1",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 1 distinct poses 1",
+      "name": "Ustaz Fadli skill 1 distinct poses 1",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 1 has its own effect 2",
+      "name": "Ustaz Fadli skill 1 has its own effect 2",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 1 distinct poses 2",
+      "name": "Ustaz Fadli skill 1 distinct poses 2",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 1 has its own effect 3",
+      "name": "Ustaz Fadli skill 1 has its own effect 3",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 1 distinct poses 3",
+      "name": "Ustaz Fadli skill 1 distinct poses 3",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 1 has its own effect 4",
+      "name": "Ustaz Fadli skill 1 has its own effect 4",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 1 distinct poses 4",
+      "name": "Ustaz Fadli skill 1 distinct poses 4",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 1 has its own effect 5",
+      "name": "Ustaz Fadli skill 1 has its own effect 5",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 1 distinct poses 5",
+      "name": "Ustaz Fadli skill 1 distinct poses 5",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 1 has its own effect 6",
+      "name": "Ustaz Fadli skill 1 has its own effect 6",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 1 distinct poses 6",
+      "name": "Ustaz Fadli skill 1 distinct poses 6",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 1 has its own effect 7",
+      "name": "Ustaz Fadli skill 1 has its own effect 7",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 1 distinct poses 7",
+      "name": "Ustaz Fadli skill 1 distinct poses 7",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 2 has its own effect 0",
+      "name": "Ustaz Fadli skill 2 has its own effect 0",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 2 distinct poses 0",
+      "name": "Ustaz Fadli skill 2 distinct poses 0",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 2 has its own effect 1",
+      "name": "Ustaz Fadli skill 2 has its own effect 1",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 2 distinct poses 1",
+      "name": "Ustaz Fadli skill 2 distinct poses 1",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 2 has its own effect 2",
+      "name": "Ustaz Fadli skill 2 has its own effect 2",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 2 distinct poses 2",
+      "name": "Ustaz Fadli skill 2 distinct poses 2",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 2 has its own effect 3",
+      "name": "Ustaz Fadli skill 2 has its own effect 3",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 2 distinct poses 3",
+      "name": "Ustaz Fadli skill 2 distinct poses 3",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 2 has its own effect 4",
+      "name": "Ustaz Fadli skill 2 has its own effect 4",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 2 distinct poses 4",
+      "name": "Ustaz Fadli skill 2 distinct poses 4",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 2 has its own effect 5",
+      "name": "Ustaz Fadli skill 2 has its own effect 5",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 2 distinct poses 5",
+      "name": "Ustaz Fadli skill 2 distinct poses 5",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 2 has its own effect 6",
+      "name": "Ustaz Fadli skill 2 has its own effect 6",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 2 distinct poses 6",
+      "name": "Ustaz Fadli skill 2 distinct poses 6",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 2 has its own effect 7",
+      "name": "Ustaz Fadli skill 2 has its own effect 7",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 2 distinct poses 7",
+      "name": "Ustaz Fadli skill 2 distinct poses 7",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 3 has its own effect 0",
+      "name": "Ustaz Fadli skill 3 has its own effect 0",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 3 distinct poses 0",
+      "name": "Ustaz Fadli skill 3 distinct poses 0",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 3 has its own effect 1",
+      "name": "Ustaz Fadli skill 3 has its own effect 1",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 3 distinct poses 1",
+      "name": "Ustaz Fadli skill 3 distinct poses 1",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 3 has its own effect 2",
+      "name": "Ustaz Fadli skill 3 has its own effect 2",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 3 distinct poses 2",
+      "name": "Ustaz Fadli skill 3 distinct poses 2",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 3 has its own effect 3",
+      "name": "Ustaz Fadli skill 3 has its own effect 3",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 3 distinct poses 3",
+      "name": "Ustaz Fadli skill 3 distinct poses 3",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 3 has its own effect 4",
+      "name": "Ustaz Fadli skill 3 has its own effect 4",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 3 distinct poses 4",
+      "name": "Ustaz Fadli skill 3 distinct poses 4",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 3 has its own effect 5",
+      "name": "Ustaz Fadli skill 3 has its own effect 5",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 3 distinct poses 5",
+      "name": "Ustaz Fadli skill 3 distinct poses 5",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 3 has its own effect 6",
+      "name": "Ustaz Fadli skill 3 has its own effect 6",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 3 distinct poses 6",
+      "name": "Ustaz Fadli skill 3 distinct poses 6",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 3 has its own effect 7",
+      "name": "Ustaz Fadli skill 3 has its own effect 7",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 3 distinct poses 7",
+      "name": "Ustaz Fadli skill 3 distinct poses 7",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 4 has its own effect 0",
+      "name": "Ustaz Fadli skill 4 has its own effect 0",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 4 distinct poses 0",
+      "name": "Ustaz Fadli skill 4 distinct poses 0",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 4 has its own effect 1",
+      "name": "Ustaz Fadli skill 4 has its own effect 1",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 4 distinct poses 1",
+      "name": "Ustaz Fadli skill 4 distinct poses 1",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 4 has its own effect 2",
+      "name": "Ustaz Fadli skill 4 has its own effect 2",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 4 distinct poses 2",
+      "name": "Ustaz Fadli skill 4 distinct poses 2",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 4 has its own effect 3",
+      "name": "Ustaz Fadli skill 4 has its own effect 3",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 4 distinct poses 3",
+      "name": "Ustaz Fadli skill 4 distinct poses 3",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 4 has its own effect 4",
+      "name": "Ustaz Fadli skill 4 has its own effect 4",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 4 distinct poses 4",
+      "name": "Ustaz Fadli skill 4 distinct poses 4",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 4 has its own effect 5",
+      "name": "Ustaz Fadli skill 4 has its own effect 5",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 4 distinct poses 5",
+      "name": "Ustaz Fadli skill 4 distinct poses 5",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 4 has its own effect 6",
+      "name": "Ustaz Fadli skill 4 has its own effect 6",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 4 distinct poses 6",
+      "name": "Ustaz Fadli skill 4 distinct poses 6",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 4 has its own effect 7",
+      "name": "Ustaz Fadli skill 4 has its own effect 7",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim skill 4 distinct poses 7",
+      "name": "Ustaz Fadli skill 4 distinct poses 7",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim ultimate survives effect pressure",
+      "name": "Ustaz Fadli ultimate survives effect pressure",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim returns to directional idle",
+      "name": "Ustaz Fadli returns to directional idle",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim manual skill activates",
+      "name": "Ustaz Fadli manual skill activates",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim emits its themed skill effect",
+      "name": "Ustaz Fadli emits its themed skill effect",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim pauses",
+      "name": "Ustaz Fadli pauses",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim animation clock freezes on pause",
+      "name": "Ustaz Fadli animation clock freezes on pause",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim resumes",
+      "name": "Ustaz Fadli resumes",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim returns to lobby",
+      "name": "Ustaz Fadli returns to lobby",
       "pass": true
     },
     {
-      "name": "Ustaz Hakim player health meter is hidden in the lobby",
+      "name": "Ustaz Fadli player health meter is hidden in the lobby",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" selection and skill details",
+      "name": "Mat Rempit \"Kama\" selection and skill details",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" starts a run",
+      "name": "Mat Rempit \"Kama\" starts a run",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" facing 0",
+      "name": "Mat Rempit \"Kama\" facing 0",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" facing 1",
+      "name": "Mat Rempit \"Kama\" facing 1",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" facing 2",
+      "name": "Mat Rempit \"Kama\" facing 2",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" facing 3",
+      "name": "Mat Rempit \"Kama\" facing 3",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" facing 4",
+      "name": "Mat Rempit \"Kama\" facing 4",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" facing 5",
+      "name": "Mat Rempit \"Kama\" facing 5",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" facing 6",
+      "name": "Mat Rempit \"Kama\" facing 6",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" facing 7",
+      "name": "Mat Rempit \"Kama\" facing 7",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" uses one Three.js body and matching shadow atlas",
+      "name": "Mat Rempit \"Kama\" uses one Three.js body and matching shadow atlas",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" status and signature share the hero panel",
+      "name": "Mat Rempit \"Kama\" status and signature share the hero panel",
       "pass": true
     },
     {
-      "name": "Jet rides straight without suspension jitter in direction 0",
+      "name": "Kama rides straight without suspension jitter in direction 0",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" plays unique Q windup/release in direction 0",
+      "name": "Mat Rempit \"Kama\" plays unique Q windup/release in direction 0",
       "pass": true
     },
     {
-      "name": "Jet rides straight without suspension jitter in direction 1",
+      "name": "Kama rides straight without suspension jitter in direction 1",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" plays unique Q windup/release in direction 1",
+      "name": "Mat Rempit \"Kama\" plays unique Q windup/release in direction 1",
       "pass": true
     },
     {
-      "name": "Jet rides straight without suspension jitter in direction 2",
+      "name": "Kama rides straight without suspension jitter in direction 2",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" plays unique Q windup/release in direction 2",
+      "name": "Mat Rempit \"Kama\" plays unique Q windup/release in direction 2",
       "pass": true
     },
     {
-      "name": "Jet rides straight without suspension jitter in direction 3",
+      "name": "Kama rides straight without suspension jitter in direction 3",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" plays unique Q windup/release in direction 3",
+      "name": "Mat Rempit \"Kama\" plays unique Q windup/release in direction 3",
       "pass": true
     },
     {
-      "name": "Jet rides straight without suspension jitter in direction 4",
+      "name": "Kama rides straight without suspension jitter in direction 4",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" plays unique Q windup/release in direction 4",
+      "name": "Mat Rempit \"Kama\" plays unique Q windup/release in direction 4",
       "pass": true
     },
     {
-      "name": "Jet rides straight without suspension jitter in direction 5",
+      "name": "Kama rides straight without suspension jitter in direction 5",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" plays unique Q windup/release in direction 5",
+      "name": "Mat Rempit \"Kama\" plays unique Q windup/release in direction 5",
       "pass": true
     },
     {
-      "name": "Jet rides straight without suspension jitter in direction 6",
+      "name": "Kama rides straight without suspension jitter in direction 6",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" plays unique Q windup/release in direction 6",
+      "name": "Mat Rempit \"Kama\" plays unique Q windup/release in direction 6",
       "pass": true
     },
     {
-      "name": "Jet rides straight without suspension jitter in direction 7",
+      "name": "Kama rides straight without suspension jitter in direction 7",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" plays unique Q windup/release in direction 7",
+      "name": "Mat Rempit \"Kama\" plays unique Q windup/release in direction 7",
       "pass": true
     },
     {
-      "name": "Jet keeps riding east while throwing his spanner west",
+      "name": "Kama keeps riding east while throwing his spanner west",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 1 has its own effect 0",
+      "name": "Mat Rempit \"Kama\" skill 1 has its own effect 0",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 1 distinct poses 0",
+      "name": "Mat Rempit \"Kama\" skill 1 distinct poses 0",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 1 has its own effect 1",
+      "name": "Mat Rempit \"Kama\" skill 1 has its own effect 1",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 1 distinct poses 1",
+      "name": "Mat Rempit \"Kama\" skill 1 distinct poses 1",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 1 has its own effect 2",
+      "name": "Mat Rempit \"Kama\" skill 1 has its own effect 2",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 1 distinct poses 2",
+      "name": "Mat Rempit \"Kama\" skill 1 distinct poses 2",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 1 has its own effect 3",
+      "name": "Mat Rempit \"Kama\" skill 1 has its own effect 3",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 1 distinct poses 3",
+      "name": "Mat Rempit \"Kama\" skill 1 distinct poses 3",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 1 has its own effect 4",
+      "name": "Mat Rempit \"Kama\" skill 1 has its own effect 4",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 1 distinct poses 4",
+      "name": "Mat Rempit \"Kama\" skill 1 distinct poses 4",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 1 has its own effect 5",
+      "name": "Mat Rempit \"Kama\" skill 1 has its own effect 5",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 1 distinct poses 5",
+      "name": "Mat Rempit \"Kama\" skill 1 distinct poses 5",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 1 has its own effect 6",
+      "name": "Mat Rempit \"Kama\" skill 1 has its own effect 6",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 1 distinct poses 6",
+      "name": "Mat Rempit \"Kama\" skill 1 distinct poses 6",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 1 has its own effect 7",
+      "name": "Mat Rempit \"Kama\" skill 1 has its own effect 7",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 1 distinct poses 7",
+      "name": "Mat Rempit \"Kama\" skill 1 distinct poses 7",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 2 has its own effect 0",
+      "name": "Mat Rempit \"Kama\" skill 2 has its own effect 0",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 2 distinct poses 0",
+      "name": "Mat Rempit \"Kama\" skill 2 distinct poses 0",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 2 has its own effect 1",
+      "name": "Mat Rempit \"Kama\" skill 2 has its own effect 1",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 2 distinct poses 1",
+      "name": "Mat Rempit \"Kama\" skill 2 distinct poses 1",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 2 has its own effect 2",
+      "name": "Mat Rempit \"Kama\" skill 2 has its own effect 2",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 2 distinct poses 2",
+      "name": "Mat Rempit \"Kama\" skill 2 distinct poses 2",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 2 has its own effect 3",
+      "name": "Mat Rempit \"Kama\" skill 2 has its own effect 3",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 2 distinct poses 3",
+      "name": "Mat Rempit \"Kama\" skill 2 distinct poses 3",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 2 has its own effect 4",
+      "name": "Mat Rempit \"Kama\" skill 2 has its own effect 4",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 2 distinct poses 4",
+      "name": "Mat Rempit \"Kama\" skill 2 distinct poses 4",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 2 has its own effect 5",
+      "name": "Mat Rempit \"Kama\" skill 2 has its own effect 5",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 2 distinct poses 5",
+      "name": "Mat Rempit \"Kama\" skill 2 distinct poses 5",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 2 has its own effect 6",
+      "name": "Mat Rempit \"Kama\" skill 2 has its own effect 6",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 2 distinct poses 6",
+      "name": "Mat Rempit \"Kama\" skill 2 distinct poses 6",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 2 has its own effect 7",
+      "name": "Mat Rempit \"Kama\" skill 2 has its own effect 7",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 2 distinct poses 7",
+      "name": "Mat Rempit \"Kama\" skill 2 distinct poses 7",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 3 has its own effect 0",
+      "name": "Mat Rempit \"Kama\" skill 3 has its own effect 0",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 3 distinct poses 0",
+      "name": "Mat Rempit \"Kama\" skill 3 distinct poses 0",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 3 has its own effect 1",
+      "name": "Mat Rempit \"Kama\" skill 3 has its own effect 1",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 3 distinct poses 1",
+      "name": "Mat Rempit \"Kama\" skill 3 distinct poses 1",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 3 has its own effect 2",
+      "name": "Mat Rempit \"Kama\" skill 3 has its own effect 2",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 3 distinct poses 2",
+      "name": "Mat Rempit \"Kama\" skill 3 distinct poses 2",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 3 has its own effect 3",
+      "name": "Mat Rempit \"Kama\" skill 3 has its own effect 3",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 3 distinct poses 3",
+      "name": "Mat Rempit \"Kama\" skill 3 distinct poses 3",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 3 has its own effect 4",
+      "name": "Mat Rempit \"Kama\" skill 3 has its own effect 4",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 3 distinct poses 4",
+      "name": "Mat Rempit \"Kama\" skill 3 distinct poses 4",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 3 has its own effect 5",
+      "name": "Mat Rempit \"Kama\" skill 3 has its own effect 5",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 3 distinct poses 5",
+      "name": "Mat Rempit \"Kama\" skill 3 distinct poses 5",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 3 has its own effect 6",
+      "name": "Mat Rempit \"Kama\" skill 3 has its own effect 6",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 3 distinct poses 6",
+      "name": "Mat Rempit \"Kama\" skill 3 distinct poses 6",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 3 has its own effect 7",
+      "name": "Mat Rempit \"Kama\" skill 3 has its own effect 7",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 3 distinct poses 7",
+      "name": "Mat Rempit \"Kama\" skill 3 distinct poses 7",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 4 has its own effect 0",
+      "name": "Mat Rempit \"Kama\" skill 4 has its own effect 0",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 4 distinct poses 0",
+      "name": "Mat Rempit \"Kama\" skill 4 distinct poses 0",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 4 has its own effect 1",
+      "name": "Mat Rempit \"Kama\" skill 4 has its own effect 1",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 4 distinct poses 1",
+      "name": "Mat Rempit \"Kama\" skill 4 distinct poses 1",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 4 has its own effect 2",
+      "name": "Mat Rempit \"Kama\" skill 4 has its own effect 2",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 4 distinct poses 2",
+      "name": "Mat Rempit \"Kama\" skill 4 distinct poses 2",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 4 has its own effect 3",
+      "name": "Mat Rempit \"Kama\" skill 4 has its own effect 3",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 4 distinct poses 3",
+      "name": "Mat Rempit \"Kama\" skill 4 distinct poses 3",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 4 has its own effect 4",
+      "name": "Mat Rempit \"Kama\" skill 4 has its own effect 4",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 4 distinct poses 4",
+      "name": "Mat Rempit \"Kama\" skill 4 distinct poses 4",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 4 has its own effect 5",
+      "name": "Mat Rempit \"Kama\" skill 4 has its own effect 5",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 4 distinct poses 5",
+      "name": "Mat Rempit \"Kama\" skill 4 distinct poses 5",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 4 has its own effect 6",
+      "name": "Mat Rempit \"Kama\" skill 4 has its own effect 6",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 4 distinct poses 6",
+      "name": "Mat Rempit \"Kama\" skill 4 distinct poses 6",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 4 has its own effect 7",
+      "name": "Mat Rempit \"Kama\" skill 4 has its own effect 7",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" skill 4 distinct poses 7",
+      "name": "Mat Rempit \"Kama\" skill 4 distinct poses 7",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" ultimate survives effect pressure",
+      "name": "Mat Rempit \"Kama\" ultimate survives effect pressure",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" returns to directional idle",
+      "name": "Mat Rempit \"Kama\" returns to directional idle",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" manual skill activates",
+      "name": "Mat Rempit \"Kama\" manual skill activates",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" emits its themed skill effect",
+      "name": "Mat Rempit \"Kama\" emits its themed skill effect",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" pauses",
+      "name": "Mat Rempit \"Kama\" pauses",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" animation clock freezes on pause",
+      "name": "Mat Rempit \"Kama\" animation clock freezes on pause",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" resumes",
+      "name": "Mat Rempit \"Kama\" resumes",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" returns to lobby",
+      "name": "Mat Rempit \"Kama\" returns to lobby",
       "pass": true
     },
     {
-      "name": "Mat Rempit \"Jet\" player health meter is hidden in the lobby",
+      "name": "Mat Rempit \"Kama\" player health meter is hidden in the lobby",
       "pass": true
     },
     {
@@ -3263,7 +3263,7 @@
       "pass": true
     },
     {
-      "name": "Lantern Recall restores health from burning enemies",
+      "name": "Seruan restores health from burning enemies",
       "pass": true
     },
     {
@@ -3307,11 +3307,11 @@
       "pass": true
     },
     {
-      "name": "Hakim charges Sanctuary through basic attacks",
+      "name": "Fadli charges Sanctuary through basic attacks",
       "pass": true
     },
     {
-      "name": "Hakim spends Sanctuary on a healing ward",
+      "name": "Fadli spends Sanctuary on a healing ward",
       "pass": true
     },
     {
@@ -3339,11 +3339,11 @@
       "pass": true
     },
     {
-      "name": "Jet auto-fires a spanner at the enemy to the north",
+      "name": "Kama auto-fires a spanner at the enemy to the north",
       "pass": true
     },
     {
-      "name": "Jet dashes south when down and Q arrive in the same frame",
+      "name": "Kama dashes south when down and Q arrive in the same frame",
       "pass": true
     },
     {
@@ -3351,7 +3351,7 @@
       "pass": true
     },
     {
-      "name": "Jet escapes south while his spanner flies north",
+      "name": "Kama escapes south while his spanner flies north",
       "pass": true
     },
     {
@@ -3367,11 +3367,11 @@
       "pass": true
     },
     {
-      "name": "Jet cannot gain Redline while idle",
+      "name": "Kama cannot gain Redline while idle",
       "pass": true
     },
     {
-      "name": "Jet builds Redline from movement",
+      "name": "Kama builds Redline from movement",
       "pass": true
     },
     {
@@ -3475,11 +3475,11 @@
       "pass": true
     },
     {
-      "name": "ustaz casts an upgraded Fajar Fan",
+      "name": "ustaz casts an upgraded Cahaya Fajar",
       "pass": true
     },
     {
-      "name": "rempit casts an upgraded Redline Wheelie",
+      "name": "rempit casts an upgraded Wheelie",
       "pass": true
     },
     {

@@ -2,6 +2,21 @@
 
 All 60 slots passed in normal and reduced motion on the desktop keyboard path and again at phone width on the touch path. The 12 production launches also passed. These runs used the actual WebGL battlefield, authored WebPs and combat handlers. [Cast measurements](casts.csv)
 
+## Review corrections on the publication branch
+
+The paired captures use the same cast, camera and simulation time. Lan's three guards are spaced 135 units apart so each puppet can be inspected. At 0.16 seconds into Skyfall, Nok carries the airborne effect while the landing circle stays at its destination. Dani's armed F shows a 300-unit diameter at the consumed anchor and a 260-unit diameter at the player, with the centres 70 units apart. [Before and after](review-corrections.webp)
+
+A fresh Chromium page received HTTP 404 for the core Ustaz effect image. Before the fix the picker reported “Artwork failed to load.” With the fix, Ustaz Fadli started from the picker and Q added procedural ribbon vertices. To reproduce with Playwright, set this route before opening the Vite development game, then run the browser check once the picker is ready.
+
+```js
+await page.route('**/assets/hero-effect-sprites/ustaz.webp', route => route.fulfill({status: 404, body: ''}));
+await page.goto(gameUrl);
+await page.waitForFunction(() => window.__asean);
+await page.evaluate(async () => (await import('/tests/painted-battle.js')).checkCoreSheetFallback());
+```
+
+The corrected branch passed 70 Node checks, including boss pacing and two-time samples of the reduced-motion markers. The 240 atlas cells passed packaging checks and all 12 built sheets matched their sources byte for byte. Chromium launched all 12 production heroes, rendered all 60 casts in each motion setting and completed the phase and touch checks. The refreshed UI report includes the main-branch display names Ustaz Fadli and Mat Rempit "Kama". All 964 UI checks and 754 stage checks passed. [UI report](ui-smoke.json) · [Stage report](stage-worlds.json)
+
 ## Matched scenes
 
 Each sheet has five rows in Basic, Q, E, F, R order. Read across for the pre-effect battlefield at `7341ddc`, the integrated normal-motion build, then the integrated reduced-motion build. Open a sheet at 100% for gameplay scale.

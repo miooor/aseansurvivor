@@ -175,6 +175,88 @@ export async function checkPaintedPhases(capture=()=>{}){
       check(!run.roster.nadi.discs.length&&discs.every(p=>bodies().some(b=>b.row===4&&at(b,p)&&b.lift===0)),'three delayed contacts');
       record('nadi '+run.specialization.name+' contacts');
     }
+    await checkAnchorPulse(canvas=>capture(canvas,'dani anchor and player'));
+    results.push('dani anchor and player');
+    await checkLanGuards(canvas=>capture(canvas,'lan separated guards'));
+    results.push('lan separated guards');
     return results;
+  }finally{if(rt.G)rt.toMenu()}
+}
+
+// Run with only the ustaz effect image URL returning HTTP 404, from a fresh page.
+export async function checkCoreSheetFallback(){
+  const failed=performance.getEntriesByType('resource').find(entry=>
+    entry.name.endsWith('/hero-effect-sprites/ustaz.webp')&&entry.responseStatus===404);
+  check(failed,'exercise an actual missing core effect sheet');
+  const rt=window.__asean;
+  check(rt,'optional image failure must allow boot');
+  document.getElementById('hero-ustaz').click();
+  document.getElementById('start').click();
+  const g=rt.G,{scene}=rt;
+  check(g?.hero.id==='ustaz'&&!scene.assets.hasEffects('ustaz'),'start the selected core hero with fallback');
+  try{
+    g.auto=false;g.cds[0]=999;
+    rt.tryCast(1);scene.update(0,40);scene.drawTerrain();
+    const geometry=scene.terrain.ribbons.mesh.geometry;
+    const withCast=geometry.drawRange.count;
+    check(g.fx.some(f=>f.skill==='ustaz-1'),'Q cast created');
+    g.fx=g.fx.filter(f=>f.skill!=='ustaz-1');
+    scene.drawTerrain();
+    check(withCast>geometry.drawRange.count,'the cast contributes real procedural ribbon geometry');
+  }finally{rt.toMenu()}
+}
+
+export async function checkAnchorPulse(capture=()=>{}){
+  const rt=window.__asean;
+  try{
+    await sampleCast('dani',2);
+    const g=rt.G,s=g.roster.dani,{scene}=rt;
+    // Walk away and back through the normal movement hook to arm the beacon.
+    g.paused=false;g.enemies=[];g.cds[0]=999;
+    const walk=(key,distance)=>{
+      const start=g.p.x;
+      window.dispatchEvent(new KeyboardEvent('keydown',{code:key}));
+      for(let i=0;i<100&&Math.abs(g.p.x-start)<distance;i++)scene.update(0,40);
+      window.dispatchEvent(new KeyboardEvent('keyup',{code:key}));
+    };
+    walk('KeyD',165);
+    check(s.anchor.ready,'departing arms the beacon');
+    walk('KeyA',Math.abs(g.p.x-s.anchor.x)-70);
+    // Place the final sub-step exactly on the inclusive boundary.
+    const anchor={...s.anchor};
+    g.p.x=s.lastX=anchor.x+70;g.p.y=s.lastY=anchor.y;
+    const player={x:g.p.x,y:g.p.y};
+    rt.tryCast(3);check(!s.anchor&&s.shield.hp===30,'F consumed the armed anchor');
+    scene.update(0,40);g.paused=true;scene.drawTerrain();
+    capture(scene.terrain.renderer.domElement);
+    const batch=scene.terrain.actors.group.getObjectByName('hero-effects-dani');
+    const attr=name=>batch.geometry.getAttribute(name);
+    const footprints=[];
+    for(let i=0;i<batch.geometry.instanceCount;i++){
+      if(4-Math.round(attr('frameRect').getY(i)*5)!==3)continue;
+      footprints.push([attr('pose').getX(i),attr('pose').getY(i),attr('dimensions').getX(i)]);
+    }
+    for(const [x,y,d] of [[anchor.x,anchor.y,300],[player.x,player.y,260]]){
+      check(footprints.filter(([px,py,width])=>Math.hypot(px-x,py-y)<.01&&width===d).length===1,'one F footprint of diameter '+d+' at '+[x,y]+' in '+JSON.stringify(footprints));
+    }
+  }finally{if(rt.G)rt.toMenu()}
+}
+
+export async function checkLanGuards(capture=()=>{}){
+  const rt=window.__asean,{scene}=rt;
+  try{
+    await sampleCast('lan',2,{ticks:1});
+    const g=rt.G,guards=g.sea.allies;
+    check(guards.length===3,'rank-one troupe summons three guards');
+    guards.forEach((p,i)=>Object.assign(p,{x:g.p.x+(i-1)*135,y:g.p.y+64}));
+    scene.drawTerrain();
+    capture(scene.terrain.renderer.domElement);
+    const batch=scene.terrain.actors.group.getObjectByName('hero-effects-lan');
+    const uv=batch.geometry.getAttribute('frameRect'),pose=batch.geometry.getAttribute('pose');
+    check(batch.geometry.instanceCount===guards.length,'one painted body per guard from release');
+    for(const guard of guards){
+      const i=guards.findIndex((_,index)=>Math.hypot(pose.getX(index)-guard.x,pose.getY(index)-guard.y)<.01);
+      check(i>=0&&4-Math.round(uv.getY(i)*5)===2,'the E motif sits on each separated guard');
+    }
   }finally{if(rt.G)rt.toMenu()}
 }

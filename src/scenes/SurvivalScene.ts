@@ -18,7 +18,7 @@ import {regionalPose,travellerPose} from './regional-animation';
 import {regionalGhost} from '../content/regional-ghosts.js';
 import {BUNIAN_WAYFARER,FOLKLORE_ATLAS,FOLKLORE_IMPACT,type FolkloreMark} from '../content/folklore-monsters.js';
 import {createRuntime,type GameRuntime,type RunState,type Encounter,type Point} from '../game/runtime.js';
-import {drawPaintedEffects,type PaintedSprite} from './painted-effects';
+import {drawPaintedEffects,skyfallLift,type PaintedSprite} from './painted-effects';
 import {drawWauLane} from './WauLookout';
 
 const rosterEffects:Record<string,(scene:SurvivalScene,g:RunState,painted:boolean)=>void>={asha:drawAsha,mira:drawMira,dani:drawDani,vanna:drawVanna,keo:drawKeo,nadi:drawNadi,lia:drawLia};
@@ -422,8 +422,8 @@ export class SurvivalScene {
     else this.setFrame(hero,'hero-motion-'+g.hero.id,7*8+facing);
     const size=art.size;
     hero.height=size*hero.frame.height/hero.frame.width;hero.originY=180/192;
-    if(!reduced&&g.sea?.leap){const leap=g.sea.leap;hero.y-=Math.sin(Math.PI*leap.t/leap.dur)*110}
     if(g.sea?.leap){
+      hero.y-=skyfallLift(g.sea.leap,reduced);
       const radius=g.fx.find(f=>f.skill==='nok-4')?.r??130;
       this.circle(this.floor,g.sea.leap.tx,g.sea.leap.ty,radius,accent,.1,2);
     }

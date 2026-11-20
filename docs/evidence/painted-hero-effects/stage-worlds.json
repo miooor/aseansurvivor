@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-20T15:56:25.740Z",
+  "date": "2026-11-20T16:12:08.346Z",
   "result": "PASS",
   "checks": [
     {
@@ -1087,7 +1087,7 @@
       "pass": true
     },
     {
-      "name": "Hakim can walk from the center into the spent ring after it breaks",
+      "name": "Fadli can walk from the center into the spent ring after it breaks",
       "pass": true
     },
     {
@@ -1131,7 +1131,7 @@
       "pass": true
     },
     {
-      "name": "endauEagle gives Hakim time to clear the full cast with the indicated dodge",
+      "name": "endauEagle gives Fadli time to clear the full cast with the indicated dodge",
       "pass": true
     },
     {
@@ -1147,7 +1147,7 @@
       "pass": true
     },
     {
-      "name": "rebanaEcho gives Hakim time to clear the full cast with the indicated dodge",
+      "name": "rebanaEcho gives Fadli time to clear the full cast with the indicated dodge",
       "pass": true
     },
     {
@@ -1163,7 +1163,7 @@
       "pass": true
     },
     {
-      "name": "nanasBramble gives Hakim time to clear the full cast with the indicated dodge",
+      "name": "nanasBramble gives Fadli time to clear the full cast with the indicated dodge",
       "pass": true
     },
     {
@@ -1179,7 +1179,7 @@
       "pass": true
     },
     {
-      "name": "lenggongSnag gives Hakim time to clear the full cast with the indicated dodge",
+      "name": "lenggongSnag gives Fadli time to clear the full cast with the indicated dodge",
       "pass": true
     },
     {
@@ -1195,7 +1195,7 @@
       "pass": true
     },
     {
-      "name": "batuMaungPrint gives Hakim time to clear the full cast with the indicated dodge",
+      "name": "batuMaungPrint gives Fadli time to clear the full cast with the indicated dodge",
       "pass": true
     },
     {
@@ -1211,7 +1211,7 @@
       "pass": true
     },
     {
-      "name": "padiEmber gives Hakim time to clear the full cast with the indicated dodge",
+      "name": "padiEmber gives Fadli time to clear the full cast with the indicated dodge",
       "pass": true
     },
     {
@@ -1227,7 +1227,7 @@
       "pass": true
     },
     {
-      "name": "whitewaterCroc gives Hakim time to clear the full cast with the indicated dodge",
+      "name": "whitewaterCroc gives Fadli time to clear the full cast with the indicated dodge",
       "pass": true
     },
     {
@@ -1243,7 +1243,7 @@
       "pass": true
     },
     {
-      "name": "songketMoth gives Hakim time to clear the full cast with the indicated dodge",
+      "name": "songketMoth gives Fadli time to clear the full cast with the indicated dodge",
       "pass": true
     },
     {
@@ -1259,7 +1259,7 @@
       "pass": true
     },
     {
-      "name": "beringinShadow gives Hakim time to clear the full cast with the indicated dodge",
+      "name": "beringinShadow gives Fadli time to clear the full cast with the indicated dodge",
       "pass": true
     },
     {
@@ -1287,7 +1287,7 @@
       "pass": true
     },
     {
-      "name": "The touch joystick can carry Hakim clear of both Rebana Echo beats",
+      "name": "The touch joystick can carry Fadli clear of both Rebana Echo beats",
       "pass": true
     },
     {

@@ -1,5 +1,8 @@
 import {inDirectedLine} from '../geometry.js';
 
+export const MIRA_BASIC_REACH=100;
+export const MIRA_BASIC_HALF_ANGLE=35*Math.PI/180;
+
 export function installMira(api){
   const {HEROES,CAST,AUTO,HOOKS,hit,each,nearest,aimDir,moveOnMap,rm}=api;
   HEROES.mira={id:'mira',name:'Mira Reyes',country:'Philippines',role:'Harbour rescuer · hook and sweep',hp:120,speed:185,ultNeed:55,basicDamage:15,price:0,
@@ -27,11 +30,11 @@ export function installMira(api){
   HOOKS.cleanup.push(()=>{if(api.G?.hero.id==='mira')clear(api.G)});
   CAST.mira=[
     r=>{
-      const g=api.G,p=g.p,target=nearest(p.x,p.y,100);
+      const g=api.G,p=g.p,target=nearest(p.x,p.y,MIRA_BASIC_REACH);
       if(!target)return false;
       const a=Math.atan2(target.y-p.y,target.x-p.x);
-      each(p.x,p.y,100,(e,dx,dy)=>{
-        if(dx*Math.cos(a)+dy*Math.sin(a)>=Math.hypot(dx,dy)*Math.cos(35*Math.PI/180))hit(e,g.hero.basicDamage*rm(r),{hero:'mira',slot:0});
+      each(p.x,p.y,MIRA_BASIC_REACH,(e,dx,dy)=>{
+        if(dx*Math.cos(a)+dy*Math.sin(a)>=Math.hypot(dx,dy)*Math.cos(MIRA_BASIC_HALF_ANGLE))hit(e,g.hero.basicDamage*rm(r),{hero:'mira',slot:0});
       });
     },
     r=>{

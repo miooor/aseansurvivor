@@ -1,3 +1,4 @@
+import {MIRA_BASIC_REACH,MIRA_BASIC_HALF_ANGLE} from '../../game/heroes/mira.js';
 import type {SurvivalScene} from '../SurvivalScene';
 import type {RunState} from '../../game/runtime.js';
 
@@ -9,7 +10,7 @@ export function drawMira(scene:SurvivalScene,g:RunState,painted=false){
       if(f.kind!=='spell'||f.hero!=='mira')continue;
       const angle=f.a??0,alpha=Math.min(1,f.life/.14)*.5;
       ink.lineStyle(2,0xa3d5c8,alpha);
-      if(f.slot===0)ink.beginPath().arc(f.x,f.y,100,angle-35*Math.PI/180,angle+35*Math.PI/180).strokePath();
+      if(f.slot===0)ink.beginPath().arc(f.x,f.y,MIRA_BASIC_REACH,angle-MIRA_BASIC_HALF_ANGLE,angle+MIRA_BASIC_HALF_ANGLE).strokePath();
       if(f.slot===1){
         const ax=Math.cos(angle),ay=Math.sin(angle);
         for(const side of [-14,14]){

@@ -15,7 +15,7 @@ test('release paint opens on the caster’s selected row or hands off to the liv
     const g=battle(id);
     g.fx.push({kind:'spell',hero:id,slot,x:10,y:20,a:0,max:.4,life:.4});
     const [sprite]=draw(g);
-    if(['lia-4','nadi-4','keo-2'].includes(id+'-'+slot)){
+    if(['lan-2','lia-4','nadi-4','keo-2'].includes(id+'-'+slot)){
       assert.equal(sprite,undefined);
       continue;
     }
@@ -151,3 +151,32 @@ test('wide hand fans and hovering seals keep their painted faces above the terra
     assert.ok(seal.lift>=seal.height/2);
   }
 });
+
+test('Skyfall paint travels with Nok above the floor warning until landing',()=>{
+  const g=battle('nok');
+  const destination={x:240,y:120};
+  const leap={t:.225,dur:.45,tx:destination.x,ty:destination.y};
+  g.sea={leap};g.p.x=120;g.p.y=60;
+  g.fx=[{kind:'spell',hero:'nok',slot:4,...destination,r:181,max:1.5,life:1.275}];
+  const [air]=draw(g);
+  assert.deepEqual([air.x,air.y,air.lift,air.ground],[120,60,110,false]);
+  const [still]=draw(g,true);
+  assert.deepEqual([still.x,still.y],[120,60]);
+  g.sea.leap=null;g.fx[0].life=1;
+  const [impact]=draw(g);
+  assert.deepEqual([impact.x,impact.y,impact.width,impact.ground],[240,120,362,true]);
+});
+
+for(const hero of ['asha','ustaz']){
+  test(hero+' decorative return stays stationary in reduced motion',()=>{
+    const g=battle(hero);
+    const f={kind:hero==='asha'?'relay':'ring',hero,x:90,y:60,tx:10,ty:20,max:.5,life:.4};
+    if(hero==='ustaz')f.flourish='return';
+    g.fx=[f];
+    const position=reduced=>{const [s]=draw(g,reduced);return [s.x,s.y,s.frame]};
+    const before=position(true),moving=position(false);
+    g.t+=.25;f.life-=.25;
+    assert.deepEqual(position(true),before);
+    assert.notDeepEqual(position(false).slice(0,2),moving.slice(0,2));
+  });
+}
