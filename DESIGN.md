@@ -29,9 +29,12 @@ Core loop:
 
 - **Run equipment.** Weapon, charm and relic share a loadout with head, chest, gloves, belt and boots. Physical offense follows basic attack origin through delayed hits and skill offense follows active abilities. Contact and falling durians use physical defense. Hostile spells, projectiles and telegraphed areas use skill defense. Matching armor reductions add before Guard and reactive defenses. The Technique Sash upgrades the equipped survivor’s named Q at cast time, including its cooldown and rank-scaled effects. Gear resets at the start of a run.
 
+- **Destination rewards.** The mission sheet lists each Johor encounter and each regional quest with its fixed equipment slot. Discovering its landmark adds the slot to the minimap marker and destination picker. Selecting a destination previews the slot before activation. Supply caches award coins and elite chests draw a random slot.
+- **Equipment offers.** Each choice compares the offered item and its effect with the equipment in that slot and names the action. Fixed-slot and mixed-slot offers both say “Lasts this run”.
 - **Regional quests.** Each of the nine stages beyond Johor has a local civilian, an authored itinerary and a regional equipment reward. The fisher uses Chew Jetty’s existing gangway and the kite maker uses the Padang Layang reel. The traveller and fisher wait for the player to regroup. See the [regional quest table](docs/regional-quests.md).
 
-- **ASEAN expedition.** The Three.js relief atlas doubles as the level selector. Both playable Malaysian routes start in Johor. Selangor follows Kuala Lumpur and precedes Perak on the West Coast route. Clearing Kuala Lumpur still grants Perak access. The West Coast branch ends in Kedah and the East Coast branch runs through Pahang, Terengganu and Kelantan. The route choice determines where **Next** takes the player after a victory. Later stops preview the intended expansion across all eleven ASEAN member states. The survivor wheel shows twelve playable heroes using their in-game idle sprites. Scrolling brings a hero to the front, with their name between the arrows and their basic attack, three skills and ultimate below.
+- **ASEAN expedition.** The Three.js relief atlas doubles as the level selector. Both playable Malaysian routes start in Johor. Selangor follows Kuala Lumpur and precedes Perak on the West Coast route. Clearing Kuala Lumpur still grants Perak access. The West Coast branch ends in Kedah and the East Coast branch runs through Pahang, Terengganu and Kelantan. After a victory, **Next stage** leads to the first missing clear on the selected coast. Clearing the last gap anywhere on that coast shows its ending and continues at the first missing stage on the other coast. Johor counts for both. All ten distinct clears finish Malaysia, with replay available. Later stops preview the intended expansion across all eleven ASEAN member states. The survivor wheel shows twelve playable heroes using their in-game idle sprites. Scrolling brings a hero to the front, with their name between the arrows and their basic attack, three skills and ultimate below.
+
 
 - **2.5D campaign and hero interactions.** All ten playable Malaysian stages use painted local surfaces with a shared 2,048 × 2,048 detail texture. Each stage blends three ground materials and gives roads and forecourts surfaces that fit the district. Each expanded region adds two authored destinations, including one featured landmark inspired by local architecture or industry. Each stage has a distinct original regional monster with its own illustrated 2.5D sprite and attack. The raid uses the same fixed three-quarter view and directional hero sprites. Each hero gains a tactical interaction tied to an existing skill. See the Three.js campaign and skills table in README.
 
@@ -94,7 +97,7 @@ Core loop:
 | 3 | Terengganu | Boatbuilding yards and tidal crossings | Estuary Penanggal |
 | 4 | Kelantan | Wau workshops and floodplain fields | Floodplain Pontianak |
 
-Both atlas tours continue to Thailand and the other planned stops after their Malaysian finale.
+Both atlas tours preview Thailand and the other planned stops beyond Malaysia.
 
 ### Skill audit and redesign
 

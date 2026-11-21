@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {createWorld} from '../src/content/world.js';
+import {stageDestinations} from '../src/content/encounters.js';
 import {ITEMS} from '../src/content/equipment.js';
 import {REGIONAL_QUESTS} from '../src/content/regional-quests.js';
 import {installEquipment} from '../src/game/equipment.js';
@@ -33,6 +34,10 @@ function run(stage,practice=false){
   return {g,event,at,tick,start,rewards,$,interact:()=>$('eventInteract').onclick(),abandon:encounters.abandon,
     cleanup:()=>HOOKS.cleanup.forEach(fn=>fn())};
 }
+
+test('a stage without authored activities has no destinations',()=>{
+  assert.deepEqual(stageDestinations('unmapped'),[]);
+});
 
 test('Johor rescue, regroup, one ambush and joint arrival',()=>{
   const {g,event,at,start,tick,interact,rewards}=run('johor');

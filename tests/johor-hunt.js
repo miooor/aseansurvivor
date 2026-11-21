@@ -16,7 +16,7 @@ function openInventory(){const b=doc.getElementById('equipmentButton');if(b.getC
 function equip(id,slot='relic'){const g=rt.G;g.rewards.push({event:'fixture-'+g.rewards.length,slot,offer:[id],consumed:false});step();const b=doc.querySelector('[data-item="'+id+'"]');check('Can choose '+id,!!b);b.click();}
 function incoming(amount){const g=rt.G;g.p.invuln=0;g.eprojs.push({x:g.p.x,y:g.p.y,vx:0,vy:0,r:8,dmg:amount,life:1});step();}
 function lantern(){const g=start();equip('lastLantern');g.p.hp=10;incoming(20);check('Lethal damage leaves hero at one HP',g.p.hp===1&&!g.over);check('Lethal rescue grants two seconds invulnerability',g.p.invuln>=1.95);}
-$('run').onclick=async()=>{checks=[];let result='PASS',error;try{await rt.audio.unlock();equipmentArt();mixedReward();equipmentDrop();lantern();hunt();thorns();echo();bell();bounty();relicBoundaries();everyHero();eventBoundaries();queuedReward();reducedMotion();await rewardBoundaries()}catch(e){result='FAIL';error=e.message}finally{$('status').textContent=result+' · '+checks.filter(c=>c.pass).length+'/'+checks.length+' checks'+(error?' · '+error:'');$('report').textContent=JSON.stringify({date:new Date().toISOString(),result,error,checks},null,2);if(rt.G)rt.G.paused=true}};
+$('run').onclick=async()=>{checks=[];let result='PASS',error;try{await rt.audio.unlock();equipmentArt();mixedReward();equipmentDrop();lantern();hunt();thorns();echo();bell();bounty();relicBoundaries();everyHero();await eventBoundaries();queuedReward();reducedMotion();await rewardBoundaries()}catch(e){result='FAIL';error=e.message}finally{$('status').textContent=result+' · '+checks.filter(c=>c.pass).length+'/'+checks.length+' checks'+(error?' · '+error:'');$('report').textContent=JSON.stringify({date:new Date().toISOString(),result,error,checks},null,2);if(rt.G)rt.G.paused=true}};
 $('download').onclick=()=>{const a=document.createElement('a'),url=URL.createObjectURL(new Blob([$('report').textContent],{type:'application/json'}));a.href=url;a.download='johor-hunt-report.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
 
 function equipmentArt(){
@@ -54,12 +54,25 @@ function equipmentArt(){
   }
 }
 
+function checkComparison(g){
+  check('Reward states its duration',doc.getElementById('lootPanel').textContent.includes('Lasts this run'));
+  for(const button of doc.querySelectorAll('#lootChoices button')){
+    const item=ITEMS[button.dataset.item],current=ITEMS[g.equipment[item.slot]],copy=button.textContent;
+    check(item.name+' identifies the slot, offer and effect',
+      [item.slot,item.name,item.description].every(text=>copy.includes(text)));
+    check(item.name+' compares the equipped item and effect',
+      copy.includes('Currently equipped')&&(current?copy.includes(current.name)&&copy.includes(current.description):copy.includes('Empty slot')));
+    check(item.name+' explains the action',/Equip in empty|Keep equipped|Replace |Upgrade from/.test(copy));
+  }
+}
+
 function mixedReward(){
   const g=start();
   equip('techniqueSash','belt');
   equip('trailBoots','boots');
   g.rewards.push({event:'fixture-mixed',slot:'boots',offer:['deckBoots','relaySash'],consumed:false});
   step();
+  checkComparison(g);
   const boots=doc.querySelector('[data-item="deckBoots"]'),sash=doc.querySelector('[data-item="relaySash"]');
   check('Each offer compares the item in its own slot',boots.textContent.includes('Trail Boots')
     &&sash.textContent.includes('Technique Sash')&&!sash.textContent.includes('Trail Boots'));
@@ -102,6 +115,7 @@ function equipmentDrop(){
   step(10);
   win.dispatchEvent(new win.KeyboardEvent('keyup',{code:'KeyD',key:'d'}));
   check('Walking over equipment consumes it and opens one offer',!g.equipmentDrops.length&&g.rewards.length===1&&g.lootModal==='reward');
+  checkComparison(g);
   const upgrades=Object.entries(ITEMS).filter(([,item])=>item.upgradeFrom);
   const choice=[...doc.querySelectorAll('#lootChoices button')].find(b=>upgrades.some(([,item])=>item.upgradeFrom===b.dataset.item));
   check('The first elite chest offers a refinable base',!!choice);
@@ -123,7 +137,7 @@ function equipmentDrop(){
   check('The branch replaces its base and restores gameplay focus',g.equipment[slot]===child&&!g.lootModal&&doc.activeElement===doc.getElementById('game'));
 }
 
-function hunt(){const g=start();Object.assign(g.p,{x:-1800,y:1400});step();check('Nearby hunt explains two sequential tracks',doc.getElementById('encounterPrompt').textContent.includes('two tracks'));check('Walking past never starts hunt',!g.enemies.some(e=>e.encounter==='hunt'));click('eventStart');check('First track is explicitly indicated',doc.getElementById('eventProgress').textContent.includes('Track 1 of 2'));let event=g.encounters.hunt;const first={x:event.x,y:event.y};Object.assign(g.p,first);step();click('eventInteract');check('Second track replaces first indication',doc.getElementById('eventProgress').textContent.includes('Track 2 of 2')&&Math.hypot(event.x-first.x,event.y-first.y)>120);Object.assign(g.p,{x:event.x,y:event.y});step();click('eventInteract');check('Two tracks reveal one named elite',g.enemies.filter(e=>e.encounter==='hunt').length===1&&g.enemies.some(e=>e.elite==='Thornbound'&&e.name==='Briarback'));check('Track controls disappear during hunt combat',doc.getElementById('eventInteract').hidden);const elite=g.enemies.find(e=>e.encounter==='hunt');elite.stun=999;elite.hp=1;g.st.crit=0;g.projs.push({x:elite.x,y:elite.y,vx:0,vy:0,r:6,dmg:10,life:1,pierce:1,hit:new Set()});step(2);check('Elite defeat offers three relic choices',doc.querySelectorAll('#lootChoices button').length===3&&doc.getElementById('lootCurrent').textContent.startsWith('relic'));}
+function hunt(){const g=start();Object.assign(g.p,{x:-1800,y:1400});step();check('Nearby hunt explains two sequential tracks',doc.getElementById('encounterPrompt').textContent.includes('two tracks'));check('Walking past never starts hunt',!g.enemies.some(e=>e.encounter==='hunt'));click('eventStart');check('First track is explicitly indicated',doc.getElementById('eventProgress').textContent.includes('Track 1 of 2'));let event=g.encounters.hunt;const first={x:event.x,y:event.y};Object.assign(g.p,first);step();click('eventInteract');check('Second track replaces first indication',doc.getElementById('eventProgress').textContent.includes('Track 2 of 2')&&Math.hypot(event.x-first.x,event.y-first.y)>120);Object.assign(g.p,{x:event.x,y:event.y});step();click('eventInteract');check('Two tracks reveal one named elite',g.enemies.filter(e=>e.encounter==='hunt').length===1&&g.enemies.some(e=>e.elite==='Thornbound'&&e.name==='Briarback'));check('Track controls disappear during hunt combat',doc.getElementById('eventInteract').hidden);const elite=g.enemies.find(e=>e.encounter==='hunt');elite.stun=999;elite.hp=1;g.st.crit=0;g.projs.push({x:elite.x,y:elite.y,vx:0,vy:0,r:6,dmg:10,life:1,pierce:1,hit:new Set()});step(2);check('Elite defeat offers three relic choices',doc.querySelectorAll('#lootChoices button').length===3&&[...doc.querySelectorAll('#lootChoices button')].every(button=>ITEMS[button.dataset.item].slot==='relic'));checkComparison(g);}
 
 function beginHunt(){const g=start();Object.assign(g.p,{x:-1800,y:1400});step();click('eventStart');for(let i=0;i<2;i++){Object.assign(g.p,{x:g.encounters.hunt.x,y:g.encounters.hunt.y});step();click('eventInteract')}g.enemies=g.enemies.filter(e=>e.encounter==='hunt');g.gems=[];return g;}
 function thorns(){const g=beginHunt(),e=g.enemies[0];e.dmg=0;Object.assign(g.p,{x:e.x+150,y:e.y});e.skillT=0;step();check('Thornbound charge warns before rushing',e.windup>0);step(13);const patch=g.zones.find(z=>z.kind==='thorn');check('Thornbound charge leaves radius-35 warning patch',patch&&patch.r===35);e.stun=999;Object.assign(g.p,{x:patch.x,y:patch.y,invuln:0});const hp=g.p.hp;step(8);check('Thorn warning causes no damage before 0.6 seconds',g.p.hp===hp);step(5);check('Active thorn patch deals exactly eight damage',g.p.hp===hp-8);g.p.invuln=0;step(5);check('Thorns share a one-second player cooldown',g.p.hp===hp-8);g.paused=true;const life=patch.life;step(30);check('Pause freezes thorn lifetime',patch.life===life);g.paused=false;step(90);check('Thorn patches expire after four seconds',!g.zones.some(z=>z.kind==='thorn'));}
@@ -156,10 +170,10 @@ function everyHero(){
   }
 }
 function reachable(g,point,label){check(label+' is collision-valid',g.world.walkable(point.x,point.y,35));const actor={x:0,y:0,r:24};for(let i=0;i<3000&&Math.hypot(actor.x-point.x,actor.y-point.y)>100;i++){const [dx,dy]=g.world.routeDirection(actor,point);Object.assign(actor,g.world.moveOnMap(actor.x,actor.y,actor.x+dx*30,actor.y+dy*30,24))}check(label+' is reachable from village',Math.hypot(actor.x-point.x,actor.y-point.y)<100);}
-function eventBoundaries(){
+async function eventBoundaries(){
   let g=start();const save=frame.contentWindow.localStorage.getItem('aseanSurvivor.v1');reachable(g,g.encounters.hunt,'Hunt marker');Object.assign(g.p,{x:-1800,y:1400});step();check('Hunt appears as named minimap marker',doc.querySelector('[data-event="hunt"]')?.textContent.includes('Thorn Hunt'));click('eventStart');reachable(g,g.encounters.hunt,'First track');Object.assign(g.p,{x:g.encounters.hunt.x,y:g.encounters.hunt.y});step();click('eventInteract');reachable(g,g.encounters.hunt,'Second track');Object.assign(g.p,{x:g.encounters.hunt.x,y:g.encounters.hunt.y});step();click('eventInteract');const elite=g.enemies.find(e=>e.encounter==='hunt');reachable(g,elite,'Briarback clearing');check('Thornbound health triples stage-scaled ordinary health once',Math.abs(elite.maxHp-195*(1+g.clock/150))<.2);check('Thornbound contact damage scales once',Math.abs(elite.dmg-15*Math.sqrt((1+g.clock/150)*g.diff))<.01);const ambient=target(g,250);rt.kill(ambient);step();check('Ambient death cannot complete hunt',g.encounters.hunt.status==='active'&&g.rewards.length===0);Object.assign(g.p,{x:0,y:0});step();check('Leaving grove does not abandon hunt',g.encounters.hunt.status==='active');rt.raid.spawnPortal();const portal=rt.raid.state.portal;rt.raid.enter();step(4);check('Hunt blocks raid without consuming rift lifetime',!g.raid&&portal.life===60);click('eventAbandon');check('Abandon is final and gives no reward',g.encounters.hunt.status==='abandoned'&&!g.rewards.length);check('Abandon removes all owned entities',!['enemies','projs','eprojs','zones','fx'].some(key=>g[key].some(x=>x.encounter==='hunt')));rt.raid.enter();check('Rift works after hunt abandonment',!!g.raid);check('Hunt operations preserve progression save',frame.contentWindow.localStorage.getItem('aseanSurvivor.v1')===save);
   g=beginHunt();const e=g.enemies[0];e.dmg=0;Object.assign(g.p,{x:e.x+150,y:e.y});e.skillT=0;step(24);check('One charge leaves at most five thorn patches',g.zones.filter(z=>z.kind==='thorn').length===5);const oldest=g.zones.find(z=>z.kind==='thorn');e.skillT=0;e.rush=0;step(14);check('Patch cap never truncates an existing four-second lifetime',g.zones.includes(oldest)&&oldest.life>0);e.stun=999;g.zones.forEach(z=>{z.x=g.p.x;z.y=g.p.y;z.life=3;});g.p.invuln=0;g.thornHitAt=0;const hp=g.p.hp;step();check('Five overlapping patches deal only one eight-damage hit',g.p.hp===hp-8);g.p.invuln=0;step(10);check('Overlap cannot bypass global one-second cooldown',g.p.hp===hp-8);click('eventAbandon');check('Abandon removes active thorn hazards',!g.zones.some(z=>z.kind==='thorn'));
-  g=beginHunt();const victim=g.enemies[0];victim.stun=999;rt.kill(victim);step();check('Elite despawn cannot falsely grant completion',g.encounters.hunt.status==='active'&&g.rewards.length===0);rt.endGame(false);check('Defeat abandons unresolved hunt and clears choices',g.encounters.hunt.status==='abandoned'&&g.rewards.length===0);pastGuard(()=>click('again'));check('Retry returns hunt and equipment to fresh state',rt.G.encounters.hunt.status==='available'&&Object.values(rt.G.equipment).every(x=>x===null));
+  g=beginHunt();const victim=g.enemies[0];victim.stun=999;rt.kill(victim);step();check('Elite despawn cannot falsely grant completion',g.encounters.hunt.status==='active'&&g.rewards.length===0);await rt.endGame(false);check('Defeat abandons unresolved hunt and clears choices',g.encounters.hunt.status==='abandoned'&&g.rewards.length===0);pastGuard(()=>click('again'));check('Retry returns hunt and equipment to fresh state',rt.G.encounters.hunt.status==='available'&&Object.values(rt.G.equipment).every(x=>x===null));
   g=beginHunt();const boss=target(g,400);boss.boss=true;boss.name='Fixture boss';rt.kill(boss);check('Boss victory abandons unresolved hunt without reward',g.encounters.hunt.status==='abandoned'&&g.rewards.length===0);
   for(let stage=1;stage<6;stage++){g=start('ustaz',stage);check('Stage '+stage+' has no Johor events or relic leakage',['rescue','ward','hunt'].every(id=>!g.encounters[id])&&Object.values(g.equipment).every(x=>x===null));}
 }

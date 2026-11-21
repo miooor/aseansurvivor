@@ -1,0 +1,10 @@
+# 0001. Preserve access before enabling earned locks
+
+**Accepted for a future release.** Keep `UNLOCK_ALL` true throughout Second Run. The bypass allows every survivor and stage to be played without recording a purchase or clear. A profile’s play history therefore cannot reconstruct its access. [Decision scope](https://github.com/miooor/aseansurvivor/issues/35)
+
+1. Ship a one-time migration while the bypass is still enabled. Read the stored `aseanSurvivor.v1` key and inspect the **raw parsed save object before merging defaults**. An existing valid save object without its own migration marker is legacy. A missing key, including a visit that ended before the first save, or data that cannot be parsed as a save object, receives fresh-profile treatment. The existing `retainedStages` field cannot identify legacy saves.
+2. For a legacy save, add every current hero ID to `owned` and every current stage ID to `retainedStages`. Keep existing access entries. Leave coins, `heroUpgrades` ranks and `cleared` unchanged. In particular, a survivor can start Kedah with no Kedah clear. Granting access must never fabricate a victory.
+3. Persist both grants and the marker in the same save write. A failed write leaves the migration eligible to retry. A marked save keeps its recorded access on subsequent loads. Give newly created profiles a marker on their first write so they can be distinguished from older saves.
+4. Disable the bypass only in a later release after the migration ships. Keep the migration in the load path for returning players who skipped that release, before evaluating locks. Only fresh profiles use normal starting access and earned unlocks after the flip.
+
+Before the flip, exercise an unmarked partial save, a returning Kedah player without a clear, a marked reload, and a fresh origin. Verify the retained roster and stages, unchanged wallet/ranks/clears, and normal fresh-profile progression. The current save reader and stage access predicate show why grants belong in the access fields. [Save handling](../../src/game/runtime.js) · [Stage access](../../src/content/campaign-routes.js)

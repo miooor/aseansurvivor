@@ -15,3 +15,17 @@ export function stageAvailable(route, stageId, {cleared, retainedStages}) {
 export function nextCampaignStage(route, save) {
   return CAMPAIGN_ROUTES[route].find(id => !save.cleared.includes(id) && stageAvailable(route, id, save));
 }
+
+const COAST_ENDINGS = {
+  west: {title:'West Coast complete',text:'From Johor to the paddy fields of Kedah, the West Coast is safe.',other:'east'},
+  east: {title:'East Coast complete',text:'From Johor to the wau fields of Kelantan, the East Coast is safe.',other:'west'}
+};
+
+export function campaignVictory(route, save) {
+  const next = nextCampaignStage(route, save);
+  if (next) return {next, route};
+  const ending = COAST_ENDINGS[route];
+  const otherNext = nextCampaignStage(ending.other, save);
+  if (otherNext) return {title:ending.title, text:ending.text, next:otherNext, route:ending.other};
+  return {title:'Malaysia complete', text:'All ten stages are safe. From the jetties of Pulau Pinang to the boatyards of Terengganu, both coasts can greet the dawn.'};
+}

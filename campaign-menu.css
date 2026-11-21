@@ -97,6 +97,7 @@
 #stageTitle:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
 .mission-sheet h2{font:500 clamp(30px,3vw,46px)/1.12 var(--display);margin:4px 0;color:#f9edcf}
 #stageInfo,#selectedHeroRole,#heroTrait{font-size:13px;line-height:1.45;color:#ccdbd1}
+.mission-destinations ul{display:flex;flex-wrap:wrap;gap:3px 16px;margin:4px 0 10px;padding:0;list-style:none;color:#efddba;font-size:13px}
 .mission-facts{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0;font-size:12px;color:#b5c5bb}.mission-facts b{color:#efddba;margin-left:2px}
 .hero:hover,.ability:hover{border-color:#c4b889}
 .survivor-sheet{display:flex;flex:1;flex-direction:column;justify-content:center;gap:10px;min-width:0}
@@ -266,7 +267,7 @@
   }
   #pickerDone,#menu[data-picker] :is(#changeStage,#changeSurvivor,.mission-launch),
   #menu:not([data-picker]) :is(.atlas-panel,#heroWheel,#heroPreviewToggle,.wheel-controls button,#heroSkills,#heroTrait,
-    #continueExpedition,.mission-facts,#menuSkillDescription),
+    #continueExpedition,.mission-facts,.mission-destinations,#menuSkillDescription),
   #menu[data-picker=stage] .survivor-sheet,
   #menu[data-picker=survivor] :is(.atlas-panel,.mission-sheet){display:none}
   #menu[data-picker] #pickerDone{display:flex;position:sticky;top:0;z-index:4;width:100%;background:#203d34}

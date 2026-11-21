@@ -25,6 +25,7 @@ import {installJettyGangway} from './jetty-gangway.js';
 import {installWauLookout} from './wau-lookout.js';
 import {createWorld,stageSignature} from '../content/world.js';
 import {STAGES,INTRO,LEVEL_UP_HEAL,HEROES as BASE_HEROES,PASSIVES,EVOS} from '../content/core.js';
+import {stageDestinations} from '../content/encounters.js';
 import {EQUIPMENT_SLOTS} from '../content/equipment.js';
 import {REGIONAL_GHOSTS,regionalGhost,regionalWindup} from '../content/regional-ghosts.js';
 import {BUNIAN_WAYFARER,FOLKLORE_IMPACT} from '../content/folklore-monsters.js';
@@ -42,7 +43,7 @@ import {overlapsMonsterMark,segmentHitsCircle} from './geometry.js';
 import {PACK_REPLAN,PACK_RECOVERY,PACK_RECOVERY_DAMAGE,planPackMovement,selectPackAttack} from './pack-tactics.js';
 import {blocksHit,armHitGrace,advanceHitGrace,CONTACT} from './combat-policy.js';
 import {runEliteWave} from './elite-waves.js';
-import {CAMPAIGN_ROUTES,nextCampaignStage,stageAvailable} from '../content/campaign-routes.js';
+import {CAMPAIGN_ROUTES,campaignVictory,nextCampaignStage,stageAvailable} from '../content/campaign-routes.js';
 import {installHeroes} from './heroes-sea.js';
 import {installRaid} from './raid.js';
 import {SkillAudio} from './skill-audio.js';
@@ -1475,6 +1476,12 @@ function updateMissionBriefing(){
   $('stageInfo').textContent=S.set+'.';$('stageTitle').textContent=S.name;
   $('stageChapter').textContent='Mission '+String(activeRoute.indexOf(S.id)+1).padStart(2,'0')+' / '+coast;
   $('stageBoss').textContent=S.boss.name;$('stageDuration').textContent=(S.bossAt||BOSS_AT)/60+' minutes'+(S.coinMul?' · '+S.coinMul+'× coins':'');
+  const destinations=stageDestinations(S.id);
+  $('stageDestinations').replaceChildren(...destinations.map(({name,slot})=>{
+    const row=document.createElement('li');
+    row.textContent=name+' · '+slot;
+    return row;
+  }));
   $('stageGuardian').textContent=REGIONAL_GHOSTS[stageSignature(S.id)].name;
   const challenge=ROUTE_CHALLENGES[S.id];
   $('veteranChallenge').checked=veteranSelections.has(S.id);
@@ -1735,7 +1742,7 @@ async function endGame(won,reason){
   if(!G?.practice&&!G?.over){if(won)audio.cue('victory',true);else if(reason!=='retired')audio.cue('defeat',true)}
   if(G.practice){G.over=true;$('practiceTitle').textContent='Practice ended';$('practiceRetry').focus();return}
   if(G.over)return;
-  const run=G,S=run.stage,next=STAGES[nextStageIndex(run)],bonus=won?S.clearCoins:0;
+  const run=G,S=run.stage,bonus=won?S.clearCoins:0;
   const boss=run.raidBoss||run.boss;
   const bossSummary=boss?{name:boss.name,health:Math.ceil(clamp(boss.hp/boss.maxHp,0,1)*100),raid:!!run.raidBoss}:
     {name:S.boss.name,arrivesIn:bossAt()-run.clock};
@@ -1749,27 +1756,32 @@ async function endGame(won,reason){
   const medal=earnedVeteranMedal(run,won),recap=run.recap;
   const hp=value=>(Math.round(value*10)/10)+' HP';
   const damageSources=[...recap.sources].sort((a,b)=>b[1]-a[1]).map(([name,value])=>[hp(value),name]);
-  results.show({hero:run.hero.id,stage:S.name,boss:bossSummary,retired:reason==='retired'&&!won,won,hasNext:won&&!!next,
-    victoryText:next?'Next stop: '+next.name+'. '+next.set+'.':(run.campaignRoute==='east'?'East Coast':'West Coast')+' route complete. Thailand is the next planned chapter.',
+  const summary={hero:run.hero.id,stage:S.name,boss:bossSummary,retired:reason==='retired'&&!won,night:reason==='night',won,
     stats:runStats(rewards),recap:{
       metrics:[...Object.entries(recap.damage).map(([kind,value])=>[hp(value),DAMAGE_LABELS[kind]]),
         [hp(recap.levelHealing),'Level-up healing'],[hp(recap.cacheHealing),'Cache healing'],
         [recap.converted+' / '+recap.openings,'Exposed openings hit']],
       sources:damageSources,
       seed:run.setup.seed.toString(16).toUpperCase().padStart(8,'0'),veteran:run.setup.veteran,medal
-    }});
+    }};
+  if(!won)results.show(summary);
   run.payoutSaved=await updateSave(save=>{
     if(!won)return saveWallet(save,{coins:save.coins+payout});
     const cleared=!save.cleared.includes(S.id)?[...save.cleared,S.id]:save.cleared;
     const veteranMedals=medal&&!save.veteranMedals.includes(S.id)?[...save.veteranMedals,S.id]:save.veteranMedals;
-    return saveGame({...save,cleared,veteranMedals,coins:save.coins+payout},true);
+    if(!saveGame({...save,cleared,veteranMedals,coins:save.coins+payout},true)){
+      if(G===run)results.show(summary);
+      return false;
+    }
+    const victory=campaignVictory(run.campaignRoute,{...save,cleared});
+    const next=STAGES[stageIndex(victory.next)];
+    run.continuation=next?{route:victory.route,stage:next.id}:null;
+    if(G===run)results.show({...summary,victoryTitle:victory.title,hasNext:!!next,
+      victoryText:[victory.text,next&&'Next stop: '+next.name+'. '+next.set+'.'].filter(Boolean).join(' ')});
+    return true;
   });
   if(!G){updateMissionBriefing();shop.refresh()}
   if(G===run)results.paid(run.payoutSaved);
-}
-function nextStageIndex(run){
-  const route=CAMPAIGN_ROUTES[run.campaignRoute];
-  return stageIndex(route[route.indexOf(run.stage.id)+1]);
 }
 function toMenu(){const practiced=!!G?.practice;document.body.classList.remove('practicing');$('practiceGuide').hidden=true;audio.setPaused(true);for(const f of HOOKS.cleanup)f();G=null;['hud','skills','end','pause','levelup'].forEach(id=>$(id).hidden=true);$('menu').hidden=false;updateMissionBriefing();showHero(heroPick);$(practiced?'practiceStart':'start').focus({preventScroll:true})}
 $('unlockHero').onclick=async()=>{
@@ -1825,9 +1837,9 @@ $('replaySetup').onclick=()=>{
 };
 $('next').onclick=()=>{
   if(!G?.over||$('next').hidden)return;
-  const next=nextStageIndex(G);
-  if(next<0)return;
-  routePick=G.campaignRoute;stagePick=next;playStage(G.hero.id,next);
+  const next=G.continuation;
+  if(!next)return;
+  routePick=next.route;stagePick=stageIndex(next.stage);playStage(G.hero.id,stagePick);
 };
 $('tomenu').onclick=toMenu;
 listen(document,'visibilitychange',()=>{if(document.hidden&&G&&!G.paused&&!G.over&&!G.choosing)togglePause()});

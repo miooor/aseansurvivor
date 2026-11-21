@@ -9,9 +9,9 @@ function nearest<T extends Point>(player:Point,points:T[]){
     !best || Math.hypot(point.x-player.x,point.y-player.y)<Math.hypot(best.x-player.x,best.y-player.y)?point:best,undefined);
 }
 
-function eventDestination(g:RunState,event:Encounter):Destination {
+function eventDestination(g:RunState,event:Encounter,rewardLabel:string):Destination {
   const key='event:'+event.id;
-  if(event.status!=='active')return {...event,key,verb:'Visit',label:event.name};
+  if(event.status!=='active')return {...event,key,verb:'Visit',label:rewardLabel};
   if(event.guidance)return {...event.guidance,key};
   if(event.id==='rescue'||(event.id==='hunt'&&event.track===2)){
     const enemy=nearest(g.p,g.enemies.filter(e=>!e.dead&&e.encounter===event.id));
@@ -87,7 +87,12 @@ export class RegionMap {
     this.picker=this.map.querySelector('select')!;
     this.picker.onkeydown=e=>{if(e.key!=='Tab')e.stopPropagation()};
     this.picker.onchange=()=>{this.routeKey=''};
-    this.map.querySelector('svg')!.onclick=e=>{
+    const svg=this.map.querySelector('svg')!;
+    // Some browsers send a compatibility MouseEvent for the click after a tap.
+    let touchStarted=false;
+    svg.onpointerdown=e=>{touchStarted=e.pointerType==='touch'};
+    svg.onclick=e=>{
+      if(touchStarted||('pointerType' in e&&e.pointerType==='touch'))return;
       const marker=(e.target as Element).closest<SVGElement>('[data-event],[data-site],[data-route-challenge]');
       if(!marker)return;
       const key=marker.hasAttribute('data-route-challenge')?'route-challenge':
@@ -122,8 +127,9 @@ export class RegionMap {
     for(const event of Object.values(g.encounters)){
       let marker=svg.querySelector<SVGGElement>(`[data-event="${event.id}"]`);
       if(event.status!=='active'&&!(event.status==='available'&&event.discovered)){marker?.remove();continue}
-      const point=eventDestination(g,event);
-      choices.set(point.key,event.name);
+      const rewardLabel=event.name+' · '+event.slot;
+      const point=eventDestination(g,event,rewardLabel);
+      choices.set(point.key,rewardLabel);
       destinations.set(point.key,point);
       if(event.status==='active')active??=point;
       if(!marker){
@@ -134,7 +140,7 @@ export class RegionMap {
       }
       marker.setAttribute('transform',`translate(${point.x+HALF} ${point.y+HALF})`);
       marker.setAttribute('fill',event.status==='active'?'#ffdb77':'#cca582');
-      const title=marker.querySelector('title')!,description=event.status==='active'?event.name+' · '+point.label:event.name;
+      const title=marker.querySelector('title')!,description=event.status==='active'?rewardLabel+' · '+point.label:rewardLabel;
       if(title.textContent!==description)title.textContent=description;
     }
     const caches=LANDMARKS.filter(s=>s.reward&&!g.exploration.claimed.includes(s.id));

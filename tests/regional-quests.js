@@ -54,7 +54,15 @@ run.onclick=()=>{
   try{
     for(const [index,stage] of STAGES.entries()){
       rt.toMenu();
+      const route=['pahang','terengganu','kelantan'].includes(stage.id)?'east':'west';
+      click('route-'+route);
+      doc.getElementById('atlas-stage-'+stage.id).click();
+      const briefing=[...doc.querySelectorAll('.mission-sheet li')].map(row=>row.textContent);
       rt.newGame('ustaz',index);
+      const destinations=Object.values(rt.G.encounters);
+      check(stage.name+' briefs every destination with its reward slot',
+        briefing.length===destinations.length&&destinations.length===(stage.id==='johor'?3:1)&&destinations.every(event=>
+          briefing.some(row=>row.includes(event.name)&&row.includes(event.slot))));
       doc.getElementById('menu').hidden=true;
       const g=rt.G;
       g.auto=false;
@@ -75,6 +83,21 @@ run.onclick=()=>{
       };
       const clear=()=>{for(const enemy of targets())rt.kill(enemy);g.gems=[]};
       const sprite=point=>rt.scene.sprites.get(point);
+      at(g.world.landmarks.find(site=>destinations.every(event=>Math.hypot(site.x-event.x,site.y-event.y)>800)));
+      step();
+      for(const event of destinations){
+        const marker='[data-event="'+event.id+'"]',option='option[value="event:'+event.id+'"]';
+        check(event.name+' stays hidden before discovery',!doc.querySelector(marker)&&!doc.querySelector(option));
+        at(g.world.landmarks.find(site=>site.id===event.landmark));step();
+        check(event.name+' reveals its slot on the discovered marker and picker',
+          doc.querySelector(marker+' title')?.textContent.includes(event.slot)&&doc.querySelector(option)?.textContent.includes(event.slot));
+        doc.querySelector(marker).dispatchEvent(new MouseEvent('click',{bubbles:true}));
+        step();
+        check(event.name+' previews the slot when selected',doc.getElementById('mapObjective').textContent.includes(event.slot));
+        at(event);step();
+        check(event.name+' previews the reward before activation',event.status==='available'&&
+          !doc.getElementById('encounterPrompt').hidden&&doc.getElementById('eventReward').textContent.includes(event.slot));
+      }
       at(e);step();
       check(e.name+' presents a civilian and the correct quest prompt',sprite(e)?.key===(id==='rescue'?'traveller':'regional-workers')
         &&Math.floor(Number(sprite(e).frame.name)/3)===(stage.id==='selangor'?0:Math.max(0,index-1))

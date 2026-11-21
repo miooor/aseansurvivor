@@ -754,19 +754,56 @@ run.onclick=async()=>{
         baseCooldown>0&&Math.abs(g.cds[1]-baseCooldown*.93)<1e-8&&g.ranks[1]===1);
       rt.toMenu();
     }
+    const westStages=stages.map(([id])=>id);
+    const checkVictoryRoute=async(route,cleared,win,title,nextRoute,nextId)=>{
+      await setProgress(clearState(cleared));
+      $('route-'+route).click();
+      $('atlas-stage-'+win).click();$('start').click();await tick();
+      await w.__asean.endGame(true);
+      check(win+' victory shows '+title,$('endt').textContent===title);
+      const nextName=STAGES.find(stage=>stage.id===nextId).name;
+      check(win+' victory offers '+nextName,!$('next').hidden && d.activeElement===$('next') &&
+        $('ends').textContent.includes(nextName));
+      $('next').click();
+      check(win+' victory continues on '+nextRoute+' at '+nextId,
+        w.__asean.G.stage.id===nextId && w.__asean.G.campaignRoute===nextRoute && !w.__asean.G.over);
+      w.__asean.toMenu();
+    };
+    await checkVictoryRoute('west',['melaka'],'kedah','Kedah is safe','west','johor');
+    await checkVictoryRoute('east',['johor'],'kelantan','Kelantan is safe','east','pahang');
+    await checkVictoryRoute('west',[...westStages.filter(id=>id!=='kl'),'pahang'],'kl',
+      'West Coast complete','east','terengganu');
+    await checkVictoryRoute('east',[...east.filter(id=>id!=='pahang'),'melaka'],'pahang',
+      'East Coast complete','west','kl');
+    $('route-west').click();
+    await setProgress(clearState(complete.filter(id=>id!=='kedah')));
+    $('atlas-stage-kedah').click();$('start').click();await tick();
+    const beforeFinal=localStorage.getItem(saveKey),write=w.Storage.prototype.setItem;
+    try{
+      w.Storage.prototype.setItem=()=>{throw new w.DOMException('Storage full','QuotaExceededError')};
+      await w.__asean.endGame(true);
+    }finally{w.Storage.prototype.setItem=write}
+    check('Failed final clear shows ordinary victory and storage failure',
+      $('endt').textContent==='Kedah is safe' && !$('ends').textContent && $('next').hidden &&
+      $('endShopHint').textContent.includes('could not be saved') && d.activeElement===$('again'));
+    check('Failed final clear preserves the previous save',localStorage.getItem(saveKey)===beforeFinal);
+    $('again').click();
+    check('Failed final clear can retry Kedah',w.__asean.G.stage.id==='kedah' && !w.__asean.G.over);
+    $('pauseButton').click();$('quit').click();
+    await setProgress(clearState([]));
     for(const [index,[id,name]] of stages.entries()){
       $('atlas-stage-'+id).click();
       check(name+' map pin follows the selected mission',$('atlasPlace').textContent===name && $('atlasCount').textContent.startsWith(String(index+1).padStart(2,'0')) && $('atlasState').textContent==='Playable chapter');
       check(name+' mission briefing',$('stageTitle').textContent===name&&$('atlas-stage-'+id).getAttribute('aria-pressed')==='true');
       $('start').click();await tick();
       check(name+' launches selected stage',w.__asean.G.stage.id===id);
-      w.__asean.endGame(true);
+      await w.__asean.endGame(true);
       if(index<stages.length-1){
         $('next').click();await tick();
         check('Victory in '+name+' advances to '+stages[index+1][1],w.__asean.G.stage.id===stages[index+1][0]);
         $('pauseButton').click();$('quit').click();
       }else{
-        check('Kedah finishes the campaign',$('next').hidden);
+        check('Kedah completes the West Coast and points to Pahang',$('endt').textContent==='West Coast complete' && !$('next').hidden && $('ends').textContent.includes('Pahang'));
         $('tomenu').click();
       }
     }
@@ -790,7 +827,7 @@ run.onclick=async()=>{
       if(index<eastStages.length-1){
         $('next').click();await tick();
       }else{
-        check('Kelantan finishes the East Coast route',$('next').hidden);
+        check('All ten clears finish Malaysia',$('endt').textContent==='Malaysia complete' && $('next').hidden && d.activeElement===$('again'));
         $('tomenu').click();
       }
     }

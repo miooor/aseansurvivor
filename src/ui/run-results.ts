@@ -2,8 +2,8 @@ import {HERO_UPGRADES, MAX_UPGRADE_RANK, upgradePrice, upgradeRank} from '../con
 
 type BossSummary = {name:string; health:number; raid:boolean} | {name:string; arrivesIn:number};
 type RunSummary = {
-  hero:string; stage:string; boss:BossSummary; retired:boolean;
-  won:boolean; victoryText:string; hasNext:boolean; stats:Stat[];
+  hero:string; stage:string; boss:BossSummary; retired:boolean; night:boolean;
+  won:boolean; victoryTitle?:string; victoryText?:string; hasNext?:boolean; stats:Stat[];
   recap:{metrics:Stat[];sources:Stat[];seed:string;veteran:boolean;medal:boolean};
 };
 type ResultsOptions = {
@@ -84,9 +84,9 @@ export function installRunResults({openShop,wallet,signal}:ResultsOptions) {
   function show(result:RunSummary){
     summary=result;
     end.hidden=false;
-    title.textContent=result.won?result.stage+' is safe':result.retired?'Run ended':'You were overwhelmed';
+    title.textContent=result.won?(result.victoryTitle??result.stage+' is safe'):result.retired?'Run ended':result.night?'The night swallowed '+result.stage:'You were overwhelmed';
     const boss=result.boss;
-    if(result.won)detail.textContent=result.victoryText;
+    if(result.won)detail.textContent=result.victoryText??'';
     else if(result.retired)detail.textContent='Defeat the stage boss to clear '+result.stage+'.';
     else if('arrivesIn' in boss){
       const seconds=Math.max(0,Math.ceil(boss.arrivesIn));
