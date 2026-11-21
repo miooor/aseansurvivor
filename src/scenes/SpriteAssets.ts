@@ -17,15 +17,19 @@ export type Actor = {
   frame: Frame;
   width: number;
   height: number;
+  originX?: number;
   originY: number;
   rotation: number;
   tint: number;
+  ground?: boolean;
   flash?: boolean;
   flipX?: boolean;
   alpha: number;
 };
 
 type Sheet = {image: HTMLImageElement; cols: number; rows: number; frames: Map<string, Frame>};
+const effectUrls=import.meta.glob<string>('../../assets/hero-effect-sprites/*.webp',{eager:true,query:'?url',import:'default'});
+const effectUrl=(id:string)=>effectUrls['../../assets/hero-effect-sprites/'+id+'.webp'];
 const coreHeroes=Object.keys(heroArt).filter(id=>heroArt[id].idleIndex!==undefined);
 
 export class SpriteAssets {
@@ -84,6 +88,8 @@ export class SpriteAssets {
     return frame;
   }
 
+  hasEffects(id:string){return this.sheets.has('hero-effects-'+id)}
+
   isHeroPrepared(id:string){
     return this.sheets.has('hero-motion-'+id)&&this.sheets.has('hero-skills-'+id);
   }
@@ -95,10 +101,12 @@ export class SpriteAssets {
     if(pending)return pending;
     const request=Promise.allSettled([
       this.load('hero-motion-'+id,art.motion,8,8),
-      this.load('hero-skills-'+id,art.skills,8,8)
-    ]).then(results=>{
-      const failure=results.find(result=>result.status==='rejected');
-      if(failure)throw failure.reason;
+      this.load('hero-skills-'+id,art.skills,8,8),
+      ...(effectUrl(id)?[this.load('hero-effects-'+id,effectUrl(id),4,5)]:[])
+    ]).then(([motion,skills])=>{
+      // The scene draws procedural effects when the optional sheet is absent.
+      if(motion.status==='rejected')throw motion.reason;
+      if(skills.status==='rejected')throw skills.reason;
     }).finally(()=>this.pending.delete(id));
     this.pending.set(id,request);
     return request;
@@ -106,7 +114,11 @@ export class SpriteAssets {
 
   retainHeroes(keep:Set<string>,release:(key:string)=>void){
     for(const id of Object.keys(heroArt)){
-      if(coreHeroes.includes(id)||keep.has(id)||this.pending.has(id))continue;
+      if(keep.has(id)||this.pending.has(id))continue;
+      const effectKey='hero-effects-'+id;
+      release(effectKey);
+      if(coreHeroes.includes(id))continue;
+      this.sheets.delete(effectKey);
       for(const kind of ['motion','skills']){
         const key='hero-'+kind+'-'+id;
         if(this.sheets.delete(key))release(key);

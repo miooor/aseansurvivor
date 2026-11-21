@@ -79,7 +79,7 @@ export function installIdentities(api){
       const [ax,ay]=target?[target.x-g.p.x,target.y-g.p.y]:aimDir();
       s.empowered=empowered;
       let result;
-      try{result=cast(r)}finally{s.empowered=false}
+      try{result=api.withCastEffects(i,cast,r)}finally{s.empowered=false}
       if(result===false)return false;
       const slip=id==='asha'&&i===0?g.projs.at(-1):null;
       const attackAngle=slip?Math.atan2(slip.vy,slip.vx):id==='rempit'&&i===1?Math.atan2(g.p.dash.vy,g.p.dash.vx):Math.atan2(ay,ax);
@@ -112,7 +112,7 @@ export function installIdentities(api){
       }
       if(empowered){
         release();
-        if(id==='ustaz')g.zones.push({kind:'barrier',x:g.p.x,y:g.p.y,r:150,life:5,max:5,dps:12*rm(r),heal:10,acc:0});
+        if(id==='ustaz')g.zones.push({kind:'barrier',slot:3,x:g.p.x,y:g.p.y,r:150,life:5,max:5,dps:12*rm(r),heal:10,acc:0});
         if(id==='rempit'){g.p.dash.t=.36;g.p.dash.dmg*=1.75;g.p.dash.fire=true}
         if(id==='lan'){
           const count=troupeGuards(r),troupe=g.sea.allies.slice(-count);

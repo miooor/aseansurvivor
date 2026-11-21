@@ -162,7 +162,7 @@ Movement cycles run at ten frames per second. Attacks use their own aim directio
 
 ## Combat effects and numbers
 
-Skills use original Ragnarok-inspired layered effects: ground seals, light pillars, speed streaks, water ripples, impact arcs, and ultimate highlights. Three.js draws these effects with batched ribbons and ground markings. Cast visuals are emitted only after a successful cast; they do not change hitboxes, timing, or damage.
+The battlefield uses a hero’s packaged effect sheet for basic, Q, E, F and R. Painted sprites follow the live projectiles, return paths, delayed strikes and ground fields. Floor outlines and signature markers show reach and readiness. Heroes awaiting a sheet use the muted ribbon rendering.
 
 Combat numbers use bold outlined text: white for normal damage, gold with a burst for criticals, red for incoming damage, green for sanctuary healing, and violet for damage over time. Values are rounded from the amounts applied by combat rules. Numbers fan into five lanes, pop upward, then fade; reduced-motion settings remove their bounce and lateral travel. Simulation time freezes popups with pause/upgrades. The 140-label and 600-effect limits bound crowding; active spell effects are retained before incidental particles when pruning.
 
@@ -170,7 +170,7 @@ For repeatable visual inspection, open `/tests/combat-effects.html` on the devel
 
 ## Unique skill choreography
 
-All 48 active skills have two character poses per direction in the hero skill atlases. The table below describes the original five heroes’ effects. Ultimates keep their existing damage, cooldowns, and targeting. Persistent effects follow their owner or remain anchored to the cast location as appropriate; pauses freeze their simulation clock.
+All 48 active skills have two character poses per direction in the hero skill atlases. The table below describes the original five heroes’ ribbon effects. Ultimates keep their existing damage, cooldowns, and targeting. Persistent effects follow their owner or remain anchored to the cast location as appropriate; pauses freeze their simulation clock.
 
 | Hero | Q | E | F | Ultimate |
 | --- | --- | --- | --- | --- |
