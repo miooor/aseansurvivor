@@ -1,10 +1,12 @@
+import {inLiaSmoke} from './heroes/lia.js';
 import {applyEvolution} from './blessing-picker.js';
+import {inDirectedLine} from './geometry.js';
 
 export function installRaid(api){
-const {rand,GHOSTS,TAU,banner,juice,puff,$,makeGhost,showBossBar,ring,hideBossBar,each,text,hurtPlayer,tryCast,updateSkillBar,addXP,dropCoin,EVOS,HOOKS}=api;
+const {rand,visualRand=rand,lootRoll=()=>Math.random(),GHOSTS,TAU,banner,juice,puff,$,makeGhost,showBossBar,ring,hideBossBar,each,text,hurtPlayer,tryCast,updateSkillBar,addXP,dropCoin,EVOS,HOOKS}=api;
 
 const ARENA={x:60000,y:60000,r:520};
-const STASH=['enemies','gems','equipmentDrops','zones','eprojs','durians','pups'];
+const STASH=['enemies','gems','equipmentDrops','zones','eprojs','durians','pups','nightHazards'];
 const PURPLE='#c77dff',RED='#ff2a4a';
 const cl=(v,a,b)=>v<a?a:v>b?b:v;
 let R=null;                       // module state, rebuilt on every new game
@@ -25,8 +27,8 @@ function spawnPortal(){
     }
   }
   R.spawned=true;R.portal={...(portal||api.safePoint(p.x,p.y,40)),life:60,max:60};
-  banner('A shadow portal has opened nearby! Follow the purple arrow. Something big waits inside.',5);
-  juice(6);
+  banner('A Spirit Rift has opened nearby.',5);
+  juice(6);api.audio.cue('portal');
 }
 function updatePortal(dt){
   if(!R.spawned&&api.G.clock>=R.portalAt){
@@ -36,7 +38,7 @@ function updatePortal(dt){
   const q=R.portal;if(!q)return;
   if(api.eventActive())return;
   q.life-=dt;
-  if(Math.random()<.3){const a=rand(0,TAU);api.G.fx.push({x:q.x+Math.cos(a)*44,y:q.y+Math.sin(a)*44,vx:-Math.cos(a)*50,vy:-Math.sin(a)*50,life:.7,max:.7,c:'rgba(199,125,255,.7)',size:3})}
+  if(Math.random()<.3){const a=visualRand(0,TAU);api.G.fx.push({x:q.x+Math.cos(a)*44,y:q.y+Math.sin(a)*44,vx:-Math.cos(a)*50,vy:-Math.sin(a)*50,life:.7,max:.7,c:'rgba(199,125,255,.7)',size:3})}
   if(q.life<=0){R.portal=null;puff(q.x,q.y,PURPLE,20,160,4);banner('The shadow portal fades away.',2.5);return}
   if(!api.G.over&&!api.G.won&&Math.hypot(q.x-api.G.p.x,q.y-api.G.p.y)<34+api.G.p.r)enterRaid();
 }
@@ -49,6 +51,7 @@ function enterRaid(){
   api.G.raid={t:0,entry:{x:p.x,y:p.y},stash,goal:$('goal').textContent,outro:0,won:false};
   R.portal=null;R.spawned=true;R.tele=[];R.spawns=[];R.volleys=[];R.lane=null;R.eclipse=null;R.orb=null;
   puff(p.x,p.y,PURPLE,24,200,4);
+  p.nightStatus={};
   p.x=ARENA.x;p.y=ARENA.y+250;p.vx=p.vy=0;p.dash=null;p.invuln=Math.max(p.invuln,1.2);
   const hp=600+300*api.G.level;
   const e=makeGhost('raya',ARENA.x,ARENA.y-150);
@@ -56,7 +59,7 @@ function enterRaid(){
   api.G.raidBoss=e;R.boss=e;showBossBar('Hantu Raya');
   $('goal').textContent='Raid: defeat Hantu Raya';
   banner('Hantu Raya, the great shadow that wears its master\'s shape. Red circles mean MOVE.',5);
-  ring(p.x,p.y,90,PURPLE,.5);juice(12,.12);
+  ring(p.x,p.y,90,PURPLE,.5);juice(12,.12);api.audio.cue('raid');
 }
 function exitRaid(){
   const rd=api.G.raid,p=api.G.p,left=api.G.gems;
@@ -80,7 +83,7 @@ function rayaAI(e,dt,info){
   if(api.G.raid.won)return STOP;
   if(!e.p2&&e.hp<=e.maxHp*.5&&e.state!=='intro'){
     e.p2=true;e.state='roar';e.st=1.3;e.step=0;e.dmg=GHOSTS.raya.dmg;R.lane=null;e.cast={name:'roar',t:0,max:1.3};
-    banner('Hantu Raya is ENRAGED! Shadow bolts fly, and when the eclipse comes, stand in the light.',5);
+    banner('Hantu Raya is ENRAGED! Shadow bolts fly, and when the eclipse comes, stand in the light.',5);api.audio.cue('enrage');
     text(e.x,e.y-e.r-30,'ENRAGE!',RED,24);ring(e.x,e.y,160,RED,.6);ring(e.x,e.y,90,RED,.4);puff(e.x,e.y,RED,26,260,4);juice(16,.18);
   }
   if(e.cast&&(e.cast.t+=dt)>=e.cast.max)e.cast=null;
@@ -103,7 +106,7 @@ function rayaAI(e,dt,info){
 }
 const ROT1=['slam','lunge','slam','summon'],ROT2=['ring','slam','eclipse','lunge','summon'];
 function startAbility(e,info){
-  const p=api.G.p,rot=e.p2?ROT2:ROT1;let ab=rot[e.step++%rot.length];
+  const p=info.target,rot=e.p2?ROT2:ROT1;let ab=rot[e.step++%rot.length];
   if(ab==='summon'&&api.G.enemies.filter(s=>s.type==='shade'&&!s.dead).length>=6)ab='slam';
   e.next=e.p2?2.3:3.1;
   const say=(s,c)=>text(e.x,e.y-e.r-30,s,c||'#ffb3c1',18);
@@ -119,7 +122,7 @@ function startAbility(e,info){
     e.state='cast';e.st=.7;e.cast={name:'slam',t:0,max:.7};
   }else if(ab==='lunge'){
     say('SHADOW LUNGE');const wind=e.p2?.8:1;
-    R.lane={x:e.x,y:e.y,dx:info.tx,dy:info.ty,len:Math.min(560,info.dl+170),w:e.r+10,k:0,wind};
+    R.lane={x:e.x,y:e.y,dx:info.tx,dy:info.ty,len:Math.min(560,info.dl+170),w:e.r+10,k:0,wind,hit:false};
     e.state='wind';e.st=wind;
   }else if(ab==='summon'){
     say('BAYANG, RISE!',PURPLE);const n=e.p2?4:3;
@@ -144,15 +147,24 @@ function updateRaid(dt){
   {const dx=p.x-ARENA.x,dy=p.y-ARENA.y,d=Math.hypot(dx,dy),m=ARENA.r-p.r;if(d>m){p.x=ARENA.x+dx/d*m;p.y=ARENA.y+dy/d*m;if(p.dash)p.dash.t=0}}
   for(const s of api.G.enemies){if(s.dead)continue;const[x,y]=inArena(s.x,s.y,s.r);s.x=x;s.y=y}
   for(const q of api.G.eprojs)if(Math.hypot(q.x-ARENA.x,q.y-ARENA.y)>ARENA.r)q.life=0;
-  if(Math.random()<.25){const a=rand(0,TAU),d=rand(0,ARENA.r);api.G.fx.push({x:ARENA.x+Math.cos(a)*d,y:ARENA.y+Math.sin(a)*d,vx:rand(-8,8),vy:rand(-30,-12),life:1.2,max:1.2,c:'rgba(199,125,255,.35)',size:2.5})}
+  if(Math.random()<.25){const a=visualRand(0,TAU),d=visualRand(0,ARENA.r);api.G.fx.push({x:ARENA.x+Math.cos(a)*d,y:ARENA.y+Math.sin(a)*d,vx:visualRand(-8,8),vy:visualRand(-30,-12),life:1.2,max:1.2,c:'rgba(199,125,255,.35)',size:2.5})}
 
   // Shadow Slam circles
   for(const q of R.tele){
     if((q.t-=dt)>0)continue;
-    if(Math.hypot(p.x-q.x,p.y-q.y)<q.r+p.r*.4)hurtPlayer(q.dmg,'skill');
+    if(Math.hypot(p.x-q.x,p.y-q.y)<q.r+p.r*.4)hurtPlayer(q.dmg,'skill',inLiaSmoke(api.G,e));
     ring(q.x,q.y,q.r,RED,.35);puff(q.x,q.y,'#3a1030',14,220,5);puff(q.x,q.y,RED,8,160,3);juice(8,.03);
   }
   R.tele=R.tele.filter(q=>q.t>0);
+  // Shadow Lunge: the drawn lane is the hitbox, not just body contact. Test the
+  // ground the boss has actually swept so the hit lands as it passes through.
+  const L=R.lane;
+  if(e&&e.state==='lunge'&&L&&!L.hit&&!e.dead){
+    const travelled=(e.x-L.x)*L.dx+(e.y-L.y)*L.dy;
+    if(travelled>0&&inDirectedLine(p,L.x,L.y,L.dx,L.dy,travelled,2*L.w)){
+      L.hit=true;hurtPlayer(e.dmg,'skill',inLiaSmoke(api.G,e));text(p.x,p.y-42,'SHADOW LUNGE!',RED,16);juice(9,.05);
+    }
+  }
   // shade summons
   for(const s of R.spawns){
     if((s.t-=dt)>0)continue;
@@ -162,7 +174,7 @@ function updateRaid(dt){
   // projectile rings
   for(const v of R.volleys){
     if((v.t-=dt)>0||!e||e.dead)continue;
-    const n=14,sp=175;for(let k=0;k<n;k++){const a=(k+v.off)/n*TAU+e.phase*.3;api.G.eprojs.push({x:e.x,y:e.y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,r:7,dmg:9,life:6,c:PURPLE})}
+    const n=14,sp=175;for(let k=0;k<n;k++){const a=(k+v.off)/n*TAU+e.phase*.3;api.enemyProjectile(e,{x:e.x,y:e.y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,r:7,dmg:9,life:6,c:PURPLE})}
     ring(e.x,e.y,80,PURPLE,.35);juice(5);
   }
   R.volleys=R.volleys.filter(v=>v.t>0);
@@ -170,18 +182,18 @@ function updateRaid(dt){
   const ec=R.eclipse;
   if(ec&&(ec.t-=dt)<=0){
     R.eclipse=null;
-    if(Math.hypot(p.x-ec.x,p.y-ec.y)>ec.r){hurtPlayer(ec.dmg,'skill');text(p.x,p.y-44,'caught in the dark!','#ff6b7d',15)}
+    if(Math.hypot(p.x-ec.x,p.y-ec.y)>ec.r){hurtPlayer(ec.dmg,'skill',inLiaSmoke(api.G,e));text(p.x,p.y-44,'caught in the dark!','#ff6b7d',15)}
     else text(p.x,p.y-44,'safe in the light','#ffe9a8',15);
     api.G.fx.push({kind:'pop',x:ARENA.x,y:ARENA.y,r:ARENA.r*.62,life:.22,max:.22});ring(ec.x,ec.y,ec.r,'#ffe9a8',.5);juice(12,.08);
   }
   // auto-cast the ultimate on the raid boss (the core only does this for the stage boss)
-  if(e&&!e.dead&&!rd.won&&api.G.auto&&api.G.ult>=api.G.hero.ultNeed&&Math.hypot(e.x-p.x,e.y-p.y)<280&&typeof tryCast==='function')tryCast(4,true);
+  if(e&&!e.dead&&!rd.won&&api.G.hero.id!=='vanna'&&api.G.auto&&api.G.ult>=api.G.hero.ultNeed&&Math.hypot(e.x-p.x,e.y-p.y)<280&&typeof tryCast==='function')tryCast(4,true);
 
   // Fusion Orb flies to the hero
   const o=R.orb;
   if(o){o.t+=dt;
     if(o.t>.6){const dx=p.x-o.x,dy=p.y-o.y,d=Math.hypot(dx,dy)||1,v=Math.max(420,d*5);o.x+=dx/d*v*dt;o.y+=dy/d*v*dt;if(d<p.r+12||o.t>2.2)grantOrb()}
-    if(Math.random()<.6)api.G.fx.push({x:o.x+rand(-6,6),y:o.y+rand(-6,6),vx:rand(-20,20),vy:rand(-20,20),life:.4,max:.4,c:'rgba(255,211,77,.8)',size:3})}
+    if(Math.random()<.6)api.G.fx.push({x:o.x+visualRand(-6,6),y:o.y+visualRand(-6,6),vx:visualRand(-20,20),vy:visualRand(-20,20),life:.4,max:.4,c:'rgba(255,211,77,.8)',size:3})}
   // win: sweep up the loot, then go home
   if(rd.won){for(const g of api.G.gems)g.mag=true;if((rd.outro-=dt)<=0)exitRaid()}
 }
@@ -209,11 +221,11 @@ function win(e){
   api.G.fx.push({kind:'pop',x:e.x,y:e.y,r:e.r*3,life:.25,max:.25});
   ring(e.x,e.y,120,'#fff',.5);ring(e.x,e.y,220,PURPLE,.7);ring(e.x,e.y,340,RED,.9);
   puff(e.x,e.y,'#1a0c2a',30,320,7);puff(e.x,e.y,PURPLE,24,260,4);puff(e.x,e.y,'#fff',12,180,3);
-  text(e.x,e.y-e.r-20,'HANTU RAYA BANISHED','#ffd34d',24);juice(20,.28);hideBossBar();
+  text(e.x,e.y-e.r-20,'HANTU RAYA BANISHED','#ffd34d',24);juice(20,.28);hideBossBar();api.audio.cue('victory');
   for(let i=0;i<30;i++)dropCoin(e.x+rand(-90,90),e.y+rand(-90,90),1);
   const pool=((typeof EVOS!=='undefined'&&EVOS[api.G.hero.id])||[]).filter(ev=>!api.G.evo[ev.i]);
-  const roll=R.force?R.force==='orb':Math.random()<.6;
-  if(pool.length&&roll){R.orb={x:e.x,y:e.y,t:0,ev:pool[Math.random()*pool.length|0]};banner('Hantu Raya is banished! It leaves a Fusion Orb behind...',3)}
+  const roll=R.force?R.force==='orb':lootRoll()<.6;
+  if(pool.length&&roll){R.orb={x:e.x,y:e.y,t:0,ev:pool[lootRoll()*pool.length|0]};banner('Hantu Raya is banished! It leaves a Fusion Orb behind...',3)}
   else grantXP();
 }
 

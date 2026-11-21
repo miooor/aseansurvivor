@@ -14,7 +14,7 @@ const trials={
     advance(rt,.5);
     return [before-trail.hp,flankDamage];
   }},
-  nok:{slot:1, points:[[270,0],[90,53]], read:h=>h.targets.map(damage)},
+  nok:{slot:1, points:[[270,0],[16,65]], read:({rt,targets})=>{advance(rt,.45);return targets.map(damage)}},
   lan:{slot:3, points:[[80,0],[265,0]], read:({targets:[near,far]})=>[near.slowT,damage(far)]},
   sari:{slot:3, points:[[40,0]], read:({rt,g,targets:[near]})=>{
     g.p.onContact(near);
@@ -36,14 +36,16 @@ const trials={
     advance(rt,.05);
     return [20-(before-g.p.hp),shove];
   }},
-  dani:{slot:2, points:[[50,0],[137,0]], read:h=>h.targets.map(damage)},
-  vanna:{slot:3, points:[[145,0],[45,0]], setup:rt=>{rt.tryCast(1,false);rt.tryCast(2,false)}, read:h=>h.targets.map(damage)},
-  keo:{slot:3, points:[[60,0]], read:({targets:[near]})=>[near.stun,damage(near)]},
-  nadi:{slot:4, points:[[218,0],[48,0]], read:({rt,targets})=>{
-    advance(rt,1.05);
-    return targets.map(damage);
+  dani:{slot:2, points:[], read:({g})=>[g.roster.dani.dust.damage,g.roster.dani.dust.fireRate].map(value=>(value-1)*100)},
+  vanna:{slot:3,points:[[0,45],[0,170]],read:({rt,targets:[near,far]})=>{
+    rt.step(50);near.dead=true;advance(rt,.7);return [damage(near),damage(far)];
   }},
-  lia:{slot:1, points:[[285,0],[70,0]], read:({targets:[far,near]})=>[damage(far),near.kvx]}
+  keo:{slot:3, points:[[60,0]], read:({targets:[near]})=>[near.stun,damage(near)]},
+  nadi:{slot:4,points:[],read:({g})=>{
+    const ward=g.roster.nadi.ward;
+    return [ward.until-g.t,ward.radius];
+  }},
+  lia:{slot:1, points:[[330,0],[70,0]], read:({targets:[far,near]})=>[damage(far),damage(near)]}
 };
 function advance(rt,seconds){
   const end=rt.G.t+seconds;
@@ -54,7 +56,7 @@ function damage(enemy){return 1000-enemy.hp}
 
 const baseExpected={
   ustaz:[1,0],rempit:[0,0],nok:[0,0],lan:[3,0],sari:[0,40],asha:[0,0],
-  mira:[0,180],dani:[18,0],vanna:[60,20],keo:[.8,18],nadi:[0,50],lia:[0,160]
+  mira:[0,180],dani:[25,50],vanna:[45,0],keo:[.8,18],nadi:[6,170],lia:[0,32]
 };
 const frame=document.querySelector('iframe'),report=document.querySelector('#report');
 const check=(ok,message)=>{if(!ok)throw Error(message)};
@@ -97,7 +99,7 @@ document.querySelector('#run').onclick=async event=>{
           check(run.specialization&&!run.choosing,'Choice resumes '+id);
         }
         const run=rt.G,p=run.p;
-        run.p.invuln=999;run.auto=false;run.spawnT=run.durianT=run.cds[0]=999;run.st.crit=0;run.ult=run.hero.ultNeed;
+        run.p.invuln=999;run.auto=false;run.spawnT=run.durianT=run.cds[0]=999;run.st.crit=0;run.noElements=true;run.ult=run.hero.ultNeed;
         $('game').dispatchEvent(new w.MouseEvent('mousemove',{clientX:w.innerWidth/2+100,clientY:w.innerHeight/2}));
         const targets=trial.points.map(([dx,dy])=>{
           const foe=rt.makeGhost('pocong',p.x+dx,p.y+dy);

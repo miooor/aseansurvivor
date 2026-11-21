@@ -5,18 +5,18 @@
 /** @typedef {CircleMark|LaneMark|PolygonMark} FolkloreMark */
 
 /** @returns {CircleMark} */
-const circle=(x,y,r,delay=0,inner=0)=>({kind:'circle',x,y,r,inner,delay});
+export const circle=(x,y,r,delay=0,inner=0)=>({kind:'circle',x,y,r,inner,delay});
 /** @returns {LaneMark} */
-const lane=(x,y,angle,length,width,{delay=0,color=undefined}={})=>({kind:'lane',x,y,dx:Math.cos(angle),dy:Math.sin(angle),length,width,delay,color});
+export const lane=(x,y,angle,length,width,{delay=0,color=undefined}={})=>({kind:'lane',x,y,dx:Math.cos(angle),dy:Math.sin(angle),length,width,delay,color});
 
 /** @returns {LaneMark} */
-const crossLane=(x,y,angle,length,width,delay=0)=>lane(
+export const crossLane=(x,y,angle,length,width,delay=0)=>lane(
   x-Math.cos(angle)*length/2,y-Math.sin(angle)*length/2,angle,length,width,{delay}
 );
 
 // Vertices follow the outline of a convex shape in forward/sideways coordinates.
 /** @returns {PolygonMark} */
-const polygon=({x,y},angle,vertices,delay=0,color=undefined)=>{
+export const polygon=({x,y},angle,vertices,delay=0,color=undefined)=>{
   const dx=Math.cos(angle),dy=Math.sin(angle);
   const points=vertices.map(([forward,side])=>({x:x+dx*forward-dy*side,y:y+dy*forward+dx*side}));
   return {kind:'polygon',x,y,points,delay,color};
@@ -25,10 +25,16 @@ const polygon=({x,y},angle,vertices,delay=0,color=undefined)=>{
 export const FOLKLORE_ATLAS='malaysia-folklore';
 export const FOLKLORE_COMPANION_ATLAS='malaysia-folklore-companion';
 export const FOLKLORE_THIRD_ATLAS='malaysia-folklore-third';
+export const FOLKLORE_FOURTH_ATLAS='malaysia-folklore-fourth';
 export const FOLKLORE_IMPACT=.28;
 export const BUNIAN_WAYFARER={
   x:-1095,y:1015,frame:9,name:'Orang bunian wayfarer',
-  greeting:'Orang bunian wayfarer · “Follow this road northeast to the village clearing.”'
+  lines:[
+    'Peace, traveller. Few of your kind can see me. The night must have opened your eyes.',
+    'The ghosts grow bold when a road is empty. Keep moving and they cannot pin you down.',
+    'Follow this road northeast to the village clearing.',
+    'Do not come looking for our village afterwards. It is only there for those we invite.'
+  ]
 };
 
 export const FOLKLORE_GHOSTS={
@@ -156,5 +162,63 @@ export const FOLKLORE_GHOSTS={
       marks:(e,p,a)=>[
         lane(e.x,e.y,a,195,44),
         ...[-1,1].map(side=>polygon(p,a,[[4,side*19],[100,side*88],[72,side*34],[12,side*3]],.52))
-      ]}}
+      ]}},
+  wovenSteed:{name:'Woven Steed',atlas:FOLKLORE_FOURTH_ATLAS,frame:0,size:110,hp:82,spd:89,r:19,dmg:10,xp:7,
+    hint:'Hooves land across your path. Run straight past their row.',folklore:{range:202,windup:.87,damage:14,color:0xf5d280,
+      marks:(e,p,a)=>[-86,0,86].map((side,i)=>{
+        const forward=side*.35;
+        return circle(p.x+Math.cos(a)*forward-Math.sin(a)*side,p.y+Math.sin(a)*forward+Math.cos(a)*side,34,i*.38);
+      })}},
+  lacquerClogs:{name:'Lacquer Clogs',atlas:FOLKLORE_FOURTH_ATLAS,frame:1,size:103,hp:77,spd:85,r:18,dmg:10,xp:6,
+    hint:'The long sole stamps first. Run ahead and leave the heel behind you.',folklore:{range:215,windup:.93,damage:14,color:0xffb594,
+      marks:(e,p,a)=>[
+        polygon(p,a,[[-25,-105],[38,-105],[49,-71],[20,29],[-22,26],[-37,-69]]),
+        polygon(p,a,[[-98,34],[-35,32],[-27,78],[-48,91],[-95,85]],.56)
+      ]}},
+  crossStreetPewter:{name:'Cross Street Pewter',atlas:FOLKLORE_FOURTH_ATLAS,frame:2,size:114,hp:85,spd:69,r:19,dmg:10,xp:7,
+    hint:'Two streams meet and spill ahead. Step across either stream to get clear.',folklore:{range:220,windup:1.03,damage:15,color:0xe9c7ff,
+      marks:(e,p,a)=>[
+        polygon(p,a,[[-118,-92],[-108,-59],[18,13],[-5,-22]]),
+        polygon(p,a,[[-118,92],[-5,22],[18,-13],[-108,59]]),
+        circle(p.x+Math.cos(a)*70,p.y+Math.sin(a)*70,39,.52)
+      ]}},
+  sayongSpill:{name:'Sayong Spill',atlas:FOLKLORE_FOURTH_ATLAS,frame:3,size:105,hp:91,spd:60,r:20,dmg:11,xp:7,
+    hint:'Leave the spill on its shallow side. The runoff spreads to one side only.',folklore:{range:211,windup:.92,damage:14,color:0x9be8ff,
+      marks:(e,p,a)=>[
+        polygon(p,a,[[-83,-23],[21,-29],[49,13],[30,56],[-43,42]]),
+        polygon(p,a,[[20,26],[88,17],[122,52],[90,81],[47,74]],.54)
+      ]}},
+  jettyBanner:{name:'Jetty Banner',atlas:FOLKLORE_FOURTH_ATLAS,frame:4,size:123,hp:78,spd:73,r:18,dmg:10,xp:6,
+    hint:'Slip toward the narrow edge of the cloth. The pole falls along the middle.',folklore:{range:225,windup:1,damage:14,color:0xffcc7c,
+      marks:(e,p,a)=>[
+        polygon(p,a,[[-94,-30],[43,-81],[78,-18],[50,38],[-94,25]]),
+        polygon(p,a,[[-104,-13],[154,-13],[154,13],[-104,13]],.54,0xaff5ef)
+      ]}},
+  twinPeaks:{name:'Twin Peaks',atlas:FOLKLORE_FOURTH_ATLAS,frame:5,size:121,hp:98,spd:55,r:22,dmg:11,xp:8,
+    hint:'The peaks lean across the pass. Run up or down the gap before the rocks fall.',folklore:{range:218,windup:.98,damage:15,color:0xebbeff,
+      marks:(e,p,a)=>[
+        polygon(p,a,[[-138,-66],[-40,-48],[-44,60],[-104,85]]),
+        polygon(p,a,[[38,-50],[144,-72],[112,84],[47,51]]),
+        polygon(p,a,[[-17,-39],[17,-38],[38,4],[14,48],[-20,44],[-34,3]],.55)
+      ]}},
+  candlenutRicochet:{name:'Candlenut Ricochet',atlas:FOLKLORE_FOURTH_ATLAS,frame:6,size:96,hp:82,spd:95,r:18,dmg:10,xp:6,
+    hint:'The nut skips away in a zigzag. Step to the side of the first bounce and let it pass.',folklore:{range:212,windup:.9,damage:14,color:0xffd998,
+      marks:(e,p,a)=>[[0,0,0],[57,-69,.39],[105,28,.78]].map(([forward,side,delay])=>circle(
+        p.x+Math.cos(a)*forward-Math.sin(a)*side,p.y+Math.sin(a)*forward+Math.cos(a)*side,32,delay
+      ))}},
+  brassFoilfish:{name:'Brass Foilfish',atlas:FOLKLORE_FOURTH_ATLAS,frame:7,size:119,hp:90,spd:76,r:19,dmg:10,xp:7,
+    hint:'The tail curls around you. Slip out through the open side toward the fish.',folklore:{range:217,windup:1,damage:15,color:0xffbd83,
+      marks:(e,p,a)=>[
+        polygon(p,a,[[-71,-53],[-38,-84],[49,-54],[21,-29]]),
+        polygon(p,a,[[-26,-28],[49,-54],[72,0],[50,57],[-25,28]]),
+        polygon(p,a,[[-71,57],[21,29],[50,57],[-38,86]])
+      ]}},
+  merbauSpinner:{name:'Merbau Spinner',atlas:FOLKLORE_FOURTH_ATLAS,frame:8,size:103,hp:86,spd:81,r:19,dmg:10,xp:7,
+    hint:'Three slices spin around a fixed pivot. Leave through the unmarked quarter.',folklore:{range:216,windup:.98,damage:14,color:0xaaefbc,
+      marks:(e,p,a)=>{
+        const pivot={x:p.x-Math.cos(a)*54,y:p.y-Math.sin(a)*54};
+        return [0,1,2].map(i=>polygon(
+          pivot,a+i*Math.PI/2,[[21,-14],[112,-76],[129,0],[112,76],[21,14]],i*.46
+        ));
+      }}}
 };

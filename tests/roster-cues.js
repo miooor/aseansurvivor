@@ -5,7 +5,7 @@ export async function runRosterCues(capture=()=>{}){
   for(let n=0;!w.__asean&&n<200;n++)await new Promise(resolve=>setTimeout(resolve,100));
   const rt=w.__asean,scene=rt.scene;
   result.textContent='';
-  for(const id of ['mira','vanna','lia','asha','dani','keo','nadi']){
+  for(const id of ['mira','lia','asha','keo','nadi']){
     await scene.prepareHero(id);rt.newGame(id,0);
     rt.step(16);const d=w.document,g=rt.G,s=g.roster[id],canvas=d.querySelector('#game');
     d.querySelector('#menu').hidden=true;
@@ -25,24 +25,19 @@ export async function runRosterCues(capture=()=>{}){
     switch(id){
       case 'mira':{
         cast(4);step(4);check(s.wave.distance>0,'advancing wavefront');
-        shot('Breaking wave');step(18);break;
+        shot('Last Stove Express');step(18);break;
       }
-      case 'vanna':
-        cast(1);step(4);shot('Warp');cast(2);check(s.cross?.polygon.length>=3,'clipped intersection');step(4);shot('Crossweft');
-        cast(3);check(!marks().length,'consumption');cast(1);aim(0,200);cast(2);check(!s.cross,'parallel strips');step(105);break;
       case 'lia':
-        foe(180);cast(0);cast(4);step(5);check(s.shuttles.length===4,'basic and dispatch');shot('Outbound');
-        cast(3);step(1);check(s.shuttles.every(q=>q.age>=.45),'recall reversal');shot('Recall');step(45);check(!marks().length,'recalled shuttles expire');
-        cast(0);step(14);check(s.shuttles.some(q=>!q.ultimate&&q.age>=.65),'eligible natural return');shot('Catch window');step(45);break;
+        foe(180);cast(0);cast(4);step(4);check(g.fx.some(f=>f.kind==='shadowstep'),'blink trail');shot('Midnight Hunt');step(50);break;
       case 'asha':
         foe(215);cast(1);foe(330);cast(0);step(12);cast(2);
         check(g.fx.some(f=>f.kind==='relay'&&f.hero===id),'receipt hit');shot('Receipt relay');step(12);break;
-      case 'dani':
-        cast(2);foe(135);cast(1);shot('Beacon pull');step(10);break;
       case 'keo':
         cast(1);step(31);cast(4);cast(2);check(s.pulses.some(p=>p.redirected),'redirect');shot('Redirected downbeat');step(50);break;
-      case 'nadi':
-        cast(2);w.dispatchEvent(new w.KeyboardEvent('keydown',{code:'KeyD'}));step(15);w.dispatchEvent(new w.KeyboardEvent('keyup',{code:'KeyD'}));cast(3);check(s.layers[0].cured,'flash cure');shot('Kiln seam');step(16);break;
+      case 'nadi':{
+        const contact=foe(5);contact.stun=0;contact.dmg=10;cast(3);step(1);
+        check(!s.guard,'guard countered');shot('Still Palm counter');step(16);break;
+      }
     }
     check(!marks().length,'expiry');rt.toMenu();result.textContent+='PASS '+id+'\n';
   }

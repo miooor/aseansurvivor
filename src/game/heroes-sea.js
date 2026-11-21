@@ -1,19 +1,20 @@
-import {basicHitDamage, palmCounter, bellReach, floodRadius, teepReach, garudaFeathers, poiseDuration, rainInterval, riverPuppets, stanceDuration, troupeGuards} from './skill-ranks.js';
+import {launchMeleeWave,upgradeBasicShot} from './basic-volley.js';
+import {basicHitDamage, palmCounter, bellReach, floodRadius, kneeReach, garudaFeathers, poiseDuration, rainInterval, basicProjectileCount, stanceDuration, troupeGuards} from './skill-ranks.js';
 export function installHeroes(api){
-const {HEROES,HOOKS,CAST,nearest,each,hit,rm,text,juice,aimDir,combo,ring,TAU,puff,banner,rand,AUTO}=api;
+const {HEROES,HOOKS,CAST,nearest,each,hit,rm,text,juice,aimDir,combo,ring,TAU,puff,banner,rand,random=()=>Math.random(),visualRand=rand,AUTO}=api;
 
 
 /* ---------- Hero data ---------- */
 HEROES.nok={id:'nok',basicDamage:15,name:'Nok',country:'Thailand',role:'Muay Thai bruiser · close range, tough',hp:130,speed:175,ultNeed:55,price:150,
   skills:[
     {key:'',name:'Bell-Ringer',desc:'Auto punches in a short arc at the nearest ghost.',up:'More damage, longer reach.',cd:.55},
-    {key:'Q',name:'Ember Teep',baseDamage:32,damageLabel:'Base kick',desc:'Push kick down a line. The outer reach deals 50% extra damage and briefly stuns ordinary ghosts.',up:'+25% damage, longer kick.',cd:5},
-    {key:'E',name:'Turning Elbow',baseDamage:30,damageLabel:'Base hit',desc:'Sweep nearby ghosts outward. During Wai Khru Poise, draw them inward and stun them to line up a landing.',up:'+25% damage, wider spin.',cd:7},
+    {key:'Q',name:'Ember Flying Knee',baseDamage:54,damageLabel:'Base knee',desc:'Leap forward, striking each ghost in a front arc once. The outer reach deals 50% extra damage and briefly stuns ordinary ghosts.',up:'+25% damage, longer lunge.',cd:5},
+    {key:'E',name:'Turning Elbow',baseDamage:30,damageLabel:'Base hit',desc:'Sweep nearby ghosts outward. Land it within 1.2 s of Ember Flying Knee to ready another knee. During Wai Khru Poise, draw them inward and stun them to line up a landing.',up:'+25% damage, wider spin.',cd:7},
     {key:'F',name:'Wai Khru Poise',desc:'Ritual dance honouring her teachers: +30% damage, 30% less damage taken for 8 s.',up:'Blessing lasts longer.',cd:16},
     {key:'R',name:'Hanuman Skyfall',baseDamage:90,damageLabel:'Base landing',desc:'Ultimate: leap high, untouchable, then crush and stun a big area.',up:'+25% damage, bigger landing.',cd:0,ult:true}]};
 HEROES.lan={id:'lan',basicDamage:9,name:'Cô Lan',country:'Vietnam',role:'Water puppeteer · summoner, slows',hp:100,speed:165,ultNeed:60,price:200,
   skills:[
-    {key:'',name:'River Puppet',desc:'Auto-thrown puppet that flies out and returns, hitting both ways.',up:'More damage, flies farther. Second puppet at rank 4.',cd:.9},
+    {key:'',name:'River Puppet',desc:'Auto-thrown puppet that flies out and returns, hitting both ways.',up:'More damage, flies farther. Extra puppets at ranks 3, 4 and 5.',cd:.9},
     {key:'Q',name:'Dragonwake',baseDamage:36,damageLabel:'Base hit',desc:'A dragon puppet charges in a line, piercing and soaking ghosts.',up:'+25% damage, longer charge.',cd:7},
     {key:'E',name:'Ripple Troupe',baseDamage:11,damageLabel:'Base guard hit',desc:'Three guards fight for 10 s. Guard hits on soaked ghosts splash nearby enemies.',up:'+25% damage. +1 guard at ranks 3 and 5.',cd:14},
     {key:'F',name:'Flood the Stage',baseDamage:14,damageLabel:'Base wave',desc:'Wave of lake water: ghosts are 50% slower for 3 s.',up:'Bigger wave, more damage.',cd:9},
@@ -29,7 +30,7 @@ HEROES.sari={id:'sari',basicDamage:10,name:'Sari',country:'Indonesia',role:'Penc
 // These heroes are now real entries, so drop their placeholder "locked" cards from the menu.
 
 /* ---------- Module state ---------- */
-const fresh=()=>({wai:0,waiMax:8,leap:null,punchN:0,punchT:0,punchA:0,spinT:0,
+const fresh=()=>({knee:null,elbowWindow:0,wai:0,waiMax:8,leap:null,punchN:0,punchT:0,punchA:0,spinT:0,
   allies:[],show:0,showAcc:0,showDmg:0,showGap:.16,
   stance:0,stanceMax:2.5,ctrFn:null,images:[],dashImg:0,dashAcc:0,dashDmg:0,dashR:70,dashFear:false,garuda:null,kickT:0,
   strikes:[],fx:[]});
@@ -46,7 +47,7 @@ function cluster(range){ // ghost with the most neighbours near the player (leap
   return best}
 
 /* Boomerang projectile shared by Lan's puppet and Sari's kris */
-function boomerang(a,o){
+function boomerang(a,rank,o){
   const p=api.G.p,spd=o.spd,pr={x:p.x,y:p.y,vx:Math.cos(a)*spd,vy:Math.sin(a)*spd,ax:Math.cos(a),ay:Math.sin(a),r:o.r,dmg:o.dmg,life:4,pierce:9999,hit:new Set(),
     hitOptions:{slot:0},out:o.out,outMax:o.out,back:false,spin:0,trail:o.trail,kind:api.G.hero.id==='lan'?'puppet':'kris',
     update(q,dt){
@@ -55,46 +56,54 @@ function boomerang(a,o){
       else{const dx=api.G.p.x-q.x,dy=api.G.p.y-q.y,d=Math.hypot(dx,dy)||1;q.bs=Math.min(spd*1.5,(q.bs||spd*.3)+spd*4*dt);q.vx=dx/d*q.bs;q.vy=dy/d*q.bs;if(d<api.G.p.r+12)q.life=0}
       if(q.trail&&Math.random()<.5)api.G.fx.push({x:q.x,y:q.y,vx:0,vy:0,life:.22,max:.22,c:q.trail,size:4})},
     draw:null};
-  api.G.projs.push(pr);return pr}
+  api.G.projs.push(upgradeBasicShot(pr,rank));return pr}
 
 /* Falling strikes shared by Festival of Rain and Garuda at Dusk */
 function strike(e,x,y,o){S.strikes.push({e,x,y,t:o.t||.26,t0:o.t||.26,r:o.r,dmg:o.dmg,kind:o.kind,slow:o.slow||0,seed:Math.random()})}
+
+function sweepKnee(k){
+  const p=k.center;
+  each(p.x,p.y,k.radius,(e,dx,dy)=>{
+    if(k.targets.has(e))return;
+    const forward=dx*k.ax+dy*k.ay,side=Math.abs(dx*k.ay-dy*k.ax);
+    if(forward<0||Math.atan2(side,forward)>k.half||!api.clearLine(p,e,0))return;
+    k.targets.add(e);
+    const outer=(e.x-k.start.x)*k.ax+(e.y-k.start.y)*k.ay>=k.reach*.72;
+    if(!hit(e,k.damage*(outer?1.5:1),{slot:1,kb:[k.ax*340,k.ay*340]}))return;
+    if(outer){
+      if(!e.boss)e.stun=Math.max(e.stun,.45);
+      ring(e.x,e.y,24,'#ffb37d',.32,'tip');
+      if(!k.rang){api.audio.play('nok','tip');k.rang=true}
+    }
+  });
+}
 
 /* ---------- Casts ---------- */
 CAST.nok=[
   r=>{if(S.leap)return false;const p=api.G.p,reach=bellReach(r),t=nearest(p.x,p.y,reach+14);if(!t)return false;
     const a=Math.atan2(t.y-p.y,t.x-p.x),ax=Math.cos(a),ay=Math.sin(a);S.punchN++;
+    launchMeleeWave(api.G,r,a);
     const knee=api.G.evo[0]&&S.punchN%3===0,cross=!knee&&S.punchN%2===0,mul=knee?3:cross?1.35:1,kb=knee?260:cross?170:60;
     each(p.x,p.y,reach,(e,dx,dy)=>{let d=Math.atan2(dy,dx)-a;d=Math.atan2(Math.sin(d),Math.cos(d));if(Math.abs(d)<.85){hit(e,basicHitDamage(api.G.hero,r,api.G.evo[0])*mul,{slot:0,kb:[ax*kb,ay*kb]});if(knee&&!e.boss)e.stun=Math.max(e.stun,.5)}});
     S.punchT=.14;S.punchA=a;sfx({kind:'arc',x:p.x,y:p.y,a,half:.85,r:reach,life:knee?.2:.13,c:knee?'#ffd34d':cross?'#ff6b5a':'#ffe9d6',w:knee?9:cross?7:5});
     if(knee){text(p.x+ax*40,p.y+ay*40-10,'KHAO!','#ffd34d',15);juice(5,.03)}else if(cross)juice(2)},
-  r=>{const p=api.G.p,[ax,ay]=aimDir(),len=teepReach(r,api.G.technique),w=api.G.technique.width;let n=0,edgeContact=false;
-    for(const e of api.G.enemies){
-      if(e.dead)continue;
-      const dx=e.x-p.x,dy=e.y-p.y,t=dx*ax+dy*ay;
-      if(t<-e.r||t>len+e.r||Math.abs(dx*ay-dy*ax)>w+e.r)continue;
-      n++;
-      const tip=t>=len*.72,accepted=hit(e,(tip?48:api.G.hero.skills[1].baseDamage)*rm(r),{kb:[ax*640,ay*640]});
-      if(tip&&accepted){
-        // The leading face of the foot meets the near side of the ghost.
-        const side=dy*ax-dx*ay;
-        const offset=Math.max(-w,Math.min(w,side))-side;
-        const near=Math.sqrt(Math.max(0,e.r*e.r-offset*offset));
-        ring(e.x-ax*near-ay*offset,e.y-ay*near+ax*offset,24,'#ffb37d',.32,'tip');
-        edgeContact=true;
-      }
-      if(tip&&!e.boss)e.stun=Math.max(e.stun,.45);
-    }
-    if(edgeContact)api.audio.play('nok','tip');
-    sfx({kind:'line',x:p.x,y:p.y,a:Math.atan2(ay,ax),len,w,life:.22,c:'#ffb38a'});S.punchT=.2;S.punchA=Math.atan2(ay,ax);p.sq=.8;
+  r=>{
+    if(S.leap)return false;
+    const p=api.G.p,[ax,ay]=aimDir(),reach=kneeReach(r,api.G.technique);
+    const knee={ax,ay,reach,radius:reach*.46,half:api.G.technique.half,elapsed:0,duration:.32,
+      start:{x:p.x,y:p.y},center:{x:p.x,y:p.y},targets:new Set(),rang:false,damage:api.G.hero.skills[1].baseDamage*rm(r)};
+    S.knee=knee;S.elbowWindow=1.2;
+    sweepKnee(knee);
     if(api.G.evo[1])api.G.projs.push({x:p.x+ax*40,y:p.y+ay*40,vx:ax*620,vy:ay*620,r:26,dmg:20*rm(r),life:.75,pierce:9999,hit:new Set(),a:Math.atan2(ay,ax),
       onHit:(q,e)=>{if(!e.boss&&e.type!=='body'){e.kvx+=ax*260;e.kvy+=ay*260}},
       draw:null});
-    juice(n?7:3,n?.05:0);text(p.x+ax*46,p.y+ay*46-12,'TEEP!','#ffb38a',15)},
-  r=>{const p=api.G.p,bl=S.wai>0,R=(96+7*r)*(bl?1.4:1),dmg=api.G.hero.skills[2].baseDamage*rm(r)*(bl?1.5:1);if(bl)combo("Khru's Blessing");
+    p.sq=.65;juice(3)},
+  r=>{if(S.leap)return false;const p=api.G.p,bl=S.wai>0,R=(96+7*r)*(bl?1.4:1),dmg=api.G.hero.skills[2].baseDamage*rm(r)*(bl?1.5:1);if(bl)combo("Khru's Blessing");
     let landed=false;
     each(p.x,p.y,R,(e,dx,dy)=>{const[nx,ny]=norm(dx,dy);const force=bl?-230:230;if(hit(e,dmg,{kb:[nx*force,ny*force]}))landed=true;if(bl&&!e.boss)e.stun=Math.max(e.stun,.7)});
-    if(landed&&api.G.evo[2])api.G.cds[1]=Math.max(0,api.G.cds[1]-2);
+    if(landed&&S.elbowWindow>0){api.G.cds[1]=0;text(p.x,p.y-40,'KNEE READY','#ffce93',15)}
+    else if(landed&&api.G.evo[2])api.G.cds[1]=Math.max(0,api.G.cds[1]-2);
+    S.elbowWindow=0;S.knee=null;
     S.spinT=.28;sfx({kind:'spin',x:p.x,y:p.y,r:R,life:.28,c:bl?'#ffd34d':'#ff8a6b'});ring(p.x,p.y,R,bl?'#ffd34d':'#ff8a6b',.3);juice(bl?10:7,.05)},
   r=>{const p=api.G.p;S.waiMax=S.wai=poiseDuration(r);ring(p.x,p.y,70,'#ffd34d',.6);ring(p.x,p.y,110,'#fff3b0',.8);
     for(let k=0;k<10;k++){const a=k/10*TAU;api.G.fx.push({x:p.x+Math.cos(a)*26,y:p.y+Math.sin(a)*26,vx:Math.cos(a)*20,vy:-50,life:.8,max:.8,c:'rgba(255,221,120,.8)',size:4})}
@@ -103,19 +112,20 @@ CAST.nok=[
     const c=api.G.autoAim?cluster(330):null;
     if(c){tx=c.x;ty=c.y}else{const[ax,ay]=aimDir();tx=p.x+ax*230;ty=p.y+ay*230}
     if(bl)combo("Hanuman's Blessing");
+    S.knee=null;S.elbowWindow=0;
     S.leap={t:0,dur:.45,sx:p.x,sy:p.y,tx,ty,r,bl};p.dash=null;p.vx=p.vy=0;
     puff(p.x,p.y,'#d8c9a8',12,140,4);ring(p.x,p.y,50,'#ffd34d',.3);juice(6);banner('Hanuman Skyfall!',1.5)},
 ];
 
 CAST.lan=[
-  r=>{const p=api.G.p,t=nearest(p.x,p.y,430);if(!t)return false;const base=Math.atan2(t.y-p.y,t.x-p.x),n=riverPuppets(r);
-    for(let k=0;k<n;k++)boomerang(base+(k-(n-1)/2)*.45,{spd:400,out:.42+.02*r,r:11,dmg:basicHitDamage(api.G.hero,r,api.G.evo[0]),trail:'rgba(120,200,255,.5)',draw:null,
+  r=>{const p=api.G.p,t=nearest(p.x,p.y,430);if(!t)return false;const base=Math.atan2(t.y-p.y,t.x-p.x),n=basicProjectileCount('lan',r);
+    for(let k=0;k<n;k++)boomerang(base+(k-(n-1)/2)*.45,r,{spd:400,out:.42+.02*r,r:11,dmg:basicHitDamage(api.G.hero,r,api.G.evo[0]),trail:'rgba(120,200,255,.5)',draw:null,
       onTurn:api.G.evo[0]?q=>{each(q.x,q.y,74,e=>hit(e,13*rm(r),{slot:0}));ring(q.x,q.y,74,'#ffb347',.3);puff(q.x,q.y,'#ffcf70',8,150,3);juice(3)}:null})},
   r=>{const p=api.G.p,[ax,ay]=aimDir(),life=.62+.03*r,evo=!!api.G.evo[1];
     api.G.projs.push({kind:'dragon',x:p.x+ax*10,y:p.y+ay*10,vx:ax*540,vy:ay*540,r:26,dmg:api.G.hero.skills[1].baseDamage*rm(r),life,life0:life,pierce:9999,hit:new Set(),tidal:false,evo,ret:false,ph:0,
       dmgFor:e=>e.slowT>0?2:1,
       onHit:(q,e)=>{if(e.slowT>0&&!q.tidal){q.tidal=true;combo('Tidal Dragon')}e.slowT=Math.max(e.slowT||0,1.5);puff(e.x,e.y,'#8fd6ff',5,130,3);juice(3)},
-      update:(q,dt)=>{q.ph+=dt*16;if(Math.random()<.7)api.G.fx.push({x:q.x+rand(-14,14),y:q.y+rand(-14,14),vx:rand(-40,40),vy:rand(-40,40),life:.35,max:.35,c:'rgba(143,214,255,.6)',size:5});
+      update:(q,dt)=>{q.ph+=dt*16;if(Math.random()<.7)api.G.fx.push({x:q.x+visualRand(-14,14),y:q.y+visualRand(-14,14),vx:visualRand(-40,40),vy:visualRand(-40,40),life:.35,max:.35,c:'rgba(143,214,255,.6)',size:5});
         if(q.evo&&!q.ret&&q.life<.05){q.ret=true;q.vx=-q.vx;q.vy=-q.vy;q.life=q.life0;q.hit.clear();q.tidal=false;ring(q.x,q.y,50,'#ffd34d',.3)}},
       draw:null});
     ring(p.x,p.y,40,'#8fd6ff',.3);juice(6,.04);p.sq=.7},
@@ -135,8 +145,8 @@ CAST.lan=[
 ];
 
 CAST.sari=[
-  r=>{const p=api.G.p,t=nearest(p.x,p.y,400);if(!t)return false;const base=Math.atan2(t.y-p.y,t.x-p.x),n=api.G.evo[0]?2:1;
-    for(let k=0;k<n;k++)boomerang(base+(k-(n-1)/2)*.5,{spd:470,out:.34+.02*r,r:9,dmg:basicHitDamage(api.G.hero,r,api.G.evo[0]),trail:api.G.evo[0]?'rgba(255,211,77,.5)':'rgba(220,230,240,.4)',draw:null})},
+  r=>{const p=api.G.p,t=nearest(p.x,p.y,400);if(!t)return false;const base=Math.atan2(t.y-p.y,t.x-p.x),n=basicProjectileCount('sari',r,api.G.evo[0]);
+    for(let k=0;k<n;k++)boomerang(base+(k-(n-1)/2)*.5,r,{spd:470,out:.34+.02*r,r:9,dmg:basicHitDamage(api.G.hero,r,api.G.evo[0]),trail:api.G.evo[0]?'rgba(255,211,77,.5)':'rgba(220,230,240,.4)',draw:null})},
   r=>{const p=api.G.p,[ax,ay]=aimDir(),a=Math.atan2(ay,ax),st=S.stance>0,R=(122+8*r)*(st?1.15:1),half=st?Math.PI:1.15,dmg=api.G.hero.skills[1].baseDamage*rm(r)*(st?2:1);
     if(st)combo('Bunga Sabit');
     each(p.x,p.y,R,(e,dx,dy)=>{let d=Math.atan2(dy,dx)-a;d=Math.atan2(Math.sin(d),Math.cos(d));if(Math.abs(d)<=half){const[nx,ny]=norm(dx,dy);hit(e,dmg,{kb:[nx*280,ny*280]})}});
@@ -181,7 +191,16 @@ HOOKS.update.push(dt=>{
   for(const f of S.fx)f.life-=dt;if(S.fx.length)S.fx=S.fx.filter(f=>f.life>0);
 
   // Nok
-  if(S.wai>0){S.wai-=dt;if(Math.random()<dt*10)api.G.fx.push({x:p.x+rand(-16,16),y:p.y+10,vx:0,vy:-45,life:.6,max:.6,c:'rgba(255,221,120,.6)',size:3})}
+  S.elbowWindow=Math.max(0,S.elbowWindow-dt);
+  if(S.knee){
+    const k=S.knee,step=Math.min(dt,k.duration-k.elapsed),d=k.reach*.54*step/k.duration;
+    const x=p.x+k.ax*d,y=p.y+k.ay*d;
+    Object.assign(p,api.moveOnMap(p.x,p.y,x,y,p.r));
+    k.elapsed+=step;k.center.x=p.x;k.center.y=p.y;
+    sweepKnee(k);
+    if(k.elapsed>=k.duration||Math.hypot(p.x-x,p.y-y)>.01)S.knee=null;
+  }
+  if(S.wai>0){S.wai-=dt;if(Math.random()<dt*10)api.G.fx.push({x:p.x+visualRand(-16,16),y:p.y+10,vx:0,vy:-45,life:.6,max:.6,c:'rgba(255,221,120,.6)',size:3})}
   if(S.leap){const L=S.leap;L.t+=dt;const k=Math.min(1,L.t/L.dur),s=k*k*(3-2*k);
     p.x=L.sx+(L.tx-L.sx)*s;p.y=L.sy+(L.ty-L.sy)*s;p.vx=p.vy=0;p.dash=null;
     if(k>=1){S.leap=null;const R=(172+9*L.r)*(L.bl?1.3:1),dmg=api.G.hero.skills[4].baseDamage*rm(L.r)*(L.bl?1.5:1);
@@ -213,7 +232,7 @@ HOOKS.update.push(dt=>{
   // Lan: Festival of Rain
   if(S.show>0){S.show-=dt;S.showAcc+=dt;
     while(S.showAcc>=S.showGap){S.showAcc-=S.showGap;const c=onScreen();if(!c.length)break;
-      const e=api.G.boss&&!api.G.boss.dead&&c.includes(api.G.boss)&&Math.random()<.2?api.G.boss:c[Math.random()*c.length|0];
+      const e=api.G.boss&&!api.G.boss.dead&&c.includes(api.G.boss)&&random()<.2?api.G.boss:c[random()*c.length|0];
       strike(e,e.x,e.y,{r:40,dmg:S.showDmg,kind:'puppet',slow:1.2})}}
 
   // Sari
@@ -228,7 +247,7 @@ HOOKS.update.push(dt=>{
   else if(S.ctrFn&&p.onContact===S.ctrFn)p.onContact=null;
   if(S.garuda){const g=S.garuda;g.acc+=dt;
     while(g.n>0&&g.acc>=g.gap){g.acc-=g.gap;g.n--;const c=onScreen();
-      if(c.length){const e=api.G.boss&&!api.G.boss.dead&&c.includes(api.G.boss)&&Math.random()<.3?api.G.boss:c[Math.random()*c.length|0];strike(e,e.x,e.y,{r:66,dmg:g.dmg,kind:'feather',t:.3})}
+      if(c.length){const e=api.G.boss&&!api.G.boss.dead&&c.includes(api.G.boss)&&random()<.3?api.G.boss:c[random()*c.length|0];strike(e,e.x,e.y,{r:66,dmg:g.dmg,kind:'feather',t:.3})}
       else strike(null,p.x+rand(-220,220),p.y+rand(-160,160),{r:66,dmg:g.dmg,kind:'feather',t:.3})}
     if(g.n<=0)S.garuda=null}
 

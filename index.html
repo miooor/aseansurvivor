@@ -22,7 +22,7 @@
     <label for="xpbar">XP</label>
     <progress id="xpbar" aria-label="Experience toward the next level" value="0" max="12"></progress>
   </div>
-  <div id="playerHealth" aria-hidden="true" hidden><div></div></div>
+  <div id="playerHealth" aria-hidden="true" hidden><div></div><span id="shrineBuff" hidden></span></div>
   <div id="objectiveGps" hidden><span class="gps-pointer" aria-hidden="true">➤</span><strong id="gpsVerb"></strong></div>
   <div id="fieldHud">
 <div id="questPrompts">
@@ -33,7 +33,7 @@
   <progress id="eventMeter" hidden aria-labelledby="eventProgress"></progress>
   <div class="quest-offer"><button id="eventStart">Accept quest</button><span id="eventReward"></span></div><button id="eventInteract" hidden></button>
   <details id="eventDetails" hidden><summary>Quest details</summary>
-    <p id="eventBrief"></p><p id="raidRestriction" hidden>Raid entry is unavailable during an event.</p>
+    <p id="eventBrief"></p><p id="raidRestriction" hidden>Finish or abandon this quest to enter the Spirit Rift.</p>
     <button id="eventAbandon" hidden>Abandon event</button>
   </details>
 </section>
@@ -64,24 +64,32 @@
     </div>
   </section>
   </div>
-  <div class="run-clock"><b id="time">0:00</b><span id="goal">Survive until 3:00</span></div>
+  <div class="run-clock"><b id="time">0:00</b><span id="goal">Survive until 3:00</span><span id="veteranRunStatus" hidden></span></div>
   <div class="run-tools">
-    <div class="run-tallies"><span><b id="kills">0</b> Banished</span><span><b id="coinsHud">0</b> Coins</span></div>
+    <div class="run-tallies"><span><b id="kills">0</b> Banished</span><span><b id="coinsHud">0</b> Coins</span><span><b id="dps">0</b> DPS</span></div>
     <button id="equipmentButton" aria-label="Inspect equipment" title="Inspect equipment" hidden>Gear</button>
     <button class="pause-button" id="pauseButton" aria-label="Pause game" title="Pause (Esc)">Ⅱ</button>
   </div>
-  <div id="bossbar" hidden><div class="name">PONTIANAK</div><div id="bosstrack"><div id="bossfill"></div></div></div>
+  <div id="bossbar" hidden><div class="name"><span id="bossName"></span><span id="bossWard" hidden>Ward active</span></div><div id="bosstrack"><div id="bossfill"></div></div></div>
   <div id="banner" role="status"></div>
+  <section id="npcDialogue" class="landmark-prompt" hidden aria-labelledby="npcName">
+    <strong id="npcName"></strong>
+    <p id="npcLine" aria-live="polite"></p>
+    <button id="npcNext" type="button">Next ▸</button>
+  </section>
 </div>
 
 <section id="practiceGuide" aria-labelledby="practiceTitle" hidden>
   <strong id="practiceTitle"></strong>
   <p id="practicePrompt" role="status"></p>
-  <button id="practiceRetry" type="button">Retry</button>
-  <button id="practiceReturn" type="button">Return to picker</button>
+  <div class="practice-actions">
+    <button id="practiceRetry" type="button">Retry</button>
+    <button id="practiceReturn" type="button">Return to picker</button>
+    <label><input id="practiceNoCooldown" type="checkbox">No cooldown</label>
+  </div>
 </section>
 <div id="skills" hidden></div>
-<div id="raidGuide" hidden></div>
+<div id="raidGuide" hidden><span id="riftStatus" role="status"></span><span id="riftCountdown"></span></div>
 <aside id="worldMap" aria-label="Region navigation" hidden></aside>
 
 <main class="ov" id="menu">
@@ -91,15 +99,17 @@
       <div class="menu-tools">
         <button id="openPatchNotes" type="button" aria-haspopup="dialog" aria-controls="patchNotes">Patch notes<span id="lastUpdated"></span></button>
         <button id="openUpgradeShop" type="button" aria-haspopup="dialog"><span>Upgrades</span><span class="menu-coins"><i class="shop-coin" aria-hidden="true"></i> <b id="coinsMenu">0</b><span class="lineup-sr"> coins</span></span></button>
-        <button id="helpButton">Field guide</button>
         <details class="menu-settings">
-          <summary>Settings</summary>
+          <summary><span aria-hidden="true">☰</span> Menu</summary>
           <div class="menu-settings-panel">
+            <button id="helpButton" type="button">Field guide</button>
+            <p class="menu-label">Settings</p>
             <div class="sound-controls"><button type="button" data-sound-mute aria-label="Mute sound effects" aria-pressed="false">Sound on</button><label>Effects volume <input data-sound-volume type="range" min="0" max="100" value="60"></label></div>
           </div>
         </details>
       </div>
     </header>
+    <button class="phone-action" id="pickerDone" type="button">Done</button>
     <div class="campaign-desk">
       <section class="atlas-panel" aria-labelledby="atlasHeading">
         <div id="atlasView"><div id="atlasLabels"></div></div>
@@ -142,39 +152,82 @@
             <button type="button" id="continueExpedition" disabled>Continue expedition</button>
           </div>
           <h2 id="stageTitle" tabindex="-1">Johor</h2>
+          <button class="phone-action" id="changeStage" type="button">Change stage</button>
           <p id="stageInfo"></p>
           <div class="mission-facts"><span>Boss <b id="stageBoss">Raja Toyol</b></span><span>Arrival <b id="stageDuration">3 minutes</b></span><span>Local spirit <b id="stageGuardian">Palm Stalker</b></span></div>
           <div class="mission-destinations"><h3 class="menu-label">Optional destinations</h3><ul id="stageDestinations"></ul></div>
-          <div id="route" aria-label="Playable stages" role="group"></div>
+          <label class="veteran-option" for="veteranChallenge">
+            <input type="checkbox" id="veteranChallenge" aria-labelledby="veteranTitle" aria-describedby="veteranDescription">
+            <span><b id="veteranTitle">Veteran challenge</b><small id="veteranDescription"></small></span>
+            <span id="veteranMedal" hidden>◆ Medal earned</span>
+          </label>
         </section>
         <section class="survivor-sheet" aria-label="Choose your survivor">
           <div class="survivor-picker">
+            <i id="summaryPortrait" aria-hidden="true"></i>
             <h2 class="lineup-heading">Choose a survivor</h2>
+            <button type="button" id="heroPreviewToggle" aria-label="Pause skill preview" title="Pause skill preview" hidden><span aria-hidden="true">Ⅱ</span></button>
             <div id="heroWheel" role="group" aria-label="Survivor lineup" aria-describedby="heroWheelHelp">
               <div id="heroes"></div>
             </div>
             <div class="wheel-controls">
-              <button id="heroPrevious" aria-label="Previous survivor">⬅</button>
+              <button id="heroPrevious" aria-label="Previous survivor" aria-keyshortcuts="A">⬅</button>
               <h3 id="selectedHeroName" aria-live="polite" aria-atomic="true">Ustaz Fadli</h3>
-              <button id="heroNext" aria-label="Next survivor">➡</button>
+              <button id="heroNext" aria-label="Next survivor" aria-keyshortcuts="D">➡</button>
             </div>
             <p id="heroTitle"></p>
             <p class="lineup-stats"><span id="selectedHeroRole"></span><span id="selectedHeroHp"></span></p>
+            <button class="phone-action" id="changeSurvivor" type="button">Change survivor</button>
             <button id="unlockHero" hidden></button>
           </div>
-          <p id="heroWheelHelp" class="lineup-sr">Swipe left or right, scroll, tap a survivor, or use the arrow keys to select.</p>
+          <p id="heroWheelHelp" class="lineup-sr">Press A, D or the arrow keys to choose a survivor. You can also swipe, scroll or tap a survivor.</p>
           <div id="heroSkills" role="group" aria-label="Skill details"></div>
           <p id="menuSkillDescription" hidden></p>
           <p id="heroTrait"></p>
-          <button id="practiceStart" type="button" disabled>Practice signature</button>
         </section>
-        <footer class="mission-launch"><button class="btn" id="start">Enter Johor</button></footer>
+        <footer class="mission-launch"><button id="practiceStart" type="button" title="Practice signature" disabled>Practice</button><button id="allRandom" type="button" aria-pressed="false" title="All random: every stage you enter uses a random survivor you own">Random</button><button class="btn" id="start" aria-keyshortcuts="Space">Enter Johor</button></footer>
       </div>
     </div>
   </div>
   <dialog id="patchNotes" aria-labelledby="patchTitle">
     <header><h2 id="patchTitle">Patch notes</h2><form method="dialog"><button autofocus>Close</button></form></header>
     <ol tabindex="0" aria-label="Patch history">
+      <li><time datetime="2026-11-21T13:46+08:00">21 Nov 2026 · 13:46 MYT</time>
+        <h3>Vanna’s silk familiar and regional rare enemies</h3>
+        <ul>
+          <li>Vanna can summon a silk familiar to intercept shots and weave a square that stuns enemies as they enter.</li>
+          <li>Each stage has four rare foes. Watch for the chasing ember when Arang Bara falls.</li>
+          <li>The Gold Sultan moves faster while his flamethrower spins three times.</li>
+        </ul>
+      </li>
+      <li><time datetime="2026-11-21T04:31+08:00">21 Nov 2026 · 04:31 MYT</time>
+        <h3>Auntie Karen and the overnight combat update</h3>
+        <ul>
+          <li>Auntie Karen has a new look from the survivor wheel to the battlefield. Mark ghosts with Tissue Packet Chope, charge them with a voucher hit, then use Cash Out to collect.</li>
+          <li>Captain “Pag Pag” Garcia banks portions for a healing boilover. The Gold Sultan can keep moving as his flamethrower spins once around him. Move to steer his gold bars. Gold Dust boosts damage and basic firing speed. Make It Rain automatically targets nearby enemies.</li>
+          <li>Lia leaves smoke behind when she uses Shadowstep. Blade Wheel reveals her, and Midnight Hunt chains blink strikes.</li>
+          <li>Kama can ignite his exhaust trail. Nok can land Turning Elbow after a flying knee to ready another knee. Fadli’s Sanctuary and Seruan have new light effects.</li>
+          <li>Basic attack upgrades now add Pierce, Chain, Fork and Return as you rank up. Projectile trails and ground effects show where attacks travel and hit.</li>
+          <li>Walk over a shrine for a 12-second blessing. In Klang, look for the Old Quay Warehouse and dodge the Mooring Wraith’s staggered bolts.</li>
+          <li>Preview casts on the survivor wheel. The lobby fits phone screens more closely, and each stage has its own musical motif alongside new event sounds.</li>
+          <li><a href="./auntie-karen.png">View the illustrated update poster</a></li>
+        </ul>
+      </li>
+      <li><time datetime="2026-11-21T00:46+08:00">21 Nov 2026 · 00:46 MYT</time>
+        <h3>Combat controls and skill effects</h3>
+        <ul>
+          <li>Skills sit along the bottom of the screen. On phones, gear and pause sit below the clock.</li>
+          <li>Basic projectiles travel at hand height. Circular attacks bloom outward, and narrow attacks fill their marked lanes.</li>
+        </ul>
+      </li>
+      <li><time datetime="2026-11-21T00:19+08:00">21 Nov 2026 · 00:19 MYT</time>
+        <h3>New spirits and rematch upgrades</h3>
+        <ul>
+          <li>A fourth regional spirit arrives at 66 seconds in each of the nine campaign stages.</li>
+          <li>After a defeat, upgrade your survivor before the rematch.</li>
+          <li>Hero skills have new painted effects. Rivers now show flowing currents.</li>
+        </ul>
+      </li>
       <li><time datetime="2026-11-20T23:34+08:00">20 Nov 2026 · 23:34 MYT</time>
         <h3>Patch archive</h3>
         <ul>
@@ -188,12 +241,12 @@
         </ul>
       </li>
       <li><time datetime="2026-11-20T23:30:02+08:00">20 Nov 2026 · 23:30 MYT</time>
-        <h3>Spirits, gear and Mira</h3>
+        <h3>Spirits, gear and Captain "Pag Pag" Garcia</h3>
         <ul>
           <li>Nine regional enemies joined the campaign, including Endau Eagle and Songket Moth.</li>
           <li>Elite chests can offer two upgrades for equipped gear.</li>
           <li>Two basic casts charge the Survey Rod for your next skill.</li>
-          <li>Mira can follow Rescue Hook with E within four seconds for a stronger sweep.</li>
+          <li>Captain "Pag Pag" Garcia banks portions with lid throws and timed blocks. A full pot heals him and boils over twice.</li>
         </ul>
       </li>
       <li><time datetime="2026-11-20T23:14:10+08:00">20 Nov 2026 · 23:14 MYT</time>
@@ -266,6 +319,8 @@
   <p class="eyebrow">Field guide</p><h2 id="controlsTitle">Survive the night</h2>
   <p class="sub">Your basic attack fires automatically. Keep moving, gather spirit embers, and build your hero's abilities.</p>
   <dl class="controls-list">
+    <dt>Choose a survivor</dt><dd><kbd>A</kbd> / <kbd>D</kbd> in the lobby</dd>
+    <dt>Start a run</dt><dd><kbd>Space</kbd> in the lobby</dd>
     <dt>Move</dt><dd><kbd>WASD</kbd> / arrow keys</dd>
     <dt>Cast skills</dt><dd><kbd>Q</kbd> <kbd>E</kbd> <kbd>F</kbd></dd>
     <dt>Ultimate</dt><dd><kbd>R</kbd> / <kbd>Space</kbd></dd>
@@ -297,7 +352,16 @@
   <div class="card" style="max-width:520px">
     <p class="eyebrow">A moment of stillness</p><h2 id="pauseTitle">The night can wait</h2>
     <div class="sound-controls"><button type="button" data-sound-mute aria-label="Mute sound effects" aria-pressed="false">Sound on</button><label>Effects volume <input data-sound-volume type="range" min="0" max="100" value="60" aria-label="Effects volume"></label></div><div class="stats" id="pstats"></div>
-    <div class="row"><button class="btn" id="resume">Resume</button><button class="btn alt" id="quit">Quit to menu</button></div>
+    <p class="sub" id="endRunHelp" hidden>End your run to save collected coins. Defeat the stage boss to clear the stage.</p>
+    <div class="row"><button class="btn" id="resume">Resume</button><button class="btn alt" id="pauseGear">Gear</button><button class="btn alt" id="pauseEndRun" type="button" aria-describedby="endRunHelp" hidden>End run</button><button class="btn alt" id="quit">Quit to menu</button></div>
+  </div>
+</div>
+
+<div class="ov" id="bossChoice" role="dialog" aria-modal="true" aria-labelledby="bossChoiceTitle" hidden>
+  <div class="card" style="max-width:520px">
+    <p class="eyebrow">The boss has fallen</p><h2 id="bossChoiceTitle">Stage cleared</h2>
+    <p class="sub">Claim your victory now, or keep fighting in hard mode. Your clear is kept either way.</p>
+    <div class="row"><button class="btn" id="hardModeGo" type="button">Continue in hard mode</button><button class="btn alt" id="claimVictory" type="button">Claim victory</button></div>
   </div>
 </div>
 
@@ -306,7 +370,14 @@
     <p class="eyebrow">Your story continues</p><h2 id="endt" tabindex="-1">Gate sealed</h2>
     <p class="sub" id="ends"></p>
     <div class="stats" id="estats"></div>
-    <div class="row"><button class="btn" id="next" hidden>Next stage</button><button class="btn" id="again">Play again</button><button class="btn alt" id="endShop" disabled>Upgrades</button><button class="btn alt" id="tomenu">Choose hero</button></div>
+    <section id="runRecap" aria-labelledby="runRecapTitle">
+      <h3 id="runRecapTitle">Run recap</h3>
+      <p id="recapMedal" hidden></p>
+      <dl id="recapMetrics"></dl>
+      <details id="recapSources" hidden><summary id="recapSource"></summary><dl id="recapSourceMetrics"></dl></details>
+      <p id="recapSetup"></p>
+    </section>
+    <div class="row"><button class="btn" id="next" hidden>Next stage</button><button class="btn" id="again">Play again</button><button class="btn alt" id="replaySetup" aria-describedby="recapSetup">Replay setup</button><button class="btn alt" id="endShop" disabled>Upgrades</button><button class="btn alt" id="tomenu">Choose hero</button></div>
     <p id="endShopHint" role="status"></p>
   </div>
 </div>

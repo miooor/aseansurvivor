@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="160" viewBox="0 0 256 160">
+  <defs>
+    <radialGradient id="a" cx=".47" cy=".4" r=".57">
+      <stop stop-color="#a7a1c0" stop-opacity=".88"/>
+      <stop offset=".36" stop-color="#726981" stop-opacity=".83"/>
+      <stop offset=".65" stop-color="#393043" stop-opacity=".63"/>
+      <stop offset="1" stop-color="#251f34" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="curl" x="-12%" y="-16%" width="124%" height="132%">
+      <feTurbulence baseFrequency=".027 .039" numOctaves="3" seed="7" result="wisps"/>
+      <feDisplacementMap in="SourceGraphic" in2="wisps" scale="31" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <g fill="url(#a)" filter="url(#curl)">
+    <ellipse cx="131" cy="99" rx="104" ry="45"/>
+    <ellipse cx="69" cy="81" rx="55" ry="33"/>
+    <ellipse cx="109" cy="61" rx="47" ry="41"/>
+    <ellipse cx="169" cy="70" rx="51" ry="36"/>
+    <ellipse cx="203" cy="97" rx="42" ry="30"/>
+  </g>
+</svg>

@@ -1,7 +1,7 @@
-// Unit checks for boss enrage and the night deadline (issue #29). Run: node tests/boss-pacing.mjs
+// Unit checks for boss enrage. Run: node tests/boss-pacing.mjs
 import assert from 'node:assert/strict';
 import {readFileSync, readdirSync} from 'node:fs';
-import {bossPace, BOSS_SPEED_FLOOR, ENRAGE_INTERVAL, ENRAGE_SPEED, ENRAGE_DAMAGE, NIGHT_DEADLINE} from '../src/game/boss-pacing.js';
+import {bossPace, BOSS_SPEED_FLOOR, ENRAGE_INTERVAL, ENRAGE_SPEED, ENRAGE_DAMAGE} from '../src/game/boss-pacing.js';
 
 const boss = {speed: 72, damage: 20};
 const close = (a, b) => assert.ok(Math.abs(a - b) < 1e-9, `${a} ≈ ${b}`);
@@ -28,10 +28,13 @@ for (const [id, heroSpeed] of speeds) {
   assert.ok(bossPace({...boss, heroSpeed, age: 3 * ENRAGE_INTERVAL}).speed >= heroSpeed, id + ' is caught by the third enrage');
 }
 
-// Deadline: expires exactly at the limit, and the countdown never goes negative.
-assert.equal(bossPace({...boss, heroSpeed: 150, age: NIGHT_DEADLINE - .1}).expired, false);
-assert.equal(bossPace({...boss, heroSpeed: 150, age: NIGHT_DEADLINE}).expired, true);
-close(bossPace({...boss, heroSpeed: 150, age: 10}).left, NIGHT_DEADLINE - 10);
-assert.equal(bossPace({...boss, heroSpeed: 150, age: NIGHT_DEADLINE + 50}).left, 0);
+// Enrage continues increasing through and beyond the old five-minute limit.
+for (const enrage of [5, 6, 15]) {
+  assert.deepEqual(bossPace({...boss, heroSpeed: 150, age: enrage * ENRAGE_INTERVAL}), {
+    enrage,
+    speed: 120 * (1 + ENRAGE_SPEED * enrage),
+    damage: 20 * (1 + ENRAGE_DAMAGE * enrage)
+  });
+}
 
 console.log('PASS boss-pacing');

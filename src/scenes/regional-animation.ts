@@ -2,32 +2,42 @@ import {regionalWindup} from '../content/regional-ghosts.js';
 import type {Enemy, Point} from '../game/runtime.js';
 import type {Actor} from './SpriteAssets';
 
-const HOVERING=new Set(['lantern','neon','drifter','kite','ledangGlint','jettyTideback','cengalProw',
+const HOVERING=new Set(['guaKelawar','enggangStormwing','pontianak','penanggal','shade','lantern','neon','drifter','kite','mooring','ledangGlint','jettyTideback','cengalProw',
   'quaysideSamambu','nightDrongo','telagaGoldJar','sevenWellsShard','gelanggiRampart','mayangDrift','marakCrockery']);
+const LOW_STRIDE=new Set(['foam','bakauBelangkas','bubuSnapjaw','becaRevenant','biawakArus']);
 const RELEASE_HOLD=.24;
 const RECOVERY=.18;
 
 // Offsets are rows of poses within one atlas. All frames share a ground pivot.
-export function regionalPose(actor:Actor,baseFrame:number,enemy:Enemy,target:Point,time:number,reduced:boolean,animatedSheet=true){
-  const windup=enemy.windup??0;
+export function regionalPose(actor:Actor,baseFrame:number,enemy:Enemy,target:Point,time:number,reduced:boolean,poseStride=9,paintedWindup=false){
+  const windup=enemy.windup||enemy.slamWind||0;
   const age=time-(enemy.attackAt??-Infinity);
   const charging=(enemy.rush??0)>0;
   const released=age<RELEASE_HOLD||charging;
   const aim=(windup>0||released)&&enemy.attackAngle!==undefined
-    ?Math.cos(enemy.attackAngle):(enemy.objective??target).x-enemy.x;
-  actor.flipX=aim<0;
+    ?Math.cos(enemy.attackAngle):undefined;
+  actor.flipX=aim===undefined?(enemy.faceX??((enemy.objective??target).x<enemy.x)):aim<0;
   actor.originY=.91;
 
   const stride=(enemy.stride??0)/(enemy.type==='sentinel'?18:12);
   const walking=enemy.moving&&!windup&&!released;
-  const frame=baseFrame+(animatedSheet?(released?18:!reduced&&walking&&Math.floor(stride)%2?9:0):0);
+  const frame=baseFrame+(windup&&paintedWindup?2:released?(paintedWindup?3:2):
+    !reduced&&walking&&Math.floor(stride)%2?1:0)*poseStride;
+  if(charging&&enemy.type==='tenggilingRoller'&&enemy.stun<=0){
+    actor.originY=.5;
+    actor.width*=.78;
+    actor.height*=.78;
+    actor.y-=actor.height*.41;
+    if(!reduced)actor.rotation=(actor.flipX?-1:1)*(enemy.stride??0)/25;
+    return frame;
+  }
   if(reduced||enemy.stun>0)return frame;
 
   const facing=actor.flipX?-1:1;
   const hovering=HOVERING.has(enemy.type);
   const idle=Math.sin(time*4+enemy.phase);
   if(windup>0){
-    const coil=1-windup/regionalWindup(enemy.type);
+    const coil=Math.max(0,1-windup/(enemy.castMax??regionalWindup(enemy.type)));
     actor.width*=1+.12*coil;
     actor.height*=1-.20*coil;
     actor.rotation=-facing*.16*coil;
@@ -46,9 +56,13 @@ export function regionalPose(actor:Actor,baseFrame:number,enemy:Enemy,target:Poi
   }else if(hovering){
     actor.y-=5+3*idle;
     actor.rotation=(walking?facing*.06:0)+idle*.045;
+  }else if(enemy.type==='pocong'&&walking){
+    const phase=enemy.boss?enemy.phase*2.5:enemy.phase;
+    actor.y-=Math.max(0,Math.sin(phase))*9;
+    actor.rotation=facing*.07;
   }else if(walking){
     const step=Math.sin(stride*Math.PI);
-    const scuttle=enemy.type==='foam';
+    const scuttle=LOW_STRIDE.has(enemy.type);
     actor.y-=Math.abs(step)*(scuttle?1.5:4);
     actor.rotation=step*(scuttle?.12:.07);
   }else{

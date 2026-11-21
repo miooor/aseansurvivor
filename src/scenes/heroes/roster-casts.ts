@@ -2,7 +2,7 @@ import type {Effect, Point, RunState} from '../../game/runtime.js';
 import type {Knot, SpellRibbons} from '../SpellRibbons';
 
 const turn=2*Math.PI;
-const paper=0xffe4a4, vermilion=0xc73839, brass=0xfab442, jade=0x389f9d, foam=0xabffe4;
+const paper=0xffe4a4, vermilion=0xc73839, brass=0xfab442, oil=0x3a302b, glint=0xffdb77;
 const rose=0xd34a90, silk=0xb0b8ff, reed=0xdc9851, leaf=0x85ed9d, resin=0xa43828, honey=0xffb638;
 
 type Plane=(d:number,w:number,h?:number)=>Knot;
@@ -20,29 +20,14 @@ function slip(b:SpellRibbons,p:Plane,d:number,w:number,h:number,size:number,alph
   b.strip([pt(-2,-4),pt(10,-4)],2*size,0x824323,alpha,false);
   b.strip([pt(-1,3),pt(6,3)],2*size,0x824323,alpha,false);
 }
-function lantern(b:SpellRibbons,x:number,y:number,h:number,size:number,alpha:number){
-  const at=(w:number,z:number):Knot=>[x+w*size,y,h+z*size];
-  face(b,[at(-13,21),at(13,21),at(9,3),at(-9,3)],foam,alpha);
-  face(b,[at(-17,21),at(0,33),at(17,21)],jade,alpha);
-  b.strip([at(-12,3),at(12,3)],4*size,brass,alpha,false);
-  b.strip([at(0,2),at(0,-12)],3*size,jade,alpha,false);
-}
-function shell(b:SpellRibbons,p:Plane,d:number,w:number,h:number,size:number,alpha:number){
-  const tip=p(d+19*size,w,h),tail=p(d-23*size,w,h);
-  for(const side of [-1,1]){
-    face(b,[tip,p(d+6*size,w+10*side*size,h),tail],side<0?honey:resin,alpha);
-  }
-  b.strip([p(d-3*size,w-4*size,h+1),p(d+10*size,w-2*size,h+1)],2*size,paper,alpha,false);
-}
-
 export function drawRosterProjectile(b:SpellRibbons,id:string|undefined,p:Plane,slot:number|undefined){
   switch(id){
     case 'asha':
       slip(b,p,0,0,18,1,1);break;
     case 'dani':
-      face(b,[p(-38,0,14),p(0,-8,14),p(16,0,14),p(0,8,14)],jade,1);
+      face(b,[p(-38,0,14),p(0,-8,14),p(16,0,14),p(0,8,14)],oil,1);
       face(b,[p(-15,0,15),p(1,-5,15),p(16,0,15),p(1,5,15)],paper,1);
-      b.glow(p(8,0,16),12,foam,.9);break;
+      b.glow(p(8,0,16),12,glint,.9);break;
     case 'vanna':
       face(b,[p(-23,0,14),p(-3,-9,14),p(23,0,14),p(-3,9,14)],rose,1);
       for(const d of [-7,0,7])b.strip([p(d-3,-5,16),p(d+1,5,16)],2,paper,1,false);
@@ -53,8 +38,6 @@ export function drawRosterProjectile(b:SpellRibbons,id:string|undefined,p:Plane,
       for(const d of [-8,4])b.strip([p(d,-4,14),p(d,4,14)],2,paper,1,false);
       b.strip([p(6,-9,14),p(13,-5,16),p(16,0,17),p(13,5,16),p(6,9,14)],3,leaf,1,false);break;
     }
-    case 'nadi':
-      shell(b,p,0,0,16,1,1);b.glow(p(-29,-3,14),5,honey,.9);break;
     default:return false;
   }
   return true;
@@ -117,56 +100,6 @@ export function drawRosterCast(b:SpellRibbons,f:Effect,g:RunState,reduced:boolea
       for(const offset of [0,7])b.strip([counter(-10,-6,32+offset),counter(7,-6,32+offset)],1.8,vermilion,alpha,false);
       rim(f,220,brass);break;
     }
-    case 'dani-1':{
-      const end=230*Math.min(1,.22+2*phase);
-      for(const side of [-1,1]){
-        band(u=>at(end*u,side*(5+15*u),8+17*u*u),12,6,jade);
-        face(b,[at(end-43,side*21,6),at(end,side*20,29),at(end,0,9)],foam,alpha*.9);
-      }
-      break;
-    }
-    case 'dani-2':{
-      const r=f.range??100;
-      lantern(b,f.x,f.y,24+25*(1-phase),1.45,alpha);
-      rim(f,r,foam);
-      band(u=>polar(f,r*(.18+.82*phase),u*turn,6),28,5,jade);break;
-    }
-    case 'dani-3':
-      for(let i=0;i<6;i++){
-        const a=i*turn/6,r=38+phase*90;
-        band(u=>polar(f,r-8*Math.sin(Math.PI*u),a+u*.88,7+17*Math.sin(u*Math.PI)),10,7,jade);
-        band(u=>polar(f,r,a+u*.85,9+18*Math.sin(u*Math.PI)),9,3,foam);
-      }
-      break;
-    case 'dani-4':
-      for(let i=0;i<6;i++){
-        const a=i*turn/6,p=polar(f,184,a,0);
-        b.strip([[p[0],p[1],3],[p[0],p[1],40]],4,jade,alpha,false);
-        lantern(b,p[0],p[1],49,1.16,alpha);
-        band(u=>polar(f,184,a+u*turn/6,40-16*Math.sin(Math.PI*u)),12,3,jade);
-      }
-      rim(f,200,foam);break;
-    case 'vanna-3':
-      for(let i=0;i<6;i++){
-        const p=plane(f.x,f.y,i*turn/6);
-        for(const side of [-1,1])band(u=>p((15+88*phase)*u,side*16*Math.sin(Math.PI*u),6+20*Math.sin(Math.PI*u)),12,5,side<0?rose:silk);
-      }
-      break;
-    case 'vanna-4':
-      for(let i=-2;i<=2;i++){
-        const off=i*64,len=Math.sqrt(200*200-off*off);
-        for(const across of [false,true]){
-          const thread=(u:number):Knot=>{
-            const reach=reduced?1:Math.min(1,.12+age*(across?2.5:3.5));
-            const d=(2*u*reach-1)*len;
-            const beat=reduced?0:Math.sin(Math.PI*(age%1))*4;
-            const lift=(8+beat)*Math.cos(d*Math.PI/64+i*Math.PI);
-            return at(across?off:d,across?d:off,11+(across?-lift:lift));
-          };
-          band(thread,20,6,across?silk:rose,.88);
-        }
-      }
-      rim(f,200,rose);break;
     case 'keo-1':
       for(let i=0;i<4;i++){
         const r=35+(i+phase)*51;
@@ -206,48 +139,11 @@ export function drawRosterCast(b:SpellRibbons,f:Effect,g:RunState,reduced:boolea
       }
       break;
     }
-    case 'nadi-1':{
-      const end=260*Math.min(1,.2+phase*2);
-      for(const side of [-1,1]){
-        band(u=>at(end*u,side*11,7+30*u*u),18,7,side>0?resin:honey);
-        face(b,[at(end-35,side*15,8),at(end,side*14,38),at(end,0,19)],side>0?honey:resin,alpha);
-      }
-      break;
-    }
-    case 'nadi-2':{
-      if(f.tx===undefined||f.ty===undefined)break;
-      const pool={x:f.tx,y:f.ty};
-      band(u=>polar(pool,(12+72*u)*(.7+.3*phase),turn*1.6*u,7+17*(1-u)),30,9,resin);
-      band(u=>polar(pool,(15+70*u)*(.7+.3*phase),turn*1.6*u,9+17*(1-u)),30,3,honey);
-      b.glow([pool.x,pool.y,9],36,honey,.6*alpha);break;
-    }
-    case 'nadi-3':
-      for(let i=0;i<7;i++){
-        const a=i*turn/7;
-        band(u=>polar(f,(25+120*phase)*(1-.24*u),a+.52*u,6+33*Math.sin(u*Math.PI)),10,7,resin);
-        band(u=>polar(f,(25+120*phase)*(1-.24*u),a+.52*u,12+33*Math.sin(u*Math.PI)),10,3,honey);
-      }
-      break;
-    case 'nadi-4':{
-      const discs=(g.roster.nadi as {discs:(Point&{radius:number;at:number})[]}).discs;
-      for(const disc of discs){
-        if(Math.abs(disc.at-((f.castAt??g.t-age)+1))>.001)continue;
-        const fall=reduced?.55:Math.min(1,age);
-        const h=12+75*(1-fall*fall);
-        rim(disc,disc.radius,honey);
-        for(let i=0;i<3;i++){
-          const p=plane(disc.x,disc.y,i*turn/3);
-          shell(b,p,disc.radius*.28,0,h,.95,alpha);
-          band(u=>p(10+u*disc.radius*.55,0,5),4,3,resin,.9);
-        }
-      }
-      break;
-    }
   }
 }
 
 export function hasRosterCast(hero:string|undefined){
-  return hero==='asha'||hero==='dani'||hero==='vanna'||hero==='keo'||hero==='nadi';
+  return hero==='asha'||hero==='dani'||hero==='vanna'||hero==='keo';
 }
 
 export function drawRosterContact(b:SpellRibbons,f:Effect,reduced:boolean){
@@ -277,14 +173,12 @@ export function drawRosterContact(b:SpellRibbons,f:Effect,reduced:boolean){
       case 'asha':
         face(b,[p(d-8,w-5),p(d+6,w-4),p(d+9,w+5),p(d-5,w+6)],side<0?highlight:vermilion,fade);break;
       case 'dani':
-        b.strip([p(-7,w*.4),p(d*.5,w,16),p(d,w*1.2,24)],4,side<0?foam:highlight,fade,false);break;
+        b.strip([p(-7,w*.4),p(d*.5,w,16),p(d,w*1.2,24)],4,side<0?glint:highlight,fade,false);break;
       case 'vanna':
         b.strip([p(-d,w*.4),p(-3,-w*.55,16),p(d,w,20)],4,side<0?rose:silk,fade,false);break;
       case 'keo':
         b.strip([p(-8,w*.7),p(0,w*1.2),p(9,w)],3,leaf,fade,false);
         b.strip([p(-4,w*1.35),p(1,w*1.7),p(6,w*1.55)],2,highlight,fade,false);break;
-      case 'nadi':
-        face(b,[p(-4,w*.3),p(d,w,18),p(3,w,13)],side<0?honey:resin,fade);break;
     }
   }
   b.glow(p(0,0,12),12*size,highlight,fade);

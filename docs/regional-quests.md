@@ -7,6 +7,7 @@ Approach a local civilian and choose **Start encounter** in the encounter prompt
 | Johor | Traveller at the abandoned market | Defeat six captors, free the traveller, clear the bridge ambush and accompany them to Market bridge. | Weapon choice |
 | Melaka | Quay clerk at Dataran Bata Merah | Recover the manifest from ghosts at Old River Quay and file it at Stadthuys Steps. | Quay Seal, relic |
 | Kuala Lumpur | Hawker at Medan Selera | Deliver the first packets to Central Market Lane and supper to Monorail Depot. | Tiffin Carrier, charm |
+| Selangor | Harbour clerk at Textile Lane | Collect the ferry ledger, clear the loading court at Old Quay Warehouse and return the ledger. | Harbour Token, relic |
 | Perak | Assayer at Dredge Landing | Pan at Blue Tailings Pond, clear the assay bench at Tanjung Tualang Dredge and weigh the concentrate. | Assayer’s Mallet, weapon |
 | Pulau Pinang | Fisher at Chew Jetty Landing | Accompany the fisher to the winch, lower the gangway if raised, then cross together to Fishing Platform. | Jetty Rope Bracelet, charm |
 | Kedah | Irrigation keeper at Jelapang Granary | Read the gauge at Pintu Air and set the inlet at Irrigation Fields. | Padi Sheaf, charm |

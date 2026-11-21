@@ -3,11 +3,16 @@ export interface MapRect extends MapPoint {id?:string;w:number;h:number;frame?:n
 export interface Gangway extends MapRect {winch:MapPoint;duration:number;radius:number;open:boolean}
 export interface WauLookout extends MapRect {station:MapPoint;radius:number;windup:number;sweep:number;band:number;cooldown:number}
 export interface Landmark extends MapPoint {id:string;name:string;reward:number;featured?:boolean}
+type Landform = ReturnType<typeof import('./regional-landforms.js').buildElevation>['landforms'][number];
 export interface World {
   id:string;name:string;signature:string;landmarks:Landmark[];
   buildings:MapRect[];trees:(MapPoint&{frame:number})[];blockers:MapRect[];
   waters:MapRect[];bridges:MapRect[];rocks:MapRect[];paddies:number[][];roads:number[][][];
   courts:{x:number;y:number;rx:number;ry:number;surface:'earth'|'stone'}[];
+  landforms:Landform[];samples:Float32Array;
+  elevationAt(x:number,y:number):number;
+  projectedDepth(x:number,y:number):number;
+  groundY(x:number,depth:number):number;
   gangway?:Gangway;
   wauLookout?:WauLookout;
   lowerGangway():void;

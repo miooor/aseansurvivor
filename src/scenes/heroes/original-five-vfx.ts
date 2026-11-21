@@ -1,3 +1,4 @@
+import {drawSilatSaka} from '../silat-saka';
 import type {Knot,SpellRibbons} from '../SpellRibbons';
 import type {Effect,RunState} from '../../game/runtime.js';
 
@@ -111,14 +112,24 @@ function dawn(p:Paint,f:Effect,g:RunState,v:number,reduced:boolean){
     case 0:
       p.line([local(f,a,8,-10,22),local(f,a,24,0,28),local(f,a,8,10,22)],3,brass);break;
     case 1:{
-      const end=(f.range||242)*(.28+.72*Math.min(1,v*3)),half=f.half??.62;
-      const count=half>2?18:7;
-      for(let i=0;i<count;i++){
-        const b=a-half+(i+.5)*2*half/count,spread=half/count;
-        const ridge=polar(f,end,b,14);
-        p.face([polar(f,12,b,16),polar(f,end*.84,b-spread,8),ridge],i%2?brass:copper);
-        p.face([polar(f,12,b,16),ridge,polar(f,end*.84,b+spread,8)],glass,.78);
+      // A bright half-disc rises from a thin horizon, facing the camera
+      // independently of the direction that the light travels.
+      const full=(f.half??.62)>=Math.PI;
+      const sun=local(f,a,full?0:74,0,(full?130:31)+35*v);
+      const radius=30+17*Math.sin(Math.PI*v);
+      const limb=(angle:number,scale:number):Knot=>[sun[0]+radius*scale*Math.cos(angle),sun[1],sun[2]+radius*scale*Math.sin(angle)];
+      p.batch.glow(sun,radius*2.15,0xff8c32,.93*p.alpha);
+      for(let i=0;i<20;i++){
+        const left=i*Math.PI/20,right=(i+1)*Math.PI/20;
+        p.face([sun,limb(left,1),limb(right,1)],brass);
+        p.face([sun,limb(left,.85),limb(right,.85)],0xffffe1);
       }
+      for(let i=0;i<9;i++){
+        const angle=(i+.5)*Math.PI/9;
+        const length=1.2+(i%2?.16:.40)*Math.sin(Math.PI*v);
+        p.line([limb(angle,1.06),limb(angle,length)],i%2?2:3,glass,.88);
+      }
+      p.line([limb(Math.PI,1.45),sun,limb(0,1.45)],4.4,ivory);
       break;
     }
     case 2:{
@@ -131,22 +142,25 @@ function dawn(p:Paint,f:Effect,g:RunState,v:number,reduced:boolean){
       }
       break;
     }
-    case 3:{
-      const r=(f.range||200)*(.18+.82*v);
-      p.rim(f,r,brass);lantern(p,[f.x,f.y,58+22*(1-v)],1.35);
-      for(let i=0;i<8;i++){
-        const b=i*TAU/8;
-        p.face([polar(f,r,b-.15,5),polar(f,r,b+.15,5),polar(f,r*.78,b,5)],copper);
-      }
-      break;
-    }
+    case 3:drawSilatSaka(p.batch,f,reduced);break;
     case 4:{
-      const r=215,lift=144+12*Math.min(1,v*12);
+      const age=f.max-f.life;
+      const open=reduced?1:1-Math.pow(1-Math.min(1,age/.55),3);
+      const r=215*(.28+.72*open),lift=55+101*open;
+      const beat=reduced?.5:(age/1.65)%1;
+      // A crest of light climbs each rib from its lantern to the crown.
+      const shine=Math.sin(Math.PI*beat);
       for(let i=0;i<8;i++){
         const b=i*TAU/8,next=b+TAU/8;
         const roof=(u:number,angle:number)=>polar(f,r*(1-.82*u),angle,28+lift*u*u);
         p.sheet(6,u=>roof(u,b),u=>roof(u,next),i%2?brass:copper,.15);
         p.line(knots(10,u=>roof(u,b)),3,glass);
+        const tip=roof(beat,b);
+        p.line(knots(7,u=>roof(Math.max(0,beat-.22*(1-u)),b)),6,ivory,.9*shine);
+        p.batch.glow(tip,12,glass,p.alpha*shine);
+        const ember=reduced?.5:(beat+i*.38196)%1;
+        const light=polar(f,r*(.76+.18*ember),b+.16*ember,22+76*ember);
+        p.cut(light,[[0,7],[3,0],[0,-7],[-3,0]],ivory,Math.sin(Math.PI*ember));
         p.line([roof(0,b),polar(f,r*.96,b+TAU/16,14),roof(0,next)],4,brass);
         lantern(p,polar(f,r,b,22),.75);
       }
@@ -155,31 +169,12 @@ function dawn(p:Paint,f:Effect,g:RunState,v:number,reduced:boolean){
   }
 }
 
-function engine(p:Paint,f:Effect,g:RunState,v:number,t:number){
-  const a=f.slot===2||f.slot===4?Math.atan2(g.p.face[1],g.p.face[0]):f.a||0;
-  const at=(d:number,w:number,h=8)=>local(g.p,a,d,w,h);
+function engine(p:Paint,f:Effect,v:number){
+  const a=f.a||0;
   switch(f.slot){
     case 0:
       for(const s of [-1,1])p.face([local(f,a,9,s*5,20),local(f,a,34,s*16,20),local(f,a,24,s*4,20)],steel);
       break;
-    case 1:{
-      const dx=g.p.x-f.x,dy=g.p.y-f.y,length=Math.hypot(dx,dy);
-      const track=(d:number,w:number)=>local(f,Math.atan2(dy,dx),d,w,4);
-      for(let d=0;d+8<length;d+=19)for(const s of [-1,1]){
-        p.face([track(d,s*3),track(d+6,s*3),track(d+14,s*17),track(d+7,s*17)],iron);
-        p.line([track(d+7,s*17),track(d+14,s*17)],2.7,hot);
-      }
-      break;
-    }
-    case 2:{
-      const flare=85+16*Math.sin(t*9),w=f.w||24;
-      for(const s of [-1,1]){
-        p.face([at(-12,s*5,14),at(-29,s*14,20),at(-33,s*12,9),at(-18,s*4,7)],steel);
-        p.face([at(-27,s*9,13),at(-39,s*w*.8,18),at(-flare,s*w*.64,23),at(-55,s*10,16),at(-65,s*9,9),at(-41,s*5,8)],hot);
-        p.face([at(-30,s*10,13),at(-44,s*15,15),at(-36,s*6,10)],glass);
-      }
-      break;
-    }
     case 3:{
       const r=(f.range||222)*(.12+.88*v);
       for(let i=0;i<10;i++){
@@ -190,14 +185,7 @@ function engine(p:Paint,f:Effect,g:RunState,v:number,t:number){
       }
       break;
     }
-    case 4:
-      for(const s of [-1,1]){
-        const length=150+12*Math.sin(t*5);
-        p.face([at(8,s*13,9),at(-42,s*44,16),at(-length,s*56,19),at(-62,s*25,14)],iron);
-        p.face([at(-15,s*24,12),at(-42,s*39,18),at(-length,s*56,19)],cyan);
-        p.line([at(-40,s*22,13),at(-86,s*31,15),at(-130,s*31,15)],3,hot);
-      }
-      break;
+
   }
 }
 
@@ -212,12 +200,25 @@ function boxing(p:Paint,f:Effect,g:RunState,v:number,t:number,age:number,reduced
       break;
     }
     case 1:{
-      const d=(f.range||227)*(.45+.55*Math.min(1,v*3)),w=f.w||30;
-      const foot=(x:number,s:number,h:number)=>at(d*x,w*s,h);
-      p.face([foot(.08,-.18,18),foot(.72,-.5,28),foot(.85,.36,21),foot(.12,.16,14)],wrap);
-      p.face([foot(.70,-.52,28),foot(.86,-.65,35),foot(.96,-.52,39),foot(1,-.18,36),foot(.98,.29,25),foot(.85,.56,18),foot(.76,.39,19)],linen);
-      p.line([foot(.80,.30,20),foot(.86,.51,19),foot(.98,.28,25),foot(1,-.16,36)],3,copper);
-      for(let i=0;i<4;i++)p.line([foot(.40+i*.085,-.40,25),foot(.32+i*.085,.26,17)],3,ivory);
+      const center=f.cross??f,r=f.range??104,half=f.half??Math.PI/3;
+      const lift=reduced?24:12+40*Math.sin(Math.min(1,age/.32)*Math.PI);
+      const crest=(u:number,inner:boolean)=>{
+        const arch=Math.sin(Math.PI*u);
+        return polar(center,r*(inner?1-.23*arch:1),a+half*(2*u-1),8+arch*(inner?lift+19:lift));
+      };
+      p.sheet(28,u=>crest(u,false),u=>crest(u,true),hot,.82);
+      p.line(knots(28,u=>crest(u,true)),4,ivory);
+      for(let i=0;i<9;i++){
+        const u=(i+.5)/9,b=a+half*(2*u-1),h=crest(u,false)[2];
+        p.face([polar(center,r*.93,b-.045,h),polar(center,r,b,h+10+18*Math.sin(i*2.7)**2),polar(center,r*.89,b+.04,h-7)],brass);
+      }
+      for(const side of [-1,1]){
+        p.line(knots(12,u=>[
+          f.x+(center.x-f.x)*u-Math.sin(a)*side*16,
+          f.y+(center.y-f.y)*u+Math.cos(a)*side*16,
+          6+(lift+10)*u*u
+        ]),3,linen,.72);
+      }
       break;
     }
     case 2:{
@@ -227,6 +228,10 @@ function boxing(p:Paint,f:Effect,g:RunState,v:number,t:number,age:number,reduced
         const edge=(u:number,out:boolean)=>polar(f,r*(out?1:.72+.27*u),b+u*2.2,9+28*u);
         p.sheet(12,u=>edge(u,true),u=>edge(u,false),pull?brass:wrap);
         p.line(knots(12,u=>edge(u,true)),3,linen);
+        // Fold the leading elbow up into a hooked ridge at shoulder height.
+        const ridge=polar(f,r*.9,b+2.2,54);
+        p.face([edge(.64,true),edge(1,true),ridge],pull?linen:brass);
+        p.face([edge(.64,false),ridge,edge(1,false)],pull?brass:copper);
         for(const u of [.15,.28,.41])p.line([edge(u,false),edge(u+.06,true)],2,ivory);
       }
       break;
@@ -374,7 +379,7 @@ export function drawOriginalCast(batch:SpellRibbons,f:Effect,g:RunState,reduced:
   const p=new Paint(batch,Math.min(1,.7+age*6,f.life/.12));
   switch(f.hero){
     case 'ustaz':dawn(p,f,g,v,reduced);break;
-    case 'rempit':engine(p,f,g,v,t);break;
+    case 'rempit':engine(p,f,v);break;
     case 'nok':boxing(p,f,g,v,t,age,reduced);break;
     case 'lan':theatre(p,f,g,v,t);break;
     case 'sari':silat(p,f,g,v,t);break;

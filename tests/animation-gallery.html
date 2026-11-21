@@ -9,7 +9,7 @@ body{margin:0;padding:32px;background:#102024;color:#eee9dc;font:16px system-ui}
 <div class="roster" id="roster"></div><output id="frame"></output>
 <script type="module">
 import {heroArt} from '../src/content/hero-art.js';
-const heroes=['ustaz','rempit','nok','lan','sari','asha','mira','dani','vanna','keo','nadi','lia'],names=['Fadli','Kama','Nok','Lan','Sari','Asha','Mira','Dani','Vanna','Keo','Nadi','Lia Soares'];
+const heroes=['ustaz','rempit','nok','lan','sari','asha','mira','dani','vanna','keo','nadi','lia'],names=['Fadli','Kama','Nok','Lan','Sari','Auntie Karen','Captain "Pag Pag" Garcia','The Gold Sultan','Vanna','Keo','Nadi','Lia Soares'];
 const roster=document.querySelector('#roster'),direction=document.querySelector('#direction'),cycle=document.querySelector('#cycle'),pause=document.querySelector('#pause');
 for(const [i,id]of heroes.entries()){const card=document.createElement('section');card.className='card';card.innerHTML=`<h2>${names[i]}</h2><div class="actor" role="img" aria-label="${names[i]} animation" style="background-image:url('${heroArt[id].motion}')"></div>`;roster.append(card)}
 let frame=0,playing=true;

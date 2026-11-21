@@ -1,20 +1,30 @@
+import {drawGoldSultanEffects} from './heroes/dani';
 import * as THREE from 'three';
 import type {Actor, SpriteAssets} from './SpriteAssets';
-import {buildScenery} from './ScenerySprites';
+import {buildScenery,type SceneryActor} from './ScenerySprites';
+import {StageAtmosphere} from './StageAtmosphere';
 import {BattleMarks} from './BattleMarks';
 import {BattleLabels} from './BattleLabels';
 import type {RunState} from '../game/runtime.js';
 import {HALF,WORLD_SIZE} from '../content/world.js';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
-import {citySurface,groundMaterial,materialTile,paintedClearing,paintedTrail} from './terrain-paint';
-import {STAGES} from '../content/core.js';
+import {groundMaterial,MIRRORED_TERRAIN,paintedApron,paintedClearing,paintedTrail,TERRAIN_LOOKS} from './terrain-paint';
 import {SpellRibbons,GROUND_DEPTH} from './SpellRibbons';
+import {drawVannaWeave} from './heroes/vanna';
 import {drawCast,drawCombatTrails,drawImpact,drawGroundSkills} from './three-skill-effects';
 import {AtlasActors} from './AtlasActors';
 import {drawRosterCues} from './RosterCues';
+import {drawSkillVolumes} from './skill-volumes';
+import type {PaintedSprite} from './painted-effects';
+import {drawSkillLight} from './skill-light';
+import {drawShrineBeacons} from './ShrineBeacons';
+import {drawExhaustPatches,drawWheelieFire,type ExhaustOutlet} from './bike-exhaust';
 import {SignatureFeedback} from './SignatureFeedback';
 import {WauKite} from './WauLookout';
 import {roadWidth} from '../content/road-layout.js';
+import {channelUnderBridge,riverPatch,riverSurface} from './RiverSurface';
+import {ELEVATION_SPACING,ELEVATION_STRIDE,TERRACE_STEPS} from '../content/regional-landforms.js';
+import {STAGE_SCENES} from '../content/stage-scenes';
 
 const DEPTH=GROUND_DEPTH;
 
@@ -30,14 +40,19 @@ export class RegionWorld{
   private sunDirection=new THREE.Vector3(-4,8,5);
   readonly actors=new AtlasActors(this.sunDirection);
   private ribbons=new SpellRibbons();
+  private tailpipe=new SpellRibbons();
+  private skillLight=new SpellRibbons(true);
   private signatures=new SignatureFeedback();
   private region='';
+  private elevationAt:(x:number,y:number)=>number=()=>0;
+  private heightMap?:THREE.DataTexture;
   readonly floor=new BattleMarks(12,12);
   readonly effects=new BattleMarks(74,24);
   readonly labels=new BattleLabels();
-  scenery:Actor[]=[];
+  scenery:SceneryActor[]=[];
+  private atmosphere?:StageAtmosphere;
   private background=new THREE.Color();
-  private waterMap?:THREE.Texture;
+  private river?:THREE.ShaderMaterial;
   private gangwayHinge?:THREE.Group;
   private wau?:WauKite;
   private motion=matchMedia('(prefers-reduced-motion: reduce)');
@@ -52,63 +67,113 @@ export class RegionWorld{
     if(this.region===world.id)return;
     this.clearTerrain();
     this.region=world.id;
+    this.elevationAt=world.elevationAt;
+    this.floor.elevationAt=this.effects.elevationAt=this.labels.elevationAt=world.elevationAt;
+    this.ribbons.elevationAt=this.tailpipe.elevationAt=this.skillLight.elevationAt=world.elevationAt;
+    this.heightMap=new THREE.DataTexture(world.samples,ELEVATION_STRIDE,ELEVATION_STRIDE,THREE.RedFormat,THREE.FloatType);
+    this.heightMap.needsUpdate=true;
+    this.actors.heightMap.value=this.heightMap;
     this.renderer.domElement.dataset.region=world.id;
     this.background.setHex(world.id==='kl'?0x182137:0x426a50);
     this.scene.background=this.background;
     this.scene.add(new THREE.HemisphereLight(0xfff6de,0xb6bbb0,1.85));
     const sun=new THREE.DirectionalLight(0xffe2b6,1.6);sun.position.copy(this.sunDirection);this.scene.add(sun);
-    const index=STAGES.findIndex(stage=>stage.id===world.id);
-    const materialSheet=this.assets.image('terrain-materials');
-    const tile=(i:number)=>this.texture(materialTile(materialSheet,i,2));
-    const baseMat=groundMaterial(this.texture(materialTile(this.assets.image('malaysia-ground'),index,3)));
-    const stone=tile(0),earth=tile(1),wood=tile(2);
+    const tiles=new Map<string,THREE.Texture>();
+    const tile=(id:string)=>{
+      const cached=tiles.get(id);
+      if(cached)return cached;
+      const texture=this.texture(this.assets.image(id));
+      texture.name=id;
+      if(!MIRRORED_TERRAIN.has(id))texture.wrapS=texture.wrapT=THREE.RepeatWrapping;
+      tiles.set(id,texture);
+      return texture;
+    };
+    const look=TERRAIN_LOOKS[world.id];
+    const city=world.id==='kl';
+    const klang=world.id==='selangor';
+    const brick=klang||world.id==='melaka';
+    const stone=tile(look.paving),earth=tile(look.path),wood=tile('harbour-timber');
+    const detail=tile('ground-detail');
+    detail.colorSpace=THREE.NoColorSpace; // Packed material data, sampled as linear values.
+    const baseMat=groundMaterial(detail,look.ground.map(tile));
     const painted=(map:THREE.Texture,color:number)=>new THREE.MeshBasicMaterial({
       map,color,transparent:true,depthWrite:false,vertexColors:true
     });
     const pavingMat=new THREE.MeshBasicMaterial({map:stone});
     const deckMat=new THREE.MeshBasicMaterial({map:wood,color:0xc7b08e});
-    const city=world.id==='kl';
-    const concrete=city?this.texture(citySurface('concrete')):null;
-    const stonePath=concrete?painted(concrete,0xe5e7ed):painted(stone,0xefe0cc);
+    const stonePath=painted(stone,city?0xe5e7ed:0xefe0cc);
     const earthPath=painted(earth,world.id==='pahang'?0xb5ba9b:0xd4c1a0);
-    const asphalt=city?painted(this.texture(citySurface('asphalt')),0xffffff):null;
-    const ground=(geometry:THREE.BufferGeometry,material:THREE.Material,x:number,y:number,lift:number,tileSize=340)=>{
+    const shoulder=painted(tile(look.shoulder),0xc4b7a3);
+    const workTimber=painted(wood,0xb1a28d);
+    const asphalt=city?painted(earth,0xffffff):null;
+    const ground=(geometry:THREE.BufferGeometry,material:THREE.Material,x:number,y:number,lift:number,tileSize=340,paint=false)=>{
       geometry.rotateX(-Math.PI/2);
       const pos=geometry.getAttribute('position'),uv=geometry.getAttribute('uv');
-      for(let i=0;i<pos.count;i++)uv.setXY(i,(x+pos.getX(i))/tileSize,(y+pos.getZ(i))/tileSize);
+      for(let i=0;i<pos.count;i++){
+        const px=x+pos.getX(i),py=y+pos.getZ(i);
+        uv.setXY(i,px/tileSize,py/tileSize);
+        const elevation=this.elevationAt(px,py);
+        // Bias paint toward the camera to avoid clipping between differently tessellated surfaces.
+        const bias=paint?Math.min(7,elevation*.5):0;
+        pos.setY(i,elevation+bias);
+        pos.setZ(i,pos.getZ(i)+bias/DEPTH);
+      }
+      if(material instanceof THREE.MeshStandardMaterial)geometry.computeVertexNormals();
       const mesh=new THREE.Mesh(geometry,material);mesh.scale.z=DEPTH;
       mesh.position.set(x,lift,y*DEPTH);this.scene.add(mesh);return mesh;
     };
-    const margin=WORLD_SIZE+3100;
-    ground(new THREE.PlaneGeometry(margin,margin),baseMat,0,0,0,world.urban?580:940);
-    if(concrete)ground(paintedClearing(2800,2490),painted(concrete,0x8c929a),0,-115,.36,300);
+    const margin=WORLD_SIZE+3200,segments=margin/ELEVATION_SPACING;
+    ground(new THREE.PlaneGeometry(margin,margin,segments,segments),
+      baseMat,0,0,0,world.urban?375:440).name='regional-ground';
     for(const edge of [-HALF,HALF]){
       this.box(0,edge,2,WORLD_SIZE,5,16,0x695b47);
       this.box(edge,0,2,16,5,WORLD_SIZE,0x695b47);
     }
     for(const {x,y,rx,ry,surface} of world.courts){
-      const mesh=ground(paintedClearing(rx,ry),surface==='stone'?stonePath:earthPath,x,y,.62,360);
-      mesh.renderOrder=0;
+      if(surface==='stone')ground(paintedApron(rx*2+58,ry*2+58),shoulder,x,y,.58,270,true).renderOrder=-.1;
+      ground(paintedApron(rx*2,ry*2),surface==='stone'?stonePath:earthPath,x,y,.62,360,true);
     }
     for(const b of world.buildings){
       if(world.bridges.some(deck=>b.x>=deck.x&&b.x+b.w<=deck.x+deck.w&&b.y>=deck.y&&b.y+b.h<=deck.y+deck.h))continue;
-      const surface=world.urban?stonePath:earthPath;
-      const pad=paintedClearing(b.w*.67,b.h*.69);
-      ground(pad,surface,b.x+b.w/2,b.y+b.h*.58,.75,305).renderOrder=0;
+      const paved=city||b.id==='featured-landmark'||b.id?.startsWith('textile-shops');
+      const pad=paintedApron(b.w*1.26,b.h*1.34);
+      ground(pad,paved?stonePath:shoulder,b.x+b.w/2,b.y+b.h*.64,.75,paved?360:270,true);
+    }
+    for(const site of STAGE_SCENES[world.id]){
+      if(!site.apron)continue;
+      const [dx,dy,width,depth,surface]=site.apron;
+      const material=surface==='timber'?workTimber:earthPath;
+      ground(paintedApron(width,depth),material,site.x+dx,site.y+dy,.85,240,true).renderOrder=.85;
     }
     for(const [p,path] of world.roads.entries()){
-      const material=world.urban||p===0&&world.id==='johor'?stonePath:earthPath;
       const width=roadWidth(world,p);
       for(let i=1;i<path.length;i++){
         const [x,y]=path[i-1],[xx,yy]=path[i],dx=xx-x,dy=yy-y;
+        const paved=world.urban||world.id==='johor'&&(p===0||world.courts.some(court=>
+          court.surface==='stone'&&court.x===xx&&court.y===yy));
+        const material=paved?stonePath:earthPath;
         const length=Math.hypot(dx,dy),angle=-Math.atan2(dy,dx);
-        const lane=(breadth:number,mat:THREE.Material,lift:number)=>{
-          const tileSize=city?152:360;
-          ground(paintedTrail(length,breadth,city?.95:.78).rotateZ(angle),mat,(x+xx)/2,(y+yy)/2,lift,tileSize).renderOrder=lift;
-          ground(paintedClearing(breadth/2,breadth/2),mat,xx,yy,lift,tileSize).renderOrder=lift;
+        const lane=(breadth:number,mat:THREE.Material,lift:number,tileSize:number,order=lift)=>{
+          const edge=city?.95:paved?.9:.82;
+          ground(paintedTrail(length,breadth,edge).rotateZ(angle),mat,(x+xx)/2,(y+yy)/2,lift,tileSize,true).renderOrder=order;
+          ground(paintedClearing(breadth/2,breadth/2),mat,xx,yy,lift,tileSize,true).renderOrder=order;
         };
-        lane(width,material,1);
-        if(asphalt)lane(width-68,asphalt,2);
+        lane(width+(paved?42:34),shoulder,.56,270,-.2);
+        lane(width,material,1,360);
+        if(asphalt)lane(width-68,asphalt,2,330);
+      }
+    }
+    const steps=TERRACE_STEPS[world.id as keyof typeof TERRACE_STEPS];
+    if(steps){
+      const {x,start,end,width,stone,edge}=steps;
+      const tread=new THREE.MeshBasicMaterial({map:tile(look.paving),color:stone});
+      const nosing=new THREE.MeshBasicMaterial({map:tile(look.paving),color:edge});
+      const riser=new THREE.MeshBasicMaterial({map:tile(look.paving),color:0x685d50});
+      for(let y=start;y<end;y+=29){
+        const segments=Math.ceil(width/25);
+        ground(new THREE.PlaneGeometry(width,23,segments),tread,x,y,3,164,true);
+        ground(new THREE.PlaneGeometry(width+5,3,segments),nosing,x,y+12,4,164,true);
+        ground(new THREE.PlaneGeometry(width,6,segments),riser,x,y+15,3,164,true);
       }
     }
     if(city)this.cityStreets(world);
@@ -125,19 +190,43 @@ export class RegionWorld{
         ground(geom,this.material(i%2?0xb99b72:0x7c9a88),0,0,5.3);
       }
     }
-    this.waterMap=world.waters.length?tile(3):undefined;
-    const waterTint=new THREE.Color(0xe3eee8).lerp(new THREE.Color(world.water),.42);
-    const waterMat=this.waterMap?new THREE.MeshBasicMaterial({map:this.waterMap,color:waterTint}):null;
-    for(const w of world.waters){
-      this.box(w.x+w.w/2,w.y+w.h/2,1,w.w+20,2,w.h+20,world.urban?0x735343:0x5e664d);
-      ground(new THREE.PlaneGeometry(w.w,w.h),waterMat!,w.x+w.w/2,w.y+w.h/2,3.5,590);
+    const crossings=world.bridges.map(b=>({b,alongX:b.axis?b.axis==='x':b.w>b.h}));
+    if(world.waters.length){
+      const map=this.texture(this.assets.image('river-current'));
+      this.river=riverSurface(map,world.water,world.id==='kedah'||world.id==='kelantan');
+      const waters=[...world.waters,...crossings.flatMap(({b,alongX})=>channelUnderBridge(b,alongX,world.waters))];
+      for(const water of waters)this.scene.add(riverPatch(water,waters,this.river));
     }
-    for(const b of world.bridges){
-      const alongX=b.axis?b.axis==='x':b.w>b.h,run=alongX?b.w:b.h,cross=alongX?b.h:b.w;
+    let timber:THREE.MeshBasicMaterial|undefined;
+    let timberShadow:THREE.MeshBasicMaterial|undefined;
+    const paved=brick||world.id==='kelantan'||world.id==='kedah';
+    for(const {b,alongX} of crossings){
+      const run=alongX?b.w:b.h,cross=alongX?b.h:b.w;
+      if(!paved&&run<=cross*3){
+        if(!timber){
+          const map=this.texture(this.assets.image('kampung-timber-bridge'));
+          map.wrapS=map.wrapT=THREE.ClampToEdgeWrapping;
+          timber=new THREE.MeshBasicMaterial({map,alphaTest:.45});
+          timberShadow=new THREE.MeshBasicMaterial({map,color:0x16140d,transparent:true,opacity:.28,depthWrite:false});
+        }
+        // The posts extend past the deck in the illustration.
+        const width=alongX?b.w:b.w*1.16,depth=alongX?b.h*1.16:b.h;
+        const geometry=new THREE.PlaneGeometry(width,depth*DEPTH).rotateX(-Math.PI/2);
+        if(!alongX){
+          const uv=geometry.getAttribute('uv');
+          for(let i=0;i<uv.count;i++)uv.setXY(i,1-uv.getY(i),uv.getX(i));
+        }
+        const deck=new THREE.Mesh(geometry,timber);
+        deck.position.set(b.x+b.w/2,10,(b.y+b.h/2)*DEPTH);
+        const shadow=new THREE.Mesh(geometry,timberShadow);
+        shadow.position.set(deck.position.x+6,4.5,deck.position.z+10);
+        shadow.renderOrder=4;
+        this.scene.add(deck,shadow);
+        continue;
+      }
       const at=(u:number,v:number,w:number,d:number,h:number,tall:number,c:number)=>{
         this.box(b.x+(alongX?u:v),b.y+(alongX?v:u),h,alongX?w:d,tall,alongX?d:w,c);
       };
-      const paved=world.id==='melaka'||world.id==='kelantan'||world.id==='kedah';
       const deck=ground(new THREE.PlaneGeometry(b.w,b.h),paved?pavingMat:deckMat,
         b.x+b.w/2,b.y+b.h/2,10,paved?360:390);
       if(!paved&&alongX){
@@ -168,23 +257,12 @@ export class RegionWorld{
     }
     if(world.wauLookout){
       this.wau=new WauKite(world.wauLookout);
+      const {position}=this.wau.group;
+      position.y=this.elevationAt(position.x,position.z/DEPTH);
       this.scene.add(this.wau.group);
     }
     this.buildPaddies(world);
     if(world.id==='johor'){
-      // Market bunting hangs from the front posts of the two northern houses.
-      const start=new THREE.Vector3(-346,115,-310*DEPTH);
-      const end=new THREE.Vector3(358,115,-280*DEPTH);
-      const point=(t:number)=>start.clone().lerp(end,t).add(new THREE.Vector3(0,-26*Math.sin(Math.PI*t),0));
-      const curve=new THREE.CatmullRomCurve3(Array.from({length:17},(_,i)=>point(i/16)));
-      this.scene.add(new THREE.Mesh(new THREE.TubeGeometry(curve,32,1,4,false),this.material(0x746044)));
-      for(let i=0;i<26;i++){
-        const p=point((i+.5)/26);
-        const flag=new THREE.BufferGeometry();
-        flag.setAttribute('position',new THREE.Float32BufferAttribute([-9,0,0,1,-15,1.8,9,0,0],3));flag.computeVertexNormals();
-        const mesh=new THREE.Mesh(flag,this.material([0xc56e53,0xe1ad63,0x62998b,0xd39b83][i%4]));
-        mesh.position.copy(p);this.scene.add(mesh);
-      }
       // Mossy planting beds edging the square, with paired ceramic pots and blossoms.
       for(let i=0;i<12;i++){
         const a=i*Math.PI/6;
@@ -199,13 +277,16 @@ export class RegionWorld{
         }
       }
     }
-    for(const material of [deckMat,pavingMat,stonePath,earthPath]){
+    for(const material of [deckMat,pavingMat,stonePath,earthPath,shoulder,workTimber]){
       if(!this.scene.children.some(o=>o instanceof THREE.Mesh&&o.material===material))material.dispose();
     }
     this.scenery=buildScenery(world,this.assets);
+    this.atmosphere=new StageAtmosphere(world,this.scenery);
+    this.scene.add(this.atmosphere.group);
     this.buildArena(arena);
     this.batchTerrain();
-    this.scene.add(this.ribbons.mesh,this.actors.group,this.labels.group,this.floor.mesh,this.effects.mesh);
+    this.tailpipe.mesh.renderOrder=19; // Behind the rider and above the road.
+    this.scene.add(this.ribbons.mesh,this.tailpipe.mesh,this.skillLight.mesh,this.actors.group,this.labels.group,this.floor.mesh,this.effects.mesh);
   }
   private cityStreets(world:RunState['world']){
     // Mark the two avenues and the crossings that join their side streets.
@@ -234,7 +315,7 @@ export class RegionWorld{
       this.box(x,y-14,105,9,5,34,steel);
       this.box(x,y-29,103,16,10,13,glow);
       const pool=new THREE.Mesh(lightPool,lampLight);
-      pool.position.set(x,2.8,(y-24)*DEPTH);pool.scale.z=DEPTH;pool.renderOrder=3;
+      pool.position.set(x,2.8+this.elevationAt(x,y-24),(y-24)*DEPTH);pool.scale.z=DEPTH;pool.renderOrder=3;
       this.scene.add(pool);
     }
     for(const [x,y] of [[-226,-221],[237,211],[-1042,-211],[970,207],[1390,178],[1640,-172],[-384,831]]){
@@ -244,7 +325,8 @@ export class RegionWorld{
       for(let i=-2;i<=2;i++){
         const hedge=new THREE.Mesh(new THREE.IcosahedronGeometry(12,0),this.material(i%2?0x61745c:0x415d50));
         hedge.scale.set(1,1+(i%2)*.2,.8);
-        hedge.position.set(x+i*11,23,(y+(i%2)*7)*DEPTH);this.scene.add(hedge);
+        const px=x+i*11,py=y+(i%2)*7;
+        hedge.position.set(px,23+this.elevationAt(px,py),py*DEPTH);this.scene.add(hedge);
       }
     }
   }
@@ -258,10 +340,14 @@ export class RegionWorld{
         if(!world.clearOfRoads({x:px,y:py,w:width,h:height},10)||
           world.blockers.some(w=>px+width>w.x&&px<w.x+w.w&&py+height>w.y&&py<w.y+w.h))continue;
         material??=new THREE.MeshBasicMaterial({map:this.texture(this.assets.image('rice-paddies')),alphaTest:.45});
-        const bed=new THREE.PlaneGeometry(width,height*DEPTH);
+        const bed=new THREE.PlaneGeometry(width,height*DEPTH,10,9);
         const uv=bed.getAttribute('uv'),variant=(patch+col+row)%2;
         for(let i=0;i<uv.count;i++)uv.setXY(i,(uv.getX(i)+variant)/2,(uv.getY(i)+atlasRow)/2);
         bed.rotateX(-Math.PI/2);
+        const pos=bed.getAttribute('position');
+        for(let i=0;i<pos.count;i++){
+          pos.setY(i,this.elevationAt(px+width/2+pos.getX(i),py+height/2+pos.getZ(i)/DEPTH));
+        }
         const mesh=new THREE.Mesh(bed,material);
         mesh.position.set(px+width/2,2,(py+height/2)*DEPTH);
         this.scene.add(mesh);
@@ -274,7 +360,7 @@ export class RegionWorld{
     const groups=new Map<string,THREE.Mesh<THREE.BufferGeometry,THREE.Material>[]>();
     for(const mesh of this.scene.children){
       if(!(mesh instanceof THREE.Mesh)||Array.isArray(mesh.material))continue;
-      const key=[mesh.material.uuid,Math.floor(mesh.position.x/800),Math.floor(mesh.position.z/1100),
+      const key=[mesh.material.uuid,mesh.renderOrder,Math.floor(mesh.position.x/800),Math.floor(mesh.position.z/1100),
         Object.keys(mesh.geometry.attributes).sort().join(',')].join(':');
       const group=groups.get(key);
       if(group)group.push(mesh);else groups.set(key,[mesh]);
@@ -291,7 +377,9 @@ export class RegionWorld{
       for(const part of parts)part.dispose();
       if(!geometry)continue;
       for(const mesh of group){this.scene.remove(mesh);retired.add(mesh.geometry)}
-      this.scene.add(new THREE.Mesh(geometry,group[0].material));
+      const batch=new THREE.Mesh(geometry,group[0].material);
+      batch.renderOrder=group[0].renderOrder;
+      this.scene.add(batch);
     }
     for(const mesh of this.scene.children)if(mesh instanceof THREE.Mesh)retired.delete(mesh.geometry);
     for(const geometry of retired)geometry.dispose();
@@ -318,7 +406,7 @@ export class RegionWorld{
   }
   private texture(image:HTMLCanvasElement|HTMLImageElement){
     const t=new THREE.Texture(image);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=t.wrapT=THREE.MirroredRepeatWrapping;
-    t.anisotropy=Math.min(4,this.renderer.capabilities.getMaxAnisotropy());t.needsUpdate=true;this.textures.push(t);return t;
+    t.anisotropy=Math.min(8,this.renderer.capabilities.getMaxAnisotropy());t.needsUpdate=true;this.textures.push(t);return t;
   }
   private material(color:number){
     let m=this.materials.get(color);
@@ -327,13 +415,13 @@ export class RegionWorld{
   }
   private box(x:number,y:number,h:number,w:number,height:number,d:number,color:number){
     const mesh=new THREE.Mesh(new THREE.BoxGeometry(w,height,d*DEPTH),this.material(color));
-    mesh.position.set(x,h,y*DEPTH);this.scene.add(mesh);
+    mesh.position.set(x,h+this.elevationAt(x,y),y*DEPTH);this.scene.add(mesh);
   }
   show(active:boolean){
     if(this.renderer.domElement.hidden===!active)return;
     this.renderer.domElement.hidden=!active;
   }
-  draw(g:RunState,w:number,h:number,z:number,x:number,y:number){
+  draw(g:RunState,w:number,h:number,z:number,x:number,y:number,outlet?:ExhaustOutlet,paint:readonly PaintedSprite[]=[]){
     if(!w||!h)return;
     this.floor.finish();this.effects.finish();
     this.background.setHex(g.raid?0x061016:g.world.id==='kl'?0x182137:0x426a50);
@@ -341,9 +429,11 @@ export class RegionWorld{
       this.renderer.setSize(w,h,false);this.width=w;this.height=h;
     }
     const c=this.camera;c.left=-w/(2*z);c.right=-c.left;c.top=h/(2*z);c.bottom=-c.top;
-    c.position.set(x,8000,y*DEPTH+8000);c.lookAt(x,0,y*DEPTH);c.updateProjectionMatrix();
-    if(this.waterMap)this.waterMap.offset.x=this.motion.matches?0:(g.t*.027)%2;
+    const height=this.elevationAt(x,y);
+    c.position.set(x,8000+height,y*DEPTH+8000);c.lookAt(x,height,y*DEPTH);c.updateProjectionMatrix();
+    if(this.river)this.river.uniforms.flowTime.value=this.motion.matches?0:g.t;
     this.wau?.draw(g,this.motion.matches);
+    this.atmosphere?.draw(g.t,this.motion.matches,!!g.raid);
     if(this.gangwayHinge&&g.world.gangway){
       const gate=g.world.gangway,work=g.jettyWork;
       const lowered=gate.open?1:work?.active&&!this.motion.matches?work.elapsed/gate.duration:0;
@@ -355,7 +445,7 @@ export class RegionWorld{
       drawGroundSkills(this.ribbons,g,this.motion.matches);
       for(const f of g.fx){
         if(f.kind==='spell')drawCast(this.ribbons,f,g,this.motion.matches);
-        else drawImpact(this.ribbons,f,g,this.motion.matches);
+        else if(f.kind!=='tyre')drawImpact(this.ribbons,f,g,this.motion.matches);
       }
       for(const f of g.sea?.fx||[])drawImpact(this.ribbons,f,g,this.motion.matches);
       drawCombatTrails(this.ribbons,g,this.motion.matches);
@@ -363,14 +453,32 @@ export class RegionWorld{
     }else{
       // Item shots, enemy bursts and encounter feedback keep their own cues.
       for(const f of g.fx){
-        if(!f.hero&&!f.flourish&&f.kind!=='spell')drawImpact(this.ribbons,f,g,this.motion.matches);
+        // These skills carry their geometry on the live projectile.
+        const carrier=f.skill==='mira-4'||f.skill==='keo-2';
+        if(f.kind==='spell'&&!carrier&&(f.hero!=='ustaz'||f.slot===1||f.slot===3||f.slot===4)){
+          drawCast(this.ribbons,f,g,this.motion.matches);
+        }else if(f.flourish==='seal'||f.flourish==='echo-land'||(!f.hero&&!f.flourish&&f.kind!=='spell'))drawImpact(this.ribbons,f,g,this.motion.matches);
       }
+      drawRosterCues(this.ribbons,g,this.motion.matches);
       for(const q of g.projs)if('origin' in q&&q.origin==='item'){
         this.ribbons.glow([q.x,q.y,10],q.r+3,0xeaaf73,.8);
       }
     }
-    this.signatures.draw(this.ribbons,g,this.motion.matches);
+    if(g.hero.id==='vanna')drawVannaWeave(this.ribbons,g,this.motion.matches);
+    if(g.hero.id==='dani')drawGoldSultanEffects(this.ribbons,g,this.motion.matches);
+    this.tailpipe.begin();
+    if(g.hero.id==='rempit')drawExhaustPatches(this.tailpipe,g.zones,g.t,this.motion.matches);
+    if(g.hero.id==='rempit')for(const mark of g.fx){
+      if(mark.kind==='tyre'&&mark.slot===1)drawWheelieFire(this.tailpipe,mark,g.t,this.motion.matches);
+    }
+    this.signatures.draw(outlet?this.tailpipe:this.ribbons,g,this.motion.matches,outlet);
+    this.tailpipe.finish();
+    this.skillLight.begin();
+    drawSkillVolumes(this.ribbons,this.skillLight,paint,g.t,this.motion.matches);
     this.ribbons.finish();
+    drawSkillLight(this.skillLight,g,this.motion.matches);
+    drawShrineBeacons(this.skillLight,g,this.motion.matches);
+    this.skillLight.finish();
     this.renderer.render(this.scene,c);
   }
   labelBounds(sprite:THREE.Sprite){
@@ -382,25 +490,27 @@ export class RegionWorld{
   }
   actorHead(actor:Actor,footY:number){
     // Match the atlas shader's screen-facing height and airborne offset.
-    const point=this.projectedActor.set(actor.x,0,footY*DEPTH).applyMatrix4(this.camera.matrixWorldInverse);
+    const point=this.projectedActor.set(actor.x,this.elevationAt(actor.x,footY),footY*DEPTH).applyMatrix4(this.camera.matrixWorldInverse);
     point.y+=actor.height*actor.originY+footY-actor.y;
     point.applyMatrix4(this.camera.projectionMatrix);
     return point.set((point.x+1)*this.width/2,(1-point.y)*this.height/2,point.z);
   }
   private clearTerrain(){
     this.wau?.dispose();this.wau=undefined;
-    this.scene.remove(this.ribbons.mesh,this.actors.group,this.labels.group,this.floor.mesh,this.effects.mesh);
+    this.atmosphere?.dispose();this.atmosphere=undefined;
+    this.scene.remove(this.ribbons.mesh,this.tailpipe.mesh,this.skillLight.mesh,this.actors.group,this.labels.group,this.floor.mesh,this.effects.mesh);
     const geometries=new Set<THREE.BufferGeometry>();
     const materials=new Set<THREE.Material>();
     this.scene.traverse(obj=>{if(obj instanceof THREE.Mesh){geometries.add(obj.geometry);materials.add(obj.material)}});
     for(const geometry of geometries)geometry.dispose();
     for(const m of materials)m.dispose();
     for(const t of this.textures)t.dispose();
-    this.textures=[];this.waterMap=undefined;this.materials.clear();this.scene.clear();
+    this.heightMap?.dispose();this.heightMap=undefined;this.actors.heightMap.value=null;
+    this.textures=[];this.river=undefined;this.materials.clear();this.scene.clear();
     this.gangwayHinge=undefined;
   }
   destroy(){
-    this.clearTerrain();this.ribbons.dispose();this.actors.destroy();
+    this.clearTerrain();this.ribbons.dispose();this.tailpipe.dispose();this.skillLight.dispose();this.actors.destroy();
     this.renderer.domElement.remove();
     this.floor.dispose();this.effects.dispose();this.labels.destroy();
     this.renderer.dispose();

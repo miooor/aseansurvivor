@@ -1,5 +1,6 @@
 import {REGION_DATA} from './regions.js';
 import {cutCrossing,expandRegion,HALF,WORLD_SIZE} from './outer-districts.js';
+import {buildElevation,REGIONAL_LANDFORMS} from './regional-landforms.js';
 export {WORLD_SIZE,HALF};
 const landmarks=[
   {id:'village',name:'Village clearing',x:0,y:0,reward:0},
@@ -16,19 +17,17 @@ const buildings=[
   {id:'stall-a',x:1770,y:960,w:180,h:120},{id:'stall-b',x:2280,y:970,w:180,h:120},
   {id:'stall-c',x:1750,y:1530,w:180,h:120},{id:'stall-d',x:2290,y:1540,w:180,h:120}
 ];
-const trees=[];
-for(let i=0;i<48;i++){
-  const x=-2550+((i*997)%5100),y=-2500+((i*677)%5000);
-  if(Math.abs(x-1350)<350||landmarks.some(s=>Math.hypot(x-s.x,y-s.y)<460))continue;
-  trees.push({x,y,frame:i%4===0?11:10});
-}
 const waters=[
   {id:'river-north',x:1150,y:-3000,w:330,h:1660},
   {id:'river-middle',x:1220,y:-860,w:340,h:1520},
   {id:'river-south',x:1220,y:1140,w:260,h:1860}
 ];
-const johorCore={id:'johor',name:'Straits Kampung',signature:'stalker',landmarks,buildings,trees,waters,bridges:[{x:1140,y:-1340,w:420,h:480},{x:1140,y:660,w:420,h:480}],rocks:[],paddies:[[-2440,-2110],[-2440,-1160]],roads:[[[-1500,-1100],[-2050,-400],[-2050,560],[-1500,1400]],[[2100,-1100],[2490,-200],[2490,540],[2100,1300]],[[0,0],[-560,-640],[-1500,-1100]],[[0,0],[-750,800],[-1500,1400]],[[0,0],[800,-1100],[2100,-1100]],[[0,0],[530,970],[1020,910],[2100,900],[2100,1300]]],tint:0xb6c5b0,path:0x8a8057,water:0x1a4c54,urban:false};
-const regions=Object.fromEntries(Object.entries({johor:johorCore,...REGION_DATA}).map(([id,region])=>[id,expandRegion(region)]));
+const johorCore={id:'johor',name:'Straits Kampung',signature:'stalker',landmarks,buildings,waters,bridges:[
+  {x:1140,y:-1340,w:420,h:480,axis:'x'},
+  {x:1140,y:660,w:420,h:480,axis:'x'}
+],rocks:[],paddies:[[-2440,-2110],[-2440,-1160]],roads:[[[-1500,-1100],[-2050,-400],[-2050,560],[-1500,1400]],[[2100,-1100],[2490,-200],[2490,540],[2100,1300]],[[0,0],[-560,-640],[-1500,-1100]],[[0,0],[-750,800],[-1500,1400]],[[0,0],[800,-1100],[2100,-1100]],[[0,0],[530,970],[1020,910],[2100,900],[2100,1300]]],tint:0xb6c5b0,path:0x8a8057,water:0x1a4c54,urban:false};
+const regions=Object.fromEntries(Object.entries({johor:johorCore,...REGION_DATA}).map(([id,region])=>
+  [id,{...expandRegion(region),...buildElevation(REGIONAL_LANDFORMS[id])}]));
 const regionFor=id=>regions[id]||regions.johor;
 export const stageSignature=id=>regionFor(id).signature;
 function obstacles(region){

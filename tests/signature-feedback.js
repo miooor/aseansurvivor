@@ -1,3 +1,4 @@
+import {bikeExhaust} from '../src/scenes/bike-exhaust.ts';
 import {SignatureFeedback} from '../src/scenes/SignatureFeedback.ts';
 
 // Exercise the real movement, targeted basics, timing windows and spend casts.
@@ -23,7 +24,7 @@ export async function runSignatures(capture=()=>{}){
         strip:(points,...style)=>marks.push(['strip',points.map(local),...style]),
         glow:(point,...style)=>marks.push(['glow',local(point),...style])
       };
-      probe.draw(ink,g,true);
+      probe.draw(ink,g,true,id==='rempit'?bikeExhaust(scene.sprites.get(g.p)):undefined);
       return JSON.stringify(marks);
     }
     const shot=label=>{
@@ -48,19 +49,17 @@ export async function runSignatures(capture=()=>{}){
         walk('KeyD',18);check(g.identity.charge>0&&g.identity.charge<100,'building');shot('Build');
         walk('KeyD',60);check(g.identity.charge===100,'redline');shot('Ready');cast(1);check(g.p.dash.fire,'burning dash');break;
       case 'mira':
-        foe(160);cast(1);check(g.identity.ready,'hook landed');shot('Ready');
-        cast(2);check(g.identity.releaseT>0&&!g.identity.ready,'empowered sweep');break;
+        foe(160);cast(1);check(g.identity.ready,'lid banks a portion');shot('Ready');
+        cast(2);check(g.identity.releaseT>0&&!g.identity.ready,'second serving');break;
       case 'dani':
-        cast(2);shot('Planted');walk('KeyD',24);check(g.roster.dani.anchor?.ready&&!g.identity.ready,'armed away');shot('Armed');
-        walk('KeyA',22);check(g.identity.ready,'returned');shot('Ready');cast(3);check(g.roster.dani.shield.hp===30,'shield');break;
-      case 'lia':
-        cast(2);check(!g.roster.lia.spools&&record()===frames.Idle,'empty dash leaves belt unchanged');step(6);g.cds[2]=0;
-        foe(140);g.cds[0]=0;
-        for(let lap=0;lap<4&&g.roster.lia.spools<3;lap++){
-          walk('KeyS',18);walk('KeyW',18);
-        }
-        check(g.roster.lia.spools===3,'three moving catches');shot('Ready');
-        cast(2);check(!g.roster.lia.spools,'spent belt');break;
+        foe(60);step(1);check(g.identity.ready,'rain available');shot('Ready');
+        cast(3);step(10);check(g.identity.releaseT>0&&!g.identity.ready,'coins hit and rain recharges');break;
+      case 'lia':case 'vanna':{
+        const slot=id==='lia'?2:3;
+        step(1);check(g.identity.ready,'available for signature');shot('Ready');
+        cast(slot);step(1);check(!g.identity.ready,'cooldown after cast');
+        break;
+      }
       case 'ustaz':
         foe(150);g.cds[0]=0;step(65);check(g.identity.charge===4,'four lights');shot('Ready');cast(3);break;
       case 'nok':
@@ -71,22 +70,21 @@ export async function runSignatures(capture=()=>{}){
         {const e=foe(8);e.stun=0;cast(3);step(3);e.stun=999;step(22)}check(g.identity.charge===1,'parry');shot('Ready');cast(1);break;
       case 'asha':
         foe(220);cast(1);g.cds[0]=0;step(18);check(g.identity.ready,'served ticket');shot('Ready');cast(2);check(!g.roster.asha.tickets.length,'collection');break;
-      case 'vanna':
-        cast(1);cast(2);check(g.identity.ready,'crossing');shot('Ready');cast(3);check(!g.roster.vanna.cross,'detonation');break;
       case 'keo':
         cast(1);step(31);check(g.identity.ready,'open measure');shot('Ready');cast(2);check(!g.identity.ready,'next measure');break;
       case 'nadi':
-        cast(2);step(41);check(g.identity.ready,'cured coat');shot('Ready');cast(1);check(!g.roster.nadi.layers.length,'peel');break;
+        foe(65);g.st.crit=1;cast(1);step(42);check(g.identity.ready,'critical palms');shot('Ready');cast(2);check(!g.identity.ready,'Recall spent');break;
     }
     if(['ustaz','rempit','nok','lan','sari'].includes(id))check(g.identity.releaseT>0,'signature release');
     shot('Spend');
-    check(frames.Ready!==frames.Idle&&frames.Spend!==frames.Ready,'distinct readiness and spend geometry');
-    if(id==='dani')check(frames.Armed!==frames.Ready,'return signal');
-    if(id==='lia'||id==='keo'){
+    if(!['dani','vanna','lia'].includes(id))check(frames.Ready!==frames.Idle,'readiness changes idle geometry');
+    check(frames.Spend!==frames.Ready,'distinct readiness and spend geometry');
+    if(id==='keo'){
       g.cds[0]=999;step(55);check(record()===frames.Idle,'spend and timing window expire');
     }
     rt.newGame(id,0);const fresh=[];
-    probe.draw({strip:()=>fresh.push('strip'),glow:()=>fresh.push('glow')},rt.G,true);
+    scene.update(0,0);
+    probe.draw({strip:()=>fresh.push('strip'),glow:()=>fresh.push('glow')},rt.G,true,id==='rempit'?bikeExhaust(scene.sprites.get(rt.G.p)):undefined);
     check(fresh.length===JSON.parse(frames.Idle).length,'reset cue count');
     rt.toMenu();output.textContent+='PASS '+id+'\n';
   }

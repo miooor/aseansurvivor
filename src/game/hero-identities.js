@@ -1,3 +1,4 @@
+import {LOOM_DURATION} from './heroes/vanna.js';
 import {troupeGuards} from './skill-ranks.js';
 import {skillPoses} from '../content/skill-visuals.js';
 // Preserve the footprint from the cast itself, including its effective equipment
@@ -11,8 +12,8 @@ function originalFootprint(id,i,g){
   if((id==='ustaz'||id==='rempit')&&i===3)return {range:g.fx.findLast(f=>f.kind==='ring').r};
   if(id==='rempit'&&i===2)return {w:g.p.exPatch.radius};
   if(id==='nok'&&i===1){
-    const line=g.sea.fx.at(-1);
-    return {range:line.len,w:line.w};
+    const knee=g.sea.knee;
+    return {range:knee.radius,half:knee.half,cross:knee.center};
   }
   if(id==='nok'&&i===2)return {range:g.sea.fx.at(-1).r,half:g.sea.wai>0?1:0};
   if(id==='lan'&&i===3)return {range:g.sea.fx.at(-1).r};
@@ -70,10 +71,14 @@ export function installIdentities(api){
     if(s.window>0){s.window=Math.max(0,s.window-dt);if(!s.window&&(id==='nok'||id==='sari')){s.charge=0;s.lastSkill=0}}
   });
   for(const [id,hero]of Object.entries(HEROES)){
+    if(id!=='lan'&&id!=='nadi')hero.skills[0].up+=id==='nok'||id==='mira'
+      ?' Add a travelling wave at ranks 3 and 5.'
+      :' Add a projectile at ranks 3 and 5.';
     const identity=hero.identity||IDENTITIES[id];
     hero.identity=identity;
     CAST[id]=CAST[id].map((cast,i)=>r=>{
       const g=api.G,s=g.identity,ready=s.charge>=identity.max;
+      if((id==='dani'||id==='nadi')&&g.won)return false;
       const empowered=ready&&((id==='ustaz'&&i===3)||(id==='rempit'&&i===1)||(id==='lan'&&i===2)||(id==='sari'&&i===1));
       const target=i===0?nearest(g.p.x,g.p.y,520):null;
       const [ax,ay]=target?[target.x-g.p.x,target.y-g.p.y]:aimDir();
@@ -82,19 +87,18 @@ export function installIdentities(api){
       try{result=api.withCastEffects(i,cast,r)}finally{s.empowered=false}
       if(result===false)return false;
       const slip=id==='asha'&&i===0?g.projs.at(-1):null;
-      const attackAngle=slip?Math.atan2(slip.vy,slip.vx):id==='rempit'&&i===1?Math.atan2(g.p.dash.vy,g.p.dash.vx):Math.atan2(ay,ax);
+      const attackAngle=result?.angle??(slip?Math.atan2(slip.vy,slip.vx):id==='rempit'&&i===1?Math.atan2(g.p.dash.vy,g.p.dash.vx):Math.atan2(ay,ax));
       api.audio.play(id,i);
       if(i===0)g.fx.push({kind:'spell',skill:id+'-0',hero:id,slot:0,x:g.p.x,y:g.p.y,a:attackAngle,...originalFootprint(id,i,g),c:identity.color,life:.18,max:.18});
       if(i>0){
         const durations={ustaz:[0,.65,g.orbit?.t||6,.75,8],rempit:[0,.5,g.p.exhaust,.7,g.p.super],nok:[0,.6,.6,g.sea?.wai,1.5],lan:[0,.8,empowered?14:10,.75,g.sea?.show],sari:[0,.6,.7,g.sea?.stance,2.8]};
-        const fieldDuration={asha:5,mira:.6,dani:6,vanna:5,keo:2.35,nadi:1,lia:.45};
+        const fieldDuration={asha:5,mira:.6,vanna:LOOM_DURATION,keo:2.35,lia:.45};
         const life=durations[id]?.[i]??(i===4?fieldDuration[id]:undefined)??skillPoses[id][i],skill=id+'-'+i;
         if(life>2&&durations[id])g.fx=g.fx.filter(f=>f.skill!==skill);
         const landing=id==='nok'&&i===4?g.sea.leap:null;
-        const point=id==='asha'&&i===1?api.safePoint(g.p.x+ax*220,g.p.y+ay*220,0):
-          id==='nadi'&&i===2?g.roster.nadi.layers.at(-1):null;
-        const timing=i===4&&(id==='keo'||id==='nadi')?{castAt:g.t}:undefined;
-        const range=id==='lia'&&i===1?g.technique.length:((id==='dani'&&i===2)||(id==='asha'&&i===1))?g.technique.radius:undefined;
+        const point=id==='asha'&&i===1?api.safePoint(g.p.x+ax*220,g.p.y+ay*220,0):null;
+        const timing=i===4&&id==='keo'?{castAt:g.t}:undefined;
+        const range=id==='lia'&&i===1?g.technique.length:(id==='asha'&&i===1)?g.technique.radius:undefined;
         g.fx.push({kind:'spell',skill,hero:id,slot:i,range,...originalFootprint(id,i,g),...(id==='mira'||id==='keo'&&i===2?result:undefined),...timing,tx:point?.x,ty:point?.y,x:landing?landing.tx:g.p.x,y:landing?landing.ty:g.p.y,a:attackAngle,r:landing?(172+9*landing.r)*(landing.bl?1.3:1):i===4?150:85,c:identity.color,life,max:life});
       }
       // Basic auto-fire must not restart an active skill animation.

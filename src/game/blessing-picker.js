@@ -1,8 +1,8 @@
 import {equipmentCastRank} from './equipment.js';
 import {
-  basicHitDamage, palmCounter, barrierHealing, bellReach, castCooldown, dawnBolts, dawnPierce, fanReach, floodRadius, exhaustDuration, flybyDuration, garudaFeathers,
-  hornFear, lanternStun, orbitBeads, poiseDuration, rainInterval, rankDamage, riverPuppets,
-  spannerBounces, stanceDuration, teepReach, troupeGuards
+  basicUpgrade, basicHitDamage, palmCounter, barrierHealing, bellReach, castCooldown, basicProjectileCount, dawnPierce, fanReach, floodRadius, exhaustDuration, flybyDuration, garudaFeathers,
+  goldDustDuration, hornFear, lanternStun, orbitBeads, poiseDuration, rainInterval, rankDamage,
+  spannerBounces, stanceDuration, kneeReach, troupeGuards
 } from './skill-ranks.js';
 
 export function availableEvolutions(game, recipes, choice) {
@@ -32,11 +32,12 @@ export function applyEvolution(game, recipe) {
 }
 
 const specialMetrics = {
-  ustaz:{0:['Bolts',dawnBolts],1:['Reach',fanReach],2:['Beads',orbitBeads],3:['Stun',(r,g) => lanternStun(r,g.technique),' s'],4:['Healing',barrierHealing,' HP/s']},
+  ustaz:{1:['Reach',fanReach],2:['Beads',orbitBeads],3:['Stun',(r,g) => lanternStun(r,g.technique),' s'],4:['Healing',barrierHealing,' HP/s']},
   rempit:{0:['Bounces',(r,g) => spannerBounces(r,g.evo[0])],2:['Trail duration',exhaustDuration,' s'],3:['Fear',hornFear,' s'],4:['Duration',flybyDuration,' s']},
-  nok:{0:['Reach',bellReach],1:['Reach',(r,g) => teepReach(r,g.technique)],3:['Duration',poiseDuration,' s']},
-  lan:{0:['Puppets',riverPuppets],2:['Base guards',troupeGuards],3:['Radius',(r,g) => floodRadius(r,g.technique)],4:['Strike interval',rank => rainInterval(rank)*1000,' ms']},
-  sari:{3:['Stance',(r,g) => stanceDuration(r,g.technique),' s'],4:['Feathers',garudaFeathers]}
+  nok:{0:['Reach',bellReach],1:['Reach',(r,g) => kneeReach(r,g.technique)],3:['Duration',poiseDuration,' s']},
+  lan:{2:['Base guards',troupeGuards],3:['Radius',(r,g) => floodRadius(r,g.technique)],4:['Strike interval',rank => rainInterval(rank)*1000,' ms']},
+  sari:{3:['Stance',(r,g) => stanceDuration(r,g.technique),' s'],4:['Feathers',garudaFeathers]},
+  dani:{2:['Duration',(r,g)=>goldDustDuration(r,g.evo[2]),' s']}
 };
 
 export function skillChanges(game, slot) {
@@ -47,12 +48,18 @@ export function skillChanges(game, slot) {
     const before = Number(value(rank).toFixed(digits)), after = Number(value(rank+1).toFixed(digits));
     if (before !== after) changes.push(label+' '+before+' → '+after+unit);
   }
+  if(slot===0){
+    const upgrade=basicUpgrade(hero.id,rank+1);
+    if(upgrade)changes.push(upgrade);
+    const label=hero.id==='ustaz'?'Bolts':hero.id==='lan'?'Puppets':hero.id==='nadi'?'Targets':'Projectiles';
+    add(label,r=>basicProjectileCount(hero.id,r,game.evo[0]));
+  }
   const special = specialMetrics[hero.id]?.[slot];
   if (special) {
     const [label, value, unit] = special;
     add(label, r => value(r,game), unit);
   }
-  if (hero.id === 'ustaz' && slot === 0) add('Pierce', dawnPierce);
+  if (hero.id === 'ustaz' && slot === 0) add('Targets per bolt',r=>dawnPierce(r)+Number(r>=2));
   const baseDamage = skill.techniqueDamage ? game.technique[skill.techniqueDamage] : skill.baseDamage;
   if (baseDamage) {
     add(skill.damageLabel || 'Base damage', r => baseDamage * rankDamage(r));

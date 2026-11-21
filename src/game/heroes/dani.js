@@ -1,50 +1,177 @@
-import {inDirectedLine} from '../geometry.js';
+import {goldDustDuration} from '../skill-ranks.js';
+import {fireAtNearest,installKitState,showCooldown} from './direct-skills.js';
+
+export const GOLD_DUST_RANGE=225;
+export const GOLD_DUST_HALF=Math.PI/5;
+export const COIN_RAIN_RADIUS=135;
+export const COIN_RAIN_INTERVAL=.36;
+const COIN_RAIN_WAVES=5, COIN_RAIN_RANGE=360;
+const GOLD_DUST_SLOPE=Math.tan(GOLD_DUST_HALF);
+const GOLD='#f6c34e';
+const SPIN_TURNS=3, SPIN_MOVE_MULTIPLIER=1.35;
+export const SPIN_TRAIL_LIFE=.24;
+const CHANNELS={
+  1:{duration:1.8,interval:.18/SPIN_TURNS},
+  4:{duration:3,interval:.20}
+};
+const readyAt=(when,now)=>when<=now+1e-8;
+const spinAngle=(shot,time)=>shot.startAngle+SPIN_TURNS*2*Math.PI*(time-shot.started)/CHANNELS[1].duration;
+
+export function goldSpinMoveMultiplier(g){
+  const state=g.roster.dani,channel=state?.channel;
+  return state?.raid===g.raid&&channel?.slot===1&&!readyAt(channel.end,g.t)?SPIN_MOVE_MULTIPLIER:1;
+}
+
+export function goldDustBuff(g){
+  const state=g.roster.dani;
+  return state?.raid===g.raid&&state?.dust?.until>g.t+1e-8?state.dust:null;
+}
+
+function rainTarget(g){
+  const nearby=[];
+  for(const enemy of g.enemies){
+    if(enemy.dead||enemy.type==='body'&&!enemy.near)continue;
+    const distance=Math.hypot(enemy.x-g.p.x,enemy.y-g.p.y);
+    if(distance<COIN_RAIN_RANGE+COIN_RAIN_RADIUS+enemy.r)nearby.push({enemy,distance});
+  }
+  let best=null,bestCount=0,bestDistance=Infinity;
+  for(const {enemy,distance} of nearby){
+    if(distance>COIN_RAIN_RANGE)continue;
+    let count=0;
+    for(const {enemy:other} of nearby){
+      if((other.x-enemy.x)**2+(other.y-enemy.y)**2<(COIN_RAIN_RADIUS+other.r)**2)count++;
+    }
+    if(count>bestCount||count===bestCount&&distance<bestDistance){
+      best=enemy;
+      bestCount=count;
+      bestDistance=distance;
+    }
+  }
+  return best;
+}
 
 export function installDani(api){
-  const {HEROES,CAST,AUTO,HOOKS,hit,each,nearest,aimDir,rm,ring:drawRing}=api,color='#89d5a1';
-  const ring=(...args)=>{drawRing(...args);api.G.fx.at(-1).hero='dani'};
-  HEROES.dani={id:'dani',name:'Dani Rahman',country:'Brunei',role:'Landing keeper · depart, return, absorb',hp:140,speed:165,ultNeed:60,basicDamage:16,price:0,
-    identity:{title:'Landing Keeper',name:'Safe Landing',color,max:160,key:'F',loop:'E leaves a 6 s anchor. Walk 160 units away, return within 70 and F for a 30-HP shield lasting 4 s and a 35-damage anchor pulse.',hint:'E · Leave anchor → walk away → return + F',ready:'F · Secure the landing'},
+  const {HEROES,CAST,AUTO,HOOKS,hit,each,aimDir,rm}=api;
+  const hero=HEROES.dani={id:'dani',name:'The Gold Sultan',country:'Brunei',role:'Seria goldsmith · mobile firepower',hp:140,speed:165,ultNeed:60,basicDamage:16,price:0,
+    identity:{title:'The Gold Sultan',name:'Make It Rain',color:GOLD,max:1,key:'F',
+      loop:'Q sweeps fire three times and speeds you up. E boosts attacks and F targets the biggest nearby group. Move to steer R.',
+      hint:'F · Automatically targets nearby enemies',ready:'F · Rain coins on nearby enemies'},
     skills:[
-      {key:'',name:'Beacon Spark',desc:'Every 0.9 s, fire a straight 16-damage light within 320 at speed 360, hitting one enemy.',up:'+25% damage per rank.',cd:.9},
-      {key:'Q',name:'Breakwater Thrust',baseDamage:30,damageLabel:'Base hit',desc:'A 230-long, 45-wide shove deals 30 damage and pushes eligible enemies with 220 force. If your beacon is within 400, each hit pulls toward it instead.',up:'+25% damage and shorter cooldown per rank.',cd:6},
-      {key:'E',name:'Homeward Beacon',techniqueDamage:'damage',damageLabel:'Base arrival hit',desc:'Plant or replace one 6 s anchor at Dani. Its radius-100 arrival pulse deals 18 damage. Walk at least 160 away to arm a return; no attraction or blocking.',up:'+25% damage and shorter cooldown per rank.',cd:10},
-      {key:'F',name:'Safe Harbour',baseDamage:16,damageLabel:'Base wave',desc:'Radius-130 wave deals 16 and slows 50% for 1 s. If the anchor is armed and within 70, consume it for a radius-150 burst dealing 35 plus a nonstacking 30-HP shield for 4 s.',up:'+25% damage and shorter cooldown per rank.',cd:9},
-      {key:'R',name:'Lantern Anchorage',desc:'Spend 60 charge for a fixed radius-200 shelter for 6 s. Six one-second ticks deal 14 each. Dani takes 30% less damage only while inside; no healing or immunity.',up:'+25% damage per rank.',cd:0,ult:true,baseDamage:14,damageLabel:'Base tick'}]};
-  const fresh=()=>({anchor:null,shield:{hp:0,until:0},fields:[],raid:api.G?.raid,lastX:api.G?.p.x,lastY:api.G?.p.y});
-  function clear(){const g=api.G;if(!g)return;g.projs=g.projs.filter(q=>q.hero!=='dani');g.fx=g.fx.filter(f=>f.hero!=='dani');g.roster.dani=fresh()}
-  function sync(){const g=api.G;if(!g||g.hero.id!=='dani')return null;let s=g.roster.dani;if(!s||s.raid!==g.raid){clear();s=g.roster.dani}if(s.anchor?.until<=g.t+1e-8)s.anchor=null;if(s.shield.until<=g.t+1e-8)s.shield.hp=0;return s}
-  function status(s){const g=api.G;if(!g.identity)return;const a=s.anchor,d=a?Math.hypot(g.p.x-a.x,g.p.y-a.y):0;g.identity.charge=a?(a.ready?160:Math.min(159,d)):0;g.identity.ready=!!a?.ready&&d<=70;g.identity.detail=s.shield.hp>0?Math.ceil(s.shield.hp)+' shield · '+Math.max(0,s.shield.until-g.t).toFixed(1)+'s':a?(a.ready?(d<=70?'F READY':'Return within 70'):'Walk '+Math.ceil(Math.max(0,160-d))+' farther')+' · '+Math.max(0,a.until-g.t).toFixed(1)+'s':'E · Leave a landing anchor'}
-  HOOKS.newGame.push(g=>{if(g.hero.id==='dani')g.roster.dani=fresh()});HOOKS.cleanup.push(()=>{if(api.G?.hero.id==='dani')clear()});
-  CAST.dani=[
-    r=>{sync();const g=api.G,p=g.p,target=nearest(p.x,p.y,320);if(!target)return false;const a=Math.atan2(target.y-p.y,target.x-p.x);g.projs.push({hero:'dani',kind:'nur',x:p.x,y:p.y,vx:Math.cos(a)*360,vy:Math.sin(a)*360,r:6,dmg:api.G.hero.basicDamage*rm(r),life:320/360,pierce:1,hit:new Set(),hitOptions:{hero:'dani',slot:0}});},
-    r=>{
-      const s=sync(),g=api.G,p=g.p,[ax,ay]=aimDir(),anchor=s.anchor;
-      const tow=anchor&&Math.hypot(p.x-anchor.x,p.y-anchor.y)<=400;
-      for(const e of g.enemies){
-        if(e.dead||!inDirectedLine(e,p.x,p.y,ax,ay,230,45))continue;
-        const dx=tow?anchor.x-e.x:ax,dy=tow?anchor.y-e.y:ay,d=Math.hypot(dx,dy)||1;
-        const landed=hit(e,api.G.hero.skills[1].baseDamage*rm(r),{hero:'dani',slot:1,kb:[dx/d*220,dy/d*220]});
-        if(tow&&landed&&!e.boss&&e.type!=='body')g.fx.push({kind:'relay',hero:'dani',x:e.x,y:e.y,tx:anchor.x,ty:anchor.y,c:color,life:.32,max:.32});
+      {key:'',name:'Gold Rivet',desc:'Fire a gold rivet through two enemies.',up:'+25% damage.',cd:.9},
+      {key:'Q',name:'Gold Melting Flamethrower',baseDamage:6,damageLabel:'Base damage per pulse',desc:'Make three full turns in 1.8s, sweeping burning gold dust around you. Move 35% faster while spinning.',up:'+25% damage per pulse and shorter cooldown.',cd:5.5},
+      {key:'E',name:'Gold Dust',desc:'For 5s, deal 25% more attack damage and fire basic attacks 50% faster.',up:'+0.5s duration and shorter cooldown.',cd:10},
+      {key:'F',name:'Make It Rain',baseDamage:23,damageLabel:'Base damage per wave',desc:'Automatically target the largest group around an enemy within 360 units. Five waves land there. F stays ready if no enemies are in range.',up:'+25% damage per wave and shorter cooldown.',cd:8},
+      {key:'R',name:'Bullion Barrage',baseDamage:26,damageLabel:'Base damage per bar',desc:'Channel for 3s and fire a gold bar every 0.20s. Each bar can hit three enemies. Move to steer the stream.',up:'+25% damage per bar.',cd:0,ult:true}
+    ]};
+  const state=installKitState(api,'dani',()=>({channel:null,rain:null,dust:null,trail:[]}));
+
+  function startChannel(rank,slot){
+    const g=api.G,s=state();
+    if(slot===1&&s.channel)return false;
+    const {p}=g,[ax,ay]=p.moving?p.face:aimDir();
+    const {duration,interval}=CHANNELS[slot],angle=Math.atan2(ay,ax);
+    s.channel={slot,ax,ay,startAngle:angle,started:g.t,next:g.t+(slot===4?.06:interval/2),end:g.t+duration,damage:hero.skills[slot].baseDamage*rm(rank)};
+    if(slot===1)s.channel.nextTurnCue=1;
+    return {angle};
+  }
+
+  function updateChannel(g,s,dt){
+    const shot=s.channel;
+    if(!shot)return;
+    const p=g.p,{slot}=shot,{interval,duration}=CHANNELS[slot];
+    if(slot===1){
+      const angle=spinAngle(shot,Math.min(g.t,shot.end));
+      shot.ax=Math.cos(angle);
+      shot.ay=Math.sin(angle);
+      // The cast wrapper plays the first cue. Start the others on the spin clock.
+      while(shot.nextTurnCue<SPIN_TURNS&&readyAt(shot.started+shot.nextTurnCue*duration/SPIN_TURNS,g.t)){
+        api.audio.play('dani',1);
+        shot.nextTurnCue++;
       }
-      ring(p.x+ax*115,p.y+ay*115,24,color,.3);
+      const move=p.normalMove;
+      if(g.t>shot.started&&!readyAt(shot.end,g.t)&&move&&Math.hypot(move.dx,move.dy)>.01){
+        s.trail.push({x:move.x-move.dx,y:move.y-move.dy,tx:move.x,ty:move.y,until:g.t+SPIN_TRAIL_LIFE});
+      }
+    }else if(p.moving)[shot.ax,shot.ay]=p.face;
+    while(!g.won&&readyAt(shot.next,g.t)&&readyAt(shot.next,shot.end)){
+      const at=shot.next;
+      shot.next+=interval;
+      if(slot===1){
+        const angle=spinAngle(shot,at),ax=Math.cos(angle),ay=Math.sin(angle);
+        each(p.x,p.y,GOLD_DUST_RANGE,(e,dx,dy)=>{
+          const forward=dx*ax+dy*ay,side=Math.abs(dx*ay-dy*ax);
+          if(!g.won&&forward>=0&&side<=forward*GOLD_DUST_SLOPE+e.r&&api.clearLine(p,e,0)){
+            hit(e,shot.damage,{hero:'dani',slot});
+          }
+        });
+      }else{
+        const {ax,ay}=shot,speed=850;
+        g.projs.push({kind:'gold-bar',hero:'dani',x:p.x+ax*24,y:p.y+ay*24,vx:ax*speed,vy:ay*speed,r:13,
+          dmg:shot.damage,life:.58,pierce:3,hit:new Set(),hitOptions:{hero:'dani',slot}});
+      }
+    }
+    if(readyAt(shot.end,g.t)){
+      s.channel=null;
+    }else if(slot===1||g.identity.castSlot===slot||g.identity.castT<=dt){
+      g.identity.castSlot=slot;
+      g.identity.castMax=duration;
+      g.identity.castT=shot.end-g.t+dt;
+      g.identity.castAngle=Math.atan2(shot.ay,shot.ax);
+    }
+  }
+
+  function updateRain(g,s){
+    const rain=s.rain;
+    if(!rain)return;
+    while(!g.won&&rain.wave<COIN_RAIN_WAVES&&readyAt(rain.next,g.t)){
+      let landed=false;
+      each(rain.x,rain.y,COIN_RAIN_RADIUS,e=>{
+        if(!g.won&&hit(e,rain.damage,{hero:'dani',slot:3}))landed=true;
+      });
+      if(landed&&!rain.released){
+        rain.released=true;
+        g.identity.releaseT=.6;
+        api.signatureReleased();
+      }
+      g.fx.push({kind:'coinfall',hero:'dani',slot:3,x:rain.x,y:rain.y,waveIndex:rain.wave,r:COIN_RAIN_RADIUS,life:.32,max:.32});
+      rain.wave++;
+      rain.next+=COIN_RAIN_INTERVAL;
+    }
+    if(rain.wave===COIN_RAIN_WAVES)s.rain=null;
+  }
+
+  CAST.dani=[
+    rank=>fireAtNearest(api,rank,{range:360,speed:440,pierce:2}),
+    rank=>startChannel(rank,1),
+    rank=>{
+      const g=api.G,{damage,fireRate}=g.technique;
+      state().dust={started:g.t,until:g.t+goldDustDuration(rank,g.evo[2]),damage,fireRate};
     },
-    r=>{
-      const s=sync(),g=api.G,p=g.p,previous=s.anchor,{radius,damage}=g.technique;
-      s.anchor={x:p.x,y:p.y,until:g.t+6,ready:false,eligible:true};s.lastX=p.x;s.lastY=p.y;
-      const pulse=point=>{each(point.x,point.y,radius,e=>hit(e,damage*rm(r),{hero:'dani',slot:2}));ring(point.x,point.y,radius,color,.4)};
-      if(previous&&g.evo[2])pulse(previous);
-      pulse(p);status(s);},
-    r=>{const s=sync(),g=api.G,p=g.p,a=s.anchor;if(a&&(p.dash||Math.hypot(p.x-s.lastX,p.y-s.lastY)>1e-5)){a.ready=false;a.eligible=false}
-      each(p.x,p.y,130,e=>{hit(e,api.G.hero.skills[3].baseDamage*rm(r),{hero:'dani',slot:3});e.slowT=Math.max(e.slowT||0,1)});ring(p.x,p.y,130,color,.4);
-      if(a?.ready&&Math.hypot(p.x-a.x,p.y-a.y)<=70){api.signatureReleased();s.anchor=null;s.shield={hp:30,until:g.t+4};each(a.x,a.y,150,e=>hit(e,35*rm(r),{hero:'dani',slot:3}));ring(a.x,a.y,150,color,.6,'anchor')}status(s);},
-    r=>{const s=sync(),g=api.G;s.fields.push({x:g.p.x,y:g.p.y,start:g.t,next:1,damage:api.G.hero.skills[4].baseDamage*rm(r)});if(s.fields.length>12)s.fields.shift();status(s);}
+    rank=>{
+      const g=api.G,s=state(),target=rainTarget(g);
+      if(!target){
+        if(!g.autoAim)api.text(g.p.x,g.p.y-48,'No targets in range',GOLD,15);
+        return false;
+      }
+      s.rain={x:target.x,y:target.y,next:g.t+.38,wave:0,released:false,damage:hero.skills[3].baseDamage*rm(rank)};
+    },
+    rank=>startChannel(rank,4)
   ];
-  HOOKS.hurt.push(damage=>{const s=sync(),g=api.G;if(s?.fields.some(f=>g.t<f.start+6&&Math.hypot(g.p.x-f.x,g.p.y-f.y)<=200))return damage*.7});
-  HOOKS.absorb.push(damage=>{const s=sync();if(!s||s.shield.hp<=0)return;const absorbed=Math.min(damage,s.shield.hp);s.shield.hp-=absorbed;status(s);return damage-absorbed});
-  HOOKS.update.push(()=>{const s=sync();if(!s)return;const g=api.G,p=g.p,a=s.anchor,m=p.normalMove;if(a){const continuous=m&&!p.dash&&Math.hypot(m.x-m.dx-s.lastX,m.y-m.dy-s.lastY)<1e-5,d=Math.hypot(p.x-a.x,p.y-a.y);
-      if(p.dash||!continuous&&Math.hypot(p.x-s.lastX,p.y-s.lastY)>1e-5){a.ready=false;a.eligible=false}
-      if(continuous){if(d<=70)a.eligible=true;if(a.eligible&&d>=160-1e-8)a.ready=true}}
-    s.lastX=p.x;s.lastY=p.y;for(const f of s.fields)while(f.next<=6&&g.t+1e-8>=f.start+f.next){each(f.x,f.y,200,e=>hit(e,f.damage,{hero:'dani',slot:4}));f.next++}s.fields=s.fields.filter(f=>f.next<=6);status(s);});
-  AUTO.dani={order:[2,3,1,4],when:[null,n=>n(230)>=1,n=>!sync()?.anchor&&n(250)>=2,n=>{const s=sync(),a=s?.anchor;return !!a?.ready&&Math.hypot(api.G.p.x-a.x,api.G.p.y-a.y)<=70||n(130)>=3},n=>n(200)>=6||api.G.p.hp<api.G.p.maxHp*.6&&n(200)>=2]};
+
+  HOOKS.dmgMul.push((_enemy,options)=>options.origin==='item'?1:goldDustBuff(api.G)?.damage??1);
+  HOOKS.update.push(dt=>{
+    const g=api.G;
+    if(g.hero.id!=='dani'||g.won)return;
+    const s=state();
+    while(s.trail.length&&readyAt(s.trail[0].until,g.t))s.trail.shift();
+    updateChannel(g,s,dt);
+    updateRain(g,s);
+    if(s.dust&&readyAt(s.dust.until,g.t))s.dust=null;
+    showCooldown(g,3,s.rain?'Coins falling':undefined);
+  });
+  AUTO.dani={independent:true,order:[2,4,3,1],when:[
+    null,n=>!state().channel&&n(GOLD_DUST_RANGE)>0,
+    n=>!goldDustBuff(api.G)&&(!!state().channel||n(GOLD_DUST_RANGE)>=2),n=>n(COIN_RAIN_RANGE)>0,
+    n=>state().channel?.slot!==4&&n(380)>=5
+  ]};
 }

@@ -13,9 +13,9 @@ function draw(g,reduced=false){
 test('release paint opens on the caster’s selected row or hands off to the live split carriers',()=>{
   for(const id of Object.keys(heroArt))for(let slot=0;slot<5;slot++){
     const g=battle(id);
-    g.fx.push({kind:'spell',hero:id,slot,x:10,y:20,a:0,max:.4,life:.4});
+    g.fx.push({kind:'spell',hero:id,slot,x:10,y:20,tx:60,ty:20,a:0,max:.4,life:.4});
     const [sprite]=draw(g);
-    if(['lan-2','lia-4','nadi-4','keo-2'].includes(id+'-'+slot)){
+    if(['dani-1','dani-2','dani-3','dani-4','nok-1','lan-2','lia-4','nadi-1','nadi-2','nadi-3','nadi-4','keo-2','rempit-2','rempit-4','asha-2'].includes(id+'-'+slot)){
       assert.equal(sprite,undefined);
       continue;
     }
@@ -24,14 +24,36 @@ test('release paint opens on the caster’s selected row or hands off to the liv
   }
 });
 
-test('returning parcels and reed bolts follow their live positions after release and vanish on removal',()=>{
+test('Vanna paints shuttle and familiar strikes on their own rows and pins the loom corners',()=>{
+  const g=battle('vanna');
+  g.fx=[{kind:'relay',hero:'vanna',slot:2,x:10,y:20,tx:90,ty:20,max:.6,life:.3}];
+  assert.deepEqual(draw(g).map(s=>[s.x,s.y,Math.floor(s.frame/4)]),[[50,20,2]]);
+  g.fx=[{kind:'relay',hero:'vanna',slot:3,x:62,y:20,tx:90,ty:20,max:.24,life:.12}];
+  assert.deepEqual(draw(g,true).map(s=>[s.x,s.y,Math.floor(s.frame/4)]),[[76,20,3]]);
+  g.fx=[{kind:'spell',hero:'vanna',slot:4,x:10,y:20,max:4,life:3.7}];
+  assert.deepEqual(draw(g).map(s=>[s.x,s.y]),[[-240,-230],[-240,270],[260,-230],[260,270]]);
+});
+
+test('the painted familiar follows its live orbit after release and fades at expiry',()=>{
+  const g=battle('vanna');
+  g.roster.vanna={familiar:{start:0,until:4}};
+  g.t=1.1;
+  const [front]=draw(g,true);
+  assert.deepEqual([front.frame,front.x,Math.round(front.y)],[14,62,20]);
+  g.p.x+=40;
+  g.t=1.65;
+  const [back]=draw(g,true);
+  assert.deepEqual([back.frame,Math.round(back.x),Math.round(back.y)],[14,-2,20]);
+  g.t=4;
+  assert.deepEqual(draw(g),[]);
+});
+
+test('blink marks follow the landing and reed bolts follow their live positions',()=>{
   const g=battle('lia');
-  const parcel={x:44,y:20,ax:1,ay:0,age:.7,ultimate:true};
-  g.roster.lia={shuttles:[parcel]};
-  const [sprite]=draw(g,true);
-  assert.deepEqual([sprite.x,sprite.y,sprite.frame,sprite.angle],[44,20,18,Math.PI]);
-  assert.deepEqual(draw(g,true),[sprite]);
-  g.roster.lia.shuttles=[];
+  g.fx=[{kind:'shadowstep',hero:'lia',slot:4,x:10,y:20,tx:44,ty:20,max:.36,life:.22}];
+  const [mark]=draw(g,true);
+  assert.deepEqual([mark.x,mark.y,mark.frame,mark.angle],[44,20,18,0]);
+  g.fx=[];
   assert.deepEqual(draw(g),[]);
   const k=battle('keo');
   k.projs=[{x:75,y:40,vx:0,vy:-7,r:6,hitOptions:{hero:'keo',slot:2}},{origin:'item',kind:'nur'}];
@@ -39,7 +61,7 @@ test('returning parcels and reed bolts follow their live positions after release
   assert.deepEqual(bolts.map(b=>[b.frame,b.x,b.y,b.angle]),[[10,75,40,-Math.PI/2]]);
 });
 
-test('Mira reels along the measured hook lane, sweeps her evolved radius, and breaks at the live crest',()=>{
+test('Captain "Pag Pag" Garcia skips a lid down the lane, serves the evolved radius and drives a stove cart',()=>{
   const g=battle('mira');
   const cast={hero:'mira',kind:'spell',slot:1,x:5,y:12,max:.4,life:.2,a:Math.PI/2,range:80};
   g.fx=[cast];
@@ -59,16 +81,14 @@ test('Mira reels along the measured hook lane, sweeps her evolved radius, and br
   assert.deepEqual(draw(g),[]);
 });
 
-test('delayed seals descend on their individual footprints and dissipate at contact',()=>{
+test('the ward paints its statue and three guardians at their own feet',()=>{
   const g=battle('nadi');
-  g.roster.nadi={discs:[{x:20,y:70,at:2,radius:105},{x:100,y:-40,at:2,radius:105}]};
-  const seals=draw(g);
-  assert.deepEqual(seals.map(s=>[s.x,s.y,s.width]),[[20,70,105],[100,-40,105]]);
-  g.t=1.9;
-  assert.ok(draw(g)[0].lift<seals[0].lift);
-  g.roster.nadi.discs=[];
-  g.fx=[{kind:'ring',hero:'nadi',flourish:'seal',x:20,y:70,r:105,life:.03,max:.4}];
-  assert.deepEqual(draw(g).map(s=>[s.frame,s.x,s.y]),[[19,20,70]]);
+  const monks=[[20,70],[100,-40],[50,-70]].map(([x,y])=>({x,y,angle:0,swingUntil:0}));
+  g.roster.nadi={ward:{x:0,y:0,until:2,radius:170,monks}};
+  const stamps=draw(g,true);
+  assert.deepEqual(stamps.map(s=>[s.x,s.y,s.frame]),[[0,0,16],[20,70,17],[100,-40,17],[50,-70,17]]);
+  g.t=2;
+  assert.deepEqual(draw(g),[]);
 });
 
 test('duration cues follow orbiters, fields, and the actual dash endpoint',()=>{
@@ -81,12 +101,11 @@ test('duration cues follow orbiters, fields, and the actual dash endpoint',()=>{
   assert.deepEqual([rush.x,rush.y],[10,20]);
 });
 
-test('specialization releases use their measured lane width, length and off-caster landing radius',()=>{
+test('flying knee uses its dedicated sprite and remote casts paint their landing radius',()=>{
   const g=battle('nok');
   const cast={kind:'spell',hero:'nok',slot:1,x:10,y:20,a:Math.PI,max:.6,life:.3,range:270,w:53};
   g.fx=[cast];
-  const [teep]=draw(g);
-  assert.deepEqual([teep.width,teep.height,teep.x,Math.round(teep.y)],[270,106,-125,20]);
+  assert.equal(draw(g).length,0);
   g.hero.id='asha';Object.assign(cast,{hero:'asha',tx:-16,ty:0,range:135});
   const [stamp]=draw(g,true);
   assert.deepEqual([stamp.width,stamp.x,stamp.y,stamp.ground],[270,-16,0,true]);
@@ -114,13 +133,12 @@ test('a contact shares the struck actor’s foot depth while the image sits at h
 });
 
 test('split casts show their live carriers without an extra group at the caster',()=>{
-  for(const [hero,slot] of [['lia',4],['nadi',4],['keo',2]]){
+  for(const [hero,slot] of [['lia',4],['keo',2]]){
     const g=battle(hero);
     g.fx=[{kind:'spell',hero,slot,x:10,y:20,max:.5,life:.48}];
     const points=[{x:40,y:50},{x:62,y:40},{x:84,y:30}];
-    if(hero==='lia')g.roster.lia={shuttles:points.map(p=>({...p,ax:1,ay:0,age:.1,ultimate:true}))};
+    if(hero==='lia')g.fx.push(...points.map(p=>({kind:'shadowstep',hero,slot,x:10,y:20,tx:p.x,ty:p.y,max:.36,life:.22})));
     if(hero==='keo')g.projs=points.map(p=>({...p,vx:100,vy:0,r:6,hitOptions:{hero,slot}}));
-    if(hero==='nadi')g.roster.nadi={discs:points.map(p=>({...p,radius:80,at:2}))};
     for(const reduced of [false,true]){
       const sprites=draw(g,reduced);
       assert.deepEqual(sprites.map(s=>({x:s.x,y:s.y})),points,hero);
@@ -139,16 +157,13 @@ test('a directed punch or fan leaves the caster as one continuous gesture',()=>{
   }
 });
 
-test('wide hand fans and hovering seals keep their painted faces above the terrain',()=>{
-  const g=battle('keo');
-  g.fx=[{kind:'spell',hero:'keo',slot:1,x:10,y:20,a:0,max:.4,life:.15}];
-  const fan=draw(g)[0];
-  assert.ok(fan.ground||fan.lift>=fan.height/2);
-  const n=battle('nadi');
-  n.roster.nadi={discs:[{x:40,y:50,radius:80,at:n.t+.05}]};
+test('Hand of Buddha paints the travelling front at its live position and width',()=>{
+  const g=battle('nadi');
+  g.roster.nadi={waves:[{x:40,y:50,ax:1,ay:0,width:140,distance:72,empowered:true}]};
   for(const reduced of [false,true]){
-    const [seal]=draw(n,reduced);
-    assert.ok(seal.lift>=seal.height/2);
+    const [wave,palm]=draw(g,reduced);
+    assert.deepEqual([wave.x,wave.y,wave.originX,wave.height,wave.ground],[112,50,1,140,true]);
+    assert.equal(palm.x,wave.x);
   }
 });
 
@@ -180,3 +195,67 @@ for(const hero of ['asha','ustaz']){
     assert.notDeepEqual(position(false).slice(0,2),moving.slice(0,2));
   });
 }
+
+test('a circular cast blooms out to the measured footprint and holds its radius in reduced motion',()=>{
+  const g=battle('mira');
+  const cast={kind:'spell',hero:'mira',slot:2,x:4,y:3,range:190,max:.5,life:.5};
+  g.fx=[cast];
+  const opening=draw(g)[0];
+  cast.life=.4;
+  const expanding=draw(g)[0];
+  cast.life=.2;
+  assert.ok(opening.width<expanding.width&&expanding.width<380);
+  assert.equal(draw(g)[0].width,380);
+  cast.life=.5;
+  assert.equal(draw(g,true)[0].width,380);
+});
+
+test('small shots have a readable silhouette above the floor in either motion mode',()=>{
+  for(const hero of ['ustaz','rempit','lan','sari','asha','dani','vanna','keo','lia']){
+    const g=battle(hero);
+    g.projs=[{x:80,y:12,r:4,vx:0,vy:-1}];
+    for(const reduced of [false,true]){
+      const [shot]=draw(g,reduced);
+      assert.ok(shot.width>=68,hero);
+      assert.ok(shot.lift>=shot.height/2,hero);
+      assert.deepEqual([shot.x,shot.y,shot.angle],[80,12,-Math.PI/2]);
+    }
+  }
+});
+
+test('hot exhaust and boost share the displayed muffler when aim and steering disagree',()=>{
+  const g=battle('rempit');
+  Object.assign(g.p,{exhaust:4,super:0,vx:0,vy:200,face:[0,1]});
+  const outlet={x:-11,y:-5,dx:-.53,dy:-.64};
+  for(const slot of [2,4]){
+    if(slot===4)g.p.super=3;
+    g.fx=[{kind:'spell',hero:'rempit',slot,x:100,y:90,a:Math.PI,max:5,life:4.9}];
+    const paint=[];
+    drawPaintedEffects(g,true,s=>paint.push(s),outlet);
+    assert.equal(paint.length,1);
+    const [jet]=paint;
+    assert.deepEqual([jet.frame,jet.x,jet.y-jet.lift],[slot*4+2,outlet.x,outlet.y]);
+    assert.ok(jet.y<g.p.y);
+    assert.equal(jet.angle,Math.atan2(-outlet.dy,-outlet.dx));
+  }
+});
+
+test('Fajar Penuh sends dawn light to the edge of its circle in every octant',()=>{
+  const g=battle('ustaz');
+  g.fx=[{kind:'spell',hero:'ustaz',slot:1,...g.p,a:.3,range:290,half:Math.PI,max:.65,life:.32}];
+  for(const reduced of [false,true]){
+    const rays=draw(g,reduced);
+    assert.equal(rays.length,8);
+    for(const [i,ray] of rays.entries()){
+      assert.equal(ray.angle,.3+i*Math.PI*2/8);
+      assert.equal(ray.width,290);
+      assert.ok(Math.abs(Math.hypot(ray.x-g.p.x,ray.y-g.p.y)-145)<.001);
+    }
+  }
+});
+
+test('gold bars have their own live rendering and do not reuse the rivet sprite',()=>{
+  const g=battle('dani');
+  g.projs=[{kind:'gold-bar',x:99,y:40,vx:10,vy:0,r:13,hitOptions:{slot:4}}];
+  assert.deepEqual(draw(g),[]);
+});

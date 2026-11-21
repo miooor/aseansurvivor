@@ -31,33 +31,25 @@ const cases={
     cast(1);
     return echo.t===0&&echo.dmg===60;
   }],
-  asha:['Priority Ticket',({g,foe,cast})=>{
+  asha:['Queue Jumper',({g,foe,cast})=>{
     foe(220);
     foe(240);
     cast(1);
     const list=g.roster.asha.tickets;
     return list.length===2&&list[0].served&&!list[1].served;
   }],
-  mira:['Harbour Undertow',({foe,cast})=>{
+  mira:['One More Bowl',({foe,cast})=>{
     foe(200);
     const outer=foe(0,162);
     cast(1);
     cast(2);
     return outer.hp<outer.maxHp;
   }],
-  dani:['Beacon Handover',({g,foe,cast})=>{
-    cast(2);
-    const old=foe(10);
-    g.p.x+=260;
-    cast(2);
-    return old.hp<old.maxHp;
+  dani:['Lasting Gold',({g,cast})=>{
+    cast(2);return g.roster.dani.dust.until===g.t+9;
   }],
-  vanna:['Standing Warp',({g,cast})=>{
-    cast(1);
-    cast(2);
-    cast(3);
-    const s=g.roster.vanna;
-    return !!s.q&&!s.e&&!s.cross;
+  vanna:['Long Thread',({foe,cast,step})=>{
+    const outer=foe(0,185);cast(3);step(2);return outer.hp<outer.maxHp;
   }],
   keo:['Five-Reed Chord',({g,cast})=>{
     cast(1);
@@ -65,16 +57,13 @@ const cases={
     cast(2);
     return g.projs.filter(q=>q.hitOptions?.slot===2).length===5;
   }],
-  nadi:['Workshop Kiln',({g,cast})=>{
-    const s=g.roster.nadi;
-    s.layers.push(...[10,30,180].map(x=>({x:g.p.x+x,y:g.p.y,at:g.t})));
+  nadi:['Unbroken Stillness',({g,cast})=>{
     cast(3);
-    return s.layers.filter(q=>q.cured).length===2&&!s.layers[2].cured;
+    return g.roster.nadi.guard.until===g.t+3;
   }],
-  lia:['Express Dispatch',({g,cast})=>{
-    g.roster.lia.spools=2;
-    cast(2);
-    return Math.abs(Math.hypot(g.p.dash.vx,g.p.dash.vy)*g.p.dash.t-210)<.01&&g.roster.lia.spools===0;
+  lia:['Long Shadow',({g,cast})=>{
+    const {x,y}=g.p;cast(2);
+    return Math.abs(Math.hypot(g.p.x-x,g.p.y-y)-280)<.01;
   }]
 };
 
@@ -108,7 +97,7 @@ export async function checkEvolutions(w,check){
         offer.click();
         check(name+' claimed and unpinned',g.evo[recipe.i]&&g.trackedEvolution===null);
       }
-      g.stop=0;g.st.crit=0;
+      g.stop=0;g.st.crit=0;g.noElements=true;
       doc.querySelector('#game').dispatchEvent(new w.MouseEvent('mousemove',{clientX:w.innerWidth/2+200,clientY:w.innerHeight/2}));
       const foe=(x,y=0)=>{
         const e=rt.makeGhost('pocong',g.p.x+x,g.p.y+y);e.hp=e.maxHp=9999;e.spd=0;return e;

@@ -67,8 +67,8 @@ export function drawHeroRelease(batch:SpellRibbons, cast:Effect, ink:number, red
       break;
     case 'mira':
       if(cast.slot!==0&&cast.slot!==1)break;
-      line([[-24,6],[5,0],[14,-6],[11,-13],[4,-12]],3.2);
-      line([[11,-13],[4,-12],[5,-8]],2,light);
+      face([[-12,-3],[16,-5],[10,5],[-2,8]],ink);
+      line([[-23,-8],[-12,-3],[16,-5]],3,light);
       break;
     case 'dani':
       face([[-10,0],[0,-9],[12,0],[0,9]],light);
@@ -80,15 +80,10 @@ export function drawHeroRelease(batch:SpellRibbons, cast:Effect, ink:number, red
     case 'keo':
       for(let i=0;i<3;i++)arc(-12+i*9,8+i*4,-1.15,2.3,2.6,i===2?light:ink);
       break;
-    case 'nadi':
-      face([[-21,0],[1,-7],[10,-4],[13,2],[4,8]],ink);
-      batch.glow(point(4,-2,2),4,light,alpha);
-      batch.glow(point(-18,8,3),4,ink,alpha);
-      break;
     case 'lia':
-      face([[-14,0],[0,-8],[17,0],[0,8]],ink);
-      for(const f of [-5,1,7])line([[f-2,-4],[f+2,4]],1.5,light);
-      arc(-17,7,0,TAU*.76,1.6);
+      face([[-14,-2],[1,-5],[24,0],[0,4]],ink);
+      line([[-11,0],[20,0]],1.8,light);
+      line([[-9,-6],[-9,6]],2,light);
       break;
   }
 }

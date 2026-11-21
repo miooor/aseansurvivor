@@ -1,3 +1,4 @@
+import {launchBasicVolley} from '../basic-volley.js';
 export function installKeo(api){
   const {HEROES,CAST,AUTO,HOOKS,nearest,each,hit,rm,aimDir,ring}=api;
   HEROES.keo={id:'keo',name:'Keo',country:'Laos',role:'Reed resonator · timed releases',hp:105,speed:180,ultNeed:55,basicDamage:14,
@@ -24,7 +25,9 @@ export function installKeo(api){
     }
     status();return mul}
   // E lands after successful-cast hooks; retain Drum eligibility from before its own trigger.
-  function bolt(a,r,slot,damage,x=api.G.p.x,y=api.G.p.y,speed=460,life=.8){api.G.projs.push({x,y,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed,r:6,dmg:damage*rm(r),life,pierce:1,hit:new Set(),hitOptions:{hero:'keo',slot,...(slot===2?{crosswindDrumActive:api.G.itemState.crosswindDrum?.until>api.G.t}: {})},kind:'nur'})}
+  function bolt(a,r,slot,damage,x=api.G.p.x,y=api.G.p.y,speed=460,life=.8){const shot={x,y,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed,r:6,dmg:damage*rm(r),life,pierce:1,hit:new Set(),hitOptions:{hero:'keo',slot,...(slot===2?{crosswindDrumActive:api.G.itemState.crosswindDrum?.until>api.G.t}: {})},kind:'nur'};
+    if(slot===0)launchBasicVolley(api.G,r,shot);else api.G.projs.push(shot);
+  }
   HOOKS.newGame.push(()=>{lastRaid=null;clear()});HOOKS.cleanup.push(clear);
   HOOKS.update.push(()=>{const g=api.G;if(g.hero.id!=='keo')return;sync();const due=S.pulses.filter(q=>g.t>=q.at-1e-8);S.pulses=S.pulses.filter(q=>!due.includes(q));for(const q of due){each(q.x,q.y,180,e=>hit(e,q.damage,{hero:'keo',slot:4}));ring(q.x,q.y,180,'#9edba6',.25,'echo-land');api.G.fx.at(-1).hero='keo'}status()});
   CAST.keo=[

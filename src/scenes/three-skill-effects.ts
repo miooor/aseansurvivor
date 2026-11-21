@@ -1,3 +1,4 @@
+import {BLADE_WHEEL_RADIUS} from '../game/heroes/lia.js';
 import {MIRA_BASIC_REACH,MIRA_BASIC_HALF_ANGLE} from '../game/heroes/mira.js';
 import {drawOriginalCast,drawOriginalProjectile,drawOriginalStrike} from './heroes/original-five-vfx';
 import {drawRosterCast,drawRosterProjectile,drawRosterContact,hasRosterCast} from './heroes/roster-casts';
@@ -16,6 +17,7 @@ function curve(batch:SpellRibbons,steps:number,path:(u:number)=>Knot,width:numbe
 }
 
 export function drawCast(batch:SpellRibbons,f:Effect,g:RunState,reduced:boolean){
+  if(f.hero==='nadi'||f.hero==='dani'&&f.slot!==0)return;
   if(f.hero==='ustaz'||f.hero==='rempit'||f.hero==='nok'||f.hero==='lan'||f.hero==='sari'){
     drawOriginalCast(batch,f,g,reduced);
     return;
@@ -76,12 +78,12 @@ export function drawCast(batch:SpellRibbons,f:Effect,g:RunState,reduced:boolean)
     case 'mira-1':{
       const reach=f.range??240,end=reach*(reduced?1:1-.68*progress);
       for(const side of [-14,14])band(2,u=>forward(reach*u,side,2),2,ink,.48,false);
-      band(16,u=>forward(end*u,0,8+4*Math.sin(u*Math.PI)),3,IVORY);
-      band(12,u=>forward(end-8+8*Math.cos(-1.4+u*3.9),6*Math.sin(-1.4+u*3.9),9),4,0xffb968);
+      band(18,u=>forward(end-10+10*Math.cos(TAU*u),13*Math.sin(TAU*u),12),4,IVORY);
+      band(8,u=>forward(end-3+5*Math.cos(TAU*u),4*Math.sin(TAU*u),15),3,0xffb968);
       break;
     }
     case 'mira-2':{
-      const charged=f.flourish==='haul',radius=f.range??110;
+      const charged=f.flourish==='serving',radius=f.range??110;
       ring(radius,3,charged?IVORY:ink,charged?5:3);
       for(const side of [0,Math.PI]){
         const turn=a+side+progress*TAU;
@@ -89,7 +91,7 @@ export function drawCast(batch:SpellRibbons,f:Effect,g:RunState,reduced:boolean)
           const u=i/20,v=(i+1)/20,b=turn+u*2.6,c=turn+v*2.6;
           const outer=polar(radius-1,b,6),tip=polar(radius-1,c,6);
           const inner=polar(radius-1-u*(charged?26:16),b,8+5*u),next=polar(radius-1-v*(charged?26:16),c,8+5*v);
-          batch.facet([outer,tip,next],0x22adaf,opacity*.86);batch.facet([outer,next,inner],0x22adaf,opacity*.86);
+          batch.facet([outer,tip,next],0xdf743c,opacity*.86);batch.facet([outer,next,inner],0xdf743c,opacity*.86);
         }
         band(24,u=>polar(radius-1,turn+u*2.6,7),charged?6:4,charged?IVORY:ink);
       }
@@ -101,65 +103,28 @@ export function drawCast(batch:SpellRibbons,f:Effect,g:RunState,reduced:boolean)
       break;
     case 'mira-4':break; // RosterCues draws the live breaker.
     case 'lia-1':{
-      // A crimson runner opens down the lane, with gold edging and woven chevrons.
-      const end=(f.range??240)*Math.min(1,.18+progress*3.6);
-      const hem=(u:number,side:number)=>forward(end*u,side*16,9+4*Math.sin(u*TAU-progress*5));
-      for(let i=0;i<12;i++){
-        const u=i/12,v=(i+1)/12;
-        batch.facet([hem(u,-1),hem(u,1),hem(v,-1)],0xa52d41,opacity*.83);
-        batch.facet([hem(u,1),hem(v,1),hem(v,-1)],0xc94247,opacity*.83);
-      }
-      for(const side of [-1,1])band(16,u=>hem(u,side),2.5,GOLD,.95,false);
-      for(let d=20;d<end-14;d+=29){
-        batch.strip([hem(d/end,-.76),hem((d+13)/end,0),hem(d/end,.76)],3,IVORY,opacity,false);
-      }
+      const end=(f.range??240)*Math.min(1,.25+progress*3);
+      for(const side of [-1,1])band(24,u=>forward(end*u,side*(16*Math.sin(Math.PI*u)),9+26*Math.sin(Math.PI*u)),5,side<0?0x7d53be:0xe5e3ff);
       break;
     }
-    case 'lia-2':{
-      // The sash stays attached to Lia, including when terrain cuts her rush short.
-      const dx=g.p.x-x,dy=g.p.y-y;
-      const length=Math.hypot(dx,dy);
-      if(length<1)break;
-      for(let i=0;i<3;i++)band(28,u=>{
-        const twist=u*TAU*1.5+i*TAU/3-progress*3;
-        const width=13*Math.sin(Math.PI*u)*Math.cos(twist);
-        return [x+dx*u-dy/length*width,y+dy*u+dx/length*width,
-          6+u*22+Math.sin(Math.PI*u)*(12+10*Math.sin(twist))];
-      },i===0?8:4,[0xed494c,GOLD,IVORY][i]);
-      break;
-    }
-    case 'lia-3':{
-      // A swinging brass handbell, drawn in the camera plane above the recall pulse.
-      const swing=.32*Math.sin(progress*TAU)*(1-progress);
-      const bell=(side:number,down:number):Knot=>[x+side*Math.cos(swing)-down*Math.sin(swing),y,
-        94-side*Math.sin(swing)-down*Math.cos(swing)];
-      const shell=[bell(-5,4),bell(5,4),bell(12,12),bell(15,31),bell(24,39),
-        bell(-24,39),bell(-15,31),bell(-12,12)];
-      for(let j=1;j<shell.length-1;j++)batch.facet([shell[0],shell[j],shell[j+1]],j%2?GOLD:0xf48d35,opacity*.95);
-      batch.strip([...shell,shell[0]],2.6,IVORY,opacity,false);
-      batch.strip([bell(0,-9),bell(0,3)],4,GOLD,opacity,false);
-      star(bell(-8*Math.sin(swing*3),44),6,IVORY);
-      for(let j=0;j<2;j++){
-        const v=Math.min(1,Math.max(0,progress*1.7-j*.22));
-        if(v>0)ring(120*v,5+j*5,j?IVORY:GOLD,j?2:4);
+    case 'lia-2':case 'lia-4':
+      star([x,y,32],13,0xd4bdff);break;
+    case 'lia-3':
+      for(let i=0;i<3;i++){
+        const angle=a+i*TAU/3+progress*4;
+        const edge=(u:number)=>polar(BLADE_WHEEL_RADIUS*(.40+.60*u),angle+u*1.8,10+22*u);
+        band(20,edge,12,0x965bce);
+        band(20,edge,3,0xffdcff);
+        batch.glow(edge(1),9,0xb595ff,opacity);
       }
       break;
-    }
-    case 'lia-4':{
-      // The launch opens like a fan. The three live shuttles carry the streamers onward.
-      for(const side of [-1,0,1]){
-        const heading=a+side*25*Math.PI/180;
-        band(18,u=>polar(10+u*(38+32*pulse),heading+.12*(1-u)*side,12+32*Math.sin(Math.PI*u)),7,0xdd4457);
-        star(polar(38+32*pulse,heading,17),8,IVORY);
-      }
-      break;
-    }
   }
 
 }
 
 export function drawCombatTrails(batch:SpellRibbons,g:RunState,reduced:boolean){
   for(const q of g.projs){
+    if(q.kind==='gold-bar')continue;
     if(!q.hero&&!q.hitOptions?.hero&&!('origin' in q)&&
       (q.kind!=='nur'||g.hero.id==='ustaz')&&drawOriginalProjectile(batch,q,reduced,g.t))continue;
     const a=Math.atan2(q.vy,q.vx),dx=Math.cos(a),dy=Math.sin(a);
@@ -192,6 +157,11 @@ export function drawImpact(batch:SpellRibbons,f:Effect,g:RunState,reduced:boolea
   const polar=(radius:number,angle:number,h:number):Knot=>[f.x+radius*Math.cos(angle),f.y+radius*Math.sin(angle),h];
   const arc=(r:number,start:number,span:number,w:number,h:number,ink=c)=>
     curve(batch,32,u=>polar(r,start+span*u,h),w,ink,alpha,span<TAU);
+  if(f.kind==='basicChain'&&f.tx!==undefined&&f.ty!==undefined){
+    const path:Knot[]=[[f.x,f.y,23],[(f.x+f.tx)/2,(f.y+f.ty)/2, reduced?23:35],[f.tx,f.ty,23]];
+    batch.strip(path,5,c,alpha);batch.strip(path,1.8,IVORY,alpha);
+    return;
+  }
   if(drawRosterContact(batch,f,reduced))return;
   if(f.kind==='wake'){
     for(const side of [-1,1])curve(batch,24,u=>{
@@ -250,6 +220,7 @@ export function drawImpact(batch:SpellRibbons,f:Effect,g:RunState,reduced:boolea
 export function drawGroundSkills(batch:SpellRibbons,g:RunState,reduced:boolean){
   for(const z of g.zones){
     if(z.kind!=='fire'&&z.kind!=='barrier')continue;
+    if(z.kind==='barrier'&&z.slot===3)continue;
     const fade=Math.min(1,z.life/.4);
     const fire=z.kind==='fire',c=fire?FIRE:GOLD;
     batch.glow([z.x,z.y,5],z.r,c,fade*(fire?.48:.22));
