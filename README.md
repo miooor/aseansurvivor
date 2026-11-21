@@ -26,6 +26,8 @@ docker compose down
 
 Deploy the generated `dist/` directory to a static host. GitHub Pages now requires a build workflow; publishing the source branch directly is insufficient. Vite uses relative asset paths so the build supports a repository subpath.
 
+The game also has a private [playable Astrocade draft](https://www.astrocade.com/games/asean-survivor/01M7FMJGJ3PMC9H145JJCCNEKR/v/01M7FSHCVJRJ8ABEZ9GM066YXM), accessible while signed in as its owner. Its WebP artwork downloads 74.6% less data than the corresponding active PNG set. Rebuild its five-file package with `docker compose exec -T game npm run build:astrocade`. See [Astrocade port and verification](docs/astrocade.md) for portrait controls, cloud saves, asset encoding and repeatable mobile/sandbox checks.
+
 ## Controls
 
 | Action | Keys |
@@ -57,6 +59,16 @@ All heroes and stages are unlocked for testing. To bring back the shop and stage
 The campaign lobby, HUD, hero portraits, controls, upgrades, pause, and results screens share a jade-and-gold visual style. The battlefield uses native Phaser images, graphics, text, camera effects, and reusable sprite objects. There is no full-screen Canvas-texture rendering bridge.
 
 All six stages have distinct connected 6,000 × 6,000 regions, each with five landmarks, local terrain and a signature enemy. All five heroes use four-frame movement and attack cycles in eight directions, with a separate directional idle atlas. Q/E/F/R each have distinct eight-direction windup and release poses, followed by a shared recovery pose. Johor now has run-local rescue/weapon, ward/charm and hunt/relic encounters; music remains future work.
+
+## Combat and skill builds
+
+Johor’s optional rescue, ward and hunt now pair deliberate event activation with tougher elite patterns: Armoured stalkers alternate locked-aim charges and five-bolt fans, while half-health Briarback alternates charges and eight-ray bursts. Warnings precede damage and stay visible with reduced motion. [Exact combat rules](docs/event-combat.md).
+
+Eighteen run-local items are available, six per weapon/charm/relic slot. Each event samples three distinct rewards once. Six new choices add Q echoes, E forked bolts, F slow fields, cooldown relays, alternating-cast damage and ultimate pulses, while preserving each hero’s original skills. Equipment inspection pauses the game. [Equipment rules](docs/skill-equipment.md), [combined build fixture, play observations and desktop profile](docs/gameplay-upgrade.md).
+
+Dense active-event combat remains a measured desktop performance limitation; the [combined profile](docs/gameplay-upgrade.md) records the slow crowded sample and its staging conditions. Physical-phone performance and natural full-run balance remain unverified.
+
+Seven researched fictional hero concepts complement the current roster across Singapore, the Philippines, Brunei, Cambodia, Laos, Myanmar and Timor-Leste. These are design drafts; the playable roster still has five heroes. [Concepts, institutional sources and local-review requirements](docs/asean-hero-concepts.md).
 
 ## Hero signatures
 
@@ -146,6 +158,10 @@ Broad routes connect every region; Johor has two 480-unit-wide river bridges. Bu
 The minimap marks the player, river crossings and landmarks. Visited landmarks turn jade; claimed supply caches turn gold. Four optional sites summon three guardians on discovery. Defeat those guards and approach the cache to receive the location’s coin reward (18–34 coins), up to 30 HP, and 25% ultimate charge. Rewards and discoveries reset each run. Cache rewards deliberately change run progression; they need longer balancing playtests.
 
 Map definitions live in `src/content/regions.js`, with Johor and collision/navigation in `src/content/world.js`; `src/scenes/OpenWorld.ts` renders tiled ground, illustrated building props, paths, paddies, bridges and navigation UI. `/tests/world-smoke.html` checks Johor; `/tests/stage-worlds.html` checks all six layouts, landmark routes, cache rewards, regional enemy attacks and stage switching, with a stage/landmark preview selector. The old arena painting remains in the source assets but is no longer loaded by the game.
+
+The environment now uses an opaque meadow tile, grass-fringed winding road patches, textured water with irregular muddy banks, illustrated rice terraces, timber decking and town paving. The minimap shows routes and softened shorelines. The hero has a small, soft contact shadow instead of the former dark circular disk. The rectangular collision/navigation layout is retained beneath the dressed banks and crossings.
+
+Outdoor weather cycles between clear air, mist, rain and clearing mist over 180 simulation seconds, with a different starting offset per region; Johor starts in rain. It freezes during pause and upgrade/equipment screens, hides in raids and the lobby, and removes moving rain under reduced-motion preferences. It is visual atmosphere, without combat or movement modifiers. See [environment rules and evidence](docs/environment.md), [art prompts](assets/ENVIRONMENT_PROMPTS.md), and `/tests/environment.html` for repeatable checks and previews.
 
 | Stage / region | Environment and landmarks | Signature enemy |
 | --- | --- | --- |

@@ -1,5 +1,8 @@
 # Thorn Hunt and relic equipment
 
+Historical slice evidence. The follow-up [combat contract](event-combat.md) supersedes elite patterns and rescue/ward compositions; [skill equipment](skill-equipment.md) expands the catalogue from twelve to eighteen items. [Combined verification and play/profile evidence](gameplay-upgrade.md) records the integrated follow-up. Earlier spec #1/PR #7 remains a separate workflow.
+
+
 Ticket #5 of [Johor encounter and loot spec #1](https://github.com/miooor/aseansurvivor/issues/1), built on integration `a04dd11`.
 
 Johor's palm grove contains a deliberate hunt marker at (-1800, 1400), separate from the existing cache. Starting reveals only the first track, at (-1650, 1650); investigating reveals the second at (-1300, 1750). The second investigation reveals Briarback, a Thornbound Palm Stalker, in the clearing at (-1100, 1450). Every point is projected to collision-valid ground. Only confirmed damage death of the owned elite completes the hunt. Leaving the grove does not fail it; abandonment is final for the run and removes all owned actors and hazards. Survival, raid arbitration, modal pausing and cleanup use the shared encounter contract.

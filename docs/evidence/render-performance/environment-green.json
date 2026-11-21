@@ -1,0 +1,311 @@
+{
+  "date": "2026-11-15T17:32:45.191Z",
+  "checks": [
+    {
+      "name": "Terrain atlas loads",
+      "pass": true
+    },
+    {
+      "name": "grass frame exists",
+      "pass": true
+    },
+    {
+      "name": "road frame exists",
+      "pass": true
+    },
+    {
+      "name": "water frame exists",
+      "pass": true
+    },
+    {
+      "name": "paddy frame exists",
+      "pass": true
+    },
+    {
+      "name": "wood frame exists",
+      "pass": true
+    },
+    {
+      "name": "stone frame exists",
+      "pass": true
+    },
+    {
+      "name": "Johor uses textured ground",
+      "pass": true
+    },
+    {
+      "name": "Johor has textured road surfaces",
+      "pass": true
+    },
+    {
+      "name": "Johor keeps road instances bounded",
+      "pass": true
+    },
+    {
+      "name": "Johor retains every organic textured water surface",
+      "pass": true
+    },
+    {
+      "name": "Johor water becomes visible on arrival",
+      "pass": true
+    },
+    {
+      "name": "Johor water becomes visible on arrival",
+      "pass": true
+    },
+    {
+      "name": "Johor water becomes visible on arrival",
+      "pass": true
+    },
+    {
+      "name": "Johor has illustrated rice terraces",
+      "pass": true
+    },
+    {
+      "name": "Johor keeps bridge decking above water",
+      "pass": true
+    },
+    {
+      "name": "Johor minimap matches world",
+      "pass": true
+    },
+    {
+      "name": "Melaka uses textured ground",
+      "pass": true
+    },
+    {
+      "name": "Melaka has textured road surfaces",
+      "pass": true
+    },
+    {
+      "name": "Melaka keeps road instances bounded",
+      "pass": true
+    },
+    {
+      "name": "Melaka retains every organic textured water surface",
+      "pass": true
+    },
+    {
+      "name": "Melaka water becomes visible on arrival",
+      "pass": true
+    },
+    {
+      "name": "Melaka water becomes visible on arrival",
+      "pass": true
+    },
+    {
+      "name": "Melaka water becomes visible on arrival",
+      "pass": true
+    },
+    {
+      "name": "Melaka keeps bridge decking above water",
+      "pass": true
+    },
+    {
+      "name": "Melaka minimap matches world",
+      "pass": true
+    },
+    {
+      "name": "Perak uses textured ground",
+      "pass": true
+    },
+    {
+      "name": "Perak has textured road surfaces",
+      "pass": true
+    },
+    {
+      "name": "Perak keeps road instances bounded",
+      "pass": true
+    },
+    {
+      "name": "Perak retains every organic textured water surface",
+      "pass": true
+    },
+    {
+      "name": "Perak water becomes visible on arrival",
+      "pass": true
+    },
+    {
+      "name": "Perak water becomes visible on arrival",
+      "pass": true
+    },
+    {
+      "name": "Perak minimap matches world",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur uses textured ground",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur has textured road surfaces",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur keeps road instances bounded",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur minimap matches world",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang uses textured ground",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang has textured road surfaces",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang keeps road instances bounded",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang retains every organic textured water surface",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang water becomes visible on arrival",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang water becomes visible on arrival",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang water becomes visible on arrival",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang keeps bridge decking above water",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang minimap matches world",
+      "pass": true
+    },
+    {
+      "name": "Kedah uses textured ground",
+      "pass": true
+    },
+    {
+      "name": "Kedah has textured road surfaces",
+      "pass": true
+    },
+    {
+      "name": "Kedah keeps road instances bounded",
+      "pass": true
+    },
+    {
+      "name": "Kedah retains every organic textured water surface",
+      "pass": true
+    },
+    {
+      "name": "Kedah water becomes visible on arrival",
+      "pass": true
+    },
+    {
+      "name": "Kedah water becomes visible on arrival",
+      "pass": true
+    },
+    {
+      "name": "Kedah water becomes visible on arrival",
+      "pass": true
+    },
+    {
+      "name": "Kedah has illustrated rice terraces",
+      "pass": true
+    },
+    {
+      "name": "Kedah keeps bridge decking above water",
+      "pass": true
+    },
+    {
+      "name": "Kedah minimap matches world",
+      "pass": true
+    },
+    {
+      "name": "ustaz has a soft flat contact shadow",
+      "pass": true
+    },
+    {
+      "name": "ustaz shadow follows the feet",
+      "pass": true
+    },
+    {
+      "name": "rempit has a soft flat contact shadow",
+      "pass": true
+    },
+    {
+      "name": "rempit shadow follows the feet",
+      "pass": true
+    },
+    {
+      "name": "nok has a soft flat contact shadow",
+      "pass": true
+    },
+    {
+      "name": "nok shadow follows the feet",
+      "pass": true
+    },
+    {
+      "name": "lan has a soft flat contact shadow",
+      "pass": true
+    },
+    {
+      "name": "lan shadow follows the feet",
+      "pass": true
+    },
+    {
+      "name": "sari has a soft flat contact shadow",
+      "pass": true
+    },
+    {
+      "name": "sari shadow follows the feet",
+      "pass": true
+    },
+    {
+      "name": "Johor begins with visible rain",
+      "pass": true
+    },
+    {
+      "name": "Weather changes through the run",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes weather",
+      "pass": true
+    },
+    {
+      "name": "Upgrade overlay freezes weather",
+      "pass": true
+    },
+    {
+      "name": "Equipment overlay freezes weather",
+      "pass": true
+    },
+    {
+      "name": "Rain particles remain bounded",
+      "pass": true
+    },
+    {
+      "name": "Raid suppresses outdoor weather",
+      "pass": true
+    },
+    {
+      "name": "Lobby hides outdoor weather",
+      "pass": true
+    },
+    {
+      "name": "Repeated world switches release old terrain",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion removes moving rain",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "result": "PASS"
+}

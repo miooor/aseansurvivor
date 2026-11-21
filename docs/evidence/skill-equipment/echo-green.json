@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-15T15:07:14.904Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.4 seconds",
+      "pass": true
+    },
+    {
+      "name": "Echo waits until 0.45 simulation seconds",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.05 seconds",
+      "pass": true
+    },
+    {
+      "name": "Q echo deals22 at its fixed marked point",
+      "pass": true
+    }
+  ]
+}

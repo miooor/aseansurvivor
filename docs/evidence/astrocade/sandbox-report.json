@@ -1,0 +1,257 @@
+{
+  "date": "2026-11-15T13:07:02.548Z",
+  "checks": [
+    {
+      "name": "Browser storage is blocked by the real sandbox",
+      "pass": true
+    },
+    {
+      "name": "Exactly one Phaser canvas",
+      "pass": true
+    },
+    {
+      "name": "All five heroes",
+      "pass": true
+    },
+    {
+      "name": "All six regions",
+      "pass": true
+    },
+    {
+      "name": "Portrait viewport",
+      "pass": true
+    },
+    {
+      "name": "Lobby button targets meet the portrait minimum",
+      "pass": true
+    },
+    {
+      "name": "ustaz starts",
+      "pass": true
+    },
+    {
+      "name": "ustaz skill button casts",
+      "pass": true
+    },
+    {
+      "name": "ustaz touch skill target",
+      "pass": true
+    },
+    {
+      "name": "ustaz pauses",
+      "pass": true
+    },
+    {
+      "name": "ustaz stays paused",
+      "pass": true
+    },
+    {
+      "name": "ustaz resumes",
+      "pass": true
+    },
+    {
+      "name": "ustaz returns to lobby",
+      "pass": true
+    },
+    {
+      "name": "rempit starts",
+      "pass": true
+    },
+    {
+      "name": "rempit skill button casts",
+      "pass": true
+    },
+    {
+      "name": "rempit touch skill target",
+      "pass": true
+    },
+    {
+      "name": "rempit pauses",
+      "pass": true
+    },
+    {
+      "name": "rempit stays paused",
+      "pass": true
+    },
+    {
+      "name": "rempit resumes",
+      "pass": true
+    },
+    {
+      "name": "rempit returns to lobby",
+      "pass": true
+    },
+    {
+      "name": "nok starts",
+      "pass": true
+    },
+    {
+      "name": "nok skill button casts",
+      "pass": true
+    },
+    {
+      "name": "nok touch skill target",
+      "pass": true
+    },
+    {
+      "name": "nok pauses",
+      "pass": true
+    },
+    {
+      "name": "nok stays paused",
+      "pass": true
+    },
+    {
+      "name": "nok resumes",
+      "pass": true
+    },
+    {
+      "name": "nok returns to lobby",
+      "pass": true
+    },
+    {
+      "name": "lan starts",
+      "pass": true
+    },
+    {
+      "name": "lan skill button casts",
+      "pass": true
+    },
+    {
+      "name": "lan touch skill target",
+      "pass": true
+    },
+    {
+      "name": "lan pauses",
+      "pass": true
+    },
+    {
+      "name": "lan stays paused",
+      "pass": true
+    },
+    {
+      "name": "lan resumes",
+      "pass": true
+    },
+    {
+      "name": "lan returns to lobby",
+      "pass": true
+    },
+    {
+      "name": "sari starts",
+      "pass": true
+    },
+    {
+      "name": "sari skill button casts",
+      "pass": true
+    },
+    {
+      "name": "sari touch skill target",
+      "pass": true
+    },
+    {
+      "name": "sari pauses",
+      "pass": true
+    },
+    {
+      "name": "sari stays paused",
+      "pass": true
+    },
+    {
+      "name": "sari resumes",
+      "pass": true
+    },
+    {
+      "name": "sari returns to lobby",
+      "pass": true
+    },
+    {
+      "name": "stg-johor plays",
+      "pass": true
+    },
+    {
+      "name": "stg-melaka plays",
+      "pass": true
+    },
+    {
+      "name": "stg-perak plays",
+      "pass": true
+    },
+    {
+      "name": "stg-penang plays",
+      "pass": true
+    },
+    {
+      "name": "stg-kedah plays",
+      "pass": true
+    },
+    {
+      "name": "stg-kl plays",
+      "pass": true
+    },
+    {
+      "name": "Keyboard moves the hero",
+      "pass": true
+    },
+    {
+      "name": "Touch drag moves the hero",
+      "pass": true
+    },
+    {
+      "name": "Audio setting saved through the bridge",
+      "pass": true
+    },
+    {
+      "name": "Host reload keeps one canvas",
+      "pass": true
+    },
+    {
+      "name": "Audio setting survives host reload",
+      "pass": true
+    },
+    {
+      "name": "A change during a pending save keeps the newest value",
+      "pass": true
+    },
+    {
+      "name": "Progression saved through the bridge",
+      "pass": true
+    },
+    {
+      "name": "Cloud writes never overlap",
+      "pass": true
+    },
+    {
+      "name": "Save failure is visible",
+      "pass": true
+    },
+    {
+      "name": "A later save recovers",
+      "pass": true
+    },
+    {
+      "name": "Edit mode prevents play",
+      "pass": true
+    },
+    {
+      "name": "Edit mode has no active game controls",
+      "pass": true
+    },
+    {
+      "name": "Load failure allows session play",
+      "pass": true
+    },
+    {
+      "name": "Load failure protects the existing cloud save",
+      "pass": true
+    },
+    {
+      "name": "No runtime errors",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "result": "PASS",
+  "runtimeErrors": [],
+  "cloudWrites": 5
+}

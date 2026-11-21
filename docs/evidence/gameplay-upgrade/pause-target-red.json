@@ -1,0 +1,160 @@
+{
+  "date": "2026-11-15T16:17:52.926Z",
+  "result": "FAIL",
+  "error": "check@http://localhost:5183/tests/gameplay-upgrade.js:10:111\nlayouts@http://localhost:5183/tests/gameplay-upgrade.js:31:360",
+  "checks": [
+    {
+      "name": "Relay reduces Q cooldown after Q/E chain",
+      "pass": true
+    },
+    {
+      "name": "Delayed Echo receives active Crosswind bonus once",
+      "pass": true,
+      "details": {
+        "hp": 9973.6
+      }
+    },
+    {
+      "name": "Chain retains three distinct equipped items",
+      "pass": true
+    },
+    {
+      "name": "Successful chain keeps original E orbit choreography",
+      "pass": true
+    },
+    {
+      "name": "No browser errors after combinedDamage",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Actual item support 1 kills owned elite and completes hunt",
+      "pass": true,
+      "details": {
+        "dead": true,
+        "status": "completed"
+      }
+    },
+    {
+      "name": "Repeated event updates keep exactly one consumed hunt reward",
+      "pass": true
+    },
+    {
+      "name": "Actual item support 2 kills owned elite and completes hunt",
+      "pass": true,
+      "details": {
+        "dead": true,
+        "status": "completed"
+      }
+    },
+    {
+      "name": "Repeated event updates keep exactly one consumed hunt reward",
+      "pass": true
+    },
+    {
+      "name": "Actual item support 4 kills owned elite and completes hunt",
+      "pass": true,
+      "details": {
+        "dead": true,
+        "status": "completed"
+      }
+    },
+    {
+      "name": "Repeated event updates keep exactly one consumed hunt reward",
+      "pass": true
+    },
+    {
+      "name": "Owned item-origin elite death completes event without Bounty heal/bonus charge",
+      "pass": true,
+      "details": {
+        "hp": 50,
+        "ult": 1,
+        "status": "completed"
+      }
+    },
+    {
+      "name": "No browser errors after supportCompletion",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Equipped rescue elite starts with charge warning",
+      "pass": true
+    },
+    {
+      "name": "Inspection freezes both elite warning and item pulses",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes combined event and build",
+      "pass": true
+    },
+    {
+      "name": "Upgrade overlay freezes combined event and build",
+      "pass": true
+    },
+    {
+      "name": "Active event blocks raid with equipped support",
+      "pass": true
+    },
+    {
+      "name": "Raid keeps equipment and removes abandoned event hazards and support queue",
+      "pass": true
+    },
+    {
+      "name": "Same build casts all support types inside raid",
+      "pass": true
+    },
+    {
+      "name": "Raid exit clears newly created support",
+      "pass": true
+    },
+    {
+      "name": "Menu clears old support/event actors",
+      "pass": true
+    },
+    {
+      "name": "Fresh run restores empty slots and available events",
+      "pass": true
+    },
+    {
+      "name": "No browser errors after orderAndCleanup",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Original three-slot bonuses remain additive at165 damage",
+      "pass": true
+    },
+    {
+      "name": "No browser errors after stacking",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "320 pauseButton remains inside viewport with44px target",
+      "pass": false,
+      "details": {
+        "bounds": {
+          "x": 253.82351684570312,
+          "y": 31.801467895507812,
+          "width": 43.98896789550781,
+          "height": 43.98896789550781
+        },
+        "viewport": [
+          320,
+          843
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

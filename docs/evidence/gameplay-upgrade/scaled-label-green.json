@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-15T16:51:16.400Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "720x1280 Astrocade frame at .44 host scale keeps elite text12CSSpx",
+      "pass": true,
+      "details": {
+        "screenFont": 12.319999525282118,
+        "hostScale": 0.4399999830457899,
+        "viewport": [
+          720,
+          1280
+        ],
+        "labelScale": 2.5641027814642503,
+        "zoom": 0.7799999338785807,
+        "text": "Briarback · Thornbound Palm Stalker\nENRAGED · BURST WARNING"
+      }
+    }
+  ],
+  "errors": []
+}

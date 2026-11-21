@@ -1,0 +1,1233 @@
+{
+  "date": "2026-11-15T17:29:23.238Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.4 seconds",
+      "pass": true
+    },
+    {
+      "name": "Echo waits until 0.45 simulation seconds",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.05 seconds",
+      "pass": true
+    },
+    {
+      "name": "Q echo deals22 at its fixed marked point",
+      "pass": true,
+      "details": {
+        "hp": 10000,
+        "actual": 9978,
+        "time": 0.44999999999999996,
+        "castTime": 0,
+        "point": {
+          "x": 400,
+          "y": 0
+        },
+        "warning": {
+          "kind": "wave",
+          "x": 400,
+          "y": 0,
+          "r": 90,
+          "c": "#8fe8ed",
+          "life": -0.05,
+          "max": 0.45,
+          "item": "echoLattice"
+        },
+        "crits": 0,
+        "enemies": [
+          {
+            "x": 400,
+            "y": 0,
+            "hp": 9978
+          }
+        ],
+        "texts": [
+          "Echo Lattice",
+          "22"
+        ]
+      }
+    },
+    {
+      "name": "Browser has no runtime errors after echo",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "E launches two extra item-origin bolts",
+      "pass": true
+    },
+    {
+      "name": "Forked bolts use rank3 damage27, speed420 and pierce2",
+      "pass": true
+    },
+    {
+      "name": "Forked bolts split cast aim by18 degrees",
+      "pass": true,
+      "details": {
+        "angles": [
+          -0.3141592653589793,
+          0.3141592653589793
+        ],
+        "originalAim": 0
+      }
+    },
+    {
+      "name": "Browser has no runtime errors after fork",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose undertowThread",
+      "pass": true
+    },
+    {
+      "name": "F field refreshes at least0.6s slow inside radius140",
+      "pass": true
+    },
+    {
+      "name": "Undertow field causes no damage",
+      "pass": true
+    },
+    {
+      "name": "Undertow names its proc and shows fixed radius140 field",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after undertow",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose relayKnot",
+      "pass": true
+    },
+    {
+      "name": "Q reduces only E/F cooldowns by1s and clamps0",
+      "pass": true
+    },
+    {
+      "name": "Rejected Q cannot relay cooldowns",
+      "pass": true
+    },
+    {
+      "name": "E reduces Q/F while preserving its own normal cooldown",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after relay",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "Repeated Q does not grant Crosswind damage",
+      "pass": true
+    },
+    {
+      "name": "Alternating Q/E grants20 percent outgoing damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "Drum20 and Hammer20 add before other multipliers",
+      "pass": true
+    },
+    {
+      "name": "Drum refreshes without stacking",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after drum",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "Lens preserves one original ultimate and its charge cost",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.55 seconds",
+      "pass": true
+    },
+    {
+      "name": "Lens warning remains harmless before0.6s",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.05 seconds",
+      "pass": true
+    },
+    {
+      "name": "First rank3 Lens pulse deals27 and refreshes0.6slow",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.6 seconds",
+      "pass": true
+    },
+    {
+      "name": "Second Lens pulse lands at1.2s",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.6 seconds",
+      "pass": true
+    },
+    {
+      "name": "Third Lens pulse lands at1.8s only inside radius180",
+      "pass": true
+    },
+    {
+      "name": "Lens pulses produce no extra skill audio",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after lens",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Can choose monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "Echo and Lens share a12-strike cap, dropping the oldest",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.45 seconds",
+      "pass": true
+    },
+    {
+      "name": "Discarded oldest pending strike never deals damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose undertowThread",
+      "pass": true
+    },
+    {
+      "name": "Fourth F discards only the oldest of three fields",
+      "pass": true
+    },
+    {
+      "name": "Discarded field cannot slow its old position",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 3 seconds",
+      "pass": true
+    },
+    {
+      "name": "Fields stop applying slow after three simulation seconds",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after caps",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Can choose undertowThread",
+      "pass": true
+    },
+    {
+      "name": "Can choose forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "Weapon replacement removes its pending echo but preserves charm field",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.45 seconds",
+      "pass": true
+    },
+    {
+      "name": "Replaced Echo never fires its scheduled hit",
+      "pass": true
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Replacement removes only that weapon item projectiles",
+      "pass": true
+    },
+    {
+      "name": "Can choose forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "Can choose undertowThread",
+      "pass": true
+    },
+    {
+      "name": "Can choose monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "Raid entry keeps equipment but clears pending strikes, fields and item projectiles",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.6 seconds",
+      "pass": true
+    },
+    {
+      "name": "Lens and Undertow work after casting inside raid",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.05 seconds",
+      "pass": true
+    },
+    {
+      "name": "Raid exit clears raid support effects and projectiles",
+      "pass": true
+    },
+    {
+      "name": "Menu cleanup removes all item support effects from old run",
+      "pass": true
+    },
+    {
+      "name": "New run has empty equipment and item counters",
+      "pass": true
+    },
+    {
+      "name": "Can choose splitEmber",
+      "pass": true
+    },
+    {
+      "name": "Original Split Ember still creates item projectiles",
+      "pass": true
+    },
+    {
+      "name": "Can choose forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "Original weapon projectiles also clear on relevant replacement",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after lifecycle",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "echoLattice explains trigger/effect in affected skill accessible description",
+      "pass": true
+    },
+    {
+      "name": "echoLattice preserves base skill name and adds tooltip explanation",
+      "pass": true
+    },
+    {
+      "name": "echoLattice inspection explains the equipped effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "forkedConduit explains trigger/effect in affected skill accessible description",
+      "pass": true
+    },
+    {
+      "name": "forkedConduit preserves base skill name and adds tooltip explanation",
+      "pass": true
+    },
+    {
+      "name": "forkedConduit inspection explains the equipped effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose undertowThread",
+      "pass": true
+    },
+    {
+      "name": "undertowThread explains trigger/effect in affected skill accessible description",
+      "pass": true
+    },
+    {
+      "name": "undertowThread preserves base skill name and adds tooltip explanation",
+      "pass": true
+    },
+    {
+      "name": "undertowThread inspection explains the equipped effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose relayKnot",
+      "pass": true
+    },
+    {
+      "name": "relayKnot explains trigger/effect in affected skill accessible description",
+      "pass": true
+    },
+    {
+      "name": "relayKnot preserves base skill name and adds tooltip explanation",
+      "pass": true
+    },
+    {
+      "name": "relayKnot explains trigger/effect in affected skill accessible description",
+      "pass": true
+    },
+    {
+      "name": "relayKnot preserves base skill name and adds tooltip explanation",
+      "pass": true
+    },
+    {
+      "name": "relayKnot explains trigger/effect in affected skill accessible description",
+      "pass": true
+    },
+    {
+      "name": "relayKnot preserves base skill name and adds tooltip explanation",
+      "pass": true
+    },
+    {
+      "name": "relayKnot inspection explains the equipped effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "crosswindDrum explains trigger/effect in affected skill accessible description",
+      "pass": true
+    },
+    {
+      "name": "crosswindDrum preserves base skill name and adds tooltip explanation",
+      "pass": true
+    },
+    {
+      "name": "crosswindDrum explains trigger/effect in affected skill accessible description",
+      "pass": true
+    },
+    {
+      "name": "crosswindDrum preserves base skill name and adds tooltip explanation",
+      "pass": true
+    },
+    {
+      "name": "crosswindDrum explains trigger/effect in affected skill accessible description",
+      "pass": true
+    },
+    {
+      "name": "crosswindDrum preserves base skill name and adds tooltip explanation",
+      "pass": true
+    },
+    {
+      "name": "crosswindDrum inspection explains the equipped effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "monsoonLens explains trigger/effect in affected skill accessible description",
+      "pass": true
+    },
+    {
+      "name": "monsoonLens preserves base skill name and adds tooltip explanation",
+      "pass": true
+    },
+    {
+      "name": "monsoonLens inspection explains the equipped effect",
+      "pass": true
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Can choose quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "Replacement removes stale skill equipment descriptions",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after accessible",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "weapon actual event samples three distinct choices",
+      "pass": true
+    },
+    {
+      "name": "weapon repeated completion, inspection and pause cannot reroll the open offer",
+      "pass": true
+    },
+    {
+      "name": "weapon duplicate skip and stale choice produce no browser error",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "weapon skip consumes exactly once without equipping or reopening",
+      "pass": true
+    },
+    {
+      "name": "weapon actual event samples three distinct choices",
+      "pass": true
+    },
+    {
+      "name": "weapon repeated completion, inspection and pause cannot reroll the open offer",
+      "pass": true
+    },
+    {
+      "name": "weapon duplicate skip and stale choice produce no browser error",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "weapon skip consumes exactly once without equipping or reopening",
+      "pass": true
+    },
+    {
+      "name": "weapon catalogue exposes all six original/new items through real rewards",
+      "pass": true
+    },
+    {
+      "name": "charm actual event samples three distinct choices",
+      "pass": true
+    },
+    {
+      "name": "charm repeated completion, inspection and pause cannot reroll the open offer",
+      "pass": true
+    },
+    {
+      "name": "charm duplicate skip and stale choice produce no browser error",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "charm skip consumes exactly once without equipping or reopening",
+      "pass": true
+    },
+    {
+      "name": "charm actual event samples three distinct choices",
+      "pass": true
+    },
+    {
+      "name": "charm repeated completion, inspection and pause cannot reroll the open offer",
+      "pass": true
+    },
+    {
+      "name": "charm duplicate skip and stale choice produce no browser error",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "charm skip consumes exactly once without equipping or reopening",
+      "pass": true
+    },
+    {
+      "name": "charm catalogue exposes all six original/new items through real rewards",
+      "pass": true
+    },
+    {
+      "name": "relic actual event samples three distinct choices",
+      "pass": true
+    },
+    {
+      "name": "relic repeated completion, inspection and pause cannot reroll the open offer",
+      "pass": true
+    },
+    {
+      "name": "relic duplicate skip and stale choice produce no browser error",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "relic skip consumes exactly once without equipping or reopening",
+      "pass": true
+    },
+    {
+      "name": "relic actual event samples three distinct choices",
+      "pass": true
+    },
+    {
+      "name": "relic repeated completion, inspection and pause cannot reroll the open offer",
+      "pass": true
+    },
+    {
+      "name": "relic duplicate skip and stale choice produce no browser error",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "relic skip consumes exactly once without equipping or reopening",
+      "pass": true
+    },
+    {
+      "name": "relic catalogue exposes all six original/new items through real rewards",
+      "pass": true
+    },
+    {
+      "name": "Equipment choices and skips preserve progression storage",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after offers",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.45 seconds",
+      "pass": true
+    },
+    {
+      "name": "Echo captures target point and Q rank before later movement/aim/rank changes",
+      "pass": true
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.45 seconds",
+      "pass": true
+    },
+    {
+      "name": "No-target Echo keeps its captured220-unit cast-aim point",
+      "pass": true
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.45 seconds",
+      "pass": true
+    },
+    {
+      "name": "Echo can mark an enemy exactly450 units from cast position",
+      "pass": true
+    },
+    {
+      "name": "Can choose forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "Movement E captures exact cast position, aim and rank for both bolts",
+      "pass": true
+    },
+    {
+      "name": "Can choose monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 1.8 seconds",
+      "pass": true
+    },
+    {
+      "name": "Nok ultimate moves normally while all Lens pulses stay at pre-leap cast position",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after captures",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Can choose undertowThread",
+      "pass": true
+    },
+    {
+      "name": "Can choose monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "Pause control is enabled before pausing support effects",
+      "pass": true
+    },
+    {
+      "name": "Actual pause dialog opens before frozen steps",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes scheduled damage, warnings and successful-cast triggers",
+      "pass": true,
+      "details": {
+        "paused": true,
+        "disabled": true,
+        "timeBefore": 0,
+        "timeAfter": 0,
+        "hp": 10000,
+        "lifeBefore": 0.45,
+        "lifeAfter": 0.45,
+        "echoes": 1
+      }
+    },
+    {
+      "name": "Equipment inspection freezes all support simulation",
+      "pass": true
+    },
+    {
+      "name": "Level-up freezes scheduled support until a real upgrade is chosen",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.45 seconds",
+      "pass": true
+    },
+    {
+      "name": "Closing overlays resumes the single pending Echo",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after freeze",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 3 seconds",
+      "pass": true
+    },
+    {
+      "name": "Different Q/E/F exactly3 seconds later grants Drum",
+      "pass": true
+    },
+    {
+      "name": "Pause preserves Drum window and buff",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 3 seconds",
+      "pass": true
+    },
+    {
+      "name": "Drum expires after three simulation seconds",
+      "pass": true
+    },
+    {
+      "name": "Can choose crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 3.05 seconds",
+      "pass": true
+    },
+    {
+      "name": "Different skill after3 seconds does not grant Drum",
+      "pass": true
+    },
+    {
+      "name": "Can choose crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "Basic, ultimate and rejected casts cannot overwrite the Drum chain",
+      "pass": true
+    },
+    {
+      "name": "Drum applies equally to periodic and item-origin outgoing damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "Can choose crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "Replacing Drum clears its damage buff and previous cast",
+      "pass": true
+    },
+    {
+      "name": "Re-equipping Drum starts a fresh chain",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after drumBoundaries",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.6 seconds",
+      "pass": true
+    },
+    {
+      "name": "Forked bolts use ordinary collision and stop after two enemies",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after collision",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Can choose thornEcho",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.45 seconds",
+      "pass": true
+    },
+    {
+      "name": "Item-origin Echo grants no Lan signature charge or recursive Thorn Echo cast count",
+      "pass": true
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Can choose bountySeal",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.45 seconds",
+      "pass": true
+    },
+    {
+      "name": "Item-origin elite kill cannot recursively trigger Bounty Seal",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after attribution",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.45 seconds",
+      "pass": true
+    },
+    {
+      "name": "ustaz Q adds exactly one22-damage Echo without extra signature/audio",
+      "pass": true
+    },
+    {
+      "name": "Can choose forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "ustaz E adds two item bolts while retaining original E",
+      "pass": true
+    },
+    {
+      "name": "Can choose undertowThread",
+      "pass": true
+    },
+    {
+      "name": "ustaz F adds a non-damaging slow field",
+      "pass": true
+    },
+    {
+      "name": "Can choose relayKnot",
+      "pass": true
+    },
+    {
+      "name": "ustaz Q relays only the other two skill cooldowns",
+      "pass": true
+    },
+    {
+      "name": "Can choose crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "ustaz Q/E alternation grants20 percent ordinary outgoing damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "ustaz R preserves its original behavior and spends charge once",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.6 seconds",
+      "pass": true
+    },
+    {
+      "name": "ustaz R adds one18-damage first Lens pulse with slow and no extra audio",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after ",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.45 seconds",
+      "pass": true
+    },
+    {
+      "name": "rempit Q adds exactly one22-damage Echo without extra signature/audio",
+      "pass": true
+    },
+    {
+      "name": "Can choose forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "rempit E adds two item bolts while retaining original E",
+      "pass": true
+    },
+    {
+      "name": "Can choose undertowThread",
+      "pass": true
+    },
+    {
+      "name": "rempit F adds a non-damaging slow field",
+      "pass": true
+    },
+    {
+      "name": "Can choose relayKnot",
+      "pass": true
+    },
+    {
+      "name": "rempit Q relays only the other two skill cooldowns",
+      "pass": true
+    },
+    {
+      "name": "Can choose crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "rempit Q/E alternation grants20 percent ordinary outgoing damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "rempit R preserves its original behavior and spends charge once",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.6 seconds",
+      "pass": true
+    },
+    {
+      "name": "rempit R adds one18-damage first Lens pulse with slow and no extra audio",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after ",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.45 seconds",
+      "pass": true
+    },
+    {
+      "name": "nok Q adds exactly one22-damage Echo without extra signature/audio",
+      "pass": true
+    },
+    {
+      "name": "Can choose forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "nok E adds two item bolts while retaining original E",
+      "pass": true
+    },
+    {
+      "name": "Can choose undertowThread",
+      "pass": true
+    },
+    {
+      "name": "nok F adds a non-damaging slow field",
+      "pass": true
+    },
+    {
+      "name": "Can choose relayKnot",
+      "pass": true
+    },
+    {
+      "name": "nok Q relays only the other two skill cooldowns",
+      "pass": true
+    },
+    {
+      "name": "Can choose crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "nok Q/E alternation grants20 percent ordinary outgoing damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "nok R preserves its original behavior and spends charge once",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.6 seconds",
+      "pass": true
+    },
+    {
+      "name": "nok R adds one18-damage first Lens pulse with slow and no extra audio",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after ",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.45 seconds",
+      "pass": true
+    },
+    {
+      "name": "lan Q adds exactly one22-damage Echo without extra signature/audio",
+      "pass": true
+    },
+    {
+      "name": "Can choose forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "lan E adds two item bolts while retaining original E",
+      "pass": true
+    },
+    {
+      "name": "Can choose undertowThread",
+      "pass": true
+    },
+    {
+      "name": "lan F adds a non-damaging slow field",
+      "pass": true
+    },
+    {
+      "name": "Can choose relayKnot",
+      "pass": true
+    },
+    {
+      "name": "lan Q relays only the other two skill cooldowns",
+      "pass": true
+    },
+    {
+      "name": "Can choose crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "lan Q/E alternation grants20 percent ordinary outgoing damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "lan R preserves its original behavior and spends charge once",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.6 seconds",
+      "pass": true
+    },
+    {
+      "name": "lan R adds one18-damage first Lens pulse with slow and no extra audio",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after ",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.45 seconds",
+      "pass": true
+    },
+    {
+      "name": "sari Q adds exactly one22-damage Echo without extra signature/audio",
+      "pass": true
+    },
+    {
+      "name": "Can choose forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "sari E adds two item bolts while retaining original E",
+      "pass": true
+    },
+    {
+      "name": "Can choose undertowThread",
+      "pass": true
+    },
+    {
+      "name": "sari F adds a non-damaging slow field",
+      "pass": true
+    },
+    {
+      "name": "Can choose relayKnot",
+      "pass": true
+    },
+    {
+      "name": "sari Q relays only the other two skill cooldowns",
+      "pass": true
+    },
+    {
+      "name": "Can choose crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "sari Q/E alternation grants20 percent ordinary outgoing damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "sari R preserves its original behavior and spends charge once",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.6 seconds",
+      "pass": true
+    },
+    {
+      "name": "sari R adds one18-damage first Lens pulse with slow and no extra audio",
+      "pass": true
+    },
+    {
+      "name": "Browser has no runtime errors after ",
+      "pass": true,
+      "details": {
+        "browserErrors": []
+      }
+    }
+  ]
+}

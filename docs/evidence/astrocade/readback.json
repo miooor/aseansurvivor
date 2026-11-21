@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-15T13:10:11.830Z",
+  "gameId": "01M7FMJGJ3PMC9H145JJCCNEKR",
+  "mode": "multi_file",
+  "draftUrl": "https://www.astrocade.com/games/asean-survivor/01M7FMJGJ3PMC9H145JJCCNEKR/v/01M7FN43PD62BPH4NN9BKG10CK",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1714,
+      "sha256": "d44c275e39c8e44212d6dd750d36d16c658494d1bdc5eabf8899a3938bc450cc",
+      "remoteSha256": "d44c275e39c8e44212d6dd750d36d16c658494d1bdc5eabf8899a3938bc450cc",
+      "byteMatch": true,
+      "jsonMatch": false
+    },
+    {
+      "path": "index.html",
+      "bytes": 34133,
+      "sha256": "9998d678b28585e75ae6a92fea78deb84eeb181536d05259a33ff0bb280facf5",
+      "remoteSha256": "9998d678b28585e75ae6a92fea78deb84eeb181536d05259a33ff0bb280facf5",
+      "byteMatch": true,
+      "jsonMatch": false
+    },
+    {
+      "path": "game.js",
+      "bytes": 1497354,
+      "sha256": "7a1fc64946e35e2605071ea4903fdca261f50f11e351628731c00a8271bb0d70",
+      "remoteSha256": "7a1fc64946e35e2605071ea4903fdca261f50f11e351628731c00a8271bb0d70",
+      "byteMatch": true,
+      "jsonMatch": false
+    },
+    {
+      "path": "game_config.json",
+      "bytes": 3,
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "remoteSha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "byteMatch": true,
+      "jsonMatch": true
+    },
+    {
+      "path": "asset_map.json",
+      "bytes": 3173,
+      "sha256": "75799d2e773194295061900206dd77956635714bfdf98c3114f2cd1ac7c69f2d",
+      "remoteSha256": "5b9679fe9b75e3c029c1c3c46b5c3dff64094aafbf8fcd5eb24223335f21f48d",
+      "byteMatch": false,
+      "jsonMatch": true
+    }
+  ]
+}

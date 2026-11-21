@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>ASEAN Survivor — Astrocade sandbox acceptance</title>
+<style>body{background:#102322;color:#eee;font:16px system-ui}button{padding:16px}pre{white-space:pre-wrap}iframe{width:720px;height:1280px;border:1px solid #819b8c}</style>
+<h1>Astrocade sandbox acceptance</h1>
+<p>Build the Astrocade export first. Runs the exported game inside an opaque-origin, scripts-only portrait iframe with a simulated platform bridge.</p>
+<button id="run">Run checks</button> <button id="download" disabled>Download report</button>
+<pre id="report">Ready.</pre>
+<iframe id="game" sandbox="allow-scripts allow-pointer-lock" title="Astrocade game sandbox"></iframe>
+<script type="module" src="./astrocade.js"></script>
+</html>

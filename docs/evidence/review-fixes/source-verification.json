@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-15T17:46:12Z",
+  "verifiedSourceCommit": "b5b31fd",
+  "integrationMerged": "f88e756b84b41dc77e1897d8eeb05997a950e94d",
+  "mergeCommit": "97200631dfa70f2a71936cc7c40070dee5068e9d",
+  "integrationDelta": [
+    ".agent/CONTINUITY.md"
+  ],
+  "original92AssertionsUnchanged": true,
+  "browserResult": "PASS 124/124",
+  "checks": {
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "build": "PASS"
+  },
+  "sha256": {
+    "src/game/runtime.js": "fd9ac13e45a8c4702a6967d3775de47a934bcac02f706cc67d7f08a0f2b2a9ef",
+    "src/content/encounters.js": "e56e2cddebbddd9e87401b857441da1a364983bcb30c7f069df91154a0c43c5f",
+    "src/scenes/SurvivalScene.ts": "3aefbb858c39a7a7f8aa28880236e1a226c6f5dc3086872b522947d00209f7f0",
+    "tests/event-combat.js": "01b99b7f918122ff252255b86dea3ee9f5d1c03a94f2199b65bd684f7be13c13"
+  }
+}

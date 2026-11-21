@@ -1,0 +1,295 @@
+{
+  "date": "2026-11-15T17:26:09.117Z",
+  "result": "FAIL",
+  "checks": [
+    {
+      "name": "Actual game uses WebGL",
+      "pass": true
+    },
+    {
+      "name": "Johor creates terrain without unsupported mask warnings",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north rounded corner clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north outside bank clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north water body clips at zoom 0.780",
+      "pass": true
+    },
+    {
+      "name": "johor river-north first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": true,
+      "details": {
+        "screen": {
+          "x": 35.10000562667847,
+          "y": 360.0000116825104
+        },
+        "arrival": {
+          "x": 2340.610848796493,
+          "y": -2900
+        },
+        "player": {
+          "x": 2340.610848796493,
+          "y": -2900
+        },
+        "camera": {
+          "width": 1662.352783203125,
+          "height": 719.9999389648438,
+          "zoom": 0.7799999338785807,
+          "scrollX": 1509.4344571949305,
+          "scrollY": -3259.999969482422
+        }
+      }
+    },
+    {
+      "name": "Viewport edge reads actual opaque water and ground pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north water body remains painted at viewport edge",
+      "pass": true
+    },
+    {
+      "name": "Both rounded corner samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north rounded corner clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both outside bank samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north outside bank clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "Both water body samples read actual opaque rendered pixels",
+      "pass": true
+    },
+    {
+      "name": "johor river-north water body clips at zoom 0.546",
+      "pass": true
+    },
+    {
+      "name": "johor river-north first-update edge arrival keeps water visible",
+      "pass": true
+    },
+    {
+      "name": "Water body sample lies within 60 pixels of a viewport edge",
+      "pass": false,
+      "details": {
+        "screen": {
+          "x": 199.07289266586304,
+          "y": 359.9999420642853
+        },
+        "arrival": {
+          "x": 2797.301212566418,
+          "y": -2900
+        },
+        "player": {
+          "x": 2797.301212566418,
+          "y": -2900
+        },
+        "camera": {
+          "width": 1662.352783203125,
+          "height": 719.9999389648438,
+          "zoom": 0.5459999537150064,
+          "scrollX": 1646.5223958320194,
+          "scrollY": -3259.999969482422
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "errors": [
+    "Error: Water body sample lies within 60 pixels of a viewport edge"
+  ],
+  "pixels": [
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "rounded corner",
+      "zoom": 0.7799999338785807,
+      "point": {
+        "x": 1223,
+        "y": -2997
+      },
+      "waterPixel": [
+        69,
+        86,
+        50,
+        255
+      ],
+      "groundPixel": [
+        69,
+        86,
+        50,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "outside bank",
+      "zoom": 0.7799999338785807,
+      "point": {
+        "x": 1180,
+        "y": -2900
+      },
+      "waterPixel": [
+        73,
+        95,
+        50,
+        255
+      ],
+      "groundPixel": [
+        73,
+        95,
+        50,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "water body",
+      "zoom": 0.7799999338785807,
+      "point": {
+        "x": 1320,
+        "y": -2900
+      },
+      "waterPixel": [
+        23,
+        67,
+        59,
+        255
+      ],
+      "groundPixel": [
+        69,
+        88,
+        50,
+        255
+      ],
+      "difference": 76
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "viewport edge body",
+      "zoom": 0.7799999338785807,
+      "point": {
+        "x": 1320,
+        "y": -2900
+      },
+      "waterPixel": [
+        28,
+        71,
+        62,
+        255
+      ],
+      "groundPixel": [
+        72,
+        90,
+        53,
+        255
+      ],
+      "difference": 72
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "rounded corner",
+      "zoom": 0.5459999537150064,
+      "point": {
+        "x": 1223,
+        "y": -2997
+      },
+      "waterPixel": [
+        69,
+        86,
+        50,
+        255
+      ],
+      "groundPixel": [
+        69,
+        86,
+        50,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "outside bank",
+      "zoom": 0.5459999537150064,
+      "point": {
+        "x": 1180,
+        "y": -2900
+      },
+      "waterPixel": [
+        69,
+        92,
+        49,
+        255
+      ],
+      "groundPixel": [
+        69,
+        92,
+        49,
+        255
+      ],
+      "difference": 0
+    },
+    {
+      "world": "johor",
+      "water": "river-north",
+      "name": "water body",
+      "zoom": 0.5459999537150064,
+      "point": {
+        "x": 1320,
+        "y": -2900
+      },
+      "waterPixel": [
+        24,
+        68,
+        59,
+        255
+      ],
+      "groundPixel": [
+        69,
+        88,
+        50,
+        255
+      ],
+      "difference": 74
+    }
+  ]
+}

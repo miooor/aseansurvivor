@@ -1,0 +1,27 @@
+{
+  "observations": [
+    {
+      "date": "2026-11-15T16:23:47.893Z",
+      "preset": "chain",
+      "elapsedWallSeconds": 36.418,
+      "simulation": 25.016133333333524,
+      "hp": 150,
+      "maxHp": 150,
+      "dead": false,
+      "equipment": {
+        "weapon": "echoLattice",
+        "charm": "relayKnot",
+        "relic": "crosswindDrum"
+      },
+      "event": "completed",
+      "kills": 38,
+      "enemies": 0,
+      "combos": 1,
+      "position": {
+        "x": -360.0000000001045,
+        "y": -212.68265964249358
+      },
+      "errors": []
+    }
+  ]
+}

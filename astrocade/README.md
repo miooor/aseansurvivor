@@ -1,0 +1,22 @@
+# ASEAN Survivor — Astrocade draft
+
+Top-down Phaser survival game featuring five Southeast Asian heroes, six Malaysian regions, automatic basic attacks, Q/E/F/R skills, upgrades, boss fights, portal raids and Johor encounters with run-local equipment. All heroes and stages are unlocked for prototype testing.
+
+Move with WASD/arrows or drag on the left of the battlefield. Tap the skills on the lower right; Q/E/F cast skills, R/Space casts an ultimate, T cycles auto-cast, Esc/P pauses. The lobby scrolls; Enter region stays at the bottom.
+
+`index.html` holds the accessible menus and portrait styling. `game.js` bundles the existing Phaser engine, game modules and the Astrocade entry; `window.run(mode)` starts play or a non-playing roster preview in edit mode. `asset_map.json` lists the original artwork hosted on Astrocade's CDN. `game_config.json` has no tunables or leaderboard.
+
+Progression and audio settings use Astrocade's per-player save API. Existing browser-origin saves are separate. Active runs and equipment are temporary. A failed initial cloud load disables writes for that session to protect an existing save; a later host reload retries loading. Failed writes display a message and retry on a later settings/progression change.
+
+The source package and repeatable export live in the ASEAN Survivor repository: `src/astrocade/`, `astrocade/`, `scripts/build-astrocade.mjs`. Build with `docker compose exec -T game npm run build:astrocade`. The export is `dist/astrocade/`; save all five files to the Astrocade draft together. Browser acceptance: `/tests/astrocade.html` on the development server. This is an unpublished draft; balance and real-phone performance remain prototype limitations.
+
+Artwork uses 18 WebPs at original resolution with exact transparency: 11,420,462 bytes, down 74.6% from the corresponding 44,931,797-byte PNG set. Original PNGs remain in the source repository. Re-encode with `docker build -f astrocade/assets.Dockerfile -t asean-astrocade-assets .` then `docker run --rm -v "$PWD:/app" asean-astrocade-assets`. Upload the resulting `astrocade/assets/*.webp` files and update the asset map before exporting. The encoder checks dimensions, alpha, visible colour error and file size. `/tests/astrocade-mobile.html` provides a separate phone-size layout/touch check and 15-second ordinary-play profile; browser throttling measures desktop emulation, not physical phone performance.
+
+The environment update replaces the old striped ground and flat terrain boxes with meadow artwork, winding illustrated road patches, animated water inside irregular banks, rice-terrace patches and timber bridge decks. A small soft contact shadow replaces the hero's dark disk. Outdoor clear, mist and rain phases follow the simulation clock and each region's offset. Weather freezes with pause and upgrade/equipment screens, stays out of raids and the lobby, and removes moving precipitation under reduced-motion preferences. Weather is cosmetic: it does not change combat, movement or saves. `/tests/environment.html` provides repeatable terrain/weather checks and village, river, paddy and hero previews.
+
+
+Johor elites now alternate locked-aim charges with warned five-bolt fans; half-health Briarback alternates charges with eight-ray bursts. Eighteen run-local items offer six per slot, three sampled once per reward. New items add Q echoes, E forked bolts, F slowing fields, cooldown relays, alternating-cast damage and R pulses without replacing the five heroes’ skills. The seven additional ASEAN hero concepts in the source documentation are design drafts and are not playable roster additions. Source rules and repeatable combined build/profile evidence: `docs/event-combat.md`, `docs/skill-equipment.md`, `docs/gameplay-upgrade.md`, `docs/asean-hero-concepts.md`.
+
+Elite FAN/BURST/ENRAGED warning text compensates for camera zoom and uses the port stylesheet’s internal factor of two so the surrounding host can scale the fixed portrait frame down while retaining readable labels. The local combined fixture checks 12 CSS pixels at a 0.44 outer scale.
+
+The source skips fully offscreen water filters while preserving visible riverbanks. Desktop Safari measurements still expose a material frame-rate limit: the staged 97-enemy automatic-skill stress sample was 11.60 FPS after this change, and a short ordinary scene was 21.90 FPS. These are desktop observations, not phone results; `docs/render-performance.md` preserves conditions and the slower before/after evidence.

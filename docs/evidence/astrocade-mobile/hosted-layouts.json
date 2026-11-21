@@ -1,0 +1,282 @@
+{
+  "date": "2026-11-15T13:46:47.245Z",
+  "draft": "https://www.astrocade.com/games/asean-survivor/01M7FMJGJ3PMC9H145JJCCNEKR/v/01M7FQ4RZ4EKM66QK86MCY71SY",
+  "layouts": [
+    {
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "observed": {
+        "frame": {
+          "height": 640,
+          "width": 360,
+          "x": 0,
+          "y": 28
+        },
+        "height": 800,
+        "parentScroll": 0,
+        "width": 360
+      },
+      "controls": [
+        {
+          "bottom": 137,
+          "height": 112,
+          "id": "pauseButton",
+          "right": 708,
+          "width": 112,
+          "x": 596,
+          "y": 25,
+          "screenWidth": 56,
+          "screenHeight": 56,
+          "inFrame": true
+        },
+        {
+          "bottom": 1015,
+          "height": 112,
+          "id": "sk1",
+          "right": 573,
+          "width": 112,
+          "x": 461,
+          "y": 903,
+          "screenWidth": 56,
+          "screenHeight": 56,
+          "inFrame": true
+        },
+        {
+          "bottom": 1015,
+          "height": 112,
+          "id": "sk2",
+          "right": 693,
+          "width": 112,
+          "x": 581,
+          "y": 903,
+          "screenWidth": 56,
+          "screenHeight": 56,
+          "inFrame": true
+        },
+        {
+          "bottom": 1135,
+          "height": 112,
+          "id": "sk3",
+          "right": 573,
+          "width": 112,
+          "x": 461,
+          "y": 1023,
+          "screenWidth": 56,
+          "screenHeight": 56,
+          "inFrame": true
+        },
+        {
+          "bottom": 1135,
+          "height": 112,
+          "id": "sk4",
+          "right": 693,
+          "width": 112,
+          "x": 581,
+          "y": 1023,
+          "screenWidth": 56,
+          "screenHeight": 56,
+          "inFrame": true
+        },
+        {
+          "bottom": 1264,
+          "height": 112,
+          "id": "equipmentButton",
+          "right": 128,
+          "width": 112,
+          "x": 16,
+          "y": 1152,
+          "screenWidth": 56,
+          "screenHeight": 56,
+          "inFrame": true
+        }
+      ],
+      "minTargetPx": 56
+    },
+    {
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "observed": {
+        "frame": {
+          "height": 563,
+          "width": 316.6875,
+          "x": 29.15625,
+          "y": 0
+        },
+        "height": 667,
+        "parentScroll": 0,
+        "width": 375
+      },
+      "controls": [
+        {
+          "bottom": 137,
+          "height": 112,
+          "id": "pauseButton",
+          "right": 708,
+          "width": 112,
+          "x": 596,
+          "y": 25,
+          "screenWidth": 49.262499999999996,
+          "screenHeight": 49.262499999999996,
+          "inFrame": true
+        },
+        {
+          "bottom": 1015,
+          "height": 112,
+          "id": "sk1",
+          "right": 573,
+          "width": 112,
+          "x": 461,
+          "y": 903,
+          "screenWidth": 49.262499999999996,
+          "screenHeight": 49.262499999999996,
+          "inFrame": true
+        },
+        {
+          "bottom": 1015,
+          "height": 112,
+          "id": "sk2",
+          "right": 693,
+          "width": 112,
+          "x": 581,
+          "y": 903,
+          "screenWidth": 49.262499999999996,
+          "screenHeight": 49.262499999999996,
+          "inFrame": true
+        },
+        {
+          "bottom": 1135,
+          "height": 112,
+          "id": "sk3",
+          "right": 573,
+          "width": 112,
+          "x": 461,
+          "y": 1023,
+          "screenWidth": 49.262499999999996,
+          "screenHeight": 49.262499999999996,
+          "inFrame": true
+        },
+        {
+          "bottom": 1135,
+          "height": 112,
+          "id": "sk4",
+          "right": 693,
+          "width": 112,
+          "x": 581,
+          "y": 1023,
+          "screenWidth": 49.262499999999996,
+          "screenHeight": 49.262499999999996,
+          "inFrame": true
+        },
+        {
+          "bottom": 1264,
+          "height": 112,
+          "id": "equipmentButton",
+          "right": 128,
+          "width": 112,
+          "x": 16,
+          "y": 1152,
+          "screenWidth": 49.262499999999996,
+          "screenHeight": 49.262499999999996,
+          "inFrame": true
+        }
+      ],
+      "minTargetPx": 49.262499999999996
+    },
+    {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "observed": {
+        "frame": {
+          "height": 764.4444580078125,
+          "width": 430,
+          "x": 0,
+          "y": 31.78125
+        },
+        "height": 932,
+        "parentScroll": 0,
+        "width": 430
+      },
+      "controls": [
+        {
+          "bottom": 137,
+          "height": 112,
+          "id": "pauseButton",
+          "right": 708,
+          "width": 112,
+          "x": 596,
+          "y": 25,
+          "screenWidth": 66.88888888888889,
+          "screenHeight": 66.88888888888889,
+          "inFrame": true
+        },
+        {
+          "bottom": 1015,
+          "height": 112,
+          "id": "sk1",
+          "right": 573,
+          "width": 112,
+          "x": 461,
+          "y": 903,
+          "screenWidth": 66.88888888888889,
+          "screenHeight": 66.88888888888889,
+          "inFrame": true
+        },
+        {
+          "bottom": 1015,
+          "height": 112,
+          "id": "sk2",
+          "right": 693,
+          "width": 112,
+          "x": 581,
+          "y": 903,
+          "screenWidth": 66.88888888888889,
+          "screenHeight": 66.88888888888889,
+          "inFrame": true
+        },
+        {
+          "bottom": 1135,
+          "height": 112,
+          "id": "sk3",
+          "right": 573,
+          "width": 112,
+          "x": 461,
+          "y": 1023,
+          "screenWidth": 66.88888888888889,
+          "screenHeight": 66.88888888888889,
+          "inFrame": true
+        },
+        {
+          "bottom": 1135,
+          "height": 112,
+          "id": "sk4",
+          "right": 693,
+          "width": 112,
+          "x": 581,
+          "y": 1023,
+          "screenWidth": 66.88888888888889,
+          "screenHeight": 66.88888888888889,
+          "inFrame": true
+        },
+        {
+          "bottom": 1264,
+          "height": 112,
+          "id": "equipmentButton",
+          "right": 128,
+          "width": 112,
+          "x": 16,
+          "y": 1152,
+          "screenWidth": 66.88888888888889,
+          "screenHeight": 66.88888888888889,
+          "inFrame": true
+        }
+      ],
+      "minTargetPx": 66.88888888888889
+    }
+  ]
+}

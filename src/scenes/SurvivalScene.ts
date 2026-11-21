@@ -1,7 +1,9 @@
 import {OpenWorld} from './OpenWorld';
+import {Weather} from './Weather';
 import Phaser from 'phaser';
 import {drawSkillEffect} from './skill-effects.js';
 import {animationRows} from '../content/animation-layouts.js';
+import {ELITE_ATTACK_ANGLES} from '../content/encounters.js';
 import { createRuntime, type GameRuntime, type RunState, type Point, type Effect } from '../game/runtime.js';
 
 const HERO_FRAMES: Record<string, number> = {ustaz:0,rempit:1,nok:2,lan:3,sari:4};
@@ -15,6 +17,8 @@ export class SurvivalScene extends Phaser.Scene {
   private floor!: Phaser.GameObjects.Graphics;
   private effects!: Phaser.GameObjects.Graphics;
   private screen!: Phaser.GameObjects.Graphics;
+  private shadow!: Phaser.GameObjects.Image;
+  weather!: Weather;
   private sprites=new Map<object,Phaser.GameObjects.Image>();
   private spareSprites: Phaser.GameObjects.Image[]=[];
   private labels=new Map<object,Phaser.GameObjects.Text>();
@@ -22,6 +26,7 @@ export class SurvivalScene extends Phaser.Scene {
   private previousRun: RunState | null=null;
   private wasRaid=false;
   private previousHp=0;
+  private eliteLabelScale=1;
   private guide=document.getElementById('raidGuide')!;
 
   constructor(){super('Survival')}
@@ -42,7 +47,8 @@ export class SurvivalScene extends Phaser.Scene {
       sari:new URL('../../assets/sari-skills.png',import.meta.url).href
     }))this.load.image('hero-skills-'+id,url);
     this.load.image('hero-directions',new URL('../../assets/heroes-directions.png',import.meta.url).href);
-    this.load.image('region-grass',new URL('../../assets/region-grass.png',import.meta.url).href);
+    this.load.image('terrain',new URL('../../assets/world-terrain.png',import.meta.url).href);
+    this.load.image('region-grass',new URL('../../assets/world-ground.png',import.meta.url).href);
     this.load.image('region-enemies',new URL('../../assets/region-enemies.png',import.meta.url).href);
     this.load.image('region-props',new URL('../../assets/region-props.png',import.meta.url).href);
     this.load.image('buildings',new URL('../../assets/kampung-buildings.png',import.meta.url).href);
@@ -54,7 +60,7 @@ export class SurvivalScene extends Phaser.Scene {
   }
 
   create(){
-    if(!this.textures.exists('region-enemies')||!this.textures.exists('region-props')||!this.textures.exists('region-grass')||!this.textures.exists('buildings')||!this.textures.exists('actors')||!this.textures.exists('hero-directions'))return;
+    if(!this.textures.exists('region-enemies')||!this.textures.exists('region-props')||!this.textures.exists('terrain')||!this.textures.exists('region-grass')||!this.textures.exists('buildings')||!this.textures.exists('actors')||!this.textures.exists('hero-directions'))return;
     if(Object.keys(HERO_FRAMES).some(id=>!this.textures.exists('hero-motion-'+id)||!this.textures.exists('hero-skills-'+id)))return;
     this.game.canvas.id='game';this.game.canvas.tabIndex=0;
     this.game.canvas.setAttribute('aria-label','Game field. Move with WASD or arrow keys; Q, E, F, R cast skills; Escape pauses.');
@@ -88,11 +94,25 @@ export class SurvivalScene extends Phaser.Scene {
       const atlas=this.textures.get(key),source=atlas.getSourceImage() as HTMLImageElement;
       for(let row=0;row<2;row++)for(let col=0;col<3;col++){const x=Math.round(col*source.width/3),y=Math.round(row*source.height/2);atlas.add(String(row*3+col),0,x,y,Math.round((col+1)*source.width/3)-x,Math.round((row+1)*source.height/2)-y)}
     }
+    const terrain=this.textures.get('terrain'),terrainArt=terrain.getSourceImage() as HTMLImageElement;
+    for(const [i,name]of ['grass','road','water','paddy','wood','stone'].entries()){
+      const col=i%3,row=Math.floor(i/3),x=Math.round(col*terrainArt.width/3),y=Math.round(row*terrainArt.height/2);
+      terrain.add(name,0,x,y,Math.round((col+1)*terrainArt.width/3)-x,Math.round((row+1)*terrainArt.height/2)-y);
+    }
+    if(!this.textures.exists('contact-shadow')){
+      const texture=this.textures.createCanvas('contact-shadow',64,32)!;
+      const ctx=texture.context;ctx.scale(1,.5);
+      const gradient=ctx.createRadialGradient(32,32,0,32,32,32);
+      gradient.addColorStop(0,'rgba(0,0,0,.8)');gradient.addColorStop(.5,'rgba(0,0,0,.3)');gradient.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle=gradient;ctx.fillRect(0,0,64,64);texture.refresh();
+    }
     this.cameras.main.setBackgroundColor('#061517');
     this.world=new OpenWorld(this);
     this.floor=this.add.graphics().setDepth(-5000);
     this.effects=this.add.graphics().setDepth(20000);
     this.screen=this.add.graphics().setScrollFactor(0).setDepth(30000);
+    this.shadow=this.add.image(0,0,'contact-shadow').setDisplaySize(38,12).setAlpha(.22).setDepth(-4500).setName('hero-contact-shadow').setVisible(false);
+    this.weather=new Weather(this);
     this.runtime=createRuntime(this.game.canvas);
     this.resize();
     this.scale.on('resize',this.resize,this);
@@ -107,6 +127,7 @@ export class SurvivalScene extends Phaser.Scene {
 
   private resize(){
     if(!this.runtime)return;
+    this.eliteLabelScale=Number(getComputedStyle(document.documentElement).getPropertyValue('--elite-label-scale'))||1;
     this.runtime.resize(this.scale.width,this.scale.height);
     this.cameras.main.setZoom(this.runtime.scale);
   }
@@ -221,7 +242,9 @@ export class SurvivalScene extends Phaser.Scene {
     if(!this.runtime)return;
     this.runtime.step(delta);
     const g=this.runtime.G;
+    this.weather.update(g);
     if(!g){
+      this.shadow.setVisible(false);
       this.world.update(null);this.floor.clear();this.effects.clear();this.screen.clear();this.guide.hidden=true;
       for(const image of this.sprites.values())image.setVisible(false);
       for(const text of this.labels.values())text.setVisible(false);
@@ -285,7 +308,7 @@ export class SurvivalScene extends Phaser.Scene {
       const sprite=this.image(e,GHOST_FRAMES[e.type]??5,size);
       const regional=['stalker','lantern','sentinel','neon','drifter','watcher'].indexOf(e.type);
       if(regional>=0)sprite.setTexture('region-enemies',String(regional)).setDisplaySize(e.type==='sentinel'?90:78,78);
-      if(e.elite){this.circle(this.floor,e.x,e.y,e.r+9,e.vulnerable?0x8ef4d0:e.elite==='Thornbound'?0xd58ad9:0xffbd77,.16,3);if(e.windup){const target=e.objective||g.p,angle=Math.atan2(target.y-e.y,target.x-e.x);this.floor.lineStyle(2,0xffbd77,.9).lineBetween(e.x,e.y,e.x+Math.cos(angle)*160,e.y+Math.sin(angle)*160);}}
+      if(e.elite){this.circle(this.floor,e.x,e.y,e.r+9,e.vulnerable?0x8ef4d0:e.elite==='Thornbound'?0xd58ad9:0xffbd77,.16,3);if(e.windup){const offsets=e.attack==='fan'||e.attack==='burst'?ELITE_ATTACK_ANGLES[e.attack]:ELITE_ATTACK_ANGLES.charge;for(const offset of offsets){const angle=(e.attackAngle??0)+offset*Math.PI/180;this.floor.lineStyle(2,0xffbd77,.9).lineBetween(e.x,e.y,e.x+Math.cos(angle)*190,e.y+Math.sin(angle)*190);}}}
       if(e.windup)this.circle(this.floor,e.x,e.y,e.type==='sentinel'?155:55,0xffb56d,.12,3);
       const moving=!g.paused&&!g.choosing&&!g.over;
       sprite.setRotation(reducedMotion()?0:Math.sin(g.t*7+e.phase)*.035);
@@ -295,7 +318,8 @@ export class SurvivalScene extends Phaser.Scene {
       else if(e.p2)sprite.setTint(0xffb6ad);
       if(e.hp<e.maxHp){this.floor.fillStyle(0x021115,.85).fillRect(e.x-18,e.y+16,36,3);this.floor.fillStyle(e.boss?RED:0xd7a66b,1).fillRect(e.x-18,e.y+16,36*Math.max(0,e.hp/e.maxHp),3)}
     }
-    this.circle(this.floor,g.p.x,g.p.y+7,23,0x000000,.35);
+    const airborne=!!g.sea?.leap;
+    this.shadow.setVisible(true).setPosition(g.p.x,g.p.y+2).setDisplaySize(airborne?29:38,airborne?9:12).setAlpha(airborne?.12:.22);
     const accent=this.color(g.hero.identity.color),identity=g.identity,charge=identity.charge/g.hero.identity.max;
     this.circle(this.floor,g.p.x,g.p.y,30,accent,.07,1);
     if(charge>0)this.floor.lineStyle(charge>=1?3:2,accent,.75).beginPath().arc(g.p.x,g.p.y,35,-Math.PI/2,-Math.PI/2+Math.PI*2*charge).strokePath();
@@ -338,7 +362,7 @@ export class SurvivalScene extends Phaser.Scene {
       for(const fx of g.sea.fx)this.drawEffect({...fx,max:fx.max||.4});
     }
     const activeLabels=new Set<object>();
-    for(const e of g.enemies)if(e.elite&&!e.dead){activeLabels.add(e);let label=this.labels.get(e);if(!label){label=this.add.text(e.x,e.y,'',{fontFamily:'Arial, sans-serif',fontSize:14,color:'#ffe0af',stroke:'#18101c',strokeThickness:4}).setOrigin(.5).setDepth(25000);this.labels.set(e,label);}label.setVisible(true).setPosition(e.x,e.y-(e.objective?115:75)).setText((e.name?e.name+' · ':'')+e.elite+' Palm Stalker'+(e.vulnerable?' · VULNERABLE':e.windup?' · CHARGE WARNING':''));}
+    for(const e of g.enemies)if(e.elite&&!e.dead){activeLabels.add(e);let label=this.labels.get(e);if(!label){label=this.add.text(e.x,e.y,'',{fontFamily:'Arial, sans-serif',fontSize:14,align:'center',color:'#ffe0af',stroke:'#18101c',strokeThickness:4}).setOrigin(.5).setDepth(25000);this.labels.set(e,label);}label.setVisible(true).setScale(this.eliteLabelScale*Math.max(1,1/this.cameras.main.zoom)).setPosition(e.x,e.y-(e.objective?115:75)).setText((e.name?e.name+' · ':'')+e.elite+' Palm Stalker'+(e.enraged||e.vulnerable||e.windup?'\n':'')+(e.enraged?'ENRAGED'+(e.vulnerable||e.windup?' · ':''):'')+(e.vulnerable?'VULNERABLE':e.windup?(e.attack||'charge').toUpperCase()+' WARNING':''));}
     for(const event of Object.values(g.encounters||{}))if(!g.raid&&(event.track===undefined||event.track<2)&&(event.status==='active'||event.status==='available'&&event.discovered)){activeLabels.add(event);let label=this.labels.get(event);if(!label){label=this.add.text(event.x,event.y,event.name,{fontFamily:'Arial, sans-serif',fontSize:16,color:'#ffe0af',stroke:'#18101c',strokeThickness:4}).setOrigin(.5).setDepth(25000);this.labels.set(event,label);}label.setVisible(true).setPosition(event.x,event.y-80).setText(event.name+(event.track!==undefined&&event.track<2?' · Track '+(event.track+1)+'/2':'')+(event.hp===undefined?'':` · ${event.hp} / 300 HP`));}
     for(const message of g.texts){
       activeLabels.add(message);let label=this.labels.get(message);

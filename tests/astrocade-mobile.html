@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en" data-checks="mobile">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASEAN Survivor — mobile acceptance</title>
+<style>body{margin:0;background:#102322;color:#eee;font:14px system-ui}header{height:58px;display:flex;gap:8px;align-items:center;padding:4px}button{min-height:44px}#stage{position:relative;overflow:hidden}iframe{width:720px;height:1280px;border:0;transform-origin:top left}details{padding:8px}pre{white-space:pre-wrap}</style>
+<header><button id="run">Load export</button><button id="begin" disabled>Run mobile checks</button><button id="download" disabled>Download report</button></header>
+<div id="stage"><iframe id="game" sandbox="allow-scripts allow-pointer-lock" title="Astrocade game sandbox"></iframe></div>
+<details><summary>Results</summary><pre id="report">Ready.</pre></details>
+<script type="module" src="./astrocade.js"></script>
+</html>

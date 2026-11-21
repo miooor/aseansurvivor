@@ -1,0 +1,97 @@
+{
+  "date": "2026-11-15T16:38:30.991Z",
+  "result": "FAIL",
+  "error": "check@http://localhost:5183/tests/gameplay-upgrade.js:10:111\noverlayAbovePrompt@http://localhost:5183/tests/gameplay-upgrade.js:29:181\norderAndCleanup@http://localhost:5183/tests/gameplay-upgrade.js:30:479\n@http://localhost:5183/tests/gameplay-upgrade.js:35:319",
+  "checks": [
+    {
+      "name": "Relay reduces Q cooldown after Q/E chain",
+      "pass": true
+    },
+    {
+      "name": "Delayed Echo receives active Crosswind bonus once",
+      "pass": true,
+      "details": {
+        "hp": 9973.6
+      }
+    },
+    {
+      "name": "Chain retains three distinct equipped items",
+      "pass": true
+    },
+    {
+      "name": "Successful chain keeps original E orbit choreography",
+      "pass": true
+    },
+    {
+      "name": "No browser errors after combinedDamage",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Actual item support 1 kills owned elite and completes hunt",
+      "pass": true,
+      "details": {
+        "dead": true,
+        "status": "completed"
+      }
+    },
+    {
+      "name": "Repeated event updates keep exactly one consumed hunt reward",
+      "pass": true
+    },
+    {
+      "name": "Actual item support 2 kills owned elite and completes hunt",
+      "pass": true,
+      "details": {
+        "dead": true,
+        "status": "completed"
+      }
+    },
+    {
+      "name": "Repeated event updates keep exactly one consumed hunt reward",
+      "pass": true
+    },
+    {
+      "name": "Actual item support 4 kills owned elite and completes hunt",
+      "pass": true,
+      "details": {
+        "dead": true,
+        "status": "completed"
+      }
+    },
+    {
+      "name": "Repeated event updates keep exactly one consumed hunt reward",
+      "pass": true
+    },
+    {
+      "name": "Owned item-origin elite death completes event without Bounty heal/bonus charge",
+      "pass": true,
+      "details": {
+        "hp": 50,
+        "ult": 1,
+        "status": "completed"
+      }
+    },
+    {
+      "name": "No browser errors after supportCompletion",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Equipped rescue elite starts with charge warning",
+      "pass": true
+    },
+    {
+      "name": "lootPanel dialog paints above the active encounter prompt",
+      "pass": false,
+      "details": {
+        "topElement": "encounterPrompt"
+      }
+    }
+  ],
+  "errors": []
+}

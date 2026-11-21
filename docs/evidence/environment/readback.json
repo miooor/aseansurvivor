@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-15T14:25:42.832Z",
+  "revision": "01M7FSHCVJRJ8ABEZ9GM066YXM",
+  "files": [
+    {
+      "file": "README.md",
+      "localBytes": 3135,
+      "remoteBytes": 3135,
+      "localSha256": "308e92031e80f1cf11a746e3f522b8af485f7b3f9c7e7264916f342cf913938f",
+      "remoteSha256": "308e92031e80f1cf11a746e3f522b8af485f7b3f9c7e7264916f342cf913938f",
+      "match": true,
+      "comparison": "exact bytes"
+    },
+    {
+      "file": "game_config.json",
+      "localBytes": 3,
+      "remoteBytes": 3,
+      "localSha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "remoteSha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "match": true,
+      "comparison": "JSON values"
+    },
+    {
+      "file": "asset_map.json",
+      "localBytes": 3378,
+      "remoteBytes": 3377,
+      "localSha256": "a1bc2ffd3e34a8ec336ef91545f781df6d52079f4591c7bc3f2fbd602fbd81d8",
+      "remoteSha256": "76f4bb0ce6713bb357d6e907be2740a3f384e3e1b95b31b90357fc1c5b85dc98",
+      "match": true,
+      "comparison": "JSON values"
+    },
+    {
+      "file": "index.html",
+      "localBytes": 34635,
+      "remoteBytes": 34635,
+      "localSha256": "176d46c1d198384c1a5a30e8ebeede7dc8b50c28d19d159b688738545b439663",
+      "remoteSha256": "176d46c1d198384c1a5a30e8ebeede7dc8b50c28d19d159b688738545b439663",
+      "match": true,
+      "comparison": "exact bytes"
+    },
+    {
+      "file": "game.js",
+      "localBytes": 1501107,
+      "remoteBytes": 1501107,
+      "localSha256": "849dfb9112642aefc1c955a6b22d8b80171a4c64ab38c369b285a37545d1c9a8",
+      "remoteSha256": "849dfb9112642aefc1c955a6b22d8b80171a4c64ab38c369b285a37545d1c9a8",
+      "match": true,
+      "comparison": "exact bytes"
+    }
+  ]
+}

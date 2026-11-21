@@ -1,0 +1,309 @@
+{
+  "date": "2026-11-15T15:35:31.503Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.4 seconds",
+      "pass": true
+    },
+    {
+      "name": "Echo waits until 0.45 simulation seconds",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.05 seconds",
+      "pass": true
+    },
+    {
+      "name": "Q echo deals22 at its fixed marked point",
+      "pass": true,
+      "details": {
+        "hp": 10000,
+        "actual": 9978,
+        "time": 0.44999999999999996,
+        "castTime": 0,
+        "point": {
+          "x": 400,
+          "y": 0
+        },
+        "warning": {
+          "kind": "wave",
+          "x": 400,
+          "y": 0,
+          "r": 90,
+          "c": "#8fe8ed",
+          "life": -0.05,
+          "max": 0.45,
+          "item": "echoLattice"
+        },
+        "crits": 0,
+        "enemies": [
+          {
+            "x": 400,
+            "y": 0,
+            "hp": 9978
+          }
+        ],
+        "texts": [
+          "Echo Lattice",
+          "22"
+        ]
+      }
+    },
+    {
+      "name": "Can choose forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "E launches two extra item-origin bolts",
+      "pass": true
+    },
+    {
+      "name": "Forked bolts use rank3 damage27, speed420 and pierce2",
+      "pass": true
+    },
+    {
+      "name": "Forked bolts split cast aim by18 degrees",
+      "pass": true,
+      "details": {
+        "angles": [
+          -0.3141592653589793,
+          0.3141592653589793
+        ],
+        "originalAim": 0
+      }
+    },
+    {
+      "name": "Can choose undertowThread",
+      "pass": true
+    },
+    {
+      "name": "F field refreshes at least0.6s slow inside radius140",
+      "pass": true
+    },
+    {
+      "name": "Undertow field causes no damage",
+      "pass": true
+    },
+    {
+      "name": "Undertow names its proc and shows fixed radius140 field",
+      "pass": true
+    },
+    {
+      "name": "Can choose relayKnot",
+      "pass": true
+    },
+    {
+      "name": "Q reduces only E/F cooldowns by1s and clamps0",
+      "pass": true
+    },
+    {
+      "name": "Rejected Q cannot relay cooldowns",
+      "pass": true
+    },
+    {
+      "name": "E reduces Q/F while preserving its own normal cooldown",
+      "pass": true
+    },
+    {
+      "name": "Can choose crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "Repeated Q does not grant Crosswind damage",
+      "pass": true
+    },
+    {
+      "name": "Alternating Q/E grants20 percent outgoing damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "Drum20 and Hammer20 add before other multipliers",
+      "pass": true
+    },
+    {
+      "name": "Drum refreshes without stacking",
+      "pass": true
+    },
+    {
+      "name": "Can choose monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "Lens preserves one original ultimate and its charge cost",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.55 seconds",
+      "pass": true
+    },
+    {
+      "name": "Lens warning remains harmless before0.6s",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.05 seconds",
+      "pass": true
+    },
+    {
+      "name": "First rank3 Lens pulse deals27 and refreshes0.6slow",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.6 seconds",
+      "pass": true
+    },
+    {
+      "name": "Second Lens pulse lands at1.2s",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.6 seconds",
+      "pass": true
+    },
+    {
+      "name": "Third Lens pulse lands at1.8s only inside radius180",
+      "pass": true
+    },
+    {
+      "name": "Lens pulses produce no extra skill audio",
+      "pass": true
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Can choose monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "Echo and Lens share a12-strike cap, dropping the oldest",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.45 seconds",
+      "pass": true
+    },
+    {
+      "name": "Discarded oldest pending strike never deals damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose undertowThread",
+      "pass": true
+    },
+    {
+      "name": "Fourth F discards only the oldest of three fields",
+      "pass": true
+    },
+    {
+      "name": "Discarded field cannot slow its old position",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 3 seconds",
+      "pass": true
+    },
+    {
+      "name": "Fields stop applying slow after three simulation seconds",
+      "pass": true
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Can choose undertowThread",
+      "pass": true
+    },
+    {
+      "name": "Can choose forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "Weapon replacement removes its pending echo but preserves charm field",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.45 seconds",
+      "pass": true
+    },
+    {
+      "name": "Replaced Echo never fires its scheduled hit",
+      "pass": true
+    },
+    {
+      "name": "Can choose echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Replacement removes only that weapon item projectiles",
+      "pass": true
+    },
+    {
+      "name": "Can choose forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "Can choose undertowThread",
+      "pass": true
+    },
+    {
+      "name": "Can choose monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "Raid entry keeps equipment but clears pending strikes, fields and item projectiles",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.6 seconds",
+      "pass": true
+    },
+    {
+      "name": "Lens and Undertow work after casting inside raid",
+      "pass": true
+    },
+    {
+      "name": "Simulation advances 0.05 seconds",
+      "pass": true
+    },
+    {
+      "name": "Raid exit clears raid support effects and projectiles",
+      "pass": true
+    },
+    {
+      "name": "Menu cleanup removes all item support effects from old run",
+      "pass": true
+    },
+    {
+      "name": "New run has empty equipment and item counters",
+      "pass": true
+    },
+    {
+      "name": "Can choose splitEmber",
+      "pass": true
+    },
+    {
+      "name": "Original Split Ember still creates item projectiles",
+      "pass": true
+    },
+    {
+      "name": "Can choose forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "Original weapon projectiles also clear on relevant replacement",
+      "pass": true
+    }
+  ]
+}

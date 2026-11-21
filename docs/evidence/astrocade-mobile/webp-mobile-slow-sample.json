@@ -1,0 +1,134 @@
+{
+  "date": "2026-11-15T13:39:08.937Z",
+  "checks": [
+    {
+      "name": "Export boots with all required artwork",
+      "pass": true
+    },
+    {
+      "name": "HUD above the battlefield",
+      "pass": true
+    },
+    {
+      "name": "Controls keep a larger compact-phone target",
+      "pass": true
+    },
+    {
+      "name": "pauseButton stays inside portrait frame",
+      "pass": true
+    },
+    {
+      "name": "skills stays inside portrait frame",
+      "pass": true
+    },
+    {
+      "name": "equipmentButton stays inside portrait frame",
+      "pass": true
+    },
+    {
+      "name": "worldMap stays inside portrait frame",
+      "pass": true
+    },
+    {
+      "name": "Equipment does not overlap skills",
+      "pass": true
+    },
+    {
+      "name": "Touch movement continues while casting",
+      "pass": true
+    },
+    {
+      "name": "Touch movement does not scroll",
+      "pass": true
+    },
+    {
+      "name": "Touch pause opens",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes gameplay",
+      "pass": true
+    },
+    {
+      "name": "Resume returns to play",
+      "pass": true
+    },
+    {
+      "name": "Equipment opens without leaving play",
+      "pass": true
+    },
+    {
+      "name": "Equipment closes",
+      "pass": true
+    },
+    {
+      "name": "Game clock advances during mobile profile",
+      "pass": true
+    },
+    {
+      "name": "All artwork uses the smaller WebP assets",
+      "pass": true
+    },
+    {
+      "name": "No runtime errors",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "result": "PASS",
+  "environment": {
+    "width": 720,
+    "height": 1280,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+    "cores": 8
+  },
+  "startupMs": 11316,
+  "profile": {
+    "durationMs": 15028,
+    "frames": 250,
+    "meanFps": 16.64,
+    "medianMs": 50,
+    "p95Ms": 133.29999999999927,
+    "over50ms": 97,
+    "gameTime": "0:12",
+    "kills": "0"
+  },
+  "assets": [
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748988074_01M7FP0ENAV6GQTG2Y2MYSZZ0Z.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748999802_01M7FP0T3TJSYCZ3YTRD9KPFG5.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748995463_01M7FP0NW71GPEH2DWXH25NYN6.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748989157_01M7FP0FQ53HZNR497W2415GW0.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748990748_01M7FP0H8WE1VE226SF1FP3KD8.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748998303_01M7FP0RMZECFABXN89QXBGG7K.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748997604_01M7FP0QZ4XZ3C8797XB3M2736.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794749003604_01M7FP0XTM1CP97V6N7VN2STF6.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748993306_01M7FP0KRTCWJ1G2WN6BRR6KTC.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748996724_01M7FP0Q3MBA3CD2H4SHNXW7Z6.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794749001485_01M7FP0VRDGK8D3CJT3EX3P168.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748989931_01M7FP0GFBTV2YF16A4VHG4759.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748987351_01M7FP0DYQKRK35K88HRQZE24D.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748994744_01M7FP0N5RWM2RR0J3J73434QC.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748999024_01M7FP0SBGRQ5KGKAWWE55N03Z.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748991826_01M7FP0JAJRBYR7JR4GTNA4ZPW.webp",
+    "https://d16qq0o35va7kz.cloudfront.net/images/d82153d0-a081-70e2-843a-7de404c74921/1794748994095_01M7FP0MHFB808FC4Z2F0ADWDA.webp"
+  ],
+  "runtimeErrors": [],
+  "testConditions": {
+    "outerViewport": {
+      "width": 390,
+      "height": 844
+    },
+    "sandbox": {
+      "width": 720,
+      "height": 1280
+    },
+    "cpuSlowdown": 4,
+    "network": {
+      "downloadMbps": 10,
+      "uploadMbps": 1,
+      "latencyMs": 80
+    },
+    "cacheDisabled": true,
+    "note": "Exact parent viewport verified with innerWidth/innerHeight. Throttles applied to isolated iframe target before run. Startup excludes host-page and script transfer."
+  }
+}

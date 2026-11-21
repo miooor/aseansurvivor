@@ -1,0 +1,502 @@
+{
+  "date": "2026-11-15T17:43:43.152Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "Rescue has one Armoured, two ordinary stalkers and three pocong",
+      "pass": true
+    },
+    {
+      "name": "Rescue captors are owned and collision-valid",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "Ward wave 1 composition",
+      "pass": true
+    },
+    {
+      "name": "Wave 1 targets the ward from valid ground",
+      "pass": true
+    },
+    {
+      "name": "Ward wave 2 composition",
+      "pass": true
+    },
+    {
+      "name": "Wave 2 targets the ward from valid ground",
+      "pass": true
+    },
+    {
+      "name": "Ward wave 3 composition",
+      "pass": true
+    },
+    {
+      "name": "Wave 3 targets the ward from valid ground",
+      "pass": true
+    },
+    {
+      "name": "Ward completes once with one three-choice reward",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "First Armoured action warns CHARGE with locked horizontal aim",
+      "pass": true
+    },
+    {
+      "name": "Charge warning is harmless and stationary",
+      "pass": true
+    },
+    {
+      "name": "Charge follows locked aim instead of moved player",
+      "pass": true
+    },
+    {
+      "name": "Charge ends in 1.5-second Armoured vulnerability",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "Second Armoured action is stationary FAN warning",
+      "pass": true
+    },
+    {
+      "name": "Fan label identifies warning",
+      "pass": true
+    },
+    {
+      "name": "Fan cannot fire before 0.8 seconds",
+      "pass": true
+    },
+    {
+      "name": "Fan fires exactly five bolts without a charge",
+      "pass": true
+    },
+    {
+      "name": "Fan uses locked five rays at -30 -15 0 15 30 degrees",
+      "pass": true
+    },
+    {
+      "name": "Fan exact bolt stats and ownership",
+      "pass": true
+    },
+    {
+      "name": "Third Armoured action returns to charge and resets fan warning",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract available",
+      "pass": true
+    },
+    {
+      "name": "Briarback above half HP remains normal",
+      "pass": true
+    },
+    {
+      "name": "At exactly half HP Briarback enters indicated ENRAGED burst",
+      "pass": true
+    },
+    {
+      "name": "Enrage changes interval to 2.6 without health scaling",
+      "pass": true
+    },
+    {
+      "name": "Burst warning stays stationary and harmless for 0.85 seconds",
+      "pass": true
+    },
+    {
+      "name": "Burst launches eight bolts without a charge",
+      "pass": true
+    },
+    {
+      "name": "Burst exact stats and ownership",
+      "pass": true
+    },
+    {
+      "name": "Burst evenly covers eight directions",
+      "pass": true
+    },
+    {
+      "name": "Next enraged action alternates to charge",
+      "pass": true
+    },
+    {
+      "name": "Third enraged action alternates back to burst",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes fan warning and simulation clock",
+      "pass": true
+    },
+    {
+      "name": "equipmentButton available",
+      "pass": true
+    },
+    {
+      "name": "Equipment overlay freezes warnings and clock",
+      "pass": true
+    },
+    {
+      "name": "lootClose available",
+      "pass": true
+    },
+    {
+      "name": "Stun freezes attack warning",
+      "pass": true
+    },
+    {
+      "name": "Warning resumes once stun clears",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes live hostile bolts",
+      "pass": true
+    },
+    {
+      "name": "Level-up overlay freezes live hostile bolts",
+      "pass": true
+    },
+    {
+      "name": "Hostile bolts expire after 2.5 simulation seconds",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "Real fan collision deals exactly ten player damage",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract available",
+      "pass": true
+    },
+    {
+      "name": "Real burst collision deals exactly eight player damage",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "abandon fixture has owned live bolts",
+      "pass": true
+    },
+    {
+      "name": "eventAbandon available",
+      "pass": true
+    },
+    {
+      "name": "abandon removes all encounter hazards and abandons event",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "defeat fixture has owned live bolts",
+      "pass": true
+    },
+    {
+      "name": "defeat removes all encounter hazards and abandons event",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "menu fixture has owned live bolts",
+      "pass": true
+    },
+    {
+      "name": "menu removes all encounter hazards and abandons event",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "victory fixture has owned live bolts",
+      "pass": true
+    },
+    {
+      "name": "victory removes all encounter hazards and abandons event",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "Active event blocks raid entry without losing bolts",
+      "pass": true
+    },
+    {
+      "name": "eventAbandon available",
+      "pass": true
+    },
+    {
+      "name": "Raid after abandonment has no encounter projectiles",
+      "pass": true
+    },
+    {
+      "name": "New run has no warning, enrage or projectile state",
+      "pass": true
+    },
+    {
+      "name": "Ordinary stalker stage 0 still charges without elite fan/enrage",
+      "pass": true
+    },
+    {
+      "name": "Ordinary stalker stage 1 still charges without elite fan/enrage",
+      "pass": true
+    },
+    {
+      "name": "Stage 1 still has no Johor events",
+      "pass": true
+    },
+    {
+      "name": "Ordinary stalker stage 2 still charges without elite fan/enrage",
+      "pass": true
+    },
+    {
+      "name": "Stage 2 still has no Johor events",
+      "pass": true
+    },
+    {
+      "name": "Ordinary stalker stage 3 still charges without elite fan/enrage",
+      "pass": true
+    },
+    {
+      "name": "Stage 3 still has no Johor events",
+      "pass": true
+    },
+    {
+      "name": "Ordinary stalker stage 4 still charges without elite fan/enrage",
+      "pass": true
+    },
+    {
+      "name": "Stage 4 still has no Johor events",
+      "pass": true
+    },
+    {
+      "name": "Ordinary stalker stage 5 still charges without elite fan/enrage",
+      "pass": true
+    },
+    {
+      "name": "Stage 5 still has no Johor events",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract available",
+      "pass": true
+    },
+    {
+      "name": "Healthy Briarback retains 3.5-second cadence and charge",
+      "pass": true
+    },
+    {
+      "name": "Original Thornbound charge retains five warned four-second patches",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "Final charge movement keeps locked direction around obstructed moved target",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract available",
+      "pass": true
+    },
+    {
+      "name": "Enraged warning label fits a 300-unit mobile reading width",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract available",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract available",
+      "pass": true
+    },
+    {
+      "name": "eventStart available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract available",
+      "pass": true
+    },
+    {
+      "name": "eventInteract available",
+      "pass": true
+    },
+    {
+      "name": "Armoured fear during warning keeps all rush movement on the warning ray",
+      "pass": true
+    },
+    {
+      "name": "Armoured warning fear timer still expires on simulation time",
+      "pass": true
+    },
+    {
+      "name": "Armoured warning fear clears after its duration",
+      "pass": true
+    },
+    {
+      "name": "Armoured fear during active keeps all rush movement on the warning ray",
+      "pass": true
+    },
+    {
+      "name": "Armoured active fear timer still expires on simulation time",
+      "pass": true
+    },
+    {
+      "name": "Armoured active fear clears after its duration",
+      "pass": true
+    },
+    {
+      "name": "Armoured fear during final keeps all rush movement on the warning ray",
+      "pass": true
+    },
+    {
+      "name": "Armoured final fear timer still expires on simulation time",
+      "pass": true
+    },
+    {
+      "name": "Armoured final fear clears after its duration",
+      "pass": true
+    },
+    {
+      "name": "Thornbound fear during warning keeps all rush movement on the warning ray",
+      "pass": true
+    },
+    {
+      "name": "Thornbound warning fear timer still expires on simulation time",
+      "pass": true
+    },
+    {
+      "name": "Thornbound warning fear clears after its duration",
+      "pass": true
+    },
+    {
+      "name": "Thornbound fear during active keeps all rush movement on the warning ray",
+      "pass": true
+    },
+    {
+      "name": "Thornbound active fear timer still expires on simulation time",
+      "pass": true
+    },
+    {
+      "name": "Thornbound active fear clears after its duration",
+      "pass": true
+    },
+    {
+      "name": "Thornbound fear during final keeps all rush movement on the warning ray",
+      "pass": true
+    },
+    {
+      "name": "Thornbound final fear timer still expires on simulation time",
+      "pass": true
+    },
+    {
+      "name": "Thornbound final fear clears after its duration",
+      "pass": true
+    },
+    {
+      "name": "Ordinary enemy still flees the player while feared",
+      "pass": true
+    },
+    {
+      "name": "Ordinary fear expires and resumes approaching the player",
+      "pass": true
+    }
+  ]
+}
