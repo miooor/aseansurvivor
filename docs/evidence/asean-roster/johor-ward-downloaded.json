@@ -1,0 +1,838 @@
+{
+  "date": "2026-11-16T03:57:40.187Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Nearby ward explains three waves",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "Ward begins at 300 HP",
+      "pass": true
+    },
+    {
+      "name": "First wave has four enemies",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "One ward contact deals exactly 10 damage",
+      "pass": true
+    },
+    {
+      "name": "Contact cannot damage twice within one second",
+      "pass": true
+    },
+    {
+      "name": "Contact repeats after one second",
+      "pass": true
+    },
+    {
+      "name": "Can choose travellersKnot",
+      "pass": true
+    },
+    {
+      "name": "Traveller Knot gives 12% speed",
+      "pass": true
+    },
+    {
+      "name": "Can choose quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "Knot and Hammer combine additively",
+      "pass": true
+    },
+    {
+      "name": "Can choose travellersKnot",
+      "pass": true
+    },
+    {
+      "name": "Knot does not compound on re-equip",
+      "pass": true
+    },
+    {
+      "name": "Can choose lanternHeart",
+      "pass": true
+    },
+    {
+      "name": "Heart adds 40 maximum HP without healing",
+      "pass": true
+    },
+    {
+      "name": "Heart does not heal before five seconds",
+      "pass": true
+    },
+    {
+      "name": "Heart restores two HP per simulation second",
+      "pass": true
+    },
+    {
+      "name": "Real incoming damage resets regeneration",
+      "pass": true
+    },
+    {
+      "name": "Rejected invulnerable hit does not reset regeneration",
+      "pass": true
+    },
+    {
+      "name": "Heart healing clamps at maximum",
+      "pass": true
+    },
+    {
+      "name": "Can choose travellersKnot",
+      "pass": true
+    },
+    {
+      "name": "Removing Heart clamps current and maximum health",
+      "pass": true
+    },
+    {
+      "name": "Can choose lanternHeart",
+      "pass": true
+    },
+    {
+      "name": "Readding Heart never freely heals",
+      "pass": true
+    },
+    {
+      "name": "Can choose reedGuard",
+      "pass": true
+    },
+    {
+      "name": "Can choose quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "Equipment speed penalty does not qualify for Reed Guard",
+      "pass": true
+    },
+    {
+      "name": "Enemy oil hindrance reduces incoming damage by 20%",
+      "pass": true
+    },
+    {
+      "name": "Reed Guard mitigation has visible feedback",
+      "pass": true
+    },
+    {
+      "name": "Reed Guard stops when leaving enemy oil",
+      "pass": true
+    },
+    {
+      "name": "Can choose stillwaterBeads",
+      "pass": true
+    },
+    {
+      "name": "Beads do not activate before two seconds",
+      "pass": true
+    },
+    {
+      "name": "Beads grant 20% positional damage",
+      "pass": true
+    },
+    {
+      "name": "Beads activation is visible",
+      "pass": true
+    },
+    {
+      "name": "Within30 units retains bonus",
+      "pass": true
+    },
+    {
+      "name": "Leaving30 units drops bonus immediately",
+      "pass": true
+    },
+    {
+      "name": "Can choose quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "Weapon and charm damage adds to40 percent",
+      "pass": true
+    },
+    {
+      "name": "Teleport drops positional bonus",
+      "pass": true
+    },
+    {
+      "name": "Raid transition resets positional bonus",
+      "pass": true
+    },
+    {
+      "name": "Can choose stillwaterBeads",
+      "pass": true
+    },
+    {
+      "name": "Nok also gains positional damage",
+      "pass": true
+    },
+    {
+      "name": "Leap landing resets positional bonus",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "Walking past does not trigger other event",
+      "pass": true
+    },
+    {
+      "name": "Ward actor spawns on valid ground 4",
+      "pass": true
+    },
+    {
+      "name": "Ward actor reachable 4",
+      "pass": true
+    },
+    {
+      "name": "Ward actor spawns on valid ground 5",
+      "pass": true
+    },
+    {
+      "name": "Ward actor reachable 5",
+      "pass": true
+    },
+    {
+      "name": "Ward actor spawns on valid ground 6",
+      "pass": true
+    },
+    {
+      "name": "Ward actor reachable 6",
+      "pass": true
+    },
+    {
+      "name": "Ward actor spawns on valid ground 7",
+      "pass": true
+    },
+    {
+      "name": "Ward actor reachable 7",
+      "pass": true
+    },
+    {
+      "name": "Ward enemy pursues installation away from hero",
+      "pass": true
+    },
+    {
+      "name": "Ambient enemy still pursues hero",
+      "pass": true
+    },
+    {
+      "name": "Ambient death does not advance wave",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes ward damage and simulation",
+      "pass": true
+    },
+    {
+      "name": "Active ward blocks raid with explanation",
+      "pass": true
+    },
+    {
+      "name": "Blocked rift keeps remaining lifetime",
+      "pass": true
+    },
+    {
+      "name": "Leaving ward does not abandon",
+      "pass": true
+    },
+    {
+      "name": "Second wave has exactly six owned actors",
+      "pass": true
+    },
+    {
+      "name": "Final wave has exactly eight owned actors",
+      "pass": true
+    },
+    {
+      "name": "Ward and elite labels remain separated",
+      "pass": true
+    },
+    {
+      "name": "Final wave has one Armoured elite",
+      "pass": true
+    },
+    {
+      "name": "Final elite armour reduces100damage to70",
+      "pass": true
+    },
+    {
+      "name": "Third clear completes ward exactly once",
+      "pass": true
+    },
+    {
+      "name": "Ward offers three distinct charms",
+      "pass": true
+    },
+    {
+      "name": "Duplicate reward input cannot change selection",
+      "pass": true
+    },
+    {
+      "name": "Completed event never respawns or reoffers",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "Ward destruction abandons without reward",
+      "pass": true
+    },
+    {
+      "name": "Destruction removes owned enemies",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "eventAbandon is available",
+      "pass": true
+    },
+    {
+      "name": "Explicit abandon cannot restart or reward",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "Defeat abandons active ward",
+      "pass": true
+    },
+    {
+      "name": "again is available",
+      "pass": true
+    },
+    {
+      "name": "Retry starts clean ward and equipment",
+      "pass": true
+    },
+    {
+      "name": "Can choose travellersKnot",
+      "pass": true
+    },
+    {
+      "name": "ustaz Knot speed",
+      "pass": true
+    },
+    {
+      "name": "Can choose lanternHeart",
+      "pass": true
+    },
+    {
+      "name": "ustaz Heart max only",
+      "pass": true
+    },
+    {
+      "name": "ustaz Heart regenerates2HP",
+      "pass": true
+    },
+    {
+      "name": "Can choose reedGuard",
+      "pass": true
+    },
+    {
+      "name": "ustaz Reed Guard oil reduction",
+      "pass": true
+    },
+    {
+      "name": "Can choose stillwaterBeads",
+      "pass": true
+    },
+    {
+      "name": "ustaz Beads damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose travellersKnot",
+      "pass": true
+    },
+    {
+      "name": "Can choose stillwaterBeads",
+      "pass": true
+    },
+    {
+      "name": "ustaz Reequipping resets Beads",
+      "pass": true
+    },
+    {
+      "name": "Can choose travellersKnot",
+      "pass": true
+    },
+    {
+      "name": "rempit Knot speed",
+      "pass": true
+    },
+    {
+      "name": "Can choose lanternHeart",
+      "pass": true
+    },
+    {
+      "name": "rempit Heart max only",
+      "pass": true
+    },
+    {
+      "name": "rempit Heart regenerates2HP",
+      "pass": true
+    },
+    {
+      "name": "Can choose reedGuard",
+      "pass": true
+    },
+    {
+      "name": "rempit Reed Guard oil reduction",
+      "pass": true
+    },
+    {
+      "name": "Can choose stillwaterBeads",
+      "pass": true
+    },
+    {
+      "name": "rempit Beads damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose travellersKnot",
+      "pass": true
+    },
+    {
+      "name": "Can choose stillwaterBeads",
+      "pass": true
+    },
+    {
+      "name": "rempit Reequipping resets Beads",
+      "pass": true
+    },
+    {
+      "name": "Can choose travellersKnot",
+      "pass": true
+    },
+    {
+      "name": "nok Knot speed",
+      "pass": true
+    },
+    {
+      "name": "Can choose lanternHeart",
+      "pass": true
+    },
+    {
+      "name": "nok Heart max only",
+      "pass": true
+    },
+    {
+      "name": "nok Heart regenerates2HP",
+      "pass": true
+    },
+    {
+      "name": "Can choose reedGuard",
+      "pass": true
+    },
+    {
+      "name": "nok Reed Guard oil reduction",
+      "pass": true
+    },
+    {
+      "name": "Can choose stillwaterBeads",
+      "pass": true
+    },
+    {
+      "name": "nok Beads damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose travellersKnot",
+      "pass": true
+    },
+    {
+      "name": "Can choose stillwaterBeads",
+      "pass": true
+    },
+    {
+      "name": "nok Reequipping resets Beads",
+      "pass": true
+    },
+    {
+      "name": "Can choose travellersKnot",
+      "pass": true
+    },
+    {
+      "name": "lan Knot speed",
+      "pass": true
+    },
+    {
+      "name": "Can choose lanternHeart",
+      "pass": true
+    },
+    {
+      "name": "lan Heart max only",
+      "pass": true
+    },
+    {
+      "name": "lan Heart regenerates2HP",
+      "pass": true
+    },
+    {
+      "name": "Can choose reedGuard",
+      "pass": true
+    },
+    {
+      "name": "lan Reed Guard oil reduction",
+      "pass": true
+    },
+    {
+      "name": "Can choose stillwaterBeads",
+      "pass": true
+    },
+    {
+      "name": "lan Beads damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose travellersKnot",
+      "pass": true
+    },
+    {
+      "name": "Can choose stillwaterBeads",
+      "pass": true
+    },
+    {
+      "name": "lan Reequipping resets Beads",
+      "pass": true
+    },
+    {
+      "name": "Can choose travellersKnot",
+      "pass": true
+    },
+    {
+      "name": "sari Knot speed",
+      "pass": true
+    },
+    {
+      "name": "Can choose lanternHeart",
+      "pass": true
+    },
+    {
+      "name": "sari Heart max only",
+      "pass": true
+    },
+    {
+      "name": "sari Heart regenerates2HP",
+      "pass": true
+    },
+    {
+      "name": "Can choose reedGuard",
+      "pass": true
+    },
+    {
+      "name": "sari Reed Guard oil reduction",
+      "pass": true
+    },
+    {
+      "name": "Can choose stillwaterBeads",
+      "pass": true
+    },
+    {
+      "name": "sari Beads damage",
+      "pass": true
+    },
+    {
+      "name": "Can choose travellersKnot",
+      "pass": true
+    },
+    {
+      "name": "Can choose stillwaterBeads",
+      "pass": true
+    },
+    {
+      "name": "sari Reequipping resets Beads",
+      "pass": true
+    },
+    {
+      "name": "Can choose lanternHeart",
+      "pass": true
+    },
+    {
+      "name": "Parried hit does not reset Heart healing",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes charm regeneration",
+      "pass": true
+    },
+    {
+      "name": "equipmentButton is available",
+      "pass": true
+    },
+    {
+      "name": "Inspection freezes charm regeneration",
+      "pass": true
+    },
+    {
+      "name": "lootClose is available",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "Upgrade takes priority over ward completion UI",
+      "pass": true
+    },
+    {
+      "name": "up0 is available",
+      "pass": true
+    },
+    {
+      "name": "Ward reward appears after upgrade",
+      "pass": true
+    },
+    {
+      "name": "lootSkip is available",
+      "pass": true
+    },
+    {
+      "name": "Skip consumes exactly one charm reward",
+      "pass": true
+    },
+    {
+      "name": "Event and equipment leave save unchanged",
+      "pass": true
+    },
+    {
+      "name": "Stage 1 has no ward or equipment leakage",
+      "pass": true
+    },
+    {
+      "name": "Stage 2 has no ward or equipment leakage",
+      "pass": true
+    },
+    {
+      "name": "Stage 3 has no ward or equipment leakage",
+      "pass": true
+    },
+    {
+      "name": "Stage 4 has no ward or equipment leakage",
+      "pass": true
+    },
+    {
+      "name": "Stage 5 has no ward or equipment leakage",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "Boss arrival preserves active ward and survival clock",
+      "pass": true
+    },
+    {
+      "name": "Boss victory abandons unresolved ward without reward",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "Menu hides event and reward controls",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "1000px event does not overlap signature",
+      "pass": true
+    },
+    {
+      "name": "1000px event does not overlap worldMap",
+      "pass": true
+    },
+    {
+      "name": "1000px event does not overlap skills",
+      "pass": true
+    },
+    {
+      "name": "1000px equipment does not cover skills",
+      "pass": true
+    },
+    {
+      "name": "1000px no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Ward HP is rendered beside the installation",
+      "pass": true
+    },
+    {
+      "name": "1000px touch targets44px",
+      "pass": true
+    },
+    {
+      "name": "1000px reward fits viewport",
+      "pass": true
+    },
+    {
+      "name": "1000px reward buttons44px",
+      "pass": true
+    },
+    {
+      "name": "1000px keyboard focus remains within reward",
+      "pass": true
+    },
+    {
+      "name": "equipmentButton is available",
+      "pass": true
+    },
+    {
+      "name": "1000px inspection names equipped charm",
+      "pass": true
+    },
+    {
+      "name": "lootClose is available",
+      "pass": true
+    },
+    {
+      "name": "1000px inspection restores focus",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "320px event does not overlap signature",
+      "pass": true
+    },
+    {
+      "name": "320px event does not overlap worldMap",
+      "pass": true
+    },
+    {
+      "name": "320px event does not overlap skills",
+      "pass": true
+    },
+    {
+      "name": "320px equipment does not cover skills",
+      "pass": true
+    },
+    {
+      "name": "320px no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Ward HP is rendered beside the installation",
+      "pass": true
+    },
+    {
+      "name": "320px touch targets44px",
+      "pass": true
+    },
+    {
+      "name": "320px reward fits viewport",
+      "pass": true
+    },
+    {
+      "name": "320px reward buttons44px",
+      "pass": true
+    },
+    {
+      "name": "320px keyboard focus remains within reward",
+      "pass": true
+    },
+    {
+      "name": "equipmentButton is available",
+      "pass": true
+    },
+    {
+      "name": "320px inspection names equipped charm",
+      "pass": true
+    },
+    {
+      "name": "lootClose is available",
+      "pass": true
+    },
+    {
+      "name": "320px inspection restores focus",
+      "pass": true
+    },
+    {
+      "name": "eventStart is available",
+      "pass": true
+    },
+    {
+      "name": "390px event does not overlap signature",
+      "pass": true
+    },
+    {
+      "name": "390px event does not overlap worldMap",
+      "pass": true
+    },
+    {
+      "name": "390px event does not overlap skills",
+      "pass": true
+    },
+    {
+      "name": "390px equipment does not cover skills",
+      "pass": true
+    },
+    {
+      "name": "390px no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Ward HP is rendered beside the installation",
+      "pass": true
+    },
+    {
+      "name": "390px touch targets44px",
+      "pass": true
+    },
+    {
+      "name": "390px reward fits viewport",
+      "pass": true
+    },
+    {
+      "name": "390px reward buttons44px",
+      "pass": true
+    },
+    {
+      "name": "390px keyboard focus remains within reward",
+      "pass": true
+    },
+    {
+      "name": "equipmentButton is available",
+      "pass": true
+    },
+    {
+      "name": "390px inspection names equipped charm",
+      "pass": true
+    },
+    {
+      "name": "lootClose is available",
+      "pass": true
+    },
+    {
+      "name": "390px inspection restores focus",
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "date": "2026-11-16T03:18:29.202Z",
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3.1 Safari/605.1.15",
+  "result": "FAIL",
+  "error": "check@http://localhost:5194/tests/asean-roster.js:13:111\nlayouts@http://localhost:5194/tests/asean-roster.js:32:78",
+  "checks": [
+    {
+      "name": "lia actual lobby Start enters prepared run",
+      "pass": true
+    },
+    {
+      "name": "lia 320 selectedHeroName stays within viewport",
+      "pass": true,
+      "details": {
+        "rect": {
+          "x": 19.999998092651367,
+          "width": 279.9999694824219
+        },
+        "client": 280,
+        "scroll": 280
+      }
+    },
+    {
+      "name": "lia 320 heroSkills stays within viewport",
+      "pass": true,
+      "details": {
+        "rect": {
+          "x": 19.999998092651367,
+          "width": 279.9999694824219
+        },
+        "client": 280,
+        "scroll": 280
+      }
+    },
+    {
+      "name": "lia 320 hudHero readable in frame",
+      "pass": true,
+      "details": {
+        "font": "11px",
+        "rect": {
+          "x": 58.124996185302734,
+          "y": 29.301467895507812,
+          "width": 74.99999237060547,
+          "height": 14.117646217346191
+        },
+        "scroll": 75,
+        "client": 75
+      }
+    },
+    {
+      "name": "lia 320 signatureName readable in frame",
+      "pass": true,
+      "details": {
+        "font": "10.588235px",
+        "rect": {
+          "x": 21.1580867767334,
+          "y": 113.91543579101562,
+          "width": 52.51837921142578,
+          "height": 42.35293960571289
+        },
+        "scroll": 52,
+        "client": 53
+      }
+    },
+    {
+      "name": "lia 320 signatureValue readable in frame",
+      "pass": true,
+      "details": {
+        "font": "10.588235px",
+        "rect": {
+          "x": 85.66175842285156,
+          "y": 113.91543579101562,
+          "width": 63.14337921142578,
+          "height": 42.35293960571289
+        },
+        "scroll": 63,
+        "client": 64
+      }
+    },
+    {
+      "name": "lia 320 sk1 readable in frame",
+      "pass": true,
+      "details": {
+        "font": "16px",
+        "rect": {
+          "x": 246.83822631835938,
+          "y": 524.4301147460938,
+          "width": 55.992645263671875,
+          "height": 57.99631881713867
+        },
+        "scroll": 54,
+        "client": 54
+      }
+    },
+    {
+      "name": "lia 320 sk2 readable in frame",
+      "pass": true,
+      "details": {
+        "font": "16px",
+        "rect": {
+          "x": 246.83822631835938,
+          "y": 588.4190673828125,
+          "width": 55.992645263671875,
+          "height": 57.99631881713867
+        },
+        "scroll": 54,
+        "client": 54
+      }
+    },
+    {
+      "name": "lia 320 sk3 readable in frame",
+      "pass": true,
+      "details": {
+        "font": "16px",
+        "rect": {
+          "x": 246.83822631835938,
+          "y": 652.4080200195312,
+          "width": 55.992645263671875,
+          "height": 57.99631881713867
+        },
+        "scroll": 54,
+        "client": 54
+      }
+    },
+    {
+      "name": "lia 320 sk4 readable in frame",
+      "pass": true,
+      "details": {
+        "font": "16px",
+        "rect": {
+          "x": 246.83822631835938,
+          "y": 716.3970336914062,
+          "width": 55.992645263671875,
+          "height": 57.99631881713867
+        },
+        "scroll": 54,
+        "client": 54
+      }
+    },
+    {
+      "name": "lia 320 hero-name minimum12px text",
+      "pass": false,
+      "details": {
+        "text": "Lia Soares",
+        "font": "11px"
+      }
+    }
+  ],
+  "errors": []
+}

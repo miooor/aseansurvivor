@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-16T00:27:28.390Z",
+  "result": "FAIL",
+  "checks": [
+    {
+      "name": "Nok can cast along a valid raid line without consuming a rejected cast",
+      "pass": true
+    },
+    {
+      "name": "Nok interior raid placement preserves the 230-unit aimed endpoint",
+      "pass": true
+    },
+    {
+      "name": "Nok outer raid endpoint is collision-valid before landing damage",
+      "pass": false
+    },
+    {
+      "name": "Nok lands in raid coordinates and retains the bounded leap lifecycle",
+      "pass": true
+    },
+    {
+      "name": "Real ordinary input moves inside the raid without overworld clamping",
+      "pass": true
+    },
+    {
+      "name": "An invalid outside-arena leap line rejects before spending ultimate",
+      "pass": false
+    }
+  ]
+}

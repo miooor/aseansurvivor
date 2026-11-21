@@ -1,0 +1,383 @@
+{
+  "date": "2026-11-16T01:43:48.480Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "E arrival deals10 in radius90",
+      "pass": true,
+      "details": {
+        "hp": 9990
+      }
+    },
+    {
+      "name": "Waiting layer causes no periodic damage",
+      "pass": true
+    },
+    {
+      "name": "Q before2 seconds retains immature layer without burst",
+      "pass": true
+    },
+    {
+      "name": "Q at2 seconds releases mature layer for42",
+      "pass": true,
+      "details": {
+        "hp": 9948,
+        "time": 1.9999999999999998
+      }
+    },
+    {
+      "name": "Released layer cannot hit again",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real raid entry moves into arena coordinates",
+      "pass": true
+    },
+    {
+      "name": "First raid E remains in arena and deals arrival10 at its aim point",
+      "pass": true,
+      "details": {
+        "hp": 9990,
+        "player": {
+          "x": 60000,
+          "y": 60250
+        }
+      }
+    },
+    {
+      "name": "Raid layer center remains inside the circular arena",
+      "pass": true,
+      "details": {
+        "layers": [
+          {
+            "x": 60240,
+            "y": 60250,
+            "at": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "F deals15 with1.5 seconds slow in radius150",
+      "pass": true,
+      "details": {
+        "hp": 9985,
+        "slow": 1.5
+      }
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "R spends full60 charge exactly once",
+      "pass": true
+    },
+    {
+      "name": "R discs remain harmless before1 second",
+      "pass": true
+    },
+    {
+      "name": "R hits all3 captured discs for50 at1 second",
+      "pass": true,
+      "details": {
+        "hp": [
+          9950,
+          9950,
+          9950
+        ]
+      }
+    },
+    {
+      "name": "R discs strike once and never enter E pool",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Basic uses authored damage, speed, range and pierce",
+      "pass": true
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Q has authored base26 damage",
+      "pass": true
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Hero Q kill receives one kill and one ultimate charge",
+      "pass": true
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Fourth E keeps3 layers and replaces oldest",
+      "pass": true
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Layer is immature at1.95",
+      "pass": true
+    },
+    {
+      "name": "Layer matures exactly2 seconds",
+      "pass": true
+    },
+    {
+      "name": "Mature layer401 away remains",
+      "pass": true
+    },
+    {
+      "name": "Mature layer exactly400 away releases",
+      "pass": true
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Layer expires exactly7 seconds",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Rank3 F damage uses authored1.5 multiplier",
+      "pass": true,
+      "details": {
+        "hp": 9977.5
+      }
+    },
+    {
+      "name": "Rank3 cooldown uses ordinary0.86 factor",
+      "pass": true
+    },
+    {
+      "name": "Rejected cooldown cast spends nothing and emits no extra audio",
+      "pass": true
+    },
+    {
+      "name": "Actual pause freezes simulation and owned state",
+      "pass": true
+    },
+    {
+      "name": "Actual equipment inspection freezes simulation",
+      "pass": true
+    },
+    {
+      "name": "First upgrade opens real choices and freezes simulation",
+      "pass": true
+    },
+    {
+      "name": "Real first upgrade closes cleanly with EVOS metadata",
+      "pass": true
+    },
+    {
+      "name": "Integration controls preserve progression save",
+      "pass": true
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Q adds exactly one22-damage item Echo",
+      "pass": true,
+      "details": {
+        "hp": 9978
+      }
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "E adds exactly2 ordinary18-damage item bolts",
+      "pass": true
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers undertowThread",
+      "pass": true
+    },
+    {
+      "name": "F item field applies slow without extra damage",
+      "pass": true
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers relayKnot",
+      "pass": true
+    },
+    {
+      "name": "Successful Q relays E/F cooldowns by1",
+      "pass": true
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "Q/E Drum adds20percent to later item damage",
+      "pass": true
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "R spends charge once with item equipped",
+      "pass": true
+    },
+    {
+      "name": "Lens adds its18 damage pulse at original position",
+      "pass": true,
+      "details": {
+        "hp": 9982
+      }
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers splitEmber",
+      "pass": true
+    },
+    {
+      "name": "Split Ember uses finite new-hero basic metadata",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Hero has owned effects before raid",
+      "pass": true
+    },
+    {
+      "name": "First raid E clears old R effects and retains new cast",
+      "pass": true
+    },
+    {
+      "name": "Update preserves the first new-raid cast",
+      "pass": true
+    },
+    {
+      "name": "Real raid exit completes",
+      "pass": true
+    },
+    {
+      "name": "First overworld E survives exit sync",
+      "pass": true
+    },
+    {
+      "name": "Menu clears only owned state from the old run",
+      "pass": true
+    },
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "New run resets signature and schedules",
+      "pass": true
+    },
+    {
+      "name": "Defeat clears owned state",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ]
+}

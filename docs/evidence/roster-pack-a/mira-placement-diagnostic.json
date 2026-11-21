@@ -1,0 +1,69 @@
+{
+  "date": "2026-11-16T01:35:15.231Z",
+  "result": "FAIL",
+  "error": "Q places one endpoint220 away for5s",
+  "checks": [
+    {
+      "name": "Mira has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Mira with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Tow starts absent",
+      "pass": true
+    },
+    {
+      "name": "Base E deals28 without tension",
+      "pass": true
+    },
+    {
+      "name": "F opening push deals12",
+      "pass": true
+    },
+    {
+      "name": "Bracing reduces incoming damage25 percent",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 3 seconds",
+      "pass": true
+    },
+    {
+      "name": "Bracing ends after3s",
+      "pass": true
+    },
+    {
+      "name": "Mira has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Mira with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Q places one endpoint220 away for5s",
+      "pass": false,
+      "details": {
+        "endpoint": {
+          "x": 60219.99976003042,
+          "y": 60249.67505914652,
+          "startX": 60000,
+          "startY": 60250,
+          "angle": 3.1401156491733007,
+          "progress": 0,
+          "ready": false,
+          "until": 5.066166666666667
+        },
+        "player": {
+          "x": 60000,
+          "y": 60250
+        },
+        "time": 0.06616666666666667,
+        "angle": -0.0014770044164807187
+      }
+    }
+  ]
+}

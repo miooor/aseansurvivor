@@ -1,0 +1,222 @@
+{
+  "date": "2026-11-15T23:14:18.814Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Scene exposes explicit hero preparation",
+      "pass": true
+    },
+    {
+      "name": "Fresh default requests no inactive large hero sheets",
+      "pass": true
+    },
+    {
+      "name": "ustaz card keeps independent base name and country",
+      "pass": true
+    },
+    {
+      "name": "ustaz has a static flag beside its card name",
+      "pass": true
+    },
+    {
+      "name": "ustaz flag decodes",
+      "pass": true
+    },
+    {
+      "name": "ustaz selection retains at most current plus incoming pair",
+      "pass": true
+    },
+    {
+      "name": "ustaz real Start enters only with selected textures",
+      "pass": true
+    },
+    {
+      "name": "ustaz original basic damage metadata retained",
+      "pass": true
+    },
+    {
+      "name": "ustaz HUD flag and independent name present",
+      "pass": true
+    },
+    {
+      "name": "ustaz rejected cooldown spends and poses nothing",
+      "pass": true
+    },
+    {
+      "name": "ustaz first level-up has real choices",
+      "pass": true
+    },
+    {
+      "name": "ustaz retry keeps synchronous prepared runtime",
+      "pass": true
+    },
+    {
+      "name": "rempit card keeps independent base name and country",
+      "pass": true
+    },
+    {
+      "name": "rempit has a static flag beside its card name",
+      "pass": true
+    },
+    {
+      "name": "rempit flag decodes",
+      "pass": true
+    },
+    {
+      "name": "rempit selection retains at most current plus incoming pair",
+      "pass": true
+    },
+    {
+      "name": "rempit real Start enters only with selected textures",
+      "pass": true
+    },
+    {
+      "name": "rempit original basic damage metadata retained",
+      "pass": true
+    },
+    {
+      "name": "rempit HUD flag and independent name present",
+      "pass": true
+    },
+    {
+      "name": "rempit rejected cooldown spends and poses nothing",
+      "pass": true
+    },
+    {
+      "name": "rempit first level-up has real choices",
+      "pass": true
+    },
+    {
+      "name": "rempit retry keeps synchronous prepared runtime",
+      "pass": true
+    },
+    {
+      "name": "nok card keeps independent base name and country",
+      "pass": true
+    },
+    {
+      "name": "nok has a static flag beside its card name",
+      "pass": true
+    },
+    {
+      "name": "nok flag decodes",
+      "pass": true
+    },
+    {
+      "name": "nok selection retains at most current plus incoming pair",
+      "pass": true
+    },
+    {
+      "name": "nok real Start enters only with selected textures",
+      "pass": true
+    },
+    {
+      "name": "nok original basic damage metadata retained",
+      "pass": true
+    },
+    {
+      "name": "nok HUD flag and independent name present",
+      "pass": true
+    },
+    {
+      "name": "nok rejected cooldown spends and poses nothing",
+      "pass": true
+    },
+    {
+      "name": "nok first level-up has real choices",
+      "pass": true
+    },
+    {
+      "name": "nok retry keeps synchronous prepared runtime",
+      "pass": true
+    },
+    {
+      "name": "lan card keeps independent base name and country",
+      "pass": true
+    },
+    {
+      "name": "lan has a static flag beside its card name",
+      "pass": true
+    },
+    {
+      "name": "lan flag decodes",
+      "pass": true
+    },
+    {
+      "name": "lan selection retains at most current plus incoming pair",
+      "pass": true
+    },
+    {
+      "name": "lan real Start enters only with selected textures",
+      "pass": true
+    },
+    {
+      "name": "lan original basic damage metadata retained",
+      "pass": true
+    },
+    {
+      "name": "lan HUD flag and independent name present",
+      "pass": true
+    },
+    {
+      "name": "lan rejected cooldown spends and poses nothing",
+      "pass": true
+    },
+    {
+      "name": "lan first level-up has real choices",
+      "pass": true
+    },
+    {
+      "name": "lan retry keeps synchronous prepared runtime",
+      "pass": true
+    },
+    {
+      "name": "sari card keeps independent base name and country",
+      "pass": true
+    },
+    {
+      "name": "sari has a static flag beside its card name",
+      "pass": true
+    },
+    {
+      "name": "sari flag decodes",
+      "pass": true
+    },
+    {
+      "name": "sari selection retains at most current plus incoming pair",
+      "pass": true
+    },
+    {
+      "name": "sari real Start enters only with selected textures",
+      "pass": true
+    },
+    {
+      "name": "sari original basic damage metadata retained",
+      "pass": true
+    },
+    {
+      "name": "sari HUD flag and independent name present",
+      "pass": true
+    },
+    {
+      "name": "sari rejected cooldown spends and poses nothing",
+      "pass": true
+    },
+    {
+      "name": "sari first level-up has real choices",
+      "pass": true
+    },
+    {
+      "name": "sari retry keeps synchronous prepared runtime",
+      "pass": true
+    },
+    {
+      "name": "Rapid selection loads serialize without losing final pair",
+      "pass": true
+    },
+    {
+      "name": "Unknown hero preparation rejects",
+      "pass": true
+    }
+  ]
+}

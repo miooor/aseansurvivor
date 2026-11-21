@@ -1,0 +1,520 @@
+{
+  "date": "2026-11-16T06:09:50.403Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Dani has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Dani with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "dani Q inclusive radius10 edge -10,0",
+      "pass": true,
+      "details": {
+        "hp": 9970
+      }
+    },
+    {
+      "name": "dani Q inclusive radius10 edge 240,0",
+      "pass": true,
+      "details": {
+        "hp": 9970
+      }
+    },
+    {
+      "name": "dani Q inclusive radius10 edge 100,32.5",
+      "pass": true,
+      "details": {
+        "hp": 9970
+      }
+    },
+    {
+      "name": "dani Q inclusive radius10 edge -10.01,0",
+      "pass": true,
+      "details": {
+        "hp": 10000
+      }
+    },
+    {
+      "name": "dani Q inclusive radius10 edge 240.01,0",
+      "pass": true,
+      "details": {
+        "hp": 10000
+      }
+    },
+    {
+      "name": "dani Q inclusive radius10 edge 100,32.51",
+      "pass": true,
+      "details": {
+        "hp": 10000
+      }
+    },
+    {
+      "name": "dani Q preserves authored knockback",
+      "pass": true,
+      "details": {
+        "vx": 220,
+        "vy": 0
+      }
+    },
+    {
+      "name": "Dani has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Dani with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers lastLantern",
+      "pass": true
+    },
+    {
+      "name": "Integer HP Last Lantern leaves exactly1HP and activates once",
+      "pass": true
+    },
+    {
+      "name": "Already-used Last Lantern cannot rescue another lethal hit",
+      "pass": true
+    },
+    {
+      "name": "Dani has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Dani with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Safe Landing starts without anchor/shield",
+      "pass": true
+    },
+    {
+      "name": "Q deals30 with220 knockback",
+      "pass": true
+    },
+    {
+      "name": "E arrival deals18 and creates six-second anchor",
+      "pass": true
+    },
+    {
+      "name": "Base F works without readiness and preserves anchor",
+      "pass": true
+    },
+    {
+      "name": "Dani has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Dani with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "160 normal ground distance arms anchor",
+      "pass": true
+    },
+    {
+      "name": "Return F consumes anchor for35 pulse plus16 base",
+      "pass": true
+    },
+    {
+      "name": "Safe Landing grants30HP for4s without timed immunity",
+      "pass": true
+    },
+    {
+      "name": "Shield absorbs before HP",
+      "pass": true
+    },
+    {
+      "name": "Partial absorption applies remaining10HP",
+      "pass": true
+    },
+    {
+      "name": "Dani has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Dani with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Teleport cannot arm anchor",
+      "pass": true
+    },
+    {
+      "name": "F outside70 retains ready anchor and grants no shield",
+      "pass": true
+    },
+    {
+      "name": "Normal return grants shield",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 4 seconds",
+      "pass": true
+    },
+    {
+      "name": "Unused shield expires after4 seconds",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 6 seconds",
+      "pass": true
+    },
+    {
+      "name": "Anchor expires after6 seconds",
+      "pass": true
+    },
+    {
+      "name": "Dani has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Dani with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 0.95 seconds",
+      "pass": true
+    },
+    {
+      "name": "R has no early damage",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 0.05 seconds",
+      "pass": true
+    },
+    {
+      "name": "First R tick deals14",
+      "pass": true
+    },
+    {
+      "name": "R reduces incoming damage30 percent inside",
+      "pass": true
+    },
+    {
+      "name": "R offers no defence outside fixed field",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 5 seconds",
+      "pass": true
+    },
+    {
+      "name": "R has six ticks exactly",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 1 seconds",
+      "pass": true
+    },
+    {
+      "name": "R never ticks after expiry",
+      "pass": true
+    },
+    {
+      "name": "Dani has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Dani with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "160 normal ground distance arms anchor",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers reedGuard",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers lastLantern",
+      "pass": true
+    },
+    {
+      "name": "Mitigation precedes absorption (50 x0.7 x0.8 =28)",
+      "pass": true
+    },
+    {
+      "name": "Shield prevents premature Last Lantern on nonlethal remainder",
+      "pass": true
+    },
+    {
+      "name": "Last Lantern runs after exhausted shield",
+      "pass": true,
+      "details": {
+        "hp": 1,
+        "used": true,
+        "shield": {
+          "hp": 0,
+          "until": 5.686700000000001
+        }
+      }
+    },
+    {
+      "name": "Existing timed shield immunity remains separate",
+      "pass": true
+    },
+    {
+      "name": "Dani has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Dani with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Rank3 Q deals45 and normal cooldown5.16",
+      "pass": true
+    },
+    {
+      "name": "Rejected Q has no audio",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes anchor",
+      "pass": true
+    },
+    {
+      "name": "First level-up is usable",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers splitEmber",
+      "pass": true
+    },
+    {
+      "name": "splitEmber equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "quarryHammer equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers riverNeedle",
+      "pass": true
+    },
+    {
+      "name": "riverNeedle equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers huntersEdge",
+      "pass": true
+    },
+    {
+      "name": "huntersEdge equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers echoLattice",
+      "pass": true
+    },
+    {
+      "name": "echoLattice equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "forkedConduit equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers stillwaterBeads",
+      "pass": true
+    },
+    {
+      "name": "stillwaterBeads equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers reedGuard",
+      "pass": true
+    },
+    {
+      "name": "reedGuard equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers lanternHeart",
+      "pass": true
+    },
+    {
+      "name": "lanternHeart equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers travellersKnot",
+      "pass": true
+    },
+    {
+      "name": "travellersKnot equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers undertowThread",
+      "pass": true
+    },
+    {
+      "name": "undertowThread equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers relayKnot",
+      "pass": true
+    },
+    {
+      "name": "relayKnot equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers thornEcho",
+      "pass": true
+    },
+    {
+      "name": "thornEcho equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers bountySeal",
+      "pass": true
+    },
+    {
+      "name": "bountySeal equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "aftershockBell equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers lastLantern",
+      "pass": true
+    },
+    {
+      "name": "lastLantern equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "crosswindDrum equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "monsoonLens equips for Dani",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers relayKnot",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "Forked E adds two item bolts without arming anchor",
+      "pass": true
+    },
+    {
+      "name": "Lens adds three separate item pulses",
+      "pass": true
+    },
+    {
+      "name": "Raid transition clears old hero rings",
+      "pass": true
+    },
+    {
+      "name": "First raid E preserves new anchor",
+      "pass": true
+    },
+    {
+      "name": "First exit E preserves new outdoor anchor",
+      "pass": true
+    },
+    {
+      "name": "Defeat clears anchor and shield",
+      "pass": true
+    },
+    {
+      "name": "Retry starts with no anchor",
+      "pass": true
+    },
+    {
+      "name": "Dani has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Dani with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Touch movement and keyboard casting work simultaneously",
+      "pass": true
+    },
+    {
+      "name": "Real selected skill artwork is rendered",
+      "pass": true
+    },
+    {
+      "name": "Paused skill frame and simulation remain frozen",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 0.8 seconds",
+      "pass": true
+    },
+    {
+      "name": "Basic cast uses actual hero motion attack row",
+      "pass": true
+    },
+    {
+      "name": "Basic animation advances through real frames",
+      "pass": true
+    },
+    {
+      "name": "Basic deals authored hero damage or travels toward real enemy",
+      "pass": true
+    },
+    {
+      "name": "Dani has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Dani with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "160 normal ground distance arms anchor",
+      "pass": true
+    }
+  ]
+}

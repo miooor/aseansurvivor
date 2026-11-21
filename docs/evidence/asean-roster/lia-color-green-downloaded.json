@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-16T03:14:28.203Z",
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3.1 Safari/605.1.15",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "lia actual lobby Start enters prepared run",
+      "pass": true
+    },
+    {
+      "name": "Real Lia E creates a visible authored dash particle",
+      "pass": true,
+      "details": {
+        "particle": {
+          "x": 18.749451836673437,
+          "y": -0.143373024879601,
+          "vx": 0,
+          "vy": 0,
+          "life": 0.2,
+          "max": 0.25,
+          "c": "rgba(255,211,77,.6)",
+          "size": 9
+        }
+      }
+    },
+    {
+      "name": "Actual Lia E particle decodes as authored gold",
+      "pass": true,
+      "details": {
+        "css": "rgba(255,211,77,.6)",
+        "actual": 16765773,
+        "expected": 16765773
+      }
+    },
+    {
+      "name": "Existing blue and grey fractional-alpha particles retain RGB",
+      "pass": true
+    },
+    {
+      "name": "No browser runtime errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ],
+  "errors": []
+}

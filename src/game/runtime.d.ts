@@ -22,10 +22,11 @@ export interface RunState {
   lootModal:string|null;
   world: ReturnType<typeof import('../content/world.js').createWorld>;
   exploration: {visited:string[];claimed:string[];guards:Record<string,Enemy[]>};
-  hero: {id: string; name: string; hp: number; identity: {color: string; max: number}};
-  identity: {charge: number; releaseT: number; castT: number; castMax: number; castSlot: number; castAngle: number};
+  roster:Record<string,unknown>;
+  hero: {id: string; name: string; basicDamage:number; hp: number; identity: {color: string; max: number}};
+  identity: {charge: number; releaseT: number; castT: number; castMax: number; castSlot: number; castAngle: number; detail?:string; ready?:boolean};
   stage: {id: string; name: string; ground: string};
-  p: Point & {r: number; hp: number; maxHp: number; face: number[]; moving?: boolean; invuln: number; hurt: number; shield: number; vx: number; vy: number};
+  p: Point & {r: number; hp: number; maxHp: number; face: number[]; moving?: boolean; normalMove?:(Point & {dx:number;dy:number;dt:number})|null; invuln: number; hurt: number; shield: number; vx: number; vy: number};
   t: number; clock: number; shake: number; paused: boolean; choosing: boolean; over: boolean;
   level: number; pending: number; kills: number; coins: number; ult: number;
   raid: {won?: boolean} | null; boss: Enemy | null; raidBoss?: Enemy | null;
@@ -66,4 +67,4 @@ export interface GameRuntime {
   toMenu(): void;
   togglePause(): void;
 }
-export function createRuntime(canvas: HTMLCanvasElement): GameRuntime;
+export function createRuntime(canvas: HTMLCanvasElement,art:{canPlay():boolean;prepareHero(id:string):Promise<void>;isHeroPrepared(id:string):boolean}): GameRuntime;

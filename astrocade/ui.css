@@ -9,18 +9,21 @@ button,summary{min-height:112px!important;min-width:112px!important}
 .topbar{flex-wrap:wrap}.top-actions{flex:1;justify-content:flex-end}
 .top-actions .sound-controls label{display:none}
 .hero{min-height:110px}.hero:last-child{grid-column:auto}
-.hero .hn{font-size:22px}.hero .hc{font-size:15px}.hero .st{font-size:17px}
+.hero .hn{font-size:27px}.hero .hc{font-size:15px}.hero .st{font-size:17px}
 .heroes{grid-template-columns:repeat(2,minmax(0,1fr))}
-.ability-list{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ability-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ability strong,.ability p{font-size:27px}.selected-name{font-size:27px}.hero-flag{width:36px;height:27px}
 #start{min-height:112px;bottom:16px;font-size:20px}
-#skills{left:auto;right:16px;bottom:16px;transform:none;width:252px;flex-wrap:wrap;gap:8px;padding:8px}
-.sk,.sk:has(.sigil){width:112px;height:112px;min-width:112px;min-height:112px;padding-top:42px}
-.sk .sigil{font-size:30px;top:14px}.sk .nm{font-size:18px!important}.sk .key{font-size:15px}.sk .cdn{font-size:32px}.sk .rk{font-size:14px}
-.sk.auto{width:232px;min-height:112px;padding:8px;font-size:22px}
+#skills{left:auto;right:16px;bottom:16px;transform:none;width:328px;flex-wrap:wrap;gap:8px;padding:8px}
+.sk,.sk:has(.sigil){width:150px;height:150px;min-width:112px;min-height:112px;padding:44px 6px 16px}
+.sk .sigil{font-size:30px;top:14px}.sk .nm{font-size:27px!important;line-height:1.1;max-width:100%;overflow-wrap:anywhere}.sk .key{font-size:27px}.sk .cdn{font-size:32px}.sk .rk{font-size:14px}
+.sk.auto{width:312px;height:112px;min-height:112px;padding:8px;font-size:27px}
 .pause-button{width:112px;height:112px;min-width:112px;font-size:28px}
 #equipmentButton{left:16px;right:auto;bottom:16px;font-size:16px}
 #encounterPrompt{top:270px;max-height:calc(100vh - 620px)}
-#hudrow .big{font-size:34px}.health-name{font-size:20px}#hpValue{font-size:18px}#goal{font-size:16px!important}
-#signature{width:270px}.signature-label{font-size:18px}#signatureHint{font-size:18px}
+#hudrow{grid-template-columns:1.3fr .8fr 1fr;gap:12px}.health{max-width:200px}.hud-player{min-width:0}
+#hudHero{font-size:27px}#hudHero .hero-flag{width:36px;height:27px;margin-right:8px}
+#hudrow .big{font-size:34px}.health-name{font-size:27px}#hpValue{font-size:18px}#goal{font-size:16px!important}
+#signature{width:320px}.signature-label{font-size:27px;letter-spacing:.02em;gap:8px;flex-wrap:wrap}.signature-label>*{max-width:100%}#signatureHint{font-size:27px}
 #worldMap{top:145px;width:160px}#worldMap strong,#worldMap span{font-size:16px}#worldMap #mapObjective{font-size:14px}
 #cloudStatus{position:fixed;top:0;left:0;right:0;z-index:100;margin:0;padding:12px;background:#513919;color:#fff3d7;font:16px system-ui;text-align:center}

@@ -1,0 +1,559 @@
+{
+  "date": "2026-11-16T07:39:13.398Z",
+  "version": "01M7HJZ0SKK46GFEXKB89QQFD3",
+  "url": "https://www.astrocade.com/games/asean-survivor/01M7FMJGJ3PMC9H145JJCCNEKR/v/01M7HJZ0SKK46GFEXKB89QQFD3",
+  "sourceIntegration": "f9f0f5dc6014fb24b7b62f7ae625b946204d2efa",
+  "codeSha256": "9a512bfb27823d7ba684f66833831c2c5b12de4463c97e96e5b19b78b91960ef",
+  "mobile390": {
+    "actual": [
+      390,
+      844
+    ],
+    "frame": [
+      720,
+      1280
+    ],
+    "displayScale": 0.5416666666666666,
+    "domainZoom": 1.4,
+    "temporaryMetrics": {
+      "width": 546,
+      "height": 1182,
+      "deviceScaleFactor": 0.7142857142857143
+    },
+    "captureClip": {
+      "x": 0,
+      "y": 0,
+      "width": 546,
+      "height": 1182,
+      "scale": 1
+    },
+    "layout": {
+      "viewport": [
+        720,
+        1280
+      ],
+      "heroes": [
+        {
+          "id": "hero-ustaz",
+          "name": "Ustaz Hakim",
+          "flag": "Malaysia flag",
+          "decoded": true
+        },
+        {
+          "id": "hero-rempit",
+          "name": "Mat Rempit \"Jet\"",
+          "flag": "Malaysia flag",
+          "decoded": true
+        },
+        {
+          "id": "hero-nok",
+          "name": "Nok",
+          "flag": "Thailand flag",
+          "decoded": true
+        },
+        {
+          "id": "hero-lan",
+          "name": "Cô Lan",
+          "flag": "Vietnam flag",
+          "decoded": true
+        },
+        {
+          "id": "hero-sari",
+          "name": "Sari",
+          "flag": "Indonesia flag",
+          "decoded": true
+        },
+        {
+          "id": "hero-asha",
+          "name": "Asha Lim",
+          "flag": "Singapore flag",
+          "decoded": true
+        },
+        {
+          "id": "hero-mira",
+          "name": "Mira Reyes",
+          "flag": "Philippines flag",
+          "decoded": true
+        },
+        {
+          "id": "hero-dani",
+          "name": "Dani Rahman",
+          "flag": "Brunei flag",
+          "decoded": true
+        },
+        {
+          "id": "hero-vanna",
+          "name": "Vanna",
+          "flag": "Cambodia flag",
+          "decoded": true
+        },
+        {
+          "id": "hero-keo",
+          "name": "Keo",
+          "flag": "Laos flag",
+          "decoded": true
+        },
+        {
+          "id": "hero-nadi",
+          "name": "Nadi",
+          "flag": "Myanmar flag",
+          "decoded": true
+        },
+        {
+          "id": "hero-lia",
+          "name": "Lia Soares",
+          "flag": "Timor-Leste flag",
+          "decoded": true
+        }
+      ],
+      "hud": "LVL\n1\nAsha Lim\n110 / 110 HP\n0:03\nSURVIVE UNTIL 3:00\n0 BANISHED\n0 COINS\nⅡ\nSERVICE WINDOW\n0 SERVED / 0 TICKETS\nQ · Ticket → basics · Serve → E · Collect\nVillage clearing discovered",
+      "heroFlag": "Singapore flag",
+      "skills": [
+        {
+          "slot": 1,
+          "name": "Open Docket",
+          "font": 27,
+          "button": {
+            "x": 384.7209777832031,
+            "y": 827.3214721679688,
+            "width": 150,
+            "height": 150,
+            "top": 827.3214721679688,
+            "right": 534.7209777832031,
+            "bottom": 977.3214721679688,
+            "left": 384.7209777832031
+          },
+          "label": {
+            "x": 391.4285888671875,
+            "y": 886.6294555664062,
+            "width": 136.58482360839844,
+            "height": 59.375,
+            "top": 886.6294555664062,
+            "right": 528.0134124755859,
+            "bottom": 946.0044555664062,
+            "left": 391.4285888671875
+          },
+          "inside": true
+        },
+        {
+          "slot": 2,
+          "name": "Clear the Rail",
+          "font": 27,
+          "button": {
+            "x": 542.7120361328125,
+            "y": 827.3214721679688,
+            "width": 150,
+            "height": 150,
+            "top": 827.3214721679688,
+            "right": 692.7120361328125,
+            "bottom": 977.3214721679688,
+            "left": 542.7120361328125
+          },
+          "label": {
+            "x": 549.419677734375,
+            "y": 886.6294555664062,
+            "width": 136.58482360839844,
+            "height": 59.375,
+            "top": 886.6294555664062,
+            "right": 686.0045013427734,
+            "bottom": 946.0044555664062,
+            "left": 549.419677734375
+          },
+          "inside": true
+        },
+        {
+          "slot": 3,
+          "name": "Make Room",
+          "font": 27,
+          "button": {
+            "x": 384.7209777832031,
+            "y": 985.3125,
+            "width": 150,
+            "height": 150,
+            "top": 985.3125,
+            "right": 534.7209777832031,
+            "bottom": 1135.3125,
+            "left": 384.7209777832031
+          },
+          "label": {
+            "x": 391.4285888671875,
+            "y": 1044.62060546875,
+            "width": 136.58482360839844,
+            "height": 59.375,
+            "top": 1044.62060546875,
+            "right": 528.0134124755859,
+            "bottom": 1103.99560546875,
+            "left": 391.4285888671875
+          },
+          "inside": true
+        },
+        {
+          "slot": 4,
+          "name": "Night Shift Relay",
+          "font": 27,
+          "button": {
+            "x": 542.7120361328125,
+            "y": 985.3125,
+            "width": 150,
+            "height": 150,
+            "top": 985.3125,
+            "right": 692.7120361328125,
+            "bottom": 1135.3125,
+            "left": 542.7120361328125
+          },
+          "label": {
+            "x": 549.419677734375,
+            "y": 1044.62060546875,
+            "width": 136.58482360839844,
+            "height": 59.375,
+            "top": 1044.62060546875,
+            "right": 686.0045013427734,
+            "bottom": 1103.99560546875,
+            "left": 549.419677734375
+          },
+          "inside": true
+        }
+      ],
+      "pause": "grid",
+      "auto": "AUTO\nOFF"
+    }
+  },
+  "mobile320": {
+    "actual": [
+      320,
+      800
+    ],
+    "displayScale": 0.4444444444444444,
+    "layout": {
+      "hero": "Asha Lim",
+      "flag": "Singapore flag",
+      "skills": [
+        {
+          "slot": 1,
+          "name": "Open Docket",
+          "font": 27,
+          "button": {
+            "x": 384.7209777832031,
+            "y": 827.3214721679688,
+            "width": 150,
+            "height": 150,
+            "top": 827.3214721679688,
+            "right": 534.7209777832031,
+            "bottom": 977.3214721679688,
+            "left": 384.7209777832031
+          },
+          "label": {
+            "x": 391.4285888671875,
+            "y": 886.6294555664062,
+            "width": 136.58482360839844,
+            "height": 59.375,
+            "top": 886.6294555664062,
+            "right": 528.0134124755859,
+            "bottom": 946.0044555664062,
+            "left": 391.4285888671875
+          },
+          "inside": true
+        },
+        {
+          "slot": 2,
+          "name": "Clear the Rail",
+          "font": 27,
+          "button": {
+            "x": 542.7120361328125,
+            "y": 827.3214721679688,
+            "width": 150,
+            "height": 150,
+            "top": 827.3214721679688,
+            "right": 692.7120361328125,
+            "bottom": 977.3214721679688,
+            "left": 542.7120361328125
+          },
+          "label": {
+            "x": 549.419677734375,
+            "y": 886.6294555664062,
+            "width": 136.58482360839844,
+            "height": 59.375,
+            "top": 886.6294555664062,
+            "right": 686.0045013427734,
+            "bottom": 946.0044555664062,
+            "left": 549.419677734375
+          },
+          "inside": true
+        },
+        {
+          "slot": 3,
+          "name": "Make Room",
+          "font": 27,
+          "button": {
+            "x": 384.7209777832031,
+            "y": 985.3125,
+            "width": 150,
+            "height": 150,
+            "top": 985.3125,
+            "right": 534.7209777832031,
+            "bottom": 1135.3125,
+            "left": 384.7209777832031
+          },
+          "label": {
+            "x": 391.4285888671875,
+            "y": 1044.62060546875,
+            "width": 136.58482360839844,
+            "height": 59.375,
+            "top": 1044.62060546875,
+            "right": 528.0134124755859,
+            "bottom": 1103.99560546875,
+            "left": 391.4285888671875
+          },
+          "inside": true
+        },
+        {
+          "slot": 4,
+          "name": "Night Shift Relay",
+          "font": 27,
+          "button": {
+            "x": 542.7120361328125,
+            "y": 985.3125,
+            "width": 150,
+            "height": 150,
+            "top": 985.3125,
+            "right": 692.7120361328125,
+            "bottom": 1135.3125,
+            "left": 542.7120361328125
+          },
+          "label": {
+            "x": 549.419677734375,
+            "y": 1044.62060546875,
+            "width": 136.58482360839844,
+            "height": 59.375,
+            "top": 1044.62060546875,
+            "right": 686.0045013427734,
+            "bottom": 1103.99560546875,
+            "left": 549.419677734375
+          },
+          "inside": true
+        }
+      ],
+      "signature": "\nService Window0 served / 0 tickets\n\nQ · Ticket → basics · Serve → E · Collect\n",
+      "buttons": [
+        {
+          "id": "pauseButton",
+          "rect": {
+            "x": 596.0044555664062,
+            "y": 24.988840103149414,
+            "width": 111.99777221679688,
+            "height": 111.99777221679688,
+            "top": 24.988840103149414,
+            "right": 708.0022277832031,
+            "bottom": 136.9866123199463,
+            "left": 596.0044555664062
+          }
+        },
+        {
+          "id": "equipmentButton",
+          "rect": {
+            "x": 15.993304252624512,
+            "y": 1152.0089111328125,
+            "width": 111.99777221679688,
+            "height": 111.99777221679688,
+            "top": 1152.0089111328125,
+            "right": 127.99107646942139,
+            "bottom": 1264.0066833496094,
+            "left": 15.993304252624512
+          }
+        }
+      ]
+    }
+  },
+  "earnedUpgrade": {
+    "before": {
+      "hud": "LVL\n2\nAsha Lim\n86 / 110 HP\n0:25\nSURVIVE UNTIL 3:00\n7 BANISHED\n0 COINS\nⅡ\nSERVICE WINDOW\n0 SERVED / 0 TICKETS\nQ · Ticket → basics · Serve → E · Collect\nToyol! Green and one-eyed. They steal your embers. Catch them to get them back.",
+      "upgrade": "THE SPIRITS GRANT YOU STRENGTH\n\nChoose your blessing\n\nPick one. Press 1, 2 or 3.\n\n1 · F · RANK 2\nMake Room\n+25% damage and shorter cooldown per rank.\n2 · ITEM · LEVEL 1\nKopi O\n8% shorter cooldowns.\n3 · R · RANK 2\nNight Shift Relay\n+25% damage per rank."
+    },
+    "after": {
+      "hud": "LVL\n2\nAsha Lim\n86 / 110 HP\n0:25\nSURVIVE UNTIL 3:00\n7 BANISHED\n0 COINS\nⅡ\nSERVICE WINDOW\n0 SERVED / 0 TICKETS\nQ · Ticket → basics · Serve → E · Collect\nAuto-cast: all four skills",
+      "auto": "AUTO\nALL",
+      "skillF": "F\n≋\nMake Room\nr2\n3",
+      "skillQ": "Q\n✧\nOpen Docket\nr1\n5",
+      "upgradeVisible": "none"
+    }
+  },
+  "naturalCombat": {
+    "hud": "LVL\n2\nAsha Lim\n0 / 110 HP\n1:06\nSURVIVE UNTIL 3:00\n41 BANISHED\n1 COINS\nⅡ\nSERVICE WINDOW\n0 SERVED / 0 TICKETS\nQ · Ticket → basics · Serve → E · Collect\nAuto-cast: all four skills",
+    "outcome": [
+      {
+        "id": "end",
+        "text": "YOUR STORY CONTINUES\n\nYou were overwhelmed\n\nThe ghosts of Johor got you this time. Coins you picked up are kept, so you can unlock a new hero.\n\n1:06\nTIME\n2\nLEVEL\n41\nGHOSTS\n1\nCOINS\n14\nTOTAL COINS\nPLAY AGAIN\nCHOOSE HERO",
+        "buttons": [
+          {
+            "id": "next",
+            "text": "Next stage"
+          },
+          {
+            "id": "again",
+            "text": "Play again"
+          },
+          {
+            "id": "tomenu",
+            "text": "Choose hero"
+          }
+        ]
+      }
+    ]
+  },
+  "pauseResume": {
+    "first": {
+      "hud": "LVL\n1\nAsha Lim\n102 / 110 HP\n0:05\nSURVIVE UNTIL 3:00\n1 BANISHED\n0 COINS\nⅡ\nSERVICE WINDOW\n0 SERVED / 0 TICKETS\nQ · Ticket → basics · Serve → E · Collect\nAuto-cast OFF: press Q E F R yourself",
+      "auto": "AUTO\nOFF",
+      "overlays": [
+        {
+          "id": "pause",
+          "text": "A MOMENT OF STILLNESS\n\nThe night can wait\nSound on\nEffects volume\n0:05\nTIME\n1\nLEVEL\n1\nGHOSTS\n0\nCOINS\nRESUME\nQUIT TO MENU",
+          "buttons": [
+            {
+              "id": "",
+              "text": "Sound on"
+            },
+            {
+              "id": "resume",
+              "text": "Resume"
+            },
+            {
+              "id": "quit",
+              "text": "Quit to menu"
+            }
+          ]
+        }
+      ]
+    },
+    "second": {
+      "before": "LVL\n1\nAsha Lim\n102 / 110 HP\n0:05\nSURVIVE UNTIL 3:00\n1 BANISHED\n0 COINS\nⅡ\nSERVICE WINDOW\n0 SERVED / 0 TICKETS\nQ · Ticket → basics · Serve → E · Collect\nAuto-cast OFF: press Q E F R yourself",
+      "after": "LVL\n1\nAsha Lim\n62 / 110 HP\n0:07\nSURVIVE UNTIL 3:00\n2 BANISHED\n0 COINS\nⅡ\nSERVICE WINDOW\n0 SERVED / 0 TICKETS\nQ · Ticket → basics · Serve → E · Collect\nAuto-cast OFF: press Q E F R yourself",
+      "pauseVisible": "grid"
+    },
+    "freezeObserved": true
+  },
+  "finalPaused": {
+    "hud": "LVL\n1\nAsha Lim\n110 / 110 HP\n0:03\nSURVIVE UNTIL 3:00\n0 BANISHED\n0 COINS\nⅡ\nSERVICE WINDOW\n0 SERVED / 0 TICKETS\nQ · Ticket → basics · Serve → E · Collect\nVillage clearing discovered",
+    "auto": "AUTO\nOFF",
+    "pause": "grid"
+  },
+  "saveReload": {
+    "displayedCoins": 14,
+    "normalEarnedCoins": 1,
+    "initialDisplayedTotal": 13
+  },
+  "capturedLogs": [
+    {
+      "level": "warn",
+      "message": "Tooltip is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.",
+      "timestamp": "2026-11-16T07:09:37.391Z",
+      "url": "https://d2oir5eh8rty2e.cloudfront.net/_next/static/chunks/100q3lnhvq_-i.js"
+    },
+    {
+      "level": "warn",
+      "message": "Tooltip is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.",
+      "timestamp": "2026-11-16T07:09:37.665Z",
+      "url": "https://d2oir5eh8rty2e.cloudfront.net/_next/static/chunks/100q3lnhvq_-i.js"
+    },
+    {
+      "level": "warn",
+      "message": "Tooltip is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.",
+      "timestamp": "2026-11-16T07:09:37.904Z",
+      "url": "https://d2oir5eh8rty2e.cloudfront.net/_next/static/chunks/100q3lnhvq_-i.js"
+    },
+    {
+      "level": "warn",
+      "message": "Tooltip is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.",
+      "timestamp": "2026-11-16T07:09:37.935Z",
+      "url": "https://d2oir5eh8rty2e.cloudfront.net/_next/static/chunks/100q3lnhvq_-i.js"
+    },
+    {
+      "level": "warn",
+      "message": "Tooltip is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.",
+      "timestamp": "2026-11-16T07:09:38.046Z",
+      "url": "https://d2oir5eh8rty2e.cloudfront.net/_next/static/chunks/100q3lnhvq_-i.js"
+    },
+    {
+      "level": "warn",
+      "message": "Tooltip is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.",
+      "timestamp": "2026-11-16T07:09:38.213Z",
+      "url": "https://d2oir5eh8rty2e.cloudfront.net/_next/static/chunks/100q3lnhvq_-i.js"
+    },
+    {
+      "level": "warn",
+      "message": "Tooltip is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.",
+      "timestamp": "2026-11-16T07:09:43.713Z",
+      "url": "https://d2oir5eh8rty2e.cloudfront.net/_next/static/chunks/100q3lnhvq_-i.js"
+    },
+    {
+      "level": "warn",
+      "message": "Tooltip is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.",
+      "timestamp": "2026-11-16T07:09:43.720Z",
+      "url": "https://d2oir5eh8rty2e.cloudfront.net/_next/static/chunks/100q3lnhvq_-i.js"
+    },
+    {
+      "level": "warn",
+      "message": "Tooltip is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.",
+      "timestamp": "2026-11-16T07:31:29.676Z",
+      "url": "https://d2oir5eh8rty2e.cloudfront.net/_next/static/chunks/100q3lnhvq_-i.js"
+    },
+    {
+      "level": "warn",
+      "message": "Tooltip is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.",
+      "timestamp": "2026-11-16T07:31:30.013Z",
+      "url": "https://d2oir5eh8rty2e.cloudfront.net/_next/static/chunks/100q3lnhvq_-i.js"
+    },
+    {
+      "level": "warn",
+      "message": "Tooltip is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.",
+      "timestamp": "2026-11-16T07:31:30.014Z",
+      "url": "https://d2oir5eh8rty2e.cloudfront.net/_next/static/chunks/100q3lnhvq_-i.js"
+    },
+    {
+      "level": "warn",
+      "message": "Tooltip is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.",
+      "timestamp": "2026-11-16T07:31:30.073Z",
+      "url": "https://d2oir5eh8rty2e.cloudfront.net/_next/static/chunks/100q3lnhvq_-i.js"
+    },
+    {
+      "level": "warn",
+      "message": "Tooltip is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.",
+      "timestamp": "2026-11-16T07:31:30.073Z",
+      "url": "https://d2oir5eh8rty2e.cloudfront.net/_next/static/chunks/100q3lnhvq_-i.js"
+    },
+    {
+      "level": "warn",
+      "message": "Tooltip is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.",
+      "timestamp": "2026-11-16T07:31:30.075Z",
+      "url": "https://d2oir5eh8rty2e.cloudfront.net/_next/static/chunks/100q3lnhvq_-i.js"
+    },
+    {
+      "level": "warn",
+      "message": "Tooltip is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.",
+      "timestamp": "2026-11-16T07:31:30.238Z",
+      "url": "https://d2oir5eh8rty2e.cloudfront.net/_next/static/chunks/100q3lnhvq_-i.js"
+    },
+    {
+      "level": "warn",
+      "message": "Tooltip is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.",
+      "timestamp": "2026-11-16T07:31:30.239Z",
+      "url": "https://d2oir5eh8rty2e.cloudfront.net/_next/static/chunks/100q3lnhvq_-i.js"
+    }
+  ],
+  "restoration": {
+    "metricsCleared": true,
+    "after": {
+      "width": 579,
+      "height": 586,
+      "dpr": 1.399999976158142
+    },
+    "autoRestored": "OFF",
+    "heldKeysReleased": true
+  },
+  "methods": "Owner-signed-in final revision; real lobby/start/retry/upgrade/pause controls, synthetic window keyboard movement and public skill button clicks; no hosted test API/state mutation. Exact-export synthetic touch is separate.",
+  "limits": [
+    "Desktop browser emulation, not a physical phone or thermal/balance result",
+    "Existing 1.4 domain zoom required metric/DPR/capture compensation; intermediate cropped/tiled captures retained as diagnostics, final hosted-mobile-combat.jpg is complete",
+    "Controlled12.17FPS sample predates final narrow Drum/geometry patch; final mobile reruns functional, not a performance comparison"
+  ]
+}

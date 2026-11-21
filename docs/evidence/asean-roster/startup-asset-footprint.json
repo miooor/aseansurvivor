@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-16T03:51:11.517Z",
+  "basis": "Observed11startupURLs in initial exact-export functional test; same33-entrymap and immutable artwork; cataloguefilebytecounts and RGBAgeometryestimate, not measuredGPUmemory.",
+  "count": 11,
+  "ids": [
+    "kampung-night",
+    "roster-portraits",
+    "world-terrain",
+    "heroes-directions",
+    "world-ground",
+    "region-enemies",
+    "region-props",
+    "kampung-buildings",
+    "survivors-atlas",
+    "ustaz-motion",
+    "ustaz-skills"
+  ],
+  "missingMetadata": [],
+  "bytes": 5690146,
+  "decodedRgbaBytesEstimate": 69203544,
+  "previousEager18Bytes": 11420462,
+  "previousEager18DecodedRgbaEstimate": 113229904
+}

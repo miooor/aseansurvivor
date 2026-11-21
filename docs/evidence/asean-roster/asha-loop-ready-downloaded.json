@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-16T04:04:06.136Z",
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3.1 Safari/605.1.15",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "asha actual lobby Start enters prepared run",
+      "pass": true
+    },
+    {
+      "name": "Observed selected artwork readiness and decoded-size estimate",
+      "pass": true,
+      "details": {
+        "readinessMs": 6314,
+        "textures": [
+          {
+            "key": "hero-skills-asha",
+            "width": 1254,
+            "height": 1254
+          },
+          {
+            "key": "hero-motion-asha",
+            "width": 1254,
+            "height": 1254
+          }
+        ],
+        "estimatedDecodedRGBABytes": 12580128,
+        "limit": "warm same-origin selection, RGBA geometry estimate excludes browser/GPU overhead"
+      }
+    },
+    {
+      "name": "Actual Q and three landed basics serve three tickets",
+      "pass": true
+    },
+    {
+      "name": "asha static prepared loop is inspectable",
+      "pass": true,
+      "details": {
+        "value": "3 served / 3 tickets"
+      }
+    },
+    {
+      "name": "No browser runtime errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-16T04:14:02.045Z",
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3.1 Safari/605.1.15",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "keo actual lobby Start enters prepared run",
+      "pass": true
+    },
+    {
+      "name": "Observed selected artwork readiness and decoded-size estimate",
+      "pass": true,
+      "details": {
+        "readinessMs": 2437,
+        "textures": [
+          {
+            "key": "hero-motion-keo",
+            "width": 1254,
+            "height": 1254
+          },
+          {
+            "key": "hero-skills-keo",
+            "width": 1254,
+            "height": 1254
+          }
+        ],
+        "estimatedDecodedRGBABytes": 12580128,
+        "limit": "warm same-origin selection, RGBA geometry estimate excludes browser/GPU overhead"
+      }
+    },
+    {
+      "name": "Actual Q and wait open the static timing window",
+      "pass": true
+    },
+    {
+      "name": "keo static prepared loop is inspectable",
+      "pass": true,
+      "details": {
+        "value": "READY · 0.40s"
+      }
+    },
+    {
+      "name": "No browser runtime errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ],
+  "errors": []
+}

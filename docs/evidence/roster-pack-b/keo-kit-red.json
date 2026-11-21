@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-16T01:25:21.908Z",
+  "result": "FAIL",
+  "error": "Keo has a real selectable roster card",
+  "checks": [
+    {
+      "name": "Keo has a real selectable roster card",
+      "pass": false
+    }
+  ]
+}

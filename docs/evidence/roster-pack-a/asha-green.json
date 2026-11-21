@@ -1,0 +1,435 @@
+{
+  "date": "2026-11-16T01:47:12.960Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Asha has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Asha with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Q deals24 and creates only three six-second tickets",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 1 seconds",
+      "pass": true
+    },
+    {
+      "name": "Q refreshes before filling and keeps the same three targets",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 0.6 seconds",
+      "pass": true
+    },
+    {
+      "name": "A landed basic serves exactly one ticket",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 0.6 seconds",
+      "pass": true
+    },
+    {
+      "name": "Next basic prefers a different unserved ticket",
+      "pass": true
+    },
+    {
+      "name": "E consumes served tickets before overlapping bursts",
+      "pass": true
+    },
+    {
+      "name": "Each collected ticket supplies one34-damage burst",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 6 seconds",
+      "pass": true
+    },
+    {
+      "name": "Expiry removes tickets without collection",
+      "pass": true
+    },
+    {
+      "name": "Asha has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Asha with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Base E remains useful without tickets",
+      "pass": true
+    },
+    {
+      "name": "F deals18 and eligible knockback",
+      "pass": true
+    },
+    {
+      "name": "Asha has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Asha with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Item damage never serves ticket",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 0.5 seconds",
+      "pass": true
+    },
+    {
+      "name": "Oil-slip rejected basic does not serve ticket",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 0.95 seconds",
+      "pass": true
+    },
+    {
+      "name": "R has no early tick",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 0.05 seconds",
+      "pass": true
+    },
+    {
+      "name": "R first tick deals12 and serves existing ticket",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 4 seconds",
+      "pass": true
+    },
+    {
+      "name": "R has exactly five ticks",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 1 seconds",
+      "pass": true
+    },
+    {
+      "name": "Expired field never ticks again",
+      "pass": true
+    },
+    {
+      "name": "Asha has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Asha with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Dead ticket vanishes without bonus damage",
+      "pass": true
+    },
+    {
+      "name": "Rank3 Q deals36 with ordinary cooldown scaling",
+      "pass": true
+    },
+    {
+      "name": "Asha has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Asha with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Rejected cooldown changes no audio, pose or resource",
+      "pass": true
+    },
+    {
+      "name": "Rejected R does not create field",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes fields and simulation",
+      "pass": true
+    },
+    {
+      "name": "Equipment inspection freezes simulation",
+      "pass": true
+    },
+    {
+      "name": "First level-up has actual choices",
+      "pass": true
+    },
+    {
+      "name": "Upgrade freezes signature timer",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers splitEmber",
+      "pass": true
+    },
+    {
+      "name": "splitEmber equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers quarryHammer",
+      "pass": true
+    },
+    {
+      "name": "quarryHammer equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers riverNeedle",
+      "pass": true
+    },
+    {
+      "name": "riverNeedle equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers huntersEdge",
+      "pass": true
+    },
+    {
+      "name": "huntersEdge equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers echoLattice",
+      "pass": true
+    },
+    {
+      "name": "echoLattice equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "forkedConduit equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers stillwaterBeads",
+      "pass": true
+    },
+    {
+      "name": "stillwaterBeads equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers reedGuard",
+      "pass": true
+    },
+    {
+      "name": "reedGuard equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers lanternHeart",
+      "pass": true
+    },
+    {
+      "name": "lanternHeart equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers travellersKnot",
+      "pass": true
+    },
+    {
+      "name": "travellersKnot equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers undertowThread",
+      "pass": true
+    },
+    {
+      "name": "undertowThread equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers relayKnot",
+      "pass": true
+    },
+    {
+      "name": "relayKnot equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers thornEcho",
+      "pass": true
+    },
+    {
+      "name": "thornEcho equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers bountySeal",
+      "pass": true
+    },
+    {
+      "name": "bountySeal equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers aftershockBell",
+      "pass": true
+    },
+    {
+      "name": "aftershockBell equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers lastLantern",
+      "pass": true
+    },
+    {
+      "name": "lastLantern equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "crosswindDrum equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "monsoonLens equips for Asha",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers echoLattice",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers relayKnot",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers crosswindDrum",
+      "pass": true
+    },
+    {
+      "name": "Relay handles hero Q once",
+      "pass": true
+    },
+    {
+      "name": "Echo is item-owned and never creates tickets",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers forkedConduit",
+      "pass": true
+    },
+    {
+      "name": "Fork adds two item bolts",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers undertowThread",
+      "pass": true
+    },
+    {
+      "name": "Undertow creates item field",
+      "pass": true
+    },
+    {
+      "name": "Actual reward offers monsoonLens",
+      "pass": true
+    },
+    {
+      "name": "Lens schedules three item pulses",
+      "pass": true
+    },
+    {
+      "name": "Raid transition clears hero transient rings",
+      "pass": true
+    },
+    {
+      "name": "First raid cast survives synchronization while old fields clear",
+      "pass": true
+    },
+    {
+      "name": "Raid exit clears owned state before preserving new cast",
+      "pass": true
+    },
+    {
+      "name": "Defeat clears owned fields",
+      "pass": true
+    },
+    {
+      "name": "Retry resets all tickets and fields",
+      "pass": true
+    },
+    {
+      "name": "Menu preserves save",
+      "pass": true,
+      "details": {
+        "before": "{\"coins\":0,\"owned\":[\"ustaz\",\"rempit\"],\"cleared\":[]}",
+        "after": "{\"coins\":0,\"owned\":[\"ustaz\",\"rempit\"],\"cleared\":[]}",
+        "earned": 0
+      }
+    },
+    {
+      "name": "Asha has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Asha with actual artwork",
+      "pass": true
+    },
+    {
+      "name": "Touch movement and keyboard casting work simultaneously",
+      "pass": true
+    },
+    {
+      "name": "Real selected skill artwork is rendered",
+      "pass": true
+    },
+    {
+      "name": "Paused skill frame and simulation remain frozen",
+      "pass": true
+    },
+    {
+      "name": "Simulation reaches 0.8 seconds",
+      "pass": true
+    },
+    {
+      "name": "Basic cast uses actual hero motion attack row",
+      "pass": true
+    },
+    {
+      "name": "Basic animation advances through real frames",
+      "pass": true
+    },
+    {
+      "name": "Basic deals authored hero damage or travels toward real enemy",
+      "pass": true
+    },
+    {
+      "name": "Asha has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Real Start enters Asha with actual artwork",
+      "pass": true
+    }
+  ]
+}

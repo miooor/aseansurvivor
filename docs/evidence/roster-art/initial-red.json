@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-11-15T22:59:04.950634+00:00",
+  "files": [],
+  "failures": [
+    "asha-motion: missing source PNG",
+    "asha-skills: missing source PNG",
+    "mira-motion: missing source PNG",
+    "mira-skills: missing source PNG",
+    "dani-motion: missing source PNG",
+    "dani-skills: missing source PNG",
+    "vanna-motion: missing source PNG",
+    "vanna-skills: missing source PNG",
+    "keo-motion: missing source PNG",
+    "keo-skills: missing source PNG",
+    "nadi-motion: missing source PNG",
+    "nadi-skills: missing source PNG",
+    "lia-motion: missing source PNG",
+    "lia-skills: missing source PNG",
+    "roster-portraits: missing source PNG"
+  ],
+  "result": "FAIL",
+  "totalDecodedBytes": 0
+}

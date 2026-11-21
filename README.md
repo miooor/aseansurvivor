@@ -26,7 +26,7 @@ docker compose down
 
 Deploy the generated `dist/` directory to a static host. GitHub Pages now requires a build workflow; publishing the source branch directly is insufficient. Vite uses relative asset paths so the build supports a repository subpath.
 
-The game also has a private [playable Astrocade draft](https://www.astrocade.com/games/asean-survivor/01M7FMJGJ3PMC9H145JJCCNEKR/v/01M7FSHCVJRJ8ABEZ9GM066YXM), accessible while signed in as its owner. Its WebP artwork downloads 74.6% less data than the corresponding active PNG set. Rebuild its five-file package with `docker compose exec -T game npm run build:astrocade`. See [Astrocade port and verification](docs/astrocade.md) for portrait controls, cloud saves, asset encoding and repeatable mobile/sandbox checks.
+The game also has a private [twelve-hero Astrocade draft](https://www.astrocade.com/games/asean-survivor/01M7FMJGJ3PMC9H145JJCCNEKR/v/01M7HJZ0SKK46GFEXKB89QQFD3), accessible while signed in as its owner. The final five-file export was saved, read back and played on the hosted page; sandbox 111 and mobile 91 checks at each of 320/390px pass. The 33-file WebP catalogue uses selected-only large hero pairs; default startup requests 11 artwork files totaling 5,690,146 bytes. Rebuild with `docker compose exec -T game npm run build:astrocade`. See [Astrocade port and verification](docs/astrocade.md) and [roster acceptance](docs/asean-roster.md) for methods, artifacts and the unresolved mobile performance limit.
 
 ## Controls
 
@@ -41,7 +41,7 @@ The game also has a private [playable Astrocade draft](https://www.astrocade.com
 
 ## What's in the prototype
 
-- **5 heroes:** Ustaz Hakim and Mat Rempit "Jet" (Malaysia), Nok (Muay Thai, Thailand), Cô Lan (water puppeteer, Vietnam), Sari (pencak silat, Indonesia).
+- **12 heroes across eleven countries:** Ustaz Hakim and Mat Rempit "Jet" (Malaysia), Nok (Muay Thai, Thailand), Cô Lan (water puppeteer, Vietnam), Sari (pencak silat, Indonesia), Asha Lim (Singapore), Mira Reyes (Philippines), Dani Rahman (Brunei), Vanna (Cambodia), Keo (Laos), Nadi (Myanmar) and Lia Soares (Timor-Leste).
 - **Malaysia route:** Johor → Melaka → Perak → Pulau Pinang → Kedah, each with its own boss. Kuala Lumpur is a bonus stage that unlocks after Perak (2 minutes, 3x coins).
 - **Auto-cast combos:** link two skills and they fire together so their combo triggers.
 - **Combos and evolutions:** skills used together get bonuses, and a rank-5 skill plus a matching item evolves.
@@ -58,7 +58,7 @@ All heroes and stages are unlocked for testing. To bring back the shop and stage
 
 The campaign lobby, HUD, hero portraits, controls, upgrades, pause, and results screens share a jade-and-gold visual style. The battlefield uses native Phaser images, graphics, text, camera effects, and reusable sprite objects. There is no full-screen Canvas-texture rendering bridge.
 
-All six stages have distinct connected 6,000 × 6,000 regions, each with five landmarks, local terrain and a signature enemy. All five heroes use four-frame movement and attack cycles in eight directions, with a separate directional idle atlas. Q/E/F/R each have distinct eight-direction windup and release poses, followed by a shared recovery pose. Johor now has run-local rescue/weapon, ward/charm and hunt/relic encounters; music remains future work.
+All six stages have distinct connected 6,000 × 6,000 regions, each with five landmarks, local terrain and a signature enemy. All twelve heroes use four-frame movement and attack cycles in eight directions. The original five retain their directional idle atlas; the seven additions hold direction-specific recovery poses. Q/E/F/R each have distinct eight-direction windup and release poses, followed by a shared recovery pose. Johor now has run-local rescue/weapon, ward/charm and hunt/relic encounters; music remains future work.
 
 ## Combat and skill builds
 
@@ -68,7 +68,7 @@ Eighteen run-local items are available, six per weapon/charm/relic slot. Each ev
 
 Dense active-event combat remains a measured desktop performance limitation; the [combined profile](docs/gameplay-upgrade.md) records the slow crowded sample and its staging conditions. Physical-phone performance and natural full-run balance remain unverified.
 
-Seven researched fictional hero concepts complement the current roster across Singapore, the Philippines, Brunei, Cambodia, Laos, Myanmar and Timor-Leste. These are design drafts; the playable roster still has five heroes. [Concepts, institutional sources and local-review requirements](docs/asean-hero-concepts.md).
+Seven researched fictional hero concepts complement the current roster across Singapore, the Philippines, Brunei, Cambodia, Laos, Myanmar and Timor-Leste. All seven are now playable under [the roster specification](docs/asean-roster-spec.md), with original directional artwork, practical skill captions and national flags beside every roster, selected and HUD hero name. Local cultural/name review and natural-run balance remain unverified. [Concepts, institutional sources and local-review requirements](docs/asean-hero-concepts.md).
 
 ## Hero signatures
 
@@ -81,12 +81,21 @@ Every hero now has a combat loop shown in the lobby and a color-coded meter duri
 | Nok — The Unbroken | Rhythm | Chain three Q/E/F casts, switching skill each time within six seconds, to release an area strike that stuns normal enemies. |
 | Lan — Mistweaver | High Tide | Non-periodic hits against slowed enemies fill Tide. Empower E for two extra guards, 50% more guard damage, and 14-second lifetimes. Ten guards remain the cap. |
 | Sari — The Twilight Blade | Riposte | Counter contact or a projectile with F, then Q within four seconds for 50% extra kick damage and an immediate E reset. |
+| Asha — Night Dispatcher | Service Window | Q tickets up to three enemies; serve them with landed basics, then E to collect. |
+| Mira — Towline Runner | Take the Strain | Q fixes a tow endpoint; move through 90° around it, then E for a triangle sweep. |
+| Dani — Landing Keeper | Safe Landing | E leaves an anchor; walk 160 away, return within 70 and F for a 30-HP shield. |
+| Vanna — Crossweft Maker | Crossing Point | Cross Q/E strips, then F within 400 of their overlap to detonate. |
+| Keo — Reed Resonator | Open Measure | Cast Q/E/F 1.5–2 seconds after a successful Q/E/F for 40% extra hero-skill damage. Instant linked AUTO casts forgo the bonus. |
+| Nadi — Lacquer Workshop Keeper | Let It Set | Place up to three E layers, let them mature for two seconds, then Q within 400 to release. |
+| Lia — Shuttle Courier | Catch the Return | Move through returning basic shuttles after 0.2 seconds of return; E spends up to three Spools on dash damage. |
 
 Signature power resets between runs. These additions preserve hero IDs, saved ownership, existing skills, and evolutions. Directional movement/attack sprite cycles, Nok's visible leap, and distinct spanner, kris, puppet, light-bolt, and dragon effects provide combat feedback.
 
 ## Browser verification
 
-Open `http://localhost:5173/tests/ui-smoke.html`, select **Run checks**, and keep the tab active until it reports `PASS`. The check covers the renderer, five heroes, six stages, movement, pause/resume, upgrades, raid rewards and return, retry, and responsive layout. **Download report** produces a repeatable JSON evidence artifact. It restores the origin's previous save after the run; use a separate browser profile when testing purchases or progression manually.
+Open `http://localhost:5173/tests/ui-smoke.html`, select **Run checks**, and keep the tab active until it reports `PASS`. The check retains the original five hero behavior assertions and covers the renderer, twelve roster cards, six stages, movement, pause/resume, upgrades, raid rewards and return, retry, and responsive layout. **Download report** produces a repeatable JSON evidence artifact. It restores the origin's previous save after the run; use a separate browser profile when testing purchases or progression manually.
+
+The combined `/tests/asean-roster.html` page checks all twelve real lobby starts and first upgrades, flags, all eighteen equipment choices, the seven new directional animations, compact layouts and simultaneous inputs. Its focused buttons isolate compact-layout and Lia dash-color checks. [Methods, reports and limitations](docs/asean-roster.md).
 
 The development-only `window.__asean` handle exposes the active runtime and Phaser scene to this check. It is absent from production builds. See [docs/architecture.md](docs/architecture.md) for boundaries and the next development milestones.
 
@@ -100,6 +109,8 @@ The development-only `window.__asean` handle exposes the active runtime and Phas
 | `src/content/core.js` | Stage, base hero, passive, and evolution definitions |
 | `src/game/runtime.js` | Combat simulation, input, saves, UI binding, and module registry |
 | `src/game/heroes-sea.js` | Nok, Cô Lan and Sari mechanics |
+| `src/game/heroes/`, `src/scenes/heroes/` | Seven new kits and their separate drawing helpers |
+| `src/content/hero-art.js`, `roster-frames.js`, `hero-flags.js` | Explicit artwork URLs, measured crops/pivots and embedded licensed flags |
 | `src/game/hero-identities.js` | Hero signature rules, meter metadata, and casting feedback state |
 | `src/game/raid.js` | Portal and Hantu Raya mechanics |
 | `assets/` | Generated environment art and character atlas |
@@ -113,9 +124,9 @@ See [DESIGN.md](DESIGN.md) for heroes, the ghost roster, stages and the respectf
 
 ## Animation review
 
-Open `http://localhost:5173/tests/animation-gallery.html` to compare all five heroes, choose any of eight directions, switch movement/basic attack cycles or Q/E/F/R poses, and pause or step individual frames. Artwork lives in `assets/{ustaz,rempit,nok,lan,sari}-motion.png`; generation prompts are in `assets/ANIMATION_PROMPTS.md`. `src/content/animation-layouts.js` records hand-checked row gutters where the generated sheet is not uniform.
+Open `http://localhost:5173/tests/animation-gallery.html` to compare all twelve heroes, choose any of eight directions, switch movement/basic attack cycles or Q/E/F/R poses, and pause or step individual frames. Original-five artwork lives in `assets/{ustaz,rempit,nok,lan,sari}-motion.png`; the new seven use `assets/<id>-motion.webp` and `-skills.webp`, retaining source PNGs. Generation prompts are in `assets/ANIMATION_PROMPTS.md`, `assets/SKILL_PROMPTS.md` and `assets/ASEAN_ROSTER_PROMPTS.md`. `src/content/animation-layouts.js` records original row gutters; `src/content/roster-frames.js` supplies the measured crop/pivot of every new frame. The gallery deliberately loads artwork for inspection; gameplay prepares only the selected large pair after shared lobby/world art.
 
-Movement cycles run at ten frames per second. Attacks use their own aim direction: basics play over 0.32 seconds; individual skill choreography lasts 0.4–1 second as defined in `src/content/skill-visuals.js`. Basic attacks cannot interrupt an active skill pose. Animation reads simulation time, so pause, upgrades, hit-stop and game-over freeze playback; damage and hitboxes remain simulation-owned. Browser checks verify all directional cycles and idle/pause transitions. The five motion sheets add about 12.1 MB; five skill sheets add about 12.0 MB (320 additional poses). Real-device loading and animation smoothness still need profiling.
+Movement cycles run at ten frames per second. Attacks use their own aim direction: basics play over 0.32 seconds; individual skill choreography lasts 0.4–1 second as defined in `src/content/skill-visuals.js`. Basic attacks cannot interrupt an active skill pose. Animation reads simulation time, so pause, upgrades, hit-stop and game-over freeze playback; damage and hitboxes remain simulation-owned. Browser checks verify all directional cycles and idle/pause transitions. The original five motion sheets add about 12.1 MB; their five skill sheets add about 12.0 MB (320 additional poses). The seven new heroes add fourteen WebP sheets and a shared portrait atlas totaling 9.2 MB; inactive large pairs are not loaded by normal play. Real-device loading and animation smoothness still need profiling.
 
 ## Combat effects and numbers
 
@@ -127,7 +138,7 @@ For repeatable visual inspection, open `/tests/combat-effects.html` on the devel
 
 ## Unique skill choreography
 
-Each of the 20 active skills has separate native effects in `src/scenes/skill-effects.ts` and two new character poses per direction in `assets/*-skills.png`. Ultimates keep their existing damage, cooldowns, and targeting. Persistent effects follow their owner or remain anchored to the cast location as appropriate; pauses freeze their simulation clock.
+All 48 active skills have native effects and two character poses per direction. The original twenty choreographies live in `src/scenes/skill-effects.ts`; the seven new kits draw their captured line, cone, triangle, strip, layer, field and shuttle geometry in `src/scenes/heroes/`. Ultimates keep their existing damage, cooldowns, and targeting. Persistent effects follow their owner or remain anchored to the cast location as appropriate; pauses freeze their simulation clock.
 
 | Hero | Q | E | F | Ultimate |
 | --- | --- | --- | --- | --- |
@@ -141,13 +152,13 @@ Each of the 20 active skills has separate native effects in `src/scenes/skill-ef
 
 ## Skill sound effects
 
-All five heroes have original synthesized basic/Q/E/F/R cues (25 total), authored in `src/game/skill-audio.js`. Hakim uses layered chimes, Jet engine/horn tones, Nok percussion and impacts, Lan water-like noise and ascending notes, and Sari metallic sweeps. Ultimates add low impacts, buildup layers and longer tails; Nok's impact is delayed into the leap sequence. These are procedural fantasy sounds, not recordings or Ragnarok assets.
+All twelve heroes have original synthesized basic/Q/E/F/R cues (60 total), authored in `src/game/skill-audio.js`. Hakim uses layered chimes, Jet engine/horn tones, Nok percussion and impacts, Lan water-like noise and ascending notes, and Sari metallic sweeps. Ultimates add low impacts, buildup layers and longer tails; Nok's impact is delayed into the leap sequence. These are procedural fantasy sounds, not recordings or Ragnarok assets.
 
 Sound unlocks on the first pointer/key interaction. **Sound on/off** and **Effects volume** controls are available in the lobby and pause menu; small screens keep the volume slider in the pause menu. Preferences use the separate `aseanSurvivor.audio` localStorage key. Unsupported/blocked audio leaves the game playable silently.
 
 Successful casts—including automatic basic attacks—play their matching cue. Blocked casts stay silent. Eight simultaneous cues, per-cue retrigger limits, quieter basics, ultimate priority/ducking and a master compressor control crowding. Pause, upgrades, defeat, hidden tabs and returning to the menu stop tails; resume does not replay old sounds. Buffs have onset cues, not continuous audio loops.
 
-Open `/tests/audio-smoke.html` to audition each cue, run browser audio checks, or download a WAV sampler of the five ultimates in roster order. The checks validate distinct finite waveforms, peak limits, actual Web Audio unlock/playback scheduling, cast rejection, voice priority, persistence and lifecycle silence. Speaker/headphone tuning and real-phone audio latency require listening tests.
+Open `/tests/audio-smoke.html` to audition each cue, run browser audio checks, or download a WAV sampler of the twelve ultimates in roster order. The checks validate distinct finite waveforms, peak limits, actual Web Audio unlock/playback scheduling, cast rejection, voice priority, persistence and lifecycle silence. Speaker/headphone tuning and real-phone audio latency require listening tests.
 
 ## Open stage regions
 

@@ -25,7 +25,7 @@ export function installHunt(api,encounters){
       if(g.itemState.thornEcho%3===0){api.each(g.p.x,g.p.y,120,enemy=>api.hit(enemy,30,{origin:'item'}));api.ring(g.p.x,g.p.y,120,'#d58ad9',.6);api.text(g.p.x,g.p.y-55,'Thorn Echo','#e9b6e9',16);}
     }
   });
-  HOOKS.lethal.push(()=>{const g=api.G;if(g.equipment.relic!=='lastLantern'||g.lastLanternUsed)return;g.lastLanternUsed=true;g.p.invuln=2;api.text(g.p.x,g.p.y-55,'Last Lantern','#ffe6a3',18);api.ring(g.p.x,g.p.y,100,'#ffe6a3',.7);return Math.max(0,g.p.hp-1);});
+  HOOKS.lethal.push(()=>{const g=api.G;if(g.equipment.relic!=='lastLantern'||g.lastLanternUsed)return;g.lastLanternUsed=true;g.p.hp=Math.max(1,g.p.hp);g.p.invuln=2;api.text(g.p.x,g.p.y-55,'Last Lantern','#ffe6a3',18);api.ring(g.p.x,g.p.y,100,'#ffe6a3',.7);return Math.max(0,g.p.hp-1);});
   HOOKS.update.push(dt=>{
     const g=api.G;
     for(const enemy of g.enemies)if(!enemy.dead&&enemy.elite==='Thornbound'&&enemy.rush>0){

@@ -1,0 +1,2 @@
+> asean-survivor@0.1.0 lint
+> eslint src tests/ui-smoke.js tests/astrocade.js tests/environment.js tests/event-combat.js tests/skill-equipment.js tests/gameplay-upgrade.js scripts/build-astrocade.mjs

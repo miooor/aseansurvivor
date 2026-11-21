@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-15T23:53:45.068Z",
+  "result": "FAIL",
+  "checks": [
+    {
+      "name": "Edit preview selection finishes with Start disabled",
+      "pass": false
+    },
+    {
+      "name": "Edit preview cannot enter through the real Start control",
+      "pass": false
+    },
+    {
+      "name": "Edit preview rejects synchronous starts",
+      "pass": false
+    }
+  ]
+}

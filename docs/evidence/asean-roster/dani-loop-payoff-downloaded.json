@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-16T04:10:30.613Z",
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3.1 Safari/605.1.15",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "dani real payoff cast succeeds",
+      "pass": true,
+      "details": {
+        "state": "30 shield · 3.9s",
+        "skill": "Step Ashore"
+      }
+    },
+    {
+      "name": "No browser runtime errors",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ],
+  "errors": []
+}

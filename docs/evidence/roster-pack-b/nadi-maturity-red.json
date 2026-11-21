@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-16T01:00:28.980Z",
+  "result": "FAIL",
+  "error": "Nadi has a real selectable roster card",
+  "checks": [
+    {
+      "name": "Nadi has a real selectable roster card",
+      "pass": false
+    }
+  ]
+}

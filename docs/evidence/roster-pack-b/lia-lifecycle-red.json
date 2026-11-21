@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-16T01:53:22.055Z",
+  "result": "FAIL",
+  "error": "Menu clears only owned state from the old run",
+  "checks": [
+    {
+      "name": "Lia has a real selectable roster card",
+      "pass": true
+    },
+    {
+      "name": "Hero has owned effects before raid",
+      "pass": true
+    },
+    {
+      "name": "First raid E clears old R effects and retains new cast",
+      "pass": true
+    },
+    {
+      "name": "Update preserves the first new-raid cast",
+      "pass": true
+    },
+    {
+      "name": "Real raid exit completes",
+      "pass": true
+    },
+    {
+      "name": "First overworld E survives exit sync",
+      "pass": true
+    },
+    {
+      "name": "Menu clears only owned state from the old run",
+      "pass": false
+    }
+  ]
+}

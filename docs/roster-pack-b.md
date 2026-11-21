@@ -1,0 +1,46 @@
+# Roster pack B acceptance
+
+Ticket #20 implements Vanna, Keo, Nadi and Lia under [the playable roster spec](asean-roster-spec.md). Authored numbers and cultural caveats remain in [hero concepts](asean-hero-concepts.md). This document records bounded kit ownership and verifiable browser evidence, not cultural or balance approval.
+
+## Agreed seams and scope
+
+Use actual lobby/skill/equipment/pause/upgrade controls and the existing dev-only `window.__asean` runtime in a same-origin game iframe. Await `scene.prepareHero` before synchronous starts. Deterministic enemies and simulation stepping exercise real collision, accepted damage, hooks, cooldowns and overlays. They do not prove natural-run balance or physical-phone performance. No isolated unit suite or production test API is introduced.
+
+Owned files are the four `src/game/heroes/<id>.js` installers, four `src/scenes/heroes/<id>.ts` render helpers, four `tests/hero-<id>.html/.js` fixtures, this document and `docs/evidence/roster-pack-b/`. The parent authorized one shared runtime condition: `dash.stopAtBlocker` opts Lia into immediate cancellation after actual movement is clipped; other overworld dashes retain their behavior. Loading/audio/art remain foundation-owned. Render helpers draw persistent fields, shuttle geometry and captured instantaneous spell areas; simulation stays in installers. Registration supplies metadata, five skills, AUTO and empty EVOS; common foundation wrapping owns audio/poses/cast hooks.
+
+## Failure inventory before implementation
+
+- Vanna: rectangle projection must use captured orientation and true 280×40 bounds; parallel/coincident or disjoint strips must never enable Crossing Point. Noncentral overlap must use polygon centroid. Keep one Q and one E; Q ticks exactly at 1–5 seconds, E damages once on arrival and refreshes slow, R has five independent radius-200 ticks. F applies its local20 pulse separately, detonates radius60 for60 only when crossing is within400, and consumes both strips only on that valid detonation. Expiry/replacement invalidates stale crossing immediately.
+- Keo: successful Q/E/F restart the measure; rejected presses/basic/R/item effects never do. Inclusive1.5 and2.0 boundaries receive40%; earlier/later casts do not. Capture bonus only in the triggering hero skill/projectiles; never alter global outgoing damage, old effects, items, basics or R. Three E bolts stay parallel20 apart and can each hit one target. Four fixed-origin R pulses fire at0.3/0.9/1.5/2.1. Show static countdown/READY and explain immediate linked AUTO casts forgo timing bonus.
+- Nadi: E arrival10 has no later ticks; maximum3 layers, replace oldest. Mature exactly2 seconds and expire at7. Q line260×32 deals26 independently; snapshot/remove only mature layers within400 before bursts42, retain immature/out-of-range layers. Each released layer hits each enemy once. R has three separate radius80 discs at120 distance,120° apart, first along captured aim, each50 exactly1 second later; never consumes or creates E layers.
+- Lia: basics cap2, defer at cap, turn at0.45, expire at2; outbound and return hit sets are separate9-damage passes. Catch only basic shuttle after0.2 return seconds, swept relative to actual normal ground movement, radius24 (60 for2 seconds after F), once, cap3. Standing, dash, teleport, early arrival, timeout, item and R shuttles yield nothing. Compare prior observed position with normalMove origin to reject synthetic jumps. E spends all Spools once for20+12 each,150 units over0.2, no immunity, collision-corrected hits once and zero authored knockback. R has3 larger uncapturable22-per-pass fan shuttles at±25°/0°.
+- Every hero: rank damage and ordinary cooldown scaling; accepted hit/kill/ultimate attribution; boss CC exclusion; rejected cooldown/ultimate controls; first level-up; useful AUTO off/single/pair/all; all six skill supports and Split Ember; item-origin resource isolation; equipment replacement preserves hero state; simulation freezes for pause/upgrade/equipment; both raid transitions sync before casts and updates; menu/defeat/retry/new-run cleanup clears only owned effects/projectiles and preserves saves. Lists/schedules cap12 or authored smaller bounds.
+
+## Implementation and verification
+
+The four installers register complete five-skill metadata, basic damage, signatures, AUTO predicates and empty EVOS before common foundation wrapping. Vanna clips oriented rectangles and calculates the actual overlap centroid. Keo captures his timing multiplier only in the newly cast hero damage/projectiles. E also captures pre-cast Crosswind Drum eligibility, so its own activation cannot add 20% retroactively at landing; an already active Drum applies, while subsequent basics/R and item-origin effects retain ordinary live equipment modifiers. Nadi snapshots and removes released layers before overlapping damage. Lia uses a bounded owned shuttle list with separate per-pass hit sets, swept collision and relative normal-movement catches; generic runtime projectiles stop at one collision per frame and cannot provide her pierce-all contract.
+
+All transient state uses simulation time under `g.roster.<id>`. Raid changes synchronize before casts and updates. Cleanup removes the owning hero's projectiles, tagged spell/ring records and fields; Lia also cancels her active dash. Item-owned effects are not removed by these hero filters. Fixed line/cone/pulse geometry reads existing captured spell records in the owned renderers; there is no renderer simulation or additional animation loop.
+
+Parent-operated IAB produced the following final real-game results on 2026-11-16:
+
+| Fixture | Final checks | Evidence |
+| --- | ---: | --- |
+| Nadi | 103/103 PASS | `nadi-final-green.json`, actual Download artifact and game JPEG |
+| Vanna | 88/88 PASS | `vanna-final-green.json`, actual Download artifact and game JPEG |
+| Keo | 102/102 PASS | `keo-final-green.json`, actual Download artifact and game JPEG |
+| Lia | 109/109 PASS | `lia-final-green.json`, actual Download artifact and game JPEG |
+
+All reports are in [the evidence directory](evidence/roster-pack-b/). The four Download artifacts parse identically to their corresponding displayed report JSON; raw bytes differ only by a trailing newline. SHA-256 hashes and final standard-check results are recorded in `verification.json`. Each report includes its own UTC timestamp. Use `/tests/hero-<id>.html` and **Run all** to repeat it; segment buttons isolate failures, yield between heavy cases and pause between segments.
+
+Retained red evidence precedes production registration for each kit, Nadi's F/R slice, Lia's blocked-dash cancellation and menu dash cleanup, and all four heroes' old spell/ring cleanup across raid entry. Assertions were preserved when fixing the defects. Final checks cover authored damage and timing, rank/cooldown behavior, hit/kill/ultimate credit, signature boundaries, all five existing AUTO modes, first upgrades, actual pause/equipment/upgrade freezes, all six skill supports plus Split Ember, save preservation and raid/menu/defeat/new-run lifecycle. Lia's final focused addition uses real moving catches for 1/2/3/3 Spools, proves a moving radius-24 miss becomes an F-assisted radius-60 catch, and verifies an actual three-Spool E hits once for 56 damage.
+
+Final source includes integration `e3f8a0b` (the other three kits and shared hunt correction), merged at `bdd489b`. Nadi's final 103-check browser rerun occurred after that merge. Vanna/Keo/Lia final browser runs occurred before the merge; their kit source was unchanged by it. The combined twelve-hero tree passed the standard lint command plus all four fixture scripts, strict typechecking, and the production build. Logs are retained in the evidence directory. The build retains the existing chunk-size and Vite/Rolldown plugin-timing diagnostics; no missing-art warnings occurred.
+
+The first strict check reported six TS2345 errors because Phaser declares `fillPoints`/`strokePoints` inputs as `Vector2[]`. Commit `af411cf` replaces those calls in three owned renderers with explicit paths at the same coordinates, avoiding additional vector allocations. The failed log is retained as `typecheck-renderer-red.txt`; typecheck and build passed after repair. Browser numeric suites precede this graphics API repair; simulation is unchanged and final manual VFX inspection remains ticket #21 scope.
+
+## Remaining acceptance boundaries
+
+Final game JPEGs show the actual sprites, flags and signature HUD; early JPEGs show reports. They do not prove animation progression in every direction, every attack frame or the new instantaneous VFX in motion. Manual moving/attacking checks for all four, instantaneous geometry visual inspection, final narrow/mobile layouts, complete twelve-hero regression and exact Astrocade export/hosted verification belong to ticket #21. Local cultural/name review, natural full-run balance and physical-phone performance remain unverified. Existing dense Safari/mobile performance limitations are not claimed fixed.
+
+Integration follow-through is recorded in [twelve-hero acceptance](asean-roster.md), including the final directional/manual inspections, original regressions and retained rendering/layout reds. Physical-device, cultural and natural-run balance boundaries remain unverified.
