@@ -1384,7 +1384,7 @@ function openLevelUp(){
     const category=s.ult?'Ultimate':s.key?'Active skill':'Basic attack';
     const item=ev && PASSIVES.find(p=>p.id===ev.item);
     const choice={type:'skill',i,category,target:s,k:'Rank '+(G.ranks[i]+1),
-      t:s.name,metrics:skillChanges(G,i),evolution:ev && `${ev.name} at rank 5 with ${item.name} Lv. 1+`};
+      t:s.name,metrics:skillChanges(G,i),evolution:ev && `Unlock ${ev.name} with ${s.name} at rank 5 and ${item.name} at level 1 or higher.`};
     pool.push(choice,choice);
   });
   PASSIVES.forEach(pv=>{const lv=G.pass[pv.id]||0;if(lv<5)pool.push({type:'pass',id:pv.id,category:'Passive item',k:'Level '+(lv+1),t:pv.name,d:pv.desc})});
@@ -1409,7 +1409,7 @@ function openLevelUp(){
   choices.forEach((c,i)=>{const b=document.createElement('button');b.className='up';b.id='up'+i;
     const unlocked=newlyAvailableEvolutions(G,recipes,c);
     const hint=unlocked.length?'Makes evolution available · '+unlocked.map(ev=>ev.name).join(', '):
-      c.evolution?'Evolves into '+c.evolution:'';
+      c.evolution??'';
     b.dataset.category=c.category;
     const slot=c.target && (c.target.key || 'Basic');
     if(slot)b.dataset.slot=slot;
