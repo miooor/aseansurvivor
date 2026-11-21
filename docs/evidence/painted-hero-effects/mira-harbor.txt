@@ -1,0 +1,36 @@
+PASS basic strikes its forward arc
+PASS Boathook Tap draws in reduced motion
+PASS ordinary sweep works immediately
+PASS miss cannot prime
+PASS hook pulls and primes
+PASS Rescue Hook draws in reduced motion
+PASS rejected sweep preserves readiness
+PASS stationary empowered sweep spends once
+PASS Harbour Sweep draws in reduced motion
+PASS second sweep is ordinary
+PASS brace shoves on opening
+PASS Deck Brace draws in reduced motion
+PASS evolved sweep renders its full hit radius
+PASS boss takes hook damage in place
+PASS unused hook expires
+PASS restart clears pending wave, prime and brace
+PASS uncharged wave rejected
+PASS wave reaches near target first
+PASS Breaking Wave draws in reduced motion
+PASS single crest respects width and hits once
+PASS auto hooks before sweeping
+PASS brace opening force 180
+PASS brace damage at 3.55 s for base
+PASS level-three brace specialization 0
+PASS brace opening force 100
+PASS brace damage at 3.55 s for Held Brace
+PASS level-three brace specialization 1
+PASS brace opening force 300
+PASS brace damage at 3.55 s for Hard Shove
+PASS ordinary sweep cannot complete practice
+PASS keyboard completes stationary practice
+PASS retry clears rescue state
+PASS phone hit target #sk1
+PASS phone hit target #sk2
+PASS mobile skill buttons complete practice
+PASS run and practice preserve save

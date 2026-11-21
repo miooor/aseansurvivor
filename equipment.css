@@ -1,0 +1,85 @@
+#lootPanel{
+  --brass:#c7a86f;--pale:#f3e2b7;--muted-gear:#b6c2b8;
+  z-index:40;grid-template: minmax(0,1fr) / minmax(0,1fr);padding:clamp(8px,2vw,28px);color:#efeadd;
+  background:#050c0ec9;backdrop-filter:blur(6px)
+}
+.gear-case{
+  display:flex;flex-direction:column;width:min(900px,100%);min-width:0;max-height:100%;
+  border:3px double #aa9166;background:linear-gradient(118deg,#283331,#141d1d 54%,#1e2928);
+  box-shadow:0 0 0 3px #0b1011,0 20px 80px #000b,inset 0 0 28px #0007
+}
+.gear-header,.gear-footer{display:flex;align-items:center;gap:16px;padding:12px 22px;background:linear-gradient(#28312f,#131b1b);border-bottom:1px solid #8a7957}
+.gear-header h2{
+  margin:0;text-align:center;padding:4px clamp(18px,4vw,48px);font:600 clamp(22px,3vw,34px)/1.15 var(--serif);
+  font-variant:small-caps;letter-spacing:.045em;color:#241f15;background:linear-gradient(100deg,#95754a,#e7c88e 42%,#bd9e68);
+  border:3px double #4b3d29;box-shadow:0 1px 0 #d1b98a,0 3px 8px #0009
+}
+.gear-rule{position:relative;flex:1;height:3px;border-block:1px solid #827355}
+.gear-rule::after{content:'';position:absolute;right:0;top:-4px;width:7px;height:7px;transform:rotate(45deg);border:1px solid #c7ad78;background:#27322d}
+.gear-rule:last-child::after{right:auto;left:0}
+.gear-scroll{padding:18px;overflow:auto;overscroll-behavior:contain;scrollbar-color:#847555 #172222}
+#lootCurrent{white-space:normal}
+.gear-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(230px,1fr);gap:20px}
+.gear-board{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:'weapon head relic' 'weapon hero charm' 'gloves chest boots' 'gloves belt boots';
+  gap:8px;position:relative;padding:10px;
+  background:repeating-linear-gradient(117deg,#ffffff04 0 1px,transparent 1px 6px),radial-gradient(ellipse,#41514a,#222f2e 70%);
+  border:1px solid #71654f;box-shadow:inset 0 0 18px #0008
+}
+.gear-slot,.gear-offer{
+  color:var(--pale);background:radial-gradient(ellipse at 50% 35%,#29322f,#101817 85%);
+  border:3px double #83755c;box-shadow:0 2px 3px #000b,inset 0 0 8px #0008
+}
+.gear-slot{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;padding:6px 3px;text-align:center}
+.gear-slot[data-slot=weapon]{grid-area:weapon}.gear-slot[data-slot=head]{grid-area:head}.gear-slot[data-slot=chest]{grid-area:chest}
+.gear-slot[data-slot=relic]{grid-area:relic}.gear-slot[data-slot=charm]{grid-area:charm}.gear-slot[data-slot=gloves]{grid-area:gloves}
+.gear-slot[data-slot=belt]{grid-area:belt}.gear-slot[data-slot=boots]{grid-area:boots}
+.gear-slot:hover,.gear-offer:hover{border-color:#d1bd8a}
+.gear-slot[aria-pressed=true]{border-color:#e5c383;background:radial-gradient(ellipse at top,#454637,#1a211d)}
+.gear-slot strong{font:600 clamp(12px,1.25vw,15px)/1.2 var(--serif)}
+.gear-art{
+  display:block;flex-shrink:0;width:clamp(46px,5.6vw,78px);aspect-ratio:1;mix-blend-mode:screen;
+  background:url('assets/equipment-items.webp') no-repeat;background-size:500% 500%
+}
+.gear-art.armor{background-image:url('assets/equipment-armor.webp');background-size:500% 300%}
+.gear-art.empty{filter:grayscale(.9) sepia(.35);opacity:.32}
+.gear-portrait{grid-area:hero;align-self:stretch;display:grid;place-items:center;background:radial-gradient(ellipse at center,#64786866,transparent 72%)}
+.gear-figure{width:min(100%,92px);aspect-ratio:1;background:url('assets/survivor-idles.webp') no-repeat;background-size:400% 300%}
+.gear-slot[data-slot=weapon] .gear-art{width:min(85%,110px)}
+.gear-label{color:#d3b682;font:700 10px/1.5 var(--ui);letter-spacing:.13em;text-transform:uppercase}
+.gear-detail{padding:10px 14px;background:#101a19;border:1px solid #74664b;border-top:0}
+.gear-case h3{color:var(--pale);font:600 21px/1.2 var(--serif)}
+.gear-case p,.gear-effect{color:#d1d9ce;font:400 14px/1.45 var(--ui)}
+.gear-detail p{margin-top:4px}
+.gear-sheet{padding:10px 4px;min-width:0}
+.gear-sheet .gear-name{margin:4px 0 12px;font-size:clamp(22px,2.3vw,31px)}
+.gear-stats{display:grid;gap:3px;margin:0;padding:8px 0;border-block:1px solid #83725480}
+.gear-stats div,.gear-skill{display:flex;align-items:center;gap:8px}
+.gear-stats dt,.gear-stats dd{font-size:14px}.gear-stats dd{margin:0 0 0 auto;color:#f8db9f;font-weight:700}
+.gear-sheet h4{margin:16px 0 6px}
+.gear-skill{padding:6px 0;border-bottom:1px solid #67756a55;font-size:13px}
+.gear-skill kbd{min-width:32px;text-align:center;border:1px solid #7c7157;color:#e4c995;background:#18211f;font:600 11px/1.6 var(--ui)}
+.gear-skill small{color:var(--muted-gear);margin-left:auto;white-space:nowrap}
+.gear-footer{justify-content:space-between;border-bottom:0;border-top:1px solid #706348;padding-block:7px}
+.gear-footer>span{color:#bdc6ba;font-size:13px}.gear-footer button{border:1px solid #9b8864;background:#2e382f;color:var(--pale);padding:6px 16px}
+.gear-current{display:grid;gap:3px;width:100%;margin-top:auto;padding-top:8px;border-top:1px solid #75664d}
+.gear-case .gear-offer-title{font-size:19px;margin:0}
+.gear-case .gear-duration{margin:2px 0 12px}
+#lootChoices{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0}
+#lootChoices:empty{display:none}
+#lootChoices .gear-offer{display:flex;flex-direction:column;align-items:center;gap:9px;padding:14px 12px;text-align:center}
+.gear-offer .gear-art{width:min(108px,80%)}.gear-offer strong{font:600 20px/1.15 var(--serif)}
+.gear-equip{padding-top:4px;width:100%;color:#e4c58f;font-size:13px;font-weight:700}
+@media(max-width:650px){
+  .gear-layout{grid-template-columns:1fr;gap:10px}.gear-board{gap:5px;padding:6px}
+  .gear-scroll{padding:10px}.gear-sheet{padding:6px}.gear-header,.gear-footer{padding-inline:12px;gap:10px}
+  .gear-label{font-size:9px}.gear-slot strong{font-size:13px}
+  .gear-stats{grid-template-columns:repeat(3,1fr)}.gear-stats div{flex-direction:column;gap:0;align-items:flex-start}.gear-stats dd{margin:0}
+  #lootChoices{grid-template-columns:1fr;gap:7px}#lootChoices .gear-offer{display:grid;grid-template-columns:58px minmax(0,1fr);gap:3px 10px;text-align:left;padding:8px}
+  .gear-offer .gear-art{grid-column:1;grid-row:1 / span 3;width:58px}.gear-offer strong{font-size:17px}
+  .gear-effect,.gear-case p{font-size:13px}.gear-equip{border:0;padding:0;font-size:11px}
+  .gear-current,.gear-equip{grid-column:2}
+}
+.gear-art.expansion{background-image:url('assets/equipment-expansion.webp');background-size:400% 300%}
+.gear-art.survey{background-image:url('assets/equipment-survey.webp');background-size:400% 400%}
+.gear-ancestry,.gear-detail .gear-ancestry{color:#f2cf8f}

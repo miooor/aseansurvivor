@@ -1,0 +1,42 @@
+// Each entry configures one existing cast. Its two paths replace the same base parameters.
+function path(name,description,values){return {name,description,values}}
+function skill(slot,base,first,second){return {slot,base,paths:[first,second]}}
+
+export const SPECIALIZATIONS={
+  ustaz:skill(3,{radius:1,stun:1},
+    path('Steady Lantern','Stun lasts 50% longer in a 25% smaller wave.',{radius:.75,stun:1.5}),
+    path('Beacon Circle','Reach 30% farther with a 40% shorter stun.',{radius:1.3,stun:.6})),
+  rempit:skill(2,{life:2.2,radius:24},
+    path('Long Fuse','Lay a longer, narrower trail. Each patch lasts 3.2 s with radius 16.',{life:3.2,radius:16}),
+    path('Flared Pipe','Lay a shorter, wider trail. Each patch lasts 1.4 s with radius 36.',{life:1.4,radius:36})),
+  nok:skill(1,{reach:1,half:Math.PI/3},
+    path('Long Knee','Reach 35% farther with a narrower 72° arc.',{reach:1.35,half:Math.PI/5}),
+    path('Sweeping Knee','Trade 25% reach for a wide 160° arc.',{reach:.75,half:4*Math.PI/9})),
+  lan:skill(3,{radius:1,slow:3},
+    path('Deep Current','Slow ghosts for 5 s in a 25% smaller wave.',{radius:.75,slow:5}),
+    path('Lake Swell','Reach 30% farther. The slow lasts 1.8 s.',{radius:1.3,slow:1.8})),
+  sari:skill(3,{duration:1,counter:1},
+    path('Patient Guard','Hold guard 40% longer. Each contact counter deals 30% less damage.',{duration:1.4,counter:.7}),
+    path('Snap Counter','Deal 50% more contact counter damage in a 35% shorter stance.',{duration:.65,counter:1.5})),
+  asha:skill(1,{radius:100,expiry:6},
+    path('Chope Early','Chopes last 9 s. Slap a smaller radius of 72.',{radius:72,expiry:9}),
+    path('Bulk Buy','Slap a radius of 140. Chopes expire after 4 s.',{radius:140,expiry:4})),
+  mira:skill(3,{duration:3,force:180},
+    path('Heavy Stockpot','Cover up for 4.5 s with a lighter 100-force shove.',{duration:4.5,force:100}),
+    path('Hammered Rim','Push with 300 force. The guard lasts 1.8 s.',{duration:1.8,force:300})),
+  dani:skill(2,{damage:1.25,fireRate:1.5},
+    path('Deep Gold','Deal 40% more damage and fire basic attacks 25% faster.',{damage:1.4,fireRate:1.25}),
+    path('Quick Gold','Deal 15% more damage and fire basic attacks 80% faster.',{damage:1.15,fireRate:1.8})),
+  vanna:skill(3,{radius:140,pulse:45},
+    path('Tight Knot','The familiar strikes within 95 units for 65 base damage.',{radius:95,pulse:65}),
+    path('Loose Weave','The familiar strikes within 195 units for 32 base damage.',{radius:195,pulse:32})),
+  keo:skill(3,{stun:.8,damage:18},
+    path('Fermata','Stun for 1.4 s. The pulse deals 12 base damage.',{stun:1.4,damage:12}),
+    path('Sharp Accent','Deal 28 base damage. The stun lasts 0.4 s.',{stun:.4,damage:28})),
+  nadi:skill(4,{radius:170,duration:6},
+    path('Lasting Refuge','The ward and monks last 8 s, with a smaller radius of 125.',{radius:125,duration:8}),
+    path('Open Refuge','The ward covers radius 220, with a shorter duration of 4 s.',{radius:220,duration:4})),
+  lia:skill(1,{length:290,damage:32},
+    path('Long Crescent','Reach 370 units for 24 base damage.',{length:370,damage:24}),
+    path('Deep Cut','Strike for 48 base damage within 220 units.',{length:220,damage:48}))
+};

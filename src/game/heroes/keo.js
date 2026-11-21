@@ -1,0 +1,40 @@
+import {launchBasicVolley} from '../basic-volley.js';
+export function installKeo(api){
+  const {HEROES,CAST,AUTO,HOOKS,nearest,each,hit,rm,aimDir,ring}=api;
+  HEROES.keo={id:'keo',name:'Keo',country:'Laos',role:'Reed resonator · timed releases',hp:105,speed:180,ultNeed:55,basicDamage:14,
+    identity:{title:'Reed Resonator',name:'Open Measure',color:'#9edba6',max:2,key:'Q / E / F',loop:'After Q/E/F, cast another from 1.5 through 2.0 seconds for 40% more hero-skill damage. Instant linked AUTO casts favor immediate effects and forgo that timing bonus.',hint:'Cast Q/E/F, wait 1.5s, release by 2s',ready:'READY · Q/E/F gains 40%'},
+    skills:[
+      {key:'',name:'Reed Note',desc:'Auto projectile every 0.85s:14 damage, range 330.',up:'+25% damage.',cd:.85},
+      {key:'Q',name:'Bass Breaker',baseDamage:28,damageLabel:'Base hit',desc:'Length 240,70° cone:28 damage and 160 knockback. A timed release gains 40% damage.',up:'+25% damage.',cd:5},
+      {key:'E',name:'Triple Overtone',baseDamage:14,damageLabel:'Base bolt',desc:'Three parallel bolts 20 apart,14 damage each, speed 460, lifetime 0.8s; one target may take all 3. Timing bonus follows only these bolts.',up:'+25% damage.',cd:6},
+      {key:'F',name:'Held Breath',techniqueDamage:'damage',damageLabel:'Base pulse',desc:'Radius 150 pulse:18 damage and 0.8s non-boss stun. Timed release gains 40% damage.',up:'+25% damage.',cd:9},
+      {key:'R',name:'Fourfold Echo',desc:'Four radius 180 pulses at cast position after 0.3/0.9/1.5/2.1s,30 damage each. During the performance, a timed Q/E/F redirects the next pulse 180 units along aim and raises its damage by 40%.',up:'+25% damage.',cd:0,ult:true,baseDamage:30,damageLabel:'Base pulse'}
+    ]};
+  let S,lastRaid=null;
+  function clear(){const g=api.G;S={last:null,pulses:[]};if(g){g.roster.keo=S;g.fx=g.fx.filter(f=>f.hero!=='keo');g.projs=g.projs.filter(q=>q.hitOptions?.hero!=='keo')}}
+  function sync(){if(lastRaid!==api.G.raid){clear();lastRaid=api.G.raid}}
+  function status(){const g=api.G;if(!g.identity)return;const age=S.last===null?null:g.t-S.last,ready=age!==null&&age>=1.5-1e-8&&age<=2+1e-8;Object.assign(g.identity,{charge:age===null?0:Math.min(2,age),ready,detail:age===null?'Q/E/F · Start measure':age>2+1e-8?'Measure expired · Q/E/F':ready?'READY · '+Math.max(0,2-age).toFixed(2)+'s':'Release in '+Math.max(0,1.5-age).toFixed(2)+'s'})}
+  function measure(){sync();const g=api.G,age=S.last===null?-1:g.t-S.last,mul=age>=1.5-1e-8&&age<=2+1e-8?1.4:1;S.last=g.t;
+    if(mul>1){
+      api.signatureReleased();
+      const next=S.pulses.find(p=>p.at>g.t&&!p.redirected);
+      if(next){const [ax,ay]=aimDir(),point=api.safePoint(g.p.x+ax*180,g.p.y+ay*180,0);
+        Object.assign(next,point,{damage:next.damage*1.4,redirected:true});
+        ring(point.x,point.y,180,'#9edba6',Math.max(.1,next.at-g.t),'downbeat');g.fx.at(-1).hero='keo';
+      }
+    }
+    status();return mul}
+  // E lands after successful-cast hooks; retain Drum eligibility from before its own trigger.
+  function bolt(a,r,slot,damage,x=api.G.p.x,y=api.G.p.y,speed=460,life=.8){const shot={x,y,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed,r:6,dmg:damage*rm(r),life,pierce:1,hit:new Set(),hitOptions:{hero:'keo',slot,...(slot===2?{crosswindDrumActive:api.G.itemState.crosswindDrum?.until>api.G.t}: {})},kind:'nur'};
+    if(slot===0)launchBasicVolley(api.G,r,shot);else api.G.projs.push(shot);
+  }
+  HOOKS.newGame.push(()=>{lastRaid=null;clear()});HOOKS.cleanup.push(clear);
+  HOOKS.update.push(()=>{const g=api.G;if(g.hero.id!=='keo')return;sync();const due=S.pulses.filter(q=>g.t>=q.at-1e-8);S.pulses=S.pulses.filter(q=>!due.includes(q));for(const q of due){each(q.x,q.y,180,e=>hit(e,q.damage,{hero:'keo',slot:4}));ring(q.x,q.y,180,'#9edba6',.25,'echo-land');api.G.fx.at(-1).hero='keo'}status()});
+  CAST.keo=[
+    r=>{sync();const p=api.G.p,e=nearest(p.x,p.y,330);if(!e)return false;bolt(Math.atan2(e.y-p.y,e.x-p.x),r,0,api.G.hero.basicDamage,p.x,p.y,400,330/400)},
+    r=>{const mul=measure(),g=api.G,[ax,ay]=aimDir(),a=Math.atan2(ay,ax);each(g.p.x,g.p.y,240,(e,dx,dy)=>{const angle=Math.atan2(Math.sin(Math.atan2(dy,dx)-a),Math.cos(Math.atan2(dy,dx)-a));if(Math.abs(angle)<=Math.PI*35/180)hit(e,api.G.hero.skills[1].baseDamage*rm(r)*mul,{hero:'keo',slot:1,kb:[ax*160,ay*160]})})},
+    r=>{const mul=measure(),p=api.G.p,[ax,ay]=aimDir(),a=Math.atan2(ay,ax);const offsets=mul>1&&api.G.evo[2]?[-40,-20,0,20,40]:[-20,0,20];for(const offset of offsets)bolt(a,r,2,api.G.hero.skills[2].baseDamage*mul,p.x-ay*offset,p.y+ax*offset);return {reedCount:offsets.length}},
+    r=>{const mul=measure(),p=api.G.p;each(p.x,p.y,150,e=>{hit(e,api.G.technique.damage*rm(r)*mul,{hero:'keo',slot:3});if(!e.boss&&e.type!=='body')e.stun=Math.max(e.stun||0,api.G.technique.stun)})},
+    r=>{sync();const g=api.G;for(const delay of [.3,.9,1.5,2.1]){S.pulses.push({x:g.p.x,y:g.p.y,at:g.t+delay,damage:api.G.hero.skills[4].baseDamage*rm(r)});if(S.pulses.length>12)S.pulses.shift()}}
+  ];AUTO.keo={order:[1,2,3,4],when:[null,n=>n(240)>=1,n=>n(370)>=1,n=>n(150)>=2,n=>n(180)>=4]};
+}

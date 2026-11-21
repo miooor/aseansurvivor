@@ -1,6 +1,18 @@
 <!doctype html><html lang="en"><meta charset="utf-8"><title>Stage environment review</title><style>body{margin:20px;background:#102024;color:#eee9dc;font:15px system-ui}button,select{padding:10px;background:#234146;color:white;border:1px solid #79b7ad}iframe{width:100%;height:650px;border:0}pre{white-space:pre-wrap}</style><h1>Stage environment review</h1><select id="stage" aria-label="Stage"></select> <select id="landmark" aria-label="Landmark"></select> <button id="preview" disabled>Preview environment</button> <button id="run" disabled>Run stage checks</button><details><summary>Verification report</summary><pre id="report">Loading…</pre></details><iframe id="game" title="Stage under test" src="../index.html"></iframe><script type="module">
 import {STAGES} from '../src/content/core.js';
-import {createWorld} from '../src/content/world.js';
+import {createWorld,WORLD_SIZE,HALF} from '../src/content/world.js';
+import {STAGE_PROPS,STAGE_SCENES} from '../src/content/stage-scenes.ts';
+import {REGIONAL_GHOSTS} from '../src/content/regional-ghosts.js';
+import {ENCOUNTERS} from '../src/content/encounters.js';
+import {checkFolkloreMonsters} from './folklore-monsters.js';
+import {checkMonsterSkills} from './monster-skills.js';
+import {checkHuntingPacks} from './hunting-packs.js';
+import {checkBossEscorts} from './boss-escorts.js';
+import {checkWaveSpecialists} from './wave-specialists.js';
+import {checkNightFoes} from './night-foes.js';
+import {checkJohorRhythm} from './johor-rhythm.js';
+import {checkVeteranRuns} from './veteran-runs.js';
+import {checkRajaToyolRunners} from './raja-toyol-runners.js';
 const $=id=>document.getElementById(id),frame=$('game');let rt;
 for(const [i,s]of STAGES.entries())$('stage').add(new Option(s.name,String(i)));
 function choices(){const w=createWorld(STAGES[Number($('stage').value)].id);$('landmark').replaceChildren();for(const [i,s]of w.landmarks.entries())$('landmark').add(new Option(s.name,String(i)))}choices();$('stage').onchange=choices;
@@ -8,17 +20,247 @@ const ready=setInterval(()=>{rt=frame.contentWindow.__asean;if(rt){clearInterval
 $('preview').onclick=()=>{rt.toMenu();rt.newGame('ustaz',Number($('stage').value));const g=rt.G,s=g.world.landmarks[Number($('landmark').value)];Object.assign(g.p,{x:s.x,y:s.y,invuln:999});g.auto=false;g.cds[0]=999;g.spawnT=g.durianT=999;frame.contentDocument.getElementById('menu').hidden=true;rt.makeGhost(g.world.signature,s.x+180,s.y+50);rt.scene.update(0,50);g.paused=true;frame.contentDocument.getElementById('banner').classList.remove('show')};
 // Failure scope: shared mutable navigation between stages, disconnected landmarks,
 // stale minimap/art, missing signature enemies, invalid spawns and duplicate rewards.
-$('run').onclick=()=>{let result='PASS',error;const checks=[],check=(name,pass)=>{checks.push({name,pass:!!pass});if(!pass)throw Error(name)};
-try{const layouts=new Set(),signatures=new Set();for(const [index,stage]of STAGES.entries()){
+$('run').onclick=async()=>{let result='PASS',error;const checks=[],check=(name,pass)=>{checks.push({name,pass:!!pass});if(!pass)throw Error(name)};
+try{checkFolkloreMonsters(rt,frame.contentDocument,check);const layouts=new Set(),signatures=new Set(),terrainPalettes=new Set();for(const [index,stage]of STAGES.entries()){
 rt.toMenu();rt.newGame('ustaz',index);const g=rt.G,w=g.world;g.auto=false;g.cds[0]=999;g.spawnT=g.durianT=999;g.p.invuln=999;layouts.add(JSON.stringify(w.blockers));signatures.add(w.signature);check(stage.name+' binds its own world',w.id===stage.id);
+for(const [roadIndex,road] of w.roads.entries()){
+  check(stage.name+' road '+(roadIndex+1)+' has a continuous walkable lane',road.slice(1).every(([x,y],i)=>
+    w.clearLine({x:road[i][0],y:road[i][1]},{x,y},66)));
+}
+check(stage.name+' keeps building plots outside the painted road shoulders',w.buildings.every(plot=>w.clearOfRoads(plot,19)));
+if(stage.id==='johor')check('Johor encounter stations retain their authored positions and open approaches',
+  Object.entries(ENCOUNTERS).every(([id,{x,y}])=>w.walkable(x,y,40)&&g.encounters[id].x===x&&g.encounters[id].y===y));
+const outer=w.landmarks.filter(s=>Math.max(Math.abs(s.x),Math.abs(s.y))>3000);
+check(stage.name+' has two destinations outside the old boundary',outer.length===2 && outer.some(s=>s.featured));
+check(stage.name+' retains a finite outer map boundary',!w.walkable(HALF+40,0,30));
 for(const s of w.landmarks){check(stage.name+' '+s.name+' is on land',w.walkable(s.x,s.y,30));const actor={x:0,y:0,r:24};for(let n=0;n<3000&&Math.hypot(actor.x-s.x,actor.y-s.y)>100;n++){const [dx,dy]=w.routeDirection(actor,s);Object.assign(actor,w.moveOnMap(actor.x,actor.y,actor.x+dx*30,actor.y+dy*30,24))}check(stage.name+' '+s.name+' is reachable',Math.hypot(actor.x-s.x,actor.y-s.y)<=100)}
 const site=w.landmarks[1];Object.assign(g.p,{x:site.x,y:site.y});rt.scene.update(0,50);check(stage.name+' discovers unique landmark',g.exploration.visited.includes(site.id));check(stage.name+' spawns local cache guardians',g.enemies.some(e=>e.type===w.signature));for(const e of g.enemies)e.dead=true;const coins=g.coins;rt.scene.update(0,50);check(stage.name+' cache rewards once',g.coins===coins+site.reward);rt.scene.update(0,50);check(stage.name+' cache does not repeat',g.coins===coins+site.reward);
+const terrain=frame.contentDocument.getElementById('game');
+check(stage.name+' renders its Three.js terrain',terrain&&!terrain.hidden&&terrain.dataset.region===stage.id);
+const ground=rt.scene.terrain.scene.getObjectByName('regional-ground');
+check(stage.name+' uses a full-resolution mipmapped base texture',
+  ground?.material.map.image.width>=2048&&ground.material.map.image.height>=2048&&
+  ground.material.map.generateMipmaps);
+const surface=ground.geometry.getAttribute('position');
+check(stage.name+' renders its authored relief and shares it with the actor shader',
+  surface.array.some((value,i)=>i%3===1&&value>=75)&&
+  rt.scene.terrain.actors.heightMap.value.image.data===w.samples);
 check(stage.name+' renders correct map title',frame.contentDocument.querySelector('#worldMap strong').textContent===w.name);
-const e=rt.makeGhost(w.signature,g.p.x+260,g.p.y);e.stun=0;e.skillT=.1;for(let n=0;n<60;n++)rt.scene.update(0,50);check(stage.name+' signature enemy performs its attack',e.actions>0);check(stage.name+' signature enemy uses dedicated art',rt.scene.children.list.some(o=>o.type==='Image'&&o.visible&&o.texture.key==='region-enemies'));
-rt.raid.spawnPortal();check(stage.name+' rift lands on local walkable ground',w.walkable(rt.raid.state.portal.x,rt.raid.state.portal.y,35));
+const map=frame.contentDocument.querySelector('#worldMap svg');
+check(stage.name+' minimap uses the expanded world bounds',map.getAttribute('viewBox')==='0 0 '+WORLD_SIZE+' '+WORLD_SIZE);
+check(stage.name+' minimap names the featured landmark',map.getAttribute('aria-label').includes(outer.find(s=>s.featured).name));
+check(stage.name+' shows both landforms on the minimap',
+  w.landforms.every(hill=>Array.from(map.querySelectorAll('g > title')).some(title=>title.textContent===hill.name)));
+check(stage.name+' places its own landmark sprite',rt.scene.terrain.scenery.some(actor=>
+  stage.id==='selangor'?actor.key==='klang-warehouse':actor.key==='malaysia-landmarks'&&Number(actor.frame.name)===index));
+const scenes=STAGE_SCENES[stage.id];
+const scenicProps=rt.scene.terrain.scenery.filter(actor=>actor.key==='stage-scene-props');
+check(stage.name+' builds every authored roadside scene',scenes.length===3&&
+  scenicProps.length===scenes.reduce((n,scene)=>n+scene.props.length,0)&&scenes.every(scene=>
+    scene.props.every(([prop,dx,dy,width])=>{
+      const x=scene.x+dx,y=scene.y+dy;
+      const actor=scenicProps.find(actor=>actor.x===x&&actor.y===y&&Number(actor.frame.name)===STAGE_PROPS[prop]);
+      return actor&&(prop==='sampan'
+        ?actor.motion==='bob'&&w.waters.some(bank=>x-width*.45>=bank.x&&x+width*.45<=bank.x+bank.w&&y>=bank.y+28&&y+28<=bank.y+bank.h)
+        :w.walkable(x,y,14)&&w.clearOfRoads({x:x-width*.25,y:y-13,w:width*.5,h:26}));
+    })));
+const atmosphere=rt.scene.terrain.atmosphere;
+const ambientPose=()=>JSON.stringify(atmosphere.group.children.map(child=>[
+  child.position.x,child.position.y,child.rotation.x,child.material.opacity
+]));
+atmosphere.draw(0,false,false);const atRest=ambientPose();
+atmosphere.draw(1,false,false);
+check(stage.name+' scenery animates with the run clock',atmosphere.group.visible&&ambientPose()!==atRest);
+atmosphere.draw(1,true,false);
+check(stage.name+' preserves the static composition in reduced motion',ambientPose()===atRest);
+atmosphere.draw(1,false,true);
+check(stage.name+' keeps stage atmosphere outside the raid',!atmosphere.group.visible);
+atmosphere.draw(g.t,false,false);
+check(stage.name+' uses a varied local building and prop palette',new Set(rt.scene.terrain.scenery
+  .filter(actor=>['malaysia-buildings','kl-buildings','malaysia-scenery','kampung-buildings'].includes(actor.key))
+  .map(actor=>actor.key+'-'+actor.frame.name)).size>=3);
+const nature=rt.scene.terrain.scenery.filter(actor=>actor.key==='regional-foliage');
+const trunks=nature.filter(actor=>Number(actor.frame.name)<4);
+check(stage.name+' anchors varied canopies to its existing trunks',
+  trunks.length===w.trees.length&&trunks.every((actor,i)=>actor.x===w.trees[i].x&&actor.y===w.trees[i].y)&&
+  new Set(trunks.map(actor=>actor.frame.name)).size>=Math.min(3,trunks.length));
+if(!w.urban){
+  const cover=nature.filter(actor=>Number(actor.frame.name)>=4);
+  check(stage.name+' scatters grasses and stones on walkable ground off the roads',
+    new Set(cover.map(actor=>actor.frame.name)).size===8&&cover.every(({x,y})=>w.walkable(x,y,20)&&w.clearOfRoads({x,y,w:1,h:1})));
 }
-check('All six stages have different collision layouts',layouts.size===6);check('All six stages have a distinct signature enemy',signatures.size===6);
+if(stage.id==='kl')check('Kuala Lumpur places every dedicated urban building silhouette',
+  new Set(rt.scene.terrain.scenery.filter(actor=>actor.key==='kl-buildings').map(actor=>actor.frame.name)).size===6);
+if(stage.id==='melaka'){
+  const head=rt.makeGhost('penanggal',g.p.x+160,g.p.y);
+  const body=rt.makeGhost('body',g.p.x+100,g.p.y);
+  head.body=body;body.head=head;
+  rt.scene.update(0,50);
+  const flying=rt.scene.sprites.get(head),grounded=rt.scene.sprites.get(body);
+  check('Penanggal floats above its separate grounded body',flying?.key==='penanggal-pair'&&flying.frame.name==='0'&&flying.y<head.y
+    &&grounded?.key===flying.key&&grounded.frame.name==='1'&&grounded.y===body.y&&body.near);
+  rt.kill(body);rt.scene.update(0,0);
+  check('Destroying the body removes its sprite and weakens its head',!rt.scene.sprites.has(body)&&head.weak&&head.hp<=head.maxHp/2);
+  rt.kill(head);
+}
+const e=rt.makeGhost(w.signature,g.p.x+260,g.p.y);e.stun=0;e.skillT=.1;
+Object.assign(e,{spd:0});
+const sprite=()=>rt.scene.sprites.get(e),baseFrame=REGIONAL_GHOSTS[w.signature].frame;
+const poseStride=REGIONAL_GHOSTS[w.signature].poseStride??9;
+rt.scene.update(0,0);
+check(stage.name+' local enemy starts in its idle pose',Number(sprite()?.frame.name)===baseFrame);
+Object.assign(e,{stride:20,moving:true});
+g.paused=true;rt.scene.update(0,0);
+check(stage.name+' local enemy uses its alternate travel pose',Number(sprite()?.frame.name)===baseFrame+poseStride);
+g.paused=false;
+for(let n=0;n<4;n++)rt.scene.update(0,50);
+check(stage.name+' local enemy crouches during its warning',e.windup>0 && sprite().height<REGIONAL_GHOSTS[w.signature].size);
+if(w.signature==='nipah'){
+  const mark={...e.warningPoint},hp=g.p.hp;
+  check('Nipah Rootling telegraphs the player’s starting position',mark.x===g.p.x&&mark.y===g.p.y);
+  Object.assign(g.p,w.safePoint(g.p.x-155,g.p.y,24),{invuln:0});
+  for(let n=0;n<22&&!e.actions;n++)rt.scene.update(0,50);
+  check('Walking off the root circle dodges the strike',g.p.hp===hp&&e.actions===1);
+}else{
+  for(let n=0;n<22&&!e.actions;n++)rt.scene.update(0,50);
+}
+check(stage.name+' signature enemy performs its attack',e.actions>0);
+rt.scene.drawTerrain();
+const uniforms=rt.scene.terrain.renderer.properties.get(ground.material).uniforms;
+const terrainPaint=['basePaint','soilPaint','accentPaint'].map(name=>uniforms?.[name]?.value);
+check(stage.name+' renders three distinct painted ground materials',terrainPaint.every(texture=>
+  texture?.image.naturalWidth>0&&texture.generateMipmaps)&&new Set(terrainPaint).size===3);
+terrainPalettes.add(terrainPaint.map(texture=>texture.name).join(','));
+check(stage.name+' signature enemy uses its attack pose on release',
+  Number(sprite()?.frame.name)===baseFrame+2*poseStride &&
+  rt.scene.terrain.actors.sheets.get(REGIONAL_GHOSTS[w.signature].atlas??'malaysia-monsters')?.body.visible);
+const pose=[sprite().frame.name,sprite().rotation,sprite().height,sprite().y].join(',');
+g.paused=true;rt.scene.update(0,50);
+check(stage.name+' attack animation freezes on pause',[sprite().frame.name,sprite().rotation,sprite().height,sprite().y].join(',')===pose);
+g.paused=false;
+if(index===0){
+  const win=frame.contentWindow,matchMedia=win.matchMedia;
+  win.matchMedia=query=>query==='(prefers-reduced-motion: reduce)'?{matches:true}:matchMedia.call(win,query);
+  try{
+    rt.scene.update(0,0);
+    check('Reduced motion keeps the attack frame and removes sprite distortion',
+      Number(sprite().frame.name)===baseFrame+18 && sprite().rotation===0 && sprite().height===REGIONAL_GHOSTS[w.signature].size);
+  }finally{win.matchMedia=matchMedia}
+}
+if(w.signature==='foam')check('Slipway Crab fires six parallel foam shots',g.eprojs.length===6&&
+  g.eprojs.every(p=>p.vx===g.eprojs[0].vx&&p.vy===g.eprojs[0].vy));
+if(w.signature==='kite')check('Wau Wisp leaves one gap in its radial volley',g.eprojs.length===9&&
+  g.eprojs.every(p=>Math.cos(Math.atan2(p.vy,p.vx)-e.attackAngle)<.9));
+if(w.signature==='mooring')check('Mooring Wraith releases three bolts at distinct speeds down its marked line',
+  g.eprojs.length===3&&g.eprojs.every((p,i)=>
+    Math.abs(Math.hypot(p.vx,p.vy)-[185,235,285][i])<.01&&
+    Math.cos(Math.atan2(p.vy,p.vx)-e.attackAngle)>.999));
+rt.raid.spawnPortal();check(stage.name+' rift lands on local walkable ground',w.walkable(rt.raid.state.portal.x,rt.raid.state.portal.y,35));
+if(stage.id==='penang'){
+  rt.newGame('ustaz',index);
+  const run=rt.G,world=run.world,gate=world.gangway,document=frame.contentDocument;
+  const start=document.getElementById('jettyStart'),panel=document.getElementById('jettyPrompt');
+  const step=n=>{for(let i=0;i<n;i++)rt.scene.update(0,50)};
+  const across={x:gate.x+gate.w/2,y:gate.y+gate.h/2};
+  run.auto=false;run.cds.fill(999);run.spawnT=run.pupT=run.durianT=999;
+  check('The raised gangway blocks crossing',!world.walkable(across.x,across.y,24)&&panel.hidden);
+  Object.assign(run.p,gate.winch);step(1);
+  check('The Jetty discovery reveals a manual interaction with no cache',
+    !panel.hidden&&run.exploration.visited.includes('chew-jetty')&&!run.exploration.guards['chew-jetty']);
+  step(45);
+  check('Waiting near the winch never lowers the gangway',!gate.open&&!run.jettyWork.active);
+  start.click();step(10);
+  check('Operating the winch uses the live survival clock',run.jettyWork.elapsed>0&&run.clock>2.5&&!gate.open);
+  const pausedAt=run.jettyWork.elapsed;
+  rt.togglePause();step(12);
+  check('Pause freezes the operation',run.jettyWork.elapsed===pausedAt);
+  rt.togglePause();run.p.x-=240;step(1);
+  check('Leaving the station resets the attempt',run.jettyWork.elapsed===0&&!run.jettyWork.active&&!gate.open);
+  Object.assign(run.p,gate.winch);step(1);start.click();step(8);
+  run.p.invuln=0;run.eprojs.push({x:run.p.x,y:run.p.y,vx:0,vy:0,r:10,dmg:8,life:1});
+  step(1);
+  check('Taking damage interrupts the winch',run.jettyWork.elapsed===0&&!run.jettyWork.active&&!gate.open);
+  const north={x:gate.x-140,y:1530,r:24},south={x:across.x,y:2920};
+  world.routeDirection(north,south);
+  start.click();step(45);
+  check('A fresh attempt lowers the gangway without a cache payout',
+    gate.open&&run.coins===0&&world.walkable(across.x,across.y,24));
+  check('The minimap marks the new route',document.querySelector('[data-gangway]').dataset.state==='open');
+  const walker={...north};
+  for(let i=0;i<65&&Math.hypot(walker.x-south.x,walker.y-south.y)>90;i++){
+    const [dx,dy]=world.routeDirection(walker,south);
+    Object.assign(walker,world.moveOnMap(walker.x,walker.y,walker.x+dx*30,walker.y+dy*30,24));
+  }
+  check('Cached enemy routing picks up the shorter crossing',Math.hypot(walker.x-south.x,walker.y-south.y)<=90);
+  rt.newGame('ustaz',index);step(1);
+  check('A new run closes the gangway and clears the old minimap marker',
+    !rt.G.world.walkable(across.x,across.y,24)&&document.querySelector('[data-gangway]').dataset.state==='closed');
+}
+if(stage.id==='kelantan'){
+  rt.newGame('ustaz',index);
+  const run=rt.G,lookout=run.world.wauLookout,document=frame.contentDocument;
+  const button=document.getElementById('wauStart'),panel=document.getElementById('wauPrompt');
+  const step=n=>{for(let i=0;i<n;i++)rt.scene.update(0,50)};
+  run.auto=false;run.cds.fill(999);run.spawnT=run.pupT=run.durianT=999;
+  check('Kelantan has a walkable launch station, hidden from the spawn HUD',
+    run.world.walkable(lookout.station.x,lookout.station.y,24)&&panel.hidden);
+  check('The marked wind lane and its runout have clear ground',
+    [lookout.y,lookout.y+lookout.h/2,lookout.y+lookout.h].every(y=>
+      run.world.clearLine({x:lookout.x,y},{x:lookout.x+lookout.w+150,y},30)));
+  Object.assign(run.p,lookout.station,{invuln:999});step(1);
+  check('Approaching the lookout reveals the wau and no cache guardians',
+    !panel.hidden&&run.exploration.visited.includes('layang-ridge')&&!run.exploration.guards['layang-ridge']);
+  const y=lookout.y+lookout.h/2;
+  const target=rt.makeGhost('kite',lookout.x+320,y),outside=rt.makeGhost('kite',lookout.x+320,lookout.y-105);
+  const boss=rt.makeGhost('kite',lookout.x+510,y);
+  boss.boss=true;
+  for(const enemy of [target,outside,boss])Object.assign(enemy,{spd:0,skillT:999,encounter:'wind-test'});
+  const initialX=target.x,clock=run.clock,health=run.p.hp,targetHealth=target.hp;
+  step(30);
+  check('Waiting at the station does not activate the wind',run.wauWind.phase==='ready'&&target.x===initialX);
+  button.click();step(5);
+  check('The windup advances with survival time and does not push yet',
+    run.wauWind.phase==='raising'&&run.wauWind.progress>0&&run.clock>clock&&target.x===initialX);
+  const progress=run.wauWind.progress;
+  rt.togglePause();step(30);
+  check('Pause freezes the kite windup',run.wauWind.progress===progress);
+  rt.togglePause();run.p.x=lookout.station.x-240;run.p.invuln=0;step(21);
+  check('The launch completes after leaving the station',run.wauWind.phase==='gust'&&panel.hidden);
+  check('The minimap marks the active wind lane',document.querySelector('[data-wau-lane]').dataset.state==='gust');
+  step(35);
+  check('The gust pushes a caught ghost east once, leaving other targets and player health unchanged',
+    target.x>initialX+80&&target.x<initialX+165&&target.hp===targetHealth&&outside.x===lookout.x+320&&boss.x===lookout.x+510&&boss.stun===0&&run.p.hp===health);
+  check('The manoeuvre awards no coins',run.coins===0);
+  Object.assign(run.p,lookout.station);step(1);button.click();step(1);
+  check('The kite cannot be raised again during cooldown',run.wauWind.phase==='cooldown'&&button.getAttribute('aria-disabled')==='true');
+  step(275);button.click();step(1);
+  check('The same station can prime a second gust when ready',run.wauWind.phase==='raising');
+  rt.raid.enter();step(1);
+  check('The lookout prompt stays outside the raid arena',run.raid&&panel.hidden);
+  rt.newGame('ustaz',index);step(1);
+  check('A new Kelantan run resets the lookout',rt.G.wauWind.phase==='ready'&&panel.hidden);
+}
+}
+check('Every stage has a different collision layout',layouts.size===STAGES.length);check('Each stage has a local signature enemy',signatures.size===STAGES.length);
+check('Every stage uses its own combination of terrain materials',terrainPalettes.size===STAGES.length);
 rt.newGame('ustaz',0);rt.scene.update(0,50);check('Stage switching restores Johor geometry',rt.G.world.id==='johor'&&rt.G.world.walkable(0,0,30));
+rt.G.auto=false;rt.G.cds.fill(999);rt.G.spawnT=rt.G.durianT=999;
+const walker=rt.makeGhost('stalker',200,0);
+Object.assign(walker,{spd:80,skillT:999});
+for(let n=0;n<5;n++)rt.scene.update(0,50);
+check('Ground movement advances a real enemy stride',walker.x<200&&walker.stride>=12&&
+  rt.scene.sprites.get(walker)?.frame.name===String(REGIONAL_GHOSTS.stalker.frame+9));
+rt.raid.enter();rt.scene.update(0,50);rt.scene.drawTerrain();
+check('Raid renders the Three.js arena with active attack guidance',rt.G.raid&&!frame.contentDocument.getElementById('game').hidden&&!frame.contentDocument.getElementById('raidGuide').hidden);
+rt.toMenu();
+checkMonsterSkills(frame.contentWindow,check);
+checkHuntingPacks(frame.contentWindow,check);
+checkBossEscorts(frame.contentWindow,check);
+checkWaveSpecialists(frame.contentWindow,check);
+checkNightFoes(frame.contentWindow,check);
+checkJohorRhythm(frame.contentWindow,check);
+checkRajaToyolRunners(frame.contentWindow,check);
+await checkVeteranRuns(frame.contentWindow,check);
 }catch(e){result='FAIL';error=e.message}finally{rt.toMenu();$('report').textContent=JSON.stringify({date:new Date().toISOString(),result,error,checks},null,2)}};
 const download=document.createElement('button');download.textContent='Download report';$('run').after(download);
 download.onclick=()=>{const a=document.createElement('a'),url=URL.createObjectURL(new Blob([$('report').textContent],{type:'application/json'}));a.href=url;a.download='stage-worlds-report.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};

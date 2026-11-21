@@ -1,4 +1,64 @@
+import {SEQUENCE_EQUIPMENT} from './sequence-equipment.js';
+import {BASE_EQUIPMENT_DROPS} from './base-equipment-drops.js';
+
+export const EQUIPMENT_SLOTS=['weapon','charm','relic','head','chest','gloves','belt','boots'];
+
+function directBasicHit(options){
+  return options.slot===0&&!options.dot&&options.damageType!=='environment';
+}
+
 export const ITEMS={
+  dulangTimah:{slot:'relic',name:'Dulang Timah',exclusive:true,skillDamage:.15,pickup:.25,
+    description:'A tin panner’s keepsake. +15% skill damage and +25% pickup range.'},
+  rainHood:{slot:'head',name:'Rain Hood',skillDefense:.1,description:'Take 10% less skill damage.'},
+  mistHood:{slot:'head',upgradeFrom:'rainHood',name:'Mist Hood',skillDefense:.25,
+    description:'Take 25% less skill damage.'},
+  squallHood:{slot:'head',upgradeFrom:'rainHood',name:'Squall Hood',skillDefense:.1,showInStats:true,
+    skillDamageBonus:g=>g.p.hp<=g.p.maxHp*.5?.25:0,
+    description:'Take 10% less skill damage. At or below half HP, gain +25% skill damage.'},
+  trailHelmet:{slot:'head',name:'Trail Helmet',physicalDefense:.1,description:'Take 10% less physical damage.'},
+  lookoutCap:{slot:'head',name:'Lookout Cap',health:15,skillDamage:.05,description:'+15 maximum HP and +5% skill damage.'},
+  quiltedVest:{slot:'chest',name:'Quilted Vest',physicalDefense:.15,description:'Take 15% less physical damage.'},
+  stormCape:{slot:'chest',name:'Storm Cape',skillDefense:.15,description:'Take 15% less skill damage.'},
+  fieldJacket:{slot:'chest',name:'Field Jacket',health:35,description:'+35 maximum HP.'},
+  watchJacket:{slot:'chest',upgradeFrom:'fieldJacket',name:'Watch Jacket',health:35,physicalDefense:.1,skillDefense:.1,
+    description:'Night Watch grants +35 maximum HP and reduces both physical and skill damage taken by 10%.'},
+  runnerJacket:{slot:'chest',upgradeFrom:'fieldJacket',name:'Runner Jacket',health:35,speed:.12,
+    description:'Flying Start grants +35 maximum HP and +12% movement speed.'},
+  gripWraps:{slot:'gloves',name:'Grip Wraps',physicalDamage:.15,description:'+15% physical damage.'},
+  pursuitWraps:{slot:'gloves',upgradeFrom:'gripWraps',name:'Pursuit Wraps',physicalDamage:.15,targetSpecific:true,
+    damage:(g,enemy,options)=>directBasicHit(options)&&enemy.slowT>0?.25:0,
+    description:'Pursuit grants +15% physical damage. Direct basic hits against slowed enemies gain another 25 percentage points.'},
+  breakerWraps:{slot:'gloves',upgradeFrom:'gripWraps',name:'Breaker Wraps',physicalDamage:.15,targetSpecific:true,
+    damage:(g,enemy,options)=>directBasicHit(options)&&(enemy.elite||enemy.boss)?.25:0,
+    description:'Guard Break grants +15% physical damage. Direct basic hits against elites or bosses gain another 25 percentage points.'},
+  channelGloves:{slot:'gloves',name:'Channel Gloves',skillDamage:.15,description:'+15% skill damage.'},
+  workGloves:{slot:'gloves',name:'Dockhand Gloves',physicalDamage:.08,physicalDefense:.08,description:'+8% physical damage and 8% physical defense.'},
+  techniqueSash:{slot:'belt',name:'Technique Sash',skillRankSlots:[1],description:'Cast your Q skill one rank higher, including at rank five.'},
+  relaySash:{slot:'belt',upgradeFrom:'techniqueSash',name:'Relay Sash',skillRankSlots:[1,2],
+    description:'Skill Relay raises Q and E by one cast rank each, including at rank five.'},
+  flourishSash:{slot:'belt',upgradeFrom:'techniqueSash',name:'Flourish Sash',skillRankSlots:[1,3],
+    description:'Finishing Flourish raises Q and F by one cast rank each, including at rank five.'},
+  toolBelt:{slot:'belt',name:'Tool Belt',health:20,physicalDamage:.06,description:'+20 maximum HP and +6% physical damage.'},
+  wovenBelt:{slot:'belt',name:'Woven Belt',skillDamage:.08,skillDefense:.06,description:'+8% skill damage and 6% skill defense.'},
+  trailBoots:{slot:'boots',name:'Trail Boots',speed:.1,description:'+10% movement speed.'},
+  reedBoots:{slot:'boots',upgradeFrom:'trailBoots',name:'Reed Boots',speed:.1,pickup:.5,
+    description:'+10% movement speed. Attract coins and XP from 50% farther away.'},
+  switchbackBoots:{slot:'boots',upgradeFrom:'trailBoots',name:'Switchback Boots',speed:.1,showInStats:true,
+    walkMultiplier:g=>g.enemies.some(e=>!e.dead&&e.type!=='body'&&(e.x-g.p.x)**2+(e.y-g.p.y)**2<=120**2)?1.2:1,
+    description:'+10% movement speed. Walk another 20% faster while a living enemy (excluding body segments) is within 120 units.'},
+  deckBoots:{slot:'boots',name:'Deck Boots',physicalDefense:.08,speed:.04,description:'8% physical defense and +4% movement speed.'},
+  monsoonBoots:{slot:'boots',name:'Monsoon Boots',skillDefense:.08,speed:.04,description:'8% skill defense and +4% movement speed.'},
+  quaySeal:{quest:'quayManifest',slot:'relic',name:'Quay Seal',health:20,description:'The quay keeper’s brass seal grants 20 maximum HP.'},
+  harbourToken:{quest:'harbourLedger',slot:'relic',name:'Harbour Token',health:15,pickup:.25,
+    description:'The harbour clerk’s token grants 15 maximum HP and 25% more pickup range.'},
+  supperCarrier:{quest:'hawkerDelivery',slot:'charm',name:'Tiffin Carrier',health:15,speed:.05,description:'The hawker’s spare carrier grants 15 maximum HP and 5% movement speed.'},
+  tinMallet:{quest:'tinAssay',slot:'weapon',name:'Assayer’s Mallet',damage:.15,description:'The dredge crew’s mallet adds 15% outgoing damage.'},
+  jettyKnot:{quest:'jettyEscort',slot:'charm',name:'Jetty Rope Bracelet',speed:.1,health:5,description:'A bracelet tied by the fisher grants 10% movement speed and 5 maximum HP.'},
+  padiSheaf:{quest:'paddyWater',slot:'charm',name:'Padi Sheaf',health:30,description:'The granary keeper’s harvest token grants 30 maximum HP.'},
+  nipahBraid:{quest:'nipahPlanting',slot:'charm',name:'Nipah Leaf Braid',health:20,speed:.04,description:'A braid from the nursery grants 20 maximum HP and 4% movement speed.'},
+  cengalMallet:{quest:'duyongLaunch',slot:'weapon',name:'Cengal Mallet',health:15,damage:.1,description:'The boatbuilder’s mallet adds 10% outgoing damage and 15 maximum HP.'},
+  wauSpool:{quest:'wauFlight',slot:'relic',name:'Wau Line Spool',speed:.08,description:'The kite maker’s spare spool grants 8% movement speed.'},
   thornEcho:{slot:'relic',name:'Thorn Echo',description:'Every third successful Q/E/F cast releases a radius-120 pulse for 30 damage with normal outgoing modifiers.'},
   bountySeal:{slot:'relic',name:'Bounty Seal',description:'When your damage kills an elite, heal 15 HP and gain 10 percentage points of ultimate charge.'},
   aftershockBell:{damage:g=>g.itemState.aftershockBell>g.t?.25:0,slot:'relic',name:'Aftershock Bell',description:'After a successful ultimate cast, gain +25% outgoing damage for five seconds; refreshes without stacking.'},
@@ -9,6 +69,8 @@ export const ITEMS={
   travellersKnot:{speed:.12,slot:'charm',name:"Traveller’s Knot",description:'+12% movement speed.'},
   splitEmber:{slot:'weapon',name:'Split Ember',description:'Every fourth successful basic cast fires two extra aimed bolts at ±15°, each for 40% of unmodified basic damage.'},
   quarryHammer:{damage:.2,speed:-.1,slot:'weapon',name:'Quarry Hammer',description:'+20% outgoing damage; −10% movement speed.'},
-  riverNeedle:{damage:(g,e,o)=>e.slowT>0&&!o.dot?.25:0,slot:'weapon',name:'River Needle',description:'Direct, non-periodic hits against slowed enemies deal 25% more damage.'},
-  huntersEdge:{damage:(g,e)=>e.elite||e.boss?.3:0,slot:'weapon',name:"Hunter’s Edge",description:'Deal 30% more damage to elites and bosses.'}
+  riverNeedle:{targetSpecific:true,damage:(g,e,o)=>e.slowT>0&&!o.dot?.25:0,slot:'weapon',name:'River Needle',description:'Direct, non-periodic hits against slowed enemies deal 25% more damage.'},
+  huntersEdge:{targetSpecific:true,damage:(g,e)=>e.elite||e.boss?.3:0,slot:'weapon',name:"Hunter’s Edge",description:'Deal 30% more damage to elites and bosses.'},
+  ...SEQUENCE_EQUIPMENT,
+  ...BASE_EQUIPMENT_DROPS
 };

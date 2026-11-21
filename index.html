@@ -7,76 +7,320 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Chakra+Petch:wght@400;600;700&display=swap">
 <link rel="stylesheet" href="ui.css">
+<link rel="stylesheet" href="combat-hud.css">
+<link rel="stylesheet" href="campaign-menu.css">
+<link rel="stylesheet" href="atlas-exploration.css">
+<link rel="stylesheet" href="upgrade-shop.css">
+<link rel="stylesheet" href="equipment.css">
 
 </head>
 <body>
-<div id="gameHost"></div>
+<div id="gameHost"><div id="damageTint" aria-hidden="true"></div><div id="touchStick" aria-hidden="true" hidden></div></div>
 
 <div id="hud" hidden>
-  <div id="xpbar"><div id="xpfill"></div></div>
-  <div id="hudrow">
-    <div class="hud-player"><div class="level-badge"><span class="lbl">LVL</span><span class="big" id="lvl">1</span></div><div class="health"><div class="health-name" id="hudHero">Ustaz Hakim</div><div class="health-track"><div class="health-fill" id="hpFill"></div></div><span id="hpValue">150 / 150 HP</span></div></div>
-    <div class="hud-center"><span class="big" id="time">0:00</span><div class="lbl" id="goal">Survive until 3:00</div></div>
-    <div class="hud-right"><div><span class="big" id="kills">0</span><span class="lbl"> banished</span><div class="lbl"><span id="coinsHud">0</span> coins</div></div><button class="pause-button" id="pauseButton" aria-label="Pause game" title="Pause (Esc)">Ⅱ</button></div>
+  <div class="run-xp">
+    <label for="xpbar">XP</label>
+    <progress id="xpbar" aria-label="Experience toward the next level" value="0" max="12"></progress>
   </div>
-  <div id="signature">
-    <div class="signature-label"><strong id="signatureName">Sanctuary</strong><span id="signatureValue">0 / 4</span></div>
-    <div id="signatureMeter" role="progressbar" aria-labelledby="signatureName" aria-describedby="signatureHint" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><div id="signatureFill"></div></div>
-    <span id="signatureHint">Basic attacks gather light</span>
+  <div id="playerHealth" aria-hidden="true" hidden><div></div><span id="shrineBuff" hidden></span></div>
+  <div id="objectiveGps" hidden><span class="gps-pointer" aria-hidden="true">➤</span><strong id="gpsVerb"></strong></div>
+  <div id="fieldHud">
+<div id="questPrompts">
+<section id="encounterPrompt" hidden aria-label="Optional encounter">
+  <header class="quest-heading"><span id="eventArt" aria-hidden="true"></span><div><small id="eventState"></small><strong id="eventName"></strong></div></header>
+  <p id="eventDescription"></p>
+  <p id="eventProgress" aria-live="polite"></p>
+  <progress id="eventMeter" hidden aria-labelledby="eventProgress"></progress>
+  <div class="quest-offer"><button id="eventStart">Accept quest</button><span id="eventReward"></span></div><button id="eventInteract" hidden></button>
+  <details id="eventDetails" hidden><summary>Quest details</summary>
+    <p id="eventBrief"></p><p id="raidRestriction" hidden>Finish or abandon this quest to enter the Spirit Rift.</p>
+    <button id="eventAbandon" hidden>Abandon event</button>
+  </details>
+</section>
+<section id="jettyPrompt" class="landmark-prompt" hidden aria-labelledby="jettyTitle">
+  <strong id="jettyTitle">Chew Jetty winch</strong>
+  <p id="jettyStatus" role="status"></p>
+  <progress id="jettyProgress" class="lineup-sr" aria-label="Lowering the gangway" value="0" hidden></progress>
+  <button id="jettyStart" type="button">Lower gangway</button>
+</section>
+<section id="wauPrompt" class="landmark-prompt" hidden aria-labelledby="wauTitle">
+  <strong id="wauTitle">Padang Layang Lookout</strong>
+  <p id="wauStatus" role="status"></p>
+  <progress id="wauProgress" class="lineup-sr" aria-label="Raising the wau" value="0" hidden></progress>
+  <button id="wauStart" type="button">Raise the wau</button>
+</section>
+</div>
+  <section id="playerStatus" aria-label="Hero status">
+    <div class="hud-medallion"><div class="hud-avatar" aria-hidden="true"><span id="hudPortrait"></span></div><span class="hud-level">Lv <b id="lvl">1</b></span></div>
+    <div class="hud-vitals">
+      <div class="vital-heading"><strong id="hudHero">Ustaz Fadli</strong></div>
+      <div class="health-track"><div class="health-fill" id="hpFill"></div></div>
+      <span id="hpValue">150 / 150 HP</span>
+    </div>
+    <div id="signature">
+      <div class="signature-label"><strong id="signatureName">Sanctuary</strong><span id="signatureValue">0 / 4</span></div>
+      <div id="signatureMeter" role="progressbar" aria-labelledby="signatureName" aria-describedby="signatureHint" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><div id="signatureFill"></div></div>
+      <span id="signatureHint">Basic attacks gather light</span>
+    </div>
+  </section>
   </div>
-  <div id="bossbar" hidden><div class="name">PONTIANAK</div><div id="bosstrack"><div id="bossfill"></div></div></div>
-  <div id="banner"></div>
+  <div class="run-clock"><b id="time">0:00</b><span id="goal">Survive until 3:00</span><span id="veteranRunStatus" hidden></span></div>
+  <div class="run-tools">
+    <div class="run-tallies"><span><b id="kills">0</b> Banished</span><span><b id="coinsHud">0</b> Coins</span><span><b id="dps">0</b> DPS</span></div>
+    <button id="equipmentButton" aria-label="Inspect equipment" title="Inspect equipment" hidden>Gear</button>
+    <button class="pause-button" id="pauseButton" aria-label="Pause game" title="Pause (Esc)">Ⅱ</button>
+  </div>
+  <div id="bossbar" hidden><div class="name"><span id="bossName"></span><span id="bossWard" hidden>Ward active</span></div><div id="bosstrack"><div id="bossfill"></div></div></div>
+  <div id="banner" role="status"></div>
+  <section id="npcDialogue" class="landmark-prompt" hidden aria-labelledby="npcName">
+    <strong id="npcName"></strong>
+    <p id="npcLine" aria-live="polite"></p>
+    <button id="npcNext" type="button">Next ▸</button>
+  </section>
 </div>
 
+<section id="practiceGuide" aria-labelledby="practiceTitle" hidden>
+  <strong id="practiceTitle"></strong>
+  <p id="practicePrompt" role="status"></p>
+  <div class="practice-actions">
+    <button id="practiceRetry" type="button">Retry</button>
+    <button id="practiceReturn" type="button">Return to picker</button>
+    <label><input id="practiceNoCooldown" type="checkbox">No cooldown</label>
+  </div>
+</section>
 <div id="skills" hidden></div>
-<div id="raidGuide" hidden></div>
+<div id="raidGuide" hidden><span id="riftStatus" role="status"></span><span id="riftCountdown"></span></div>
 <aside id="worldMap" aria-label="Region navigation" hidden></aside>
 
 <main class="ov" id="menu">
-  <div class="lobby">
-    <header class="topbar">
-      <div class="brand"><span class="brandmark" aria-hidden="true"><span>A</span></span> ASEAN Survivor</div>
-      <span class="top-caption">FOLKLORE AWAKENS. LEGENDS RISE.</span>
-      <div class="top-actions"><div class="sound-controls"><button type="button" data-sound-mute aria-label="Mute sound effects" aria-pressed="false">Sound on</button><label>Effects volume <input data-sound-volume type="range" min="0" max="100" value="60" aria-label="Effects volume"></label></div><button class="text-button" id="helpButton">How to play <span aria-hidden="true">↗</span></button><span class="purse"><span class="coin-icon" aria-hidden="true">◈</span><b id="coinsMenu">0</b><span class="currency-label">COINS</span></span></div>
+  <div class="atlas-lobby">
+    <header class="atlas-header">
+      <h1 class="game-brand"><i aria-hidden="true">✥</i> ASEAN <b>Survivor</b></h1>
+      <div class="menu-tools">
+        <button id="openPatchNotes" type="button" aria-haspopup="dialog" aria-controls="patchNotes">Patch notes<span id="lastUpdated"></span></button>
+        <button id="openUpgradeShop" type="button" aria-haspopup="dialog"><span>Upgrades</span><span class="menu-coins"><i class="shop-coin" aria-hidden="true"></i> <b id="coinsMenu">0</b><span class="lineup-sr"> coins</span></span></button>
+        <details class="menu-settings">
+          <summary><span aria-hidden="true">☰</span> Menu</summary>
+          <div class="menu-settings-panel">
+            <button id="helpButton" type="button">Field guide</button>
+            <p class="menu-label">Settings</p>
+            <div class="sound-controls"><button type="button" data-sound-mute aria-label="Mute sound effects" aria-pressed="false">Sound on</button><label>Effects volume <input data-sound-volume type="range" min="0" max="100" value="60"></label></div>
+          </div>
+        </details>
+      </div>
     </header>
-    <section class="campaign" aria-label="Campaign">
-      <div>
-        <p class="eyebrow">The gates have opened</p>
-        <h1>ASEAN<span>SURVIVOR</span></h1>
-        <p class="campaign-copy">When the old spirits wake,<br>who will stand against the night?</p>
-        <p class="chapter-tag">CHAPTER I &nbsp; / &nbsp; THE MALAYSIAN PENINSULA</p>
+    <button class="phone-action" id="pickerDone" type="button">Done</button>
+    <div class="campaign-desk">
+      <section class="atlas-panel" aria-labelledby="atlasHeading">
+        <div id="atlasView"><div id="atlasLabels"></div></div>
+        <div class="atlas-map-heading">
+          <p class="menu-label">Expedition atlas</p><h2 id="atlasHeading">Malaysia</h2>
+          <div class="campaign-routes" role="group" aria-label="Campaign route">
+            <button type="button" id="route-west" aria-pressed="true">West Coast</button>
+            <button type="button" id="route-east" aria-pressed="false">East Coast</button>
+          </div>
+        </div>
+        <button class="compass-rose" id="atlasOverview" aria-label="Show the whole route"><span aria-hidden="true">N<i></i></span>Overview</button>
+        <button type="button" id="atlasExplore" class="terrain-entry">Explore terrain</button>
+        <div class="terrain-regions" role="group" aria-label="Terrain region">
+          <button type="button" id="atlasPeninsula">Peninsular Malaysia</button>
+          <button type="button" id="atlasEastMalaysia">East Malaysia</button>
+        </div>
+        <div class="terrain-tools">
+          <button type="button" id="atlasReturn">← Return to route</button>
+          <div role="group" aria-label="Terrain zoom">
+            <button type="button" id="atlasZoomOut" aria-label="Zoom out">−</button>
+            <button type="button" id="atlasZoomIn" aria-label="Zoom in">+</button>
+          </div>
+        </div>
+        <div class="atlas-dock">
+          <div class="atlas-readout" aria-live="polite" aria-atomic="true">
+            <div class="menu-label"><span id="atlasCount">01 / 16</span> &ensp;·&ensp; <span id="atlasState">Playable chapter</span></div>
+            <h3 id="atlasPlace">Johor</h3><span id="atlasCountry">Malaysia</span>
+          </div>
+          <div class="atlas-controls" role="group" aria-label="Explore the expedition route">
+            <button id="atlasPrevious" aria-label="Previous route stop" disabled>‹</button>
+            <button id="atlasTour" aria-pressed="false">Tour route</button>
+            <button id="atlasNext" aria-label="Next route stop">›</button>
+          </div>
+        </div>
+      </section>
+      <div class="mission-desk">
+        <section class="mission-sheet" aria-labelledby="stageTitle">
+          <div class="mission-actions">
+            <p class="menu-label" id="stageChapter">Mission 01 / Malaysia</p>
+            <button type="button" id="continueExpedition" disabled>Continue expedition</button>
+          </div>
+          <h2 id="stageTitle" tabindex="-1">Johor</h2>
+          <button class="phone-action" id="changeStage" type="button">Change stage</button>
+          <p id="stageInfo"></p>
+          <div class="mission-facts"><span>Boss <b id="stageBoss">Raja Toyol</b></span><span>Arrival <b id="stageDuration">3 minutes</b></span><span>Local spirit <b id="stageGuardian">Palm Stalker</b></span></div>
+          <div class="mission-destinations"><h3 class="menu-label">Optional destinations</h3><ul id="stageDestinations"></ul></div>
+          <label class="veteran-option" for="veteranChallenge">
+            <input type="checkbox" id="veteranChallenge" aria-labelledby="veteranTitle" aria-describedby="veteranDescription">
+            <span><b id="veteranTitle">Veteran challenge</b><small id="veteranDescription"></small></span>
+            <span id="veteranMedal" hidden>◆ Medal earned</span>
+          </label>
+        </section>
+        <section class="survivor-sheet" aria-label="Choose your survivor">
+          <div class="survivor-picker">
+            <i id="summaryPortrait" aria-hidden="true"></i>
+            <h2 class="lineup-heading">Choose a survivor</h2>
+            <button type="button" id="heroPreviewToggle" aria-label="Pause skill preview" title="Pause skill preview" hidden><span aria-hidden="true">Ⅱ</span></button>
+            <div id="heroWheel" role="group" aria-label="Survivor lineup" aria-describedby="heroWheelHelp">
+              <div id="heroes"></div>
+            </div>
+            <div class="wheel-controls">
+              <button id="heroPrevious" aria-label="Previous survivor" aria-keyshortcuts="A">⬅</button>
+              <h3 id="selectedHeroName" aria-live="polite" aria-atomic="true">Ustaz Fadli</h3>
+              <button id="heroNext" aria-label="Next survivor" aria-keyshortcuts="D">➡</button>
+            </div>
+            <p id="heroTitle"></p>
+            <p class="lineup-stats"><span id="selectedHeroRole"></span><span id="selectedHeroHp"></span></p>
+            <button class="phone-action" id="changeSurvivor" type="button">Change survivor</button>
+            <button id="unlockHero" hidden></button>
+          </div>
+          <p id="heroWheelHelp" class="lineup-sr">Press A, D or the arrow keys to choose a survivor. You can also swipe, scroll or tap a survivor.</p>
+          <div id="heroSkills" role="group" aria-label="Skill details"></div>
+          <p id="menuSkillDescription" hidden></p>
+          <p id="heroTrait"></p>
+        </section>
+        <footer class="mission-launch"><button id="practiceStart" type="button" title="Practice signature" disabled>Practice</button><button id="allRandom" type="button" aria-pressed="false" title="All random: every stage you enter uses a random survivor you own">Random</button><button class="btn" id="start" aria-keyshortcuts="Space">Enter Johor</button></footer>
       </div>
-      <aside class="mission" aria-label="Selected mission" aria-live="polite">
-        <p class="lbl" id="stageChapter">MISSION 01 / MALAYSIA</p>
-        <h2 id="stageTitle">Johor</h2>
-        <p class="sub" id="stageInfo"></p>
-        <div class="mission-meta"><div>ENCOUNTER<b>Survive the horde</b></div><div>BOSS ARRIVAL<b id="stageDuration">3 minutes</b></div></div>
-        <p class="mission-boss">Target &nbsp; / &nbsp; <span id="stageBoss">Raja Toyol</span></p>
-      </aside>
-    </section>
-    <section aria-label="Choose your destination">
-      <div class="section-head"><span class="lbl">01 &nbsp; Choose your destination</span><span class="section-note">Malaysia campaign</span></div>
-      <div class="route" id="route"></div>
-    </section>
-    <section aria-label="Choose your survivor">
-      <div class="section-head"><span class="lbl">02 &nbsp; Choose your survivor</span><span class="section-note" id="rosterNote">Five heroes. One last stand.</span></div>
-      <div class="heroes" id="heroes"></div>
-      <div class="loadout">
-        <div aria-live="polite"><p class="hero-title" id="heroTitle"></p><h3 class="selected-name" id="selectedHeroName">Ustaz Hakim</h3><p class="selected-role" id="selectedHeroRole"></p><span class="vital" id="selectedHeroHp"></span></div>
-        <div class="ability-details"><p id="heroTrait" aria-live="polite"></p><div class="ability-list" id="heroSkills"></div></div>
-      </div>
-    </section>
-    <footer class="lobby-footer">
-      <div class="footer-note"><strong><span class="dot">●</span> SOLO SURVIVAL</strong> &nbsp; · &nbsp; A journey through Southeast Asian folklore<br><kbd>WASD</kbd> Move &nbsp; <kbd>Q E F R</kbd> Skills &nbsp; <kbd>T</kbd> Auto-cast &nbsp; <kbd>Esc</kbd> Pause</div>
-      <button class="btn" id="start">Enter Johor</button>
-    </footer>
+    </div>
   </div>
+  <dialog id="patchNotes" aria-labelledby="patchTitle">
+    <header><h2 id="patchTitle">Patch notes</h2><form method="dialog"><button autofocus>Close</button></form></header>
+    <ol tabindex="0" aria-label="Patch history">
+      <li><time datetime="2026-11-21T13:46+08:00">21 Nov 2026 · 13:46 MYT</time>
+        <h3>Vanna’s silk familiar and regional rare enemies</h3>
+        <ul>
+          <li>Vanna can summon a silk familiar to intercept shots and weave a square that stuns enemies as they enter.</li>
+          <li>Each stage has four rare foes. Watch for the chasing ember when Arang Bara falls.</li>
+          <li>The Gold Sultan moves faster while his flamethrower spins three times.</li>
+        </ul>
+      </li>
+      <li><time datetime="2026-11-21T04:31+08:00">21 Nov 2026 · 04:31 MYT</time>
+        <h3>Auntie Karen and the overnight combat update</h3>
+        <ul>
+          <li>Auntie Karen has a new look from the survivor wheel to the battlefield. Mark ghosts with Tissue Packet Chope, charge them with a voucher hit, then use Cash Out to collect.</li>
+          <li>Captain “Pag Pag” Garcia banks portions for a healing boilover. The Gold Sultan can keep moving as his flamethrower spins once around him. Move to steer his gold bars. Gold Dust boosts damage and basic firing speed. Make It Rain automatically targets nearby enemies.</li>
+          <li>Lia leaves smoke behind when she uses Shadowstep. Blade Wheel reveals her, and Midnight Hunt chains blink strikes.</li>
+          <li>Kama can ignite his exhaust trail. Nok can land Turning Elbow after a flying knee to ready another knee. Fadli’s Sanctuary and Seruan have new light effects.</li>
+          <li>Basic attack upgrades now add Pierce, Chain, Fork and Return as you rank up. Projectile trails and ground effects show where attacks travel and hit.</li>
+          <li>Walk over a shrine for a 12-second blessing. In Klang, look for the Old Quay Warehouse and dodge the Mooring Wraith’s staggered bolts.</li>
+          <li>Preview casts on the survivor wheel. The lobby fits phone screens more closely, and each stage has its own musical motif alongside new event sounds.</li>
+          <li><a href="./auntie-karen.png">View the illustrated update poster</a></li>
+        </ul>
+      </li>
+      <li><time datetime="2026-11-21T00:46+08:00">21 Nov 2026 · 00:46 MYT</time>
+        <h3>Combat controls and skill effects</h3>
+        <ul>
+          <li>Skills sit along the bottom of the screen. On phones, gear and pause sit below the clock.</li>
+          <li>Basic projectiles travel at hand height. Circular attacks bloom outward, and narrow attacks fill their marked lanes.</li>
+        </ul>
+      </li>
+      <li><time datetime="2026-11-21T00:19+08:00">21 Nov 2026 · 00:19 MYT</time>
+        <h3>New spirits and rematch upgrades</h3>
+        <ul>
+          <li>A fourth regional spirit arrives at 66 seconds in each of the nine campaign stages.</li>
+          <li>After a defeat, upgrade your survivor before the rematch.</li>
+          <li>Hero skills have new painted effects. Rivers now show flowing currents.</li>
+        </ul>
+      </li>
+      <li><time datetime="2026-11-20T23:34+08:00">20 Nov 2026 · 23:34 MYT</time>
+        <h3>Patch archive</h3>
+        <ul>
+          <li>Browse older updates from the lobby.</li>
+        </ul>
+      </li>
+      <li><time datetime="2026-11-20T23:32:29+08:00">20 Nov 2026 · 23:32 MYT</time>
+        <h3>Scrollable patch notes</h3>
+        <ul>
+          <li>Scroll through updates with the Close button always in reach.</li>
+        </ul>
+      </li>
+      <li><time datetime="2026-11-20T23:30:02+08:00">20 Nov 2026 · 23:30 MYT</time>
+        <h3>Spirits, gear and Captain "Pag Pag" Garcia</h3>
+        <ul>
+          <li>Nine regional enemies joined the campaign, including Endau Eagle and Songket Moth.</li>
+          <li>Elite chests can offer two upgrades for equipped gear.</li>
+          <li>Two basic casts charge the Survey Rod for your next skill.</li>
+          <li>Captain "Pag Pag" Garcia banks portions with lid throws and timed blocks. A full pot heals him and boils over twice.</li>
+        </ul>
+      </li>
+      <li><time datetime="2026-11-20T23:14:10+08:00">20 Nov 2026 · 23:14 MYT</time>
+        <h3>Lobby update time</h3>
+        <ul>
+          <li>The lobby now shows the latest patch date and time.</li>
+        </ul>
+      </li>
+      <li><time datetime="2026-11-20T22:46:32+08:00">20 Nov 2026 · 22:46 MYT</time>
+        <h3>Regional quests and elite loot</h3>
+        <ul>
+          <li>Earn local gear from quests on both campaign routes.</li>
+          <li>Choose a skill path at level 3 or take a blessing and decide later.</li>
+          <li>Defeat the regional elite at 45 seconds for an equipment chest.</li>
+        </ul>
+      </li>
+      <li><time datetime="2026-11-20T20:40:46+08:00">20 Nov 2026 · 20:40 MYT</time>
+        <h3>East Coast expedition</h3>
+        <ul>
+          <li>Travel from Johor through Pahang and Terengganu to Kelantan.</li>
+        </ul>
+      </li>
+      <li>Merged · <time datetime="2026-11-15T10:48:50+08:00">15 Nov 2026 · 10:48 MYT</time>
+        <h3>Johor encounters</h3>
+        <ul>
+          <li>Free the traveller from six captors at the abandoned market.</li>
+          <li>Escort the traveller through a bridge ambush to earn a weapon.</li>
+          <li>Follow two tracks in the palm groves to find Briarback.</li>
+          <li>Dodge Briarback’s thorn patches and claim a relic after the hunt.</li>
+          <li>Defend the rice-field lantern against three waves to earn a charm.</li>
+          <li>Open Equipment to pause combat and inspect your gear.</li>
+        </ul>
+      </li>
+      <li>Committed · <time datetime="2026-11-13T16:48:50+08:00">13 Nov 2026 · 16:48 MYT</time>
+        <h3>Original browser prototype</h3>
+        <ul>
+          <li>Play as Fadli, Kama, Nok, Cô Lan or Sari.</li>
+          <li>Link two skills to cast them together automatically.</li>
+          <li>Evolve a rank-5 skill with its matching item.</li>
+          <li>Enter a portal to challenge Hantu Raya for a Fusion Orb or bonus XP.</li>
+          <li>Pick up ketupat to heal or kopi kaw to recharge skills faster.</li>
+          <li>Keep earned coins between sessions.</li>
+        </ul>
+      </li>
+    </ol>
+  </dialog>
 </main>
+
+<dialog id="upgradeShop" aria-labelledby="shopTitle">
+  <div class="shop-heading">
+    <h2 id="shopTitle">Survivor upgrades</h2>
+    <div class="shop-tools">
+      <span class="shop-wallet"><i class="shop-coin" aria-hidden="true"></i><b id="shopCoins">0</b> coins</span>
+      <form method="dialog"><button id="shopBack" type="submit">Back</button></form>
+    </div>
+  </div>
+  <div class="shop-profile">
+    <div class="shop-portrait" aria-hidden="true"><i id="shopSprite"></i></div>
+    <div>
+      <label for="shopHero">Survivor</label>
+      <select id="shopHero" autofocus></select>
+      <p>Permanent upgrades apply when this survivor starts a run.</p>
+    </div>
+  </div>
+  <div id="shopGrid"></div>
+  <p id="shopStatus" role="status"></p>
+</dialog>
 
 <dialog class="card" id="controls" aria-labelledby="controlsTitle">
   <p class="eyebrow">Field guide</p><h2 id="controlsTitle">Survive the night</h2>
   <p class="sub">Your basic attack fires automatically. Keep moving, gather spirit embers, and build your hero's abilities.</p>
   <dl class="controls-list">
+    <dt>Choose a survivor</dt><dd><kbd>A</kbd> / <kbd>D</kbd> in the lobby</dd>
+    <dt>Start a run</dt><dd><kbd>Space</kbd> in the lobby</dd>
     <dt>Move</dt><dd><kbd>WASD</kbd> / arrow keys</dd>
     <dt>Cast skills</dt><dd><kbd>Q</kbd> <kbd>E</kbd> <kbd>F</kbd></dd>
     <dt>Ultimate</dt><dd><kbd>R</kbd> / <kbd>Space</kbd></dd>
@@ -84,15 +328,22 @@
     <dt>Choose an upgrade</dt><dd><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd></dd>
     <dt>Pause</dt><dd><kbd>Esc</kbd> / <kbd>P</kbd></dd>
   </dl>
+  <p class="controls-tip">Pin an evolution in the blessing picker. Reach skill rank 5 and collect its passive, then claim the evolution as a blessing. A Fusion Orb grants a free evolution.</p>
   <p class="controls-tip">Auto-cast cycles Q+E, Q+F, E+F, all, or off. Linked abilities fire together to trigger combos.</p>
   <p class="controls-tip">On touchscreens, drag on the left side to move. Tap the skill buttons on the right to cast, and the pause button at the top to take a break.</p>
+  <p class="controls-tip">Atlas relief uses Mapzen terrain from NOAA and USGS. Country outlines come from Natural Earth.</p>
   <form method="dialog" class="row"><button class="btn" id="closeControls">Ready to survive</button></form>
 </dialog>
 
 <div class="ov" id="levelup" role="dialog" aria-modal="true" aria-labelledby="upgradeTitle" hidden>
-  <div class="card" style="max-width:760px">
-    <p class="eyebrow">The spirits grant you strength</p><h2 id="upgradeTitle">Choose your blessing</h2>
-    <p class="sub" style="margin-bottom:0">Pick one. Press <b>1</b>, <b>2</b> or <b>3</b>.</p>
+  <div class="card">
+    <p class="eyebrow">Level up</p><h2 id="upgradeTitle">Choose your blessing</h2>
+    <p class="blessing-hint">Choose a card or press its number.</p>
+    <div id="recipeTracker">
+      <label for="recipePin">Pin a recipe</label>
+      <select id="recipePin"></select>
+      <span id="recipeProgress" role="status"></span>
+    </div>
     <div class="ups" id="ups"></div>
   </div>
 </div>
@@ -101,22 +352,48 @@
   <div class="card" style="max-width:520px">
     <p class="eyebrow">A moment of stillness</p><h2 id="pauseTitle">The night can wait</h2>
     <div class="sound-controls"><button type="button" data-sound-mute aria-label="Mute sound effects" aria-pressed="false">Sound on</button><label>Effects volume <input data-sound-volume type="range" min="0" max="100" value="60" aria-label="Effects volume"></label></div><div class="stats" id="pstats"></div>
-    <div class="row"><button class="btn" id="resume">Resume</button><button class="btn alt" id="quit">Quit to menu</button></div>
+    <p class="sub" id="endRunHelp" hidden>End your run to save collected coins. Defeat the stage boss to clear the stage.</p>
+    <div class="row"><button class="btn" id="resume">Resume</button><button class="btn alt" id="pauseGear">Gear</button><button class="btn alt" id="pauseEndRun" type="button" aria-describedby="endRunHelp" hidden>End run</button><button class="btn alt" id="quit">Quit to menu</button></div>
+  </div>
+</div>
+
+<div class="ov" id="bossChoice" role="dialog" aria-modal="true" aria-labelledby="bossChoiceTitle" hidden>
+  <div class="card" style="max-width:520px">
+    <p class="eyebrow">The boss has fallen</p><h2 id="bossChoiceTitle">Stage cleared</h2>
+    <p class="sub">Claim your victory now, or keep fighting in hard mode. Your clear is kept either way.</p>
+    <div class="row"><button class="btn" id="hardModeGo" type="button">Continue in hard mode</button><button class="btn alt" id="claimVictory" type="button">Claim victory</button></div>
   </div>
 </div>
 
 <div class="ov" id="end" role="dialog" aria-modal="true" aria-labelledby="endt" hidden>
   <div class="card" style="max-width:620px">
-    <p class="eyebrow">Your story continues</p><h2 id="endt">Gate sealed</h2>
+    <p class="eyebrow">Your story continues</p><h2 id="endt" tabindex="-1">Gate sealed</h2>
     <p class="sub" id="ends"></p>
     <div class="stats" id="estats"></div>
-    <div class="row"><button class="btn" id="next" hidden>Next stage</button><button class="btn" id="again">Play again</button><button class="btn alt" id="tomenu">Choose hero</button></div>
+    <section id="runRecap" aria-labelledby="runRecapTitle">
+      <h3 id="runRecapTitle">Run recap</h3>
+      <p id="recapMedal" hidden></p>
+      <dl id="recapMetrics"></dl>
+      <details id="recapSources" hidden><summary id="recapSource"></summary><dl id="recapSourceMetrics"></dl></details>
+      <p id="recapSetup"></p>
+    </section>
+    <div class="row"><button class="btn" id="next" hidden>Next stage</button><button class="btn" id="again">Play again</button><button class="btn alt" id="replaySetup" aria-describedby="recapSetup">Replay setup</button><button class="btn alt" id="endShop" disabled>Upgrades</button><button class="btn alt" id="tomenu">Choose hero</button></div>
+    <p id="endShopHint" role="status"></p>
   </div>
 </div>
 
 <script type="module" src="/src/main.ts"></script>
-<section id="encounterPrompt" hidden aria-label="Optional encounter"><strong id="eventName"></strong><p id="eventDescription"></p><p id="eventProgress" aria-live="polite"></p><p id="raidRestriction" hidden>Raid entry is unavailable during an event.</p><button id="eventStart">Start encounter</button><button id="eventInteract" hidden>Rescue traveller</button><button id="eventAbandon" hidden>Abandon event</button></section>
-<button id="equipmentButton" hidden>Equipment</button>
-<section id="lootPanel" class="ov" hidden role="dialog" aria-modal="true" aria-labelledby="lootTitle"><div class="panel"><h2 id="lootTitle"></h2><p id="lootCurrent"></p><div id="lootChoices"></div><button id="lootSkip">Skip reward</button><button id="lootClose">Close equipment</button></div></section>
+
+
+<section id="lootPanel" class="ov" hidden role="dialog" aria-modal="true" aria-labelledby="lootTitle">
+  <div class="gear-case">
+    <header class="gear-header"><span class="gear-rule" aria-hidden="true"></span><h2 id="lootTitle">Inventory</h2><span class="gear-rule" aria-hidden="true"></span></header>
+    <div class="gear-scroll">
+      <div id="lootCurrent"></div>
+      <div id="lootChoices"></div>
+    </div>
+    <footer class="gear-footer"><span id="gearLocation"></span><button id="lootSkip">Skip reward</button><button id="lootClose">Close inventory</button></footer>
+  </div>
+</section>
 </body>
 </html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Original five cast evidence</title>
+<style>
+*{box-sizing:border-box}body{margin:0;color:var(--foreground, #29393c);font:15px var(--font-sans,system-ui)}
+nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}select{font:inherit;padding:5px 8px}
+main{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}figure{position:relative;aspect-ratio:390/312;overflow:hidden;margin:0}
+img{position:absolute;width:500%;height:200%;max-width:none;left:var(--left,0%);top:0}
+figure:nth-child(2) img{top:-100%}img[hidden]{display:none}
+@media(max-width:500px){main{grid-template-columns:1fr}}
+</style>
+<nav aria-label="Gameplay evidence">
+<select aria-label="Hero" id="hero"><option value="ustaz">Hakim</option><option value="rempit">Jet</option><option value="nok">Nok</option><option value="lan">Lan</option><option value="sari">Sari</option></select>
+<select aria-label="Cast" id="slot"><option>Basic</option><option>Q</option><option>E</option><option>F</option><option>R</option></select>
+<select aria-label="Capture mode" id="mode"><option value="normal">Normal motion</option><option value="reduced">Reduced motion</option><option value="before">Before upgrade</option></select>
+</nav>
+<main><figure aria-label="Release"><img src="normal/ustaz.webp" data-hero="ustaz" data-mode="normal" alt="Release from the labeled ustaz cast sheet">
+<img src="normal/rempit.webp" data-hero="rempit" data-mode="normal" alt="Release from the labeled rempit cast sheet" hidden>
+<img src="normal/nok.webp" data-hero="nok" data-mode="normal" alt="Release from the labeled nok cast sheet" hidden>
+<img src="normal/lan.webp" data-hero="lan" data-mode="normal" alt="Release from the labeled lan cast sheet" hidden>
+<img src="normal/sari.webp" data-hero="sari" data-mode="normal" alt="Release from the labeled sari cast sheet" hidden>
+<img src="reduced/ustaz.webp" data-hero="ustaz" data-mode="reduced" alt="Release from the labeled ustaz cast sheet" hidden>
+<img src="reduced/rempit.webp" data-hero="rempit" data-mode="reduced" alt="Release from the labeled rempit cast sheet" hidden>
+<img src="reduced/nok.webp" data-hero="nok" data-mode="reduced" alt="Release from the labeled nok cast sheet" hidden>
+<img src="reduced/lan.webp" data-hero="lan" data-mode="reduced" alt="Release from the labeled lan cast sheet" hidden>
+<img src="reduced/sari.webp" data-hero="sari" data-mode="reduced" alt="Release from the labeled sari cast sheet" hidden>
+<img src="before/ustaz.webp" data-hero="ustaz" data-mode="before" alt="Release from the labeled ustaz cast sheet" hidden>
+<img src="before/rempit.webp" data-hero="rempit" data-mode="before" alt="Release from the labeled rempit cast sheet" hidden>
+<img src="before/nok.webp" data-hero="nok" data-mode="before" alt="Release from the labeled nok cast sheet" hidden>
+<img src="before/lan.webp" data-hero="lan" data-mode="before" alt="Release from the labeled lan cast sheet" hidden>
+<img src="before/sari.webp" data-hero="sari" data-mode="before" alt="Release from the labeled sari cast sheet" hidden>
+</figure><figure aria-label="Later frame"><img src="normal/ustaz.webp" data-hero="ustaz" data-mode="normal" alt="Later frame from the labeled ustaz cast sheet">
+<img src="normal/rempit.webp" data-hero="rempit" data-mode="normal" alt="Later frame from the labeled rempit cast sheet" hidden>
+<img src="normal/nok.webp" data-hero="nok" data-mode="normal" alt="Later frame from the labeled nok cast sheet" hidden>
+<img src="normal/lan.webp" data-hero="lan" data-mode="normal" alt="Later frame from the labeled lan cast sheet" hidden>
+<img src="normal/sari.webp" data-hero="sari" data-mode="normal" alt="Later frame from the labeled sari cast sheet" hidden>
+<img src="reduced/ustaz.webp" data-hero="ustaz" data-mode="reduced" alt="Later frame from the labeled ustaz cast sheet" hidden>
+<img src="reduced/rempit.webp" data-hero="rempit" data-mode="reduced" alt="Later frame from the labeled rempit cast sheet" hidden>
+<img src="reduced/nok.webp" data-hero="nok" data-mode="reduced" alt="Later frame from the labeled nok cast sheet" hidden>
+<img src="reduced/lan.webp" data-hero="lan" data-mode="reduced" alt="Later frame from the labeled lan cast sheet" hidden>
+<img src="reduced/sari.webp" data-hero="sari" data-mode="reduced" alt="Later frame from the labeled sari cast sheet" hidden>
+<img src="before/ustaz.webp" data-hero="ustaz" data-mode="before" alt="Later frame from the labeled ustaz cast sheet" hidden>
+<img src="before/rempit.webp" data-hero="rempit" data-mode="before" alt="Later frame from the labeled rempit cast sheet" hidden>
+<img src="before/nok.webp" data-hero="nok" data-mode="before" alt="Later frame from the labeled nok cast sheet" hidden>
+<img src="before/lan.webp" data-hero="lan" data-mode="before" alt="Later frame from the labeled lan cast sheet" hidden>
+<img src="before/sari.webp" data-hero="sari" data-mode="before" alt="Later frame from the labeled sari cast sheet" hidden>
+</figure></main>
+<script>
+const hero=document.querySelector('#hero'),slot=document.querySelector('#slot'),mode=document.querySelector('#mode');
+function update(){
+  document.querySelector('main').style.setProperty('--left',-100*slot.selectedIndex+'%');
+  for(const image of document.images)image.hidden=image.dataset.hero!==hero.value||image.dataset.mode!==mode.value;
+}
+document.querySelector('nav').addEventListener('change',update);
+</script></html>

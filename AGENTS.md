@@ -2,17 +2,17 @@
 
 ## Project Structure & Module Organization
 
-This is a browser-first Phaser game built with Vite:
+This is a browser-first Three.js game built with Vite:
 
 - `index.html`, `ui.css`: menus, HUD, and responsive styling.
-- `src/main.ts`, `src/scenes/`: Phaser bootstrap and native rendering.
+- `src/main.ts`, `src/scenes/`: Three.js bootstrap and gameplay rendering.
 - `src/game/`: combat runtime, hero kits/signatures, raid mechanics, and runtime types.
 - `src/content/`: stage/region layouts, collision/navigation, heroes, passives, and evolutions.
 - `assets/`: environment artwork and the character atlas.
 - `tests/`: browser acceptance harness.
 - `docs/architecture.md`: boundaries, limitations, and milestones.
 
-Keep simulation changes in the runtime/modules and rendering in the Phaser scene. Extend the existing registries and `HOOKS`; do not introduce another animation-frame loop.
+Keep simulation in the runtime modules and rendering in the Three.js scene. Extend the existing registries and `HOOKS`. Use the scene's single `setAnimationLoop` for gameplay and the atlas.
 
 ## Build, Test, and Development Commands
 
@@ -37,7 +37,7 @@ Use two-space indentation, single quotes, camelCase functions/variables, and upp
 
 Open `/tests/ui-smoke.html` on the development server and select **Run checks**. Keep the tab active; require `PASS` and download the JSON report. This browser E2E harness covers heroes, stages, movement, overlays, raids, retry, and responsive widths. Use `/tests/stage-worlds.html` for regional navigation, caches and enemy changes. No coverage percentage is enforced.
 
-Add complex behavior checks before implementation. Check signature charge, consumption, expiry, and reset behavior when changing heroes. Include screenshots for visual changes; inspect keyboard and touch controls. Use an isolated browser profile for persistence tests. Preserve `aseanSurvivor.v1` saves; `UNLOCK_ALL` currently enables testing access.
+Add complex behavior checks before implementation. Check signature charge, consumption, expiry, and reset behavior when changing heroes. Include screenshots for visual changes; inspect keyboard and touch controls. Use an isolated browser profile for persistence tests. Preserve `aseanSurvivor.v1` saves; Do not change `UNLOCK_ALL` until the [legacy-access migration](docs/adr/0001-legacy-access.md) ships.
 
 ## Commit & Pull Request Guidelines
 
@@ -49,7 +49,7 @@ Describe behavior changes, verification, and save/balance impacts. Link relevant
 
 ### Issue tracker
 Specs and tickets live in GitHub Issues for miooor/aseansurvivor.
-See `docs/agents/issue-tracker.md`.
+See `docs/agents/issue-tracker.md`. The [Second Run issue dispositions](docs/second-run-issue-dispositions.md) track inherited acceptance work.
 
 ### Triage labels
 Use the five default triage labels.

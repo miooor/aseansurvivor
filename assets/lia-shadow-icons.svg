@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="64" viewBox="0 0 320 64">
+  <defs>
+    <linearGradient id="blade" x2=".7" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#fff8ff"/><stop offset=".43" stop-color="#d9c9ff"/><stop offset="1" stop-color="#7844c4"/></linearGradient>
+    <radialGradient id="mist"><stop stop-color="#734da3"/><stop offset="1" stop-color="#1a112c"/></radialGradient>
+    <pattern id="tile" width="64" height="64" patternUnits="userSpaceOnUse"><rect width="64" height="64" rx="8" fill="url(#mist)"/></pattern>
+  </defs>
+  <rect width="320" height="64" fill="url(#tile)"/>
+  <g fill="url(#blade)" stroke="#e0cbff" stroke-linejoin="round">
+    <path d="M15 52l-3-3 11-15-5-5 4-2 5 2L52 8 43 29 31 38l1 6-4 1-3-6z"/>
+    <path d="M72 44Q118 40 118 9Q132 53 72 52Q85 48 91 45z"/>
+    <path d="M139 42q-2-23 16-31-11 14-11 29zM158 51q17-14 17-32l5 1q-1 23-22 31zM147 40l7-11-4-1 16-9-7 12 4 1z"/>
+    <g transform="translate(224 32)">
+      <path id="wheelBlade" d="M0 -4Q12 -20 2 -25Q27 -20 18 -5Q11 3 0 4Z"/>
+      <use href="#wheelBlade" transform="rotate(120)"/><use href="#wheelBlade" transform="rotate(240)"/>
+      <circle r="4" fill="#36234f"/>
+    </g>
+    <path d="M262 44q20-17 30-36-2 20-30 36zM269 52q24-19 35-38-3 19-35 38zM283 54q20-14 28-30-2 18-28 30z"/>
+  </g>
+</svg>

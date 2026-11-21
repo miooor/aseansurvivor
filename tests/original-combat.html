@@ -1,0 +1,34 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Original five combat feedback checks</title>
+<style>
+  body { background:#162526; color:#ffedce; font:16px system-ui }
+  iframe { width:960px; height:600px; border:0 }
+  canvas { max-width:100% }
+</style>
+<button id="run">Run combat checks</button>
+<a id="download" hidden download="original-five-combat.png">Download gameplay frames</a>
+<output id="result"></output><br>
+<iframe title="Game" src="../"></iframe><br>
+<canvas id="frames" width="1040" height="1280"></canvas>
+<script type="module">
+import {checkOriginalCombat} from './original-combat.js';
+const frames=document.querySelector('#frames'),ctx=frames.getContext('2d');
+const run=document.querySelector('#run'),status=document.querySelector('#result');
+run.onclick=async()=>{
+  run.disabled=true;document.querySelector('#download').hidden=true;
+  let i=0;
+  ctx.fillStyle='#162526';ctx.fillRect(0,0,frames.width,frames.height);
+  try{
+    await checkOriginalCombat(document.querySelector('iframe').contentWindow,(label,canvas)=>{
+      const w=canvas.width,h=canvas.height,scale=w/960;
+      const x=(i%2)*520,y=Math.floor(i/2)*256;
+      ctx.drawImage(canvas,w/2-220*scale,h/2-105*scale,440*scale,185*scale,x+6,y+6,508,214);
+      ctx.font='18px system-ui';ctx.fillStyle='#ffedce';ctx.fillText(label,x+10,y+244);i++;
+    });
+    status.textContent='PASS';const link=document.querySelector('#download');
+    link.href=frames.toDataURL();link.hidden=false;
+  }catch(error){status.textContent='FAIL '+error.message;console.error(error)}
+  finally{run.disabled=false}
+};
+</script>
