@@ -144,6 +144,7 @@
           <h2 id="stageTitle" tabindex="-1">Johor</h2>
           <p id="stageInfo"></p>
           <div class="mission-facts"><span>Boss <b id="stageBoss">Raja Toyol</b></span><span>Arrival <b id="stageDuration">3 minutes</b></span><span>Local spirit <b id="stageGuardian">Palm Stalker</b></span></div>
+          <div class="mission-destinations"><h3 class="menu-label">Optional destinations</h3><ul id="stageDestinations"></ul></div>
           <div id="route" aria-label="Playable stages" role="group"></div>
         </section>
         <section class="survivor-sheet" aria-label="Choose your survivor">
@@ -302,10 +303,11 @@
 
 <div class="ov" id="end" role="dialog" aria-modal="true" aria-labelledby="endt" hidden>
   <div class="card" style="max-width:620px">
-    <p class="eyebrow">Your story continues</p><h2 id="endt">Gate sealed</h2>
+    <p class="eyebrow">Your story continues</p><h2 id="endt" tabindex="-1">Gate sealed</h2>
     <p class="sub" id="ends"></p>
     <div class="stats" id="estats"></div>
-    <div class="row"><button class="btn" id="next" hidden>Next stage</button><button class="btn" id="again">Play again</button><button class="btn alt" id="tomenu">Choose hero</button></div>
+    <div class="row"><button class="btn" id="next" hidden>Next stage</button><button class="btn" id="again">Play again</button><button class="btn alt" id="endShop" disabled>Upgrades</button><button class="btn alt" id="tomenu">Choose hero</button></div>
+    <p id="endShopHint" role="status"></p>
   </div>
 </div>
 

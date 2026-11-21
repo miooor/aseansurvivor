@@ -535,19 +535,56 @@ run.onclick=async()=>{
         baseCooldown>0&&Math.abs(g.cds[1]-baseCooldown*.93)<1e-8&&g.ranks[1]===1);
       rt.toMenu();
     }
+    const westStages=['johor','melaka','kl','perak','penang','kedah'];
+    const checkVictoryRoute=async(route,cleared,win,title,nextRoute,nextId)=>{
+      await setProgress(clearState(cleared));
+      $('route-'+route).click();
+      $('stg-'+win).click();$('start').click();await tick();
+      await w.__asean.endGame(true);
+      check(win+' victory shows '+title,$('endt').textContent===title);
+      const nextName=STAGES.find(stage=>stage.id===nextId).name;
+      check(win+' victory offers '+nextName,!$('next').hidden && d.activeElement===$('next') &&
+        $('ends').textContent.includes(nextName));
+      $('next').click();
+      check(win+' victory continues on '+nextRoute+' at '+nextId,
+        w.__asean.G.stage.id===nextId && w.__asean.G.campaignRoute===nextRoute && !w.__asean.G.over);
+      w.__asean.toMenu();
+    };
+    await checkVictoryRoute('west',['melaka'],'kedah','Kedah is safe','west','johor');
+    await checkVictoryRoute('east',['johor'],'kelantan','Kelantan is safe','east','pahang');
+    await checkVictoryRoute('west',[...westStages.filter(id=>id!=='kl'),'pahang'],'kl',
+      'West Coast complete','east','terengganu');
+    await checkVictoryRoute('east',[...east.filter(id=>id!=='pahang'),'melaka'],'pahang',
+      'East Coast complete','west','kl');
+    $('route-west').click();
+    await setProgress(clearState(complete.filter(id=>id!=='kedah')));
+    $('stg-kedah').click();$('start').click();await tick();
+    const beforeFinal=localStorage.getItem(saveKey),write=w.Storage.prototype.setItem;
+    try{
+      w.Storage.prototype.setItem=()=>{throw new w.DOMException('Storage full','QuotaExceededError')};
+      await w.__asean.endGame(true);
+    }finally{w.Storage.prototype.setItem=write}
+    check('Failed final clear shows ordinary victory and storage failure',
+      $('endt').textContent==='Kedah is safe' && !$('ends').textContent && $('next').hidden &&
+      $('endShopHint').textContent.includes('could not be saved') && d.activeElement===$('again'));
+    check('Failed final clear preserves the previous save',localStorage.getItem(saveKey)===beforeFinal);
+    $('again').click();
+    check('Failed final clear can retry Kedah',w.__asean.G.stage.id==='kedah' && !w.__asean.G.over);
+    $('pauseButton').click();$('quit').click();
+    await setProgress(clearState([]));
     for(const [index,[id,name]] of stages.entries()){
       $('stg-'+id).click();
       check(name+' map pin follows the selected mission',$('atlasPlace').textContent===name && $('atlasCount').textContent.startsWith(String(index+1).padStart(2,'0')) && $('atlasState').textContent==='Playable chapter');
       check(name+' mission briefing',$('stageTitle').textContent===name&&$('stg-'+id).getAttribute('aria-pressed')==='true');
       $('start').click();await tick();
       check(name+' launches selected stage',w.__asean.G.stage.id===id);
-      w.__asean.endGame(true);
+      await w.__asean.endGame(true);
       if(index<stages.length-1){
         $('next').click();await tick();
         check('Victory in '+name+' advances to '+stages[index+1][1],w.__asean.G.stage.id===stages[index+1][0]);
         $('pauseButton').click();$('quit').click();
       }else{
-        check('Kedah finishes the campaign',$('next').hidden);
+        check('Kedah completes the West Coast and points to Pahang',$('endt').textContent==='West Coast complete' && !$('next').hidden && $('ends').textContent.includes('Pahang'));
         $('tomenu').click();
       }
     }
@@ -573,7 +610,7 @@ run.onclick=async()=>{
       if(index<eastStages.length-1){
         $('next').click();await tick();
       }else{
-        check('Kelantan finishes the East Coast route',$('next').hidden);
+        check('All nine clears finish Malaysia',$('endt').textContent==='Malaysia complete' && $('next').hidden && d.activeElement===$('again'));
         $('tomenu').click();
       }
     }
@@ -656,11 +693,52 @@ run.onclick=async()=>{
       check(reward+': reward is granted',reward==='orb'?Object.keys(g.evo).length>beforeEvolutions:g.level>=beforeLevel+2);
       if(reward==='xp')check('Experience displays the new level threshold after the raid',$('xpbar').value===g.xp&&$('xpbar').max===g.need);
     }
-    await w.__asean.endGame(false);
-    check('Defeat screen opens',!$('end').hidden);
-    $('again').click();await tick();
-    check('Retry starts a clean run',!w.__asean.G.over&&$('end').hidden);
+    const resultsApi=w.__asean;
+    const beforeResults=localStorage.getItem(saveKey);
+    const seed={cleared:['melaka'],owned:['ustaz','rempit'],heroUpgrades:{ustaz:{strength:2}},coins:5};
+    await setProgress(seed);
+    resultsApi.newGame('rempit',1);
+    const first=resultsApi.G;
+    first.clock=57;first.coins=40;
+    const payout=resultsApi.endGame(false);
+    check('Defeat blocks shop until payout and focuses a safe target',
+      !$('end').hidden&&$('endShop')?.disabled&&!d.activeElement.matches('button'));
+    $('again').click();
+    check('An immediate activation cannot skip defeat',resultsApi.G===first);
+    await payout;
+    check('Early defeat names the boss and time remaining',
+      $('ends').textContent.includes(first.stage.boss.name)&&$('ends').textContent.includes('2:03'));
+    await new Promise(resolve=>setTimeout(resolve,450));
+    $('endShop').focus();$('endShop').click();
+    check('Results open the existing shop fixed to the defeated survivor',
+      $('upgradeShop').open&&$('shopHero').disabled&&$('shopHero').value==='rempit'&&d.activeElement===$('shopBack'));
+    d.querySelector('[data-upgrade="vitality"]').click();
+    const expected={...seed,coins:0,heroUpgrades:{...seed.heroUpgrades,rempit:{vitality:1}}};
+    const purchaseTimeout=Date.now()+3000;
+    while(JSON.parse(localStorage.getItem(saveKey)).coins!==0&&Date.now()<purchaseTimeout)await tick();
+    check('Payout and purchase preserve every other saved byte',localStorage.getItem(saveKey)===JSON.stringify(expected));
+    $('shopBack').click();
+    check('Defeat shows cheapest available shortfall',$('endShopHint').textContent.includes('need 40 more coins for Magnet'));
+    $('again').click();
+    check('Play again keeps survivor and stage and applies the new rank',
+      resultsApi.G.hero.id==='rempit'&&resultsApi.G.si===1&&!resultsApi.G.over&&$('end').hidden&&resultsApi.G.upgradeStats.health===3);
+    for(const reason of ['boss','night','raid']){
+      const battle=resultsApi.G;
+      if(reason==='raid'){
+        resultsApi.raid.spawnPortal();
+        const portal=resultsApi.raid.state.portal;battle.p.x=portal.x;battle.p.y=portal.y;
+        resultsApi.step(50);
+      }else{battle.clock=180;resultsApi.step(50)}
+      const boss=reason==='raid'?battle.raidBoss:battle.boss;
+      boss.hp=boss.maxHp*.37;
+      await resultsApi.endGame(false,reason==='night'?'night':undefined);
+      const line=$('ends').textContent;
+      check(reason+' defeat labels remaining health',line.includes(boss.name)&&line.includes('37% health left')&&
+        (reason!=='raid'||/raid boss/i.test(line))&&(reason!=='night'||/time ran out/i.test(line)));
+      resultsApi.newGame('rempit',1);
+    }
     $('pauseButton').click();$('quit').click();
+    localStorage.setItem(saveKey,beforeResults);
     check('No browser runtime errors',evidence.errors.length===0);
     await load();
     d=w.document;

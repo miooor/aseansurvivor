@@ -14,6 +14,7 @@ type ShopOptions = {
 export function installUpgradeShop({heroes, selectedHero, read, buy, signal}:ShopOptions) {
   const shop = document.querySelector<HTMLDialogElement>('#upgradeShop')!;
   const select = document.querySelector<HTMLSelectElement>('#shopHero')!;
+  const back = shop.querySelector<HTMLButtonElement>('#shopBack')!;
   const grid = document.querySelector('#shopGrid')!;
   const sprite = document.querySelector<HTMLElement>('#shopSprite')!;
   const coins = document.querySelector('#shopCoins')!;
@@ -59,7 +60,7 @@ export function installUpgradeShop({heroes, selectedHero, read, buy, signal}:Sho
       refresh();
       if (!shop.open || select.value !== hero) return;
       status.textContent = result;
-      if (button.disabled) select.focus({preventScroll:true});
+      if (button.disabled) (select.disabled ? back : select).focus({preventScroll:true});
     },options);
     grid.append(card);
     return {upgrade,card,button,priceText,rankText,pips};
@@ -95,13 +96,16 @@ export function installUpgradeShop({heroes, selectedHero, read, buy, signal}:Sho
     refresh();
   }
 
-  document.querySelector('#openUpgradeShop')!.addEventListener('click',()=>{
+  function open(hero:string, fixed:boolean) {
     if (shop.open) return;
-    select.value = selectedHero();
+    select.value = hero;
+    select.disabled = fixed;
     shop.showModal();
     shop.scrollTop = 0;
     showHero();
-  },options);
+    if (fixed) back.focus({preventScroll:true});
+  }
+  document.querySelector('#openUpgradeShop')!.addEventListener('click',()=>open(selectedHero(),false),options);
   select.addEventListener('change',showHero,options);
-  return {refresh};
+  return {refresh,openFor:(hero:string)=>open(hero,true)};
 }

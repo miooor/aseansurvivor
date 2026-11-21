@@ -20,7 +20,7 @@ export interface RaidState {
   orb: Point | null;
 }
 export interface Encounter extends Point {
-  id:string; name:string; status:string; discovered:boolean; track?:number; hp?:number;
+  id:string; name:string; slot:string; status:string; discovered:boolean; track?:number; hp?:number;
   guidance?:Point & {verb:string;label:string};
   companion?:Point & {moving:boolean};
 }

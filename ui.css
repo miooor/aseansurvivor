@@ -112,3 +112,13 @@ dialog{color:var(--moon);font-family:var(--ui);max-height:85dvh;overflow:auto;wi
 @media(max-width:600px){#questPrompts{top:210px;max-height:calc(100dvh - 290px);left:10px;width:min(260px,calc(100vw - 164px))}#encounterPrompt,.landmark-prompt{padding:10px;font-size:12px}#equipmentButton{left:10px;right:auto;bottom:12px}#lootPanel .panel{padding:16px}}
 
 .landmark-prompt button[aria-disabled=true]{opacity:.8;cursor:default}
+
+#end{z-index:30}
+#endShopHint:not(:empty){margin-top:16px;color:var(--moon)}
+#endt:focus{outline:none}
+@media(max-width:520px){
+  #end .stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  #end .stats div{padding:10px 0}
+  #end .row:has(#endShop:not([hidden])){display:grid;grid-template-columns:1fr 1fr;align-items:stretch;gap:8px}
+  #end .row:has(#endShop:not([hidden])) #again{grid-column:1 / -1}
+}

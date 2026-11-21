@@ -219,17 +219,7 @@ export function installEquipment(api){
   }
 
   function showReward(g,reward){
-    const mixed=reward.offer.some(id=>ITEMS[id].slot!==reward.slot);
-    const heading=node('h3','gear-offer-title','Choose one reward');
-    $('lootCurrent').replaceChildren(heading);
-    if(!mixed){
-      const slot=reward.slot,current=g.equipment[slot],item=ITEMS[current];
-      const equipped=node('div','gear-current'),copy=node('div');
-      copy.append(node('small','gear-label',slot+' · Currently equipped'),node('h3','',item?.name||'Empty slot'),
-        node('p','',item?.description||'Choose an item below to equip it.'));
-      equipped.append(copy,itemArt(current,slot));
-      $('lootCurrent').replaceChildren(equipped,heading);
-    }
+    $('lootCurrent').replaceChildren(node('h3','gear-offer-title','Choose one reward'),node('p','gear-duration','Lasts this run'));
     for(const id of reward.offer){
       const option=ITEMS[id],slot=option.slot,current=g.equipment[slot],previous=ITEMS[current];
       const button=node('button','gear-offer');
@@ -237,13 +227,14 @@ export function installEquipment(api){
       button.dataset.item=id;
       button.append(itemArt(id,slot),node('small','gear-label',slot+(option.upgradeFrom?' · Upgrade':'')),
         node('strong','',option.name),node('span','gear-effect',option.description));
-      const action=node('span','gear-equip');
-      if(option.upgradeFrom)action.append(node('span','gear-ancestry','Upgrade from '+ITEMS[option.upgradeFrom].name));
-      if(id===current)action.append(node('span','','Keep equipped'));
-      else if(!previous)action.append(node('span','','Equip in empty '+slot+' slot'));
-      else if(current!==option.upgradeFrom)action.append(node('span','','Replace '+previous.name));
-      if(mixed&&previous&&current!==id)action.append(node('span','gear-previous','Current effect · '+previous.description));
-      button.append(action);
+      const equipped=node('span','gear-current');
+      equipped.append(node('small','gear-label','Currently equipped'),node('b','',previous?.name||'Empty slot'));
+      if(previous)equipped.append(node('span','gear-effect',previous.description));
+      let action='Equip in empty '+slot+' slot';
+      if(current===id)action='Keep equipped';
+      else if(option.upgradeFrom)action='Upgrade from '+ITEMS[option.upgradeFrom].name;
+      else if(previous)action='Replace '+previous.name;
+      button.append(equipped,node('span','gear-equip',action));
       button.onclick=()=>choose(reward,id);
       $('lootChoices').append(button);
     }
