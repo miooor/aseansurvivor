@@ -1,5 +1,6 @@
 import {arrangeRoadsideScenery} from './road-layout.js';
 import {ENCOUNTERS} from './encounters.js';
+import {REGIONAL_GROVES} from './regional-groves.js';
 
 // The original five mission sites remain the centre of each region. These
 // authored roads lead into two outer districts, joined by a second route.
@@ -14,7 +15,8 @@ const stand=(x,y,w,h)=>rect('featured-landmark',x,y,w,h);
 const commonGround={
   melaka:court(0,0,405,305),perak:court(0,0,325,245,'earth'),penang:court(-96,0,322,235,'earth'),
   kedah:court(0,0,340,285,'earth'),pahang:court(0,0,286,242,'earth'),
-  terengganu:court(0,0,382,253,'earth'),kelantan:court(0,0,364,247,'earth')
+  terengganu:court(0,0,382,253,'earth'),kelantan:court(0,0,364,247,'earth'),
+  selangor:court(0,0,495,306)
 };
 
 const districts={
@@ -48,6 +50,18 @@ const districts={
     courts:[court(3130,-3300,550,305),court(-3210,3010,490,270)],
     groves:[]
   },
+  selangor:{
+    sites:[site('old-warehouse','Old Quay Warehouse',-3170,-3230,30,true),
+      site('port-lookout','Port Klang Lookout',3140,3230,32)],
+    buildings:[stand(-3480,-3830,620,285),rect('cargo-store',-3780,-3030,204,147),
+      rect('port-office',3160,2780,240,165),rect('port-hut',3590,3180,180,120)],
+    roads:[[[-1700,-1420],[-2530,-2060],[-3170,-2700],[-3170,-3230]],
+      [[1700,1510],[2230,2050],[2830,2360],[3140,2890],[3140,3230]],
+      [[1760,-1400],[2750,-850],[3240,410],[3220,1600],[2830,2360]],
+      [[-1700,-1420],[-2250,-480],[-2400,730],[-1680,1570]]],
+    courts:[court(-3170,-3230,575,290),court(3140,3230,385,250)],
+    groves:[[-2320,-3350,5],[1770,2630,9],[2490,2800,6],[3160,800,7],[-2660,1930,7]]
+  },
   perak:{
     sites:[site('tt5','Tanjung Tualang Dredge',3120,-3490,30,true),site('karst-gate','Kinta Karst Gate',-3260,3130,28)],
     buildings:[stand(2820,-3870,600,250),rect('mine-store',3630,-3280,195,170),rect('ridge-shelter',-2990,3330,190,125)],
@@ -63,7 +77,9 @@ const districts={
     sites:[site('chew-jetty','Chew Jetty Landing',2850,3020,0,true),site('armenian','Armenian Street Corner',-3190,-3150,26)],
     buildings:[stand(2650,2695,450,170),rect('jetty-store',1830,2745,200,132),rect('laneway-house-1',-3500,-3490,210,155),rect('laneway-house-2',-3220,-3490,212,158)],
     waters:[rect('long-jetty-tip-sea',2460,-1390,HALF-2460,480),rect('fish-jetty-tip-sea',2670,1250,HALF-2670,460)],
-    bridges:[rect('chew-boardwalk',115,2680,3140,600),bridge('jetty-pontoon',2310,1665,360,835,'y')],
+    bridges:[rect('chew-boardwalk',115,2680,3140,600),bridge('jetty-pontoon',2310,1665,360,835,'y'),
+      bridge('jetty-bypass-west',350,-932,164,293,'y'),bridge('jetty-bypass',350,-780,805,143,'x'),
+      bridge('jetty-bypass-east',986,-932,169,293,'y')],
     gangway:{...bridge('chew-gangway',2310,2480,360,220,'y'),winch:{x:2520,y:2910},duration:1.8,radius:120},
     roads:[[[109,1480],[-80,2240],[115,3000],[2850,3020]],
       [[-1710,-1460],[-2580,-1840],[-2720,-2240],[-3190,-2500],[-3190,-3150]],
@@ -147,11 +163,11 @@ export function expandRegion(region){
   const buildings=[...district.buildings,...region.buildings];
   const landmarks=[...region.landmarks,...district.sites];
   const roads=[...region.roads,...district.roads];
-  const groves=district.groves.flatMap(([x,y,count])=>Array.from({length:count},(_,i)=>{
+  const groves=[...REGIONAL_GROVES[region.id],...district.groves].flatMap(([x,y,count])=>Array.from({length:count},(_,i)=>{
     const angle=i*2.4,r=55+65*Math.sqrt(i);
     return {x:x+Math.cos(angle)*r,y:y+Math.sin(angle)*r,frame:i%4===0?11:10};
   })).filter(t=>!bridges.some(b=>meets(b,rect('',t.x-52,t.y-52,104,104))));
-  const scenery=arrangeRoadsideScenery(region,{roads,buildings,trees:[...region.trees,...groves],landmarks,waters,rocks,
+  const scenery=arrangeRoadsideScenery(region,{roads,buildings,trees:groves,landmarks,waters,rocks,
     encounters:region.id==='johor'?Object.values(ENCOUNTERS):[],gangway:district.gangway,wauLookout:district.wauLookout,half:HALF});
   const common=commonGround[region.id];
   const courts=common?[common,...district.courts]:district.courts;

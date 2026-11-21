@@ -4,7 +4,7 @@ const rect=(id,x,y,w,h)=>({id,x,y,w,h});
 const row=(id,x,y,count,dx,dy,w=168,h=134)=>Array.from(
   {length:count},(_,i)=>rect(id+'-'+i,x+i*dx,y+i*dy,w,h)
 );
-const base={waters:[],bridges:[],paddies:[],rocks:[],roads:[],buildings:[],trees:[],
+const base={waters:[],bridges:[],paddies:[],rocks:[],roads:[],buildings:[],
   tint:0xb6c5b0,path:0x8a8057,water:0x1a4c54,urban:false};
 const overlaps=(a,b)=>a.x+a.w>b.x&&a.x<b.x+b.w&&a.y+a.h>b.y&&a.y<b.y+b.h;
 
@@ -36,6 +36,19 @@ export const REGION_DATA={
     roads:[[[-2650,0],[2650,0]],[[0,-2700],[0,2700]],[[0,-1170],[-1700,-1170],[-1710,-1450]],
       [[0,-1960],[1510,-1960],[1600,-1810]],[[0,1600],[-1500,1600],[-1500,1730]],[[0,640],[1670,640],[1670,1430]],
       [[-1240,-1170],[-1240,0],[-1240,1600]],[[1190,-1960],[1190,0],[1190,640]]]
+  },
+  selangor:{
+    name:'Klang River Quays',signature:'mooring',tint:0x9eac8e,path:0xa88b71,water:0x476e64,urban:true,
+    landmarks:[site('market','Klang Market Square',0,0,0),site('shop-houses','Textile Lane',-1700,-1420,24),
+      site('batu-bank','Pengkalan Batu Bank',1760,-1400,26),site('ferry','Ferry Landing',-1680,1570,28),
+      site('mangroves','Tidal Mangrove Walk',1700,1510,28)],
+    waters:[rect('klang-upper',430,-3000,620,1240),rect('klang-middle',430,-1240,620,2500),
+      rect('klang-lower',430,1790,620,1210),rect('mangrove-pool',2320,615,630,540)],
+    bridges:[rect('market-crossing',370,-1760,760,520),rect('harbour-crossing',370,1260,760,530)],
+    buildings:[...row('textile-shops',-1070,-430,5,202,0,157,152),...row('market-stalls',-1090,290,5,212,0,145,118),
+      ...row('ferry-stores',-2390,1230,3,212,0),...row('customs-sheds',1340,-2100,3,230,0,174,145)],
+    roads:[[[0,0],[-840,-580],[-1700,-1420]],[[0,0],[0,-1500],[1760,-1500],[1760,-1400]],
+      [[0,0],[-900,1210],[-1680,1570]],[[0,0],[0,1510],[1700,1510]]]
   },
   perak:{
     name:'Kinta Tin Basin',signature:'sentinel',tint:0xa6b4bb,path:0xa49a83,water:0x479e9f,
@@ -120,9 +133,5 @@ for(const [id,data] of Object.entries(REGION_DATA)){
       .find(b=>![...groundObstacles,...region.bridges,...region.buildings].some(o=>overlaps(b,o)));
     if(district)region.buildings.push(district);
   }
-  const treeCount=({kl:0,melaka:10,pahang:58,kelantan:39,terengganu:18,penang:15,kedah:17,perak:25})[id];
-  region.trees=Array.from({length:treeCount},(_,i)=>({x:-2630+(i*997+id.length*101)%5260,y:-2620+(i*677)%5240,frame:id==='perak'?13:10}))
-    .filter(t=>!region.landmarks.some(s=>Math.hypot(s.x-t.x,s.y-t.y)<420)&&
-      ![...groundObstacles,...region.buildings,...region.bridges].some(b=>overlaps(b,rect('',t.x-70,t.y-70,140,140))));
   REGION_DATA[id]=region;
 }

@@ -1,33 +1,97 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Skill sound review</title>
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sound review</title>
 <style>body{background:#102024;color:#eee9dc;font:16px system-ui;margin:24px}button,select{font:inherit;padding:12px;background:#234146;color:white;border:1px solid #79b7ad}iframe{width:100%;height:360px;border:0}pre{white-space:pre-wrap}label{margin-right:12px}</style>
-<h1>Skill sound review</h1><p>Original synthesized combat sounds. Run checks, or select a hero and skill to audition. The downloadable WAV contains all five ultimates.</p>
-<button id="run" disabled>Run audio checks</button> <label>Hero <select id="hero"><option value="ustaz">Fadli</option><option value="rempit">Kama</option><option value="nok">Nok</option><option value="lan">Lan</option><option value="sari">Sari</option></select></label><label>Skill <select id="skill"><option value="0">Basic</option><option value="1">Q</option><option value="2">E</option><option value="3">F</option><option value="4">Ultimate</option></select></label><button id="play" disabled>Play sound</button> <a id="sample" download="ultimate-sounds.wav">Download ultimate sampler</a><pre id="report">Loading game…</pre><iframe id="game" title="Audio game under test" src="../index.html"></iframe>
+<h1>Sound review</h1><p>Original synthesized cues for all twelve heroes, gameplay events and per-stage ambience. Run checks, audition any hero and skill, or download the full cue sampler as WAV.</p>
+<button id="run" disabled>Run audio checks</button> <label>Hero <select id="hero"></select></label><label>Skill <select id="skill"><option value="0">Basic</option><option value="1">Q</option><option value="2">E</option><option value="3">F</option><option value="4">Ultimate</option></select></label><button id="play" disabled>Play sound</button> <a id="sample" download="asean-survivor-sounds.wav">Download cue sampler</a> <a id="bgm" download="asean-survivor-bgm.wav">Download BGM sampler</a><pre id="report">Loading game…</pre><iframe id="game" title="Audio game under test" src="../index.html"></iframe>
 <script type="module">
 import {SKILL_SOUNDS,renderSkill} from '../src/game/skill-audio.js';
+import {AMBIENCE,stageProfile,ambientNote,melodyNote,renderMelodyPhrase} from '../src/game/ambient-audio.js';
+import {EVENT_SOUNDS,renderEvent} from '../src/game/event-audio.js';
 const $=id=>document.getElementById(id),frame=$('game');let rt;
+const HEROES=['ustaz','rempit','nok','lan','sari','asha','mira','dani','vanna','keo','nadi','lia'];
+const NAMES={ustaz:'Fadli',rempit:'Kama',nok:'Nok',lan:'Lan',sari:'Sari',asha:'Auntie Karen',mira:'Captain "Pag Pag" Garcia',dani:'The Gold Sultan',vanna:'Vanna',keo:'Keo',nadi:'Nadi',lia:'Lia'};
+const TARGETED_SLOTS={asha:2,vanna:2,dani:3,lia:4};
+$('hero').innerHTML=HEROES.map(id=>`<option value="${id}">${NAMES[id]}</option>`).join('');
 const ready=setInterval(()=>{rt=frame.contentWindow.__asean;if(rt){clearInterval(ready);$('run').disabled=$('play').disabled=false;$('report').textContent='Ready.'}},100);
-$('play').onclick=async()=>{await rt.audio.unlock();rt.audio.setVolume(.6);rt.audio.setMuted(false);rt.toMenu();rt.newGame($('hero').value,0);frame.contentDocument.getElementById('menu').hidden=true;rt.G.auto=false;rt.G.cds[0]=999;rt.G.spawnT=rt.G.durianT=999;rt.G.ult=rt.G.hero.ultNeed;const slot=Number($('skill').value);if(slot)rt.tryCast(slot);else rt.audio.play($('hero').value,0);};
+function startSkillTrial(hero,slot){
+  rt.toMenu();rt.newGame(hero,0);
+  const g=rt.G;
+  g.auto=false;g.cds[0]=999;g.spawnT=g.durianT=999;g.ult=g.hero.ultNeed;
+  // Asha's Cash Out consumes a served ticket. Other target-dependent casts only need an enemy.
+  if(TARGETED_SLOTS[hero]===slot){
+    const e=rt.makeGhost('pocong',g.p.x+70,g.p.y);
+    e.hp=e.maxHp=1000;e.spd=0;
+    if(hero==='asha')g.roster.asha.tickets.push({e,served:true,duration:6,until:g.t+6});
+  }
+}
+$('play').onclick=async()=>{
+  const hero=$('hero').value,slot=Number($('skill').value);
+  await rt.audio.unlock();await rt.scene.prepareHero(hero);
+  rt.audio.setVolume(.6);rt.audio.setMuted(false);
+  startSkillTrial(hero,slot);
+  frame.contentDocument.getElementById('menu').hidden=true;
+  if(slot)rt.tryCast(slot);else rt.audio.play(hero,0);
+};
 // Failure scope: missing/identical/clipped buffers, locked audio, rejected casts making sounds,
-// stale tails after pause/menu, mute leakage, and unbounded simultaneous voices.
+// stale tails after pause/menu, mute leakage, unbounded voices, and stage/mood ambience.
 $('run').onclick=async()=>{
 const checks=[],check=(name,pass)=>{checks.push({name,pass:!!pass});if(!pass)throw Error(name)};
 const old={volume:rt.audio.volume,muted:rt.audio.muted};let result='PASS',error;
 try{
 await rt.audio.unlock();check('User gesture unlocks Web Audio',rt.audio.context?.state==='running');rt.audio.setMuted(false);rt.audio.setVolume(.6);
 const hashes=new Set();for(const key of Object.keys(SKILL_SOUNDS)){const pcm=renderSkill(key,22050);let peak=0,energy=0,hash=0;for(let i=0;i<pcm.length;i++){checkFinite(pcm[i]);peak=Math.max(peak,Math.abs(pcm[i]));energy+=pcm[i]*pcm[i];hash=(hash*31+Math.round(pcm[i]*32767))|0}check(key+' produces finite audible unclipped audio',peak>.02&&peak<=.86&&energy/pcm.length>.00001);hashes.add(hash)}check('Every registered cue has a distinct waveform',hashes.size===Object.keys(SKILL_SOUNDS).length);
-for(const hero of ['ustaz','rempit','nok','lan','sari'])for(let slot=1;slot<5;slot++){
-rt.toMenu();rt.newGame(hero,0);const g=rt.G;g.auto=false;g.cds[0]=999;g.spawnT=g.durianT=999;g.ult=g.hero.ultNeed;rt.tryCast(slot);check(hero+' '+slot+' successful cast plays matching sound',rt.audio.lastCue===hero+'-'+slot&&rt.audio.voices.size>0);
+check('All twelve heroes have five cues',HEROES.every(id=>[0,1,2,3,4].every(slot=>SKILL_SOUNDS[id+'-'+slot])));
+for(const hero of HEROES){
+await rt.scene.prepareHero(hero);
+for(let slot=1;slot<5;slot++){
+startSkillTrial(hero,slot);rt.tryCast(slot);check(hero+' '+slot+' successful cast plays matching sound',rt.audio.lastCue===hero+'-'+slot&&rt.audio.voices.size>0);
 const before=rt.audio.playCount;rt.tryCast(slot);check(hero+' '+slot+' rejected cast stays silent',rt.audio.playCount===before);
 rt.togglePause();check(hero+' '+slot+' pause clears sound tails',rt.audio.voices.size===0);
 }
+}
 rt.audio.setPaused(false);rt.audio.setMuted(true);const before=rt.audio.playCount;rt.audio.play('lan',4);check('Mute prevents new sound',rt.audio.playCount===before&&rt.audio.voices.size===0);rt.audio.setMuted(false);
-rt.audio.play('ustaz',4);const ultimate=[...rt.audio.voices.keys()][0];for(const hero of ['ustaz','rempit','nok','lan','sari'])for(let slot=0;slot<4;slot++)rt.audio.play(hero,slot);check('Concurrent sounds are bounded',rt.audio.voices.size===8);check('Ultimate survives ordinary voice stealing',rt.audio.voices.has(ultimate));
+rt.audio.play('ustaz',4);const ultimate=[...rt.audio.voices.keys()][0];for(const hero of HEROES)for(let slot=0;slot<4;slot++)rt.audio.play(hero,slot);check('Concurrent sounds are bounded',rt.audio.voices.size===8);check('Ultimate survives ordinary voice stealing',rt.audio.voices.has(ultimate));
 rt.toMenu();check('Returning to menu clears voices',rt.audio.voices.size===0);
 rt.newGame('ustaz',0);rt.audio.play('ustaz',1);rt.openLevelUp();check('Upgrade selection stops audio',rt.audio.voices.size===0);rt.newGame('ustaz',0);rt.audio.play('ustaz',1);rt.endGame(false);check('Defeat stops audio',rt.audio.voices.size===0);
 rt.audio.setVolume(.35);check('Volume preference persists',JSON.parse(localStorage.getItem('aseanSurvivor.audio')).volume===.35);
 rt.audio.setVolume(0);rt.audio.setPaused(false);rt.audio.play('nok',4);check('Zero volume stays silent',rt.audio.voices.size===0);
-}catch(e){result='FAIL';error=e.message}finally{rt.toMenu();rt.audio.setVolume(old.volume);rt.audio.setMuted(old.muted);$('report').textContent=JSON.stringify({date:new Date().toISOString(),result,error,checks},null,2)}
+rt.audio.setVolume(.6);
+check('Every stage has an ambient profile',Object.keys(AMBIENCE).length>=10&&Object.keys(AMBIENCE).every(id=>AMBIENCE[id].root>0&&AMBIENCE[id].scale.length>=4));
+check('Ambient profiles are distinct',new Set(Object.values(AMBIENCE).map(p=>JSON.stringify(p))).size===Object.keys(AMBIENCE).length);
+check('Ambient notes stay in range',Object.values(AMBIENCE).every(p=>[0,1,2,3,7,15,31].every(step=>[0,1,2,3].every(mood=>{const n=ambientNote(p,['explore','combat','boss','raid'][mood],step);return Number.isFinite(n.freq)&&n.freq>0&&n.freq<2000&&n.gain>=0}))));
+check('Every stage has a melodic motif',Object.values(AMBIENCE).every(p=>Array.isArray(p.motif)&&p.motif.length>=6&&p.melodyGain>0));
+check('Melody stays in mode and forms a four-phrase cycle',Object.values(AMBIENCE).every(p=>{
+  const cycleLength=p.motif.length*4;
+  for(let step=0;step<cycleLength;step++){
+    const note=melodyNote(p,'explore',step),repeat=melodyNote(p,'explore',step+cycleLength);
+    if(note?.freq!==repeat?.freq)return false;
+    if(!note)continue;
+    const semi=Math.round(12*Math.log2(note.freq/p.root));
+    if(!p.scale.includes(((semi%12)+12)%12))return false;
+  }
+  return true;
+}));
+check('Melody renders to finite PCM',Object.values(AMBIENCE).every(p=>{const pcm=renderMelodyPhrase(p,'explore',16);return pcm.length>0&&pcm.every(v=>Number.isFinite(v)&&Math.abs(v)<=.86)}));
+check('Unknown stage falls back safely',stageProfile('missing')===AMBIENCE.johor);
+rt.audio.setScene('johor','explore');const first=rt.audio.profile;rt.audio.setScene('kl','combat');check('Scene switches stage and mood',first!==rt.audio.profile&&rt.audio.mood==='combat');
+rt.audio.setScene(null,'menu');check('Menu clears the stage bed',rt.audio.profile===null);
+rt.audio.setScene('johor','explore');rt.audio.scheduleMusic(ambientNote(AMBIENCE.johor,'explore',0),rt.audio.context.currentTime);check('Ambient notes are scheduled',rt.audio.musicVoices.size>0);
+rt.audio.setPaused(true);check('Pause stops ambience',rt.audio.musicVoices.size===0);rt.audio.setPaused(false);rt.audio.setScene(null,'menu');
+check('Every event cue is finite, audible and distinct',(()=>{const hashes=new Set();for(const name of Object.keys(EVENT_SOUNDS)){const pcm=renderEvent(name);let peak=0,hash=0;for(const v of pcm){checkFinite(v);peak=Math.max(peak,Math.abs(v));hash=(hash*31+Math.round(v*32767))|0}if(peak<=.02||peak>.86)return false;hashes.add(hash)}return hashes.size===Object.keys(EVENT_SOUNDS).length})());
+rt.audio.recentCues.delete('levelup');check('Level-up cue plays',rt.audio.cue('levelup',true)&&rt.audio.lastEvent==='levelup');
+rt.audio.recentCues.delete('ember');check('Ember cue fires',rt.audio.cue('ember'));const cueBefore=rt.audio.cueCount;check('Frequent ember cue is rate limited',!rt.audio.cue('ember')&&rt.audio.cueCount===cueBefore);
+rt.audio.setMuted(true);check('Mute blocks event cues',!rt.audio.cue('boss')&&rt.audio.cueCount===cueBefore);rt.audio.setMuted(false);
+rt.audio.setPaused(true);check('Gameplay cue respects pause',!rt.audio.cue('boss'));check('UI cue works while paused',rt.audio.cue('blessing',true));rt.audio.setPaused(false);rt.audio.stopCues();
+}catch(e){result='FAIL';error=e.message}finally{rt.toMenu();rt.audio.setScene(null,'menu');rt.audio.setVolume(old.volume);rt.audio.setMuted(old.muted);$('report').textContent=JSON.stringify({date:new Date().toISOString(),result,error,checks},null,2)}
 };
 function checkFinite(v){if(!Number.isFinite(v))throw Error('Non-finite audio sample')}
-const rate=22050,segments=['ustaz','rempit','nok','lan','sari'].map(id=>renderSkill(id+'-4',rate));const count=segments.reduce((n,a)=>n+a.length+rate/2,0),wav=new ArrayBuffer(44+count*2),view=new DataView(wav);let offset=44;const text=(o,s)=>{for(let i=0;i<s.length;i++)view.setUint8(o+i,s.charCodeAt(i))};text(0,'RIFF');view.setUint32(4,wav.byteLength-8,true);text(8,'WAVEfmt ');view.setUint32(16,16,true);view.setUint16(20,1,true);view.setUint16(22,1,true);view.setUint32(24,rate,true);view.setUint32(28,rate*2,true);view.setUint16(32,2,true);view.setUint16(34,16,true);text(36,'data');view.setUint32(40,count*2,true);for(const pcm of segments){for(const v of pcm){view.setInt16(offset,Math.round(v*32767),true);offset+=2}offset+=rate}$('sample').href=URL.createObjectURL(new Blob([wav],{type:'audio/wav'}));
+const rate=22050;
+function wavBlob(segments,gap){
+const count=segments.reduce((n,a)=>n+a.length+gap,0),wav=new ArrayBuffer(44+count*2),view=new DataView(wav);let offset=44;
+const text=(o,s)=>{for(let i=0;i<s.length;i++)view.setUint8(o+i,s.charCodeAt(i))};
+text(0,'RIFF');view.setUint32(4,wav.byteLength-8,true);text(8,'WAVEfmt ');view.setUint32(16,16,true);view.setUint16(20,1,true);view.setUint16(22,1,true);view.setUint32(24,rate,true);view.setUint32(28,rate*2,true);view.setUint16(32,2,true);view.setUint16(34,16,true);text(36,'data');view.setUint32(40,count*2,true);
+for(const pcm of segments){for(const v of pcm){view.setInt16(offset,Math.round(v*32767),true);offset+=2}offset+=gap}
+return URL.createObjectURL(new Blob([wav],{type:'audio/wav'}));
+}
+$('sample').href=wavBlob([...HEROES.flatMap(id=>[0,1,2,3,4].map(slot=>renderSkill(id+'-'+slot,rate))),...Object.keys(EVENT_SOUNDS).map(name=>renderEvent(name,rate))],rate/4);
+$('bgm').href=wavBlob(Object.values(AMBIENCE).map(p=>renderMelodyPhrase(p,'explore',32,rate)),rate/2);
 </script></html>

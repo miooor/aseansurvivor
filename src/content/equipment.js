@@ -8,6 +8,8 @@ function directBasicHit(options){
 }
 
 export const ITEMS={
+  dulangTimah:{slot:'relic',name:'Dulang Timah',exclusive:true,skillDamage:.15,pickup:.25,
+    description:'A tin panner’s keepsake. +15% skill damage and +25% pickup range.'},
   rainHood:{slot:'head',name:'Rain Hood',skillDefense:.1,description:'Take 10% less skill damage.'},
   mistHood:{slot:'head',upgradeFrom:'rainHood',name:'Mist Hood',skillDefense:.25,
     description:'Take 25% less skill damage.'},
@@ -48,6 +50,8 @@ export const ITEMS={
   deckBoots:{slot:'boots',name:'Deck Boots',physicalDefense:.08,speed:.04,description:'8% physical defense and +4% movement speed.'},
   monsoonBoots:{slot:'boots',name:'Monsoon Boots',skillDefense:.08,speed:.04,description:'8% skill defense and +4% movement speed.'},
   quaySeal:{quest:'quayManifest',slot:'relic',name:'Quay Seal',health:20,description:'The quay keeper’s brass seal grants 20 maximum HP.'},
+  harbourToken:{quest:'harbourLedger',slot:'relic',name:'Harbour Token',health:15,pickup:.25,
+    description:'The harbour clerk’s token grants 15 maximum HP and 25% more pickup range.'},
   supperCarrier:{quest:'hawkerDelivery',slot:'charm',name:'Tiffin Carrier',health:15,speed:.05,description:'The hawker’s spare carrier grants 15 maximum HP and 5% movement speed.'},
   tinMallet:{quest:'tinAssay',slot:'weapon',name:'Assayer’s Mallet',damage:.15,description:'The dredge crew’s mallet adds 15% outgoing damage.'},
   jettyKnot:{quest:'jettyEscort',slot:'charm',name:'Jetty Rope Bracelet',speed:.1,health:5,description:'A bracelet tied by the fisher grants 10% movement speed and 5 maximum HP.'},

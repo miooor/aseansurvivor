@@ -10,7 +10,7 @@
 }
 .gear-header,.gear-footer{display:flex;align-items:center;gap:16px;padding:12px 22px;background:linear-gradient(#28312f,#131b1b);border-bottom:1px solid #8a7957}
 .gear-header h2{
-  margin:0;text-align:center;padding:4px clamp(18px,4vw,48px);font:600 clamp(22px,3vw,34px)/1.15 Georgia,serif;
+  margin:0;text-align:center;padding:4px clamp(18px,4vw,48px);font:600 clamp(22px,3vw,34px)/1.15 var(--serif);
   font-variant:small-caps;letter-spacing:.045em;color:#241f15;background:linear-gradient(100deg,#95754a,#e7c88e 42%,#bd9e68);
   border:3px double #4b3d29;box-shadow:0 1px 0 #d1b98a,0 3px 8px #0009
 }
@@ -36,7 +36,7 @@
 .gear-slot[data-slot=belt]{grid-area:belt}.gear-slot[data-slot=boots]{grid-area:boots}
 .gear-slot:hover,.gear-offer:hover{border-color:#d1bd8a}
 .gear-slot[aria-pressed=true]{border-color:#e5c383;background:radial-gradient(ellipse at top,#454637,#1a211d)}
-.gear-slot strong{font:600 clamp(12px,1.25vw,15px)/1.2 Georgia,serif}
+.gear-slot strong{font:600 clamp(12px,1.25vw,15px)/1.2 var(--serif)}
 .gear-art{
   display:block;flex-shrink:0;width:clamp(46px,5.6vw,78px);aspect-ratio:1;mix-blend-mode:screen;
   background:url('assets/equipment-items.webp') no-repeat;background-size:500% 500%
@@ -48,7 +48,7 @@
 .gear-slot[data-slot=weapon] .gear-art{width:min(85%,110px)}
 .gear-label{color:#d3b682;font:700 10px/1.5 var(--ui);letter-spacing:.13em;text-transform:uppercase}
 .gear-detail{padding:10px 14px;background:#101a19;border:1px solid #74664b;border-top:0}
-.gear-case h3{color:var(--pale);font:600 21px/1.2 Georgia,serif}
+.gear-case h3{color:var(--pale);font:600 21px/1.2 var(--serif)}
 .gear-case p,.gear-effect{color:#d1d9ce;font:400 14px/1.45 var(--ui)}
 .gear-detail p,.gear-current p{margin-top:4px}
 .gear-sheet{padding:10px 4px;min-width:0}
@@ -68,7 +68,7 @@
 #lootChoices{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0}
 #lootChoices:empty{display:none}
 #lootChoices .gear-offer{display:flex;flex-direction:column;align-items:center;gap:9px;padding:14px 12px;text-align:center}
-.gear-offer .gear-art{width:min(108px,80%)}.gear-offer strong{font:600 20px/1.15 Georgia,serif}
+.gear-offer .gear-art{width:min(108px,80%)}.gear-offer strong{font:600 20px/1.15 var(--serif)}
 .gear-equip{margin-top:auto;padding-top:8px;border-top:1px solid #75664d;width:100%;color:#e4c58f;font-size:13px;font-weight:700}
 @media(max-width:650px){
   .gear-layout{grid-template-columns:1fr;gap:10px}.gear-board{gap:5px;padding:6px}

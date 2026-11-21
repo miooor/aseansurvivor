@@ -25,7 +25,6 @@ const labels:[string,number,number,boolean?][]=[
 export class CampaignAtlas {
   private view=byId('atlasView');
   private overlay=byId('atlasLabels');
-  private missionList=byId('route');
   private route:CampaignRoute='west';
   private pinLabel=document.createElement('span');
   private stageLabels=playableStops.map(stop=>{
@@ -115,7 +114,7 @@ export class CampaignAtlas {
     for(const {element,id} of this.stageLabels)element.addEventListener('click',()=>{
       this.overlay.dispatchEvent(new CustomEvent('select-mission',{detail:id}));
     },{signal});
-    this.missionList.addEventListener('stage-preview',()=>this.syncMission(),{signal});
+    this.view.addEventListener('stage-preview',()=>this.syncMission(),{signal});
     this.syncMission(true);
     this.relief.onload=()=>{if(!signal.aborted)this.dirty=true};
     this.relief.src=reliefUrl;
@@ -152,25 +151,25 @@ export class CampaignAtlas {
 
   private syncMission(initial=false){
     this.exploration.exit(false);
-    const route=this.missionList.dataset.campaignRoute==='east'?'east':'west';
+    const {campaignRoute,selectedStage,openStages,clearedStages,nextStages}=this.view.dataset;
+    const route=campaignRoute==='east'?'east':'west';
     const changed=route!==this.route;
-    this.route=route;this.view.dataset.campaignRoute=route;
-    const selectedId=this.missionList.querySelector('[aria-pressed="true"]')?.id.slice(4);
-    this.boundaries.select(selectedId);
-    const open=this.missionList.dataset.openStages?.split(' ')??[];
-    const cleared=this.missionList.dataset.clearedStages?.split(' ')??[];
-    const next=this.missionList.dataset.nextStages?.split(' ')??[];
+    this.route=route;
+    this.boundaries.select(selectedStage);
+    const open=openStages?.split(' ')??[];
+    const cleared=clearedStages?.split(' ')??[];
+    const next=nextStages?.split(' ')??[];
     for(const {element,id} of this.stageLabels){
       markStageProgress(element,id,cleared,next);
       element.disabled=!open.includes(id);
-      element.setAttribute('aria-pressed',String(id===selectedId));
+      element.setAttribute('aria-pressed',String(id===selectedStage));
     }
     for(const branch of ROUTES){
       this.routeMaterials[branch].opacity=branch===route?1:.67;
       this.roads[branch].renderOrder=branch===route?2:1;
       this.planned[branch].visible=branch===route;
     }
-    const index=Math.max(0,this.expedition.findIndex(stop=>stop.stageId===selectedId));
+    const index=Math.max(0,this.expedition.findIndex(stop=>stop.stageId===selectedStage));
     this.jump(index,initial||changed);
   }
 

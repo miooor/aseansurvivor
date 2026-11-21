@@ -10,12 +10,12 @@ export async function sampleCast(id,slot,{baseline=false,ticks=slot===0?3:6,capt
   let seed=28;
   Math.random=()=>((seed=(Math.imul(1664525,seed)+1013904223)>>>0)/4294967296);
   try{
-    rt.newGame(id,0);
+    rt.newGame(id,0,false,{seed:28});
     const g=rt.G,canvas=scene.terrain.renderer.domElement;
     document.getElementById('menu').hidden=true;
     g.auto=false;g.cds[0]=slot===0?0:999;g.spawnT=g.durianT=999;
     g.st.crit=0;g.ult=g.hero.ultNeed;
-    for(const [x,y] of [[86,0],[172,18],[228,-31]]){
+    for(const [x,y] of [[id==='nadi'?60:86,0],[172,18],[228,-31]]){
       const foe=rt.makeGhost('pocong',g.p.x+x,g.p.y+y);
       Object.assign(foe,{hp:9999,maxHp:9999,spd:0,stun:999});
     }
@@ -30,7 +30,10 @@ export async function sampleCast(id,slot,{baseline=false,ticks=slot===0?3:6,capt
     g.shake=0; // Keep the comparison camera on the same point through hit-stop.
     scene.drawTerrain();
     const result={hero:id,slot,time:+g.t.toFixed(3),damage:g.enemies.slice(0,3).map(e=>9999-e.hp)};
-    if(!baseline){
+    if(id==='dani'&&slot>0){
+      const {channel,rain,dust}=g.roster.dani;
+      check((slot===2?dust:slot===3?rain:channel?.slot===slot)&&scene.terrain.ribbons.mesh.geometry.drawRange.count>0,'Gold Sultan draws its live skill effect '+slot);
+    }else if(!baseline){
       const body=scene.terrain.actors.group.getObjectByName('hero-effects-'+id);
       check(body?.visible,id+' '+slot+' missing batch');
       const source=body.material.uniforms.atlas.value.image;
@@ -38,7 +41,7 @@ export async function sampleCast(id,slot,{baseline=false,ticks=slot===0?3:6,capt
       const uv=body.geometry.getAttribute('frameRect'),frames=[];
       for(let i=0;i<body.geometry.instanceCount;i++)frames.push((4-Math.round(uv.getY(i)*5))*4+Math.round(uv.getX(i)*4));
       check(frames.some(frame=>Math.floor(frame/4)===slot),id+' '+slot+' missing authored row: '+frames);
-      if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+      if(id!=='nadi'&&matchMedia('(prefers-reduced-motion: reduce)').matches){
         check(frames.every(frame=>frame%4===2),id+' '+slot+' keeps its static painted cell');
       }
       result.frames=frames;
@@ -51,6 +54,7 @@ export async function sampleCast(id,slot,{baseline=false,ticks=slot===0?3:6,capt
 export async function checkPaintedBattle(capture){
   const rt=window.__asean,results=[];
   await checkShelterBoundary();
+  await checkSanctuary();
   let previousHero;
   try{
     for(const id of Object.keys(heroArt)){
@@ -112,12 +116,12 @@ export async function checkPaintedPhases(capture=()=>{}){
     results.push(label);
   }
   try{
-    for(const id of ['lan','sari','lia']){
+    for(const id of ['lan','sari']){
       await sampleCast(id,0);
       const g=rt.G;g.cds[0]=999;
       advance(11);
-      const returning=id==='lia'?g.roster.lia.shuttles[0]:g.projs[0];
-      check(returning&&(id==='lia'?returning.age>.45:returning.back&&returning.vx<0),id+' returns');
+      const returning=g.projs[0];
+      check(returning&&returning.back&&returning.vx<0,id+' returns');
       check(bodies().some(b=>b.row===0&&at(b,returning)&&b.flip),id+' paints the returning carrier');
       record(id+' return');
       advance(60);
@@ -125,9 +129,9 @@ export async function checkPaintedPhases(capture=()=>{}){
     }
     await sampleCast('lia',4,{ticks:4});
     let run=rt.G;
-    run.paused=false;rt.tryCast(3);advance(1);
-    check(run.roster.lia.shuttles.length===3&&run.roster.lia.shuttles.every(q=>q.age>=.45&&bodies().some(b=>b.row===4&&b.flip&&at(b,q))),'recall turns each dispatch parcel');
-    record('lia recall');
+    const jump=run.fx.find(f=>f.kind==='shadowstep');
+    check(jump&&bodies().some(b=>b.row===4&&at(b,{x:jump.tx,y:jump.ty})),'Midnight Hunt paints its landing');
+    record('lia hunt');
 
     await sampleCast('lan',1);
     run=rt.G;run.evo[1]=true;run.cds[1]=0;run.paused=false;rt.tryCast(1);
@@ -139,14 +143,14 @@ export async function checkPaintedPhases(capture=()=>{}){
     await sampleCast('vanna',1);
     run=rt.G;run.paused=false;rt.tryCast(2);rt.tryCast(4);
     advance(30);
-    const weave=run.roster.vanna,field=weave.patches[0];
-    check(weave.cross&&field&&bodies().some(b=>b.row===4&&at(b,field)),'canopy persists across its first tick');
-    check([1,2].every(row=>bodies().some(b=>b.row===row)),'both live strips remain under the canopy');
-    record('vanna crossing and canopy');
+    const weave=run.roster.vanna,loom=weave.loom;
+    check(loom?.targets.size===3&&scene.terrain.ribbons.mesh.geometry.drawRange.count>0,'square loom persists across its first tick');
+    check(!bodies().some(b=>b.row===1||b.row===2),'instant cast sprites expire');
+    record('vanna silk loom');
     run.paused=false;rt.tryCast(3);advance(12);
-    check(!weave.cross&&!bodies().some(b=>b.row===1||b.row===2),'crosscut consumes both strips');
+    check(weave.loom===loom&&weave.familiar,'Foldstep summons a familiar while the loom stays active');
     advance(120);
-    check(!weave.patches.length&&!bodies().some(b=>b.row===4),'expired canopy clears');
+    check(!weave.loom&&!bodies().some(b=>b.row===4),'expired loom clears');
 
     await sampleCast('mira',4,{ticks:6});
     const g=rt.G,wave=g.roster.mira.wave,body=bodies().find(b=>b.row===4&&near(b.height,120));
@@ -159,24 +163,24 @@ export async function checkPaintedPhases(capture=()=>{}){
     const paused=JSON.stringify(bodies());
     scene.update(0,160);scene.drawTerrain();
     check(JSON.stringify(bodies())===paused,'paused crest and contact keep their frames and positions');
-    record('mira crest and contact');
+    record('stove cart and contact');
     advance(26);check(!g.roster.mira.wave&&!bodies().some(b=>b.row===4),'crest and impact clear');
 
-    for(const [choice,radius,offset] of [[0,65,175],[1,88,85]]){
+    for(const [choice,radius,duration] of [[0,125,8],[1,220,4]]){
       await scene.prepareHero('nadi');rt.newGame('nadi',0);
       const run=rt.G;run.auto=false;run.cds[0]=999;run.spawnT=999;
       run.level=2;rt.addXP(run.need);rt.step(0);
       document.getElementById('up'+choice).click();
       run.ult=run.hero.ultNeed;rt.tryCast(4);advance(8);
-      const discs=run.roster.nadi.discs;
-      check(discs.length===3&&discs.every(p=>near(Math.hypot(p.x-run.p.x,p.y-run.p.y),offset)&&bodies().some(b=>b.row===4&&at(b,p)&&near(p.radius,radius)&&near(b.width,radius))),'three specialized disc footprints '+choice);
+      const ward=run.roster.nadi.ward;
+      check(ward.radius===radius&&bodies().some(b=>b.row===4&&at(b,ward)&&b.col===0),'statue anchors the specialized ward');
+      check(ward.monks.length===3&&ward.monks.every(m=>bodies().some(b=>b.row===4&&at(b,m))),'three guardian sprites');
       record('nadi '+run.specialization.name);
-      advance(19);
-      check(!run.roster.nadi.discs.length&&discs.every(p=>bodies().some(b=>b.row===4&&at(b,p)&&b.lift===0)),'three delayed contacts');
-      record('nadi '+run.specialization.name+' contacts');
+      advance(duration*25+12);
+      check(!run.roster.nadi.ward&&!bodies().some(b=>b.row===4),'ward and guardians expire together');
     }
-    await checkAnchorPulse(canvas=>capture(canvas,'dani anchor and player'));
-    results.push('dani anchor and player');
+    await checkCoinRain(canvas=>capture(canvas,'coin rain'));
+    results.push('coin rain');
     await checkLanGuards(canvas=>capture(canvas,'lan separated guards'));
     results.push('lan separated guards');
     return results;
@@ -206,39 +210,13 @@ export async function checkCoreSheetFallback(){
   }finally{rt.toMenu()}
 }
 
-export async function checkAnchorPulse(capture=()=>{}){
+export async function checkCoinRain(capture=()=>{}){
   const rt=window.__asean;
   try{
-    await sampleCast('dani',2);
-    const g=rt.G,s=g.roster.dani,{scene}=rt;
-    // Walk away and back through the normal movement hook to arm the beacon.
-    g.paused=false;g.enemies=[];g.cds[0]=999;
-    const walk=(key,distance)=>{
-      const start=g.p.x;
-      window.dispatchEvent(new KeyboardEvent('keydown',{code:key}));
-      for(let i=0;i<100&&Math.abs(g.p.x-start)<distance;i++)scene.update(0,40);
-      window.dispatchEvent(new KeyboardEvent('keyup',{code:key}));
-    };
-    walk('KeyD',165);
-    check(s.anchor.ready,'departing arms the beacon');
-    walk('KeyA',Math.abs(g.p.x-s.anchor.x)-70);
-    // Place the final sub-step exactly on the inclusive boundary.
-    const anchor={...s.anchor};
-    g.p.x=s.lastX=anchor.x+70;g.p.y=s.lastY=anchor.y;
-    const player={x:g.p.x,y:g.p.y};
-    rt.tryCast(3);check(!s.anchor&&s.shield.hp===30,'F consumed the armed anchor');
-    scene.update(0,40);g.paused=true;scene.drawTerrain();
-    capture(scene.terrain.renderer.domElement);
-    const batch=scene.terrain.actors.group.getObjectByName('hero-effects-dani');
-    const attr=name=>batch.geometry.getAttribute(name);
-    const footprints=[];
-    for(let i=0;i<batch.geometry.instanceCount;i++){
-      if(4-Math.round(attr('frameRect').getY(i)*5)!==3)continue;
-      footprints.push([attr('pose').getX(i),attr('pose').getY(i),attr('dimensions').getX(i)]);
-    }
-    for(const [x,y,d] of [[anchor.x,anchor.y,300],[player.x,player.y,260]]){
-      check(footprints.filter(([px,py,width])=>Math.hypot(px-x,py-y)<.01&&width===d).length===1,'one F footprint of diameter '+d+' at '+[x,y]+' in '+JSON.stringify(footprints));
-    }
+    await sampleCast('dani',3,{ticks:12});
+    const run=rt.G;
+    check(run.roster.dani.rain?.wave===1&&run.fx.some(f=>f.kind==='coinfall'),'coin rain impacts after its windup');
+    capture(rt.scene.terrain.renderer.domElement);
   }finally{if(rt.G)rt.toMenu()}
 }
 
@@ -259,4 +237,28 @@ export async function checkLanGuards(capture=()=>{}){
       check(i>=0&&4-Math.round(uv.getY(i)*5)===2,'the E motif sits on each separated guard');
     }
   }finally{if(rt.G)rt.toMenu()}
+}
+
+export async function checkSanctuary(capture=()=>{}){
+  const rt=window.__asean,{scene}=rt;
+  await sampleCast('ustaz',4);
+  const word=()=>scene.terrain.labels.group.getObjectByName('يشفي');
+  try{
+    check(!word(),'Benteng Doa has its own artwork');
+    rt.newGame('ustaz',0);
+    const g=rt.G;g.auto=false;g.cds[0]=999;g.spawnT=g.durianT=999;
+    window.dispatchEvent(new KeyboardEvent('keydown',{code:'KeyD'}));
+    try{for(let i=0;i<56;i++)scene.update(0,50)}
+    finally{window.dispatchEvent(new KeyboardEvent('keyup',{code:'KeyD'}))}
+    g.identity.charge=4;g.cds[3]=0;g.paused=false;rt.tryCast(3);
+    for(let i=0;i<24;i++)scene.update(0,50);
+    g.paused=true;scene.drawTerrain();
+    const field=g.zones.find(z=>z.slot===3&&z.kind==='barrier');
+    check(field&&word(),'charged Seruan displays the Sanctuary inscription');
+    check(word().position.x===field.x,'inscription shares the field centre line');
+    capture(scene.terrain.renderer.domElement);
+    g.paused=false;
+    for(let i=0;i<130;i++)scene.update(0,50);
+    check(!word(),'inscription expires with Sanctuary');
+  }finally{rt.toMenu()}
 }

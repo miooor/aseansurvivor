@@ -1,5 +1,7 @@
+import {checkShrinePickups} from './shrine-pickups.js';
+import {checkElements} from './elements.js';
 import {checkEvolutions} from './evolutions.js';
-import {STAGES} from '../src/content/core.js';
+import {STAGES,LEVEL_UP_HEAL} from '../src/content/core.js';
 import {stageAvailable} from '../src/content/campaign-routes.js';
 
 const frame=document.querySelector('#game'),report=document.querySelector('#report'),run=document.querySelector('#run');
@@ -26,6 +28,11 @@ run.onclick=async()=>{
       !stageAvailable('east','kelantan',clearState(['pahang'])) &&
       stageAvailable('east','kelantan',clearState(['terengganu'])) &&
       stageAvailable('west','perak',clearState(['melaka'],['perak'])));
+    check('Selangor opens after Kuala Lumpur and preserves earlier Perak access',
+      !stageAvailable('west','selangor',clearState(['melaka'])) &&
+      stageAvailable('west','selangor',clearState(['kl'])) &&
+      stageAvailable('west','perak',clearState(['kl'])) &&
+      stageAvailable('west','perak',clearState(['selangor'])));
     localStorage.removeItem(saveKey);
     await load();
     const w=frame.contentWindow;
@@ -39,17 +46,16 @@ run.onclick=async()=>{
     while(!w.__asean&&Date.now()<deadline)await tick();
     check('Three.js scene boots',w.__asean?.engine.startsWith('Three.js'));
     const checkStops=(label,cleared,next)=>{
-      for(const [selector,prefix] of [['.atlas-stage','atlas-stage-'],['#route .stg','stg-']]){
-        const buttons=[...d.querySelectorAll(selector)];
-        check(label+' '+selector,buttons.length>0 && buttons.every(button=>{
-          const id=button.id.slice(prefix.length);
-          const state=cleared.includes(id)?'cleared':next.includes(id)?'next':'';
-          const description={cleared:'Cleared',next:'Next available stop'}[state];
-          return (button.dataset.progress||'')===state &&
-            button.getAttribute('aria-description')===(description||null);
-        }));
-      }
+      const buttons=[...$('atlasLabels').querySelectorAll('.atlas-stage')];
+      check(label,buttons.length===STAGES.length && buttons.every(button=>{
+        const id=button.id.slice('atlas-stage-'.length);
+        const state=cleared.includes(id)?'cleared':next.includes(id)?'next':'';
+        const description={cleared:'Cleared',next:'Next available stop'}[state];
+        return (button.dataset.progress||'')===state &&
+          button.getAttribute('aria-description')===(description||null);
+      }));
     };
+    check('Mission briefing has no duplicate stage picker',!d.querySelector('.mission-sheet [aria-pressed], #route'));
     checkStops('Fresh save marks shared Johor once',[],['johor']);
     const continueTo=id=>{
       const before=localStorage.getItem(saveKey),button=$('continueExpedition');
@@ -57,11 +63,11 @@ run.onclick=async()=>{
       button.click();
       const name=STAGES.find(stage=>stage.id===id).name;
       check('Continue briefs '+name,d.activeElement===$('stageTitle') && $('stageTitle').textContent===name &&
-        $('stg-'+id).getAttribute('aria-pressed')==='true' && $('atlas-stage-'+id).getAttribute('aria-pressed')==='true' &&
+        $('atlas-stage-'+id).getAttribute('aria-pressed')==='true' &&
         $('start').textContent==='Enter '+name && !w.__asean.G && !$('menu').hidden);
       check('Preview preserves save for '+id,localStorage.getItem(saveKey)===before);
     };
-    $('stg-kedah').click();continueTo('johor');
+    $('atlas-stage-kedah').click();continueTo('johor');
     const setProgress=async save=>{
       const updated=new Promise(resolve=>w.addEventListener('storage',resolve,{once:true}));
       localStorage.setItem(saveKey,JSON.stringify(save));await updated;
@@ -82,6 +88,9 @@ run.onclick=async()=>{
     await setProgress({cleared:[...east,'melaka']});
     checkStops('Legacy Perak access keeps earlier Kuala Lumpur next',[...east,'melaka'],['kl']);
     continueTo('kl');
+    await setProgress(clearState([...east,'melaka','kl']));
+    checkStops('Kuala Lumpur clear makes Selangor the next mission',[...east,'melaka','kl'],['selangor']);
+    continueTo('selangor');
     const complete=STAGES.map(stage=>stage.id);
     await setProgress(clearState(complete));
     checkStops('Fully cleared atlas has no next stops',complete,[]);
@@ -113,23 +122,49 @@ run.onclick=async()=>{
     check('Turning the wheel clears the previous hero skill description',$('menuSkillDescription').hidden);
     check('Wheel navigation keeps the current mission',$('selectedHeroName').textContent==='Nok' && $('start').textContent==='Enter Johor');
     $('hero-ustaz').click();
-    check('Six stage selections load',$('route').querySelectorAll('button').length===6);
+    const preview=$('hero-ustaz').querySelector('.hero-preview'),previewToggle=$('heroPreviewToggle');
+    if(w.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      check('Reduced motion keeps the larger idle portrait',preview.hidden&&previewToggle.hidden&&!$('hero-ustaz').querySelector('i').hidden);
+    }else{
+      w.__asean.step(310);
+      for(let i=0;i<$('heroSkills').children.length;i++){
+        check('Lineup previews skill '+(i+1),!preview.hidden&&$('heroSkills').children[i].classList.contains('preview-cast'));
+        if(i<$('heroSkills').children.length-1)w.__asean.step(1050);
+      }
+      previewToggle.click();w.__asean.step(1050);
+      check('Pause freezes the skill preview',$('heroSkills').lastElementChild.classList.contains('preview-cast'));
+      previewToggle.click();
+    }
+    d.activeElement.blur();
+    const lobbyKey=(type,key,code,repeat=false)=>d.activeElement.dispatchEvent(
+      new w.KeyboardEvent(type,{key,code,repeat,bubbles:true,cancelable:true})
+    );
+    lobbyKey('keydown','a','KeyA');
+    check('A selects the previous survivor without lineup focus',$('hero-lia').getAttribute('aria-pressed')==='true');
+    lobbyKey('keydown','d','KeyD');
+    check('D selects the next survivor without lineup focus',$('hero-ustaz').getAttribute('aria-pressed')==='true');
+    $('controls').showModal();
+    lobbyKey('keydown','a','KeyA');
+    lobbyKey('keydown',' ','Space');
+    lobbyKey('keyup',' ','Space');
+    check('Lobby shortcuts are inactive while the field guide is open',!w.__asean.G&&$('hero-ustaz').getAttribute('aria-pressed')==='true');
+    $('controls').close();
     check('Campaign atlas opens in Johor', $('atlasPlace').textContent==='Johor' && $('atlasPrevious').disabled);
-    const stages=[['johor','Johor'],['melaka','Melaka'],['kl','Kuala Lumpur'],['perak','Perak'],['penang','Pulau Pinang'],['kedah','Kedah']];
+    const stages=[['johor','Johor'],['melaka','Melaka'],['kl','Kuala Lumpur'],['selangor','Selangor'],['perak','Perak'],['penang','Pulau Pinang'],['kedah','Kedah']];
     const stops=[...stages.map(([,name])=>name),'Chiang Mai','Bagan','Luang Prabang','Hanoi','Siem Reap','Singapore','Yogyakarta','Dili','Bandar Seri Begawan','Cebu'];
-    check('Mission buttons follow the northbound route',[...$('route').children].every((button,i)=>button.id==='stg-'+stages[i][0]));
     const atlas=w.__asean.scene.atlas,routeDeadline=Date.now()+3000;
     while(atlas.routeLines.length<stops.length-1 && Date.now()<routeDeadline)await tick();
     const matchesPin=(point,stage)=>point && Math.abs(point.x-(stage.lon-110))<.001 && Math.abs(point.z-(9-stage.lat))<.001;
-    check('Each gold leg connects two consecutive playable level coordinates',STAGES.slice(1,6).every((stage,i)=>{
+    check('Each gold leg connects two consecutive playable level coordinates',stages.slice(1).every(([id],i)=>{
       const leg=atlas.routeLines[i];
-      return leg && matchesPin(leg[0],STAGES[i]) && matchesPin(leg.at(-1),stage);
+      const from=STAGES.find(stage=>stage.id===stages[i][0]),to=STAGES.find(stage=>stage.id===id);
+      return leg && matchesPin(leg[0],from) && matchesPin(leg.at(-1),to);
     }));
     const countries=new Set([$('atlasCountry').textContent]);
     for(let i=1;i<stops.length;i++){
       $('atlasNext').click();countries.add($('atlasCountry').textContent);
-      check('Tour stop '+(i+1)+' matches '+stops[i],$('atlasPlace').textContent===stops[i] && $('atlasCount').textContent===String(i+1).padStart(2,'0')+' / 16');
-      check(stops[i]+' preview keeps the selected mission',$('atlasState').textContent===(i<6?'Playable chapter':'Planned chapter') && $('start').textContent==='Enter Johor');
+      check('Tour stop '+(i+1)+' matches '+stops[i],$('atlasPlace').textContent===stops[i] && $('atlasCount').textContent===String(i+1).padStart(2,'0')+' / '+stops.length);
+      check(stops[i]+' preview keeps the selected mission',$('atlasState').textContent===(i<stages.length?'Playable chapter':'Planned chapter') && $('start').textContent==='Enter Johor');
     }
     check('Tour reaches all eleven countries',countries.size===11 && $('atlasNext').disabled);
     $('atlasTour').click();
@@ -138,6 +173,15 @@ run.onclick=async()=>{
     check('Tour can be paused',$('atlasTour').getAttribute('aria-pressed')==='false');
     $('atlasOverview').click();
     check('Overview returns to the Johor origin',$('atlasPrevious').disabled && $('atlasPlace').textContent==='Johor');
+    $('hero-ustaz').focus();
+    lobbyKey('keydown',' ','Space');
+    lobbyKey('keydown',' ','Space',true);
+    check('Holding Space does not start a run before release',!w.__asean.G);
+    lobbyKey('keyup',' ','Space');
+    const launchDeadline=Date.now()+3000;
+    while(!w.__asean.G&&Date.now()<launchDeadline)await tick();
+    check('Space starts the selected stage and survivor',w.__asean.G?.stage.id==='johor'&&w.__asean.G?.hero.id==='ustaz');
+    w.__asean.toMenu();
     {
       const ready=w.__asean;
       ready.newGame('ustaz',0);
@@ -200,16 +244,43 @@ run.onclick=async()=>{
       ready.toMenu();
     }
     await checkEvolutions(w,check);
+    for(const button of $('heroes').querySelectorAll('button.hero')){
+      const id=button.id.slice(5),rt=w.__asean;
+      await rt.scene.prepareHero(id);
+      for(const rank of [1,2,3,4,5]){
+        rt.newGame(id,0,true);
+        const g=rt.G;
+        g.auto=false;g.enemies=[];g.ranks[0]=rank;g.cds[0]=0;
+        const enemy=rt.makeGhost('pocong',g.p.x+62,g.p.y);
+        enemy.hp=enemy.maxHp=9999;enemy.spd=0;
+        if(id==='nadi'){
+          g.st.crit=0;g.noElements=true;
+          const targets=[enemy,...[-25,25].map(dy=>rt.makeGhost('pocong',g.p.x+43,g.p.y+dy))];
+          for(const foe of targets)Object.assign(foe,{hp:9999,maxHp:9999,spd:0,stun:999});
+          rt.step(16);
+          const expected=1+Math.floor((rank-1)/2);
+          check('Open Palm hits '+expected+' melee targets at rank '+rank,g.projs.length===0&&targets.filter(e=>e.hp<9999).length===expected);
+          continue;
+        }
+        rt.step(16);
+        const melee=id==='nok'||id==='mira';
+        const count=(melee?Number(rank>=2):1)+Math.floor((rank-1)/2)+Number(id==='lan'&&rank>=4);
+        check(id+' basic rank '+rank+' launches '+count+' projectiles',g.projs.length===count);
+        check(id+' basic shots inherit their unlocked rank '+rank,g.projs.every(q=>q.basicRank===(rank===1?undefined:rank)));
+        check(id+' projectiles have independent contacts at rank '+rank,new Set(g.projs.map(q=>q.hit)).size===count);
+      }
+      rt.toMenu();
+    }
     const rosterIcons=new Set();
     for(const [id,country] of [['asha','sg'],['mira','ph'],['dani','bn'],['vanna','kh'],['keo','la'],['nadi','mm'],['lia','tl']]){
       $('hero-'+id).click();
       const flag=w.getComputedStyle($('hero-'+id),'::before');
       check(id+' shows its own flag behind the portrait at 30% opacity',flag.backgroundImage.includes('/flags/'+country+'.webp')&&flag.opacity==='0.3');
       const icons=[...$('heroSkills').querySelectorAll('.ability-art')].map(icon=>w.getComputedStyle(icon));
-      const artwork=id==='mira'?'mira-rescue-icons.svg':'roster-skill-icons.webp';
+      const artwork=id==='mira'?'pag-pag-icons.webp':id==='lia'?'lia-shadow-icons.svg':id==='nadi'?'mingun-icons.webp':id==='dani'?'gold-sultan-icons.webp':'roster-skill-icons.webp';
       check(id+' shows dedicated artwork for all five attacks',icons.length===5&&icons.every(icon=>icon.backgroundImage.includes(artwork)));
       const positions=icons.map(icon=>icon.backgroundPosition);
-      positions.forEach(position=>rosterIcons.add(position));
+      positions.forEach(position=>rosterIcons.add(artwork+position));
       $('start').click();
       const until=Date.now()+12000;
       while(!w.__asean.G && Date.now()<until)await tick();
@@ -227,34 +298,97 @@ run.onclick=async()=>{
       const sheet=rt.scene.terrain.actors.sheets.get('hero-motion-'+id);
       check(id+' projects a shadow from its gameplay sprite',sheet?.geometry.instanceCount===1 && sheet.body.geometry===sheet.shadow.geometry && sheet.body.material.uniforms.atlas.value===sheet.shadow.material.uniforms.atlas.value);
       for(let slot=1;slot<=4;slot++){
+        if(id==='dani'&&slot===2){
+          // The spin owns the visible pose until it completes.
+          g.spawnT=999;
+          for(let i=0;i<37;i++)rt.step(50);
+        }
+        if(id==='dani'&&slot===3)rt.makeGhost('pocong',g.p.x+95,g.p.y);
+        if(id==='vanna'&&slot===2){
+          const e=rt.makeGhost('pocong',g.p.x+95,g.p.y);e.hp=e.maxHp=1000;
+          $('game').dispatchEvent(new w.MouseEvent('mousemove',{clientX:w.innerWidth/2+100,clientY:w.innerHeight/2}));
+        }
+        if(id==='lia'&&slot===4)rt.makeGhost('pocong',g.p.x+70,g.p.y);
+        if(id==='asha'&&slot===2){const e=rt.makeGhost('pocong',g.p.x+70,g.p.y);g.roster.asha.tickets.push({e,served:true,duration:6,until:g.t+6})}
         g.ult=g.hero.ultNeed;rt.tryCast(slot);rt.scene.update(0,0);
         const cast=rt.scene.sprites.get(g.p);
         check(id+' uses its own '+g.hero.skills[slot].key+' cast pose',cast.key==='hero-skills-'+id && Math.floor(Number(cast.frame.name)/16)===slot-1);
       }
       rt.newGame(id,0);
       const trial=rt.G,p=trial.p;
-      trial.auto=false;trial.cds[0]=999;trial.spawnT=trial.durianT=999;trial.st.crit=0;
+      trial.auto=false;trial.cds[0]=999;trial.spawnT=trial.durianT=999;trial.st.crit=0;trial.noElements=true;
       $('game').dispatchEvent(new w.MouseEvent('mousemove',{clientX:w.innerWidth/2+100,clientY:w.innerHeight/2}));
       const target=(dx,dy=0)=>{const foe=rt.makeGhost('pocong',p.x+dx,p.y+dy);foe.hp=foe.maxHp=1000;foe.spd=0;return foe};
       if(id==='asha'){
         const served=target(220),recipient=target(350);
         rt.tryCast(1);const ticket=trial.roster.asha.tickets.find(q=>q.e===served);
         ticket.served=true;rt.tryCast(2);
-        check('Counter Relay sends a receipt beyond the collected burst',recipient.hp===988&&trial.fx.some(f=>f.kind==='relay'&&f.tx===recipient.x));
+        check('Cash Out sends a receipt beyond the collected burst',recipient.hp===988&&trial.fx.some(f=>f.kind==='relay'&&f.tx===recipient.x));
       }
       if(id==='mira'){
         trial.ult=trial.hero.ultNeed;rt.tryCast(4);
-        check('Breaking Wave travels along the aimed heading',trial.roster.mira.wave.ax>.99&&Math.abs(trial.roster.mira.wave.ay)<.01);
+        check('Last Stove Express travels along the aimed heading',trial.roster.mira.wave.ax>.99&&Math.abs(trial.roster.mira.wave.ay)<.01);
       }
       if(id==='dani'){
-        rt.tryCast(2);p.x+=200;const enemy=target(80);rt.tryCast(1);
-        check('Breakwater Thrust pulls the struck ghost towards the planted beacon',enemy.kvx<0&&enemy.hp===970);
+        rt.tryCast(3);
+        check('Make It Rain stays ready without a target',trial.cds[3]===0&&!trial.roster.dani.rain);
+        const foe=target(100);
+        rt.tryCast(1);
+        for(let i=0;i<5;i++)rt.step(50);
+        check('Gold Melting Flamethrower begins its sweep and hits the first foe',trial.roster.dani.channel?.slot===1&&foe.hp<1000);
+        rt.tryCast(3);
+        check('Make It Rain automatically targets the foe',trial.roster.dani.rain?.x===foe.x&&trial.roster.dani.rain.y===foe.y&&trial.cds[3]>0);
+        const hp=foe.hp;
+        for(let i=0;i<42;i++)rt.step(50);
+        check('Coins fall in repeated waves and damage nearby enemies',!trial.roster.dani.rain&&foe.hp<hp);
+        trial.ult=trial.hero.ultNeed;rt.tryCast(4);
+        for(let i=0;i<4;i++)rt.step(50);
+        check('Bullion Barrage spawns piercing gold bars',trial.projs.some(q=>q.kind==='gold-bar'&&q.hitOptions.slot===4));
+        const x=p.x,y=p.y,dustAt=trial.t;
+        rt.tryCast(2);
+        check('Gold Dust buffs attacks while Barrage continues',!p.dash&&p.x===x&&p.y===y&&trial.roster.dani.dust?.until===dustAt+5&&trial.roster.dani.channel?.slot===4);
+        trial.cds[0]=.9;rt.step(50);
+        check('Gold Dust makes Gold Rivet fire 50% faster',Math.abs(trial.cds[0]-.825)<1e-8);
+        const dustButton=$('sk2'),buffTime=dustButton.querySelector('.buff-time');
+        check('Gold Dust shows buff time separately from cooldown',buffTime?.textContent==='5s'&&!buffTime.hidden&&
+          dustButton.querySelector('.cdn').textContent==='10'&&dustButton.getAttribute('aria-description')==='Buff active for 5 more seconds'&&
+          !buffTime.closest('[aria-live]'));
+        rt.togglePause();
+        for(let i=0;i<22;i++)rt.step(50);
+        check('Gold Dust timer freezes while paused',buffTime.textContent==='5s');
+        rt.togglePause();
+        for(let i=0;i<21;i++)rt.step(50);
+        check('Gold Dust timer counts down after resume',buffTime.textContent==='4s');
+        const dust=trial.roster.dani.dust;
+        trial.t=dust.until;rt.step(0);
+        check('Gold Dust expiry clears its timer and description while cooldown continues',buffTime.hidden&&
+          !dustButton.hasAttribute('aria-description')&&!!dustButton.querySelector('.cdn').textContent);
       }
       if(id==='vanna'){
-        rt.tryCast(1);rt.tryCast(2);const foe=target(140);
+        const foe=target(80),flank=target(0,90),rear=target(-85,0);
+        rt.tryCast(2);
+        check('Running Stitch links three foes',trial.roster.vanna.stitches.size===3&&[foe,flank,rear].every(e=>e.hp===974));
+        const origin={x:p.x,y:p.y};
+        rt.tryCast(3);
+        check('Foldstep summons the silk familiar without moving Vanna',p.x===origin.x&&p.y===origin.y&&trial.roster.vanna.familiar);
+        rt.step(50);
+        check('The silk familiar attacks the nearest foe',foe.hp===929&&flank.hp===974);
+        for(let i=0;i<15;i++)rt.step(50);
+        check('The silk familiar attacks again as enemies stay nearby',foe.hp===884&&flank.hp===974);
+        trial.roster.vanna.familiar=null;
+        const corner=target(249,249),outside=target(251,-249);
+        Object.assign(corner,{spd:60,kvx:100});
         trial.ult=trial.hero.ultNeed;rt.tryCast(4);
-        for(let i=0;i<21;i++)rt.step(50);
-        check('Canopy pulse rewards a live crossing inside the field',foe.hp<=954&&trial.fx.some(f=>f.flourish==='crossing'));
+        const x=corner.x,y=corner.y;
+        for(let i=0;i<20;i++)rt.step(50);
+        check('Silk Loom holds its target against knockback while active',corner.x===x&&corner.y===y&&corner.kvx===0);
+        const late=target(-251,-80),late2=target(-251,-130);
+        for(const e of [late,late2])Object.assign(e,{hp:70,maxHp:70,kvx:100});
+        rt.step(50);
+        check('Silk Loom shreds mobs immediately when they enter its square',late.hp===34&&late2.hp===34&&trial.roster.vanna.loom.targets.has(late));
+        for(let i=0;i<61;i++)rt.step(50);
+        check('Silk Loom ticks ten times on a square corner',corner.hp===640&&!trial.roster.vanna.loom);
+        check('Silk Loom kills incoming mobs and leaves enemies outside the square free',late.dead&&late2.dead&&outside.hp===1000);
       }
       if(id==='keo'){
         rt.tryCast(1);for(let i=0;i<31;i++)rt.step(50);
@@ -262,17 +396,37 @@ run.onclick=async()=>{
         check('A timed register moves the next echo to the aimed beat',trial.roster.keo.pulses[0].x>p.x+150&&trial.roster.keo.pulses[0].damage===42);
       }
       if(id==='nadi'){
-        rt.tryCast(2);const coat=trial.roster.nadi.layers[0];p.x=coat.x;p.y=coat.y;rt.tryCast(3);
-        check('Kiln Breath cures the nearby wet coat for immediate release',trial.identity.ready);
-        rt.tryCast(1);check('Peel consumes the newly cured coat',trial.roster.nadi.layers.length===0);
+        const foe=target(72);trial.st.crit=1;rt.tryCast(1);
+        for(let i=0;i<33;i++)rt.step(50);
+        check('Critical palms fill Perfect Recall',trial.identity.ready&&foe.hp<foe.maxHp);
+        rt.tryCast(2);
+        check('Hand of Buddha spends Recall on a travelling wave',!trial.identity.ready&&trial.roster.nadi.waves[0]?.empowered);
+        trial.ult=trial.hero.ultNeed;rt.tryCast(4);
+        check('Buddha’s Refuge raises a statue with three guardians',trial.roster.nadi.ward?.monks.length===3);
       }
       if(id==='lia'){
-        const foe=target(120);
-        trial.ult=trial.hero.ultNeed;rt.tryCast(4);for(let i=0;i<5;i++)rt.step(50);
+        const prey=target(110),start=p.x;
+        rt.tryCast(2);const shadow=trial.roster.lia.shadow;
+        check('Shadowstep blinks past its target and backstabs on one press',p.x>prey.x&&!p.dash&&prey.hp===928);
+        check('Shadowstep leaves a shadow at Lia’s last visible position',shadow?.x===start&&shadow.until>trial.t);
+        const pursuer=rt.makeGhost('minyak',start+60,p.y);
+        pursuer.spd=80;p.x=start+100;trial.cds[0]=0;
+        rt.step(50);
+        check('Pursuit follows the afterimage while automatic knives pause',pursuer.x<start+60&&trial.projs.length===0);
+        pursuer.dead=true;trial.cds[0]=999;
         rt.tryCast(3);
-        check('Recall Bell turns all airborne festival shuttles early',trial.roster.lia.shuttles.length===3&&trial.roster.lia.shuttles.every(q=>q.age>=.45));
-        for(let i=0;i<8;i++)rt.step(50);
-        check('Recalled shuttles return without producing free Spools',trial.roster.lia.spools===0&&foe.hp<1000);
+        check('Blade Wheel reveals Lia and slows nearby enemies',prey.hp===886&&prey.slowT===2&&!trial.roster.lia.shadow);
+        trial.ult=trial.hero.ultNeed;rt.tryCast(4);
+        for(let i=0;i<20;i++)rt.step(50);
+        check('Midnight Hunt completes three cuts on a lone target',prey.hp===886-3*34&&!trial.roster.lia.hunt);
+        Object.assign(prey,{x:p.x+85,y:p.y,stun:999});
+        trial.cds[2]=0;
+        rt.tryCast(2);
+        const hidden=!!trial.roster.lia.shadow,before=prey.hp;
+        trial.auto=true;trial.autoMode=0;
+        rt.step(50);
+        trial.auto=false;
+        check('Auto Crescent Cut attacks out of Shadowstep',hidden&&!trial.roster.lia.shadow&&trial.identity.castSlot===1&&prey.hp<before);
       }
       rt.openLevelUp();check(id+' can rank up',$('levelup').hidden===false);
       rt.toMenu();
@@ -288,8 +442,8 @@ run.onclick=async()=>{
         const rt=w.__asean,g=rt.G,xp=$('xpbar'),notice=$('banner');
         check('Experience has a full-width progress bar at the top',xp instanceof w.HTMLProgressElement&&
           xp.getBoundingClientRect().bottom<$('time').getBoundingClientRect().top&&xp.getBoundingClientRect().width>w.innerWidth*.8);
-        check('Announcements are centered in larger type above the action',
-          parseFloat(w.getComputedStyle(notice).fontSize)>=20&&
+        check('Announcements are compact, centered and below the clock',
+          parseFloat(w.getComputedStyle(notice).fontSize)>=14&&
           Math.abs(notice.getBoundingClientRect().left+notice.getBoundingClientRect().width/2-w.innerWidth/2)<2&&
           notice.getBoundingClientRect().top>$('time').getBoundingClientRect().bottom);
         rt.addXP(3);g.p.hp=g.p.maxHp/2;rt.scene.update(0,0);rt.scene.drawTerrain();
@@ -344,8 +498,8 @@ run.onclick=async()=>{
         const angle=direction*Math.PI/4;
         $('game').dispatchEvent(new w.MouseEvent('mousemove',{clientX:w.innerWidth/2+Math.cos(angle)*100,clientY:w.innerHeight/2+Math.sin(angle)*100}));
         animRun.cds[1]=0;w.__asean.tryCast(1);
-        for(let n=0;n<20;n++){scene.update(0,40);const sprite=[...scene.sprites.values()].find(o=>o.key==='hero-skills-'+id);if(sprite)attackFrames.add(Number(sprite.frame.name))}
-        check(name+' plays unique Q windup/release in direction '+direction,attackFrames.has(direction)&&attackFrames.has(8+direction)&&[...attackFrames].every(f=>f%8===direction));
+        for(let n=0;n<20;n++){scene.update(0,40);const sprite=[...scene.sprites.values()].find(o=>o.key==='hero-skills-'+id);if(sprite)attackFrames.add(Number(sprite.frame.name));if(scene.sprites.get(animRun.p)?.key==='nok-flying-knee')attackFrames.add('knee')}
+        check(name+' plays unique Q windup/release in direction '+direction,id==='nok'?attackFrames.has('knee')&&!animRun.sea.knee&&Math.cos(animRun.identity.castAngle-angle)>.99:attackFrames.has(direction)&&attackFrames.has(8+direction)&&[...attackFrames].every(f=>f%8===direction));
         for(let n=0;n<10;n++)scene.update(0,50);
       }
       if(id==='rempit'){
@@ -371,8 +525,8 @@ run.onclick=async()=>{
         for(const code of steer)w.dispatchEvent(new w.KeyboardEvent('keyup',{code}));
         const effect=animRun.fx.findLast(f=>f.kind==='spell');
         check(name+' skill '+slot+' has its own effect '+direction,effect?.skill===id+'-'+slot);
-        for(let n=0;n<35;n++){scene.update(0,40);const sprite=[...scene.sprites.values()].find(o=>o.key==='hero-skills-'+id);if(sprite)poses.add(Number(sprite.frame.name))}
-        check(name+' skill '+slot+' distinct poses '+direction,poses.has((slot-1)*16+direction)&&poses.has((slot-1)*16+8+direction));
+        for(let n=0;n<35;n++){scene.update(0,40);const sprite=[...scene.sprites.values()].find(o=>o.key==='hero-skills-'+id);if(sprite)poses.add(Number(sprite.frame.name));if(scene.sprites.get(animRun.p)?.key==='nok-flying-knee')poses.add('knee')}
+        check(name+' skill '+slot+' distinct poses '+direction,id==='nok'&&slot===1?poses.has('knee')&&!animRun.sea.knee:poses.has((slot-1)*16+direction)&&poses.has((slot-1)*16+8+direction));
       }
       // Crowded battles must not evict a still-active ultimate to make room for hit sparks.
       animRun.ult=animRun.hero.ultNeed;animRun.cds[4]=0;w.__asean.tryCast(4);
@@ -397,7 +551,7 @@ run.onclick=async()=>{
       const rt=w.__asean;
       rt.newGame(id,0);
       const g=rt.G;
-      g.auto=false;g.cds[0]=999;g.st.crit=0;g.spawnT=g.durianT=999;
+      g.auto=false;g.cds[0]=999;g.st.crit=0;g.spawnT=g.durianT=999;g.noElements=true;
       const foe=x=>{const e=rt.makeGhost('pocong',x,0);e.hp=e.maxHp=1000;e.spd=0;return e};
       $('game').dispatchEvent(new w.MouseEvent('mousemove',{clientX:w.innerWidth/2+100,clientY:w.innerHeight/2}));
       if(id==='ustaz'){
@@ -409,7 +563,9 @@ run.onclick=async()=>{
         g.cds[1]=3;rt.tryCast(3);check('Two ignited patches refund two seconds of Wheelie',g.cds[1]===1);check('Horn ignites nearby exhaust once per target',target.hp===980&&g.zones.length===0);
       }else if(id==='nok'){
         const close=foe(70),tip=foe(190);rt.tryCast(1);
-        check('Ember Teep rewards full extension',close.hp-tip.hp===16&&tip.stun>0);
+        for(let i=0;i<10;i++)rt.step(50);
+        check('Flying Knee rewards full extension',close.hp-tip.hp===27&&tip.stun>0);
+        close.x=g.p.x+45;close.y=g.p.y;
         rt.tryCast(3);close.kvx=0;rt.tryCast(2);
         check('Wai Khru changes Turning Elbow into an inward sweep',close.kvx<0&&close.stun>0);
       }else if(id==='lan'){
@@ -423,6 +579,68 @@ run.onclick=async()=>{
       }
       rt.toMenu();
     }
+    {
+      const rt=w.__asean;
+      rt.newGame('ustaz',0);
+      const g=rt.G,p=g.p;
+      p.hp=p.maxHp*.5;
+      g.pupT=0;
+      rt.step(0);
+      const food=g.pups[0];
+      check('At half health the next roaming pickup is Ketupat',food?.type==='ketupat');
+      Object.assign(p,{x:food.x,y:food.y});
+      rt.step(0);
+      check('Collecting Ketupat restores 35% of max HP once',
+        Math.abs(p.hp-p.maxHp*.85)<.001&&g.pups.length===0);
+      rt.dropPup(p.x,p.y,'ketupat');
+      g.stop=0;
+      rt.step(0);
+      check('Ketupat healing caps at full health',p.hp===p.maxHp);
+      p.hp=1;
+      const level=g.level;
+      rt.addXP(g.need-g.xp-1);
+      check('XP below the level threshold leaves HP alone',g.level===level&&p.hp===1);
+      rt.addXP(1);
+      check('Earning a level restores 25% of maximum HP and queues a blessing',
+        g.level===level+1&&p.hp===1+p.maxHp*LEVEL_UP_HEAL&&g.pending===1);
+      rt.toMenu();
+    }
+    {
+      const rt=w.__asean;
+      rt.newGame('ustaz',0);
+      const g=rt.G,p=g.p,icon=$('shrineBuff');
+      rt.dropPup(p.x+80,p.y,'monsoon');
+      rt.scene.update(0,0);rt.scene.drawTerrain();
+      check('Monsoon Shrine appears on the ground before contact',
+        rt.scene.sprites.get(g.pups[0])?.key==='shrines'&&icon.hidden);
+      Object.assign(p,{x:g.pups[0].x,y:g.pups[0].y});
+      rt.scene.update(0,0);rt.scene.drawTerrain();
+      check('Crossing the shrine consumes it and shows the overhead buff',
+        !g.pups.length&&g.shrineT===12&&!icon.hidden&&
+        icon.getBoundingClientRect().bottom<=$('playerHealth').getBoundingClientRect().top);
+      g.stop=0;
+      rt.togglePause();rt.step(50);
+      check('Pausing freezes Monsoon Shrine duration',g.shrineT===12);
+      rt.togglePause();
+      const stride=()=>{
+        p.vx=p.vy=0;
+        w.dispatchEvent(new w.KeyboardEvent('keydown',{code:'KeyD',key:'d'}));
+        rt.step(50);
+        w.dispatchEvent(new w.KeyboardEvent('keyup',{code:'KeyD',key:'d'}));
+        return p.vx;
+      };
+      const buffed=stride();
+      rt.dropPup(p.x,p.y,'monsoon');rt.step(0);
+      check('A second shrine refreshes the buff',g.shrineT===12);
+      g.shrineT=.01;g.stop=0;
+      rt.scene.update(0,50);rt.scene.drawTerrain();
+      const normal=stride();
+      check('Expiry hides the emblem and restores normal walking speed',
+        icon.hidden&&g.shrineT===0&&normal>0&&Math.abs(buffed/normal-1.35)<.001);
+      rt.toMenu();
+    }
+    checkShrinePickups(w,check);
+    checkElements(w,check);
     // Two runs at the same timestamp and camera position can have different spells.
     // Inspect the submitted geometry immediately, before another simulation tick.
     for(const slot of [1,4]){
@@ -440,7 +658,7 @@ run.onclick=async()=>{
     for(const id of ['ustaz','rempit','nok','lan','sari']){
       $('hero-'+id).click();$('start').click();await tick();
       const rt=w.__asean,g=rt.G;
-      g.auto=false;g.spawnT=g.durianT=999;g.cds[0]=999;g.st.crit=0;
+      g.auto=false;g.spawnT=g.durianT=999;g.cds[0]=999;g.st.crit=0;g.noElements=true;
       const advance=seconds=>{for(let t=0;t<seconds;t+=.05)rt.step(50)};
       const foe=(x=70)=>{const e=rt.makeGhost('pocong',g.p.x+x,g.p.y);e.hp=e.maxHp=10000;e.spd=0;e.stun=999;return e};
       canvasAim();
@@ -526,6 +744,7 @@ run.onclick=async()=>{
       g.cds[0]=999;
       rt.tryCast(1);
       const baseCooldown=g.cds[1];
+      if(id==='nadi'||id==='dani')for(let i=0;i<(id==='dani'?38:25);i++)rt.step(50);
       g.rewards.push({event:'check-sash',slot:'belt',offer:['techniqueSash'],consumed:false});
       rt.step(0);
       d.querySelector('[data-item="techniqueSash"]').click();
@@ -536,9 +755,9 @@ run.onclick=async()=>{
       rt.toMenu();
     }
     for(const [index,[id,name]] of stages.entries()){
-      $('stg-'+id).click();
+      $('atlas-stage-'+id).click();
       check(name+' map pin follows the selected mission',$('atlasPlace').textContent===name && $('atlasCount').textContent.startsWith(String(index+1).padStart(2,'0')) && $('atlasState').textContent==='Playable chapter');
-      check(name+' mission briefing',$('stageTitle').textContent===name&&$('stg-'+id).getAttribute('aria-pressed')==='true');
+      check(name+' mission briefing',$('stageTitle').textContent===name&&$('atlas-stage-'+id).getAttribute('aria-pressed')==='true');
       $('start').click();await tick();
       check(name+' launches selected stage',w.__asean.G.stage.id===id);
       w.__asean.endGame(true);
@@ -553,9 +772,7 @@ run.onclick=async()=>{
     }
     $('route-east').click();
     const eastStages=['johor','pahang','terengganu','kelantan'];
-    check('East Coast replaces the mission list with its own branch',
-      [...$('route').children].map(button=>button.id).join()===eastStages.map(id=>'stg-'+id).join() &&
-      $('route-east').getAttribute('aria-pressed')==='true');
+    check('East Coast becomes the active campaign branch',$('route-east').getAttribute('aria-pressed')==='true');
     check('East Coast starts from shared Johor',$('start').textContent==='Enter Johor' && $('atlasCount').textContent==='01 / 14');
     const eastDeadline=Date.now()+3000;
     while($('atlas-stage-pahang')?.hidden && Date.now()<eastDeadline)await tick();
@@ -566,7 +783,7 @@ run.onclick=async()=>{
       const leg=atlas.routeLines[i];
       return leg && matchesPin(leg[0],STAGES.find(stage=>stage.id===eastStages[i])) && matchesPin(leg.at(-1),STAGES.find(stage=>stage.id===id));
     }));
-    $('stg-johor').click();$('start').click();await tick();
+    $('atlas-stage-johor').click();$('start').click();await tick();
     for(const [index,id] of eastStages.entries()){
       check('East Coast campaign reaches '+id,w.__asean.G.stage.id===id && w.__asean.G.world.id===id);
       await w.__asean.endGame(true);
@@ -584,6 +801,37 @@ run.onclick=async()=>{
     $('closeControls').click();check('Controls dialog closes',!$('controls').open);
     frame.width=1280;frame.height=720;await tick();
     check('1280×720 launch button stays above the fold',$('start').getBoundingClientRect().bottom<=720);
+    frame.width=375;frame.height=667;await tick();
+    const inView=id=>{
+      const box=$(id).getBoundingClientRect();
+      return box.height>0&&box.top>=0&&box.bottom<=w.innerHeight;
+    };
+    check('Phone shows stage, survivor and launch together',['stageTitle','selectedHeroName','start'].every(inView));
+    $('changeStage').click();
+    check('Stage chooser opens the atlas',inView('atlasHeading'));
+    const phonePin=$('atlas-stage-melaka'),pinDeadline=Date.now()+3000;
+    while((phonePin.hidden||!inView(phonePin.id))&&Date.now()<pinDeadline)await tick();
+    check('Melaka is visible in the phone atlas',inView(phonePin.id));
+    phonePin.click();
+    check('Phone atlas updates the mission briefing',$('stageTitle').textContent==='Melaka' && phonePin.getAttribute('aria-pressed')==='true');
+    $('pickerDone').click();
+    check('Phone lobby keeps the stage chosen on the map',$('start').textContent==='Enter Melaka' && inView('start'));
+    frame.width=320;await tick();
+    $('changeStage').click();
+    const kedahPin=$('atlas-stage-kedah');
+    const reachable=()=>{
+      const {x,y,width,height}=kedahPin.getBoundingClientRect();
+      return width>0&&d.elementFromPoint(x+width/2,y+height/2)?.closest('.atlas-stage')===kedahPin;
+    };
+    const kedahDeadline=Date.now()+3000;
+    while(!reachable()&&Date.now()<kedahDeadline)await tick();
+    check('Narrow phone route controls leave Kedah tappable',reachable());
+    $('atlas-stage-johor').click();
+    $('pickerDone').click();
+    frame.width=375;await tick();
+    $('changeSurvivor').click();
+    check('Survivor chooser opens the lineup',inView('heroWheel'));
+    $('pickerDone').click();
     frame.height=900;
     for(const width of [1440,768,390,320]){
       frame.width=width;await tick();
@@ -596,8 +844,14 @@ run.onclick=async()=>{
     while(!$('playerHealth').getBoundingClientRect().height && Date.now()<firstFrameDeadline)await tick();
     check('Three.js renders an instanced player sprite',w.__asean.scene.terrain.actors.sheets.get('hero-directions')?.body.visible);
     const phoneNotice=$('banner').getBoundingClientRect();
-    check('Phone announcements stay readable and fit the viewport',parseFloat(w.getComputedStyle($('banner')).fontSize)>=18&&
-      phoneNotice.left>=8&&phoneNotice.right<=w.innerWidth-8&&phoneNotice.bottom<$('playerHealth').getBoundingClientRect().top);
+    // The compact notice sits just above the skill bar on phones.
+    check('Phone announcements stay readable and fit the viewport',parseFloat(w.getComputedStyle($('banner')).fontSize)>=14&&
+      phoneNotice.left>=8&&phoneNotice.right<=w.innerWidth-8&&phoneNotice.bottom<=$('skills').getBoundingClientRect().top);
+    $('pauseButton').click();$('pauseGear').click();
+    check('Phone inventory opens from Pause',w.__asean.G.paused&&!$('lootPanel').hidden);
+    $('lootClose').click();
+    check('Closing inventory returns to Pause',!$('pause').hidden&&w.__asean.G.paused);
+    $('resume').click();
     const beforeX=w.__asean.G.p.x;
     w.dispatchEvent(new KeyboardEvent('keydown',{code:'KeyD',key:'d'}));
     const movementDeadline=Date.now()+2500;
@@ -685,7 +939,30 @@ run.onclick=async()=>{
     $('again').click();
     check('Play again keeps survivor and stage and applies the new rank',
       resultsApi.G.hero.id==='rempit'&&resultsApi.G.si===1&&!resultsApi.G.over&&$('end').hidden&&resultsApi.G.upgradeStats.health===3);
-    for(const reason of ['boss','night','raid']){
+    const overtime=resultsApi.G;
+    $('pauseButton').click();
+    check('End run is unavailable before three minutes',$('pauseEndRun').hidden);
+    $('resume').click();
+    overtime.clock=179.98;
+    resultsApi.step(50);
+    check('Crossing 3:00 starts hard mode without ending the run',!overtime.over&&overtime.boss&&$('goal').textContent==='Hard mode');
+    const {spd:bossSpeed,dmg:bossDamage}=overtime.boss;
+    overtime.clock=481;
+    overtime.stop=0;
+    resultsApi.step(50);
+    check('The boss continues to enrage past the old deadline',!overtime.over&&overtime.boss.spd>bossSpeed&&overtime.boss.dmg>bossDamage);
+    overtime.coins=27;
+    $('pauseButton').click();
+    const endRun=$('pauseEndRun');
+    check('End run is available at three minutes and beyond',!endRun.hidden);
+    endRun.click();endRun.click();
+    const endRunDeadline=Date.now()+3000;
+    while($('endShop').disabled&&Date.now()<endRunDeadline)await tick();
+    check('Ending a run saves coins once and keeps stage progress',
+      !$('endShop').disabled&&$('endt').textContent==='Run ended'&&$('next').hidden&&
+      JSON.stringify(JSON.parse(localStorage.getItem(saveKey)))===JSON.stringify({...expected,coins:27}));
+    resultsApi.newGame('rempit',1);
+    for(const reason of ['boss','raid']){
       const battle=resultsApi.G;
       if(reason==='raid'){
         resultsApi.raid.spawnPortal();
@@ -694,10 +971,10 @@ run.onclick=async()=>{
       }else{battle.clock=180;resultsApi.step(50)}
       const boss=reason==='raid'?battle.raidBoss:battle.boss;
       boss.hp=boss.maxHp*.37;
-      await resultsApi.endGame(false,reason==='night'?'night':undefined);
+      await resultsApi.endGame(false);
       const line=$('ends').textContent;
       check(reason+' defeat labels remaining health',line.includes(boss.name)&&line.includes('37% health left')&&
-        (reason!=='raid'||/raid boss/i.test(line))&&(reason!=='night'||/time ran out/i.test(line)));
+        (reason!=='raid'||/raid boss/i.test(line)));
       resultsApi.newGame('rempit',1);
     }
     $('pauseButton').click();$('quit').click();

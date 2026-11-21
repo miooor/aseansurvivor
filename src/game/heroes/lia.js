@@ -1,55 +1,114 @@
 import {inDirectedLine} from '../geometry.js';
+import {fireAtNearest,installKitState,showCooldown} from './direct-skills.js';
+
+export const BLADE_WHEEL_RADIUS=145;
+export const CRESCENT_CUT_WIDTH=88;
+const BACKSTAB_LIFESTEAL=.25;
+
+const SMOKE_SECONDS=3,SMOKE_RADIUS=125,SMOKE_MISS_CHANCE=.6;
+
+export function inLiaSmoke(g,attacker){
+  const s=g.roster?.lia,smoke=s?.smoke;
+  return !!(smoke&&s.raid===g.raid&&smoke.until>g.t&&attacker&&
+    Math.hypot(attacker.x-smoke.x,attacker.y-smoke.y)<=smoke.r);
+}
+
+export function smokeMiss(blinded,roll=Math.random){
+  return !!blinded&&roll()<SMOKE_MISS_CHANCE;
+}
+
+export function liaShadow(g){
+  const s=g.roster.lia;
+  return g.hero.id==='lia'&&s&&s.raid===g.raid&&s.shadow?.until>g.t?s.shadow:null;
+}
+
+export function liaWheelActive(g){
+  return g.identity.castSlot===3&&g.identity.castT>0;
+}
 
 export function installLia(api){
-  const {HEROES,CAST,AUTO,HOOKS,nearest,each,hit,rm,aimDir,ring}=api;
-  HEROES.lia={id:'lia',name:'Lia Soares',country:'Timor-Leste',role:'Shuttle courier · moving return catches',hp:105,speed:195,ultNeed:50,basicDamage:9,
-    identity:{title:'Shuttle Courier',name:'Catch the Return',color:'#e8c979',max:3,key:'E',loop:'Move through returning basic shuttles after 0.2s of return to earn up to 3 Spools. E spends them for 12 extra damage each; standing, dash, teleport and R shuttles give none.',hint:'Move into returning basic shuttles',ready:'E · Spend Spools on dash damage'},
+  const {HEROES,CAST,AUTO,HOOKS,hit,rm,aimDir,moveOnMap,clearLine}=api;
+  HEROES.lia={id:'lia',name:'Lia Soares',country:'Timor-Leste',role:'Shadow assassin · stealth and ambush',hp:95,speed:205,ultNeed:50,basicDamage:18,
+    identity:{title:'Shadow Assassin',name:'Shadowstep',color:'#b8a2ff',max:1,key:'E',loop:'Press E to vanish and blink behind a foe for a lifestealing backstab.',hint:'E · Blink and backstab',ready:'E · Shadowstep'},
     skills:[
-      {key:'',name:'Returning Parcel',desc:'Every 0.85s: shuttle 9 damage per outbound/return pass, speed 420, turns at 0.45s, expires at 2s. At most 2; moving catches earn Spools.',up:'+25% damage per pass.',cd:.85},
-      {key:'Q',name:'Courier Lane',baseDamage:28,damageLabel:'Base line hit',desc:'Length 240, width 35 line for 28 damage and 160 knockback. Creates no catchable projectile.',up:'+25% damage.',cd:6},
-      {key:'E',name:'Spool Rush',baseDamage:20,damageLabel:'Uncharged base hit',desc:'Ground dash 150 over 0.2s, stopping at blockers. Deals 20 plus 12 per spent Spool once per enemy. No invulnerability or knockback.',up:'+25% dash damage.',cd:7},
-      {key:'F',name:'Recall Bell',baseDamage:16,damageLabel:'Base pulse',desc:'Turn all outbound shuttles toward Lia immediately, including ultimate shuttles. For 2s, catch radius grows from 24 to 60. Opening radius 120 pulse:16 damage and 1s of 50% slow. No XP attraction.',up:'+25% pulse damage.',cd:10},
-      {key:'R',name:'Three-Way Dispatch',desc:'Three larger shuttles at−25°/0°/+25°,22 damage per outbound/return pass. Same 420 speed,0.45s turn,2s life; uncapturable, no Spools.',up:'+25% damage per pass.',cd:0,ult:true,baseDamage:22,damageLabel:'Base pass hit'}
-    ]};
-  let S,lastRaid=null;
-  function clear(){const g=api.G;if(g?.p.dash?.hitOptions?.hero==='lia')g.p.dash=null;S={shuttles:[],spools:0,wideUntil:0,previous:g?{x:g.p.x,y:g.p.y}:null};if(g){g.roster.lia=S;g.fx=g.fx.filter(f=>f.hero!=='lia')}}
-  function sync(){if(lastRaid!==api.G.raid){clear();lastRaid=api.G.raid}}
-  function status(){if(api.G.identity)Object.assign(api.G.identity,{charge:S.spools,ready:S.spools>0,detail:S.spools+' / 3 Spools'+(api.G.t<S.wideUntil?' · Catch60':' · Catch24')})}
-  function distance(x,y,ax,ay,bx,by){const dx=bx-ax,dy=by-ay,t=Math.max(0,Math.min(1,((x-ax)*dx+(y-ay)*dy)/(dx*dx+dy*dy||1)));return Math.hypot(x-ax-t*dx,y-ay-t*dy)}
-  function launch(a,r,ultimate=false){const p=api.G.p;S.shuttles.push({x:p.x,y:p.y,ax:Math.cos(a),ay:Math.sin(a),age:0,damage:(ultimate?api.G.hero.skills[4].baseDamage:api.G.hero.basicDamage)*rm(r),ultimate,r:ultimate?10:6,outHit:new Set(),backHit:new Set()})}
-  HOOKS.newGame.push(()=>{lastRaid=null;clear()});HOOKS.cleanup.push(clear);
-  HOOKS.update.push(dt=>{
-    const g=api.G;if(g.hero.id!=='lia')return;sync();const p=g.p,m=p.normalMove,previous=S.previous;
-    const moving=!!m&&!p.dash&&!!previous&&Math.hypot(previous.x-(m.x-m.dx),previous.y-(m.y-m.dy))<.01&&Math.hypot(m.dx,m.dy)>.001;
-    for(const q of S.shuttles){let remaining=Math.min(dt,2-q.age),elapsed=0;
-      while(remaining>1e-8&&!q.dead){const returning=q.age>=.45-1e-8,span=Math.min(remaining,returning?2-q.age:.45-q.age),sx=q.x,sy=q.y,startAge=q.age;
-        let ax=q.ax,ay=q.ay;if(returning){const dx=p.x-q.x,dy=p.y-q.y,l=Math.hypot(dx,dy)||1;ax=dx/l;ay=dy/l}
-        q.x+=ax*420*span;q.y+=ay*420*span;q.age+=span;
-        const seen=returning?q.backHit:q.outHit;
-        for(const e of g.enemies){if(e.dead||seen.has(e))continue;if(distance(e.x,e.y,sx,sy,q.x,q.y)<=e.r+q.r){seen.add(e);hit(e,q.damage,{hero:'lia',slot:q.ultimate?4:0})}}
-        if(returning){
-          // Compare swept relative paths; only the post-0.2s return segment may earn a catch.
-          const from=Math.max(0,Math.min(1,(.65-startAge)/span)),radius=g.t<S.wideUntil?60:24;
-          const origin=moving?{x:m.x-m.dx,y:m.y-m.dy}:p,px=t=>origin.x+(moving?m.dx:0)*t,py=t=>origin.y+(moving?m.dy:0)*t;
-          const t0=(elapsed+span*from)/dt,t1=(elapsed+span)/dt,rx=sx+(q.x-sx)*from-px(t0),ry=sy+(q.y-sy)*from-py(t0);
-          const eligible=q.age>=.65-1e-8&&!q.ultimate&&moving&&distance(0,0,rx,ry,q.x-px(t1),q.y-py(t1))<=radius;
-          if(eligible){S.spools=Math.min(3,S.spools+1);q.dead=true;ring(p.x,p.y,28,'#e8c979',.2);api.G.fx.at(-1).hero='lia'}
-          else if(distance(p.x,p.y,sx,sy,q.x,q.y)<=24)q.dead=true;
-        }
-        elapsed+=span;remaining-=span;
-      }
+      {key:'',name:'Dusk Knife',desc:'Automatically throw a knife at the nearest enemy while visible.',up:'+25% damage.',cd:.75},
+      {key:'Q',name:'Crescent Cut',techniqueDamage:'damage',desc:'Send a wide crescent of shadow through enemies ahead.',up:'+25% damage and shorter cooldown.',cd:5},
+      {key:'E',name:'Shadowstep',baseDamage:72,damageLabel:'Backstab',desc:`Vanish for 3s and blink. Backstab an aimed foe and heal for ${BACKSTAB_LIFESTEAL*100}% of the health taken. Leave a smoky illusion for ${SMOKE_SECONDS}s. Enemies in the smoke miss ${SMOKE_MISS_CHANCE*100}% of attacks. Aim into open space to escape.`,up:'+25% damage, +0.4s hidden and shorter cooldown.',cd:6},
+      {key:'F',name:'Blade Wheel',baseDamage:42,desc:'Spin with a five-pointed blade inspired by Timor-Leste’s flag. Hit nearby foes and halve their speed for 2 seconds. Attacking reveals you.',up:'+25% damage and shorter cooldown.',cd:8},
+      {key:'R',name:'Midnight Hunt',baseDamage:34,damageLabel:'Base strike',desc:'Blink between nearby foes for three strikes, returning to a lone foe if needed.',up:'+25% damage per strike.',cd:0,ult:true}]};
+  const state=installKitState(api,'lia',()=>({shadow:null,hunt:null,smoke:null}));
+  function pick(range,aim,skip){
+    const g=api.G,p=g.p;let best=null,score=Infinity;
+    for(const e of g.enemies){
+      if(e.dead||e===skip||(e.type==='body'&&!e.near))continue;
+      const dx=e.x-p.x,dy=e.y-p.y,d=Math.hypot(dx,dy);
+      if(d>range||!clearLine(p,e,p.r))continue;
+      const alignment=aim?(dx*aim[0]+dy*aim[1])/(d||1):1;
+      if(aim&&alignment<.70)continue;
+      const priority=d*(2-alignment);
+      if(priority<score){best=e;score=priority}
     }
-    S.shuttles=S.shuttles.filter(q=>!q.dead&&q.age<2-1e-8);S.previous={x:p.x,y:p.y};status();
+    return best;
+  }
+  function blink(target,aim,range,damage,slot){
+    const g=api.G,p=g.p,x=p.x,y=p.y;
+    const dx=target?target.x-x:aim[0],dy=target?target.y-y:aim[1],d=Math.hypot(dx,dy);
+    const ax=d?dx/d:aim[0],ay=d?dy/d:aim[1];
+    const travel=target?d+target.r+p.r+3:range;
+    const end=moveOnMap(x,y,x+ax*travel,y+ay*travel,p.r);
+    Object.assign(p,end,{vx:0,vy:0,normalMove:null,face:[target?-ax:ax,target?-ay:ay]});
+    g.fx.push({kind:'shadowstep',hero:'lia',slot,x,y,tx:p.x,ty:p.y,life:.36,max:.36});
+    if(!target||Math.hypot(target.x-p.x,target.y-p.y)>target.r+p.r+10)return 0;
+    const hpBefore=target.hp;
+    hit(target,damage,{hero:'lia',slot});
+    return Math.max(0,hpBefore-Math.max(0,target.hp));
+  }
+  function huntStrike(s){
+    const g=api.G,h=s.hunt;
+    const target=pick(300,null,h.last)||pick(300);
+    if(!target){s.hunt=null;return false}
+    blink(target,g.p.face,300,h.damage,4);h.last=target;
+    if(--h.left===0)s.hunt=null;else h.next=g.t+.18;
+    return true;
+  }
+  HOOKS.update.push(()=>{
+    const g=api.G;if(g.hero.id!=='lia')return;const s=state();
+    if(s.shadow&&s.shadow.until<=g.t)s.shadow=null;
+    if(s.smoke&&s.smoke.until<=g.t)s.smoke=null;
+    if(s.hunt&&g.t>=s.hunt.next)huntStrike(s);
+    showCooldown(g,2,s.shadow?'Hidden · '+(s.shadow.until-g.t).toFixed(1)+'s':'');
   });
   CAST.lia=[
-    r=>{sync();const p=api.G.p;if(S.shuttles.filter(q=>!q.ultimate).length>=2)return false;const e=nearest(p.x,p.y,350);if(!e)return false;launch(Math.atan2(e.y-p.y,e.x-p.x),r)},
-    r=>{sync();const g=api.G,p=g.p,[ax,ay]=aimDir();for(const e of g.enemies){if(e.dead)continue;if(inDirectedLine(e,p.x,p.y,ax,ay,g.technique.length,35))hit(e,api.G.hero.skills[1].baseDamage*rm(r),{hero:'lia',slot:1,kb:[ax*g.technique.force,ay*g.technique.force]})}},
-    r=>{sync();const p=api.G.p,[ax,ay]=aimDir(),damage=(api.G.hero.skills[2].baseDamage+12*S.spools)*rm(r);const speed=750+(api.G.evo[2]?150*S.spools:0);if(S.spools)api.signatureReleased();S.spools=0;p.dash={vx:ax*speed,vy:ay*speed,t:.2,stopAtBlocker:true,dmg:damage,hit:new Set(),hitOptions:{hero:'lia',slot:2,kb:[0,0]}};status()},
-    r=>{sync();const g=api.G;S.wideUntil=g.t+2;
-      for(const q of S.shuttles)if(q.age<.45){
-        q.age=.45;g.fx.push({kind:'relay',hero:'lia',x:q.x,y:q.y,tx:g.p.x,ty:g.p.y,c:'#e8c979',life:.28,max:.28});
-      }
-      each(g.p.x,g.p.y,120,e=>{hit(e,api.G.hero.skills[3].baseDamage*rm(r),{hero:'lia',slot:3});e.slowT=Math.max(e.slowT||0,1)});status()},
-    r=>{sync();S.shuttles=S.shuttles.filter(q=>!q.ultimate);const [ax,ay]=aimDir(),a=Math.atan2(ay,ax);for(const offset of [-25,0,25])launch(a+offset*Math.PI/180,r,true)}
-  ];AUTO.lia={order:[3,1,2,4],when:[null,n=>n(api.G.technique.length)>=1,n=>S.spools>0&&n(180)>=1||n(100)>=3,n=>S.shuttles.some(q=>!q.ultimate&&q.age>=.45)||n(120)>=2,n=>n(250)>=5]};
+    r=>liaShadow(api.G)||state().hunt?false:fireAtNearest(api,r,{range:350,speed:520,pierce:1}),
+    r=>{const g=api.G,[x,y]=aimDir();state().shadow=null;
+      for(const e of g.enemies)if(!e.dead&&inDirectedLine(e,g.p.x,g.p.y,x,y,g.technique.length,CRESCENT_CUT_WIDTH))
+        hit(e,g.technique.damage*rm(r),{hero:'lia',slot:1})},
+    r=>{const g=api.G,s=state(),aim=aimDir(),range=g.evo[2]?280:210;
+      const damage=g.hero.skills[2].baseDamage*rm(r);
+      s.hunt=null;
+      s.shadow={x:g.p.x,y:g.p.y,r:g.p.r,vx:0,vy:0,until:g.t+3+.4*(r-1)};
+      s.smoke={x:g.p.x,y:g.p.y,r:SMOKE_RADIUS,start:g.t,until:g.t+SMOKE_SECONDS,
+        facing:(Math.round(Math.atan2(aim[1],aim[0])/(Math.PI/4))+8)%8};
+      const drained=blink(pick(range,aim),aim,range,damage,2);
+      if(drained>0){
+        const p=g.p,heal=Math.min(p.maxHp-p.hp,drained*BACKSTAB_LIFESTEAL);
+        if(heal>0){p.hp+=heal;api.text(p.x,p.y-40,'Lifesteal','#a6edc1',14)}
+        api.signatureReleased();
+      }},
+    r=>{const g=api.G;state().shadow=null;
+      for(const e of g.enemies){
+        if(e.dead||(e.type==='body'&&!e.near)||Math.hypot(e.x-g.p.x,e.y-g.p.y)>BLADE_WHEEL_RADIUS+e.r||!clearLine(g.p,e,0))continue;
+        if(hit(e,g.hero.skills[3].baseDamage*rm(r),{hero:'lia',slot:3}))e.slowT=Math.max(e.slowT||0,2);
+      }},
+    r=>{const g=api.G,s=state();s.hunt={left:3,next:g.t,last:null,damage:g.hero.skills[4].baseDamage*rm(r)};
+      if(!huntStrike(s))return false;s.shadow=null}
+  ];
+  const canFollowUp=()=>!state().hunt&&!liaWheelActive(api.G);
+  AUTO.lia={independent:true,order:[4,3,1,2],when:[
+    null,
+    n=>canFollowUp()&&n(api.G.technique.length)>0,
+    n=>canFollowUp()&&!liaShadow(api.G)&&(api.G.identity.castT<=0||api.G.identity.castSlot===0)&&n(api.G.evo[2]?280:210)>0,
+    n=>canFollowUp()&&n(BLADE_WHEEL_RADIUS)>=(liaShadow(api.G)?1:2),
+    n=>canFollowUp()&&n(280)>=2
+  ]};
 }

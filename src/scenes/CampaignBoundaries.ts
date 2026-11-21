@@ -5,7 +5,7 @@ import regions from '../../assets/malaya-boundaries.json';
 const WEST=-11,NORTH=2,SPAN=6,UNITS=1000;
 const stages:Record<string,string|undefined>={
   'MY-01':'johor','MY-02':'kedah','MY-03':'kelantan','MY-04':'melaka','MY-06':'pahang',
-  'MY-07':'penang','MY-08':'perak','MY-11':'terengganu','MY-14':'kl'
+  'MY-07':'penang','MY-08':'perak','MY-10':'selangor','MY-11':'terengganu','MY-14':'kl'
 };
 
 export class CampaignBoundaries {

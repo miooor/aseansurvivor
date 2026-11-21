@@ -39,9 +39,10 @@ function node(tag,className='',label){
 }
 
 function itemArt(id,slot){
-  const sheet=sheets.find(sheet=>sheet.frames.includes(id))||
+  const icon=id==='harbourToken'?'quaySeal':id;
+  const sheet=sheets.find(sheet=>sheet.frames.includes(icon))||
     sheets.find(sheet=>sheet.frames.includes(slotArt[slot]));
-  const frame=sheet.frames.indexOf(sheet.frames.includes(id)?id:slotArt[slot]);
+  const frame=sheet.frames.indexOf(sheet.frames.includes(icon)?icon:slotArt[slot]);
   const art=node('i','gear-art'+sheet.style+(id?'':' empty'));
   art.setAttribute('aria-hidden','true');
   const column=frame%sheet.columns,row=Math.floor(frame/sheet.columns);
@@ -112,22 +113,22 @@ for(const [id,item] of Object.entries(ITEMS)){
   refinements.get(item.upgradeFrom).push(id);
 }
 
-function addEliteChoices(g,reward){
+function addEliteChoices(g,reward,roll){
   const bases=[...refinements.keys()];
   const eligible=bases.filter(id=>g.equipment[ITEMS[id].slot]===id);
   if(eligible.length){
-    const base=eligible[Math.floor(Math.random()*eligible.length)];
+    const base=eligible[Math.floor(roll()*eligible.length)];
     reward.offer.push(...refinements.get(base));
   }else{
     const starters=bases.filter(id=>!g.equipment[ITEMS[id].slot]);
     if(!starters.length)return;
-    const base=starters[Math.floor(Math.random()*starters.length)];
+    const base=starters[Math.floor(roll()*starters.length)];
     if(!reward.offer.includes(base))reward.offer.push(base);
   }
 }
 
 export function installEquipment(api){
-  const {$,HOOKS}=api;let returnFocus=null;
+  const {$,HOOKS,lootRoll=()=>Math.random()}=api;let returnFocus=null;
   function recalculate(){
     const g=api.G,{pass,upgradeStats}=g;
     g.gearStats=equipmentTotals(g);
@@ -162,6 +163,10 @@ export function installEquipment(api){
     panel.hidden=true;
     if(api.G)api.G.lootModal=null;
     $('equipmentButton').disabled=!!api.G&&(api.G.paused||api.G.choosing||api.G.over);
+    if(returnFocus===$('pauseGear')){
+      $('pause').hidden=false;
+      if(!$('pauseGear').getClientRects().length)returnFocus=$('resume');
+    }
     (returnFocus?.isConnected?returnFocus:api.canvas).focus({preventScroll:true});
     returnFocus=null;
   }
@@ -249,11 +254,12 @@ export function installEquipment(api){
     }
   }
 
-  function open(kind){
+  function open(kind,fromPause=false){
     const g=api.G;
-    if(!g||g.over||g.won||g.paused||g.choosing||g.pending>0||g.lootModal)return;
+    if(!g||g.over||g.won||Boolean(g.paused)!==fromPause||g.choosing||g.pending>0||g.lootModal)return;
     const isReward=kind==='reward';
-    returnFocus=isReward?api.canvas:$('equipmentButton');
+    returnFocus=fromPause?$('pauseGear'):isReward?api.canvas:$('equipmentButton');
+    if(fromPause)$('pause').hidden=true;
     api.clearInput();
     g.lootModal=kind;
     panel.dataset.mode=kind;
@@ -264,7 +270,7 @@ export function installEquipment(api){
     $('lootChoices').replaceChildren();
     if(isReward){
       const reward=g.rewards.find(r=>!r.consumed);
-      if(reward.event.startsWith('elite-'))addEliteChoices(g,reward);
+      if(reward.event.startsWith('elite-'))addEliteChoices(g,reward,lootRoll);
       showReward(g,reward);
     }else inspect(g);
     $('lootSkip').hidden=!isReward;
@@ -289,21 +295,27 @@ export function installEquipment(api){
     reward.consumed=true;
     close();
   }
-  function grant(event,slot){
+  function grant(event,slot,exclusive){
     const g=api.G;
     if(g.over||g.won||g.rewards.some(r=>r.event===event))return;
+    if(exclusive){
+      if(ITEMS[exclusive]?.exclusive&&ITEMS[exclusive].slot===slot)
+        g.rewards.push({event,slot,offer:[exclusive],consumed:false});
+      return;
+    }
     const pool=[],offer=[];
     for(const [id,item] of Object.entries(ITEMS)){
-      if(item.slot!==slot||item.upgradeFrom)continue;
+      if(item.slot!==slot||item.upgradeFrom||item.exclusive)continue;
       if(item.quest===event)offer.push(id);
       else if(!item.quest)pool.push(id);
     }
-    while(offer.length<3&&pool.length)offer.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
+    while(offer.length<3&&pool.length)offer.push(pool.splice(Math.floor(lootRoll()*pool.length),1)[0]);
     g.rewards.push({event,slot,offer,consumed:false});
   }
   HOOKS.cast.push((slot,rank)=>{const g=api.G;if(slot!==0||g.equipment.weapon!=='splitEmber')return;g.itemState.splitEmber=(g.itemState.splitEmber||0)+1;if(g.itemState.splitEmber%4)return;const target=api.nearest(g.p.x,g.p.y,520),[dx,dy]=target?[target.x-g.p.x,target.y-g.p.y]:api.aimDir(),angle=Math.atan2(dy,dx),base=g.hero.basicDamage;for(const offset of [-Math.PI/12,Math.PI/12]){const a=angle+offset;g.projs.push({x:g.p.x,y:g.p.y,vx:Math.cos(a)*470,vy:Math.sin(a)*470,r:6,dmg:base*api.rm(rank)*.4,life:1.4,pierce:1,hit:new Set(),kind:'nur',origin:'item',hitOptions:{slot:0}});}api.text(g.p.x,g.p.y-55,'Split Ember','#ffbc73',14);});
   HOOKS.newGame.push(g=>{g.equipment=Object.fromEntries(EQUIPMENT_SLOTS.map(slot=>[slot,null]));g.itemState={};g.rewards=[];g.lootModal=null;panel.hidden=true;returnFocus=null;$('equipmentButton').hidden=true;});
   HOOKS.cleanup.push(()=>{if(api.G){api.G.rewards=[];api.G.lootModal=null}panel.hidden=true;returnFocus=null;$('equipmentButton').hidden=true;});
+  $('pauseGear').onclick=()=>open('inspect',true);
   $('equipmentButton').onclick=()=>open('inspect');$('lootClose').onclick=close;$('lootSkip').onclick=()=>choose(api.G.rewards.find(r=>!r.consumed));
   return {grant,recalculate,sync(){const g=api.G;$('equipmentButton').hidden=!g||g.over;$('equipmentButton').disabled=!!g&&(g.paused||g.choosing||!!g.lootModal);if(g&&!g.lootModal&&g.rewards.some(r=>!r.consumed))open('reward');},close};
 }

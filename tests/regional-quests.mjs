@@ -55,7 +55,7 @@ test('Johor rescue, regroup, one ambush and joint arrival',()=>{
   tick();interact();assert.equal(rewards.length,1);assert.equal(event.guidance,undefined);
 });
 
-for(const stage of ['melaka','kl','perak','penang','kedah','pahang','terengganu','kelantan']){
+for(const stage of ['melaka','kl','selangor','perak','penang','kedah','pahang','terengganu','kelantan']){
   for(const initiallyOpen of stage==='penang'?[false,true]:[false]){
     test(stage+' completes its landmark route'+(initiallyOpen?' with gangway already open':''),()=>{
       const {event,g,start,tick,at,interact,rewards,$}=run(stage);

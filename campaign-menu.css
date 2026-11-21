@@ -2,13 +2,13 @@
 .atlas-lobby{width:min(100%,1780px);min-height:100%;margin:auto;padding:0 clamp(14px,2.5vw,46px) clamp(14px,2vw,32px);background:radial-gradient(ellipse at 60% 5%,#29443c66,transparent 72%)}
 .atlas-header{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:78px}
 .game-brand{display:flex;align-items:center;gap:.3em;font:600 clamp(17px,2vw,32px)/1 var(--display);letter-spacing:.015em;text-transform:uppercase}
-.game-brand b{font-weight:500;color:var(--brass)}.game-brand i{font:normal 32px/1 Georgia,serif;color:var(--brass);margin-right:8px}
+.game-brand b{font-weight:500;color:var(--brass)}.game-brand i{font:normal 32px/1 var(--serif);color:var(--brass);margin-right:8px}
 .menu-tools,.atlas-controls{display:flex;align-items:center;gap:8px}.menu-tools button,.menu-tools summary,.atlas-controls button{border:1px solid var(--rule);border-radius:3px;background:#132e2d;color:#f4ead3;padding:8px 14px;min-height:44px;font-size:13px;cursor:pointer}
 .menu-tools button:hover,.menu-tools summary:hover,.atlas-controls button:hover:not(:disabled){background:#294440;border-color:var(--brass)}
 .menu-tools summary{display:grid;place-items:center;list-style:none}.menu-tools summary::-webkit-details-marker{display:none}
 .menu-coins{font-size:12px;color:#d5cdb6;margin-right:12px}.menu-coins i{font-style:normal;color:var(--brass);font-size:18px}
 .menu-settings{position:relative}.menu-settings-panel{position:absolute;right:0;top:calc(100% + 6px);z-index:5;width:240px;display:grid;gap:12px;padding:16px;background:#152c2a;border:1px solid var(--rule);box-shadow:0 9px 25px #00100dcc}
-.menu-settings-panel .sound-controls label{min-height:44px}
+.menu-settings-panel .sound-controls label{min-height:44px}.menu-settings-panel .menu-label{margin:0;border-top:1px solid var(--rule);padding-top:10px}
 .campaign-desk{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(365px,1fr);min-height:calc(100dvh - 108px);border:1px solid var(--rule);box-shadow:0 15px 50px #04121188}
 .atlas-panel{position:relative;isolation:isolate;overflow:hidden;min-height:480px;background:#214c4d}
 #atlasView,#atlasView canvas,#atlasLabels{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
@@ -17,7 +17,7 @@
 #atlasLabels{z-index:1;pointer-events:none}
 .map-label,.atlas-pin{position:absolute;left:0;top:0;white-space:nowrap;transform:translate(-50%,-50%);line-height:1}
 .map-label{font:600 clamp(8px,.8vw,12px)/1.1 var(--ui);letter-spacing:.11em;text-transform:uppercase;color:#f3ecd2;text-shadow:0 1px 3px #152e28,0 0 6px #152e28}
-.map-label.water{color:#9bc7c1;font:italic clamp(10px,1.1vw,17px)/1.1 Georgia,serif;letter-spacing:.12em;text-transform:none}
+.map-label.water{color:#9bc7c1;font:italic clamp(10px,1.1vw,17px)/1.1 var(--serif);letter-spacing:.12em;text-transform:none}
 .atlas-pin{display:flex;align-items:center;gap:6px;transform:translate(10px,-50%);padding:5px 9px;background:#122720ed;border:1px solid #d7bc81;color:#ffe5a2;font:600 12px/1.1 var(--ui);z-index:1}
 .atlas-panel::after{content:'';position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 5px #c5b98b19;background:linear-gradient(180deg,#0a201df5 0, #0d28238a 9%, transparent 24%, transparent 77%,#0a2222e6 100%);z-index:1}
 .atlas-map-heading,.compass-rose,.atlas-dock{position:absolute;z-index:2}.atlas-map-heading{left:clamp(17px,3vw,48px);top:clamp(19px,3vw,48px)}
@@ -57,16 +57,16 @@
   outline:1px solid #fff3
 }
 /* Keep the map flag and the mission name visible alongside progression. */
-.atlas-stage[data-progress=cleared] span::after,.stg[data-progress=cleared]>span:last-child::after{
+.atlas-stage[data-progress=cleared] span::after{
   content:'✓' / '';color:#a8f3cf
 }
-.atlas-stage[data-progress=next] span::after,.stg[data-progress=next]>span:last-child::after{
+.atlas-stage[data-progress=next] span::after{
   content:'Next' / '';font:700 10px/1.2 var(--ui);color:#ffda92
 }
-.stg[data-progress]>span:last-child::after{display:block;margin-top:2px}
 #atlas-stage-johor{--flag-x:0%}
 #atlas-stage-melaka{--flag-x:12.5%}
 #atlas-stage-kl{--flag-x:25%}
+#atlas-stage-selangor span::before{background:url('assets/flags/selangor.webp') center / contain no-repeat}
 #atlas-stage-perak{--flag-x:37.5%}
 #atlas-stage-penang{--flag-x:50%}
 #atlas-stage-kedah{--flag-x:62.5%}
@@ -79,14 +79,14 @@
 .atlas-stage[aria-pressed=true]::before{background:currentColor}
 .atlas-stage:disabled{opacity:.65}
 .atlas-stage:disabled::before{border-style:dashed}
-.atlas-panel button:focus-visible,#route button:focus-visible{outline:2px solid var(--map-ink,#fff1ce);outline-offset:2px}
-.compass-rose{top:20px;right:18px;min-width:48px;min-height:52px;text-align:center;font:10px var(--ui);color:#ead5a9;border:0;border-radius:4px;background:#11272370}.compass-rose span{display:block;font:600 12px Georgia,serif}.compass-rose:hover{background:#112723d9}
+.atlas-panel button:focus-visible{outline:2px solid var(--map-ink);outline-offset:2px}
+.compass-rose{top:20px;right:18px;min-width:48px;min-height:52px;text-align:center;font:10px var(--ui);color:#ead5a9;border:0;border-radius:4px;background:#11272370}.compass-rose span{display:block;font:600 12px var(--serif)}.compass-rose:hover{background:#112723d9}
 .compass-rose i{display:block;position:relative;width:26px;height:26px;border:1px solid #dbca9780;border-radius:50%;margin:4px auto}
 .compass-rose i::after{content:'';position:absolute;inset:-5px 6px;background:linear-gradient(90deg,#a49469 50%,#f5d497 50%);clip-path:polygon(50% 0,90% 70%,50% 58%,10% 70%)}
 .atlas-dock{bottom:0;left:0;right:0;padding:20px clamp(15px,2.5vw,40px);display:flex;align-items:end;justify-content:space-between;gap:12px}
 .atlas-readout h3{font:500 clamp(23px,2.5vw,42px)/1 var(--display);margin:5px 0;color:#fff2cd}
 #atlasCountry{font-size:13px;color:#d4e2d6}.atlas-controls{gap:0;flex-shrink:0}.atlas-controls button{border-radius:0;background:#112926f5}
-.atlas-controls button+button{border-left:0}.atlas-controls button:disabled{color:#8aa09a}.atlas-controls button:first-child,.atlas-controls button:last-child{min-width:44px;font:22px/1 Georgia}
+.atlas-controls button+button{border-left:0}.atlas-controls button:disabled{color:#8aa09a}.atlas-controls button:first-child,.atlas-controls button:last-child{min-width:44px;font:22px/1 var(--serif)}
 #atlasTour{font-weight:600;color:#f0d395}
 .mission-desk{min-width:0;display:flex;flex-direction:column;background:linear-gradient(135deg,#243831,#142a29 65%);border-left:1px solid var(--rule)}
 .mission-sheet,.survivor-sheet,.mission-launch{padding:clamp(16px,1.65vw,28px)}
@@ -98,13 +98,8 @@
 .mission-sheet h2{font:500 clamp(30px,3vw,46px)/1.12 var(--display);margin:4px 0;color:#f9edcf}
 #stageInfo,#selectedHeroRole,#heroTrait{font-size:13px;line-height:1.45;color:#ccdbd1}
 .mission-facts{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0;font-size:12px;color:#b5c5bb}.mission-facts b{color:#efddba;margin-left:2px}
-#route{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
-#route[data-campaign-route=east]{grid-template-columns:repeat(2,minmax(0,1fr))}
-.stg{min-height:44px;border:1px solid #a7baa335;background:#112725aa;text-align:left;display:flex;align-items:center;gap:6px;padding:5px 8px;font-size:12px;line-height:1.15}
-.stg .stage-no{color:#b5aa86;font:10px/1 var(--ui)}.stg:disabled{opacity:.55}.stg[aria-pressed=true]{background:#475042;color:#ffe2a2;border-color:var(--brass)}
-.stg:hover:not(:disabled),.hero:hover,.ability:hover{border-color:#c4b889}
+.hero:hover,.ability:hover{border-color:#c4b889}
 .survivor-sheet{display:flex;flex:1;flex-direction:column;justify-content:center;gap:10px;min-width:0}
-@font-face{font-family:Spectral;src:url('assets/fonts/Spectral-SemiBold.ttf') format('truetype');font-weight:600;font-display:swap}
 @property --lineup-angle{syntax:'<angle>';inherits:true;initial-value:0deg}
 .survivor-picker{
   --ink:#fff1ce;--figure:clamp(86px,7.7vw,116px);
@@ -112,7 +107,7 @@
   border:1px solid var(--rule);border-radius:4px;
   background:radial-gradient(ellipse at 50% 42%,#456459 0,#294740 43%,#192f2d 80%);
 }
-.lineup-heading,#selectedHeroName{font-family:Spectral,Georgia,serif;font-weight:600;color:var(--ink)}
+.lineup-heading,#selectedHeroName{font-family:var(--serif);font-weight:600;color:var(--ink)}
 .lineup-heading{font-size:clamp(24px,2.4vw,37px);line-height:1.15;letter-spacing:-.025em}
 #heroWheel{position:relative;width:100%;height:calc(var(--figure) + 24px);touch-action:pan-y pinch-zoom;user-select:none;cursor:grab}
 #heroWheel.dragging,#heroWheel.dragging .hero{cursor:grabbing}
@@ -129,17 +124,28 @@
 .hero[aria-pressed=true]::before,.shop-portrait::before{
   content:'';position:absolute;background:var(--portrait-flag,none) center / contain no-repeat;opacity:.3;pointer-events:none
 }
-.hero[aria-pressed=true]::before{inset:12% -15% 22%}
+.hero[aria-pressed=true]::before{inset:-12% -15% 46%}
+@container (height > 0px){
+  .hero[aria-pressed=true]::before{translate:0 calc(-1 * clamp(0px,(100cqh - var(--figure) - 24px) / 3,64px))}
+}
 .hero::after{content:'';position:absolute;left:22%;right:22%;bottom:1%;height:7%;border-radius:50%;background:#081f1bbb;transform:rotate(-4deg)}
 .hero i{position:absolute;inset:0;z-index:1;background-image:url('assets/survivor-idles.webp');background-size:400% 300%;background-position:var(--portrait);background-repeat:no-repeat;pointer-events:none}
+.hero-preview{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none}
+.hero[aria-pressed=true] :is(i,.hero-preview){scale:1.25;transform-origin:50% 96%}
+#heroPreviewToggle{
+  position:absolute;right:4px;top:2px;z-index:2;width:44px;height:44px;
+  padding:0;border:0;border-radius:3px;background:transparent;color:var(--ink);font-size:15px;
+}
+#heroPreviewToggle:hover{background:#142c29}
+.ability.preview-cast .ability-art{outline:2px solid var(--brass);outline-offset:1px}
 .hero:focus-visible{outline:2px dashed var(--ink);outline-offset:0;border-radius:24%}
 .wheel-controls{display:grid;grid-template-columns:44px minmax(0,auto) 44px;align-items:center;justify-content:center;gap:8px}
 #selectedHeroName{font-size:clamp(19px,1.8vw,29px);line-height:1.1;margin:0;overflow-wrap:anywhere;letter-spacing:-.02em}
-.wheel-controls button{display:grid;place-items:center;font:700 23px/1 system-ui;color:var(--ink);border:0;background:transparent;padding:0;min-height:44px;min-width:44px}
+.wheel-controls button{display:grid;place-items:center;font:700 23px/1 var(--ui);color:var(--ink);border:0;background:transparent;padding:0;min-height:44px;min-width:44px}
 .wheel-controls button:hover{color:#ffe4a1;transform:scale(1.1)}.wheel-controls button:focus-visible,#unlockHero:focus-visible{outline:2px dashed var(--ink);outline-offset:-3px}
 #heroTitle{font:700 10px/1.4 var(--ui);letter-spacing:.09em;text-transform:uppercase;color:#e3c78d}
 .lineup-stats{display:flex;align-items:baseline;justify-content:center;gap:2px 10px;flex-wrap:wrap;margin:2px 0 0}
-.lineup-stats #selectedHeroRole,.lineup-stats #selectedHeroHp{font:400 12px/1.35 Georgia,serif;color:#d1d9ca}
+.lineup-stats #selectedHeroRole,.lineup-stats #selectedHeroHp{font:400 12px/1.35 var(--serif);color:#d1d9ca}
 #unlockHero{margin-top:5px;min-height:44px;border:1px solid #6f614d;border-radius:3px;background:#e3d6bc;color:#372b20;font-size:12px}
 #unlockHero:disabled{opacity:.65}
 .lineup-sr{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
@@ -153,7 +159,7 @@
 #menuSkillDescription{padding:9px 12px;background:#102522;border-left:2px solid var(--brass);font-size:13px;line-height:1.45;color:#d3ded4}
 .mission-launch{margin-top:auto;border-top:1px solid var(--rule);padding-block:12px}
 #start{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#e8c88d;border-color:#eed39f;color:#203025;border-radius:3px;box-shadow:inset 0 0 0 3px #d5ad6e;font-family:var(--display);font-size:15px;letter-spacing:.05em}
-#start::after{content:'→';font:22px Georgia,serif}#start:hover{background:#f9dca2}
+#start::after{content:'→';font:22px var(--serif)}#start:hover{background:#f9dca2}
 @media(max-width:920px){.campaign-desk{grid-template-columns:minmax(0,1.1fr) minmax(320px,1fr)}.atlas-dock{flex-wrap:wrap}.atlas-header{min-height:64px}.survivor-sheet{gap:12px}.menu-tools button,.menu-tools summary{padding-inline:10px}}
 @media(max-width:700px){
   .atlas-lobby{padding:0 max(10px,env(safe-area-inset-right)) calc(80px + env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}
@@ -179,9 +185,25 @@
   background-color:#294740;background-image:url('assets/roster-skill-icons.webp');
   background-size:500% 700%;background-position:var(--icon-col) var(--icon-row);background-clip:padding-box
 }
-.mira-rescue-abilities .ability-art,.mira-rescue-abilities .skill-art{
-  background-image:url('assets/mira-rescue-icons.svg?no-inline');background-size:500% 100%
+.nok-abilities .ability:nth-child(2) .ability-art,.nok-abilities #sk1 .skill-art{
+  background: #422723 url('assets/nok-flying-knee.webp') center / cover no-repeat;
 }
+.lia-shadow-abilities .ability-art,.lia-shadow-abilities .skill-art{
+  background-image:url('assets/lia-shadow-icons.svg?no-inline');background-size:500% 100%
+}
+.pag-pag-abilities .ability-art,.pag-pag-abilities .skill-art{
+  background-image:url('assets/pag-pag-icons.webp?no-inline');background-size:500% 100%
+}
+.mingun-abilities .ability-art,.mingun-abilities .sk .skill-art{
+  background-image:url('assets/mingun-icons.webp');background-size:500% 100%;
+  background-position:var(--icon-col) 0;
+}
+.gold-sultan-abilities .ability-art,.gold-sultan-abilities .sk .skill-art{
+  background-image:url('assets/gold-sultan-icons.webp');background-size:500% 100%;
+  background-position:var(--icon-col) 0;
+}
+
+
 
 #lastUpdated { display: block; margin-top: 3px; font-size: 11px; color: #e3be79; }
 #patchNotes {
@@ -213,15 +235,109 @@
 .menu-tools button,.menu-tools summary{display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2}
 #openUpgradeShop{flex-direction:row}
 #lastUpdated{margin-top:2px;font-size:10px;color:#b9b195}
-.stg>span:last-child{flex:1;display:flex;align-items:center;justify-content:space-between;gap:6px}
-.stg[data-progress]>span:last-child::after{display:inline;margin:0}
 .survivor-sheet{justify-content:flex-start}
 .lineup-heading{font:600 10px/1.4 var(--ui);text-transform:uppercase;letter-spacing:.16em;color:var(--brass)}
 #selectedHeroName{font-size:clamp(24px,2.4vw,37px)}
 .lineup-stats{gap:4px 12px;margin-top:4px}
 .lineup-stats #selectedHeroRole,.lineup-stats #selectedHeroHp{font:400 12px/1.35 var(--ui)}
 .lineup-stats #selectedHeroHp{padding-left:12px;border-left:1px solid var(--rule);color:#efddba}
-#practiceStart{align-self:flex-start;min-height:44px;padding:6px 16px;border:1px solid var(--rule);border-radius:3px;background:transparent;color:#e8dcc0;font-size:13px}
+.mission-launch{display:flex;gap:8px}#start{flex:1;width:auto}
+.veteran-option{display:flex;align-items:center;gap:10px;min-block-size:44px;margin-top:10px;padding:8px 10px;border:1px solid var(--rule);border-radius:4px;background:#0c231ed9;color:#f4ead3;cursor:pointer}
+.veteran-option input{flex:none;inline-size:18px;block-size:18px;margin:0;accent-color:#e9bf68}
+.veteran-option:has(input:checked){border-color:#e9bf68}
+.veteran-option input:focus-visible{outline:2px solid #ffe4a0;outline-offset:4px}
+.veteran-option b,.veteran-option small{display:block;line-height:1.35}
+.veteran-option b{font-size:13px}.veteran-option small{margin-top:3px;color:#cbc6ae;font-size:11px}
+#veteranMedal{flex:none;color:#ffe1a2;font-size:11px;max-width:65px}
+#allRandom[aria-pressed="true"]{background:#e9bf68;color:#26261d;border-color:#f2d893}
+#practiceStart{flex:none;min-height:44px;padding:2px 10px;border:1px solid var(--rule);border-radius:3px;background:transparent;color:#e8dcc0;font-size:11px;letter-spacing:.04em;white-space:nowrap}
 #practiceStart:hover:not(:disabled){border-color:var(--brass);color:#ffe2a2}
 .ability-art,.ability-art.basic{width:58px;height:58px}
 .ability kbd{top:42px}
+
+.phone-action,#summaryPortrait{display:none}
+@media(max-width:700px),(max-width:940px) and (max-height:520px){
+  .atlas-header,.menu-tools{flex-wrap:nowrap}
+  .campaign-desk{display:block;min-height:0}
+  .phone-action{
+    display:inline-flex;align-items:center;justify-content:center;min-height:44px;
+    border:1px solid var(--rule);border-radius:3px;padding:6px 14px;
+    color:#f4ead3;background:#213c36;font:600 14px var(--ui)
+  }
+  #pickerDone,#menu[data-picker] :is(#changeStage,#changeSurvivor,.mission-launch),
+  #menu:not([data-picker]) :is(.atlas-panel,#heroWheel,#heroPreviewToggle,.wheel-controls button,#heroSkills,#heroTrait,
+    #continueExpedition,.mission-facts,#menuSkillDescription),
+  #menu[data-picker=stage] .survivor-sheet,
+  #menu[data-picker=survivor] :is(.atlas-panel,.mission-sheet){display:none}
+  #menu[data-picker] #pickerDone{display:flex;position:sticky;top:0;z-index:4;width:100%;background:#203d34}
+  #menu[data-picker] .atlas-panel{height:clamp(380px,60svh,510px);min-height:0}
+  #menu:not([data-picker]) .mission-sheet{
+    padding:18px;background:linear-gradient(90deg,#142c29 12%,#142c29df 54%,#142c2999),url('assets/asean-relief.webp') center / cover
+  }
+  #menu:not([data-picker]) #stageInfo{max-width:42ch;margin:6px 0 12px}
+  #menu:not([data-picker]) .survivor-sheet{padding:12px}
+  #menu:not([data-picker]) .survivor-picker{
+    display:grid;grid-template-columns:64px minmax(0,1fr);align-items:center;
+    column-gap:12px;row-gap:4px;padding:12px;text-align:left
+  }
+  #menu:not([data-picker]) .survivor-picker>*{grid-column:2}
+  #menu:not([data-picker]) #summaryPortrait{
+    display:block;grid-column:1;grid-row:1 / span 5;width:100%;aspect-ratio:1;
+    background-image:url('assets/survivor-idles.webp');background-size:400% 300%
+  }
+  #menu:not([data-picker]) .wheel-controls{display:block}
+  #menu:not([data-picker]) .lineup-stats{justify-content:start}
+  #changeSurvivor{justify-self:start;margin-top:4px}
+  #menu:not([data-picker]) .mission-launch{position:static;margin:0;padding:10px 12px}
+}
+
+@media(min-width:600px) and (max-width:940px) and (max-height:520px){
+  #menu:not([data-picker]) .mission-desk{display:grid;grid-template-columns:1fr 1fr}
+  #menu:not([data-picker]) .mission-launch{grid-column:1 / -1}
+}
+@media(max-width:360px){
+  #menu[data-picker=stage] .atlas-panel{height:clamp(460px,60svh,510px)}
+  .campaign-routes button{gap:5px;padding-inline:5px;font-size:11px}
+  .campaign-routes button::before{width:9px}
+}
+
+/* Fill pass: the lobby spends the whole viewport instead of leaving gutters and a void under the survivor. */
+.atlas-lobby{width:100%}
+@media(min-width:941px),(min-width:701px) and (min-height:521px){
+  .survivor-picker{flex:1;display:flex;flex-direction:column;justify-content:center}
+  /* Size containment zeroes the wheel's own height, so the floor is explicit. */
+  #heroWheel{flex:1;height:auto;min-height:calc(var(--figure) + 24px);container-type:size}
+  /* The lineup grows into spare height; 220px keeps the 176px sprite cells near native size. */
+  #heroes{inset:50% 0 auto;height:calc(var(--figure) + 24px);translate:0 -50%;--figure:clamp(82px,100cqh - 24px,min(220px,26cqw))}
+}
+/* Large monitors: scale the briefing column rather than stranding 13px text in a tall panel. */
+@media(min-width:2400px) and (min-height:1300px){.mission-desk{zoom:1.3}}
+@media(max-width:700px),(max-width:940px) and (max-height:520px){
+  .atlas-lobby{display:flex;flex-direction:column;padding-bottom:max(10px,env(safe-area-inset-bottom))}
+  #menu:not([data-picker]) .campaign-desk{flex:1;display:flex}
+  #menu:not([data-picker]) .mission-desk{flex:1}
+  #menu:not([data-picker]) .mission-sheet{
+    flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;
+    background:linear-gradient(180deg,#142c2966,#142c29e6 62%,#142c29),url('assets/asean-relief.webp') center / cover
+  }
+  #menu:not([data-picker]) .mission-actions{width:100%}
+  #menu:not([data-picker]) .survivor-sheet{flex:none}
+}
+/* Tall phones have room for the briefing facts and the skill strip; short ones keep stage, survivor and launch in view. */
+@media(min-width:360px) and (max-width:700px) and (min-height:800px){
+  #menu:not([data-picker]) #stageInfo~.mission-facts{display:flex}
+  #menu:not([data-picker]) #heroSkills{display:grid}
+  #menu:not([data-picker]) #menuSkillDescription:not([hidden]){display:block}
+  #menu:not([data-picker]) .survivor-picker{grid-template-columns:96px minmax(0,1fr)}
+}
+@media(min-width:600px) and (max-width:940px) and (max-height:520px){
+  #menu:not([data-picker]) .mission-desk{grid-template-rows:1fr auto}
+}
+/* Phone survivor picker: the lineup card takes the height the page used to leave empty. */
+@media(max-width:700px),(max-width:940px) and (max-height:520px){
+  #menu[data-picker=survivor] .campaign-desk{flex:1;display:flex}
+  #menu[data-picker=survivor] .mission-desk{flex:1}
+  #menu[data-picker=survivor] .survivor-picker{flex:1;display:flex;flex-direction:column;justify-content:center}
+  #menu[data-picker=survivor] #heroWheel{flex:1;height:auto;min-height:calc(var(--figure) + 24px);container-type:size}
+  #menu[data-picker=survivor] #heroes{inset:50% 0 auto;height:calc(var(--figure) + 24px);translate:0 -50%;--figure:clamp(82px,100cqh - 24px,min(220px,30cqw))}
+}

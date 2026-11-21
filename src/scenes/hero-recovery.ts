@@ -23,19 +23,19 @@ const recoveries: Record<string, Recovery> = {
   lan: {recoil: skill(4), ready: motion(4), catchTime: .15, duration: .41, lean: .06},
   // Sari folds the extended blade arm in against her body.
   sari: {recoil: motion(6), ready: skill(6), catchTime: .10, duration: .36, lean: -.09},
-  // Asha stacks the served tickets and pockets the bundle.
+  // Auntie Karen stacks the cashed chopes and pockets the bundle.
   asha: {recoil: skill(3), ready: skill(0), catchTime: .09, duration: .28, lean: -.045},
-  // Mira plants both feet and draws the boathook back to her hip.
+  // The cook settles the heavy wok against his hip.
   mira: {recoil: skill(3), ready: skill(5), catchTime: .16, duration: .46, lean: -.095},
-  // Dani sets the beacon low, then rises behind the lantern.
-  dani: {recoil: skill(3), ready: skill(4), catchTime: .16, duration: .43, lean: .04},
+  // The Gold Sultan steadies the melter after firing, then lowers it to carry.
+  dani: {recoil: motion(6), ready: motion(7), catchTime: .16, duration: .43, lean: .04},
   // Vanna sweeps the shuttle across and gathers the ribbon.
   vanna: {recoil: skill(3), ready: skill(6), catchTime: .13, duration: .37, lean: -.08},
   // Keo raises the reeds for a breath, then lowers them to playing height.
   keo: {recoil: skill(6), ready: skill(4), catchTime: .14, duration: .42, lean: -.05},
-  // Nadi follows the lacquer down, then cups the pot close.
-  nadi: {recoil: skill(3), ready: skill(6), catchTime: .12, duration: .39, lean: .07},
-  // Lia reaches for the returning shuttle and tucks into a runner's stance.
+  // Nadi draws the palm strike back into guard.
+  nadi: {recoil: skill(3), ready: skill(5), catchTime: .12, duration: .39, lean: .07},
+  // Lia draws her throwing hand back into guard.
   lia: {recoil: motion(6), ready: skill(2), catchTime: .08, duration: .28, lean: .10},
 };
 

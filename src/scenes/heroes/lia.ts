@@ -1,16 +1,47 @@
 import type {SurvivalScene} from '../SurvivalScene';
 import type {RunState} from '../../game/runtime.js';
-export function drawLia(scene:SurvivalScene,g:RunState,painted=false){
-  for(const f of g.fx){if(f.kind!=='spell'||f.hero!=='lia')continue;const alpha=Math.min(1,f.life/.15);
-    if(f.slot===1){const a=f.a||0,dx=Math.cos(a),dy=Math.sin(a),points=[[0,-17.5],[f.range??240,-17.5],[f.range??240,17.5],[0,17.5]].map(([x,y])=>({x:f.x+x*dx-y*dy,y:f.y+x*dy+y*dx}));scene.floor.fillStyle(0xe8c979,.12*alpha).lineStyle(2,0xe8c979,alpha).beginPath().moveTo(points[0].x,points[0].y);for(const point of points.slice(1))scene.floor.lineTo(point.x,point.y);scene.floor.closePath().fillPath().strokePath()}
-    if(f.slot===3)scene.circle(scene.floor,f.x,f.y,120,0xe8c979,.12*alpha,2);
+import type {Actor,SpriteAssets} from '../SpriteAssets';
+import type {AtlasActors} from '../AtlasActors';
+import {liaWheelActive} from '../../game/heroes/lia.js';
+
+export function bladeWheelAngle(g:RunState,reduced:boolean){
+  if(!liaWheelActive(g))return null;
+  const {castAngle,castT,castMax}=g.identity;
+  return castAngle+(reduced?0:(1-castT/castMax)*2*Math.PI);
+}
+
+export function drawBladeWheel(actors:AtlasActors,assets:SpriteAssets,hero:Actor,footY:number,angle:number){
+  const facing=Math.round(angle/(Math.PI/4))*Math.PI/4;
+  const side=Math.cos(facing),depth=Math.sin(facing);
+  const key='lia-blade-wheel';
+  actors.add({key,frame:assets.frame(key,0),x:hero.x+side*43,y:hero.y-76+depth*12,
+    width:132,height:132,originY:.5,rotation:angle,tint:0xffffff,alpha:hero.alpha},footY+(depth<-.25?-7:7),false);
+}
+
+interface Smoke {x:number;y:number;r:number;start:number;until:number;facing:number}
+export function drawShadowstep(actors:AtlasActors,assets:SpriteAssets,g:RunState,hero:Actor,reduced:boolean){
+  const {smoke}=g.roster.lia as {smoke:Smoke|null};
+  if(!smoke||smoke.until<=g.t)return;
+  const age=g.t-smoke.start,fade=Math.min(1,(smoke.until-g.t)*2.5),phase=reduced?0:age;
+  const frame=assets.frame('lia-smoke',0);
+  for(let i=0;i<4;i++){
+    const angle=i*Math.PI/2+phase*.20;
+    const x=smoke.x+Math.cos(angle)*smoke.r*.37,y=smoke.y+Math.sin(angle)*smoke.r*.32;
+    const size=smoke.r*(1.25+.12*Math.sin(phase*2+i));
+    actors.add({key:'lia-smoke',frame,x,y:y-7-phase*2,width:size,height:size*.69,
+      originY:.70,rotation:.09*Math.sin(angle),tint:0xffffff,alpha:fade*.85,flipX:i%2===1},y,false);
   }
-  const s=g.roster.lia as {shuttles:{x:number;y:number;age:number;ultimate:boolean;r:number}[];wideUntil:number}|undefined;if(!s)return;
-  if(g.t<s.wideUntil)scene.circle(scene.floor,g.p.x,g.p.y,60,0xe8c979,.05,2);
-  for(const q of s.shuttles){const ready=!q.ultimate&&q.age>=.65;
-    if(painted){
-      if(ready)scene.floor.lineStyle(2,0xc6e6cf,.85).strokeCircle(q.x,q.y,15);
-      continue;
-    }
-    scene.circle(scene.effects,q.x,q.y,q.r,q.ultimate?0xffe6a0:0xe8c979,.8,2);if(ready)scene.circle(scene.effects,q.x,q.y,q.r+6,0xffffff,.12,2);scene.effects.lineStyle(2,0x493923,1).lineBetween(q.x-q.r,q.y,q.x+q.r,q.y)}
+  const key='hero-motion-lia';
+  actors.add({...hero,key,frame:assets.frame(key,56+smoke.facing),x:smoke.x,y:smoke.y,
+    rotation:0,alpha:.59*fade,tint:0xb99be5},smoke.y,false);
+}
+
+export function drawLia(scene:SurvivalScene,g:RunState){
+  const s=g.roster.lia as {shadow:{x:number;y:number;until:number}|null};
+  const {smoke}=g.roster.lia as {smoke:Smoke|null};
+  if(smoke&&smoke.until>g.t)scene.circle(scene.floor,smoke.x,smoke.y,smoke.r,0x4a395a,.14*Math.min(1,(smoke.until-g.t)*2.5),1);
+  if(s?.shadow&&s.shadow.until>g.t){
+    scene.circle(scene.floor,s.shadow.x,s.shadow.y,27,0x251d40,.42,2);
+    scene.circle(scene.floor,g.p.x,g.p.y,12,0xc8b7ff,.22,2);
+  }
 }

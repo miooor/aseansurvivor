@@ -1,0 +1,1662 @@
+{
+  "date": "2026-11-20T20:22:08.682Z",
+  "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+  "checks": [
+    {
+      "name": "Both branches unlock after clearing shared Johor",
+      "pass": true
+    },
+    {
+      "name": "Stage locks follow route predecessors and honor retained legacy access",
+      "pass": true
+    },
+    {
+      "name": "Selangor opens after Kuala Lumpur and preserves earlier Perak access",
+      "pass": true
+    },
+    {
+      "name": "Three.js scene boots",
+      "pass": true
+    },
+    {
+      "name": "Mission briefing has no duplicate stage picker",
+      "pass": true
+    },
+    {
+      "name": "Fresh save marks shared Johor once",
+      "pass": true
+    },
+    {
+      "name": "Continue available for johor",
+      "pass": true
+    },
+    {
+      "name": "Continue briefs Johor",
+      "pass": true
+    },
+    {
+      "name": "Preview preserves save for johor",
+      "pass": true
+    },
+    {
+      "name": "Partial branches advance independently",
+      "pass": true
+    },
+    {
+      "name": "Continue available for melaka",
+      "pass": true
+    },
+    {
+      "name": "Continue briefs Melaka",
+      "pass": true
+    },
+    {
+      "name": "Preview preserves save for melaka",
+      "pass": true
+    },
+    {
+      "name": "Continue available for terengganu",
+      "pass": true
+    },
+    {
+      "name": "Continue briefs Terengganu",
+      "pass": true
+    },
+    {
+      "name": "Preview preserves save for terengganu",
+      "pass": true
+    },
+    {
+      "name": "Switching branch preserves clears",
+      "pass": true
+    },
+    {
+      "name": "Completed east has no next stop",
+      "pass": true
+    },
+    {
+      "name": "Completed coast keeps its briefing and allows replay",
+      "pass": true
+    },
+    {
+      "name": "Legacy Perak access keeps earlier Kuala Lumpur next",
+      "pass": true
+    },
+    {
+      "name": "Continue available for kl",
+      "pass": true
+    },
+    {
+      "name": "Continue briefs Kuala Lumpur",
+      "pass": true
+    },
+    {
+      "name": "Preview preserves save for kl",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur clear makes Selangor the next mission",
+      "pass": true
+    },
+    {
+      "name": "Continue available for selangor",
+      "pass": true
+    },
+    {
+      "name": "Continue briefs Selangor",
+      "pass": true
+    },
+    {
+      "name": "Preview preserves save for selangor",
+      "pass": true
+    },
+    {
+      "name": "Fully cleared atlas has no next stops",
+      "pass": true
+    },
+    {
+      "name": "Completed west disables Continue",
+      "pass": true
+    },
+    {
+      "name": "Continue available for johor",
+      "pass": true
+    },
+    {
+      "name": "Continue briefs Johor",
+      "pass": true
+    },
+    {
+      "name": "Preview preserves save for johor",
+      "pass": true
+    },
+    {
+      "name": "One Three.js canvas owns gameplay",
+      "pass": true
+    },
+    {
+      "name": "All twelve playable heroes load",
+      "pass": true
+    },
+    {
+      "name": "Selected survivor stands in front at the center of the lineup",
+      "pass": true
+    },
+    {
+      "name": "Wheel wraps from Fadli to Lia",
+      "pass": true
+    },
+    {
+      "name": "Keyboard wraps forward and focuses the selected portrait",
+      "pass": true
+    },
+    {
+      "name": "Scrolling synchronizes the selected hero and skill strip",
+      "pass": true
+    },
+    {
+      "name": "The selected skill opens below the entire row",
+      "pass": true
+    },
+    {
+      "name": "Cycling places the new survivor at the front",
+      "pass": true
+    },
+    {
+      "name": "Turning the wheel clears the previous hero skill description",
+      "pass": true
+    },
+    {
+      "name": "Wheel navigation keeps the current mission",
+      "pass": true
+    },
+    {
+      "name": "Lineup previews skill 1",
+      "pass": true
+    },
+    {
+      "name": "Lineup previews skill 2",
+      "pass": true
+    },
+    {
+      "name": "Lineup previews skill 3",
+      "pass": true
+    },
+    {
+      "name": "Lineup previews skill 4",
+      "pass": true
+    },
+    {
+      "name": "Lineup previews skill 5",
+      "pass": true
+    },
+    {
+      "name": "Pause freezes the skill preview",
+      "pass": true
+    },
+    {
+      "name": "A selects the previous survivor without lineup focus",
+      "pass": true
+    },
+    {
+      "name": "D selects the next survivor without lineup focus",
+      "pass": true
+    },
+    {
+      "name": "Lobby shortcuts are inactive while the field guide is open",
+      "pass": true
+    },
+    {
+      "name": "Campaign atlas opens in Johor",
+      "pass": true
+    },
+    {
+      "name": "Each gold leg connects two consecutive playable level coordinates",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 2 matches Melaka",
+      "pass": true
+    },
+    {
+      "name": "Melaka preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 3 matches Kuala Lumpur",
+      "pass": true
+    },
+    {
+      "name": "Kuala Lumpur preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 4 matches Selangor",
+      "pass": true
+    },
+    {
+      "name": "Selangor preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 5 matches Perak",
+      "pass": true
+    },
+    {
+      "name": "Perak preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 6 matches Pulau Pinang",
+      "pass": true
+    },
+    {
+      "name": "Pulau Pinang preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 7 matches Kedah",
+      "pass": true
+    },
+    {
+      "name": "Kedah preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 8 matches Chiang Mai",
+      "pass": true
+    },
+    {
+      "name": "Chiang Mai preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 9 matches Bagan",
+      "pass": true
+    },
+    {
+      "name": "Bagan preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 10 matches Luang Prabang",
+      "pass": true
+    },
+    {
+      "name": "Luang Prabang preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 11 matches Hanoi",
+      "pass": true
+    },
+    {
+      "name": "Hanoi preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 12 matches Siem Reap",
+      "pass": true
+    },
+    {
+      "name": "Siem Reap preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 13 matches Singapore",
+      "pass": true
+    },
+    {
+      "name": "Singapore preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 14 matches Yogyakarta",
+      "pass": true
+    },
+    {
+      "name": "Yogyakarta preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 15 matches Dili",
+      "pass": true
+    },
+    {
+      "name": "Dili preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 16 matches Bandar Seri Begawan",
+      "pass": true
+    },
+    {
+      "name": "Bandar Seri Begawan preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour stop 17 matches Cebu",
+      "pass": true
+    },
+    {
+      "name": "Cebu preview keeps the selected mission",
+      "pass": true
+    },
+    {
+      "name": "Tour reaches all eleven countries",
+      "pass": true
+    },
+    {
+      "name": "Tour replays from Johor",
+      "pass": true
+    },
+    {
+      "name": "Tour can be paused",
+      "pass": true
+    },
+    {
+      "name": "Overview returns to the Johor origin",
+      "pass": true
+    },
+    {
+      "name": "Holding Space does not start a run before release",
+      "pass": true
+    },
+    {
+      "name": "Space starts the selected stage and survivor",
+      "pass": true
+    },
+    {
+      "name": "Rank five previews the bolt breakpoint and its completed recipe",
+      "pass": true
+    },
+    {
+      "name": "First matching passive names the newly eligible evolution",
+      "pass": true
+    },
+    {
+      "name": "Passive items keep their category without a skill slot",
+      "pass": true
+    },
+    {
+      "name": "Pin highlights the matching rank",
+      "pass": true
+    },
+    {
+      "name": "Removing the pin clears its guidance",
+      "pass": true
+    },
+    {
+      "name": "Changing recipes keeps the original offer and consumes no pick",
+      "pass": true
+    },
+    {
+      "name": "Picking the ingredient leaves evolution for a separate choice",
+      "pass": true
+    },
+    {
+      "name": "Next picker offers the completed recipe",
+      "pass": true
+    },
+    {
+      "name": "Evolution header identifies its target slot and card names the original skill",
+      "pass": true
+    },
+    {
+      "name": "Next picker carries the ready pin",
+      "pass": true
+    },
+    {
+      "name": "Claiming the tracked evolution clears the pin",
+      "pass": true
+    },
+    {
+      "name": "Q and E have distinct header accents and independent numbered picks",
+      "pass": true
+    },
+    {
+      "name": "A new run starts without a pin",
+      "pass": true
+    },
+    {
+      "name": "Evolution registry and combat cases cover every playable hero",
+      "pass": true
+    },
+    {
+      "name": "ustaz has unique playable recipes",
+      "pass": true
+    },
+    {
+      "name": "Sheltering Orbit is absent before claim",
+      "pass": true
+    },
+    {
+      "name": "Sheltering Orbit tracks its missing passive",
+      "pass": true
+    },
+    {
+      "name": "Sheltering Orbit ingredient previews the unlock",
+      "pass": true
+    },
+    {
+      "name": "Sheltering Orbit still needs a claim",
+      "pass": true
+    },
+    {
+      "name": "Sheltering Orbit offered for separate claim",
+      "pass": true
+    },
+    {
+      "name": "Sheltering Orbit claimed and unpinned",
+      "pass": true
+    },
+    {
+      "name": "Sheltering Orbit changes the cast",
+      "pass": true
+    },
+    {
+      "name": "Sheltering Orbit drops from the raid",
+      "pass": true
+    },
+    {
+      "name": "Sheltering Orbit fuses at rank one without ingredients",
+      "pass": true
+    },
+    {
+      "name": "rempit has unique playable recipes",
+      "pass": true
+    },
+    {
+      "name": "Banked Cinders is absent before claim",
+      "pass": true
+    },
+    {
+      "name": "Banked Cinders tracks its missing passive",
+      "pass": true
+    },
+    {
+      "name": "Banked Cinders ingredient previews the unlock",
+      "pass": true
+    },
+    {
+      "name": "Banked Cinders still needs a claim",
+      "pass": true
+    },
+    {
+      "name": "Banked Cinders offered for separate claim",
+      "pass": true
+    },
+    {
+      "name": "Banked Cinders claimed and unpinned",
+      "pass": true
+    },
+    {
+      "name": "Banked Cinders changes the cast",
+      "pass": true
+    },
+    {
+      "name": "Banked Cinders drops from the raid",
+      "pass": true
+    },
+    {
+      "name": "Banked Cinders fuses at rank one without ingredients",
+      "pass": true
+    },
+    {
+      "name": "nok has unique playable recipes",
+      "pass": true
+    },
+    {
+      "name": "Return to Guard is absent before claim",
+      "pass": true
+    },
+    {
+      "name": "Return to Guard tracks its missing passive",
+      "pass": true
+    },
+    {
+      "name": "Return to Guard ingredient previews the unlock",
+      "pass": true
+    },
+    {
+      "name": "Return to Guard still needs a claim",
+      "pass": true
+    },
+    {
+      "name": "Return to Guard offered for separate claim",
+      "pass": true
+    },
+    {
+      "name": "Return to Guard claimed and unpinned",
+      "pass": true
+    },
+    {
+      "name": "Return to Guard changes the cast",
+      "pass": true
+    },
+    {
+      "name": "Return to Guard drops from the raid",
+      "pass": true
+    },
+    {
+      "name": "Return to Guard fuses at rank one without ingredients",
+      "pass": true
+    },
+    {
+      "name": "lan has unique playable recipes",
+      "pass": true
+    },
+    {
+      "name": "River Chorus is absent before claim",
+      "pass": true
+    },
+    {
+      "name": "River Chorus tracks its missing passive",
+      "pass": true
+    },
+    {
+      "name": "River Chorus ingredient previews the unlock",
+      "pass": true
+    },
+    {
+      "name": "River Chorus still needs a claim",
+      "pass": true
+    },
+    {
+      "name": "River Chorus offered for separate claim",
+      "pass": true
+    },
+    {
+      "name": "River Chorus claimed and unpinned",
+      "pass": true
+    },
+    {
+      "name": "River Chorus changes the cast",
+      "pass": true
+    },
+    {
+      "name": "River Chorus drops from the raid",
+      "pass": true
+    },
+    {
+      "name": "River Chorus fuses at rank one without ingredients",
+      "pass": true
+    },
+    {
+      "name": "sari has unique playable recipes",
+      "pass": true
+    },
+    {
+      "name": "Echo Crescent is absent before claim",
+      "pass": true
+    },
+    {
+      "name": "Echo Crescent tracks its missing passive",
+      "pass": true
+    },
+    {
+      "name": "Echo Crescent ingredient previews the unlock",
+      "pass": true
+    },
+    {
+      "name": "Echo Crescent still needs a claim",
+      "pass": true
+    },
+    {
+      "name": "Echo Crescent offered for separate claim",
+      "pass": true
+    },
+    {
+      "name": "Echo Crescent claimed and unpinned",
+      "pass": true
+    },
+    {
+      "name": "Echo Crescent changes the cast",
+      "pass": true
+    },
+    {
+      "name": "Echo Crescent drops from the raid",
+      "pass": true
+    },
+    {
+      "name": "Echo Crescent fuses at rank one without ingredients",
+      "pass": true
+    },
+    {
+      "name": "asha has unique playable recipes",
+      "pass": true
+    },
+    {
+      "name": "Queue Jumper is absent before claim",
+      "pass": true
+    },
+    {
+      "name": "Queue Jumper tracks its missing passive",
+      "pass": true
+    },
+    {
+      "name": "Queue Jumper ingredient previews the unlock",
+      "pass": true
+    },
+    {
+      "name": "Queue Jumper still needs a claim",
+      "pass": true
+    },
+    {
+      "name": "Queue Jumper offered for separate claim",
+      "pass": true
+    },
+    {
+      "name": "Queue Jumper claimed and unpinned",
+      "pass": true
+    },
+    {
+      "name": "Queue Jumper changes the cast",
+      "pass": true
+    },
+    {
+      "name": "Queue Jumper drops from the raid",
+      "pass": true
+    },
+    {
+      "name": "Queue Jumper fuses at rank one without ingredients",
+      "pass": true
+    },
+    {
+      "name": "mira has unique playable recipes",
+      "pass": true
+    },
+    {
+      "name": "One More Bowl is absent before claim",
+      "pass": true
+    },
+    {
+      "name": "One More Bowl tracks its missing passive",
+      "pass": true
+    },
+    {
+      "name": "One More Bowl ingredient previews the unlock",
+      "pass": true
+    },
+    {
+      "name": "One More Bowl still needs a claim",
+      "pass": true
+    },
+    {
+      "name": "One More Bowl offered for separate claim",
+      "pass": true
+    },
+    {
+      "name": "One More Bowl claimed and unpinned",
+      "pass": true
+    },
+    {
+      "name": "One More Bowl changes the cast",
+      "pass": true
+    },
+    {
+      "name": "One More Bowl drops from the raid",
+      "pass": true
+    },
+    {
+      "name": "One More Bowl fuses at rank one without ingredients",
+      "pass": true
+    },
+    {
+      "name": "dani has unique playable recipes",
+      "pass": true
+    },
+    {
+      "name": "Heavy Crude is absent before claim",
+      "pass": true
+    },
+    {
+      "name": "Heavy Crude tracks its missing passive",
+      "pass": true
+    },
+    {
+      "name": "Heavy Crude ingredient previews the unlock",
+      "pass": true
+    },
+    {
+      "name": "Heavy Crude still needs a claim",
+      "pass": true
+    },
+    {
+      "name": "Heavy Crude offered for separate claim",
+      "pass": true
+    },
+    {
+      "name": "Heavy Crude claimed and unpinned",
+      "pass": true
+    },
+    {
+      "name": "Heavy Crude changes the cast",
+      "pass": true
+    },
+    {
+      "name": "Heavy Crude drops from the raid",
+      "pass": true
+    },
+    {
+      "name": "Heavy Crude fuses at rank one without ingredients",
+      "pass": true
+    },
+    {
+      "name": "vanna has unique playable recipes",
+      "pass": true
+    },
+    {
+      "name": "Full Bloom is absent before claim",
+      "pass": true
+    },
+    {
+      "name": "Full Bloom tracks its missing passive",
+      "pass": true
+    },
+    {
+      "name": "Full Bloom ingredient previews the unlock",
+      "pass": true
+    },
+    {
+      "name": "Full Bloom still needs a claim",
+      "pass": true
+    },
+    {
+      "name": "Full Bloom offered for separate claim",
+      "pass": true
+    },
+    {
+      "name": "Full Bloom claimed and unpinned",
+      "pass": true
+    },
+    {
+      "name": "Full Bloom changes the cast",
+      "pass": true
+    },
+    {
+      "name": "Full Bloom drops from the raid",
+      "pass": true
+    },
+    {
+      "name": "Full Bloom fuses at rank one without ingredients",
+      "pass": true
+    },
+    {
+      "name": "keo has unique playable recipes",
+      "pass": true
+    },
+    {
+      "name": "Five-Reed Chord is absent before claim",
+      "pass": true
+    },
+    {
+      "name": "Five-Reed Chord tracks its missing passive",
+      "pass": true
+    },
+    {
+      "name": "Five-Reed Chord ingredient previews the unlock",
+      "pass": true
+    },
+    {
+      "name": "Five-Reed Chord still needs a claim",
+      "pass": true
+    },
+    {
+      "name": "Five-Reed Chord offered for separate claim",
+      "pass": true
+    },
+    {
+      "name": "Five-Reed Chord claimed and unpinned",
+      "pass": true
+    },
+    {
+      "name": "Five-Reed Chord changes the cast",
+      "pass": true
+    },
+    {
+      "name": "Five-Reed Chord drops from the raid",
+      "pass": true
+    },
+    {
+      "name": "Five-Reed Chord fuses at rank one without ingredients",
+      "pass": true
+    },
+    {
+      "name": "nadi has unique playable recipes",
+      "pass": true
+    },
+    {
+      "name": "Workshop Kiln is absent before claim",
+      "pass": true
+    },
+    {
+      "name": "Workshop Kiln tracks its missing passive",
+      "pass": true
+    },
+    {
+      "name": "Workshop Kiln ingredient previews the unlock",
+      "pass": true
+    },
+    {
+      "name": "Workshop Kiln still needs a claim",
+      "pass": true
+    },
+    {
+      "name": "Workshop Kiln offered for separate claim",
+      "pass": true
+    },
+    {
+      "name": "Workshop Kiln claimed and unpinned",
+      "pass": true
+    },
+    {
+      "name": "Workshop Kiln changes the cast",
+      "pass": true
+    },
+    {
+      "name": "Workshop Kiln drops from the raid",
+      "pass": true
+    },
+    {
+      "name": "Workshop Kiln fuses at rank one without ingredients",
+      "pass": true
+    },
+    {
+      "name": "lia has unique playable recipes",
+      "pass": true
+    },
+    {
+      "name": "Long Shadow is absent before claim",
+      "pass": true
+    },
+    {
+      "name": "Long Shadow tracks its missing passive",
+      "pass": true
+    },
+    {
+      "name": "Long Shadow ingredient previews the unlock",
+      "pass": true
+    },
+    {
+      "name": "Long Shadow still needs a claim",
+      "pass": true
+    },
+    {
+      "name": "Long Shadow offered for separate claim",
+      "pass": true
+    },
+    {
+      "name": "Long Shadow claimed and unpinned",
+      "pass": true
+    },
+    {
+      "name": "Long Shadow changes the cast",
+      "pass": true
+    },
+    {
+      "name": "Long Shadow drops from the raid",
+      "pass": true
+    },
+    {
+      "name": "Long Shadow fuses at rank one without ingredients",
+      "pass": true
+    },
+    {
+      "name": "ustaz basic rank 1 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "ustaz basic shots inherit their unlocked rank 1",
+      "pass": true
+    },
+    {
+      "name": "ustaz projectiles have independent contacts at rank 1",
+      "pass": true
+    },
+    {
+      "name": "ustaz basic rank 2 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "ustaz basic shots inherit their unlocked rank 2",
+      "pass": true
+    },
+    {
+      "name": "ustaz projectiles have independent contacts at rank 2",
+      "pass": true
+    },
+    {
+      "name": "ustaz basic rank 3 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "ustaz basic shots inherit their unlocked rank 3",
+      "pass": true
+    },
+    {
+      "name": "ustaz projectiles have independent contacts at rank 3",
+      "pass": true
+    },
+    {
+      "name": "ustaz basic rank 4 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "ustaz basic shots inherit their unlocked rank 4",
+      "pass": true
+    },
+    {
+      "name": "ustaz projectiles have independent contacts at rank 4",
+      "pass": true
+    },
+    {
+      "name": "ustaz basic rank 5 launches 3 projectiles",
+      "pass": true
+    },
+    {
+      "name": "ustaz basic shots inherit their unlocked rank 5",
+      "pass": true
+    },
+    {
+      "name": "ustaz projectiles have independent contacts at rank 5",
+      "pass": true
+    },
+    {
+      "name": "rempit basic rank 1 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "rempit basic shots inherit their unlocked rank 1",
+      "pass": true
+    },
+    {
+      "name": "rempit projectiles have independent contacts at rank 1",
+      "pass": true
+    },
+    {
+      "name": "rempit basic rank 2 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "rempit basic shots inherit their unlocked rank 2",
+      "pass": true
+    },
+    {
+      "name": "rempit projectiles have independent contacts at rank 2",
+      "pass": true
+    },
+    {
+      "name": "rempit basic rank 3 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "rempit basic shots inherit their unlocked rank 3",
+      "pass": true
+    },
+    {
+      "name": "rempit projectiles have independent contacts at rank 3",
+      "pass": true
+    },
+    {
+      "name": "rempit basic rank 4 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "rempit basic shots inherit their unlocked rank 4",
+      "pass": true
+    },
+    {
+      "name": "rempit projectiles have independent contacts at rank 4",
+      "pass": true
+    },
+    {
+      "name": "rempit basic rank 5 launches 3 projectiles",
+      "pass": true
+    },
+    {
+      "name": "rempit basic shots inherit their unlocked rank 5",
+      "pass": true
+    },
+    {
+      "name": "rempit projectiles have independent contacts at rank 5",
+      "pass": true
+    },
+    {
+      "name": "nok basic rank 1 launches 0 projectiles",
+      "pass": true
+    },
+    {
+      "name": "nok basic shots inherit their unlocked rank 1",
+      "pass": true
+    },
+    {
+      "name": "nok projectiles have independent contacts at rank 1",
+      "pass": true
+    },
+    {
+      "name": "nok basic rank 2 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "nok basic shots inherit their unlocked rank 2",
+      "pass": true
+    },
+    {
+      "name": "nok projectiles have independent contacts at rank 2",
+      "pass": true
+    },
+    {
+      "name": "nok basic rank 3 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "nok basic shots inherit their unlocked rank 3",
+      "pass": true
+    },
+    {
+      "name": "nok projectiles have independent contacts at rank 3",
+      "pass": true
+    },
+    {
+      "name": "nok basic rank 4 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "nok basic shots inherit their unlocked rank 4",
+      "pass": true
+    },
+    {
+      "name": "nok projectiles have independent contacts at rank 4",
+      "pass": true
+    },
+    {
+      "name": "nok basic rank 5 launches 3 projectiles",
+      "pass": true
+    },
+    {
+      "name": "nok basic shots inherit their unlocked rank 5",
+      "pass": true
+    },
+    {
+      "name": "nok projectiles have independent contacts at rank 5",
+      "pass": true
+    },
+    {
+      "name": "lan basic rank 1 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "lan basic shots inherit their unlocked rank 1",
+      "pass": true
+    },
+    {
+      "name": "lan projectiles have independent contacts at rank 1",
+      "pass": true
+    },
+    {
+      "name": "lan basic rank 2 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "lan basic shots inherit their unlocked rank 2",
+      "pass": true
+    },
+    {
+      "name": "lan projectiles have independent contacts at rank 2",
+      "pass": true
+    },
+    {
+      "name": "lan basic rank 3 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "lan basic shots inherit their unlocked rank 3",
+      "pass": true
+    },
+    {
+      "name": "lan projectiles have independent contacts at rank 3",
+      "pass": true
+    },
+    {
+      "name": "lan basic rank 4 launches 3 projectiles",
+      "pass": true
+    },
+    {
+      "name": "lan basic shots inherit their unlocked rank 4",
+      "pass": true
+    },
+    {
+      "name": "lan projectiles have independent contacts at rank 4",
+      "pass": true
+    },
+    {
+      "name": "lan basic rank 5 launches 4 projectiles",
+      "pass": true
+    },
+    {
+      "name": "lan basic shots inherit their unlocked rank 5",
+      "pass": true
+    },
+    {
+      "name": "lan projectiles have independent contacts at rank 5",
+      "pass": true
+    },
+    {
+      "name": "sari basic rank 1 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "sari basic shots inherit their unlocked rank 1",
+      "pass": true
+    },
+    {
+      "name": "sari projectiles have independent contacts at rank 1",
+      "pass": true
+    },
+    {
+      "name": "sari basic rank 2 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "sari basic shots inherit their unlocked rank 2",
+      "pass": true
+    },
+    {
+      "name": "sari projectiles have independent contacts at rank 2",
+      "pass": true
+    },
+    {
+      "name": "sari basic rank 3 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "sari basic shots inherit their unlocked rank 3",
+      "pass": true
+    },
+    {
+      "name": "sari projectiles have independent contacts at rank 3",
+      "pass": true
+    },
+    {
+      "name": "sari basic rank 4 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "sari basic shots inherit their unlocked rank 4",
+      "pass": true
+    },
+    {
+      "name": "sari projectiles have independent contacts at rank 4",
+      "pass": true
+    },
+    {
+      "name": "sari basic rank 5 launches 3 projectiles",
+      "pass": true
+    },
+    {
+      "name": "sari basic shots inherit their unlocked rank 5",
+      "pass": true
+    },
+    {
+      "name": "sari projectiles have independent contacts at rank 5",
+      "pass": true
+    },
+    {
+      "name": "asha basic rank 1 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "asha basic shots inherit their unlocked rank 1",
+      "pass": true
+    },
+    {
+      "name": "asha projectiles have independent contacts at rank 1",
+      "pass": true
+    },
+    {
+      "name": "asha basic rank 2 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "asha basic shots inherit their unlocked rank 2",
+      "pass": true
+    },
+    {
+      "name": "asha projectiles have independent contacts at rank 2",
+      "pass": true
+    },
+    {
+      "name": "asha basic rank 3 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "asha basic shots inherit their unlocked rank 3",
+      "pass": true
+    },
+    {
+      "name": "asha projectiles have independent contacts at rank 3",
+      "pass": true
+    },
+    {
+      "name": "asha basic rank 4 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "asha basic shots inherit their unlocked rank 4",
+      "pass": true
+    },
+    {
+      "name": "asha projectiles have independent contacts at rank 4",
+      "pass": true
+    },
+    {
+      "name": "asha basic rank 5 launches 3 projectiles",
+      "pass": true
+    },
+    {
+      "name": "asha basic shots inherit their unlocked rank 5",
+      "pass": true
+    },
+    {
+      "name": "asha projectiles have independent contacts at rank 5",
+      "pass": true
+    },
+    {
+      "name": "mira basic rank 1 launches 0 projectiles",
+      "pass": true
+    },
+    {
+      "name": "mira basic shots inherit their unlocked rank 1",
+      "pass": true
+    },
+    {
+      "name": "mira projectiles have independent contacts at rank 1",
+      "pass": true
+    },
+    {
+      "name": "mira basic rank 2 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "mira basic shots inherit their unlocked rank 2",
+      "pass": true
+    },
+    {
+      "name": "mira projectiles have independent contacts at rank 2",
+      "pass": true
+    },
+    {
+      "name": "mira basic rank 3 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "mira basic shots inherit their unlocked rank 3",
+      "pass": true
+    },
+    {
+      "name": "mira projectiles have independent contacts at rank 3",
+      "pass": true
+    },
+    {
+      "name": "mira basic rank 4 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "mira basic shots inherit their unlocked rank 4",
+      "pass": true
+    },
+    {
+      "name": "mira projectiles have independent contacts at rank 4",
+      "pass": true
+    },
+    {
+      "name": "mira basic rank 5 launches 3 projectiles",
+      "pass": true
+    },
+    {
+      "name": "mira basic shots inherit their unlocked rank 5",
+      "pass": true
+    },
+    {
+      "name": "mira projectiles have independent contacts at rank 5",
+      "pass": true
+    },
+    {
+      "name": "dani basic rank 1 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "dani basic shots inherit their unlocked rank 1",
+      "pass": true
+    },
+    {
+      "name": "dani projectiles have independent contacts at rank 1",
+      "pass": true
+    },
+    {
+      "name": "dani basic rank 2 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "dani basic shots inherit their unlocked rank 2",
+      "pass": true
+    },
+    {
+      "name": "dani projectiles have independent contacts at rank 2",
+      "pass": true
+    },
+    {
+      "name": "dani basic rank 3 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "dani basic shots inherit their unlocked rank 3",
+      "pass": true
+    },
+    {
+      "name": "dani projectiles have independent contacts at rank 3",
+      "pass": true
+    },
+    {
+      "name": "dani basic rank 4 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "dani basic shots inherit their unlocked rank 4",
+      "pass": true
+    },
+    {
+      "name": "dani projectiles have independent contacts at rank 4",
+      "pass": true
+    },
+    {
+      "name": "dani basic rank 5 launches 3 projectiles",
+      "pass": true
+    },
+    {
+      "name": "dani basic shots inherit their unlocked rank 5",
+      "pass": true
+    },
+    {
+      "name": "dani projectiles have independent contacts at rank 5",
+      "pass": true
+    },
+    {
+      "name": "vanna basic rank 1 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "vanna basic shots inherit their unlocked rank 1",
+      "pass": true
+    },
+    {
+      "name": "vanna projectiles have independent contacts at rank 1",
+      "pass": true
+    },
+    {
+      "name": "vanna basic rank 2 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "vanna basic shots inherit their unlocked rank 2",
+      "pass": true
+    },
+    {
+      "name": "vanna projectiles have independent contacts at rank 2",
+      "pass": true
+    },
+    {
+      "name": "vanna basic rank 3 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "vanna basic shots inherit their unlocked rank 3",
+      "pass": true
+    },
+    {
+      "name": "vanna projectiles have independent contacts at rank 3",
+      "pass": true
+    },
+    {
+      "name": "vanna basic rank 4 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "vanna basic shots inherit their unlocked rank 4",
+      "pass": true
+    },
+    {
+      "name": "vanna projectiles have independent contacts at rank 4",
+      "pass": true
+    },
+    {
+      "name": "vanna basic rank 5 launches 3 projectiles",
+      "pass": true
+    },
+    {
+      "name": "vanna basic shots inherit their unlocked rank 5",
+      "pass": true
+    },
+    {
+      "name": "vanna projectiles have independent contacts at rank 5",
+      "pass": true
+    },
+    {
+      "name": "keo basic rank 1 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "keo basic shots inherit their unlocked rank 1",
+      "pass": true
+    },
+    {
+      "name": "keo projectiles have independent contacts at rank 1",
+      "pass": true
+    },
+    {
+      "name": "keo basic rank 2 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "keo basic shots inherit their unlocked rank 2",
+      "pass": true
+    },
+    {
+      "name": "keo projectiles have independent contacts at rank 2",
+      "pass": true
+    },
+    {
+      "name": "keo basic rank 3 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "keo basic shots inherit their unlocked rank 3",
+      "pass": true
+    },
+    {
+      "name": "keo projectiles have independent contacts at rank 3",
+      "pass": true
+    },
+    {
+      "name": "keo basic rank 4 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "keo basic shots inherit their unlocked rank 4",
+      "pass": true
+    },
+    {
+      "name": "keo projectiles have independent contacts at rank 4",
+      "pass": true
+    },
+    {
+      "name": "keo basic rank 5 launches 3 projectiles",
+      "pass": true
+    },
+    {
+      "name": "keo basic shots inherit their unlocked rank 5",
+      "pass": true
+    },
+    {
+      "name": "keo projectiles have independent contacts at rank 5",
+      "pass": true
+    },
+    {
+      "name": "nadi basic rank 1 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "nadi basic shots inherit their unlocked rank 1",
+      "pass": true
+    },
+    {
+      "name": "nadi projectiles have independent contacts at rank 1",
+      "pass": true
+    },
+    {
+      "name": "nadi basic rank 2 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "nadi basic shots inherit their unlocked rank 2",
+      "pass": true
+    },
+    {
+      "name": "nadi projectiles have independent contacts at rank 2",
+      "pass": true
+    },
+    {
+      "name": "nadi basic rank 3 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "nadi basic shots inherit their unlocked rank 3",
+      "pass": true
+    },
+    {
+      "name": "nadi projectiles have independent contacts at rank 3",
+      "pass": true
+    },
+    {
+      "name": "nadi basic rank 4 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "nadi basic shots inherit their unlocked rank 4",
+      "pass": true
+    },
+    {
+      "name": "nadi projectiles have independent contacts at rank 4",
+      "pass": true
+    },
+    {
+      "name": "nadi basic rank 5 launches 3 projectiles",
+      "pass": true
+    },
+    {
+      "name": "nadi basic shots inherit their unlocked rank 5",
+      "pass": true
+    },
+    {
+      "name": "nadi projectiles have independent contacts at rank 5",
+      "pass": true
+    },
+    {
+      "name": "lia basic rank 1 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "lia basic shots inherit their unlocked rank 1",
+      "pass": true
+    },
+    {
+      "name": "lia projectiles have independent contacts at rank 1",
+      "pass": true
+    },
+    {
+      "name": "lia basic rank 2 launches 1 projectiles",
+      "pass": true
+    },
+    {
+      "name": "lia basic shots inherit their unlocked rank 2",
+      "pass": true
+    },
+    {
+      "name": "lia projectiles have independent contacts at rank 2",
+      "pass": true
+    },
+    {
+      "name": "lia basic rank 3 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "lia basic shots inherit their unlocked rank 3",
+      "pass": true
+    },
+    {
+      "name": "lia projectiles have independent contacts at rank 3",
+      "pass": true
+    },
+    {
+      "name": "lia basic rank 4 launches 2 projectiles",
+      "pass": true
+    },
+    {
+      "name": "lia basic shots inherit their unlocked rank 4",
+      "pass": true
+    },
+    {
+      "name": "lia projectiles have independent contacts at rank 4",
+      "pass": true
+    },
+    {
+      "name": "lia basic rank 5 launches 3 projectiles",
+      "pass": true
+    },
+    {
+      "name": "lia basic shots inherit their unlocked rank 5",
+      "pass": true
+    },
+    {
+      "name": "lia projectiles have independent contacts at rank 5",
+      "pass": true
+    },
+    {
+      "name": "asha shows its own flag behind the portrait at 30% opacity",
+      "pass": true
+    },
+    {
+      "name": "asha shows dedicated artwork for all five attacks",
+      "pass": true
+    },
+    {
+      "name": "asha starts from the wheel with the selected kit",
+      "pass": true
+    },
+    {
+      "name": "asha uses the same active-skill icons in the combat HUD",
+      "pass": true
+    },
+    {
+      "name": "asha uses its own idle sprite and feet pivot",
+      "pass": true
+    },
+    {
+      "name": "asha projects a shadow from its gameplay sprite",
+      "pass": true
+    },
+    {
+      "name": "asha uses its own Q cast pose",
+      "pass": true
+    },
+    {
+      "name": "asha uses its own E cast pose",
+      "pass": false
+    }
+  ],
+  "errors": [
+    "asha uses its own E cast pose"
+  ],
+  "result": "FAIL"
+}

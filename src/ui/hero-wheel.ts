@@ -1,11 +1,14 @@
 import {menuPortraitPosition} from '../content/hero-art.js';
+import type {SpriteAssets} from '../scenes/SpriteAssets';
+import {createHeroPreview} from './hero-preview';
 
 type WheelHero = {id:string; name:string; country:string; frame:number; flag:string};
 
 // Angle is continuous across the last/first seam. The roster index wraps.
-export function installHeroWheel(heroes:WheelHero[], onSelect:(id:string)=>void, signal:AbortSignal){
+export function installHeroWheel(heroes:WheelHero[], onSelect:(id:string)=>void, art:SpriteAssets, signal:AbortSignal){
   const wheel=document.getElementById('heroWheel')!;
   const roster=document.getElementById('heroes')!;
+  const preview=createHeroPreview(art,wheel,signal);
   const step=360/heroes.length;
   const wrap=(index:number)=>(index%heroes.length+heroes.length)%heroes.length;
   const options={signal};
@@ -47,6 +50,7 @@ export function installHeroWheel(heroes:WheelHero[], onSelect:(id:string)=>void,
     });
     if(hadPortraitFocus)buttons[index].focus({preventScroll:true});
     onSelect(heroes[index].id);
+    preview.select(heroes[index].id,buttons[index].querySelector('i')!);
   }
 
   document.getElementById('heroPrevious')!.addEventListener('click',()=>settle(position-1),options);
@@ -106,4 +110,5 @@ export function installHeroWheel(heroes:WheelHero[], onSelect:(id:string)=>void,
     if(suppressClick && event.detail){event.stopImmediatePropagation();suppressClick=false}
   },{capture:true,signal});
   settle(0);
+  return preview.update;
 }

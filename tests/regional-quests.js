@@ -24,6 +24,7 @@ const itineraries={
   johor:['rescue','weapon','Escort · Market bridge approach','Clear · Market bridge approach','Escort · Market bridge'],
   melaka:['quayManifest','relic','Recover · Old River Quay','File · Stadthuys Steps'],
   kl:['hawkerDelivery','charm','Deliver · Central Market Lane','Deliver · Monorail Depot'],
+  selangor:['harbourLedger','relic','Collect · Ferry Landing','Secure · Old Quay Warehouse','Return · Old Quay Warehouse'],
   perak:['tinAssay','weapon','Pan · Blue Tailings Pond','Secure · Tanjung Tualang Dredge','Weigh · Tanjung Tualang Dredge'],
   penang:['jettyEscort','charm','Escort · Chew Jetty winch','Lower · Chew Jetty winch','Escort · Fishing Platform'],
   kedah:['paddyWater','charm','Read · Pintu Air','Set · Irrigation Fields'],
@@ -32,7 +33,7 @@ const itineraries={
   kelantan:['wauFlight','relic','Rig · Wau Workshop','Raise · Padang Layang Lookout']
 };
 const regionalRewards={
-  melaka:'quaySeal',kl:'supperCarrier',perak:'tinMallet',penang:'jettyKnot',
+  melaka:'quaySeal',kl:'supperCarrier',selangor:'harbourToken',perak:'tinMallet',penang:'jettyKnot',
   kedah:'padiSheaf',pahang:'nipahBraid',terengganu:'cengalMallet',kelantan:'wauSpool'
 };
 
@@ -76,7 +77,7 @@ run.onclick=()=>{
       const sprite=point=>rt.scene.sprites.get(point);
       at(e);step();
       check(e.name+' presents a civilian and the correct quest prompt',sprite(e)?.key===(id==='rescue'?'traveller':'regional-workers')
-        &&Math.floor(Number(sprite(e).frame.name)/3)===Math.max(0,index-1)
+        &&Math.floor(Number(sprite(e).frame.name)/3)===(stage.id==='selangor'?0:Math.max(0,index-1))
         &&!doc.getElementById('encounterPrompt').hidden&&doc.getElementById('eventName').textContent===e.name);
       click('eventStart');
       if(id==='rescue'){
@@ -128,7 +129,7 @@ run.onclick=()=>{
       }
       if(companion)check(e.name+' walks a single companion to safety',regrouped&&walked&&!sprite(companion));
       check(e.name+' visits its destinations in order: '+seen.join(' → '),JSON.stringify(itinerary)===JSON.stringify(seen));
-      check(e.name+' resolves its local fights',waves===(['johor','melaka','perak','terengganu'].includes(stage.id)?1:0));
+      check(e.name+' resolves its local fights',waves===(['johor','melaka','selangor','perak','terengganu'].includes(stage.id)?1:0));
       if(stage.id==='penang')check('Escorting the fisher lowers the playable gangway',g.world.gangway.open);
       if(stage.id==='kelantan')check('Launching the rigged wau triggers the playable gust',g.wauWind.phase==='gust');
       step();

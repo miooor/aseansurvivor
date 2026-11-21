@@ -1,4 +1,5 @@
 import {HALF,WORLD_SIZE} from '../content/world.js';
+import {contourPoint} from '../content/regional-landforms.js';
 import type {Encounter,Point,RunState} from '../game/runtime.js';
 
 type Destination = Point & {key:string; verb:string; label:string};
@@ -63,6 +64,7 @@ export class RegionMap {
     const turn=this.points[1],arrived=distance<12;
     const angle=arrived?Math.PI/2:Math.atan2(turn.y-p.y,turn.x-p.x);
     this.gps.toggleAttribute('data-arrived',arrived);
+    this.gps.toggleAttribute('data-rift',target.key==='rift');
     this.gps.hidden=false;
     this.gps.style.setProperty('--turn',angle+'rad');
     this.gps.style.setProperty('--bearing-x',String(Math.cos(angle)));
@@ -77,22 +79,26 @@ export class RegionMap {
     const crossing=gate?`<path data-gangway d="M ${gate.x+gate.w/2+HALF} ${gate.y+HALF} v ${gate.h}" />`:'';
     const wind=w.wauLookout;
     const windLane=wind?`<rect data-wau-lane x="${wind.x+HALF}" y="${wind.y+HALF}" width="${wind.w}" height="${wind.h}"><title>Padang Layang wind lane</title></rect>`:'';
+    const contours=w.landforms.map(hill=>`<g fill="#597052" fill-opacity=".26" stroke="#9ba06f" stroke-opacity=".65" stroke-width="46">
+      <title>${hill.name}</title>${[.82,.58].map(radius=>`<polygon points="${Array.from({length:32},(_,i)=>
+        contourPoint(hill,i*Math.PI/16,radius).map(n=>Math.round(n+HALF)).join(',')).join(' ')}"/>`).join('')}</g>`).join('');
 
-    this.map.innerHTML=`<details ${this.fullMap.matches?'open':''}><summary><strong>${w.name}</strong><span id="regionName"></span></summary><svg viewBox="0 0 ${WORLD_SIZE} ${WORLD_SIZE}" role="img" aria-label="${w.name} overview. Player position, terrain, crossings and landmarks, including ${featured?.name??w.name}.${wind?' Padang Layang wind lane is marked.':''}"><rect width="${WORLD_SIZE}" height="${WORLD_SIZE}" fill="#233c32"/>`+w.waters.map(r=>`<rect x="${r.x+HALF}" y="${r.y+HALF}" width="${r.w}" height="${r.h}" fill="#5796a3"/>`).join('')+w.roads.map(path=>`<polyline points="${path.map(([x,y])=>[x+HALF,y+HALF].join(',')).join(' ')}" fill="none" stroke="#cbb786" stroke-width="63" opacity=".7"/>`).join('')+w.bridges.map(r=>`<rect x="${r.x+HALF}" y="${r.y+HALF}" width="${r.w}" height="${r.h}" fill="#d1b67d"/>`).join('')+w.rocks.map(r=>`<rect x="${r.x+HALF}" y="${r.y+HALF}" width="${r.w}" height="${r.h}" fill="#899599"/>`).join('')+crossing+'<polyline id="mapRoute" fill="none" stroke="#fff0ac" stroke-width="1.6" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>'+LANDMARKS.map((s,i)=>`<circle data-site="${s.id}" cx="${s.x+HALF}" cy="${s.y+HALF}" r="${s.featured?230:150}" fill="#78887a" ${s.featured?'stroke="#f1c882" stroke-width="64"':''}><title>${i+1}. ${s.name}</title></circle>`).join('')+windLane+'<g id="mapHeading"><path d="M300 0L50 -100L50 100Z" fill="#fff0ac"/></g><circle id="mapPlayer" r="112" fill="#fff2b4" stroke="#162b26" stroke-width="45"/></svg><span id="mapObjective"></span><select aria-label="Route destination" aria-describedby="mapObjective"></select></details>';
+    this.map.innerHTML=`<details ${this.fullMap.matches?'open':''}><summary><span class="map-toggle-label">Map</span><strong>${w.name}</strong><span id="regionName"></span></summary><svg viewBox="0 0 ${WORLD_SIZE} ${WORLD_SIZE}" role="img" aria-label="${w.name} overview. Player position, elevation contours, crossings and landmarks, including ${featured?.name??w.name}.${wind?' Padang Layang wind lane is marked.':''}"><rect width="${WORLD_SIZE}" height="${WORLD_SIZE}" fill="#233c32"/>`+contours+w.waters.map(r=>`<rect x="${r.x+HALF}" y="${r.y+HALF}" width="${r.w}" height="${r.h}" fill="#5796a3"/>`).join('')+w.roads.map(path=>`<polyline points="${path.map(([x,y])=>[x+HALF,y+HALF].join(',')).join(' ')}" fill="none" stroke="#cbb786" stroke-width="63" opacity=".7"/>`).join('')+w.bridges.map(r=>`<rect x="${r.x+HALF}" y="${r.y+HALF}" width="${r.w}" height="${r.h}" fill="#d1b67d"/>`).join('')+w.rocks.map(r=>`<rect x="${r.x+HALF}" y="${r.y+HALF}" width="${r.w}" height="${r.h}" fill="#899599"/>`).join('')+crossing+'<polyline id="mapRoute" fill="none" stroke="#fff0ac" stroke-width="1.6" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>'+LANDMARKS.map((s,i)=>`<circle data-site="${s.id}" cx="${s.x+HALF}" cy="${s.y+HALF}" r="${s.featured?230:150}" fill="#78887a" ${s.featured?'stroke="#f1c882" stroke-width="64"':''}><title>${i+1}. ${s.name}</title></circle>`).join('')+windLane+'<g id="mapHeading"><path d="M300 0L50 -100L50 100Z" fill="#fff0ac"/></g><circle id="mapPlayer" r="112" fill="#fff2b4" stroke="#162b26" stroke-width="45"/></svg><span id="mapObjective"></span><select aria-label="Route destination" aria-describedby="mapObjective"></select></details>';
     this.picker=this.map.querySelector('select')!;
     this.picker.onkeydown=e=>{if(e.key!=='Tab')e.stopPropagation()};
     this.picker.onchange=()=>{this.routeKey=''};
     this.map.querySelector('svg')!.onclick=e=>{
-      const marker=(e.target as Element).closest<SVGElement>('[data-event],[data-site]');
+      const marker=(e.target as Element).closest<SVGElement>('[data-event],[data-site],[data-route-challenge]');
       if(!marker)return;
-      const key=marker.dataset.event?'event:'+marker.dataset.event:'cache:'+marker.dataset.site;
+      const key=marker.hasAttribute('data-route-challenge')?'route-challenge':
+        marker.dataset.event?'event:'+marker.dataset.event:'cache:'+marker.dataset.site;
       if(Array.from(this.picker.options).some(o=>o.value===key)){
         this.picker.value=key;
         this.routeKey='';
       }
     };
   }
-  update(g:RunState|null){
+  update(g:RunState|null,portal:Point|null){
     const visible=!!g&&!g.raid&&!g.over;
     this.gps.hidden=true;
     this.map.hidden=!visible;
@@ -110,7 +116,7 @@ export class RegionMap {
     const wind=g.wauWind;
     const lookout=g.world.wauLookout;
     if(wind)svg.querySelector<SVGElement>('[data-wau-lane]')!.dataset.state=wind.phase;
-    const choices=new Map<string,string>([['','Automatic']]);
+    const choices=new Map<string,string>([['','Route: nearest goal']]);
     const destinations=new Map<string,Destination>();
     let active:Destination|undefined;
     for(const event of Object.values(g.encounters)){
@@ -140,6 +146,32 @@ export class RegionMap {
       destinations.set(key,{...(guard??site),key,verb:guard?'Defeat':visited?'Collect':'Explore',
         label:site.name+(guard?' guardian':'')});
     }
+    const challenge=g.routeChallenge;
+    let routeMarker=svg.querySelector<SVGCircleElement>('[data-route-challenge]');
+    if(challenge&&!challenge.cleared&&!g.practice){
+      const {entry,name}=challenge.definition;
+      const key='route-challenge';
+      const guard=nearest(g.p,challenge.enemies.filter(e=>!e.dead));
+      choices.set(key,name);
+      destinations.set(key,{...(guard??entry),key,verb:guard?'Defeat':'Visit',label:name});
+      if(!routeMarker){
+        routeMarker=document.createElementNS('http://www.w3.org/2000/svg','circle');
+        routeMarker.setAttribute('data-route-challenge','');
+        routeMarker.setAttribute('cx',String(entry.x+HALF));
+        routeMarker.setAttribute('cy',String(entry.y+HALF));
+        routeMarker.setAttribute('r','175');
+        routeMarker.setAttribute('fill','#e8a969');
+        const title=document.createElementNS('http://www.w3.org/2000/svg','title');
+        title.textContent=name;
+        routeMarker.append(title);
+        svg.insertBefore(routeMarker,svg.querySelector('#mapHeading'));
+      }
+    }else routeMarker?.remove();
+    const rift=portal&&!active?{...portal,key:'rift',verb:'Enter',label:'Spirit Rift'}:undefined;
+    if(rift){
+      choices.set(rift.key,rift.label);
+      destinations.set(rift.key,rift);
+    }
     const signature=JSON.stringify([...choices]);
     if(signature!==this.choices){
       const selected=this.picker.value;
@@ -147,7 +179,7 @@ export class RegionMap {
       this.picker.value=choices.has(selected)?selected:'';
       this.choices=signature;
     }
-    let target=active??destinations.get(this.picker.value);
+    let target=active??destinations.get(this.picker.value)??rift;
     if(!target){
       if(wind&&lookout&&['ready','raising'].includes(wind.phase)&&Math.hypot(g.p.x-lookout.station.x,g.p.y-lookout.station.y)<600){
         target={...lookout.station,key:'wau',verb:'Launch',label:'Padang Layang'};

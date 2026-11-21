@@ -4,8 +4,9 @@ export const GROUND_DEPTH=Math.SQRT2;
 export type Knot=[x:number,y:number,height:number];
 
 // Tactical strokes and the missing-sheet fallback use a muted core and a soft edge.
-// All active spells share one geometry upload and one transparent draw call.
+// Each batch shares one geometry upload and one transparent draw call.
 export class SpellRibbons{
+  elevationAt=(x:number,y:number)=>0;
   private capacity=8192;
   private used=0;
   private positions=new Float32Array(this.capacity*3);
@@ -26,7 +27,12 @@ export class SpellRibbons{
   });
   readonly mesh=new THREE.Mesh(this.geometry,this.material);
   private colour=new THREE.Color();
-  constructor(){this.bind();this.mesh.frustumCulled=false;this.mesh.renderOrder=50}
+  constructor(additive=false){
+    this.bind();
+    this.mesh.frustumCulled=false;
+    this.mesh.renderOrder=additive?51:50;
+    if(additive)this.material.blending=THREE.AdditiveBlending;
+  }
   private bind(){
     this.geometry.setAttribute('position',new THREE.BufferAttribute(this.positions,3).setUsage(THREE.DynamicDrawUsage));
     this.geometry.setAttribute('tint',new THREE.BufferAttribute(this.colours,4).setUsage(THREE.DynamicDrawUsage));
@@ -56,7 +62,7 @@ export class SpellRibbons{
     this.reserve(6);this.colour.setHex(c);
     for(const corner of [0,1,2,2,1,3]){
       const u=(corner%2)*2-1,v=Math.floor(corner/2)*2-1,i=this.used++;
-      this.positions[i*3]=x+u*r;this.positions[i*3+1]=h+8;
+      this.positions[i*3]=x+u*r;this.positions[i*3+1]=h+8+this.elevationAt(x+u*r,y+v*r);
       this.positions[i*3+2]=(y+v*r)*GROUND_DEPTH;
       this.colour.toArray(this.colours,i*4);this.colours[i*4+3]=alpha;
       this.profile[i*2]=u;this.profile[i*2+1]=v;
@@ -67,7 +73,7 @@ export class SpellRibbons{
     this.colour.setHex(colour);
     for(const [x,y,height] of points){
       const i=this.used++;
-      this.positions.set([x,height+8,y*GROUND_DEPTH],i*3);
+      this.positions.set([x,height+8+this.elevationAt(x,y),y*GROUND_DEPTH],i*3);
       this.colour.toArray(this.colours,i*4);
       this.colours[i*4+3]=alpha;
       // Sample the coloured body of the ribbon shader across the face.
@@ -84,7 +90,7 @@ export class SpellRibbons{
     const vertex=(point:Knot,nx:number,ny:number,edge:number)=>{
       const i=this.used++;
       this.positions[i*3]=point[0]+nx*edge;
-      this.positions[i*3+1]=point[2]+8;
+      this.positions[i*3+1]=point[2]+8+this.elevationAt(point[0]+nx*edge,point[1]+ny*edge);
       this.positions[i*3+2]=(point[1]+ny*edge)*GROUND_DEPTH;
       this.colours[i*4]=this.colour.r;this.colours[i*4+1]=this.colour.g;this.colours[i*4+2]=this.colour.b;
       this.colours[i*4+3]=alpha;this.profile[i*2]=edge;this.profile[i*2+1]=0;

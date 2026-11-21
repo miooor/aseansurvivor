@@ -18,6 +18,21 @@ export async function checkOriginalCombat(w, capture=()=>{}) {
     const g=rt.G,e=rt.makeGhost(type,g.p.x+dx,g.p.y+dy);
     e.hp=e.maxHp=9999;e.stun=999;e.spd=0;return e;
   };
+  for(const [slot,name,active] of [
+    [1,'Wheelie',p=>p.dash?.t>0],
+    [4,'Mode Superman',p=>p.super>0]
+  ]){
+    const g=await start('rempit');
+    g.ult=g.hero.ultNeed;
+    g.p.hp=1;
+    rt.tryCast(slot);
+    check(active(g.p),name+' is active');
+    rt.hurtPlayer(10,'contact');
+    check(g.p.hp===1,name+' protects Kama from body contact');
+    rt.hurtPlayer(10,'skill');
+    check(g.p.hp===0&&g.over,name+' lets a lethal enemy skill end the run');
+    rt.toMenu();
+  }
   let g=await start('rempit');
   foe(-235);g.cds[0]=0;key('keydown','KeyD');step(2);
   check(g.projs.some(q=>q.kind==='spanner'&&q.vx<0),'backward throw');
@@ -42,23 +57,18 @@ export async function checkOriginalCombat(w, capture=()=>{}) {
 
   g=await start('nok');g.autoAim=false;
   const aim=()=>canvas.dispatchEvent(new w.MouseEvent('mousemove',{clientX:w.innerWidth/2+200,clientY:w.innerHeight/2}));
-  const inner=foe(90),edge=foe(195,12),slip=foe(190,-22,'minyak');
-  const play=rt.audio.play,cues=[];
-  rt.audio.play=function(hero,cue){cues.push(hero+'-'+cue);return play.call(this,hero,cue)};
-  const rng=w.Math.random;
-  try{
-    w.Math.random=()=>.2;aim();press('KeyQ');
-    const tips=g.fx.filter(f=>f.flourish==='tip');
-    check(inner.hp<9999&&edge.hp<inner.hp&&slip.hp===9999,'inner, outer and rejected hits');
-    check(tips.length===1&&Math.hypot(tips[0].x-edge.x,tips[0].y-edge.y)<=edge.r+.01,'one contact on edge target');
-    check(cues.filter(k=>k==='nok-tip').length===1,'one contact bell');
-    scene.update(0,0);shot('Nok · edge contact');
-    edge.dead=true;step(42);
-    // Knockback has moved the first targets. Put a fresh ghost in the inner lane.
-    inner.dead=true;const next=foe(75);g.cds[1]=0;cues.length=0;aim();press('KeyQ');
-    check(next.hp<9999&&!cues.includes('nok-tip')&&!g.fx.some(f=>f.flourish==='tip'),'inner and slipped hits silent');
-    scene.update(0,0);shot('Nok · inner hit');
-  }finally{rt.audio.play=play;w.Math.random=rng}
+  const startX=g.p.x;
+  const flank=foe(65,60),behind=foe(-65),far=foe(204),victim=foe(75,-48);
+  victim.hp=1;g.st.crit=0;
+  aim();press('KeyQ');step(2);
+  check(flank.hp===9999-54&&victim.dead&&behind.hp===9999,'knee cleaves the front arc only');
+  check(scene.sprites.get(g.p).key==='nok-flying-knee','airborne knee sprite');
+  shot('Nok · flying knee');
+  step(13);
+  check(g.p.x>startX+110&&!g.sea.knee&&far.hp===9999-81&&flank.hp===9999-54,'lunge reaches outer targets and hits each once');
+  foe(42);press('KeyE');check(g.cds[1]===0,'connected follow-up elbow readies knee');
+  press('KeyQ');check(g.identity.releaseT>0&&g.identity.charge===0,'return knee finishes Rhythm');
+  step(3);shot('Nok · return knee');
 
   g=await start('sari');foe(280);g.cds[0]=0;step(5);
   check(g.projs.some(q=>q.kind==='kris'&&!q.back),'outbound blade');shot('Sari · outbound');

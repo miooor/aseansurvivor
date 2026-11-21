@@ -7,7 +7,7 @@ export const heroArt={
   lan:{motion:new URL('../../assets/lan-motion.png',import.meta.url).href,skills:new URL('../../assets/lan-skills.png',import.meta.url).href,idleIndex:3,size:197},
   sari:{motion:new URL('../../assets/sari-motion.png',import.meta.url).href,skills:new URL('../../assets/sari-skills.png',import.meta.url).href,idleIndex:4,size:197},
   asha:{motion:new URL('../../assets/asha-motion.webp',import.meta.url).href,skills:new URL('../../assets/asha-skills.webp',import.meta.url).href,portraitIndex:0,size:192},
-  mira:{motion:new URL('../../assets/mira-motion.webp',import.meta.url).href,skills:new URL('../../assets/mira-skills.webp',import.meta.url).href,portraitIndex:1,size:197},
+  mira:{motion:new URL('../../assets/pag-pag-motion.webp',import.meta.url).href,skills:new URL('../../assets/pag-pag-skills.webp',import.meta.url).href,portraitIndex:1,size:197},
   dani:{motion:new URL('../../assets/dani-motion.webp',import.meta.url).href,skills:new URL('../../assets/dani-skills.webp',import.meta.url).href,portraitIndex:2,size:205},
   vanna:{motion:new URL('../../assets/vanna-motion.webp',import.meta.url).href,skills:new URL('../../assets/vanna-skills.webp',import.meta.url).href,portraitIndex:3,size:197},
   keo:{motion:new URL('../../assets/keo-motion.webp',import.meta.url).href,skills:new URL('../../assets/keo-skills.webp',import.meta.url).href,portraitIndex:4,size:197},

@@ -43,7 +43,7 @@ assert.ok(!run('sari',4,2,0).includes('Cooldown'));
 assert.ok(run('sari',4,2,0).includes('Feathers 13 → 14'));
 assert.ok(run('sari',3,1,12,{technique:{duration:1.4,counter:.7}}).includes('Stance 3.5 → 3.85 s'));
 assert.ok(run('ustaz',3,3,10,{technique:{stun:1.5}}).includes('Stun 1.95 → 2.175 s'));
-assert.ok(run('ustaz',0,3,.85).includes('Pierce 1 → 2'));
+assert.ok(run('ustaz',0,3,.85).includes('Targets per bolt 2 → 3'));
 assert.ok(run('ustaz',1,4,6,{hero:HEROES.ustaz,equipment:{belt:'techniqueSash'}})
   .includes('Base hit 76 → 85.5'));
 assert.ok(run('sari',3,1,12,{technique:{duration:1.4,counter:.7}})
@@ -51,3 +51,11 @@ assert.ok(run('sari',3,1,12,{technique:{duration:1.4,counter:.7}})
 assert.ok(run('rempit',0,2,.7,{hero:HEROES.rempit,evo:{0:true}})
   .includes('Base hit 17.875 → 21.45'));
 console.log('Blessing picker behavior passed');
+
+for(const id of ['rempit','nok','mira','asha','dani','vanna','keo','lia','sari']){
+  const first=1;
+  assert.ok(run(id,0,2,1).includes('Projectiles '+first+' → '+(first+1)),id);
+}
+assert.ok(run('nadi',0,2,1).includes('Targets 1 → 2'));
+assert.ok(run('lan',0,4,1).includes('Puppets 3 → 4'));
+assert.ok(run('sari',0,4,1,{evo:{0:true}}).includes('Projectiles 3 → 4'));

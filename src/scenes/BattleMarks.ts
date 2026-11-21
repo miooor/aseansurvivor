@@ -5,6 +5,7 @@ import {GROUND_DEPTH} from './SpellRibbons';
 // Ground markings share a single draw call per layer. Coordinates match the
 // simulation plane, even with the camera tilted at 45 degrees.
 export class BattleMarks {
+  elevationAt=(x:number,y:number)=>0;
   private positions:number[]=[];
   private colours:number[]=[];
   private path:Point[]=[];
@@ -24,10 +25,22 @@ export class BattleMarks {
   clear(){this.positions.length=0;this.colours.length=0}
   fillStyle(color:number,alpha=1){this.fill.setHex(color);this.fillAlpha=alpha;return this}
   lineStyle(width:number,color:number,alpha=1){this.weight=width;this.stroke.setHex(color);this.strokeAlpha=alpha;return this}
-  private triangle(a:Point,b:Point,c:Point,color:THREE.Color,alpha:number){
+  private triangle(a:Point,b:Point,c:Point,color:THREE.Color,alpha:number,depth=0){
     if(alpha<=0)return;
+    // Follow the slope when a long edge spans multiple ground cells.
+    const edges=[[a,b,c],[b,c,a],[c,a,b]];
+    for(const [start,end,opposite] of edges){
+      if(depth===5||Math.hypot(start.x-end.x,start.y-end.y)<72)continue;
+      const mid={x:(start.x+end.x)/2,y:(start.y+end.y)/2};
+      const average=(this.elevationAt(start.x,start.y)+this.elevationAt(end.x,end.y))/2;
+      if(Math.abs(this.elevationAt(mid.x,mid.y)-average)<1.5)continue;
+      this.triangle(start,mid,opposite,color,alpha,depth+1);
+      this.triangle(mid,end,opposite,color,alpha,depth+1);
+      return;
+    }
     for(const {x,y} of [a,b,c]){
-      this.positions.push(x,this.height,y*GROUND_DEPTH+this.height);this.colours.push(color.r,color.g,color.b,Math.min(alpha,1));
+      this.positions.push(x,this.elevationAt(x,y)+this.height,y*GROUND_DEPTH+this.height);
+      this.colours.push(color.r,color.g,color.b,Math.min(alpha,1));
     }
   }
   private segment(a:Point,b:Point){

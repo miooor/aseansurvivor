@@ -1,4 +1,8 @@
 import {FOLKLORE_GHOSTS} from './folklore-monsters.js';
+import {HUNTING_MONSTERS} from './hunting-monsters.js';
+import {BOSS_ESCORTS} from './boss-escorts.js';
+import {WAVE_MONSTERS} from './wave-monsters.js';
+import {NIGHT_FOES} from './night-foes.js';
 
 // Original spirits tied to the environment of each mission.
 export const REGIONAL_GHOSTS = {
@@ -11,6 +15,12 @@ export const REGIONAL_GHOSTS = {
   nipah: {frame:6, size:96, name:'Nipah Rootling', hp:80, spd:72, r:20, dmg:12, xp:6, warning:84, hint:'Step away when roots mark your position.'},
   foam: {frame:7, size:86, name:'Slipway Crab', hp:125, spd:61, r:23, dmg:15, xp:7, warning:55, hint:'Dodge along the gap between its twin foam trails.'},
   kite: {frame:8, size:98, name:'Wau Wisp', hp:96, spd:85, r:19, dmg:12, xp:7, warning:55, hint:'Find the gap in its spinning ring of darts.'},
+  mooring: {frame:0, atlas:'mooring-wraith', poseStride:1, size:96, name:'Mooring Wraith',
+    hp:110, spd:68, r:21, dmg:13, xp:7, warning:55, hint:'Step sideways out of its marked rope line.'},
+  ...HUNTING_MONSTERS,
+  ...BOSS_ESCORTS,
+  ...WAVE_MONSTERS,
+  ...NIGHT_FOES,
   ...FOLKLORE_GHOSTS
 };
 
